@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macha — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Macha: a living, university-curated reference on War, Sovereignty, Horses. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Macha — Scholarly Edition",
+    "headline": "Macha — Scholarly Edition",
+    "description": "University-curated scholarly reference for Macha (War, Sovereignty, Horses).",
+    "url": "https://punicodex.com/macha/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Macha",
+        "alternateName": ["macha", "Macha"],
+        "description": "War, Sovereignty, Horses"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/macha.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/macha/scholars/">
+
+    <meta property="og:title" content="Macha — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Macha (War, Sovereignty, Horses).">
+    <meta property="og:url" content="https://punicodex.com/macha/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/macha.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/macha.jpg">
+    <meta name="twitter:title" content="Macha — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Macha (War, Sovereignty, Horses).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Macha",
+      "item": "https://punicodex.com/macha/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/macha/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="macha-canvas" data-effect="emainrace-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/macha_logolockup.webp" type="image/webp"><img src="../assets/macha_logolockup.png" alt="Macha" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/macha/">Macha</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Macha</h1>
+            <p class="scholars-subtitle reveal-up">War, Sovereignty, Horses · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Macha.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Macha</strong> (<em>macha</em>) — War, Sovereignty, Horses · Field, plain — is the sovereignty figure of the Ulster Cycle: the otherworld woman who came to the door of the widower Cruinniuc mac Agnomain and made his house prosper on one condition, that he never speak of her — and who, when he boasted at the assembly of the Ulaid that she could outrun the king's horses, was brought out nine months gone with child and forced to race the chariot-pair of Conchobar mac Nessa. She beat the horses at the finish line, was delivered of twins on the field, and laid on the men of Ulster the curse that drives the whole Táin: in their hour of greatest need, the pangs of childbirth, five days and four nights, for nine generations.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>Old Irish knows several bearers of the name, and the commentators treat them as one goddess wearing several stories: Macha wife of Cruinniuc, who races and curses; Macha wife of Nemed, from whom Ard Macha — Armagh, 'Macha's height' — is named; and Macha Mongrúad, the red-maned queen who took the kingship of Ireland in her own right and traced the rampart of Emain Macha with the brooch of her neck. The genealogies also count her among the three daughters of Ernmas, beside <a href="/badb/" class="crosslink" data-crosslink="badb">Badb</a> and Anand, the triple face of Irish war.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Macha</strong> — identical to the ASCII input, because normalized Old Irish writes no diacritic in this name. The mechanical rule therefore places it in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the goddess. No domain is claimed: the plain-ASCII <strong>macha.com</strong> is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Hull, Vernam, ed., &#39;Noínden Ulad: The Debility of the Ulaidians&#39;, Celtica 8 (1968), 1–30.</li><li id="src-overview-2">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. Macha.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The theonym is attested in Old and Middle Irish as <strong>Macha</strong>, borne in the texts by a small family of figures — the wife of Cruinniuc in the Debility tale, the wife of Nemed in the Lebor Gabála, and the queen Macha Mongrúad — whom the commentators, medieval and modern alike, treat as aspects of a single sovereignty figure bound to the land of Ulster.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The etymology most often proposed derives the name from Proto-Celtic <em>magos</em>, 'plain, field' — the word that survives as Irish <em>mag</em> and in Gaulish place-names such as Noviomagus and Caesaromagus. On this reading the goddess's name is the land itself: Mag Macha, 'Macha's plain', is the medieval name of the country around Armagh.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The place-names carry the argument. Ard Macha, 'Macha's height', is Armagh; Emain Macha, the royal seat of Ulster, is glossed by the tales in two ways — 'Macha's twins', from the boy and girl born at the finish line, and, for Macha Mongrúad, from the eo-muin, the neck-brooch with which the queen traced the fort's circuit. The dindsenchas keeps both etymologies side by side and the tradition never chose between them.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p>
+<p>The ASCII form <em>macha</em> loses nothing, because the normalized Old Irish spelling is already plain Latin letters; the restoration is therefore a matter of canonical reference, not rescued diacritics, and the name is classified Tier 2 by the project's mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>c</strong> → <strong>c</strong> — Same</li><li><strong>h</strong> → <strong>h</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>macha.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. Macha.</li><li id="src-the-name-2">Matasović, Ranko, Etymological Dictionary of Proto-Celtic (Leiden: Brill, 2009), s.v. *magos &#39;plain, field&#39;.</li><li id="src-the-name-3">Gwynn, Edward, ed. and trans., The Metrical Dindsenchas, Todd Lecture Series 8–12 (Dublin: Royal Irish Academy, 1903–35), the poems of Emain Macha.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈma.xa/</strong> — Old Irish Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ma-</strong> — Broad (velarized) [m] and short open [a], stressed on the first syllable as in all Old Irish</li><li><strong>-cha</strong> — Lenited c, written ch: the voiceless velar fricative [x] of Scottish <em>loch</em>, never a hard k; short final [a], unstressed</li></ul>
+<p>For the modern speaker, the closest approximation is: 'MAHKH-ah' — two short open a's, stress on the first, and the ch rasping as at the end of 'loch'. Modern Irish keeps the sound: Eamhain Mhacha is pronounced with the same fricative.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Irish</strong> — Macha, the theonym and the woman's name in one word</li><li><strong>Proto-Celtic</strong> — *magos, 'plain, field', the proposed root</li><li><strong>Gaulish</strong> — magos, 'plain, field', in place-names such as Noviomagus</li><li><strong>Modern Irish</strong> — Macha, unbroken in Eamhain Mhacha (Navan Fort) and Ard Mhacha (Armagh)<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li></ul>
+<p>Macha is Tier 2 because the restoration preserves nothing ASCII loses: the letters of the manuscript form are the letters of the keyboard. The capital alone marks the temple form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Thurneysen, Rudolf, A Grammar of Old Irish, trans. D. A. Binchy and Osborn Bergin (Dublin: Dublin Institute for Advanced Studies, 1946), on lenition and the broad/slender system.</li><li id="src-pronunciation-2">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, 5 vols. (Dublin: Irish Texts Society, 1938–56), for the name&#39;s bearers and their epithets.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Irish manuscripts in the Latin alphabet as <strong>Macha</strong> — Old Irish / Middle Irish in Insular script, attested from the early medieval period in the great codices that preserve Noínden Ulad, the Táin, and Lebor Gabála Érenn.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The earlier monumental alphabet, ogham, predates the manuscript tradition, but no attestation of this theonym has ever been read on an ogham stone; the manuscript form is the primary witness.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Old Irish was written in the Latin alphabet using Insular minuscule from the early medieval period; the spelling Macha requires no diacritic.</li><li>The proposed etymology derives the name from Proto-Celtic *magos, 'plain, field' — Irish mag, Gaulish magos in place-names such as Noviomagus — making the goddess's name the land itself.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The lenited c of the second syllable is written ch and pronounced [x], the fricative of Scottish 'loch', but the orthography writes plain c and h; nothing distinctive is lost in ASCII.</li><li>The Unicode restoration Macha is therefore identical to the ASCII form apart from the capital; the temple form is a canonical reference, not a rescued spelling.</li></ul>
+<p>One caution attaches to the record: the texts know several Machas — the wife of Cruinniuc, the wife of Nemed, the queen Macha Mongrúad — and this edition follows the commentators in treating them as aspects of one sovereignty figure, while keeping each tale's own bearer distinct in the telling.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Dictionary of the Irish Language (Royal Irish Academy, 1913–76; eDIL 2019), s.v. Macha.</li><li id="src-original-script-2">McManus, Damian, A Guide to Ogam (Maynooth: An Sagart, 1991).</li><li id="src-original-script-3">Matasović, Ranko, Etymological Dictionary of Proto-Celtic (Brill, 2009), s.v. *magos.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Macha</strong> is catalogued under the domain 'War, Sovereignty, Horses' — three words that map exactly onto the three strands of her dossier.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Sovereignty</h3>
+<p>The race is a sovereignty myth: the otherworld woman comes to the man of the land, makes his holding prosper on the condition of silence, and when the condition is broken the land itself answers through her body. The curse is sovereignty withdrawing its strength — for nine generations the province's warriors are unfit at the hour of need.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Horses</h3>
+<p>Everything equine in the dossier is hers: she outruns the king's chariot-pair, the boast that dooms her is about horses, and her standard comparanda — <a class="scholars-xlink" href="/rhiannon/">Rhiannon</a> at the horse-block, Gaulish Epona on her mare — are the Celtic world's horse-bound goddesses.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">War</h3>
+<p>The Táin keeps her in the vocabulary of battle: mesrad Machae, 'Macha's mast', is its kenning for the severed heads of the slain, and the Lebor Gabála counts her among the three daughters of Ernmas beside <a class="scholars-xlink" href="/badb/">Badb</a> and Anand — the war-sisters the tradition also gathers under the name <a class="scholars-xlink" href="/morrigan/">Morrígan</a>. The curse itself is a weapon: it decides the Táin before the Táin begins, leaving <a class="scholars-xlink" href="/cuchulainn/">Cú Chulainn</a> to hold the province alone.<sup class="scholars-cite"><a href="#src-domains-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Hull, Vernam, ed., &#39;Noínden Ulad: The Debility of the Ulaidians&#39;, Celtica 8 (1968).</li><li id="src-domains-2">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on the horse-bound sovereignty figures.</li><li id="src-domains-3">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (Dublin: Dublin Institute for Advanced Studies, 1976).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Macha's attributes are a race, a pair of children, a curse, a brooch, and a harvest — the leanest regalia of any Irish goddess, and the most consequential:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The king's horses</strong> — Conchobar's unmatched chariot-pair, the boast that forced the race and the measure she outran at the line</li><li><strong>The twins</strong> — A boy and a girl born on the racetrack; emain, 'twins', is the naming of Ulster's royal seat, Emain Macha</li><li><strong>The debility</strong> — Five days and four nights of a woman's labor-pangs, laid on the men of Ulster for nine generations: the ces noínden that empties the province in the Táin</li><li><strong>The brooch of the queen</strong> — Macha Mongrúad's eo-muin, the neck-brooch with which she marked the circuit of Emain: sovereignty drawing its own boundary<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>Macha's mast</strong> — Mesrad Machae, 'Macha's crop', the Táin's phrase for the heads the battle leaves: the war-goddess's harvest<sup class="scholars-cite"><a href="#src-symbols-3">[3]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Hull, Vernam, ed., &#39;Noínden Ulad: The Debility of the Ulaidians&#39;, Celtica 8 (1968).</li><li id="src-symbols-2">Gwynn, Edward, ed. and trans., The Metrical Dindsenchas (Dublin: Royal Irish Academy, 1903–35), the poems of Emain Macha.</li><li id="src-symbols-3">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (DIAS, 1976), s.v. mesrad Machae.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Macha's mythology is one great tale and a family of namesakes: the Debility of the Ulstermen gives the race, the twins, and the curse; the Táin harvests the consequences; the Lebor Gabála remembers the wife of Nemed and the red-maned queen; and the genealogies fold her into the three of war.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Woman at Cruinniuc's Door (Noínden Ulad)</h3>
+<p>Cruinniuc mac Agnomain, a rich widowed farmer of the Ulaid, found a woman he had never seen in his house; she took up its work without a word, lay with him that night, and stayed. Under her hand everything prospered, and her one condition was silence: he must never speak of her, never boast of her. The compact held until the great assembly of the Ulaid, when the talk turned to the king's horses — the fastest things in the world — and Cruinniuc said his wife could outrun them.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Race, the Twins, and the Curse (Noínden Ulad)</h3>
+<p>Conchobar had the boaster seized and the woman sent for; she came nine months gone with twins and begged the assembly for delay until she had given birth — for a mother bore each of them. The Ulaid refused. She raced the king's chariot-horses and beat them at the line; at the line the pangs took her and she was delivered of a boy and a girl on the field. Then she cursed them: as she had found no mercy in her labor, the men of Ulster in their hour of greatest straits would suffer the pangs of a woman in childbirth, five days and four nights, for nine generations — every man save the boys and the women. In most recensions she died there, and the twins named the royal seat: Emain Macha, 'Macha's twins'.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Debility in the Táin (Táin Bó Cúailnge)</h3>
+<p>The curse is the engine of the epic. When <a class="scholars-xlink" href="/medb/">Medb</a> of Connacht marches into Ulster for the Donn Cúailnge, the province's warriors lie in the ces noínden — the curse spared the boys and the women, and it spared <a class="scholars-xlink" href="/cuchulainn/">Cú Chulainn</a>, so that one boy holds the border of Ulster alone. The Táin also keeps her in the language of the field: mesrad Machae, 'Macha's mast', is its kenning for severed heads.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Queens and the Naming of Emain (Lebor Gabála Érenn)</h3>
+<p>The book of invasions remembers Macha wife of Nemed, who died in Ireland and gave her name to Ard Macha — Armagh, 'Macha's height' — and to Mag Macha, the plain around it. It remembers also Macha Mongrúad, the red-maned daughter of Áed Rúad: refused her turn in the kingship her father had shared with his brothers, she took it by war — marrying Cimbáeth, defeating Díthorba's five sons after going to them in the guise of a leprous hag — and held the kingship of Ireland herself. She it was who marked the circuit of Emain with the brooch of her neck and made her captives dig the rampart; the dindsenchas keeps both etymologies, the twins and the brooch, without choosing.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup> The same genealogical stratum counts <a href="/badb/" class="crosslink" data-crosslink="badb">Badb</a> and Macha and Anand as the three daughters of Ernmas — the sisters of war the tradition also calls <a class="scholars-xlink" href="/morrigan/">the Morrígan</a>.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Hull, Vernam, ed., &#39;Noínden Ulad: The Debility of the Ulaidians&#39;, Celtica 8 (1968), 1–30.</li><li id="src-mythology-2">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (Dublin: Dublin Institute for Advanced Studies, 1976).</li><li id="src-mythology-3">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, vol. 4 (Dublin: Irish Texts Society, 1941) — Macha wife of Nemed; Macha Mongrúad.</li><li id="src-mythology-4">Gwynn, Edward, ed. and trans., The Metrical Dindsenchas (Dublin: Royal Irish Academy, 1903–35), the poems of Emain Macha.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Macha's clearest cross-border witness is Welsh, and it is the standard comparison of the handbooks: <a class="scholars-xlink" href="/rhiannon/">Rhiannon</a> of the First Branch of the Mabinogi — the otherworld woman on the horse no rider can overtake, falsely accused of destroying her child and sentenced to sit at the horse-block, telling her story to every guest and offering to carry them on her back like a beast of burden. Mac Cana and Sjoestedt both set the two figures side by side: the sovereignty woman bound to horses, wronged by the men of the court, and made to bear an equine humiliation.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Behind both stands the Gaulish horse-goddess <strong>Epona</strong>, whose dedications run from Britain to the Danube — the one Celtic deity to win a festival in the Roman calendar — the continental anchor of the comparison, cited as type, never as identity. Within the Irish corpus her structural kin are <a class="scholars-xlink" href="/medb/">Medb</a>, the sovereignty queen whose favor makes kings, and her own sisters of war, <a class="scholars-xlink" href="/badb/">Badb</a> and <a class="scholars-xlink" href="/morrigan/">the Morrígan</a>, with whom the Lebor Gabála shares a mother in Ernmas.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970); Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Myles Dillon (London: Methuen, 1949).</li><li id="src-syncretism-2">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930); Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), the First Branch.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Macha rode the Celtic revival as the first wrong of the Ulster Cycle. Lady Gregory's Cuchulain of Muirthemne (1902) opens the epic with her — 'The Curse of Macha' — and made the race and the debility the gateway through which generations of English readers entered the Táin.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Thomas Kinsella's The Táin (1969) kept the fore-tale at the head of the epic, and the twinned figures of the wronged woman and the war-goddess have made Macha a standing subject in the study of Celtic sovereignty myth.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>On the ground her names never went anywhere. Emain Macha is Navan Fort, one of the royal sites of Ireland and the ceremonial capital of ancient Ulster; and Ard Macha — Armagh, where Patrick founded his church in the fifth century and which remains the ecclesiastical primacy of Ireland — still carries her name in every address in the county. Modern scholarship from Mac Cana to Koch treats the race as the type-case of the Irish sovereignty goddess, and contemporary Celtic pagan practice honors her among the three of war.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Gregory, Lady Augusta, Cuchulain of Muirthemne: The Story of the Men of the Red Branch of Ulster (London: John Murray, 1902).</li><li id="src-cultural-legacy-2">Kinsella, Thomas, trans., The Táin (Oxford: Oxford University Press, 1969), the fore-tales.</li><li id="src-cultural-legacy-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Macha, Emain Macha.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Macha is a textual goddess: no ogham stone names her, no votive inscription invokes her, and Irish paganism generally left literature rather than dedications.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> Her manuscript witnesses are exact: Noínden Ulad survives in the Yellow Book of Lecan and its sister codices, the basis of Hull's edition; the Táin's oldest recension rests on Lebor na hUidre, the Book of the Dun Cow (c. 1100), and the twelfth-century Book of Leinster; the Lebor Gabála on the Book of Leinster and its companions.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>Her mythic address, by contrast, is one of the most instructive monuments in Atlantic Europe. Emain Macha is Navan Fort, Co. Armagh, where excavations between 1961 and 1971 uncovered beneath the great mound a forty-metre timber structure — a ring of massive posts around a central oak — that dendrochronology dates to 95 BC. The building was raised in a single episode, filled with a stone cairn, burned, and buried under the mound that stands today: a structure built to be unmade, a ritual statement rather than a residence. No artifact names her; the identification of the fort with Emain Macha rests on the early medieval record, beginning with the annals and the Book of Armagh.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-archaeology-2">Hull, Vernam, ed., &#39;Noínden Ulad&#39;, Celtica 8 (1968), introduction, on the manuscript tradition.</li><li id="src-archaeology-3">Lynn, Chris, Navan Fort: Archaeology and Myth (Bray: Wordwell, 2003), on the excavations of 1961–71 and the dendrochronology.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Macha given in this edition rests on the witnesses and reference works listed below. Noínden Ulad supplies the narrative spine; the Táin the curse's working-out; Lebor Gabála the queens and the genealogies; the dindsenchas the naming of Emain; the Mabinogi and the Gaulish material are cited for comparison only.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Hull, Vernam, ed., 'Noínden Ulad: The Debility of the Ulaidians', Celtica 8 (1968), 1–30.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> O'Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (Dublin: Dublin Institute for Advanced Studies, 1976).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, 5 vols. (Dublin: Irish Texts Society, 1938–56).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Gwynn, Edward, ed. and trans., The Metrical Dindsenchas, Todd Lecture Series 8–12 (Dublin: Royal Irish Academy, 1903–35).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930); Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. Macha, emain, ces noínden.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Matasović, Ranko, Etymological Dictionary of Proto-Celtic (Leiden: Brill, 2009), s.v. *magos.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Myles Dillon (London: Methuen, 1949).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Macha, Emain Macha, Epona.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Gregory, Lady Augusta, Cuchulain of Muirthemne (London: John Murray, 1902).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Kinsella, Thomas, trans., The Táin (Oxford: Oxford University Press, 1969).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-13">[13]</a></sup> Lynn, Chris, Navan Fort: Archaeology and Myth (Bray: Wordwell, 2003).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-14">[14]</a></sup> McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-15">[15]</a></sup> Thurneysen, Rudolf, A Grammar of Old Irish, trans. Binchy and Bergin (Dublin: DIAS, 1946).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Hull, Vernam, ed., &#39;Noínden Ulad&#39;, Celtica 8 (1968).</li><li id="src-scholarly-sources-2">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (DIAS, 1976).</li><li id="src-scholarly-sources-3">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn (Irish Texts Society, 1938–56).</li><li id="src-scholarly-sources-4">Mac Cana, Proinsias, Celtic Mythology (Hamlyn, 1970).</li><li id="src-scholarly-sources-5">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006).</li><li id="src-scholarly-sources-6">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. Macha, emain, ces noínden.</li><li id="src-scholarly-sources-7">Matasović, Ranko, Etymological Dictionary of Proto-Celtic (Leiden: Brill, 2009), s.v. *magos.</li><li id="src-scholarly-sources-8">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li id="src-scholarly-sources-9">Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Myles Dillon (London: Methuen, 1949).</li><li id="src-scholarly-sources-10">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Macha, Emain Macha, Epona.</li><li id="src-scholarly-sources-11">Gregory, Lady Augusta, Cuchulain of Muirthemne (London: John Murray, 1902).</li><li id="src-scholarly-sources-12">Kinsella, Thomas, trans., The Táin (Oxford: Oxford University Press, 1969).</li><li id="src-scholarly-sources-13">Lynn, Chris, Navan Fort: Archaeology and Myth (Bray: Wordwell, 2003).</li><li id="src-scholarly-sources-14">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-scholarly-sources-15">Thurneysen, Rudolf, A Grammar of Old Irish, trans. Binchy and Bergin (Dublin: DIAS, 1946).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Macha belongs first to the Ulster Cycle, and her tale is the foundation of its epic: Noínden Ulad, 'The Debility of the Ulaid', stands among the remscéla, the fore-tales, of the Táin, and without it the epic's central fact — one boy defending a province of stricken warriors — has no explanation.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup> The Táin itself keeps her name in the field's vocabulary, mesrad Machae, 'Macha's mast', its kenning for the severed heads of the slain.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup></p>
+<p>Around that spine the pseudo-historical stratum builds the goddess's other faces. The Lebor Gabála Érenn gives her two earlier lives: Macha wife of Nemed, whose grave names Ard Macha and Mag Macha, and Macha Mongrúad, the red-maned daughter of Áed Rúad who seized the kingship of Ireland and traced the rampart of Emain with her brooch.<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup> The same genealogies count her with <a href="/badb/" class="crosslink" data-crosslink="badb">Badb</a> and Anand among the three daughters of Ernmas, the sisters of war the tradition also gathers as <a class="scholars-xlink" href="/morrigan/">the Morrígan</a>; and the dindsenchas keeps both namings of Emain Macha — the twins and the brooch — in verse, side by side, without choosing.<sup class="scholars-cite"><a href="#src-irish-cycles-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">Hull, Vernam, ed., &#39;Noínden Ulad: The Debility of the Ulaidians&#39;, Celtica 8 (1968).</li><li id="src-irish-cycles-2">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (DIAS, 1976).</li><li id="src-irish-cycles-3">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, vol. 4 (Irish Texts Society, 1941).</li><li id="src-irish-cycles-4">Gwynn, Edward, ed. and trans., The Metrical Dindsenchas (Dublin: Royal Irish Academy, 1903–35), the poems of Emain Macha.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No figure of the Welsh corpus bears Macha's name, and the silence deserves to be recorded rather than repaired — but the Brythonic tradition preserves her nearest portrait. The First Branch of the Mabinogi, Pwyll Pendeuic Dyfed, gives <a class="scholars-xlink" href="/rhiannon/">Rhiannon</a>: the otherworld woman who rides a horse no pursuer can overtake, who comes to the man she has chosen, and who — falsely accused of devouring her newborn son — is sentenced to sit at the horse-block outside the court, telling her story to every guest and offering to carry them on her back.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup></p>
+<p>The comparison is the standard one of the handbooks, from Sjoestedt to Mac Cana: two sovereignty women bound to horses, wronged by the men of the court, and made to bear an equine humiliation — Macha raced like a horse in her labor, <a href="/rhiannon/" class="crosslink" data-crosslink="rhiannon">Rhiannon</a> made a horse by her penance. Behind both, the handbooks set the Gaulish Epona, the mare-goddess of the Roman provinces, as the continental anchor of the figure-type. The comparison is typological, not genealogical: no scholar derives one text from the other, and this edition does not either.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930); Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), the First Branch.</li><li id="src-welsh-sources-2">Mac Cana, Proinsias, Celtic Mythology (Hamlyn, 1970); Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Dillon (1949).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription names Macha. <strong>Ogham</strong>, the early Irish monumental script of roughly the fourth to seventh centuries, survives on some four hundred stones bearing mostly personal names in formulaic genitives; no reading of the theonym has been proposed for any of them, and none would be expected — ogham stones mark graves and boundaries, not votive dedications.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup> Emain Macha itself, for all its ceremonial weight, has yielded no inscription: Navan Fort speaks in timber, cairn, and mound, not in letters.</p>
+<p>The nearest epigraphic witness to her figure-type is continental: the dedications to <strong>Epona</strong>, the Gaulish mare-goddess, of which some hundreds survive on altars from Britain to the Danube, make her the best-documented Celtic deity in stone — and the standing comparison for Macha's horse-bound sovereignty in the handbooks. The comparison is typological only: no altar from the Celtic provinces can be read as addressed to Macha herself. The epigraphic silence at home is characteristic of Irish paganism, whose cult left place-names and literature rather than stone.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-inscriptions-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Epona; Mac Cana, Celtic Mythology (1970).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Macha is the goddess of the exact answer. The Ulaid would not wait for her labor, so their labor is her labor: the pangs she suffered alone on the racetrack become the pangs of every fighting man in the province, whenever the province needs its men. Nothing in the curse is arbitrary; it is the wrong replayed on the body politic for nine generations, precise as a mirror. The Irish called it ces — the debility — and built their greatest epic inside it: a whole war fought by one boy because an assembly of men could not grant a pregnant woman a postponement.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>Her name, if the etymologists are right, is simply 'field' — Mag Macha, Macha's plain, is the ground of Armagh itself. That is the sovereignty doctrine in a single word: the goddess is the land, the race is run on her, the fort is drawn by her brooch, and the men who rule there hold their strength on her sufferance. Macha asks the question every power eventually answers: what does it cost to use the land — and its women — as though they had no claims of their own?</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Hull, Vernam, ed., &#39;Noínden Ulad: The Debility of the Ulaidians&#39;, Celtica 8 (1968).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Macha</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'macha';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

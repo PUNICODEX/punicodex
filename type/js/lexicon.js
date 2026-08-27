@@ -1,6 +1,6 @@
 /*
  * PUNICODEX Lexicon
- * 926 validated entries across multiple pantheons
+ * 978 validated entries across multiple pantheons
  */
 
 const LEXICON = [
@@ -2202,11 +2202,13 @@ const LEXICON = [
       }
     ],
     "etymology": {
+      "protoForm": "*dʰeh₁-",
       "protoLanguage": "proto-indo-european",
-      "protoGloss": "The Gatherer",
-      "derivation": "The Gatherer (from τίθημι)",
+      "protoGloss": "to put, to place",
+      "derivation": "Greek Θησεύς, popularly derived from τίθημι 'to set, to place'; the Athenian hero who slew the Minotaur and unified Attica.",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "mnemosyne",
@@ -4728,6 +4730,7 @@ const LEXICON = [
   },
   {
     "id": "baldr",
+    "hasAdSite": true,
     "ascii": "baldr",
     "unicode": "Baldr",
     "greek": "—",
@@ -5406,7 +5409,7 @@ const LEXICON = [
     "tier": "2",
     "tierLabel": "Tier 2",
     "domain": "Wolf, Destruction, Binding",
-    "meaning": "Fen-dweller (from fen + herr)",
+    "meaning": "Fen-dweller (from fen + -ir)",
     "sources": [
       "Cleasby-Vigfusson",
       "Zoëga"
@@ -8736,59 +8739,6 @@ const LEXICON = [
         "to": "u",
         "type": "same",
         "note": "Same"
-      }
-    ]
-  },
-  {
-    "id": "susano",
-    "ascii": "susano",
-    "unicode": "Susanō",
-    "greek": "須佐之男",
-    "pantheon": "japanese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Storm God, Shintō",
-    "meaning": "Impetuous male",
-    "sources": [
-      "Hepburn",
-      "Kojiki"
-    ],
-    "breakdown": [
-      {
-        "char": "s",
-        "to": "S",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "u",
-        "to": "u",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "n",
-        "to": "n",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "o",
-        "to": "ō",
-        "type": "length",
-        "note": "Macron: long vowel"
       }
     ]
   },
@@ -15383,7 +15333,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "*pan- + *dōr-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "all-gifted",
+      "derivation": "Greek Πανδώρα 'all-gifted', from πᾶν 'all' and δῶρον 'gift'; the first woman in Hesiod's Theogony.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "sisyphus",
@@ -18338,7 +18296,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "rainbow, messenger",
+      "derivation": "Greek Ἶρις 'rainbow'; the messenger goddess who runs on the rainbow between gods and mortals.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "eris",
@@ -19532,7 +19498,15 @@ const LEXICON = [
         "type": "dual",
         "note": "Stress + length"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "*bʰeyg-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to blow, breathe",
+      "derivation": "Greek ψυχή 'breath, life, soul'; from the verb ψύχω 'to blow, to cool'. In myth, Psyche is the mortal beloved of Eros.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "pneuma",
@@ -22912,13 +22886,13 @@ const LEXICON = [
         "char": "s",
         "to": "š",
         "type": "special",
-        "note": "Special character"
+        "note": "Š: caron s, distinctive letter"
       },
       {
         "char": "h",
         "to": "",
         "type": "drop",
-        "note": "Dropped"
+        "note": "Dropped: sh digraph realized as š"
       },
       {
         "char": "k",
@@ -22950,7 +22924,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "sumerian",
+      "protoGloss": "lady of the great earth",
+      "derivation": "Sumerian Ereškigal, 'Lady of the Great Earth', queen of the Mesopotamian underworld Kur.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "tiamat",
@@ -24817,7 +24799,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Man-Lion Avatar",
-    "meaning": "'The Man-Lion' — the fourth avatāra of Viṣṇu, who burst from the pillar to slay Hiraṇyakaśipu",
+    "meaning": "The Man-Lion — the fourth avatāra of Viṣṇu",
     "senses": [
       {
         "type": "etymology",
@@ -24883,7 +24865,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-indo-iranian",
+      "protoGloss": "man-lion",
+      "derivation": "Sanskrit Narasiṃha, from nara 'man' + siṃha 'lion'; the man-lion avatāra of Viṣṇu who slew Hiraṇyakaśipu.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "nuada",
@@ -33482,89 +33472,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "jadeemperor",
-    "ascii": "jadeemperor",
-    "unicode": "Yùhuáng",
-    "greek": "玉皇",
-    "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Supreme Deity, Heaven",
-    "meaning": "Jade emperor",
-    "sources": [
-      "Daoist Canon",
-      "Yang"
-    ],
-    "breakdown": [
-      {
-        "char": "j",
-        "to": "Y",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "a",
-        "to": "ù",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "d",
-        "to": "h",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "e",
-        "to": "u",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "e",
-        "to": "á",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "m",
-        "to": "n",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "p",
-        "to": "g",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "e",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "r",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "o",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "r",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      }
-    ]
-  },
-  {
     "id": "guanyin",
     "ascii": "guanyin",
     "unicode": "Guānyīn",
@@ -34756,8 +34663,8 @@ const LEXICON = [
   {
     "id": "sunwukong",
     "ascii": "sunwukong",
-    "unicode": "Sūn Wùkōng",
-    "greek": "孫悟空",
+    "unicode": "Sūnwùkōng",
+    "greek": "孙悟空",
     "pantheon": "chinese",
     "tier": "1",
     "tierLabel": "Tier 1",
@@ -34778,7 +34685,7 @@ const LEXICON = [
         "char": "u",
         "to": "ū",
         "type": "length",
-        "note": "Long vowel"
+        "note": "Macron: long vowel"
       },
       {
         "char": "n",
@@ -34788,15 +34695,15 @@ const LEXICON = [
       },
       {
         "char": "w",
-        "to": "W",
+        "to": "w",
         "type": "same",
-        "note": "Same, capitalized"
+        "note": "Same"
       },
       {
         "char": "u",
         "to": "ù",
         "type": "stress",
-        "note": "Stress on u"
+        "note": "Grave tone mark"
       },
       {
         "char": "k",
@@ -34808,7 +34715,7 @@ const LEXICON = [
         "char": "o",
         "to": "ō",
         "type": "length",
-        "note": "Long vowel"
+        "note": "Macron: long vowel"
       },
       {
         "char": "n",
@@ -34822,7 +34729,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-sino-tibetan",
+      "protoGloss": "",
+      "derivation": "Sūn (猴) the monkey clan name; Wù (悟) 'awakened'; Kōng (空) 'emptiness' — the name given by the Buddhist Patriarch Subhūti in Journey to the West.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "bingjilan",
@@ -36493,72 +36408,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "oedipus",
-    "ascii": "oedipus",
-    "unicode": "Oidípous",
-    "greek": "Οἰδίπους",
-    "pantheon": "greek",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Fate, Tragedy, Thebes",
-    "meaning": "Swollen foot",
-    "sources": [
-      "Sophocles",
-      "LSJ"
-    ],
-    "breakdown": [
-      {
-        "char": "o",
-        "to": "O",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "e",
-        "to": "i",
-        "type": "same",
-        "note": "Oi for Latinized oe — Greek οἰ"
-      },
-      {
-        "char": "d",
-        "to": "d",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "i",
-        "to": "í",
-        "type": "stress",
-        "note": "Acute on iota (Οἰδίπους, tonos on δί)"
-      },
-      {
-        "char": "p",
-        "to": "p",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "u",
-        "to": "ou",
-        "type": "same",
-        "note": "Diphthong ου rendered ou"
-      },
-      {
-        "char": "s",
-        "to": "s",
-        "type": "same",
-        "note": "Same"
-      }
-    ],
-    "variants": [
-      {
-        "unicode": "Oedipus",
-        "type": "ascii",
-        "note": "Standard Latin/English form"
-      }
-    ]
-  },
-  {
     "id": "jocasta",
     "ascii": "jocasta",
     "unicode": "Iokástē",
@@ -37738,7 +37587,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Power, Energy, Divine Feminine",
-    "meaning": "Power, ability, energy — the active power of a deity personified as his consort, esp. the divine feminine energy of Śiva worshipped as the Great Goddess.",
+    "meaning": "Power, ability, energy — the active power of a deity personified as his consort",
     "senses": [
       {
         "type": "etymology",
@@ -37786,7 +37635,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "power, ability",
+      "derivation": "Sanskrit Śakti, from the root śak 'to be able, to have power'; the dynamic feminine energy of the divine.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "prajapati",
@@ -46431,77 +46288,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "confucius",
-    "ascii": "confucius",
-    "unicode": "Kǒngzǐ",
-    "greek": "孔子",
-    "pantheon": "chinese",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Philosopher, Ethics, Society",
-    "meaning": "Master Kong",
-    "sources": [
-      "Analects",
-      "Chinese classics"
-    ],
-    "breakdown": [
-      {
-        "char": "c",
-        "to": "K",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "o",
-        "to": "ǒ",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "n",
-        "to": "n",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "f",
-        "to": "g",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "u",
-        "to": "z",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "c",
-        "to": "ǐ",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "i",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "u",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "s",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      }
-    ]
-  },
-  {
     "id": "mencius",
     "ascii": "mencius",
     "unicode": "Mèngzǐ",
@@ -48904,7 +48690,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Ten-Headed King, Lanka",
-    "meaning": "The ruler of Laṅkā (Ceylon) and famous chief of the Rākṣasas, whose destruction by Rāmacandra forms the subject of the Rāmāyaṇa; son of Viśravas and half-brother of Kubera, he is represented with ten heads.",
+    "meaning": "The ruler of Laṅkā and chief of the Rākṣasas, whose destruction by Rāmacandra forms the subject of the Rāmāyaṇa",
     "senses": [
       {
         "type": "etymology",
@@ -48926,7 +48712,7 @@ const LEXICON = [
         "char": "a",
         "to": "ā",
         "type": "length",
-        "note": "Long vowel"
+        "note": "Macron: long vowel"
       },
       {
         "char": "v",
@@ -48952,7 +48738,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "the screamer",
+      "derivation": "Sanskrit Rāvaṇa, from the causative of rū 'to roar, to cry'; the ten-headed king of Lanka.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "nal",
@@ -49099,7 +48893,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-germanic",
+      "protoGloss": "sorrow-offerer",
+      "derivation": "Old Norse Angrboða, from angr 'sorrow, grief' + boða 'to offer, to announce'; mother of Fenrir, Jörmungandr, and Hel by Loki.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "surt",
@@ -56556,7 +56358,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Compassion, Mercy, Bodhisattva",
-    "meaning": "'Lord who looks down in compassion' (avalokita 'beheld, looked down upon' + īśvara 'lord'), the bodhisattva of compassion, source-form of Guānyīn and Kannon.",
+    "meaning": "Lord who looks down in compassion",
     "sources": [
       "Lotus Sutra",
       "Mahayana texts"
@@ -56652,7 +56454,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-indo-iranian",
+      "protoGloss": "lord who looks down",
+      "derivation": "Sanskrit Avalokiteśvara, from avalokita 'beheld, looked down upon' + īśvara 'lord'; the bodhisattva of compassion, source-form of Guānyīn and Kannon.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "balor",
@@ -56710,7 +56520,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Healing, Medicine, Lapis-Lazuli Light",
-    "meaning": "'Medicine master' (bhaiṣajya 'healing, remedy' + guru 'teacher'), the Medicine Buddha of lapis-lazuli radiance who vows to cure the sick.",
+    "meaning": "Medicine master",
     "sources": [
       "Mahayana texts",
       "Buddhist texts"
@@ -56794,7 +56604,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-indo-iranian",
+      "protoGloss": "medicine teacher",
+      "derivation": "Sanskrit Bhaiṣajyaguru, from bhaiṣajya 'healing, remedy' + guru 'teacher'; the Medicine Buddha of lapis-lazuli radiance.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "bifrost",
@@ -56929,7 +56747,7 @@ const LEXICON = [
         "char": "a",
         "to": "á",
         "type": "stress",
-        "note": "Stress on a"
+        "note": "Acute tone mark"
       },
       {
         "char": "i",
@@ -56953,7 +56771,7 @@ const LEXICON = [
         "char": "e",
         "to": "é",
         "type": "stress",
-        "note": "Stress on e"
+        "note": "Acute tone mark"
       },
       {
         "char": "n",
@@ -56961,7 +56779,15 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-sino-tibetan",
+      "protoGloss": "wealth god",
+      "derivation": "Cái (財) 'wealth, riches'; Shén (神) 'god, spirit' — the popular deity of prosperity worshipped at New Year.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
   },
   {
     "id": "cupid",
@@ -57103,7 +56929,7 @@ const LEXICON = [
     "tier": "1",
     "tierLabel": "Tier 1",
     "domain": "Beauty, Sparta, Troy",
-    "meaning": "Probably pre-Greek; folk-linked to ἑλένη \"torch\"",
+    "meaning": "Probably pre-Greek; folk-linked to ἑλένη 'torch'",
     "sources": [
       "Iliad",
       "Euripides",
@@ -57148,7 +56974,15 @@ const LEXICON = [
         "type": "length",
         "note": "Eta: long epsilon"
       }
-    ]
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "torch",
+      "derivation": "Possibly related to Greek ἑλένη 'torch'; the name of Helen of Troy, whose abduction launched the Trojan War.",
+      "certainty": "disputed"
+    },
+    "hasAdSite": true
   },
   {
     "id": "iphigeneia",
@@ -58772,8 +58606,856 @@ const LEXICON = [
         "note": "Stress on i"
       }
     ]
-  }
-];
+  },
+  {
+    "id": "omphalos",
+    "ascii": "omphalos",
+    "unicode": "Omphalós",
+    "greek": "ὀμφαλός",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Navel, Center, Delphi",
+    "meaning": "Navel (of the earth); the stone at Delphi regarded as the centre of the world",
+    "sources": [
+      "LSJ",
+      "Pausanias"
+    ],
+    "breakdown": [
+      {
+        "char": "o",
+        "to": "O",
+        "type": "same",
+        "note": "Omicron"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Mu"
+      },
+      {
+        "char": "p",
+        "to": "p",
+        "type": "same",
+        "note": "Pi"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Eta aspiration (rough breathing marker in source)"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Alpha"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Lambda"
+      },
+      {
+        "char": "o",
+        "to": "ó",
+        "type": "stress",
+        "note": "Acute on omicron"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Sigma"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*h₃mbʰ-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "navel",
+      "derivation": "Greek ὀμφαλός 'navel, boss, centre'; the Delphic omphalos marked the world's centre in archaic Greek geography.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "keraunos",
+    "ascii": "keraunos",
+    "unicode": "Keraunós",
+    "greek": "κεραυνός",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Thunderbolt",
+    "meaning": "Thunderbolt (the weapon of Zeus)",
+    "sources": [
+      "LSJ",
+      "Homer"
+    ],
+    "breakdown": [
+      {
+        "char": "k",
+        "to": "K",
+        "type": "same",
+        "note": "Kappa"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Epsilon"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Rho"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Alpha"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Upsilon"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Nu"
+      },
+      {
+        "char": "o",
+        "to": "ó",
+        "type": "stress",
+        "note": "Acute on omicron"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Sigma"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*ker-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to strike, horn",
+      "derivation": "Greek κεραυνός 'thunderbolt'; from κεραυνός, the smiting weapon of Zeus.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "susanoo",
+    "ascii": "susanoo",
+    "unicode": "Susanō",
+    "greek": "須佐之男命",
+    "pantheon": "japanese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Storms, Sea, Chaos",
+    "meaning": "Swift impetuous male deity; the Shinto storm god",
+    "sources": [
+      "Kojiki",
+      "Nihon Shoki",
+      "Hepburn"
+    ],
+    "variants": [
+      {
+        "unicode": "Susano",
+        "type": "ascii",
+        "note": "Common Hepburn romanization"
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "s",
+        "to": "S",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Macron: long vowel"
+      },
+      {
+        "char": "o",
+        "to": "",
+        "type": "drop",
+        "note": "Absorbed into the preceding long vowel ō"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "isolate",
+      "protoGloss": "",
+      "derivation": "From Old Japanese susanowo, 'swift impetuous male'; brother of Amaterasu, expelled from the high plain of heaven for his violence.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "oidipous",
+    "ascii": "oidipous",
+    "unicode": "Oidípous",
+    "greek": "Οἰδίπους",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Fate, Riddles, Thebes",
+    "meaning": "Swollen-foot (from οἰδάω + πούς)",
+    "sources": [
+      "Sophocles",
+      "LSJ"
+    ],
+    "variants": [
+      {
+        "unicode": "Oedipus",
+        "type": "ascii",
+        "note": "Standard Latin/English form"
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "o",
+        "to": "O",
+        "type": "same",
+        "note": "Omicron"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Iota"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Delta"
+      },
+      {
+        "char": "i",
+        "to": "í",
+        "type": "stress",
+        "note": "Acute on iota"
+      },
+      {
+        "char": "p",
+        "to": "p",
+        "type": "same",
+        "note": "Pi"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Omicron"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Upsilon"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Sigma"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*h₁eyd-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to swell",
+      "derivation": "Greek Οἰδίπους 'swollen-foot', from οἰδάω 'to swell' and πούς 'foot'; the name encodes the injury inflicted on the infant exposed by his parents.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "kongzi",
+    "ascii": "kongzi",
+    "unicode": "Kǒngzǐ",
+    "greek": "孔子",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Confucius, Moral Teaching, Ritual",
+    "meaning": "Master Kong",
+    "sources": [
+      "Analects",
+      "Shiji",
+      "Chinese classics"
+    ],
+    "variants": [
+      {
+        "unicode": "Confucius",
+        "type": "ascii",
+        "note": "Standard Latin/English form"
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "k",
+        "to": "K",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "o",
+        "to": "ǒ",
+        "type": "stress",
+        "note": "Caron tone mark"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "z",
+        "to": "z",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "ǐ",
+        "type": "stress",
+        "note": "Caron tone mark"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-sino-tibetan",
+      "protoGloss": "",
+      "derivation": "Kǒng (孔) the clan name; zǐ (子) 'master' — the honorific title of the philosopher Confucius (Kong Qiu).",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "yuhuang",
+    "ascii": "yuhuang",
+    "unicode": "Yùhuáng",
+    "greek": "玉皇",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Jade Emperor, Heaven, Sovereignty",
+    "meaning": "Jade Emperor",
+    "sources": [
+      "Chinese folk religion",
+      "Taoist canon",
+      "Yang"
+    ],
+    "variants": [
+      {
+        "unicode": "Jade Emperor",
+        "type": "ascii",
+        "note": "Common English name"
+      }
+    ],
+    "breakdown": [
+      {
+        "char": "y",
+        "to": "Y",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "u",
+        "to": "ù",
+        "type": "stress",
+        "note": "Grave tone mark"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute tone mark"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-sino-tibetan",
+      "protoGloss": "jade emperor",
+      "derivation": "Yù (玉) 'jade'; Huáng (皇) 'emperor, sovereign' — the supreme deity of Chinese folk religion and Taoist cosmology.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "kratos",
+    "ascii": "kratos",
+    "unicode": "Krátos",
+    "greek": "Κράτος",
+    "pantheon": "greek",
+    "tier": "2",
+    "tierLabel": "Tier 2",
+    "domain": "Strength, Power, Sovereignty",
+    "meaning": "Strength, power",
+    "sources": [
+      "Hesiod",
+      "LSJ"
+    ],
+    "breakdown": [
+      {
+        "char": "k",
+        "to": "K",
+        "type": "same",
+        "note": "Kappa"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Rho"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on alpha"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Tau"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Omicron"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Sigma"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*kret-",
+      "protoLanguage": "proto-indo-european",
+      "protoGloss": "to be strong",
+      "derivation": "Greek κράτος 'strength, power, might'; personified as one of the children of the Titan Pallas and Styx.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "tonatiuh",
+    "ascii": "tonatiuh",
+    "unicode": "Tōnatiuh",
+    "greek": "—",
+    "pantheon": "nahuatl",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Sun, Heat, Fifth Age",
+    "meaning": "He who goes forth shining; the Nahuatl sun god",
+    "sources": [
+      "Florentine Codex",
+      "Sahagún"
+    ],
+    "breakdown": [
+      {
+        "char": "t",
+        "to": "T",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "o",
+        "to": "ō",
+        "type": "length",
+        "note": "Macron: long vowel"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-uto-aztecan",
+      "protoGloss": "sun",
+      "derivation": "Classical Nahuatl Tōnatiuh, the sun; the fifth sun of the Aztec cosmos, born from the sacrifice of Nanahuatzin.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "oduduwa",
+    "ascii": "oduduwa",
+    "unicode": "Odùduwà",
+    "greek": "—",
+    "pantheon": "yoruba",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Progenitor, Ile-Ife, First King",
+    "meaning": "Creator of the earth; primordial ancestor of the Yoruba",
+    "sources": [
+      "Ifá corpus",
+      "Yoruba oral tradition"
+    ],
+    "breakdown": [
+      {
+        "char": "o",
+        "to": "O",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "ù",
+        "type": "stress",
+        "note": "Tone mark"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "w",
+        "to": "w",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "à",
+        "type": "stress",
+        "note": "Tone mark"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "isolate",
+      "protoGloss": "progenitor",
+      "derivation": "Yoruba Ọdùduwà, the divine ancestor who descended with a chain at Ile-Ife and founded the Yoruba city-states.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "shangdi",
+    "ascii": "shangdi",
+    "unicode": "Shàngdì",
+    "greek": "上帝",
+    "pantheon": "chinese",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Supreme Deity, Heaven, Sovereign",
+    "meaning": "Highest Emperor; the supreme god of early Chinese religion",
+    "sources": [
+      "Shang oracle bones",
+      "Shijing",
+      "Shujing"
+    ],
+    "breakdown": [
+      {
+        "char": "s",
+        "to": "S",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "à",
+        "type": "stress",
+        "note": "Grave tone mark"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "d",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "ì",
+        "type": "stress",
+        "note": "Grave tone mark"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-sino-tibetan",
+      "protoGloss": "supreme deity",
+      "derivation": "Shàng (上) 'above, highest'; Dì (帝) 'emperor, thearch' — the high god of Shang and Zhou religion, later identified with Tian.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "jagannatha",
+    "ascii": "jagannatha",
+    "unicode": "Jagannātha",
+    "greek": "—",
+    "pantheon": "sanskrit",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Lord of the World, Puri, Devotion",
+    "meaning": "Lord of the universe",
+    "sources": [
+      "Puranas",
+      "Jagannath tradition"
+    ],
+    "breakdown": [
+      {
+        "char": "j",
+        "to": "J",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "ā",
+        "type": "length",
+        "note": "Macron: long vowel"
+      },
+      {
+        "char": "t",
+        "to": "t",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "proto-indo-iranian",
+      "protoGloss": "lord of the world",
+      "derivation": "Sanskrit Jagannātha, from jagat 'world, universe' + nātha 'lord, protector'; the form of Krishna worshipped at Puri.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  },
+  {
+    "id": "jord",
+    "ascii": "jord",
+    "unicode": "Jǫrð",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Earth, Mother of Thor",
+    "meaning": "Earth",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson"
+    ],
+    "breakdown": [
+      {
+        "char": "j",
+        "to": "J",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "o",
+        "to": "ǫ",
+        "type": "special",
+        "note": "O with ogonek: nasalized vowel"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "ð",
+        "type": "special",
+        "note": "Eth: voiced dental fricative"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*erþō",
+      "protoLanguage": "proto-germanic",
+      "protoGloss": "earth",
+      "derivation": "Old Norse Jǫrð, from Proto-Germanic *erþō 'earth'; personified as a jötunn and mother of Thor by Odin.",
+      "certainty": "attested"
+    },
+    "hasAdSite": true
+  }];
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { LEXICON };
 }

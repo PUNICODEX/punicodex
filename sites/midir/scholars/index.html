@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midir — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Midir: a living, university-curated reference on Underworld, Fairy King. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Midir — Scholarly Edition",
+    "headline": "Midir — Scholarly Edition",
+    "description": "University-curated scholarly reference for Midir (Underworld, Fairy King).",
+    "url": "https://punicodex.com/midir/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Midir",
+        "alternateName": ["midir", "Midir"],
+        "description": "Underworld, Fairy King"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/midir.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/midir/scholars/">
+
+    <meta property="og:title" content="Midir — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Midir (Underworld, Fairy King).">
+    <meta property="og:url" content="https://punicodex.com/midir/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/midir.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/midir.jpg">
+    <meta name="twitter:title" content="Midir — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Midir (Underworld, Fairy King).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Midir",
+      "item": "https://punicodex.com/midir/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/midir/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="midir-canvas" data-effect="fidchell-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/midir_logolockup.webp" type="image/webp"><img src="../assets/midir_logolockup.png" alt="Midir" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/midir/">Midir</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Midir</h1>
+            <p class="scholars-subtitle reveal-up">Underworld, Fairy King · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Midir.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Midir</strong> (<em>midir</em>) — Underworld, Fairy King · Judge — is the lord of the síd of Brí Léith, the Otherworld mound by Ardagh in Longford, and the central figure of <em>Tochmarc Étaíne</em>, the Wooing of <a href="/etain/" class="crosslink" data-crosslink="etain">Étaín</a>: foster-father of <a class="scholars-xlink" href="/aengus/">Óengus</a>, husband of Fuamnach and of <a class="scholars-xlink" href="/etain/">Étaín</a>, and the player of the most consequential board game in Irish literature — the fidchell match at <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a> in which he won Étaín from Eochaid Airem, high king of Ireland.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The tradition styles him Mídir the Proud, and the handbooks gloss his name, with due caution, as 'judge' — a reading that fits a god whose whole dossier is a wager conducted like a verdict: he loses stake after stake until the board is set for the one prize he came for.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> The genealogical tradition makes him a son of <a class="scholars-xlink" href="/dagda/">the Dagda</a>, and <em>De Gabáil in t-Sída</em> makes his fosterage of Óengus the hinge on which the division of the síd-mounds turns.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Midir</strong> — identical to the ASCII input, because normalized Old Irish writes no diacritic in this name; the fada of modern editorial Mídir is a convention, not the manuscript norm. The mechanical rule therefore places it in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the god. No domain is claimed: the plain-ASCII <strong>midir.com</strong> is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Bergin, Osborn, and R. I. Best, ed. and trans., &#39;Tochmarc Étaíne&#39;, Ériu 12 (1938), 137–196.</li><li id="src-overview-2">MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Midir.</li><li id="src-overview-3">Hull, Vernam, ed. and trans., &#39;De Gabáil in t-Sída&#39;, Zeitschrift für celtische Philologie 19 (1933).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The theonym is attested in Old and Middle Irish as <strong>Midir</strong>, the spelling Bergin and Best print from Lebor na hUidre; many modern editors add the fada — <strong>Mídir</strong> — to mark the long vowel, an editorial convention rather than the manuscript norm.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The handbooks keep his standing epithet: Mídir the Proud, the proud host of the síd of Brí Léith.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The etymology is genuinely open, and this edition keeps it open. The reading the reference works register derives the name from the root <em>med-</em>, 'to judge, to measure, to rule' — Old Irish <em>midithir</em>, 'judges', is the comparand — yielding a name that would suit the god of the wager down to the ground. The derivation is hedged in the dictionaries themselves, and the hedge is part of the record.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p>
+<p>The ASCII form <em>midir</em> loses nothing, because the normalized Old Irish spelling is already plain Latin letters; the restoration is therefore a matter of canonical reference, not rescued diacritics, and the name is classified Tier 2 by the project's mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>midir.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. Midir.</li><li id="src-the-name-2">MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Midir.</li><li id="src-the-name-3">Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (Dublin: Dublin Institute for Advanced Studies, 1959–96), s.v. med-; eDIL, s.v. midithir.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈmʲiː.ðʲɪɾʲ/</strong> — Old Irish Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>M-</strong> — Slender (palatalized) bilabial nasal [mʲ], the tongue arched toward the hard palate; Old Irish distinguished slender from broad consonants throughout</li><li><strong>-í-</strong> — Long close front [iː], the long vowel modern editors mark with a fada</li><li><strong>-d-</strong> — Lenited dental [ð], the soft voiced 'th' of English <em>this</em>; the orthography writes a plain d</li><li><strong>-ir</strong> — Short unstressed [ɪ] closing in a slender (palatalized) tap [ɾʲ]</li></ul>
+<p>For the modern speaker, the closest approximation is: 'MEE-thir' — a long 'ee', the soft 'th' of <em>this</em> for the d, and a whispered palatal r at the end; the modern Irish Mídír keeps essentially this sound.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Irish</strong> — Midir of Brí Léith; the genealogical tradition makes him a son of the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a></li><li><strong>Manuscript form</strong> — Midir, as printed by Bergin and Best from Lebor na hUidre</li><li><strong>Modern Irish</strong> — Mídír, with the fada marking the long vowel</li><li><strong>Epithet</strong> — Mídir the Proud, the handbooks' standing rendering of his style<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Anglicized</strong> — none: unlike Angus, the name never wore down into a living given name</li></ul>
+<p>Midir is Tier 2 because the restoration preserves nothing ASCII loses: the letters of the manuscript form are the letters of the keyboard. The capital alone marks the temple form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Thurneysen, Rudolf, A Grammar of Old Irish, trans. D. A. Binchy and Osborn Bergin (Dublin: Dublin Institute for Advanced Studies, 1946), on lenition and the broad/slender system.</li><li id="src-pronunciation-2">MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Midir.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Irish manuscripts in the Latin alphabet as <strong>Midir</strong> — Old Irish / Middle Irish in Insular script, attested in the great codices that preserve Tochmarc Étaíne, above all the twelfth-century Lebor na hUidre, completed by the Yellow Book of Lecan.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The earlier monumental alphabet, ogham, predates the manuscript tradition, but no attestation of this theonym has ever been read on an ogham stone; the manuscript form is the primary witness.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Old Irish was written in the Latin alphabet using Insular minuscule from the early medieval period; the spelling Midir requires no diacritic.</li><li>Many modern editors add the fada and print <strong>Mídir</strong> to mark the long vowel — an editorial convention, not the manuscript norm; the project follows the manuscript form.</li><li>The medial d is lenited in pronunciation — [ð], the soft 'th' of <em>this</em> — but the orthography writes plain d; nothing distinctive is lost in ASCII.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Midir is therefore identical to the ASCII form apart from the capital; the temple form is a canonical reference, not a rescued spelling.</li></ul>
+<p>One caution attaches to the record: the handbooks' gloss 'judge' — from <em>med-</em>, with Old Irish <em>midithir</em>, 'judges', as the comparand — is hedged in the dictionaries themselves, and this edition keeps the hedge.<sup class="scholars-cite"><a href="#src-original-script-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Bergin, Osborn, and R. I. Best, ed. and trans., &#39;Tochmarc Étaíne&#39;, Ériu 12 (1938), 137–196.</li><li id="src-original-script-2">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-original-script-3">Thurneysen, Rudolf, A Grammar of Old Irish, trans. Binchy and Bergin (Dublin: DIAS, 1946), on lenition.</li><li id="src-original-script-4">Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (DIAS, 1959–96), s.v. med-; eDIL, s.v. midithir; MacKillop, A Dictionary of Celtic Mythology, s.v. Midir.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Midir</strong> is catalogued under the domain 'Underworld, Fairy King' — two terms that map onto the two halves of his dossier, the mound he rules and the host he commands.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Underworld</h3>
+<p>The Irish Otherworld enters this dossier from below: Brí Léith is a hollow hill, a síd, and the tale's great set-piece is its excavation — Eochaid's host digging up the mounds of Ireland one by one until the war of spades reached Midir's own roof. The underworld here is not a place of punishment but of plenty and music, the wondrous land of Midir's song to <a href="/etain/" class="crosslink" data-crosslink="etain">Étaín</a>, hidden under a real Longford hill.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Fairy King</h3>
+<p>The síd-lord is the medieval original of the later fairy king: the proud host of the mound, master of glamour and shape-changing, whose bargains bind mortal kings. The continuity from Midir's court to the fairy-faith of the Irish countryside is the tradition's own, documented in the folklore collections long after the manuscripts.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Wager as Judgment</h3>
+<p>The handbooks' cautious gloss of the name — 'judge' — meets the tale at the fidchell board: the game at <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a> is conducted like a court, the stakes schooling the king's greed until the final stake is named and the verdict lands.<sup class="scholars-cite"><a href="#src-domains-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Bergin, Osborn, and R. I. Best, ed. and trans., &#39;Tochmarc Étaíne&#39;, Ériu 12 (1938), 137–196.</li><li id="src-domains-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Mídir, síd.</li><li id="src-domains-3">MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Midir.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Midir's attributes are the instruments of his patience — a board, a chain, a thorn, a hill, and a riddle of faces:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The fidchell board</strong> — The game of kings played at <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a>: patience staked as strategy, and a wager that was really a judgment</li><li><strong>The silver chain</strong> — The link between the two swans that rose through Tara's smoke-hole: the bond the high king's host could not break</li><li><strong>The sloe-thorn</strong> — The flying thorn that put out his eye at the Brug and set the whole wooing in motion; <a href="/diancecht/" class="crosslink" data-crosslink="diancecht">Dían Cécht</a> healed the wound</li><li><strong>Brí Léith</strong> — His síd by Ardagh in Longford, the mound the Dindsenchas names as his and the host of Ireland dug open to take <a href="/etain/" class="crosslink" data-crosslink="etain">Étaín</a> back<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>The fifty women in one likeness</strong> — The riddle of resemblance at the mound's surrender: the Otherworld's coldest answer to the spade<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Bergin, Osborn, and R. I. Best, ed. and trans., &#39;Tochmarc Étaíne&#39;, Ériu 12 (1938), 137–196.</li><li id="src-symbols-2">Stokes, Whitley, ed. and trans., &#39;The Prose Tales in the Rennes Dindsenchas&#39;, Revue Celtique 15–16 (1894–95), s.v. Brí Léith.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Midir's mythology is a single long courtship told in two lifetimes, preserved entire in <em>Tochmarc Étaíne</em> — the fullest Otherworld dossier in the Irish corpus.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Sloe and the Bride-Price (Tochmarc Étaíne I)</h3>
+<p>Midir of Brí Léith, foster-father of <a class="scholars-xlink" href="/aengus/">Óengus</a>, came to Brú na Bóinne to visit his fosterling; a sloe-thorn sprang from the boys' hurling-play and put out his eye, and he stayed a year in the mound while <a href="/diancecht/" class="crosslink" data-crosslink="diancecht">Dían Cécht</a> made him whole. For his reward he named <a class="scholars-xlink" href="/etain/">Étaín</a> Echraide, daughter of Ailill, the fairest woman in Ireland. Óengus won her from her father Ailill mac Máta, king of the Ulaid, by performing the demanded labors — twelve plains cleared, twelve rivers led to the sea — with the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a>'s strength behind him, and Midir brought her home to Brí Léith.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Fly in the Crystal Bower (Tochmarc Étaíne II)</h3>
+<p>Fuamnach, Midir's first wife and foster-daughter of Bresal the druid, struck her rival with a rod of scarlet quicken-tree: <a href="/etain/" class="crosslink" data-crosslink="etain">Étaín</a> became a pool of water, a worm, and a purple fly. The fly went with Midir for seven years and he knew her in her shape; she found refuge in Óengus's crystal bower at the Brug until Fuamnach's wind swept her across Ireland for seven years more, to fall into the cup of Étar's wife at the Bay of Cíú and be born again a thousand and twelve years after her first birth — Étaín, daughter of Étar.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Long Game at Tara (Tochmarc Étaíne III)</h3>
+<p>In her second life Étaín married Eochaid Airem, high king at <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a>. Midir came first in the likeness of the king's love-sick brother Ailill Anglonnach, lying beside her three nights without touching her; then he revealed himself, and she answered that she would not go without her husband's leave. He took the leave at the fidchell board: game after game he lost, paying stakes without stint, until the final stake was named — an embrace and a kiss from Étaín — and Midir won. When the month's deferral was out he appeared in the midst of the barred and guarded hall, sang to her the invitation to the wondrous land, and the two rose through the smoke-hole as two swans linked by a silver chain.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Fifty Women in One Likeness (Tochmarc Étaíne III)</h3>
+<p>Eochaid answered with the spade, digging up the síd-mounds of Ireland until the host stood over Brí Léith. Midir came to the parley; fifty women in Étaín's exact likeness came out of the mound, and the king was told to choose. He chose his own daughter, born to Étaín in the síd and hidden in her mother's likeness — the unwitting union from which came Mess Búachalla, grandmother of Conaire Mór. When Midir revealed the deception he returned the true Étaín, and kept the last word.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Foster-Father of the Young God (De Gabáil in t-Sída)</h3>
+<p>Behind the wooing stands the fosterage: when the Dagda divided the síd-mounds of Ireland, Óengus was away with Midir at Brí Léith and received nothing — the absence that led to the day-and-night quibble and the winning of Brú na Bóinne. The tradition ties the two mounds together from the beginning: the young god reared at Brí Léith, the proud god's eye healed at the Brug.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Bergin, Osborn, and R. I. Best, ed. and trans., &#39;Tochmarc Étaíne&#39;, Ériu 12 (1938), 137–196.</li><li id="src-mythology-2">Hull, Vernam, ed. and trans., &#39;De Gabáil in t-Sída&#39;, Zeitschrift für celtische Philologie 19 (1933).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Midir has no cross-border witness of his own, and the honest comparison is typological rather than genetic. No Gaulish altar names him and no scholar has proposed one; where the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a> can be set beside Sucellos on the strength of club and cauldron, Midir's dossier — the wager, the hunted bride, the mound that is a court — belongs to the Otherworld-king figure-type that Mac Cana and Sjoestedt trace through the Celtic materials without anchoring it to any single epigraphic god.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within Ireland his structural kin are the síd-lords of the neighboring tales: Bodb Derg of the Munster síde, who answers the Dagda's search in the <em>Aislinge Óenguso</em>, and <a class="scholars-xlink" href="/manannan/">Manannán</a>, the sea-going master of the Otherworld's glamour.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> The Welsh corpus offers only a functional parallel — <a class="scholars-xlink" href="/arawn/">Arawn</a>, the lord of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> who likewise binds a mortal king by a bargain with a hidden edge — and the parallel is a pattern, not a pedigree. The comparisons instruct; none of them identifies him.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970); Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Myles Dillon (London: Methuen, 1949).</li><li id="src-syncretism-2">Shaw, Francis, ed., Aislinge Óenguso (Dublin: Browne and Nolan, 1934).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Midir's afterlife is the afterlife of <em>Tochmarc Étaíne</em> itself, the tale that never let him go. P. W. Joyce carried 'The Wooing of <a href="/etain/" class="crosslink" data-crosslink="etain">Etain</a>' into modern English in <em>Old Celtic Romances</em> (1879), and Lady Gregory made the fidchell game and the swans part of the Celtic revival's furniture in <em>Gods and Fighting Men</em> (1904).<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> James Stephens gave the story its strangest modern retelling in <em>In the Land of Youth</em> (1924), where Midir's arrival at <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a> is staged as high comedy turning to awe.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>Bergin and Best's edition in <em>Ériu</em> (1938) fixed the text for scholarship, and Jeffrey Gantz's Penguin translation (1981) put the whole dossier on the general reader's shelf, where it has stayed: the fidchell game is now the standard citation whenever Irish literature wants to prove that its gods play a longer game than its kings.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup> The name itself took no second path — no Angus, no Brigit: Midir never became a given name, a place, or a pub, and remains what the manuscripts made him, a proper noun with a single bearer.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Joyce, P. W., Old Celtic Romances (London: C. Kegan Paul, 1879), &#39;The Wooing of Etain&#39;; Gregory, Lady Augusta, Gods and Fighting Men (London: John Murray, 1904).</li><li id="src-cultural-legacy-2">Stephens, James, In the Land of Youth (London: Macmillan, 1924).</li><li id="src-cultural-legacy-3">Gantz, Jeffrey, trans., Early Irish Myths and Sagas (Harmondsworth: Penguin, 1981).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Midir is a textual god — no ogham stone names him and no votive inscription invokes him — but both halves of his mythic geography are real and visitable. Brí Léith is a hill by Ardagh in County Longford, the mound the Dindsenchas names as his síd, and the surrounding Longford bogland preserves one of the showpiece monuments of the Irish Iron Age: the Corlea Trackway, a massive oak togher across the bog a few miles south of Ardagh, excavated under Barry Raftery and fixed by dendrochronology to 148–147 BCE — a road of the very centuries in which the síd-lord's landscape was being imagined.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p>
+<p>The tale's other stage is <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a> in County Meath, where the earthworks of Ráith na Rí, the Forrad, and the long banquet-hall trench called Tech Midchúarta still ridge the hill on which Eochaid Airem kept his court and lost his wager.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup> The manuscript witnesses are exact: <em>Tochmarc Étaíne</em> is preserved, incompletely, in the twelfth-century Lebor na hUidre (RIA MS 23 E 25) and completed in the fifteenth-century Yellow Book of Lecan, the twin bases of Bergin and Best's edition; the companion <em>Aislinge Óenguso</em> survives in the fifteenth-century British Library MS Egerton 1782, the basis of Shaw's.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Raftery, Barry, on the Corlea Trackway excavations (University College Dublin, 1984–91) and its dendrochronological date of 148–147 BCE.</li><li id="src-archaeology-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Tara, Brí Léith.</li><li id="src-archaeology-3">Bergin, Osborn, and R. I. Best, ed. and trans., &#39;Tochmarc Étaíne&#39;, Ériu 12 (1938), introduction, on the manuscripts.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Midir given in this edition rests on the witnesses and reference works listed below. Tochmarc Étaíne supplies the entire narrative spine; De Gabáil in t-Sída the fosterage; the Dindsenchas the hill; the dictionaries secure the name's open etymology; the comparative material is cited for pattern only.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Bergin, Osborn, and R. I. Best, ed. and trans., 'Tochmarc Étaíne', Ériu 12 (1938), 137–196.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Hull, Vernam, ed. and trans., 'De Gabáil in t-Sída', Zeitschrift für celtische Philologie 19 (1933).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Shaw, Francis, ed., Aislinge Óenguso (Dublin: Browne and Nolan, 1934).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, 5 vols. (Dublin: Irish Texts Society, 1938–56).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Stokes, Whitley, ed. and trans., 'The Prose Tales in the Rennes Dindsenchas', Revue Celtique 15–16 (1894–95), s.v. Brí Léith.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. Midir, midithir.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Vendryes, Joseph (gen. ed.), Lexique étymologique de l'irlandais ancien (Dublin: Dublin Institute for Advanced Studies, 1959–96), s.v. med-.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Thurneysen, Rudolf, A Grammar of Old Irish, trans. D. A. Binchy and Osborn Bergin (Dublin: Dublin Institute for Advanced Studies, 1946).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Myles Dillon (London: Methuen, 1949).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Midir.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Mídir, Tochmarc Étaíne, <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a>.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-13">[13]</a></sup> Gantz, Jeffrey, trans., Early Irish Myths and Sagas (Harmondsworth: Penguin, 1981).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Bergin, Osborn, and R. I. Best, ed. and trans., &#39;Tochmarc Étaíne&#39;, Ériu 12 (1938), 137–196.</li><li id="src-scholarly-sources-2">Hull, Vernam, ed. and trans., &#39;De Gabáil in t-Sída&#39;, Zeitschrift für celtische Philologie 19 (1933).</li><li id="src-scholarly-sources-3">Shaw, Francis, ed., Aislinge Óenguso (Dublin: Browne and Nolan, 1934).</li><li id="src-scholarly-sources-4">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn (Dublin: Irish Texts Society, 1938–56).</li><li id="src-scholarly-sources-5">Stokes, Whitley, ed. and trans., &#39;The Prose Tales in the Rennes Dindsenchas&#39;, Revue Celtique 15–16 (1894–95).</li><li id="src-scholarly-sources-6">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. Midir, midithir.</li><li id="src-scholarly-sources-7">Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (Dublin: Dublin Institute for Advanced Studies, 1959–96), s.v. med-.</li><li id="src-scholarly-sources-8">Thurneysen, Rudolf, A Grammar of Old Irish, trans. Binchy and Bergin (Dublin: DIAS, 1946).</li><li id="src-scholarly-sources-9">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li id="src-scholarly-sources-10">Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Myles Dillon (London: Methuen, 1949).</li><li id="src-scholarly-sources-11">MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Midir.</li><li id="src-scholarly-sources-12">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Mídir, Tochmarc Étaíne, Tara.</li><li id="src-scholarly-sources-13">Gantz, Jeffrey, trans., Early Irish Myths and Sagas (Harmondsworth: Penguin, 1981).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Midir belongs to the Mythological Cycle, and his dossier is one of its cornerstones: <em>Tochmarc Étaíne</em>, the Wooing of <a href="/etain/" class="crosslink" data-crosslink="etain">Étaín</a>, is preserved, incompletely, in the twelfth-century Lebor na hUidre and completed in the Yellow Book of Lecan, and it gives him the fullest Otherworld narrative in the language — the eye and the bride-price, the fly and the bower, the fidchell game, and the digging of the síds.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup> The <em>Lebor Gabála Érenn</em> genealogies place him in the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a>'s line, and the prose <em>Dindsenchas</em> keeps Brí Léith among the storied places as his mound.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup></p>
+<p>Around that spine the companion tales build the foster-father. <em>De Gabáil in t-Sída</em> makes his fosterage of <a class="scholars-xlink" href="/aengus/">Óengus</a> the reason the young god was absent at the division of the mounds;<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup> the <em>Aislinge Óenguso</em> opens the world of the síd-lords among whom the fosterling moved.<sup class="scholars-cite"><a href="#src-irish-cycles-4">[4]</a></sup> Medieval scribes framed the Túatha Dé Danann as kings and wizards of the pre-Milesian age, but Midir is one of the figures the euhemerizing frame cannot hold: the tale needs him to be what he is — the proud host of the hollow hill, playing a game no mortal king can afford.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">Bergin, Osborn, and R. I. Best, ed. and trans., &#39;Tochmarc Étaíne&#39;, Ériu 12 (1938), 137–196.</li><li id="src-irish-cycles-2">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn (Irish Texts Society, 1938–56); Stokes, &#39;The Prose Tales in the Rennes Dindsenchas&#39;, Revue Celtique 15–16.</li><li id="src-irish-cycles-3">Hull, Vernam, ed. and trans., &#39;De Gabáil in t-Sída&#39;, Zeitschrift für celtische Philologie 19 (1933).</li><li id="src-irish-cycles-4">Shaw, Francis, ed., Aislinge Óenguso (Dublin: Browne and Nolan, 1934).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Welsh corpus is silent on Midir, and the silence deserves to be recorded rather than repaired. Neither the <em>Mabinogi</em> nor the wider Brythonic tradition preserves a figure derived from the same name, and no identification of him behind any Welsh persona has found standing in the modern handbooks.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup></p>
+<p>What the comparison does offer is a functional parallel, and it is instructive precisely because it is not a pedigree. <a class="scholars-xlink" href="/arawn/">Arawn</a>, the lord of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> in the First Branch, is the Welsh Otherworld king who likewise binds a mortal ruler by a bargain whose terms hide their edge — the same figure-type, arrived at independently. The Welsh divine families organize their Otherworld around other names, and the nearest Welsh parallels for Midir's patience and pride are distributed rather than concentrated. The honest Celtic comparison therefore runs not west to Wales but inward, to the síd-lords of the neighboring Irish tales.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Mídir.</li><li id="src-welsh-sources-2">Mac Cana, Proinsias, Celtic Mythology (Hamlyn, 1970), on the Otherworld-king figure-type across the Celtic traditions.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription names Midir. <strong>Ogham</strong>, the early Irish monumental script of roughly the fourth to seventh centuries, survives on some four hundred stones bearing mostly personal names in formulaic genitives; no reading of Midir has been proposed for any of them, and none would be expected — ogham stones mark graves and boundaries, not votive dedications.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>Nor does the Gaulish record supply a comparandum. Where the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a>'s figure-type finds an epigraphic neighbor in Sucellos, no altar from the Celtic provinces has been read as addressed to a counterpart of Midir, and no scholar has proposed one; the Otherworld-king dossier — the wager, the hunted bride, the mound that is a court — survives as literature alone.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup> The epigraphic silence is characteristic of Irish paganism, whose cult left place-names and literature rather than stone: Brí Léith on the map, and Tochmarc Étaíne in the codices, are the whole of the dedication.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-inscriptions-2">Mac Cana, Proinsias, Celtic Mythology (Hamlyn, 1970); Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Dillon (1949).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Midir is the god of the long game, and the tradition tells you so in his name before it tells you in his story: the handbooks gloss it, cautiously, as judge — and a judge is exactly what a wager needs. Watch how he plays Eochaid. He loses, and loses, and pays without stint, because the losses are the lesson: the king is being taught that the man across the board can afford anything, that the stakes are a language, and that the only sentence being written is the last one. When the final stake is named — an embrace, a kiss — the game has already been won for a month. The fidchell board is a court, and the house always already holds the verdict.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>That patience is the Otherworld's whole tempo. A mortal wooing is measured in seasons; Midir's spans a thousand and twelve years, two births of the same woman, and a war of spades against his own roof — and he never hurries, because time is the one currency his kind does not spend. His foster-son <a class="scholars-xlink" href="/aengus/">Óengus</a> parses time into a loophole and holds a mound on a day without a term; the foster-father plays time into a stake and holds a woman across two lifetimes. Between them the síd of Ireland teaches the same doctrine: the hollow hills do not take what they want. They wait until the wanting itself concedes.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Bergin, Osborn, and R. I. Best, ed. and trans., &#39;Tochmarc Étaíne&#39;, Ériu 12 (1938), 137–196.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Midir</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'midir';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

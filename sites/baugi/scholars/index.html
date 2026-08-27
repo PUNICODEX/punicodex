@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baugi — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Baugi: a living, university-curated reference on Giant, Brother of Suttungr. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Baugi — Scholarly Edition",
+    "headline": "Baugi — Scholarly Edition",
+    "description": "University-curated scholarly reference for Baugi (Giant, Brother of Suttungr).",
+    "url": "https://punicodex.com/baugi/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᛒᛅᚢᚴᛁ",
+        "alternateName": ["baugi", "Baugi"],
+        "description": "Giant, Brother of Suttungr"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/baugi.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/baugi/scholars/">
+
+    <meta property="og:title" content="Baugi — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Baugi (Giant, Brother of Suttungr).">
+    <meta property="og:url" content="https://punicodex.com/baugi/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/baugi.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/baugi.jpg">
+    <meta name="twitter:title" content="Baugi — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Baugi (Giant, Brother of Suttungr).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Baugi",
+      "item": "https://punicodex.com/baugi/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/baugi/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="baugi-canvas" data-effect="meadbore-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/baugi_logolockup.webp" type="image/webp"><img src="../assets/baugi_logolockup.png" alt="Baugi" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/baugi/">Baugi</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Baugi</h1>
+            <p class="scholars-subtitle reveal-up">Giant, Brother of Suttungr · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Baugi.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Baugi</strong> (<em>baugi</em>) — Giant, Brother of <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a> · the Keeper of the Door at Hnitbjǫrg — is the jötunn who makes the mead of poetry's theft possible: the brother of Suttungr, master of the nine thralls whose deaths open the labour bargain, and the wavering accomplice who bores the tunnel into the mountain where the mead is hoarded.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The name is usually connected with Old Norse <em>baugr</em> ‘ring, circlet’ — hence the traditional gloss ‘ring-shaped’ — though the derivation is not secure, and Simek registers the etymology as uncertain.<sup class="scholars-cite"><a href="#src-overview-6">[6]</a></sup> Baugi's attestation is exactly as wide as his story: he appears in Snorri's Skáldskaparmál, in the mead-of-poetry narrative, and in the þulur of giant-names — a figure the tradition needed once, at the one door.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup> In that one appearance he is the story's hinge: the labour-broker who contracts with the disguised <a class="scholars-xlink" href="/odinn/">Óðinn</a>, the man who honestly names his limits — ‘the mead is Suttungr's, not mine’ — and then sells access to it anyway, and the would-be betrayer whose auger-stroke misses the crawling snake by an inch.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Baugi</strong> — identical to the ASCII input, because normalized Old Norse writes no diacritic in this name; the mechanical tier rule therefore places it in Tier 2, a statement about orthography and never about the figure. The temple is domain-less: the plain-ASCII baugi.com is held outside the collection and watched for release, and no form of the name is claimed as owned.<sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Snorri Sturluson, Edda, Skáldskaparmál (the mead-of-poetry narrative), ed. and trans. Anthony Faulkes (London: Everyman, 1987), pp. 61–64.</li><li id="src-overview-2">The þulur of giant-names (Skáldskaparmál), ed. Faulkes (1987).</li><li id="src-overview-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Baugi.</li><li id="src-overview-4">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. baugr.</li><li id="src-overview-5">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962), s.v. baugr.</li><li id="src-overview-6">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (D. S. Brewer, 1993), s.v. Baugi.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>Baugi</strong>, a masculine weak-form giant's name known from Skáldskaparmál's narrative and the þulur of jǫtna heiti.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> Its etymology is genuinely unsettled. The standard suggestion connects it with <em>baugr</em> ‘ring, circlet, coiled shape’ — the word that also stands in <em>baugeiðr</em> ‘ring-oath’ — yielding a gloss along the lines of ‘ring-shaped’ or ‘the coiled one’; Cleasby–Vigfusson and Zoëga document the underlying noun, while Simek treats the name's derivation as uncertain rather than solved.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup> The resonance is worth registering without over-pressing: in Hávamál's own telling of the mead theft, the instrument <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> breaks is precisely a <em>baugeiðr</em>, a ring-oath — the god swears by the ring and leaves <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a> defrauded.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p>
+<p>The ASCII form is not a fallback but the original: the medieval manuscripts write five plain Latin letters, and no historically distinct Unicode spelling exists to restore. The mechanical rule therefore classifies the name Tier 2 — nothing distinctive is lost in transit.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li></ul>
+<p>No domain is held. The plain-ASCII baugi.com is registered to a third party outside the PuniCodex collection and is watched for release; this temple claims no address it does not hold.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Snorri Sturluson, Edda, Skáldskaparmál and þulur, trans. Faulkes (1987).</li><li id="src-the-name-2">Cleasby–Vigfusson, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. baugr; Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. baugr, baugeiðr.</li><li id="src-the-name-3">Hávamál 110 (Poetic Edda), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈbɑu.ɣi/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>B-</strong> — Voiced bilabial stop [b], fully voiced initially, as in English ‘bow’</li><li><strong>-au-</strong> — The falling diphthong [ɑu], open back vowel gliding to rounded u; close to the ‘ow’ of English ‘cow’</li><li><strong>-g-</strong> — Voiced velar fricative [ɣ] between vowels, not a stop; before front i it palatalizes toward a glide close to English ‘y’</li><li><strong>-i</strong> — Short unstressed [i] in the final syllable</li></ul>
+<p>For the modern speaker, the closest approximation is: ‘BOW-yee’ — first syllable rhyming with ‘cow’, the g softened to a glide so the second syllable lands almost like ‘yee’.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Baugi, brother of <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a>, in Skáldskaparmál and the þulur</li><li><strong>Younger Futhark</strong> — ᛒᛅᚢᚴᛁ (b-au-k-i), the normalized runic rendering; the k-rune ᚴ writes the g and no rune marks the medial fricative</li><li><strong>Word-kin</strong> — <em>baugr</em> ‘ring’ and <em>baugeiðr</em> ‘ring-oath’, the nouns to which the name is usually connected</li></ul>
+<p>Baugi is Tier 2 because the restoration preserves nothing ASCII loses: no diacritic, no distinctive letter, no vowel length. The five letters of the manuscripts are the five letters of the address bar.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>Baugi</strong> — Old Norse (North Germanic), attested in the Codex Regius of the Prose Edda (GKS 2367 4to, early 14th c.) and the Codex Regius of the Poetic Edda (c. 1270), recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse names were carved in the younger futhark; no runic attestation of this name survives, so the manuscript form is the primary witness.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is a giant's proper name of uncertain etymology, usually connected with <em>baugr</em> ‘ring, circlet’; Simek registers the derivation as unsettled.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>Old Norse orthography writes it in five plain letters: B-a-u-g-i, with no length mark and no special character.</li><li>In the Younger Futhark it would run ᛒᛅᚢᚴᛁ (b-au-k-i); the k-rune writes the g, and the medial fricative [ɣ] that the spelling g represents has no rune of its own.</li><li>The Unicode form Baugi is therefore identical to the ASCII input — the restoration is a matter of canonical reference, not rescued letters, which is exactly what the Tier 2 classification records.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (D. S. Brewer, 1993), s.v. Baugi; Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. baugr.</li><li id="src-original-script-3">Snorri Sturluson, Edda, Skáldskaparmál, trans. Faulkes (1987), pp. 61–64.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Baugi</strong> is catalogued under the domain Giant, Brother of <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a> — a relational domain, because the tradition gives him no independent portfolio: he exists exactly where his brother's hoard needs a door and a doorkeeper.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Giant</h3>
+<p>He is of the jǫtnar, listed among them in the þulur, and his household — land, thralls, harvest — is the working farm on which <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s deception is staged.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Brother of Suttungr</h3>
+<p>His one genealogical fact is his defining one: Suttungr's brother, and therefore the one man with a legitimate path toward the mead that Suttungr hoards in Hnitbjǫrg.</p>
+<h3 class="scholars-h3">The Labour-Broker</h3>
+<p>His nine thralls die by the whetstone trick, and his need for nine men's harvest-work becomes the contract that buys Bǫlverkr a summer's access.</p>
+<h3 class="scholars-h3">The Doorkeeper of Hnitbjǫrg</h3>
+<p>With the auger Rati in his hands he bores the only entrance the mountain ever has — and then strikes at what crawls through it, and misses.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Skáldskaparmál, trans. Faulkes (1987), pp. 61–64.</li><li id="src-domains-2">The þulur of giant-names, ed. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Baugi's iconography is narrative, not cultic — the corpus gives him no regalia, but the heist fixed a small set of objects around his one episode:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Hnitbjǫrg</strong> — The mountain of the mead, hoard and fortress in one; Baugi's auger makes the only door it ever had</li><li><strong>Rati</strong> — The auger, its name connected with the verb <em>rata</em> ‘to travel, find one's way’; tool of the breach and, for one stroke, almost the weapon that ends the story</li><li><strong>The whetstone</strong> — <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s thrown bait: the thralls scramble for it and cut each other's throats, emptying Baugi's fields of nine workers at a throw</li><li><strong>The nine scythes</strong> — Harvest-tools honed too well; honest labour's edge turned to mutual death by a single act of sharpening</li><li><strong>Óðrœrir, Boðn, and Són</strong> — The three vessels of the mead — ‘heart-stirrer’, ‘vessel’, and ‘reconciliation’ — that wait on the far side of Baugi's tunnel<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Skáldskaparmál, trans. Faulkes (1987), pp. 61–64.</li><li id="src-symbols-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Baugi, mead of poetry.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Baugi's mythology is a single episode of the mead-of-poetry myth — but that episode is the hinge on which the whole theft turns.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Mead Comes to Hnitbjǫrg (Skáldskaparmál)</h3>
+<p>Before Baugi enters, the mead has its own violent history: Kvasir, made from the peace of Æsir and Vanir, is killed by the dwarfs Fjalar and Galar, who brew his blood with honey into the mead that makes poets; the dwarfs drown the giant Gilling and kill his wife; Gilling's son <a class="scholars-xlink" href="/suttungr/">Suttungr</a> takes the mead from them as blood-price, shuts it inside the mountain Hnitbjǫrg, and sets his daughter Gunnlǫð to guard it. Only then does Snorri write the genealogy the story needs: <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a> had a brother named Baugi.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Whetstone and the Nine Thralls (Skáldskaparmál)</h3>
+<p><a class="scholars-xlink" href="/odinn/">Óðinn</a> comes to Baugi's land calling himself Bǫlverkr, ‘Evil-doer’ — a name that announces rather than conceals. Nine of Baugi's thralls are mowing hay; Bǫlverkr sharpens their scythes with a whetstone so good that all nine want it, throws it up among them, and in the scramble the thralls cut each other's throats. That evening the stranger lodges with Baugi and hears him lament: nine thralls dead, the hay uncut. The vacancy the god is about to fill is one he made himself.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Nine Men's Work for One Draught (Skáldskaparmál)</h3>
+<p>Bǫlverkr offers the work of nine men for the summer, his wage one drink of Suttungr's mead. Baugi gives the story's one honest answer — the mead is not his to give, Suttungr alone controls it — and then commits himself anyway: he will go with Bǫlverkr and they will try together. The work is done; the pair go to Suttungr; the refusal is absolute. Baugi's brokerage has failed on its stated terms, and what remains is the half-promise of stratagems.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Rati and the Two Blowings (Skáldskaparmál)</h3>
+<p>Bǫlverkr produces the auger Rati, and Baugi bores into the mountain. He declares the hole through; Bǫlverkr blows into it and the chips fly back into his face — the bore is blind, and Baugi meant to betray him. Baugi bores again; the chips fly inward. Bǫlverkr becomes a snake and crawls through, and Baugi strikes after him with the auger and misses. Inside, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> lies three nights with Gunnlǫð, wins three draughts, empties all three vessels, and rises as an eagle with the mead in him, Suttungr hard behind in eagle-shape; the Æsir set out their vats, and what Óðinn cannot hold falls backward — the poetasters' share.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Óðinn's Own Version (Hávamál 104–110)</h3>
+<p>Hávamál lets the god boast of the same theft in his own voice: Rati's mouth made room for him and gnawed the rock; Gunnlǫð gave him the drink from the golden seat; Óðrœrir came up among the Æsir; Suttungr was left defrauded and Gunnlǫð weeping, the ring-oath broken.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup> But the poem never names Baugi. In the god's telling the doorkeeper has already vanished — contract, auger, and missed stroke absorbed into solitary cunning. Snorri's prose preserves what the boasting omits: the door had a keeper, the keeper had a price, and at the last moment he tried to close it on the snake.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Snorri Sturluson, Edda, Skáldskaparmál, trans. Faulkes (1987), pp. 61–64.</li><li id="src-mythology-2">Hávamál 104–110 (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Baugi himself has no cross-border reflex — no Old English or continental cognate figure, no cult, no charm; he is a person the Icelandic tradition made for one narrative. The myth he serves, however, sits in one of the oldest comparative dossiers in Indo-European study: the theft of the divine intoxicant. The standard parallel is Vedic — the śyena, the eagle or falcon that snatches the soma for the gods (Rigveda 4.26–27) — set beside <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> in eagle-shape carrying off the mead in his own body. The comparison was drawn in the nineteenth century and is still registered, with due caution, in the modern handbooks: Lindow treats the mead myth as the northern member of a genuine inheritance while warning against flattening its specifically Norse machinery — the labour contract, the auger, the broken oath.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Baugi's role belongs to that northern machinery: the intermediary who can be bought, the door that opens from the inside. Within the corpus his closest structural kin are the giants whose households Óðinn penetrates by guile — above all his brother <a class="scholars-xlink" href="/suttungr/">Suttungr</a> and the deep giant-lore descending from <a class="scholars-xlink" href="/ymir/">Ymir</a> — and the wisdom-figures the god elsewhere out-talls, <a class="scholars-xlink" href="/mimir/">Mimir</a> among them. The mead he fails to keep becomes the drink of <a class="scholars-xlink" href="/bragi/">Bragi</a>'s art.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. mead of poetry.</li><li id="src-syncretism-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Baugi, mead.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Baugi's afterlife is mostly the afterlife of the drink he failed to keep. Skaldic poetry — the whole court-poetry tradition of the Viking and medieval North — named itself out of this myth: Kvasir's blood, the dwarfs' drink, <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a>'s mead, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s theft, Óðrœrir's wave. Every character of the heist entered the poetic vocabulary except, so far as the corpus shows, its doorkeeper: no surviving kenning mints a ‘Baugi's mead’.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p>
+<p>He survives instead as the specialists' hinge-figure. Every scholarly treatment of the mead myth, from Finnur Jónsson onward, must reckon with his two functions — the labour-broker who makes the theft logistically possible, and the wavering accomplice whose blind bore-hole and missed auger-stroke are the story's closest brush with failure. In the Norse-revival retellings and the modern handbooks he appears under his own name, always in the same posture: halfway through the mountain, one hand on the auger. The myth itself has become the North's great parable of inspiration as something hoarded and stolen rather than given — and <a class="scholars-xlink" href="/bragi/">Bragi</a>, god of poetry, pours out what Baugi could not guard.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. mead of poetry, skaldic poetry.</li><li id="src-cultural-legacy-2">Orchard, Andy, A Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Baugi, mead of poetry.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Baugi is an entirely textual figure: no runestone invokes him, no picture stone has been convincingly read as the drilling of Hnitbjǫrg, and no place-name or votive deposit carries his name.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> His attestation is exactly as wide as his story — Snorri's Skáldskaparmál, preserved principally in the Codex Regius of the Prose Edda (GKS 2367 4to, early fourteenth century), with the Codex Wormianus and Codex Upsaliensis as the other main witnesses, plus his entry in the þulur of giant-names.</p>
+<p>The mead myth he serves is materially older than its manuscripts. Kennings presupposing it — Kvasir's blood, <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a>'s mead, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s booty — are already at work in ninth- and tenth-century skaldic verse, proving the story's currency centuries before Snorri wrote it down.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup> Hávamál's telling survives in the Codex Regius of the Poetic Edda (c. 1270), the same small codex that carries nearly all the mythological poems. The runic record is silent on the name, as it is on nearly all the jǫtnar.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. Baugi.</li><li id="src-archaeology-2">Faulkes, Anthony, introduction to Snorri Sturluson, Edda (London: Everyman, 1987), on the manuscripts and the skaldic attestation of the mead myth.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Baugi given in this edition rests on the witnesses and reference works listed below. Skáldskaparmál supplies the narrative; Hávamál the god's own counter-account; the þulur the attestation of the name; the lexica the etymological raw material; the handbooks arbitrate what cannot be settled.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Snorri Sturluson, Edda, Skáldskaparmál (the mead-of-poetry narrative: Baugi, Bǫlverkr, the nine thralls, Rati, Hnitbjǫrg), ed. and trans. Anthony Faulkes (London: Everyman, 1987), pp. 61–64; þulur of giant-names.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Hávamál 104–110 (<a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s account of the mead theft; Rati named at st. 106; Óðrœrir at st. 107; the ring-oath, <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a> defrauded, and Gunnlǫð weeping at st. 110), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. baugr, baugeiðr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. baugr, baugeiðr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. baugr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Baugi, mead.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Orchard, Andy, A Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Baugi.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Baugi, mead of poetry.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Snorri Sturluson, Edda, Skáldskaparmál, trans. Anthony Faulkes (Everyman, 1987), pp. 61–64.</li><li id="src-scholarly-sources-2">Hávamál 104–110, trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-3">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. baugr.</li><li id="src-scholarly-sources-4">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910), s.v. baugr.</li><li id="src-scholarly-sources-5">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962), s.v. baugr.</li><li id="src-scholarly-sources-6">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (D. S. Brewer, 1993), s.v. Baugi.</li><li id="src-scholarly-sources-7">Orchard, Andy, A Dictionary of Norse Myth and Legend (Cassell, 1997), s.v. Baugi.</li><li id="src-scholarly-sources-8">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. Baugi, mead of poetry.</li><li id="src-scholarly-sources-9">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda never names Baugi — and that silence is itself evidence. Hávamál 104–110 gives <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s own boasting account of the mead theft, and it names the doorkeeper's instruments but not the doorkeeper: Rati, whose mouth ‘made room’ and gnawed the rock (st. 106); Gunnlǫð on her golden seat (st. 105); Óðrœrir come up among the Æsir (st. 107); and the famous self-indictment of st. 110 — Óðinn swore a ring-oath, a <em>baugeiðr</em>, and who can trust him? <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a> left defrauded of his mead, Gunnlǫð left weeping.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup></p>
+<p>Two things follow. First, the poem attests the story's core machinery — the auger, the mountain, the daughter, the broken oath — independent of Snorri's prose, which confirms that the Skáldskaparmál narrative rests on older verse tradition rather than antiquarian invention. Second, the omission of Baugi is characteristically Óðinnic: in the god's own telling there is no broker, no contract, no near-fatal auger-stroke — only solitary cunning. The doorkeeper survives only because the prose tradition refused to let him be edited out.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Hávamál 104–110 (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-2">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. mead of poetry.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Baugi's only narrative home, and it is a remarkably complete one. Skáldskaparmál's mead-of-poetry section gives him a full dramatic arc in a few pages: the genealogy (<a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a>'s brother), the household (nine thralls mowing hay), the disaster (the whetstone and the mutual slaughter), the bargain (nine men's work for one draught), the honest disclosure (the mead is Suttungr's, not mine), the failed petition to Suttungr, the two borings with Rati — the first deliberately blind, the second true — and the missed auger-stroke as the snake crawls through.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup></p>
+<p>Snorri's craft deserves note in the small details: Baugi's first bore is exposed not by inspection but by physics — the chips fly back into the blower's face — and the second is verified the same way. The auger Rati becomes, in Baugi's hands, both the instrument of his complicity and the instrument of his betrayal; the same tool opens the door and nearly closes it. Beyond the narrative, the Skáldskaparmál þulur list Baugi among the jǫtnar, preserving the name in the catalogue with bureaucratic fidelity beside its single shining use.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Skáldskaparmál, trans. Faulkes (1987), pp. 61–64.</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Skáldskaparmál, þulur of giant-names, ed. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The runic corpus contains no attestation of Baugi. No inscription names the giant, no amulet bears him, and the name does not appear among the ordinary anthroponyms of the Scandinavian runic record — a silence that marks him as a purely literary-mythological figure, attached to one story and one catalogue.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What the runic material does illuminate is the name's raw substance. In the Younger Futhark the name would have been carved <strong>ᛒᛅᚢᚴᛁ</strong> — b-au-k-i: the k-rune ᚴ writes both k and g, and no rune distinguishes the voiced fricative that the manuscript spelling g preserves between vowels. The runic row underspecifies what the Latin bookhand fixes; here as everywhere, the primary witness for the name's form is the manuscript tradition of the Eddas, which writes five plain ASCII letters.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. Baugi.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, Baugi has no saga career: the Icelandic family sagas and the kings' sagas do not know him, and Saxo Grammaticus, whose Gesta Danorum euhemerizes so much of the northern pantheon, tells no version of the mead theft that includes him.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> His medieval footprint is the Eddic one — Snorri's narrative and the þulur — and nothing more.</p>
+<p>The indirect afterlife runs through the skalds. Because the mead myth was the foundation-myth of poetry itself, its vocabulary saturated skaldic diction from the ninth century onward: poetry is Kvasir's blood, the dwarfs' sea, <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a>'s mead, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s booty, Óðrœrir's wave. The skalds built a whole technical lexicon out of the heist Baugi enabled — and built it, so far as the surviving corpus shows, without once naming him. The doorkeeper of Hnitbjǫrg is present in every stanza that calls a poem the giants' stolen drink, and named in none: his legacy is structural, the condition of the tradition rather than a word in it.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. Baugi, mead of poetry.</li><li id="src-sagas-2">Faulkes, Anthony, introduction to Snorri Sturluson, Edda (Everyman, 1987), on the skaldic kennings for poetry.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Baugi is the indispensable man nobody remembers. Strip him out and the myth stops cold: without the thralls' deaths there is no vacancy, without the contract there is no access, without the auger in his hand there is no door — and without the door there is no mead, and by the tradition's own accounting, no poetry at all.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>Yet he is not the hero of his one story, nor even its villain. He is something rarer in the giant-world of the Eddas: a middleman. He names the limits of his power honestly — the mead is <a href="/suttungr/" class="crosslink" data-crosslink="suttungr">Suttungr</a>'s, not mine — and then sells access to what is not his anyway. He helps bore the hole and then tries to kill what crawls through it. The tradition leaves his motives exactly that tangled, and the tangle is the point: every hoard is opened from the inside, by someone whose loyalty is a price rather than a fact. The auger-stroke misses by the width of a snake — and because it misses, poems exist.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Snorri Sturluson, Edda, Skáldskaparmál, trans. Faulkes (1987), pp. 61–64.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Baugi</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᛒᛅᚢᚴᛁ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'baugi';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

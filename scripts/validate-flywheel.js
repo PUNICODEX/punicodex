@@ -275,11 +275,13 @@ for (const [domain, target] of middleware.domainMap) {
   }
 }
 
-// ARCHETYPE_IDS set should match archetype list exactly
+// ARCHETYPE_IDS set should match the archetypes that carry domains exactly —
+// domain-less flagships have no DOMAIN_MAP entry by design (nothing to route).
 const middlewareIds = [...middleware.archetypeIds].sort();
-const expectedIds = [...archetypeIds].sort();
+const domainlessIds = new Set(archetypes.filter(a => a.domainless).map(a => a.id));
+const expectedIds = [...archetypeIds].filter(id => !domainlessIds.has(id)).sort();
 if (jsonEqual(middlewareIds, expectedIds)) {
-  pass('ARCHETYPE_IDS matches the archetype source exactly');
+  pass('ARCHETYPE_IDS matches the domain-carrying archetype source exactly');
 } else {
   const missing = expectedIds.filter(id => !middleware.archetypeIds.has(id));
   const extra = middlewareIds.filter(id => !archetypeIds.has(id));
@@ -766,6 +768,31 @@ console.log('\n▸ Flagship Completeness (promotion sequence)');
     change: "DNS cannot carry the apostrophe of Cháng'é",
     iris: 'owned íris.com is the acute form; canonical is the circumflex Îris (Ἶρις) — îris.com acquisition pending',
     rhea: 'owned rhéā.com carries a macron the Greek (Ῥέα, short final alpha) does not support; rhéa.com is registered to a third party',
+    // Task 2 owned-domain batch: ASCII/canonical fallback domains
+    angrboda: 'owned angrboda.com is the ASCII fallback; canonical Angrboða uses eth, which is not carried in the owned domain',
+    avalokiteshvara: 'owned avalokiteshvara.com is the ASCII fallback; canonical Avalokiteśvara carries a ś that is not in the owned domain',
+    bhaisajyaguru: 'owned bhaisajyaguru.com is the ASCII fallback; canonical Bhaiṣajyaguru carries a ṣ that is not in the owned domain',
+    caishen: 'owned caishen.com is the ASCII fallback; canonical Cáishén carries tone marks that are not in the owned domain',
+    ereshkigal: 'owned ereshkigal.com is the ASCII fallback; canonical Ereškigal carries a š that is not in the owned domain',
+    helene: 'owned helene.com is the ASCII fallback; canonical Helénē carries stress and length marks that are not in the owned domain',
+    jagannatha: 'owned jagannatha.com is the ASCII fallback; canonical Jagannātha carries a macron that is not in the owned domain',
+    jord: 'owned jord.com is the ASCII fallback; canonical Jǫrð carries o-with-ogonek and eth that are not in the owned domain',
+    kongzi: 'owned kongzi.com is the ASCII fallback; canonical Kǒngzǐ carries tone marks that are not in the owned domain',
+    kratos: 'owned kratos.com is the ASCII fallback; canonical Krátos carries an acute that is not in the owned domain',
+    keraunos: 'owned keraunos.com is the ASCII fallback; canonical Keraunós carries an acute that is not in the owned domain',
+    narasimha: 'owned narasimha.com is the ASCII fallback; canonical Narasiṃha carries aṃ that is not in the owned domain',
+    oduduwa: 'owned oduduwa.com is the ASCII fallback; canonical Odùduwà carries tone marks that are not in the owned domain',
+    oidipous: 'owned oidipous.com is the ASCII fallback; canonical Oidípous carries an acute that is not in the owned domain',
+    pandora: 'owned pandora.com is the ASCII fallback; canonical Pandōra carries a macron that is not in the owned domain',
+    psyche: 'owned psyche.com is the ASCII fallback; canonical Psychḗ carries stress and length marks that are not in the owned domain',
+    ravana: 'owned ravana.com is the ASCII fallback; canonical Rāvaṇa carries macron and underdot that are not in the owned domain',
+    shakti: 'owned shakti.com is the ASCII fallback; canonical Śakti carries an acute s that is not in the owned domain',
+    shangdi: 'owned shangdi.com is the ASCII fallback; canonical Shàngdì carries tone marks that are not in the owned domain',
+    sunwukong: 'owned sunwukong.com is the ASCII fallback; canonical Sūnwùkōng carries tone marks that are not in the owned domain',
+    susanoo: 'owned susanoo.com is the ASCII fallback; canonical Susanō carries a macron that is not in the owned domain',
+    theseus: 'owned theseus.com is the ASCII fallback; canonical Thēseus carries a macron that is not in the owned domain',
+    tonatiuh: 'owned tonatiuh.com is the ASCII fallback; canonical Tōnatiuh carries a macron that is not in the owned domain',
+    yuhuang: 'owned yuhuang.com is the ASCII fallback; canonical Yùhuáng carries tone marks that are not in the owned domain',
   };
 
   let incomplete = 0;
@@ -779,7 +806,7 @@ console.log('\n▸ Flagship Completeness (promotion sequence)');
     if (galleryImages.length < 2 && !honestZero.has(a.id)) {
       missing.push('curated gallery (or _honestZero exemption in gallery-data.json)');
     }
-    const seats = (patternsSrc.match(new RegExp(`'${a.id}'`, 'g')) || []).length;
+    const seats = (patternsSrc.match(new RegExp(`['"]${a.id}['"]`, 'g')) || []).length;
     if (seats < 3) missing.push(`industry-pattern seats (${seats}/3)`);
 
     // The owned domain must carry the canonical restoration's exact form —

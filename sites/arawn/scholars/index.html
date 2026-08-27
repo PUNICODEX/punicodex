@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arawn — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Arawn: a living, university-curated reference on Otherworld, Annwn. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Arawn — Scholarly Edition",
+    "headline": "Arawn — Scholarly Edition",
+    "description": "University-curated scholarly reference for Arawn (Otherworld, Annwn).",
+    "url": "https://punicodex.com/arawn/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Arawn",
+        "alternateName": ["arawn", "Arawn"],
+        "description": "Otherworld, Annwn"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/arawn.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/arawn/scholars/">
+
+    <meta property="og:title" content="Arawn — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Arawn (Otherworld, Annwn).">
+    <meta property="og:url" content="https://punicodex.com/arawn/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/arawn.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/arawn.jpg">
+    <meta name="twitter:title" content="Arawn — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Arawn (Otherworld, Annwn).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Arawn",
+      "item": "https://punicodex.com/arawn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/arawn/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="arawn-canvas" data-effect="glynhounds-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/arawn_logolockup.webp" type="image/webp"><img src="../assets/arawn_logolockup.png" alt="Arawn" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/arawn/">Arawn</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Arawn</h1>
+            <p class="scholars-subtitle reveal-up">Otherworld, Annwn · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Arawn.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Arawn</strong> (<em>arawn</em>) — Otherworld, <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> · Silver-tongued — is the king of Annwn, the Welsh Otherworld, in <em>Pwyll Pendefig Dyfed</em>, the First Branch of the Mabinogi: the lord whose white, red-eared hounds Pwyll drives from their kill at Glyn Cuch, and whose price for friendship is the strangest exchange in Welsh prose — a year and a day in which each king takes the other's shape, throne, and bed, so that Pwyll may fight Arawn's enemy Hafgan at the ford and prove his honor where no one can see it.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The name's etymology is genuinely unsettled. The lexicon's traditional gloss is 'silver-tongued'; the handbooks record that the derivation is unknown — Ifor Williams proposed a learned borrowing of the biblical Aaron, carried into Welsh by Latin learning, and native Celtic derivations have also been attempted, none commanding consensus.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Arawn</strong> — identical to the ASCII input, because Middle Welsh writes the name in plain Latin letters with no diacritic for the restoration to recover; the name is Tier 2 by the mechanical rule. No domain is claimed: the plain-ASCII <strong>arawn.com</strong> is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), &#39;Pwyll Prince of Dyfed&#39;; Welsh text ed. Ifor Williams, Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li id="src-overview-2">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (1930), notes; Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.v. Arawn.</li><li id="src-overview-3">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Arawn, Annwn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The theonym is attested in Middle Welsh as <strong>Arawn</strong>, king of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>, in the First Branch of the Mabinogi — a king with a kingdom and no genealogy: the tale gives him no epithet, no patronymic, and no ancestry, as if the Otherworld's lord needed no introduction beyond his crown.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The lexicon's traditional gloss is 'silver-tongued', but the philology behind the name is honestly unsettled. Ifor Williams proposed that Arawn is a learned borrowing of the biblical <strong>Aaron</strong>, carried into Welsh through Latin learning; native Celtic derivations have also been attempted, and the modern reference works — Koch's Celtic Culture and the Geiriadur Prifysgol Cymru — record the etymology as uncertain rather than resolved.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The ASCII form is not a compromise here: Middle Welsh writes the name in plain Latin letters, and the normalized spelling is already <em>Arawn</em>. There is no diacritic and no distinctive letter for the restoration to recover; only the capital distinguishes the restored form from the input, which places the name in Tier 2 by the mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>a</strong> → <strong>A</strong> — Same, capitalized</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>w</strong> → <strong>w</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>arawn.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple is served at /sites/arawn/ and claims no domain it does not hold.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Pwyll Prince of Dyfed&#39;.</li><li id="src-the-name-2">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (1930), notes; Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press, 1950–2002), s.v. Arawn; Koch, Celtic Culture (2006), s.v. Arawn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The pronunciation of the name is <strong>/aˈraʊn/</strong> — Modern Welsh.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>A-</strong> — Unstressed short open [a], the light first syllable; Welsh stress has not yet fallen</li><li><strong>-raw-</strong> — Trilled or tapped [r] followed by the Welsh diphthong <em>aw</em> [aʊ], the stressed penult that carries the whole weight of the name</li><li><strong>-n</strong> — Final alveolar nasal [n], closing the stressed syllable cleanly</li></ul>
+<p>For the modern speaker, the closest approximation is: 'a-ROWN' — the <em>aw</em> sounds like the 'ow' of 'town', and the stress falls on the second syllable, the Welsh penult.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Middle Welsh</strong> — Arawn, king of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> in Pwyll Pendefig Dyfed, the First Branch of the Mabinogi</li><li><strong>Possible biblical loan</strong> — Aaron, the derivation proposed by Ifor Williams and registered as a possibility by the modern handbooks</li><li><strong>Modern Welsh</strong> — Arawn, a rare but living given name</li><li><strong>Welsh folklore</strong> — master of the Cŵn Annwn, the white red-eared hounds of the Otherworld, a folk elaboration of his Mabinogi pack<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li></ul>
+<p>Arawn is Tier 2 because the restoration preserves nothing ASCII loses: the letters of the manuscript form are the letters of the keyboard. The capital alone marks the temple form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff, 1950–2002), s.v. Arawn.</li><li id="src-pronunciation-2">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Arawn, Cŵn Annwn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in Middle Welsh manuscripts in the Latin alphabet as <strong>Arawn</strong> — Middle Welsh (Brythonic Celtic), attested in the White Book of Rhydderch (c. 1350) and the Red Book of Hergest (c. 1382–1410), recording material composed centuries earlier.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The script is written left-to-right in the medieval Welsh bookhand.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Middle Welsh writes the name in plain Latin letters; the digraph <em>aw</em> represents the diphthong [aʊ] that Modern Welsh still keeps.</li><li>No diacritic attaches to the name in any witness: normalized Middle Welsh orthography and the ASCII spelling are identical.</li><li>The etymology is unsettled — the biblical Aaron (Ifor Williams's proposal) and native Celtic derivations are both on record — but no variant spelling of the theonym is attested in the manuscripts.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>The Unicode restoration Arawn therefore changes nothing but the capital; the name stands in Tier 2 by the mechanical rule, and the plain-ASCII domain arawn.com — held by a third party outside the PuniCodex collection and watched for release — is the philologically complete form.</li></ul>
+<p>One caution attaches to the record: the gloss 'silver-tongued' is the lexicon's traditional rendering, not a settled philological result, and this edition presents it as such.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), introduction, on the manuscript witnesses.</li><li id="src-original-script-2">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (1930), notes; Geiriadur Prifysgol Cymru, s.v. Arawn; Koch, Celtic Culture (2006), s.v. Arawn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Arawn</strong> is catalogued under the domain 'Otherworld, <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>' — one domain in two words, the place and what it is.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Annwn</h3>
+<p>Annwn (later <em>Annwfn</em>) is the Welsh Otherworld: not a land of the dead in the classical sense but a world beside this one — richer, stranger, and reachable at its borders, with its own kings, its own hunts, and its own war. The First Branch knows it divided into two kingdoms, Arawn's and Hafgan's, until Pwyll makes them one.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup> The lexicon keeps its own temple for the realm itself at <a class="scholars-xlink" href="/annwn/">Annwn</a>.</p>
+<h3 class="scholars-h3">The Otherworld Hunt</h3>
+<p>Arawn enters the tale hunting: his pack of hounds shining white with red ears — the colour the Welsh tradition fixed on Otherworld creatures — brings down a stag in Pwyll's own hunting-ground at Glyn Cuch. The hounds are Annwn made visible; the insult Pwyll offers them is what sets the whole exchange in motion.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Kingship Held in Trust</h3>
+<p>Arawn's answer to the insult is to lend a stranger his entire identity: face, throne, court, and bed for a year and a day. Kingship, in his hands, is a trust that can be handed over and returned — and the tale measures both kings by how they carry what is not theirs.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Honor</h3>
+<p>The exchange is a test with no witness: what Pwyll does in Arawn's bed, in Arawn's shape, no one in either world can see. The First Branch builds its definition of honor on exactly that darkness — and Arawn, who devised the test, is the god of the standard it sets.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Pwyll Prince of Dyfed&#39;.</li><li id="src-domains-2">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992), on the First Branch as the proving of Pwyll.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Arawn's regalia are not weapons but conditions — the working parts of the one great test:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The white hounds with red ears</strong> — The colour of the Otherworld: a hunt that arrives from the far side of the boundary</li><li><strong>The exchanged shape</strong> — Kingship as a trust held for another: the year Arawn's face ruled two realms</li><li><strong>The single blow</strong> — Restraint as the condition of victory: strike once, or not at all</li><li><strong>The untouched bed</strong> — Honor kept in the dark, where no one would ever have known</li><li><strong>The ford</strong> — The meeting-place between realms, where debts are paid and blows are counted</li><li><strong>The yearly gifts</strong> — Friendship renewed in kind: horses and greyhounds and hawks, and every kind of treasure<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Pwyll Prince of Dyfed&#39;.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Arawn's whole dossier is one story — the opening movement of the Mabinogi — told with the economy and exactness that mark the Four Branches at their best.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Wrong at Glyn Cuch (Pwyll Pendefig Dyfed)</h3>
+<p>Pwyll, lord of Dyfed, goes hunting at Glyn Cuch, and there he sees a sight he has never seen: a pack of hounds shining white with red ears bringing down a stag. He drives them off and sets his own hounds on the kill — and the stranger who rides up is Arawn, king of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>, and it was his hunt. Arawn names the discourtesy plainly and refuses revenge; what he asks instead is amends. He has a rival, Hafgan, king of the other realm of Annwn, who wars on him without end: let Pwyll take Arawn's shape and his place for a year and a day, and meet Hafgan at the ford at the year's turning.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Exchange of Shapes (Pwyll Pendefig Dyfed)</h3>
+<p>Each king takes the other's form and goes to the other's court, and neither realm suspects. Arawn rules Dyfed so well that there had never been so good a year in it. Pwyll enters Annwn in Arawn's likeness, and that first night he is led to the bed of Arawn's wife — the fairest and most comely woman he had ever seen. He turns his back to her, and he does so every night of the year: courteous by day, and in the bed he never once turns his face toward her. The queen never knows. The whole test of the tale is here, in the dark, where no one could have seen the difference.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Single Blow at the Ford (Pwyll Pendefig Dyfed)</h3>
+<p>Arawn's instructions were exact: Hafgan — the name suggests 'Summer-White' — can be slain by one blow and only one; strike him a second time and he will rise as strong as before and fight again the next day. At the appointed time the two kings meet at the ford, and at the first clash Pwyll strikes Hafgan one blow that shears through shield and armour. Hafgan begs for the finishing stroke, and Pwyll refuses: the blow he gave is all Hafgan will have from him. Hafgan's nobles declare their king lost, and Pwyll takes the submission and hostages of Hafgan's realm, so that the two kingdoms of Annwn are made one under Arawn's crown.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Restoration and the Title (Pwyll Pendefig Dyfed)</h3>
+<p>The two kings meet again at the ford, each in his own shape, and embrace and go home. Arawn's queen, rejoicing at his return, remarks that he has not spoken to her as he does tonight for a whole year — and Arawn praises God for a friend so true. In Dyfed, Pwyll's court hears the story and tells him he did well to make such a friend. From that time the two realms send each other gifts every year: horses and greyhounds and hawks, and every kind of treasure. And because Pwyll had ruled Annwn and joined its two kingdoms in one, he was called from then on Pwyll Pen Annwn — Pwyll Head of Annwn — in place of Pwyll lord of Dyfed. The friendship he bought back is the foundation on which the whole of the First Branch, and the coming of <a class="scholars-xlink" href="/rhiannon/">Rhiannon</a>, is built.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Spoils of Annwn (Book of Taliesin)</h3>
+<p>The Mabinogi never brings Arawn back on stage, but his world keeps growing. The poem <em>Preiddeu Annwfn</em>, 'The Spoils of Annwn', preserved in the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>, sends Arthur's men to raid the Otherworld for the cauldron of the Head of Annwfn — <em>Pen Annwfn</em>, the very title the First Branch gives Pwyll's honour — and only seven come home. The poem never names Annwn's king, and honest scholarship leaves it unnamed; the echo of the title is the only thread between the two texts.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup> Later Welsh folklore knows the Cŵn Annwn, the Hounds of Annwn — white with red ears, exactly Arawn's pack — whose baying across the night sky was heard as a death-omen; folk tradition gave their mastery to Gwyn ap Nudd rather than to Arawn.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Pwyll Prince of Dyfed&#39;; Welsh text ed. Williams, Pedeir Keinc y Mabinogi (1930).</li><li id="src-mythology-2">Haycock, Marged, ed. and trans., Legendary Poems from the Book of Taliesin (Aberystwyth: CMCS, 2007), &#39;Preideu Annwfyn&#39;.</li><li id="src-mythology-3">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Cŵn Annwn, Gwyn ap Nudd.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Arawn's comparisons are almost all inward, and the Welsh corpus itself supplies them. His clearest rival for the kingship of the Otherworld is <strong>Gwyn ap Nudd</strong>, whom <em>Culhwch ac Olwen</em> says God set over the demons of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> — a second king of Annwn in a second text, and the folklore gave Gwyn the hounds the Mabinogi gave Arawn.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> The structural reading runs deeper: commentators since Mac Cana have read the Annwn adventure as the proving of Pwyll's character before the coming of <a class="scholars-xlink" href="/rhiannon/">Rhiannon</a> — the hero tested in honor and restraint in the Otherworld before the Otherworld's queen chooses him in this one.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p>
+<p>The name itself may be the tale's one foreign guest: Ifor Williams proposed that Arawn is a learned borrowing of the biblical <strong>Aaron</strong>, carried into Welsh by Latin learning, and the handbooks register the possibility without deciding it.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup> No Gaulish or Irish counterpart of Arawn has ever been convincingly proposed; the exchange-of-kings motif, with its unseen test and its kept bed, is the Mabinogi's own.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Bromwich, Rachel, and D. Simon Evans, eds., Culhwch and Olwen: An Edition and Study of the Oldest Arthurian Tale (Cardiff: University of Wales Press, 1992).</li><li id="src-syncretism-2">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992).</li><li id="src-syncretism-3">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (1930), notes; Koch, Celtic Culture (2006), s.v. Arawn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried Arawn out of the White and Red Books and into English, and the white red-eared hounds entered the stock of Celtic imagery from that day.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> In the twentieth century the figure found his widest audience inverted: Lloyd Alexander's <em>Chronicles of Prydain</em> (1964–68) made 'Arawn Death-Lord of Annuvin' the arch-villain of five children's novels, and Disney's <em>The Black Cauldron</em> (1985) kept the dark-lord version on screen — a long way from the most honorable king in Welsh prose, but the reason the name is known worldwide.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>The Cŵn <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> meanwhile never left Welsh folklore, still baying as a death-omen in folk memory into the modern period.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup> Modern Druid and pagan practice honours Arawn as lord of the Otherworld and patron of kept faith, and the name survives in Wales as a rare living given name.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Guest, Lady Charlotte, trans., The Mabinogion, 3 vols. (London, 1838–49).</li><li id="src-cultural-legacy-2">Alexander, Lloyd, The Chronicles of Prydain, 5 vols. (New York: Holt, Rinehart and Winston, 1964–68).</li><li id="src-cultural-legacy-3">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.v. Cŵn Annwn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Arawn is a textual figure: no inscription, votive deposit, or cult site names him, and the epigraphic record of early Wales — the Latin and ogham memorial stones of roughly the fifth to seventh centuries — records personal names in funerary formulae, not theonyms.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> His evidence is manuscript evidence. The Four Branches survive complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' date of composition is argued rather than documented — Ifor Williams placed them in the later eleventh century, and current scholarship generally holds a range around 1060–1120.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>The geography of the tale is real: Glyn Cuch, where the insult happens, is identified with the valley of the River Cych on the Pembrokeshire–Carmarthenshire border, inside the Dyfed the story governs.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup> The nearest material echo of the Otherworld hunt is literary: the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>, the codex that preserves <em>Preiddeu Annwfn</em>, is a fourteenth-century Welsh manuscript (NLW Peniarth MS 2).<sup class="scholars-cite"><a href="#src-archaeology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li><li id="src-archaeology-2">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), introduction, on the manuscripts and the dating debate.</li><li id="src-archaeology-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Pwyll Pendefig Dyfed.</li><li id="src-archaeology-4">Haycock, Marged, ed. and trans., Legendary Poems from the Book of Taliesin (Aberystwyth: CMCS, 2007), introduction.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Arawn given in this edition rests on the witnesses and reference works listed below. The First Branch of the Mabinogi supplies the whole narrative spine; the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a> and Culhwch ac Olwen frame the wider <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> tradition; the handbooks and the Geiriadur Prifysgol Cymru arbitrate the name's unsettled etymology.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), 'Pwyll Prince of Dyfed'.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Guest, Lady Charlotte, trans., The Mabinogion, 3 vols. (London, 1838–49).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Haycock, Marged, ed. and trans., Legendary Poems from the Book of Taliesin (Aberystwyth: CMCS, 2007), 'Preideu Annwfyn'.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Bromwich, Rachel, and D. Simon Evans, eds., Culhwch and Olwen: An Edition and Study of the Oldest Arthurian Tale (Cardiff: University of Wales Press, 1992).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.vv. Arawn, Annwn, Pwyll Pendefig Dyfed.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Arawn, Annwn, Cŵn Annwn, Gwyn ap Nudd.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press, 1950–2002), s.v. Arawn.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Alexander, Lloyd, The Chronicles of Prydain, 5 vols. (New York: Holt, Rinehart and Winston, 1964–68).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007); Williams, Ifor, ed., Pedeir Keinc y Mabinogi (1930).</li><li id="src-scholarly-sources-2">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (University of Wales Press, 1992).</li><li id="src-scholarly-sources-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006).</li><li id="src-scholarly-sources-4">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998).</li><li id="src-scholarly-sources-5">Haycock, Marged, ed. and trans., Legendary Poems from the Book of Taliesin (CMCS, 2007).</li><li id="src-scholarly-sources-6">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992).</li><li id="src-scholarly-sources-7">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.vv. Arawn, Annwn, Pwyll Pendefig Dyfed.</li><li id="src-scholarly-sources-8">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Arawn, Annwn, Cŵn Annwn, Gwyn ap Nudd.</li><li id="src-scholarly-sources-9">Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press, 1950–2002), s.v. Arawn.</li><li id="src-scholarly-sources-10">Alexander, Lloyd, The Chronicles of Prydain, 5 vols. (New York: Holt, Rinehart and Winston, 1964–68).</li><li id="src-scholarly-sources-11">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Arawn has no Irish namesake and no Irish reflex — but the world he rules is the same institution the Irish tradition calls the <strong>síd</strong>. <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> and the síd are cognate constructions: a world beside this one, richer and stranger, entered at its borders, with kings of its own who hunt, feast, make war on one another, and treat with the kings of this world as equals.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup> The Irish parallels to Arawn himself are not names but offices: <a href="/manannan/" class="crosslink" data-crosslink="manannan">Manannán</a> mac Lir, lord of <strong>Emain Ablach</strong> and <strong>Mag Mell</strong>, who rides between worlds, changes his shape at will, and lends treasures and favors to mortal kings, is the nearest structural counterpart — an Otherworld sovereign whose dealings with this world are courteous, conditional, and always a test.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup></p>
+<p>The shape-exchange at the heart of the First Branch has its Irish cognates in the transformation-and-imposture machinery of the Mythological Cycle: the disguises and shape-shifting contests of <em>Cath Maige Tuired</em>, whose introduction reads the tale's Otherworld figures against the wider Celtic pattern, and the sovereignty encounters in which an otherworldly woman tests and confers kingship.<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup> Mac Cana's structural comparison runs deepest: he reads the First Branch's economy of honor — the debt at Glyn Cuch, the year of the kept bed, the single measured blow — against the Irish sovereignty tales, in which a hero's worth is proved in dealings with the Otherworld before kingship is confirmed, and finds the two traditions working the same moral grammar from opposite sides.<sup class="scholars-cite"><a href="#src-irish-cycles-4">[4]</a></sup></p>
+<p>Even the hounds have their Irish hunt: the <strong>Cŵn Annwn</strong>, white with red ears, match the Irish <strong>slua sí</strong> and the fairy hunt of the síd-riders — the pale, red-eared Otherworld pack heard coursing at night in both insular traditions, a shared Celtic index of the neighboring world rather than a borrowing in either direction.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup> Sims-Williams's survey of Irish influence on Welsh literature cautions exactly here: the parallels are real, but they are the residue of a common inheritance, and the First Branch's exchange-of-kings, with its unseen test and kept faith, remains the Mabinogi's own construction.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">Sims-Williams, Patrick, Irish Influence on Medieval Welsh Literature (Oxford: Oxford University Press, 2011).</li><li id="src-irish-cycles-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.vv. Annwn, Otherworld, Manannán mac Lir, síd.</li><li id="src-irish-cycles-3">Gray, Elizabeth A., ed. and trans., Cath Maige Tuired, Irish Texts Society 52 (Naas: Irish Texts Society, 1982), introduction.</li><li id="src-irish-cycles-4">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992), on the First Branch and the Irish sovereignty tales.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Arawn's whole narrative dossier is the First Branch of the Mabinogi, <em>Pwyll Pendefig Dyfed</em> — the hunting-debt at Glyn Cuch, the exchange of shapes, the year of the untouched bed, the single blow at the ford, and the friendship sealed in yearly gifts. He appears nowhere else in the Four Branches: after the title Pen Annwfn passes to Pwyll, the tale turns to <a class="scholars-xlink" href="/rhiannon/">Rhiannon</a>, and Arawn's part is done.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup></p>
+<p>Around that single spine the wider Welsh tradition builds the world he rules. <em>Preiddeu Annwfn</em>, 'The Spoils of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>', in the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>, sends Arthur's men to raid the Otherworld for the cauldron of the Head of Annwfn — Pen Annwfn, the very title of the First Branch — and only seven come home; the poem never names Annwn's king.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup> <em>Culhwch ac Olwen</em> gives Annwn a second lord: Gwyn ap Nudd, over whom God set the spirits of the demons of Annwn, and it is Gwyn, not Arawn, whom later folklore made master of the Cŵn Annwn, the white red-eared hounds heard baying as a death-omen.<sup class="scholars-cite"><a href="#src-welsh-sources-3">[3]</a></sup> The tales survive complete in the White Book of Rhydderch (c. 1350) and the Red Book of Hergest (c. 1382–1410), with earlier fragments in Peniarth 6; Lady Charlotte Guest's translation (1838–49) first carried them into English, Ifor Williams's edition (1930) fixed the standard Welsh text, and Sioned Davies's translation (2007) is the current scholarly English version.<sup class="scholars-cite"><a href="#src-welsh-sources-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007).</li><li id="src-welsh-sources-2">Haycock, Marged, ed. and trans., Legendary Poems from the Book of Taliesin (Aberystwyth: CMCS, 2007).</li><li id="src-welsh-sources-3">Bromwich, Rachel, and D. Simon Evans, eds., Culhwch and Olwen (Cardiff, 1992); MacKillop, Dictionary of Celtic Mythology (1998), s.v. Cŵn Annwn.</li><li id="src-welsh-sources-4">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (1930); Guest, Lady Charlotte, trans., The Mabinogion (1838–49).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription names Arawn, and none was to be expected. The early inscribed stones of Wales — the Latin and ogham memorial stones of roughly the fifth to seventh centuries — record personal names in funerary formulae, not theonyms; votive epigraphy of the Welsh kind simply does not survive, and the theonymic record of pre-Christian Wales is known from literature and place-lore rather than stone.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>There is no continental contrast to set against the silence, as there is for some Celtic figures: no Gaulish altar, no Romano-British dedication, no ogham stone has ever been proposed as naming Arawn or any plausible antecedent of the name. The king of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> is a creature of the Welsh bookhand, and his dossier — manuscript, tale, and folklore — is complete without a single carved letter.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li><li id="src-inscriptions-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.vv. Arawn, Annwn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Arawn sets the one test that cannot be cheated: he gives a stranger his face, his throne, and his bed, and waits a year to learn what the stranger is. Everything Pwyll does in <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> is invisible — no one in either kingdom can tell the kings apart, and no one will ever know what passed in the bed unless the doer confesses it. That is exactly the point. Honor, the First Branch argues, is what a man does when the only witness is himself.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>The tale rewards it without sentimentality: the kept faith becomes an unbroken friendship, an alliance across the boundary of the worlds, the title Pen Annwfn, and a court that tells its lord he chose his friend well. Arawn's kingdom is the far side of reality, but his question is asked everywhere — who are you when no one is watching?</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Pwyll Prince of Dyfed&#39;.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Arawn</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'arawn';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myrddin — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Myrddin: a living, university-curated reference on Seer, Wild Man. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Myrddin — Scholarly Edition",
+    "headline": "Myrddin — Scholarly Edition",
+    "description": "University-curated scholarly reference for Myrddin (Seer, Wild Man).",
+    "url": "https://punicodex.com/myrddin/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Myrddin",
+        "alternateName": ["myrddin", "Myrddin"],
+        "description": "Seer, Wild Man"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/myrddin.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/myrddin/scholars/">
+
+    <meta property="og:title" content="Myrddin — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Myrddin (Seer, Wild Man).">
+    <meta property="og:url" content="https://punicodex.com/myrddin/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/myrddin.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/myrddin.jpg">
+    <meta name="twitter:title" content="Myrddin — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Myrddin (Seer, Wild Man).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Myrddin",
+      "item": "https://punicodex.com/myrddin/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/myrddin/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="myrddin-canvas" data-effect="caledonwood-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/myrddin_logolockup.webp" type="image/webp"><img src="../assets/myrddin_logolockup.png" alt="Myrddin" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/myrddin/">Myrddin</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Myrddin</h1>
+            <p class="scholars-subtitle reveal-up">Seer, Wild Man · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Myrddin.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Myrddin</strong> (<em>myrddin</em>) — Seer, Wild Man · Merlin — is the original Welsh form of the name the world knows as Merlin: the prophet of the British Old North who went mad at the battle of Arfderydd in 573, fled into Coed Celyddon, the Caledonian forest, and lived there as a wild man, lamenting his dead lord Gwenddolau and uttering the prophecies that made him the canonical voice of Welsh vaticination.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The Welsh sources give him a family and a grief: he is Myrddin son of Morfryn in the Triads, brother of Gwenddydd — wife of Rhydderch — and the speaker of the Black Book of Carmarthen's great laments, the Afallennau and the Oianau, addressed from hiding to the apple tree that shelters him.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> Geoffrey of Monmouth carried him into Latin as Merlinus: the Historia Regum Britanniae (c. 1136) made him the boy prophet of Vortigern's tower and the dragons, and the Vita Merlini (c. 1150) gave the wild man his fullest biography — the forest life, the threefold death foretold to a boy, the stag he rides to court, the long discourse with <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>, and the sister Ganieda who succeeds him in prophecy.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Myrddin</strong> — identical to the ASCII input, because normalized Middle Welsh writes no diacritic in this name. The mechanical rule therefore places it in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the prophet. No domain is claimed: the plain-ASCII <strong>myrddin.com</strong> is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Clarke, Basil, ed. and trans., Life of Merlin: Geoffrey of Monmouth, Vita Merlini (Cardiff: University of Wales Press, 1973).</li><li id="src-overview-2">Jarman, A. O. H., &#39;Llyfr Du Caerfyrddin: The Black Book of Carmarthen&#39;, Proceedings of the British Academy 71 (1985), 333–56.</li><li id="src-overview-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Myrddin.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Middle Welsh as <strong>Myrddin</strong>, the form underlying Geoffrey of Monmouth's Latin <strong>Merlinus</strong> — the spelling that carried the figure into French, English, and world literature.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The scholarly account of the name's origin reverses the folk etymology Geoffrey loved. Geoffrey connects his Merlin with Carmarthen — Kaermerdin, the 'city of Merlin' — but the direction of naming runs the other way: the personal name derives from the place-name Caerfyrddin, and Caerfyrddin descends from the Roman name of the fort at Carmarthen, <strong>Moridunum</strong>, 'sea-fort' (<em>mori-</em> 'sea' + <em>dūnon</em> 'fort'), attested in the Antonine Itinerary. On Jackson's and Jarman's account the prophet is, at bottom, 'the man of Moridunum' — a fortress remembered as a person.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The medieval tradition itself split the name's bearer in two. Gerald of Wales, writing around 1191, distinguishes Merlinus Ambrosius — the boy prophet of Vortigern's tower, whose story Geoffrey took from the fatherless Ambrosius of the Historia Brittonum — from Merlinus Celidonius or Sylvester, 'the Caledonian' and 'the man of the woods', the northern prophet who went mad after battle. Welsh preserves the same doubleness in the by-forms Myrddin Emrys (the Ambrosian) and Myrddin Wyllt (the Wild).<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p>
+<p>The ASCII form <em>myrddin</em> loses nothing, because the normalized Middle Welsh spelling is already plain Latin letters; the digraph dd for the soft 'th' [ð] is orthography, not a lost character. The restoration is therefore a matter of canonical reference, not rescued diacritics, and the name is classified Tier 2 by the project's mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li><li><strong>y</strong> → <strong>y</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>myrddin.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Jarman, A. O. H., &#39;The Merlin Legend and the Welsh Tradition of Prophecy&#39;, in The Arthur of the Welsh, ed. R. Bromwich, A. O. H. Jarman, and B. F. Roberts (Cardiff: University of Wales Press, 1991), 117–45.</li><li id="src-the-name-2">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953), on Moridunum and the name of Carmarthen.</li><li id="src-the-name-3">Gerald of Wales, Itinerarium Cambriae II.8, ed. J. F. Dimock, Giraldi Cambrensis Opera, Rolls Series 21, vol. 6 (London, 1868), on the two Merlins.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈmər.ðɨn/</strong> — Modern Welsh.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>My-</strong> — Bilabial [m] with the Welsh clear y, a central [ə] like the 'uh' of 'about'; stressed, because Welsh stress falls on the penult</li><li><strong>-rddin</strong> — Tapped [r]; dd, the voiced dental fricative [ð] of English 'this'; final unstressed -in with the high central [ɨ] that Welsh writes y in the last syllable</li></ul>
+<p>For the modern speaker, the closest approximation is: 'MUR-thin' — two short beats, the dd soft as in 'this', never hardened, and never the three-syllable 'MER-lin' the Latin form made famous.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Middle Welsh</strong> — Myrddin, son of Morfryn; also Myrddin Wyllt, 'the Wild'</li><li><strong>Medieval Latin</strong> — Merlinus, Geoffrey of Monmouth's Latinization; Merlinus Ambrosius and Merlinus Celidonius/Sylvester in Gerald of Wales</li><li><strong>Name origin</strong> — Caerfyrddin (Carmarthen), from Roman Moridunum, 'sea-fort'<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li></ul>
+<p>Myrddin is Tier 2 because the restoration preserves nothing ASCII loses: the letters of the manuscript form are the letters of the keyboard. The capital alone marks the temple form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964), on Welsh stress, the value of y, and the dd digraph.</li><li id="src-pronunciation-2">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953), on Moridunum &gt; Caerfyrddin.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in Middle Welsh in the Latin alphabet as <strong>Myrddin</strong> — attested Middle Welsh, c. 13th–14th c. in the surviving manuscripts, with the underlying tradition reaching centuries earlier — in the Black Book of Carmarthen, the Red Book of Hergest, and the Welsh Triads.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Middle Welsh was written in the Latin alphabet using the Insular script tradition; the spelling Myrddin requires no diacritic.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The earliest continuous witnesses are the Black Book of Carmarthen (NLW Peniarth MS 1, c. 1250) and the Red Book of Hergest (Jesus College MS 111, c. 1382–1410); the poems they carry are substantially older than their copies.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></li><li>The digraph dd writes the voiced dental fricative [ð], and y writes two distinct vowels by position — the clear [ə] of the stressed penult and the high central [ɨ] of the final syllable; both are orthographic conventions of Welsh, not characters the ASCII alphabet lacks.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>Geoffrey of Monmouth's Merlinus is a Latinization, not a separate attestation: he attached the name to Caerfyrddin, and the modern derivation runs from Moridunum, 'sea-fort', through the place-name to the person.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Myrddin is therefore identical to the ASCII form apart from the capital; the temple form is a canonical reference, not a rescued spelling.</li></ul>
+<p>Two cautions attach to the record: the medieval tradition itself counted two Merlins — the Ambrosian and the Caledonian — and the 'two names one wizard' of modern fiction is a fusion, not a source;<sup class="scholars-cite"><a href="#src-original-script-4">[4]</a></sup> and the folk etymology 'Myrddin's fortress' runs backward — the fortress named the man.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Jarman, A. O. H., &#39;Llyfr Du Caerfyrddin: The Black Book of Carmarthen&#39;, Proceedings of the British Academy 71 (1985), 333–56.</li><li id="src-original-script-2">Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964).</li><li id="src-original-script-3">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953), on Moridunum &gt; Caerfyrddin.</li><li id="src-original-script-4">Gerald of Wales, Itinerarium Cambriae II.8, ed. J. F. Dimock, Giraldi Cambrensis Opera, Rolls Series 21, vol. 6 (London, 1868).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Myrddin</strong> is catalogued under the domain 'Seer, Wild Man' — two words that name the whole of his legend and the whole of his price.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Seer</h3>
+<p>Myrddin is the patron and mouthpiece of the Welsh prophetic genre, the brud: the Black Book poems put the fate of Britain in his mouth, Geoffrey's Prophetiae Merlini — Historia Book VII — circulated separately for centuries as the most copied political prophecy of the Latin Middle Ages, and every later Welsh vaticination quietly claimed his authority.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Wild Man</h3>
+<p>The same tradition is exact about the price: madness at Arfderydd, exile in Coed Celyddon, food from the forest floor, speech addressed to a tree. The Welsh term is wyllt — wild — and Myrddin Wyllt is the type-figure: the seer who had to leave the human settlement before the future would speak to him.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Two in One</h3>
+<p>Geoffrey's Vita Merlini holds the pair together in a single poem: the mad king dragged to court who laughs at what no one else can see — and whose laughter is always a prophecy — then rides home to the forest on a stag, driving the woodland herds before him like a shepherd of the wild.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Clarke, Basil, ed. and trans., Life of Merlin: Geoffrey of Monmouth, Vita Merlini (Cardiff: University of Wales Press, 1973).</li><li id="src-domains-2">Jarman, A. O. H., &#39;The Merlin Legend and the Welsh Tradition of Prophecy&#39;, in The Arthur of the Welsh (Cardiff: University of Wales Press, 1991), 117–45.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Myrddin's attributes are not regalia but the furnishings of an exile — a tree, a forest, a wild mount, and the three elements of a foretold death:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The apple tree</strong> — The sweet tree of the Afallennau that shelters him and hears his laments for Gwenddolau: prophecy's one roof in the forest of Celyddon</li><li><strong>The forest of Celyddon</strong> — The Caledonian wood itself: madness, exile, and second sight in a single landscape</li><li><strong>The stag</strong> — The wild mount he rides to Rhydderch's court in the Vita Merlini, driving the forest's herds before him: the king become herdsman of the unowned</li><li><strong>Rock, tree, and water</strong> — The three elements of the threefold death he prophesies for the boy at court, fulfilled to the letter despite every precaution<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>Gwenddydd's questions</strong> — The sister's dialogue from the Red Book of Hergest: prophecy as the speech left between the mad and those who loved them<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Jarman, A. O. H., &#39;Llyfr Du Caerfyrddin: The Black Book of Carmarthen&#39;, Proceedings of the British Academy 71 (1985), 333–56; Cyfoesi Myrddin a Gwenddydd ei chwaer, Red Book of Hergest.</li><li id="src-symbols-2">Clarke, Basil, ed. and trans., Life of Merlin: Geoffrey of Monmouth, Vita Merlini (Cardiff: University of Wales Press, 1973).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Myrddin's mythology divides into a northern dossier and a Latin one, and the medieval tradition itself already kept them apart.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Battle of Arfderydd (Annales Cambriae; Trioedd Ynys Prydein)</h3>
+<p>The Annales Cambriae enter under 573 the battle of Arfderydd, fought between the sons of Eliffer and Gwenddolau son of Ceidio.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup> The Welsh Triads count it among the futile battles of the Island of Britain — brought about, in the triad's famous understatement, for a lark's nest — and record the consequence that founds the legend: Gwenddolau fell, and Myrddin son of Morfryn became mad.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The Laments of the Black Book (Yr Afallennau; Yr Oianau)</h3>
+<p>The earliest Welsh manuscript, the Black Book of Carmarthen (c. 1250), preserves the wild man's own voice. In the Afallennau Myrddin addresses the sweet apple tree that shelters him, laments Gwenddolau dead at Arfderydd, grieves the warrior-company he has lost, and hides from Rhydderch's men; the Oianau keeps the same outcast voice calling its mournful cry through the forest, prophecy threaded through lament.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p>
+<h3 class="scholars-h3">The Conversation with Gwenddydd (Cyfoesi Myrddin a Gwenddydd)</h3>
+<p>In the Red Book of Hergest dialogue, Gwenddydd — Rhydderch's wife and Myrddin's sister — questions her brother across the gulf his madness has opened, mourning the mead-feast companion he was; he answers with the fate of Wales, and the prophecy keeps breaking against grief.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p>
+<h3 class="scholars-h3">The Vita Merlini (Geoffrey of Monmouth)</h3>
+<p>Geoffrey's poem of c. 1150 is the fullest biography: the madness at a northern battle; the life of the forest among roots, fruit, and snow; the capture by Rhydderch's men; the laughter that is always a prophecy, including the boy's foretold threefold death — from a rock, in a tree, and in the water — fulfilled when he falls from a cliff, catches in a tree, and dies with his head in the stream; the return to court riding a stag and driving the wild herds; the long discourse with <a class="scholars-xlink" href="/taliesin/">Taliesin</a> (Telgesinus) on winds, waters, fishes, and the world's making; and the end, when Merlin gives his observatory to his sister Ganieda — Geoffrey's Gwenddydd — who takes up the prophetic gift, and retires to the forest for good.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Boy at Vortigern's Tower (Historia Brittonum; Historia Regum Britanniae)</h3>
+<p>Geoffrey's other Merlin came from another book. The ninth-century Historia Brittonum has the fatherless boy Ambrosius, brought to Vortigern to be sacrificed for his collapsing tower at Dinas Emrys, reveal the pool and the two dragons — the red of the Britons, the white of the Saxons — beneath its foundations. Geoffrey gave Nennius's boy Myrddin's name: Merlinus Ambrosius — the graft from which the Arthurian enchanter grew.<sup class="scholars-cite"><a href="#src-mythology-5">[5]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Clarke, Basil, ed. and trans., Life of Merlin: Geoffrey of Monmouth, Vita Merlini (Cardiff: University of Wales Press, 1973).</li><li id="src-mythology-2">Annales Cambriae, s.a. 573, ed. John Williams ab Ithel, Rolls Series 20 (London, 1860).</li><li id="src-mythology-3">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Welsh Triads (Cardiff: University of Wales Press, 1961; 3rd ed. 2006).</li><li id="src-mythology-4">Jarman, A. O. H., &#39;Llyfr Du Caerfyrddin: The Black Book of Carmarthen&#39;, Proceedings of the British Academy 71 (1985), 333–56.</li><li id="src-mythology-5">Historia Brittonum (Nennius), ed. and trans. John Morris (London: Phillimore, 1980), §§40–42; Geoffrey of Monmouth, Historia Regum Britanniae, Books VI–VII.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Myrddin's clearest cross-border witness is northern, not continental. Jocelyn of Furness's Life of St Kentigern (c. 1185) knows a mad prophet at the court of Rhydderch Hael named Lailoken, who foretold his own threefold death; a fragmentary Latin life of 'Merlin the Wild' in the Cotton collection tells the same penitence, conversion by Kentigern, and triple end — stones, a stake, and the Tweed. Tolstoy argued that Lailoken and Myrddin Wyllt are two records of one north-British wild-man figure, and the handbooks treat the kinship as real and its exact shape unproven.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>The Irish tradition offers no namesake but a perfect parallel: Suibhne Geilt, the king driven mad by battle in Buile Shuibhne, who lives in trees, speaks in verse, and is watched from the court he left — the same type, the wild prophet as battle-survivor, with no shared name.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> Within Wales his truest kin is <a class="scholars-xlink" href="/taliesin/">Taliesin</a>, the other great prophetic poet, with whom the Vita Merlini pairs him in discourse; and the deepest split is internal — Gerald of Wales's two Merlins, the tower-boy Ambrosius and the wild Caledonian, whom the romances later fused into one enchanter.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Tolstoy, Nikolai, The Quest for Merlin (London: Hamish Hamilton, 1985); Jocelyn of Furness, Vita Sancti Kentigerni, ed. A. P. Forbes, Lives of S. Ninian and S. Kentigern (Edinburgh, 1874).</li><li id="src-syncretism-2">O&#39;Keeffe, J. G., ed. and trans., Buile Shuibhne (The Frenzy of Sweeney), Irish Texts Society 12 (London: Irish Texts Society, 1913).</li><li id="src-syncretism-3">Gerald of Wales, Itinerarium Cambriae II.8, ed. J. F. Dimock, Giraldi Cambrensis Opera, Rolls Series 21, vol. 6 (London, 1868).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>No Celtic figure has had a stranger second life. Geoffrey's Prophetiae Merlini — Historia Book VII — circulated separately from the work that contained it and became the most copied political prophecy of the Latin Middle Ages, mined for omens by kings and rebels and furnished with learned commentaries into the fifteenth century.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> The romances then turned the prophet into the enchanter: by the thirteenth-century Vulgate cycle Merlin is Arthur's maker — arranger of Uther's night at Tintagel, keeper of the Round Table's founding, and prisoner of the Lady of the Lake.</p>
+<p>The Welsh original never disappeared. Lady Charlotte Guest's Mabinogion translation (1838–49) and the nineteenth-century Arthurian revival carried the Welsh roots back into English view; Jarman's scholarship rebuilt the northern prophet behind the wizard; and Caerfyrddin — 'Myrddin's fortress', on the folk etymology — still bears his name in every address in Carmarthen.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup> Modern Druidry and the broader Arthurian imagination now run both figures at once: Merlin the wizard of the films, and Myrddin Wyllt, patron of Welsh prophecy and of every wild man the forests still keep.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Eckhardt, Caroline D., ed., The Prophetia Merlini of Geoffrey of Monmouth: A Fifteenth-Century English Commentary (Cambridge, MA: Medieval Academy of America, 1982), introduction, on the prophecy&#39;s separate circulation.</li><li id="src-cultural-legacy-2">Jarman, A. O. H., &#39;The Merlin Legend and the Welsh Tradition of Prophecy&#39;, in The Arthur of the Welsh (Cardiff: University of Wales Press, 1991), 117–45; Guest, Lady Charlotte, trans., The Mabinogion (1838–49).</li><li id="src-cultural-legacy-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.vv. Myrddin, Merlin.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Myrddin is a textual figure, and his witnesses are among the most precisely identified in Welsh letters. The Afallennau and Oianau stand in the Black Book of Carmarthen (Aberystwyth, NLW Peniarth MS 1, c. 1250), the earliest surviving manuscript in Welsh; the Cyfoesi Myrddin a Gwenddydd stands in the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410); Geoffrey's Vita Merlini survives complete in a single manuscript (British Library, Cotton Vespasian E.iv, thirteenth century).<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p>
+<p>The landscape behind the texts is real and partly recoverable. Arfderydd is traditionally identified with Arthuret near Longtown in Cumbria, in the Old North the poems remember.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup> Caerfyrddin (Carmarthen) overlays the Roman fort of Moridunum, 'sea-fort', attested in the Antonine Itinerary and confirmed by excavation — the place-name from which, on the scholarly account, the prophet's name derives.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup> And Dinas Emrys, the Gwynedd hillfort where the Historia Brittonum sets the fatherless boy and the dragons, yielded post-Roman occupation material in H. N. Savory's excavations of 1954–56.<sup class="scholars-cite"><a href="#src-archaeology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Jarman, A. O. H., &#39;Llyfr Du Caerfyrddin: The Black Book of Carmarthen&#39;, Proceedings of the British Academy 71 (1985), 333–56; Clarke, Basil, ed., Vita Merlini (Cardiff, 1973), introduction, on the manuscripts.</li><li id="src-archaeology-2">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein (Cardiff: University of Wales Press, 1961; 3rd ed. 2006), notes to the Arfderydd triad.</li><li id="src-archaeology-3">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953), on Moridunum.</li><li id="src-archaeology-4">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Dinas Emrys.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Myrddin given in this edition rests on the witnesses and reference works listed below. The Black Book poems and the Red Book dialogue supply the Welsh voice; the Triads and Annales the northern frame; Geoffrey's Historia and Vita Merlini the Latin transformation; Nennius the tower-boy Geoffrey grafted on; Gerald of Wales the medieval distinction of the two Merlins; the Kentigern material the northern doublet; Jackson and the philologists the name.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Clarke, Basil, ed. and trans., Life of Merlin: Geoffrey of Monmouth, Vita Merlini (Cardiff: University of Wales Press, 1973).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Geoffrey of Monmouth, Historia Regum Britanniae, ed. Michael D. Reeve, trans. Neil Wright (Woodbridge: Boydell, 2007), Books VI–VII (the Prophetiae Merlini).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Jarman, A. O. H., 'Llyfr Du Caerfyrddin: The Black Book of Carmarthen', Proceedings of the British Academy 71 (1985), 333–56.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Cyfoesi Myrddin a Gwenddydd ei chwaer, Red Book of Hergest (Oxford, Jesus College MS 111).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Annales Cambriae, s.a. 573, ed. John Williams ab Ithel, Rolls Series 20 (London, 1860).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Welsh Triads (Cardiff: University of Wales Press, 1961; 3rd ed. 2006).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Historia Brittonum (Nennius), ed. and trans. John Morris (London: Phillimore, 1980), §§40–42.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Gerald of Wales, Itinerarium Cambriae II.8, ed. J. F. Dimock, Giraldi Cambrensis Opera, Rolls Series 21, vol. 6 (London, 1868).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Jocelyn of Furness, Vita Sancti Kentigerni, ed. A. P. Forbes, Lives of S. Ninian and S. Kentigern (Edinburgh, 1874).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Jarman, A. O. H., 'The Merlin Legend and the Welsh Tradition of Prophecy', in The Arthur of the Welsh, ed. R. Bromwich, A. O. H. Jarman, and B. F. Roberts (Cardiff: University of Wales Press, 1991), 117–45.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Tolstoy, Nikolai, The Quest for Merlin (London: Hamish Hamilton, 1985).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-13">[13]</a></sup> O'Keeffe, J. G., ed. and trans., Buile Shuibhne (The Frenzy of Sweeney), Irish Texts Society 12 (London: Irish Texts Society, 1913).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-14">[14]</a></sup> Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-15">[15]</a></sup> Eckhardt, Caroline D., ed., The Prophetia Merlini of Geoffrey of Monmouth: A Fifteenth-Century English Commentary (Cambridge, MA: Medieval Academy of America, 1982).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-16">[16]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.vv. Myrddin, Merlin, Arfderydd, Dinas Emrys.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-17">[17]</a></sup> MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Merlin, Myrddin.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Clarke, Basil, ed. and trans., Life of Merlin: Geoffrey of Monmouth, Vita Merlini (Cardiff: University of Wales Press, 1973).</li><li id="src-scholarly-sources-2">Geoffrey of Monmouth, Historia Regum Britanniae, ed. Michael D. Reeve, trans. Neil Wright (Woodbridge: Boydell, 2007), Books VI–VII.</li><li id="src-scholarly-sources-3">Jarman, A. O. H., &#39;Llyfr Du Caerfyrddin: The Black Book of Carmarthen&#39;, Proceedings of the British Academy 71 (1985), 333–56.</li><li id="src-scholarly-sources-4">Cyfoesi Myrddin a Gwenddydd ei chwaer, Red Book of Hergest (Oxford, Jesus College MS 111).</li><li id="src-scholarly-sources-5">Annales Cambriae, s.a. 573, ed. John Williams ab Ithel, Rolls Series 20 (London, 1860).</li><li id="src-scholarly-sources-6">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Welsh Triads (Cardiff: University of Wales Press, 1961; 3rd ed. 2006).</li><li id="src-scholarly-sources-7">Historia Brittonum (Nennius), ed. and trans. John Morris (London: Phillimore, 1980), §§40–42.</li><li id="src-scholarly-sources-8">Gerald of Wales, Itinerarium Cambriae II.8, ed. J. F. Dimock, Giraldi Cambrensis Opera, Rolls Series 21, vol. 6 (London, 1868).</li><li id="src-scholarly-sources-9">Jocelyn of Furness, Vita Sancti Kentigerni, ed. A. P. Forbes, Lives of S. Ninian and S. Kentigern (Edinburgh, 1874).</li><li id="src-scholarly-sources-10">Jarman, A. O. H., &#39;The Merlin Legend and the Welsh Tradition of Prophecy&#39;, in The Arthur of the Welsh, ed. R. Bromwich, A. O. H. Jarman, and B. F. Roberts (Cardiff: University of Wales Press, 1991), 117–45.</li><li id="src-scholarly-sources-11">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953).</li><li id="src-scholarly-sources-12">Tolstoy, Nikolai, The Quest for Merlin (London: Hamish Hamilton, 1985).</li><li id="src-scholarly-sources-13">O&#39;Keeffe, J. G., ed. and trans., Buile Shuibhne (The Frenzy of Sweeney), Irish Texts Society 12 (London: Irish Texts Society, 1913).</li><li id="src-scholarly-sources-14">Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964).</li><li id="src-scholarly-sources-15">Eckhardt, Caroline D., ed., The Prophetia Merlini of Geoffrey of Monmouth: A Fifteenth-Century English Commentary (Cambridge, MA: Medieval Academy of America, 1982).</li><li id="src-scholarly-sources-16">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.vv. Myrddin, Merlin, Arfderydd, Dinas Emrys.</li><li id="src-scholarly-sources-17">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Merlin, Myrddin.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Myrddin has no Irish namesake and no Irish reflex — but he has a perfect Irish parallel, and the parallel is one of the glories of the early Celtic literatures. Suibhne Geilt, the king of Dál nAraidi in <em>Buile Shuibhne</em> ('The Frenzy of Sweeney'), is cursed by St Ronan and driven mad at the battle of Mag Rath: he flees the field, lives in trees, eats watercress, speaks in verse of great beauty, and is watched, pursued, and grieved for by the court and wife he left.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup> The type is identical to Myrddin Wyllt's — the warrior-king whom battle-madness makes a wild man and a poet — and the comparison is standard in the handbooks; what the two traditions never did was share a name.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup></p>
+<p>The Irish material also sharpens what is distinctive in the Welsh. Suibhne's madness is a saint's curse; Myrddin's is grief at a lord's death. Suibhne's verse is lyric; Myrddin's is prophecy. The Irish tale resolves toward penitence and the Church; the Welsh material resolves toward the brud, the prophetic future of the nation. Same tree, different fruit.<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">O&#39;Keeffe, J. G., ed. and trans., Buile Shuibhne (The Frenzy of Sweeney), Irish Texts Society 12 (London: Irish Texts Society, 1913).</li><li id="src-irish-cycles-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.vv. Suibhne Geilt, Myrddin.</li><li id="src-irish-cycles-3">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on the wild-man and poet figures of the Celtic literatures.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Myrddin is a Welsh figure before he is anything else, and the Welsh dossier is unusually complete. Its spine is the Black Book of Carmarthen (c. 1250), the earliest manuscript in Welsh: the Afallennau, in which the wild man addresses the apple tree and laments Gwenddolau dead at Arfderydd, and the Oianau, the outcast's mournful cry through the forest — laments threaded with prophecy that made Myrddin the patron of the whole brud genre.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup> The Red Book of Hergest adds the Cyfoesi Myrddin a Gwenddydd ei chwaer, the dialogue with his sister; the Welsh Triads add the frame — Myrddin son of Morfryn, driven mad in the futile battle fought 'for a lark's nest'; and the Annales Cambriae date the battle to 573.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup></p>
+<p>Around that Welsh core the Latin tradition built the world-famous figure. Geoffrey of Monmouth's Historia Regum Britanniae (c. 1136) gave Myrddin's name to the fatherless boy of the Historia Brittonum and attached him to Caerfyrddin; the Vita Merlini (c. 1150) wrote the wild man's Latin biography; and Gerald of Wales, a generation later, recorded that the tradition already counted two Merlins — Ambrosius and the Caledonian.<sup class="scholars-cite"><a href="#src-welsh-sources-3">[3]</a></sup> The prophetic poetry of Wales kept his name as its license: from <a class="scholars-xlink" href="/taliesin/">Taliesin</a>, with whom the Vita pairs him, to <a class="scholars-xlink" href="/ceridwen/">Ceridwen</a>'s cauldron of inspiration, the awen tradition and the Myrddin tradition are the two springs of Welsh vatic verse.<sup class="scholars-cite"><a href="#src-welsh-sources-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">Jarman, A. O. H., &#39;Llyfr Du Caerfyrddin: The Black Book of Carmarthen&#39;, Proceedings of the British Academy 71 (1985), 333–56.</li><li id="src-welsh-sources-2">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein (Cardiff: University of Wales Press, 1961; 3rd ed. 2006); Annales Cambriae, s.a. 573.</li><li id="src-welsh-sources-3">Clarke, Basil, ed. and trans., Life of Merlin: Geoffrey of Monmouth, Vita Merlini (Cardiff, 1973); Gerald of Wales, Itinerarium Cambriae II.8.</li><li id="src-welsh-sources-4">Jarman, A. O. H., &#39;The Merlin Legend and the Welsh Tradition of Prophecy&#39;, in The Arthur of the Welsh (Cardiff, 1991), 117–45.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription names Myrddin, and none was to be expected. The early inscribed stones of Wales — the Latin and ogham memorial stones of roughly the fifth to seventh centuries — record personal names in funerary formulae, not prophets or theonyms, and no reading of Myrddin has ever been proposed for any of them.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>The name's one epigraphic-adjacent witness is the place-name it descends from: <strong>Moridunum</strong>, 'sea-fort', the Roman fort beneath Carmarthen, is attested in the Antonine Itinerary — the road-book of the empire — and the identification is confirmed by the excavated Roman remains at Caerfyrddin.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup> The itinerary does not name the prophet; it names the fortress that would, centuries later, supply his name. Beyond that single thread the record is manuscript alone, which is characteristic: Welsh tradition kept its prophets in verse and its dead in stone, and Myrddin belongs to the verse.<sup class="scholars-cite"><a href="#src-inscriptions-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li><li id="src-inscriptions-2">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953), on Moridunum and the Antonine Itinerary.</li><li id="src-inscriptions-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.vv. Myrddin, Caerfyrddin.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Myrddin is the figure who paid for knowledge with the ordinary world. Every version of him loses something before he sees: a lord, a battle, his reason, his hall. The tradition is strikingly honest about the transaction — the prophecy is real, and so is the madness, and the same event, the slaughter at Arfderydd, gives him both.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup> He is the answer Celtic literature gives to the question of what a seer is: not a priest with a technique but a survivor whom grief has put outside the human settlement, close enough to the trees that the future can get a word in. His sister comes to the edge of the forest to ask what will happen; he tells her, and stays. That is the shape of the gift — the future, at the price of the present.</p>
+<p>And his name tells the same story in miniature. It is not a theonym but a place-name: Caerfyrddin, the sea-fort, Moridunum, given to a man. The wild prophet carries a fortress in his name — the ordered world he was driven out of, remembered every time anyone calls him.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Clarke, Basil, ed. and trans., Life of Merlin: Geoffrey of Monmouth, Vita Merlini (Cardiff: University of Wales Press, 1973).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Myrddin</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'myrddin';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

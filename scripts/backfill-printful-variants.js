@@ -48,9 +48,7 @@ function loadState() {
 }
 
 function saveState(state) {
-  const tmp = `${STATE_FILE}.tmp`;
-  fs.writeFileSync(tmp, JSON.stringify(state));
-  fs.renameSync(tmp, STATE_FILE);
+  fs.writeFileSync(STATE_FILE, JSON.stringify(state));
 }
 
 function variantLabel(v) {

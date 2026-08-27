@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frigg — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Frigg: a living, university-curated reference on Marriage, Motherhood, Queenship. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Frigg — Scholarly Edition",
+    "headline": "Frigg — Scholarly Edition",
+    "description": "University-curated scholarly reference for Frigg (Marriage, Motherhood, Queenship).",
+    "url": "https://punicodex.com/frigg/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᚠᚱᛁᚴᚴ",
+        "alternateName": ["frigg", "Frigg"],
+        "description": "Marriage, Motherhood, Queenship"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/frigg.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/frigg/scholars/">
+
+    <meta property="og:title" content="Frigg — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Frigg (Marriage, Motherhood, Queenship).">
+    <meta property="og:url" content="https://punicodex.com/frigg/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/frigg.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/frigg.jpg">
+    <meta name="twitter:title" content="Frigg — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Frigg (Marriage, Motherhood, Queenship).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Frigg",
+      "item": "https://punicodex.com/frigg/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/frigg/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="frigg-canvas" data-effect="fensalir-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/frigg_logolockup.webp" type="image/webp"><img src="../assets/frigg_logolockup.png" alt="Frigg" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/frigg/">Frigg</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Frigg</h1>
+            <p class="scholars-subtitle reveal-up">Marriage, Motherhood, Queenship · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Frigg.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Frigg</strong> (<em>frigg</em>) — Marriage, Motherhood, Queenship · Queen of the Æsir, the Knower Who Speaks Not — is the foremost of the ásynjur: daughter of Fjörgynn, wife of <a class="scholars-xlink" href="/odinn/">Óðinn</a>, mother of <a class="scholars-xlink" href="/baldr/">Baldr</a>, and the one figure in the Norse corpus said to know all fate while prophesying none of it.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>Her dossier is short and dense. Snorri gives her rank and household — her hall Fensalir, her handmaid <a class="scholars-xlink" href="/fulla/">Fulla</a>, her messenger Gná on the horse Hófvarpnir, her protector-aspect Hlín — and the prose fact that she knows men's fates though she says nothing of them.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> The Poetic Edda gives her the doctrine in verse: <a href="/freyja/" class="crosslink" data-crosslink="freyja">Freyja</a>'s answer to <a class="scholars-xlink" href="/loki/">Loki</a> in Lokasenna, that Frigg knows all fate though she does not speak it; and the heaviest single line of Völuspá, 'then Frigg wept in Fensalir over Valhöll's woe'.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup> Her one great act is the oath: when <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> dreams of death, she exacts from all creation the promise not to harm him, omitting only the mistletoe as too young to swear — the gap through which the doom enters.<sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Frigg</strong> — identical to the ASCII input, because the normalized Old Norse form is itself plain ASCII: no diacritic, no distinctive letter, nothing for the ASCII alphabet to lose. The name is therefore Tier 2 by the project's mechanical rule — a property of its orthography, not of the goddess's standing. The plain-ASCII domain frigg.com is registered to a third party outside the collection and is watched for release; the project claims no domain for this temple.<sup class="scholars-cite"><a href="#src-overview-5">[5]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Snorri Sturluson, Edda, Gylfaginning 35 (Frigg foremost of the ásynjur), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-2">Snorri Sturluson, Edda, Gylfaginning 20 (she knows the fates of men, though she prophesies nothing) and 35 (Fensalir, Fulla, Gná, Hlín), trans. Faulkes (1987).</li><li id="src-overview-3">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Lokasenna 29; Völuspá 33.</li><li id="src-overview-4">Snorri Sturluson, Edda, Gylfaginning 49 (the oath and the mistletoe), trans. Faulkes (1987).</li><li id="src-overview-5">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. Frigg.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>Frigg</strong> (nominative; genitive <em>Friggjar</em>). Its etymology is among the more secure in the pantheon: Proto-Germanic <em>Frijjō</em>, 'the beloved one', from the verbal root <em>frijōn</em> 'to love' — the same Indo-European stock (<em>priH-) that gives Sanskrit </em>priyā́<em> 'beloved' and, on the Germanic side, English </em>friend<em> and </em>free<em>.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The double-g of the Old Norse form is the assimilated survival of the stem plus the old nominative ending: </em>Frijjō-r* contracted into the geminate.</p>
+<p>The continental record keeps the name's family. Paul the Deacon, writing the Langobard origin legend in the eighth century, calls the wife of Godan <strong>Frea</strong> — the Langobardic form of the same name; Old High German knows <em>Frija</em>; and Old English preserves <em>Frīg</em>, chiefly as a fossil in the weekday <em>Frīgedæg</em>, Friday, the Germanic translation of dies Veneris.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The ASCII form is not a compromise here: normalized Old Norse <em>Frigg</em> is already written in plain ASCII letters. There is no diacritic, no thorn or eth, no vowel-length mark for the early domain-name system to have stripped. The name is classified Tier 2 by the project's mechanical rule — the restoration preserves nothing the ASCII form loses — which is a statement about orthography, never about the goddess.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>f</strong> → <strong>F</strong> — Same, capitalized</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>frigg.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Frigg; Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Frigg; Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. Frigg, frijá.</li><li id="src-the-name-2">Paul the Deacon, Historia Langobardorum 1.8 (Frea and Godan), trans. William Dudley Foulke (Philadelphia: University of Pennsylvania Press, 1907); Grimm, Jacob, Teutonic Mythology, trans. James Steven Stallybrass, 4 vols. (London: George Bell, 1882–88), on Frija and the day-name.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈfriɡː/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Fr-</strong> — Voiceless labiodental [f] and trilled [r]; the cluster is firm at the head of the word, stressed as the single syllable of the name</li><li><strong>-i-</strong> — Short close front [i], held brief; the vowel of English 'bit', not a long ī</li><li><strong>-gg</strong> — Long voiced velar stop [ɡː], the true geminate: the consonant is held and released, as in modern Icelandic Frigg; the old nominative ending is swallowed into this double-g</li></ul>
+<p>For the modern speaker, the closest approximation is: 'FRIG' with the g held long — rhymes with 'big', the r lightly trilled, the double-g pressed and released.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Frigg, wife of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and foremost of the ásynjur</li><li><strong>Proto-Germanic</strong> — *Frijjō, 'the beloved one'<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Langobardic</strong> — Frea, wife of Godan in Paul the Deacon's Historia Langobardorum<sup class="scholars-cite"><a href="#src-pronunciation-3">[3]</a></sup></li><li><strong>Old English</strong> — Frīg, fossilized in Frīgedæg, Friday</li><li><strong>Modern Icelandic</strong> — Frigg, unchanged in spelling</li></ul>
+<p>Frigg is Tier 2 because the Old Norse form is already plain ASCII: nothing distinctive is lost in transit. The queen of the gods carries a name so plain that only the capital distinguishes the restored form from the input.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology.</li><li id="src-pronunciation-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (D. S. Brewer, 1993), s.v. Frigg.</li><li id="src-pronunciation-3">Paul the Deacon, Historia Langobardorum 1.8, trans. Foulke (1907).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>Frigg</strong> — Old Norse (North Germanic), attested 13th c. CE in the Codex Regius of the Poetic Edda and the Codex Regius and <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a> codices of the Prose Edda, recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse names were carved in the Younger Futhark; no runic attestation of this theonym survives, so the manuscript form is the primary witness.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The stem is Proto-Germanic <em>Frijjō</em> 'the beloved one', from the root <em>frijōn</em> 'to love'; the old nominative ending assimilated into the final geminate, giving Old Norse Frigg (genitive Friggjar).<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>Old Norse orthography writes the name in plain Latin letters with no diacritic: the double-g is ordinary text, not a special character.</li><li>In the Younger Futhark the name would be carved ᚠᚱᛁᚴ (f-r-i-k, the k-rune writing the geminate gg) — a normalized reconstruction, since no carved attestation survives.</li><li>The Unicode restoration Frigg is therefore identical to the ASCII input apart from the capital; nothing was lost in transit, which is why the name sits in Tier 2.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li></ul>
+<p>Because the name is pure ASCII, its domain was registered decades ago in the ordinary way: <strong>frigg.com is held by a third party outside the PuniCodex collection and is watched for release</strong> — no form of the name is currently owned, and this temple claims none.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">Simek, Dictionary of Northern Mythology, s.v. Frigg; Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. Frigg.</li><li id="src-original-script-3">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. Frigg.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Frigg</strong> is catalogued under Marriage, Motherhood, Queenship — three provinces the sources assign her without ornament: she is <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s wife and equal in counsel, <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s mother and the engineer of his protection, and the pantheon's silent keeper of fate.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Marriage</h3>
+<p>Gylfaginning numbers her first among the ásynjur as Óðinn's wife, and the Grímnismál prologue shows the marriage as a working partnership of wagers and stratagems — the one myth where she outmaneuvers the Allfather at his own game of disguises.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Motherhood</h3>
+<p>Her motherhood defines the pantheon's central tragedy: the oath of all things is a mother's answer to a prophecy, and Völuspá's single line — Frigg weeping in Fensalir — is the tradition's image of grief foreseen and powerless.<sup class="scholars-cite"><a href="#src-domains-3">[3]</a></sup></p>
+<h3 class="scholars-h3">Foresight</h3>
+<p>Lokasenna and Gylfaginning agree on the fact: she knows all fate and prophesies nothing. In a mythology where knowledge is Óðinn's obsession, bought with an eye and a hanging, Frigg possesses it without price — and her power is exactly her silence.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-domains-4">[4]</a></sup></p>
+<h3 class="scholars-h3">Queenship</h3>
+<p>Her household is a court in miniature: <a class="scholars-xlink" href="/fulla/">Fulla</a> the confidante with the golden snood, Gná the messenger riding Hófvarpnir through air and sea, Hlín set to guard those Frigg wills to save.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Gylfaginning 20 and 35, trans. Faulkes (1987).</li><li id="src-domains-2">Grímnismál, prose prologue; Gylfaginning 35 (Fulla, Gná, Hlín), trans. Larrington (2014) and Faulkes (1987).</li><li id="src-domains-3">Snorri Sturluson, Edda, Gylfaginning 49; Völuspá 33, trans. Faulkes (1987) and Larrington (2014).</li><li id="src-domains-4">Lokasenna 29, trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Frigg's attributes are domestic and funerary rather than martial — the corpus fixes her by her hall, her women, and the one unsworn plant:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Fensalir</strong> — 'The fen-halls', her dwelling and the Edda's only named home for her; Völuspá makes it the address of her weeping</li><li><strong>The unsworn mistletoe</strong> — The one shoot too young for the oath: the symbol of the gap in all thoroughness, slender and fatal<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong><a href="/fulla/" class="crosslink" data-crosslink="fulla">Fulla</a>'s casket</strong> — <a class="scholars-xlink" href="/fulla/">Fulla</a> carries Frigg's eski, minds her footwear, and shares her secret counsels: the kept knowledge of the queen made portable</li><li><strong>Gná and Hófvarpnir</strong> — Her messenger and the 'hoof-thrower' horse that crosses air and sea: the queen's word carried between worlds, a female mirror of <a class="scholars-xlink" href="/sleipnir/">Sleipnir</a>'s errands</li><li><strong>The linen robe from Hel</strong> — <a class="scholars-xlink" href="/nanna/">Nanna</a>'s gift, sent back with <a class="scholars-xlink" href="/hermod/">Hermóðr</a>: a wife's token to the mother-in-law, carried out of the land of the dead<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>Frigga's distaff</strong> — Orion's belt in Scandinavian folk astronomy, noted by Grimm: the later ages giving the queen the spindle the Eddas forgot<sup class="scholars-cite"><a href="#src-symbols-3">[3]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Gylfaginning 35, trans. Faulkes (1987); Völuspá 33, trans. Larrington (2014).</li><li id="src-symbols-2">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-symbols-3">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (1882–88), on Frigga&#39;s distaff in folk astronomy.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Frigg's mythology is the mythology of the one who knew first: the oath she almost completed, the grief she almost prevented, the silence she keeps about everything else.</p>
+<h3 class="scholars-h3">The Oath of All Things (Gylfaginning 49)</h3>
+<p>When <a class="scholars-xlink" href="/baldr/">Baldr</a> dreams baleful dreams for his life, Frigg fights the future with an oath, exacted from all things — fire and water, iron and every metal, stones, earth, trees, sicknesses, beasts, birds, poison, serpents — that they will not harm her son. Only the mistletoe, growing west of Valhöll, seemed too young to demand the oath of. The completeness of the list is the point: Snorri enumerates creation itself, and the catastrophe enters through the one thing a mother's thoroughness could not imagine mattering.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Tears in Fensalir (Gylfaginning 49 · Völuspá 33)</h3>
+<p><a class="scholars-xlink" href="/loki/">Loki</a>, in a woman's shape, comes to Fensalir and draws the single omission out of Frigg herself. When blind <a class="scholars-xlink" href="/hodr/">Höðr</a>'s guided throw falls and <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> lies dead, it is Frigg who finds the first voice in the silent hall and asks who among the Æsir will ride to Hel and offer ransom — the grief-struck mother still doing strategy. Völuspá gives her the briefest and heaviest line in the poem: 'Then Frigg wept in Fensalir over Valhöll's woe.' And when <a class="scholars-xlink" href="/hermod/">Hermóðr</a> rides back from the dead, he carries a gift addressed to her: from <a class="scholars-xlink" href="/nanna/">Nanna</a>, her son's wife who died of grief on the pyre, a linen robe — one bereaved woman remembering another, out of Hel itself.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">She Knows All Fate (Lokasenna 26–30 · Gylfaginning 20)</h3>
+<p>In the flyting, <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> turns his slander on the queen — his taunts are the poem's business, not the tradition's verdict — and <a class="scholars-xlink" href="/freyja/">Freyja</a> answers with the line that defines her: 'Frigg knows, I think, all fate, though she does not speak it.' Snorri repeats the same fact as plain prose: she knows the fates of men, though she prophesies nothing.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup><sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p>
+<h3 class="scholars-h3">The Foster-Mother's Wager (Grímnismál, prose prologue)</h3>
+<p><a class="scholars-xlink" href="/odinn/">Óðinn</a> and Frigg foster two shipwrecked princes, Agnarr and <a href="/geirrodr/" class="crosslink" data-crosslink="geirrodr">Geirröðr</a>; <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> backs Agnarr, Frigg backs Geirröðr, and Geirröðr takes the throne. When Óðinn boasts of his foster-son's hospitality, Frigg calls it false, and the wager is laid. She sends <a href="/fulla/" class="crosslink" data-crosslink="fulla">Fulla</a> to warn the king that a dangerous wizard is coming, easily known because no dog will leap at him; Óðinn arrives, is seized, and hangs tortured between two fires for eight nights — outmaneuvered by his own wife, until the whole poem of Grimnir's sayings pours out of his captivity. It is the one myth where the queen moves the plot against the Allfather, and she wins the move.<sup class="scholars-cite"><a href="#src-mythology-5">[5]</a></sup></p>
+<h3 class="scholars-h3">Frea and the Naming of the Longbeards (Paul the Deacon 1.8)</h3>
+<p>The goddess's clearest continental appearance is Latin and eighth-century. Frea, Godan's wife — the Langobardic form of Frigg — counsels the outnumbered Winnili: at sunrise the women are to let down their hair around their faces like beards and stand with their husbands. At dawn she turns Godan's bed toward the east and wakes him; he sees the bearded women and asks, 'Who are these longbeards?' Frea answers: you have given them a name — now give them the victory. Godan grants both, and the Winnili become the Langobardi. The tale is an origin-legend, but it proves the migration-age mainland knew a goddess Frea at Godan's side, counsellor and kingmaker, centuries before the Icelandic Eddas wrote her as Frigg.<sup class="scholars-cite"><a href="#src-mythology-6">[6]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-mythology-2">Völuspá 33 (Poetic Edda), trans. Larrington (2014).</li><li id="src-mythology-3">Lokasenna 26–30 (Poetic Edda), trans. Larrington (2014).</li><li id="src-mythology-4">Snorri Sturluson, Edda, Gylfaginning 20, trans. Faulkes (1987).</li><li id="src-mythology-5">Grímnismál, prose prologue (Poetic Edda), trans. Larrington (2014).</li><li id="src-mythology-6">Paul the Deacon, Historia Langobardorum 1.8, trans. Foulke (1907).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>The Roman interpretatio fixed Frigg's identity for posterity through the calendar: when the Germanic peoples translated the seven-day week, dies Veneris — <a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a>'s day — became Frigg's day, Old English Frīgedæg, Old Norse frjádagr, whence Friday. The equation is Venus-as-consort: the wife of the chief god takes the day of the goddess of love.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> Greek comparison runs to <a class="scholars-xlink" href="/hera/">Hera</a>, the queen and goddess of marriage, but the structural fit is imperfect — Frigg keeps a seeress's knowledge Hera never claims.</p>
+<p>The deepest syncretic debate is internal. Since Jacob Grimm, scholars have asked whether Frigg and <a class="scholars-xlink" href="/freyja/">Freyja</a> were originally one goddess: both wear falcon-cloaks, both are sought by giants, both weep for absent mates, and their husbands' names (<a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, Óðr) look like doubles. The names themselves, however, are different words — <em>Frijjō</em> 'beloved' against <em>frawjǭ</em> 'lady' — and the handbooks (Simek, Orchard, Lindow) print the question open rather than settled.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p>
+<p>Her firm continental witnesses are two. Paul the Deacon's Frea stands at Godan's side in the Langobard origin legend, counselling the stratagem of the beards.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup> Saxo Grammaticus, euhemerizing in the Gesta Danorum, gives a Queen Frigga who strips gold from Óðinn's statue to gild herself and disgraces the marriage — a scandal-story that belongs to Saxo's literary workshop, instructive about thirteenth-century Danish readings of the goddess but not about her cult.<sup class="scholars-cite"><a href="#src-syncretism-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (1882–88), on the day-name and the interpretatio.</li><li id="src-syncretism-2">Simek, Dictionary of Northern Mythology, s.v. Frigg, Freyja; Orchard, Dictionary of Norse Myth and Legend, s.v. Frigg; Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Frigg.</li><li id="src-syncretism-3">Paul the Deacon, Historia Langobardorum 1.8, trans. Foulke (1907).</li><li id="src-syncretism-4">Saxo Grammaticus, Gesta Danorum, Book 1, trans. Peter Fisher, ed. Hilda Ellis Davidson (Cambridge: D. S. Brewer, 1979).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Frigg's most durable legacy is the fifth weekday: Friday carries her name in every Germanic language, the Germanic answer to the day of <a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a> — a goddess fossilized in the calendar of half the modern world.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p>
+<p>The Victorian revival made her the weeping mother of the North: Matthew Arnold's 'Balder Dead' (1855) gives her long grieving speeches the Eddas only imply.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup> The same century's folklore collectors recorded 'Frigga's distaff' (Swedish Friggerock) as the folk name of Orion's belt, and from that spindle the romantic image of the cloud-weaving queen descends — an image the Eddas themselves never draw, and one this temple presents as the later, lovely accretion it is.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup> Wagner recast her as Fricka in the Ring, the severe guardian of marriage and the operatic portrait most moderns know first.</p>
+<p>Modern Heathenry honors her as goddess of hearth, household, and the keeping of frith — the peace-bond of the hall — and modern fantasy keeps her at <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s side. Her name never needed restoring: it never left the week.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (1882–88), on the day-name.</li><li id="src-cultural-legacy-2">Arnold, Matthew, &#39;Balder Dead&#39;, in Poems (London: Longman, 1855).</li><li id="src-cultural-legacy-3">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (1882–88), on Frigga&#39;s distaff; Simek, Dictionary of Northern Mythology, s.v. Frigg.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Frigg is an essentially textual goddess: no runestone invokes her, no votive deposit names her, and the Scandinavian place-name evidence sometimes claimed for her is contested by the place-name scholars.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> Her material footprint is calendrical and linguistic — the weekday itself. The substitution of Frigg for <a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a> in the Germanic translation of the seven-day week (Old English Frīgedæg, Old Norse frjádagr) is the fossil of the interpretatio romana, preserved in every modern Germanic language.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>The narrative witnesses are the Codex Regius of the Poetic Edda and the Codex Regius and <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a> manuscripts of Snorri's Edda, thirteenth- and fourteenth-century Icelandic codices recording far older material. Her continental attestation, Paul the Deacon's Historia Langobardorum, descends in a rich manuscript tradition from the late eighth-century original.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup> Scandinavian folk astronomy, recorded by nineteenth-century collectors and noted by Grimm, kept the name Friggerock — 'Frigga's distaff' — for the three stars of Orion's belt: the nearest thing to a living material tradition attached to her, and the honest root of the later cloud-weaver image.<sup class="scholars-cite"><a href="#src-archaeology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Simek, Dictionary of Northern Mythology, s.v. Frigg; Lindow, Norse Mythology (2001), s.v. Frigg.</li><li id="src-archaeology-2">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (1882–88), on the day-name.</li><li id="src-archaeology-3">Paul the Deacon, Historia Langobardorum 1.8, trans. Foulke (1907).</li><li id="src-archaeology-4">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (1882–88), on Frigga&#39;s distaff in folk astronomy.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Frigg given in this edition rests on the witnesses and reference works listed below. The Eddas supply the narrative and doctrine; Paul the Deacon carries the continental attestation; the lexica and handbooks secure the name's etymology and the open questions.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Snorri Sturluson, Edda, Gylfaginning 20 (she knows the fates of men, though she prophesies nothing), 35 (foremost of the ásynjur; Fensalir; <a href="/fulla/" class="crosslink" data-crosslink="fulla">Fulla</a>, Gná, Hlín), and 49 (the oath, the mistletoe, the ransom, <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s gifts), ed. and trans. Anthony Faulkes (London: Everyman, 1987); Skáldskaparmál (kennings for Frigg).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 33 (Frigg weeps in Fensalir), 53 (the second grief at <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s fall); Grímnismál, prose prologue (the fostering and the wager); Lokasenna 26–30 (the flyting; 'she knows all fate').</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Paul the Deacon, Historia Langobardorum 1.8 (Frea and Godan; the naming of the Langobards), trans. William Dudley Foulke (Philadelphia: University of Pennsylvania Press, 1907).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Saxo Grammaticus, Gesta Danorum, Book 1 (Frigga and the statue of Óðinn), trans. Peter Fisher, ed. Hilda Ellis Davidson (Cambridge: D. S. Brewer, 1979).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. Frigg, Fensalir, Fulla; Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. Frigg.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Frigg; Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Frigg; Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Frigg.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Grimm, Jacob, Teutonic Mythology, trans. James Steven Stallybrass, 4 vols. (London: George Bell, 1882–88): on Frija, the day-name, and Frigga's distaff.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Arnold, Matthew, 'Balder Dead', in Poems (London: Longman, 1855).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Snorri Sturluson, Edda, Gylfaginning 20, 35, 49, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-2">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-3">Paul the Deacon, Historia Langobardorum, trans. Foulke (University of Pennsylvania Press, 1907).</li><li id="src-scholarly-sources-4">Saxo Grammaticus, Gesta Danorum, trans. Peter Fisher, ed. Hilda Ellis Davidson (D. S. Brewer, 1979).</li><li id="src-scholarly-sources-5">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957); Zoëga, A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-6">Simek, Dictionary of Northern Mythology (D. S. Brewer, 1993); Orchard, Dictionary of Norse Myth and Legend (Cassell, 1997); Lindow, Norse Mythology (Oxford University Press, 2001).</li><li id="src-scholarly-sources-7">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (George Bell, 1882–88).</li><li id="src-scholarly-sources-8">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-scholarly-sources-9">Arnold, Matthew, &#39;Balder Dead&#39;, in Poems (Longman, 1855).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda gives Frigg three registers: doctrine, grief, and guile. The doctrine is Lokasenna's: when <a class="scholars-xlink" href="/loki/">Loki</a>'s flyting reaches the queen, <a class="scholars-xlink" href="/freyja/">Freyja</a> answers for her with the corpus's defining sentence — 'Frigg knows, I think, all fate, though she does not speak it.'<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup> The grief is Völuspá's, twice: 'then Frigg wept in Fensalir over Valhöll's woe' at <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s fall, and at Ragnarök the seeress foretells 'the second grief of Frigg', when <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> goes against the wolf — the poem counting her bereavements as the world's losses.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> The guile is the Grímnismál prologue, the one prose frame in the Codex Regius where she moves the plot: fostering <a href="/geirrodr/" class="crosslink" data-crosslink="geirrodr">Geirröðr</a>, winning the wager, and sending <a href="/fulla/" class="crosslink" data-crosslink="fulla">Fulla</a> to spring the trap that hangs her own husband between the fires until his wisdom pours out.<sup class="scholars-cite"><a href="#src-poetic-edda-3">[3]</a></sup></p>
+<p>What the Edda never gives her is the romantic loom. The cloud-weaving queen of the Victorian handbooks is built on a folk star-name — Frigga's distaff, Orion's belt — and not on any verse the medieval poems know.<sup class="scholars-cite"><a href="#src-poetic-edda-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Lokasenna 26–30 (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-2">Völuspá 33 and 53 (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-3">Grímnismál, prose prologue (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-4">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (1882–88), on Frigga&#39;s distaff.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Frigg's systematic witness. Gylfaginning 20 states her doctrine as plain fact — she knows the fates of men, though she prophesies nothing — and Gylfaginning 35 builds her court: Fensalir her hall, <a class="scholars-xlink" href="/fulla/">Fulla</a> the golden-banded handmaid who carries her casket and shares her counsels, Gná the messenger riding Hófvarpnir through air and sea, Hlín set to guard those Frigg wills to save.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup></p>
+<p>Gylfaginning 49 makes her the engineer of the myth's central protection and the first voice of its grief: she exacts the oath from all things, omits the mistletoe as too young, unwittingly betrays the omission to the disguised <a class="scholars-xlink" href="/loki/">Loki</a>, and after the fall asks who will ride to Hel with ransom — receiving, by <a class="scholars-xlink" href="/hermod/">Hermóðr</a>'s return, <a class="scholars-xlink" href="/nanna/">Nanna</a>'s linen robe from the dead.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup> Skáldskaparmál's kennings keep her in the poet's stock as 'wife of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, mother of <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>', her identity carried by the two relationships the tragedy binds together.<sup class="scholars-cite"><a href="#src-prose-edda-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning 20 and 35, trans. Faulkes (1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-prose-edda-3">Snorri Sturluson, Edda, Skáldskaparmál (kennings for Frigg), trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The runic corpus contains no invocation of the goddess Frigg. No runestone asks her favour, no amulet bears her name, and no inscription yet found links a dedicant to her cult — a silence she shares with most of the ásynjur, whose presence in the record is literary rather than epigraphic.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What the runes do fix is the name's shape. In the Younger Futhark the name would have been carved ᚠᚱᛁᚴ — f-r-i-k, the single k-rune writing the geminate gg into which the old nominative ending was assimilated. No Viking-Age carving of the theonym is known; the rendering is a normalized reconstruction, and the primary witness remains the manuscript spelling of the Eddas — which is itself plain ASCII.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Frigg; Simek, Dictionary of Northern Mythology, s.v. Frigg.</li><li id="src-runic-evidence-2">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, Frigg's medieval afterlife runs through Latin historiography rather than Icelandic saga. The weightiest witness is Paul the Deacon's Historia Langobardorum (late 8th c.), which makes Frea the strategist of the Langobard origin: the counsel of the beards, the turning of Godan's bed toward the sunrise, the pun that names a people and wins its battle. Behind Paul lies the seventh-century Origo Gentis Langobardorum, which carries the same tale in shorter form — proof that the goddess was mainland property long before the Icelandic codices.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup></p>
+<p>Saxo Grammaticus, euhemerizing the gods as ancient Danish royalty, gives Book 1 of the Gesta Danorum a Queen Frigga who strips the gold from <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s statue and disgraces the marriage — a scandal-narrative in the classical manner, valuable as evidence of how a thirteenth-century Christian literatus read the queen, and not as myth.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup> The fornaldar- and riddarasögur know her chiefly as an oath-name and a poetic memory; her living saga is the weekday — Frīgedæg, frjádagr, Friday — which has carried her name without interruption from the migration age to the present calendar.<sup class="scholars-cite"><a href="#src-sagas-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Paul the Deacon, Historia Langobardorum 1.8, trans. Foulke (1907); Origo Gentis Langobardorum, ed. and trans. in Foulke&#39;s appendix.</li><li id="src-sagas-2">Saxo Grammaticus, Gesta Danorum, Book 1, trans. Peter Fisher, ed. Hilda Ellis Davidson (Cambridge: D. S. Brewer, 1979).</li><li id="src-sagas-3">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (1882–88), on the day-name.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Frigg is the patron of the knowledge that cannot be used. She knows all fate and speaks none of it — not from coldness, but because the Edda understands what foresight costs: she sees the mistletoe coming and still must live the days before it falls.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>Her one permitted weapon is thoroughness, and she wields it to the limit of the world — fire, water, iron, stone, sickness, serpent, all sworn — and the future enters through the single twig too young to swear.<sup class="scholars-cite"><a href="#src-meditation-2">[2]</a></sup> What the tradition leaves her is not failure but a harder thing: the discipline of the one who knows. Every keeper of unwelcome certainty — the parent who sees, the friend who cannot say, the expert whose warning would only spread the panic — works in Fensalir, keeping counsel with a knowledge that has nowhere to go.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Lokasenna 29, trans. Larrington (2014); Gylfaginning 20, trans. Faulkes (1987).</li><li id="src-meditation-2">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Frigg</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᚠᚱᛁᚴᚴ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'frigg';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

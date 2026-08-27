@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efnysien — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Efnysien: a living, university-curated reference on Trouble, Mischief. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Efnysien — Scholarly Edition",
+    "headline": "Efnysien — Scholarly Edition",
+    "description": "University-curated scholarly reference for Efnysien (Trouble, Mischief).",
+    "url": "https://punicodex.com/efnysien/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Efnysien",
+        "alternateName": ["efnysien", "Efnysien"],
+        "description": "Trouble, Mischief"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/efnysien.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/efnysien/scholars/">
+
+    <meta property="og:title" content="Efnysien — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Efnysien (Trouble, Mischief).">
+    <meta property="og:url" content="https://punicodex.com/efnysien/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/efnysien.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/efnysien.jpg">
+    <meta name="twitter:title" content="Efnysien — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Efnysien (Trouble, Mischief).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Efnysien",
+      "item": "https://punicodex.com/efnysien/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/efnysien/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="efnysien-canvas" data-effect="stablefire-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/efnysien_logolockup.webp" type="image/webp"><img src="../assets/efnysien_logolockup.png" alt="Efnysien" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/efnysien/">Efnysien</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Efnysien</h1>
+            <p class="scholars-subtitle reveal-up">Trouble, Mischief · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Efnysien.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Efnysien</strong> (<em>efnysien</em>) — Trouble, Mischief · Double enemy — is the destroyer of the Second Branch of the Mabinogi: the half-brother of Brân the Blessed, Branwen, and <a class="scholars-xlink" href="/manawydan/">Manawydan</a>, whose one unprovoked act — the maiming of King <a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>'s horses at the wedding feast of Aberffraw — sets Britain and Ireland on the road to a war that leaves Ireland wasted and only seven men of Brân's host alive.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The tale introduces him in a single balanced sentence it never takes back. Penarddun ferch <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a> bore two sons to Euroswydd: <a class="scholars-xlink" href="/nisien/">Nisien</a>, a good youth who could make peace between two armies at their most embittered, and Efnysien, who would set two brothers at strife when they loved each other most.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> His dossier is one branch of one book — the maimed horses, the hundred men crushed in their flour-bags, the child Gwern thrown into the fire, and at the end the Cauldron of Rebirth burst from within at the price of his own heart — and it is among the most unflinching portraits of malice and its cost in medieval literature.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Efnysien</strong> — identical to the ASCII input, because Middle Welsh writes the name in plain Latin letters with no diacritic for the restoration to recover; the name is Tier 2 by the mechanical rule. The plain-ASCII <em>efnysien.com</em> is held by a third party outside the PuniCodex collection and is watched for release; no form of the name is currently owned, and this temple claims none.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">The Mabinogi, Second Branch (Branwen ferch Llŷr), trans. Sioned Davies (Oxford: Oxford University Press, 2007).</li><li id="src-overview-2">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992); Mac Cana, Proinsias, Branwen Daughter of Llŷr (Cardiff: University of Wales Press, 1958).</li><li id="src-overview-3">PuniCodex domain register for this entry: efnysien.com held outside the collection, watched for release; temple served at /sites/efnysien/.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Middle Welsh as <strong>Efnisien</strong> (the modern standard spelling; the temple's form <strong>Efnysien</strong> follows the same name with the common y-spelling), son of Euroswydd and Penarddun ferch <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a>, in the Second Branch of the Mabinogi.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> Its etymology is debated rather than settled, and honest scholarship labels it accordingly. What is secure is the literary construction: the branch pairs Efnisien with his brother <a class="scholars-xlink" href="/nisien/">Nisien</a> as a named opposition — the peace-maker and the strife-maker — and the handbooks read the pair as an embodiment of contraries, with Efnisien's name traditionally glossed on the 'enemy, hostile' side of the contrast. The lexicon's gloss 'Double enemy' follows MacKillop's rendering of the name.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The ASCII form is not a compromise here: Middle Welsh writes the name in plain Latin letters, and normalized Welsh orthography attaches no diacritic to it. There is nothing distinctive for the ASCII alphabet to lose; only the capital distinguishes the restored form from the input, which places the name in Tier 2 by the mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>e</strong> → <strong>E</strong> — Same, capitalized</li><li><strong>f</strong> → <strong>f</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>y</strong> → <strong>y</strong> — Same</li><li><strong>s</strong> → <strong>s</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>efnysien.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple is served at /sites/efnysien/ and claims no domain it does not hold.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930); Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press), s.v. Efnisien.</li><li id="src-the-name-2">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Efnisien, Nisien; Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.v. Efnisien.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The pronunciation of the name in Modern Welsh is <strong>/ɛvˈnɪs.jɛn/</strong> — Modern Welsh; the Middle Welsh value is held to be substantially the same.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>E-</strong> — Short open-mid front [ɛ], as in English 'elf'; light and unstressed</li><li><strong>-f-</strong> — Voiced labiodental [v]: Welsh writes the v-sound with a single <em>f</em> (the digraph <em>ff</em> writes the f-sound) — the name's first trap for English readers</li><li><strong>-nis-</strong> — Alveolar nasal [n], short [ɪ] — the value Welsh <em>y</em> carries in a non-final syllable — and [s]; the stressed syllable, since Welsh stresses the penult</li><li><strong>-ien</strong> — Palatal glide [j] with short open [ɛ], closing on [n]; the final syllable falls away unstressed</li></ul>
+<p>For the modern speaker, the closest approximation is: 'ev-NIS-yen' — the f sounded as v, the weight on the middle syllable, the ending quick and light.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Middle Welsh</strong> — Efnisien, son of Euroswydd and Penarddun, in the White Book of Rhydderch and the Red Book of Hergest</li><li><strong>Modern Welsh</strong> — Efnisien, the standard modern spelling</li><li><strong>The named opposite</strong> — <a href="/nisien/" class="crosslink" data-crosslink="nisien">Nisien</a>, his brother: the tale's peace-maker set against its strife-maker</li><li><strong>English translations</strong> — Efnisien (Guest), Efnysien — the same name carried into English prose</li></ul>
+<p>Efnysien is Tier 2 by the mechanical rule: the Middle Welsh form is already plain ASCII, and the restoration preserves nothing the ASCII form loses. The weight of the name is semantic and narrative, not orthographic.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Morris-Jones, John, A Welsh Grammar, Historical and Comparative (Oxford: Clarendon Press, 1913), phonology and orthography.</li><li id="src-pronunciation-2">Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (University of Wales Press), s.v. Efnisien.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in Middle Welsh manuscripts in the Latin alphabet as <strong>Efnisien</strong> — Middle Welsh (Brythonic Celtic), attested in the White Book of Rhydderch (c. 1350) and the Red Book of Hergest (c. 1382–1410), recording material composed centuries earlier.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The script is written left-to-right in the medieval Welsh bookhand.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Middle Welsh writes the name in plain Latin letters; the manuscript spelling Efnisien and the temple's form Efnysien carry the same name with the common i/y spelling variation of Welsh orthography.</li><li>No diacritic attaches to the name in any witness: normalized Middle Welsh orthography and the ASCII spelling are identical.</li><li>Welsh <em>f</em> writes the voiced sound /v/ (the digraph <em>ff</em> writes /f/), and Welsh <em>y</em> in a non-final syllable writes /ɪ/ — values the letters carry in Welsh, not marks the restoration must recover.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>The Unicode restoration Efnysien therefore changes nothing but the capital; the name stands in Tier 2 by the mechanical rule, and the plain-ASCII domain efnysien.com — held by a third party outside the PuniCodex collection and watched for release — is the philologically complete form.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (University of Wales Press, 1930); Davies, trans., The Mabinogion (Oxford University Press, 2007).</li><li id="src-original-script-2">Morris-Jones, John, A Welsh Grammar, Historical and Comparative (Clarendon Press, 1913); Geiriadur Prifysgol Cymru, s.v. Efnisien.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Efnysien</strong> is the Mabinogi's embodiment of trouble and mischief — but the branch's words are sharper than the categories: he is the man who would set two loving brothers at strife, and the tale spends its whole length proving the sentence.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Strife-Making</h3>
+<p>His defining act needs no army and no grievance: insulted that his half-sister Branwen was given to <a class="scholars-xlink" href="/matholwch/">Matholwch</a> of Ireland without his consent, he maims the Irish king's horses in their stable at Aberffraw — lips to the teeth, ears to the head, tails to the rumps, eyelids to the bone. The honour-price Brân pays cannot bury the insult, and the branch's whole tragedy unfolds from that one night.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Sight That Sees Traps</h3>
+<p>In Ireland, it is Efnysien alone who reads the great house correctly: a hundred flour-bags on the pillars, an armed man in each. He walks the row and crushes every skull through the sacking with his fingers — treachery undone by the one mind that thinks in treachery.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Unforgivable Act</h3>
+<p>At the peace feast, when the child Gwern — Branwen's son, newly invested as king — goes from lap to lap among his kinsmen, Efnysien seizes him and throws him into the fire. After Gwern, the tale permits no reconciliation: only war.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Destruction Turned on Destruction</h3>
+<p>His last act is the only constructive one of his life: thrown alive into the Cauldron of Rebirth among the Irish dead, he stretches himself until the vessel bursts into four pieces and his own heart breaks. The destroyer dies destroying the engine of endless war — the branch offers the act without eulogy, and without calling it redemption.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">The Mabinogi, Second Branch (Branwen ferch Llŷr), trans. Sioned Davies (Oxford University Press, 2007).</li><li id="src-domains-2">Mac Cana, Proinsias, Branwen Daughter of Llŷr (University of Wales Press, 1958), on the cauldron-episode and the composition of the branch.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>The iconography of Efnysien is narrative rather than cultic — medieval Welsh prose preserves no regalia for him, but the Second Branch fixed a small set of objects and images no retelling can omit:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The maimed horses</strong> — The Irish king's horses with their lips, ears, tails, and eyelids cut away: pride made visible, the insult no payment could erase</li><li><strong>The Cauldron of Rebirth (Pair Dadeni)</strong> — The vessel Brân gave in compensation, which returns the slain to life as speechless fighting men: war stripped of death's limit, until the man who breaks it breaks himself</li><li><strong>The hundred flour-bags</strong> — Treachery hung on the pillars of the great house built for Brân, read and crushed by the only guest whose mind ran that way</li><li><strong>The fire and the child</strong> — Gwern cast into the flames from his uncle's lap: the point past which the tale permits no return</li><li><strong>The broken heart</strong> — His only wound: he stretched himself inside the cauldron until it burst, and his heart burst with it</li><li><strong>The four-sided grave</strong> — Not his but Branwen's, dug on the bank of the Alaw for the sister whose fate his acts set in motion<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">The Mabinogi, Second Branch, trans. Davies (2007).</li><li id="src-symbols-2">Lynch, Frances, &#39;Bedd Branwen, Anglesey&#39;, on the excavation of the cairn by the Afon Alaw traditionally identified with Branwen&#39;s grave.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Efnysien's mythology is one tale — the Second Branch of the Mabinogi, <em>Branwen ferch Llŷr</em> — and within it he is the engine of both the catastrophe and its ending.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Two Brothers (Second Branch)</h3>
+<p>The branch introduces him through his mother. Penarddun ferch <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a>, daughter of Beli Mawr, bore to Llŷr the three great children — Brân the Blessed (Bendigeidfran), Branwen, and <a class="scholars-xlink" href="/manawydan/">Manawydan</a> — and to Euroswydd two more sons: <a class="scholars-xlink" href="/nisien/">Nisien</a> and Efnysien. <a href="/nisien/" class="crosslink" data-crosslink="nisien">Nisien</a>, the text says, could make peace between two armies at their most embittered; Efnysien would set two brothers at strife when they loved each other best. The whole branch is the working-out of that sentence.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Maiming of the Horses (Second Branch)</h3>
+<p>When Brân, the crowned king of Britain and a giant no house or ship could hold, gave Branwen to <a class="scholars-xlink" href="/matholwch/">Matholwch</a>, king of Ireland, the wedding feast was held at Aberffraw and the Irish horses stabled for the night. Efnysien asked whose they were, and was told they belonged to the man who had married his sister. 'Is this what they have done with a maiden as fine as her — given her away without asking me?' He went under the horses and cut off their lips to the teeth, their ears to the head, their tails to the rumps, and their eyelids to the bone. <a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a> rose in silence and made for his ships; Brân's embassy, <a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a> among it, won him back with honour-price: a silver staff as tall as himself, a plate of gold as broad as his face, fresh horses, and the Cauldron of Rebirth, which had come to Brân from Llasar Llaes Gyfnewid and Cymidei Cymeinfoll, wanderers fled out of Ireland.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Starling and the Crossing (Second Branch)</h3>
+<p>The compensation did not hold. In Ireland the injury was remembered and Matholwch was shamed by his own nobles; Branwen was sent to the kitchen, and the butcher boxed her ear every day. She reared a starling, taught it speech, tied a letter under its wing, and sent it to Brân. He mustered Britain and waded the sea, for no ship could carry him; when the Irish destroyed the bridge over the river, he lay down across it himself — 'He who would be a leader, let him be a bridge.'<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Hundred Bags (Second Branch)</h3>
+<p>The Irish sued for terms: the kingship would pass to Gwern, Branwen's son, and they would build Brân a house great enough to hold him — the first house he had ever entered. But in that house they hung a hundred bags on the pillars, an armed man in each. Efnysien came in ahead of the company, laid his hand on each bag — 'What is in here?' 'Flour.' — and squeezed each head through the sacking until the skull gave, a hundred times down the hall.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Boy in the Fire and the Breaking of the Cauldron (Second Branch)</h3>
+<p>At the feast the boy Gwern was invested as king and went, charming everyone, from lap to lap — Brân, Manawydan, Nisien — until he came to Efnysien's lap. 'Why does my nephew not come to me?' Efnysien asked; and when the boy was given to him he seized him by the feet and threw him headlong into the fire. Branwen would have leapt in after him, but Brân caught her with one hand and raised his shield with the other, and the hall rose in war. In the battle the Irish could not be beaten: each night they cast their slain into the cauldron, and each morning the dead rose as fighting men, speechless but whole. Then Efnysien, seeing the ruin he had made, lay down among the Irish dead as a corpse, was thrown into the cauldron with them, and stretched himself out until the vessel burst into four pieces — and his heart burst with it, and so he died.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Aftermath (Second Branch)</h3>
+<p>The branch closes in grief, not triumph. Ireland was wasted; of Brân's host only seven men came home — <a class="scholars-xlink" href="/pryderi/">Pryderi</a>, Manawydan, Glifieu, <a class="scholars-xlink" href="/taliesin/">Taliesin</a>, Ynawg, Gruddieu, and Heilyn — bearing Brân's head, for the king had taken a poisoned spear in the foot and commanded his own beheading. Branwen, looking on the two wasted islands, died of a broken heart at Aber Alaw in Anglesey and was buried in a four-sided grave on the riverbank. The head went with the seven to Harlech and to Gwales and at last to the White Mount in London, buried facing France as a ward against invasion — where it stayed, the tradition says, until Arthur dug it up, declaring he would defend the island by his own strength alone.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">The Mabinogi, Second Branch (Branwen ferch Llŷr), trans. Sioned Davies (Oxford: Oxford University Press, 2007); Welsh text ed. Ifor Williams, Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li id="src-mythology-2">Mac Cana, Proinsias, Branwen Daughter of Llŷr: A Study of the Irish Affinities and of the Composition of the Second Branch of the Mabinogi (Cardiff: University of Wales Press, 1958).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>The comparison that follows Efnysien everywhere is with <a class="scholars-xlink" href="/loki/">Loki</a>: the malice inside the kin-group, the sworn relative whose mischief costs the community its peace, the trickster the tale can neither spare nor save. MacKillop registers the parallel as typological rather than genealogical — the Mabinogi's strife-maker is a prince of the Children of Llŷr, not a god, and his story answers to Welsh legal and social concerns: the honour-price, the insult remembered, the compensation that fails.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>The truer Celtic company is the cauldron-complex. The Cauldron of Rebirth belongs to the same deep stock as the cauldron of the <a class="scholars-xlink" href="/dagda/">Dagda</a> from Murias in the Lebor Gabála Érenn, from which no company went away unsatisfied, and the Second Branch itself gives the vessel an Irish provenance through the fugitive Llasar Llaes Gyfnewid — Mac Cana's study of the branch's Irish affinities makes the cauldron and the whole Irish war central to its composition.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> Within the corpus his closest kin are <a class="scholars-xlink" href="/nisien/">Nisien</a>, the brother he was written as the opposite of; <a class="scholars-xlink" href="/matholwch/">Matholwch</a>, the king his pride destroyed; and <a class="scholars-xlink" href="/manawydan/">Manawydan</a>, the brother who survived to carry the head home.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">MacKillop, James, Dictionary of Celtic Mythology (Oxford University Press, 1998), s.v. Efnisien.</li><li id="src-syncretism-2">Mac Cana, Proinsias, Branwen Daughter of Llŷr (University of Wales Press, 1958); Mac Cana, Proinsias, The Mabinogi, 2nd ed. (University of Wales Press, 1992).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried the Second Branch into the English-speaking world, and Efnysien's maiming of the horses and death in the cauldron became set-pieces of the Victorian Celtic revival.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Evangeline Walton retold the branch at full length in <em>The Children of Llyr</em> (1971), the second volume of her Mabinogion tetralogy, giving the destroyer a modern novel's interior view without softening him.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>His widest-reaching legacy is the cauldron itself: Lloyd Alexander drew the deathless cauldron-born warriors of his Prydain chronicles — above all <em>The Black Cauldron</em> (1965), filmed by Disney in 1985 — directly from the Welsh matter, in which a vessel that returns the slain to silent service can be stopped only from within, at terrible cost.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup> In Welsh memory the branch left two landmarks: the proverb 'A fo ben, bid bont' — he who would be a leader, let him be a bridge — and Bedd Branwen on the bank of the Alaw, the grave the tradition dug for the sister his acts helped kill.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">The Mabinogion, trans. Lady Charlotte Guest, 3 vols. (London, 1838–49).</li><li id="src-cultural-legacy-2">Walton, Evangeline, The Children of Llyr (New York: Ballantine, 1971).</li><li id="src-cultural-legacy-3">Alexander, Lloyd, The Black Cauldron (New York: Holt, 1965), and the Prydain chronicles&#39; debt to the Mabinogion.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>No cult site, votive deposit, or inscription of Efnysien is known; his attestation is entirely literary.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> His evidence is manuscript evidence: the Second Branch survives complete in the White Book of Rhydderch (Aberystwyth, National Library of Wales, Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' composition is argued rather than documented, most often placed in the later eleventh or early twelfth century.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>The geography of his story is real: Aberffraw, the royal court of Gwynedd where the horses were maimed; Harlech, where Brân's court sat; and the Anglesey shore where the survivors landed. The tradition's one material anchor is Bedd Branwen, a cairn on the bank of the Afon Alaw identified since the Middle Ages with Branwen's 'four-sided grave'; excavated by Frances Lynch in 1967–68, it proved to hold Early Bronze Age cremations — far older than any Mabinogi event. The identification is the folklore, not the archaeology, and the record is the more valuable for keeping the two distinct.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.vv. Efnisien, Branwen ferch Llŷr.</li><li id="src-archaeology-2">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), introduction, on manuscripts and dating.</li><li id="src-archaeology-3">Lynch, Frances, report on the excavation of Bedd Branwen, Anglesey (1967–68); cf. Koch, Celtic Culture (2006), s.v. Branwen.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Efnysien given in this edition rests on the witnesses and reference works listed below. The Mabinogi in its modern editions and translations supplies the entire narrative; Mac Cana's two studies frame the branch's composition and Irish affinities; the dictionaries and handbooks secure the name and its gloss.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Mabinogi, trans. Sioned Davies (Oxford: Oxford University Press, 2007) — Second Branch (Branwen ferch Llŷr), the complete dossier.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930) — the standard Welsh text.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Mac Cana, Proinsias, Branwen Daughter of Llŷr: A Study of the Irish Affinities and of the Composition of the Second Branch of the Mabinogi (Cardiff: University of Wales Press, 1958).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> The Mabinogion, trans. Lady Charlotte Guest, 3 vols. (London, 1838–49).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.vv. Efnisien, Branwen ferch Llŷr, Mabinogi.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Efnisien, <a href="/nisien/" class="crosslink" data-crosslink="nisien">Nisien</a>, Pair Dadeni.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press), s.v. Efnisien.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Morris-Jones, John, A Welsh Grammar, Historical and Comparative (Oxford: Clarendon Press, 1913).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Lynch, Frances, excavation of Bedd Branwen, Anglesey (1967–68).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Mabinogi, trans. Sioned Davies (Oxford University Press, 2007).</li><li id="src-scholarly-sources-2">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (University of Wales Press, 1930).</li><li id="src-scholarly-sources-3">Mac Cana, Proinsias, Branwen Daughter of Llŷr (University of Wales Press, 1958).</li><li id="src-scholarly-sources-4">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (University of Wales Press, 1992).</li><li id="src-scholarly-sources-5">The Mabinogion, trans. Lady Charlotte Guest, 3 vols. (London, 1838–49).</li><li id="src-scholarly-sources-6">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006).</li><li id="src-scholarly-sources-7">MacKillop, James, Dictionary of Celtic Mythology (Oxford University Press, 1998).</li><li id="src-scholarly-sources-8">Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (University of Wales Press).</li><li id="src-scholarly-sources-9">Morris-Jones, John, A Welsh Grammar, Historical and Comparative (Clarendon Press, 1913).</li><li id="src-scholarly-sources-10">Lynch, Frances, excavation of Bedd Branwen, Anglesey (1967–68).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Second Branch of the Mabinogi is the Welsh corpus's Irish-Sea branch, and Efnysien is the man who detonates it. <a class="scholars-xlink" href="/matholwch/">Matholwch</a>, king of Ireland, is the corpus's standing Irish king: he crosses the sea to Harlech to ask for Branwen, the wedding is held at Aberffraw, and Efnysien's maiming of the Irish horses turns a marriage alliance into an insult the honour-price cannot bury. In Ireland the grievance festers — Branwen is consigned to the kitchen and the butcher boxes her ear daily — until the starling's letter brings Brân's host across the Irish Sea, the giant wading beside his ships, and the war leaves Ireland wasted and only seven men of Britain alive.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup></p>
+<p>The branch's Irish provenance runs deeper than its plot. The Cauldron of Rebirth — Pair Dadeni — comes into the story already Irish: Brân received it from Llasar Llaes Gyfnewid and Cymidei Cymeinfoll, fugitives who had fled out of Ireland, and it returns to Ireland as compensation, there to raise the slain as speechless fighting men until Efnysien breaks it from within. Mac Cana's study of the branch's Irish affinities made the cauldron-complex and the Irish war central to the Second Branch's composition.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup></p>
+<p>Beneath the narrative lies a recognizable Irish-Sea political economy: marriage alliance, honour-price (saraad), the shaming of a king by his own nobles, hostages exacted and the investiture of the child Gwern as king — a world of cross-channel kingship and tribute that the branch takes for granted and Efnysien's pride ignites. Sims-Williams's study of Irish influence on medieval Welsh literature places the Second Branch's Irish matter in precisely this historical frame of contact across the sea, and the modern handbooks treat it as the branch's defining context.<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup><sup class="scholars-cite"><a href="#src-irish-cycles-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), Second Branch (Branwen ferch Llŷr).</li><li id="src-irish-cycles-2">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992); Mac Cana, Proinsias, Branwen Daughter of Llŷr (Cardiff: University of Wales Press, 1958), on the branch&#39;s Irish affinities and the cauldron-complex.</li><li id="src-irish-cycles-3">Sims-Williams, Patrick, Irish Influence on Medieval Welsh Literature (Oxford: Oxford University Press, 2011).</li><li id="src-irish-cycles-4">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.vv. Branwen ferch Llŷr, Mabinogi, Matholwch.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Efnysien's whole dossier is the Second Branch of the Mabinogi — <em>Branwen ferch Llŷr</em>, 'Branwen daughter of Llŷr' — and he appears nowhere else in the Four Branches except as the son of Penarddun and Euroswydd named in its kinship lists. Within the branch he owns four scenes: the maiming of the horses at Aberffraw, the crushing of the hundred men in the flour-bags, the throwing of Gwern into the fire, and the breaking of the Cauldron of Rebirth in which he dies.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup> The neighbouring branches remember his family without him: the Third Branch, <em><a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a> fab Llŷr</em>, follows his brother <a class="scholars-xlink" href="/manawydan/">Manawydan</a> home from the Irish war to the enchantment of Dyfed and the courtship of <a class="scholars-xlink" href="/rhiannon/">Rhiannon</a>, and the First Branch's <a class="scholars-xlink" href="/pryderi/">Pryderi</a> is among the seven survivors who carried Brân's head.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup></p>
+<p>The tales survive complete in two manuscripts — the White Book of Rhydderch (c. 1350) and the Red Book of Hergest (c. 1382–1410), with earlier fragments in Peniarth 6 — and their date of composition is argued rather than documented, most often placed around 1060–1120; their author is unknown.<sup class="scholars-cite"><a href="#src-welsh-sources-3">[3]</a></sup> Lady Charlotte Guest's translation (1838–49) first carried the Second Branch into English; Ifor Williams's edition (1930) fixed the standard Welsh text; Sioned Davies's translation (2007) is the current scholarly English version. Mac Cana's <em>Branwen Daughter of Llŷr</em> (1958) remains the foundational study of the branch's composition and its Irish affinities.<sup class="scholars-cite"><a href="#src-welsh-sources-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">The Mabinogi, Second Branch, trans. Sioned Davies (Oxford University Press, 2007).</li><li id="src-welsh-sources-2">The Mabinogi, First and Third Branches, trans. Davies (2007).</li><li id="src-welsh-sources-3">Davies, The Mabinogion (2007), introduction, on date and manuscripts; Williams, Ifor, ed., Pedeir Keinc y Mabinogi (University of Wales Press, 1930).</li><li id="src-welsh-sources-4">Mac Cana, Proinsias, Branwen Daughter of Llŷr (University of Wales Press, 1958).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription names Efnysien. The early inscribed stones of Wales — the Latin and ogham memorial stones of roughly the fifth to seventh centuries — record personal names in funerary formulae, not literary theonyms, and the theonymic record of pre-Christian Wales is known from literature and place-lore rather than stone.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>The epigraphic silence is unsurprising and instructive in equal measure: Efnysien is a human prince within the tale, not a cult figure, and no votive practice ever attached to him. What the stone record does preserve is the world his story moves in — the genealogical names of early Welsh dynasties, <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a> Mawr among them in the literary genealogies — while the one monument the tradition itself names, Branwen's 'four-sided grave' on the Alaw, survives as Bedd Branwen, a Bronze Age cairn whose excavated cremations are far older than any Mabinogi event.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup> The honesty of the record is the point: the branch's anchor in the landscape is folklore's memory, not antiquity's proof.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953), on the early inscriptional record.</li><li id="src-inscriptions-2">Lynch, Frances, excavation of Bedd Branwen, Anglesey (1967–68); Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Branwen.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Efnysien is what a story looks like when it refuses to flatter anyone — including itself. The Second Branch never explains him. He is not possessed, not wronged first, not mad; the tale simply pairs him with <a class="scholars-xlink" href="/nisien/">Nisien</a> and lets the contrast stand: what one brother binds, the other unbinds, and the world has both kinds of man in it. His evil is small in scale and total in consequence — a night with a knife in a stable, and two kingdoms bleed for a generation. That is the branch's hardest teaching about trouble: it does not need to be great, only timely, and no compensation is large enough to make an injured king forget.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>And then the ending, which the Welsh text declines to call redemption. Efnysien sees what his mischief has cost — the speechless dead rising nightly from the cauldron — and lies down among the corpses of the enemy to be thrown in with them. No one forgives him in the text; no one praises him; the branch records only that the cauldron broke and his heart broke. The destroyer is allowed one act of destruction aimed at destruction itself, and it costs exactly everything he has. The Mabinogi does not promise that the man who sets the fire can put it out. It shows him choosing to burn with it.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">The Mabinogi, Second Branch, trans. Davies (2007).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Efnysien</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'efnysien';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

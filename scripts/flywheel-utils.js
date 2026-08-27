@@ -240,6 +240,11 @@ function formatArchetype(a) {
   const lines = [
     '    {',
     `        id: ${JSON.stringify(a.id)},`,
+  ];
+  if (a.rentalTier) {
+    lines.push(`        rentalTier: ${JSON.stringify(a.rentalTier)},`);
+  }
+  lines.push(
     `        name: ${JSON.stringify(a.name)},`,
     `        greek: ${JSON.stringify(a.greek ?? '—')},`,
     `        domain: ${JSON.stringify(a.domain)},`,
@@ -248,7 +253,7 @@ function formatArchetype(a) {
     `        tierDetail: ${JSON.stringify(a.tierDetail)},`,
     `        pantheon: ${JSON.stringify(a.pantheon)},`,
     `        folder: ${JSON.stringify(a.folder)},`,
-  ];
+  );
   if (a.domainUnicode) {
     lines.push(`        domainUnicode: ${JSON.stringify(a.domainUnicode)},`);
   }
@@ -258,6 +263,9 @@ function formatArchetype(a) {
   if (a.domainAlt && a.domainAlt.length) {
     const alt = a.domainAlt.map(d => JSON.stringify(d)).join(', ');
     lines.push(`        domainAlt: [${alt}],`);
+  }
+  if (a.domainless) {
+    lines.push('        domainless: true,');
   }
   lines.push(
     `        colors: { primary: ${JSON.stringify(colors.primary)}, secondary: ${JSON.stringify(colors.secondary)}, glow: ${JSON.stringify(colors.glow)} },`,

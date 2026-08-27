@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loki — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Loki: a living, university-curated reference on Trickery, Chaos, Shape-shifter. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Loki — Scholarly Edition",
+    "headline": "Loki — Scholarly Edition",
+    "description": "University-curated scholarly reference for Loki (Trickery, Chaos, Shape-shifter).",
+    "url": "https://punicodex.com/loki/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᛚᚢᚴᛁ",
+        "alternateName": ["loki", "Loki"],
+        "description": "Trickery, Chaos, Shape-shifter"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/loki.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/loki/scholars/">
+
+    <meta property="og:title" content="Loki — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Loki (Trickery, Chaos, Shape-shifter).">
+    <meta property="og:url" content="https://punicodex.com/loki/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/loki.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/loki.jpg">
+    <meta name="twitter:title" content="Loki — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Loki (Trickery, Chaos, Shape-shifter).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Loki",
+      "item": "https://punicodex.com/loki/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/loki/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="loki-canvas" data-effect="flameshift-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/loki_logolockup.webp" type="image/webp"><img src="../assets/loki_logolockup.png" alt="Loki" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/loki/">Loki</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Loki</h1>
+            <p class="scholars-subtitle reveal-up">Trickery, Chaos, Shape-shifter · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Loki.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Loki</strong> (<em>loki</em>) — Trickery, <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>, Shape-shifter · possibly 'knot' or 'lock' — etymology uncertain — is the trickster of the Norse Æsir: not a god by birth but the giant Fárbauti's son by Laufey, admitted to the fellowship of the gods through an oath of blood-brotherhood with <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, and the author of both their finest treasures and their mortal wound.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The Eddas give him more narrative than any figure save <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a> and Óðinn. He cuts off Sif's hair and wagers his own head against the dwarfs' craft, from which the gods receive the spear Gungnir, the ship Skíðblaðnir, the ring <a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a>, the boar Gullinbursti, and Þórr's hammer <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a>.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> He accompanies Þórr to <a href="/thrymr/" class="crosslink" data-crosslink="thrymr">Þrymr</a>'s hall disguised as a bridesmaid and talks the party through the wedding feast.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup> And he finds the one thing that never swore <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s oath — the mistletoe — and guides the blind Hǫðr's hand, killing <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>.<sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup> The Lokasenna stages the rupture: a full flyting against every god in <a href="/aegir/" class="crosslink" data-crosslink="aegir">Ægir</a>'s hall, then the flight to Franangr, the salmon-shape, the net of his own devising, and the binding with the entrails of his son Nari beneath a venom-dripping serpent, where <a href="/sigyn/" class="crosslink" data-crosslink="sigyn">Sigyn</a> holds her bowl until Ragnarök.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> At the end he steers the ship Naglfar against the gods and falls with <a href="/heimdallr/" class="crosslink" data-crosslink="heimdallr">Heimdallr</a>, each slaying the other.<sup class="scholars-cite"><a href="#src-overview-5">[5]</a></sup></p>
+<p>PuniCodex catalogs the name as <strong>Loki</strong> and serves its temple at /sites/loki/. The name is Tier 2: the normalized Old Norse spelling is <em>Loki</em>, with a short o and no distinctive letter, so the plain ASCII form loses nothing — the restoration and the ASCII form are the same word. The plain-ASCII domain <em>loki.com</em> is registered to a third party, held outside the collection, and watched for release; no owned domain is claimed for this entry.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Lokasenna (Poetic Edda), including the prose epilogue, trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-overview-2">Snorri Sturluson, Edda, Skáldskaparmál (Sif&#39;s hair and the wager of the head), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-3">Þrymskviða (Poetic Edda), trans. Larrington (2014).</li><li id="src-overview-4">Snorri Sturluson, Edda, Gylfaginning 49 (the death of Baldr), trans. Faulkes (1987).</li><li id="src-overview-5">Snorri Sturluson, Edda, Gylfaginning 51 (Ragnarök), trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in normalized Old Norse as <strong>Loki</strong> (nominative; genitive <em>Loka</em>), spelled throughout the manuscript tradition with a short o and no diacritic.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> Its etymology is genuinely uncertain, and honest lexicography says so: the most discussed derivation connects it to the Germanic <em>luk-</em> family — Old Norse <em>lok</em> 'cover, lid, bolt, lock' and the verb <em>lúka</em> 'to close, to end' — whence the proposed senses 'knot', 'lock', 'loop', or 'the one who closes', the last reading attractive for the god who brings the world's end.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup> The nineteenth-century equation of Loki with <em>Logi</em> 'flame' is abandoned: the o of Loki is short, and <a href="/logi/" class="crosslink" data-crosslink="logi">Logi</a> appears in Gylfaginning as a separate figure, the personified wildfire who defeats Loki in an eating contest.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p>
+<p>Because the Old Norse spelling is identical to the ASCII spelling, the name is classified Tier 2: the restoration preserves no distinctive feature that ASCII loses. The lexicon also records an attested variant <strong>Lóki</strong> (alt-stress, acute on o), sourced to Cleasby-Vigfusson and the Poetic Edda; the normalized form Loki remains primary.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>l</strong> → <strong>L</strong> — Same, capitalized</li><li><strong>o</strong> → <strong>o</strong> — Same</li><li><strong>k</strong> → <strong>k</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <em>loki.com</em> is registered to a third party outside the collection and is watched for release.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. Loki.</li><li id="src-the-name-2">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. Loki, lok, lúka.</li><li id="src-the-name-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Loki, Logi.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈlo.ke/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Lo-</strong> — Voiced alveolar lateral [l] followed by short mid back [o], as in English <em>lot</em>; stressed on the first syllable, as in all Old Norse words</li><li><strong>-ki</strong> — Unaspirated velar stop [k] followed by short close front [i]; the second syllable falls away lightly</li></ul>
+<p>For the modern speaker, the closest approximation is: 'LOH-kee' — two even syllables, the o short and round, never the diphthong of English <em>low</em>.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Loki, the manuscript form; also by the byname Loptr, 'the airy one'<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Modern Icelandic</strong> — Loki, unchanged, and still current as a given name</li><li><strong>Faroese ballad tradition</strong> — Lokki, the benevolent helper of the Lokka táttur<sup class="scholars-cite"><a href="#src-pronunciation-3">[3]</a></sup></li><li><strong>Distinct figure</strong> — Útgarða-Loki, the giant king of Útgarðr, who shares the name but not the identity<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></li></ul>
+<p>Loki is Tier 2 because the ASCII form is philologically complete: English 'Loki' loses no sound, no length, and no letter that the Old Norse original carries.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology and grammar.</li><li id="src-pronunciation-2">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (1957), s.v. Loki, Loptr.</li><li id="src-pronunciation-3">Rooth, Anna Birgitta, Loki in Scandinavian Mythology (Lund: CWK Gleerup, 1961), on the folk traditions.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>Loki</strong> — Old Norse (North Germanic), attested 13th c. CE in the Codex Regius of the Poetic Edda and the principal Snorra Edda codices, recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse names were carved in the Younger Futhark; no runic attestation of this theonym survives, so the manuscript form is the primary witness, and the epigraphic rendering ᛚᚢᚴᛁ is a reconstruction only.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is a single uncompounded word of uncertain etymology; the <em>luk-</em> family ('lock, knot, closing') is the most discussed derivation, the <em>logi</em> 'flame' equation being abandoned.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>Old Norse orthography writes it Loki, with a short o that takes no length mark and no distinctive letter.</li><li>Because the normalized spelling and the ASCII spelling are identical, the name is Tier 2: the restoration preserves no feature ASCII loses. The lexicon records the attested variant <em>Lóki</em> (alt-stress) alongside the primary form.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>No domain is owned for this name: the plain-ASCII <em>loki.com</em> — the philologically complete form — is registered to a third party, held outside the PuniCodex collection, and watched for release.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962), s.v. Loki.</li><li id="src-original-script-3">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. Loki.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Loki</strong> is catalogued under Trickery, <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>, Shape-shifter — and the tradition earns every element of it.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Trickster</h3>
+<p>He is the mind that finds the loophole: in <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s oath, in the wall-builder's contract, in the dwarfs' wager. Skáldskaparmál's kenning-list names him 'slanderer of the gods' and 'thief of the gods'.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Shape-Shifter</h3>
+<p>Salmon in the falls of Franangr, mare to the stallion Svaðilfari, fly at the dwarfs' bellows, old woman drawing secrets from Frigg: his body is the one thing about him that never holds still.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Companion</h3>
+<p>On the road he is indispensable — the wit that recovers <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a> in Þrymskviða and talks <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s bridal party through <a href="/thrymr/" class="crosslink" data-crosslink="thrymr">Þrymr</a>'s feast.<sup class="scholars-cite"><a href="#src-domains-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The End-Bringer</h3>
+<p>By <a href="/angrboda/" class="crosslink" data-crosslink="angrboda">Angrboða</a> he fathers <a class="scholars-xlink" href="/fenrir/">Fenrir</a>, <a class="scholars-xlink" href="/jormungandr/">Jǫrmungandr</a>, and <a class="scholars-xlink" href="/hel/">Hel</a>; at Ragnarök he breaks his bonds, steers Naglfar against the gods, and falls with <a class="scholars-xlink" href="/heimdallr/">Heimdallr</a> in mutual killing.<sup class="scholars-cite"><a href="#src-domains-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Gylfaginning 34–35, 42, 44–51, trans. Faulkes (1987).</li><li id="src-domains-2">Snorri Sturluson, Edda, Skáldskaparmál, the kennings for Loki, trans. Faulkes (1987).</li><li id="src-domains-3">Þrymskviða (Poetic Edda), trans. Larrington (2014).</li><li id="src-domains-4">Vǫluspá and Gylfaginning 51 (Ragnarök), trans. Larrington (2014) and Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Loki's iconography is narrative rather than cultic — the corpus gives him no temple regalia, but his myths fixed a tight set of attributes:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The sewn lips</strong> — <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>'s needle after the lost wager: the trickster's own weapon, speech, bound shut; the scars are the one permanent mark the myths leave on him</li><li><strong>The mistletoe dart</strong> — the one thing too young to swear <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s oath, shaped into the weapon that kills <a class="scholars-xlink" href="/baldr/">Baldr</a>: the loophole made lethal</li><li><strong>The net of Franangr</strong> — the first net ever devised, invented by Loki himself and then used by the Æsir to take him from the falls: the snare that turns on its maker</li><li><strong>The salmon shape</strong> — the slippery, upstream form he takes in flight; even his hiding-place is a thing of currents</li><li><strong>The serpent and the bowl</strong> — <a href="/skadi/" class="crosslink" data-crosslink="skadi">Skadi</a>'s venom-dripping snake above his face, and <a href="/sigyn/" class="crosslink" data-crosslink="sigyn">Sigyn</a>'s bowl that catches the drops until she must turn to empty it: the machinery of his binding<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>The mare's shape</strong> — the form in which he bore <a href="/sleipnir/" class="crosslink" data-crosslink="sleipnir">Sleipnir</a>, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s eight-legged horse: parenthood across the line of species and sex</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Gylfaginning 42, 49–50; Skáldskaparmál (the wager), trans. Faulkes (1987).</li><li id="src-symbols-2">Lokasenna, prose epilogue (the binding); Vǫluspá (the stanza on the bound Loki), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Loki's mythology is the largest of any single figure in the Norse corpus: he is the gods' companion, their supplier of wonders, their betrayer, and their doom, and the Eddas never reconcile these into one character.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Blood-Brother (Lokasenna 9)</h3>
+<p>When <a class="scholars-xlink" href="/odinn/">Óðinn</a> moves to silence him in <a href="/aegir/" class="crosslink" data-crosslink="aegir">Ægir</a>'s hall, Loki invokes the oldest bond in the mythology: 'Do you remember, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, how in days of old we two blended our blood together? You said you would never taste ale unless it were brought to us both.' The oath explains everything structural about him — why a giant's son sits among the Æsir, and why his betrayal, when it comes, is kin-slaying rather than warfare.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Flyting at Ægir's Hall (Lokasenna)</h3>
+<p>Uninvited to Ægir's feast, Loki kills the servant Fimafeng, is driven out, returns on the strength of the oath, and then insults every god and goddess in turn — <a href="/bragi/" class="crosslink" data-crosslink="bragi">Bragi</a>, <a href="/iounn/" class="crosslink" data-crosslink="iounn">Iðunn</a>, <a href="/gefjon/" class="crosslink" data-crosslink="gefjon">Gefjon</a>, Óðinn, <a class="scholars-xlink" href="/frigg/">Frigg</a>, <a class="scholars-xlink" href="/freyja/">Freyja</a>, <a href="/njordr/" class="crosslink" data-crosslink="njordr">Njǫrðr</a>, <a class="scholars-xlink" href="/tyr/">Týr</a>, <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>, Byggvir, <a class="scholars-xlink" href="/heimdallr/">Heimdallr</a>, <a class="scholars-xlink" href="/skadi/">Skadi</a>, <a class="scholars-xlink" href="/sif/">Sif</a> — finding for each the wound that will not close. Only <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s arrival ends it: three vows with <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a>, and Loki yields the floor. The prose epilogue carries him straight to Franangr and the binding.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Companion on the Road (Þrymskviða)</h3>
+<p>When <a href="/thrymr/" class="crosslink" data-crosslink="thrymr">Þrymr</a> steals Mjǫllnir and demands <a href="/freyja/" class="crosslink" data-crosslink="freyja">Freyja</a>, Loki borrows her feather-coat, learns the terms, and rides beside the disguised <a class="scholars-xlink" href="/thor/">Þórr</a> as his maidservant — supplying the ready answers ('Freyja has not eaten for eight nights, so eager was she for Jǫtunheimr') that keep the disguise alive until the hammer is in the bride's lap. The poem preserves the benevolent Loki the later tradition needed to explain.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The Wager of the Head (Skáldskaparmál)</h3>
+<p>For mischief he cuts off Sif's hair; to escape Þórr's hands he procures from the sons of Ívaldi the golden hair, the ship Skíðblaðnir, and the spear Gungnir — then wagers his own head that the dwarf <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>'s brother Eitri cannot match them. In the smithy he stings the bellows-worker as a fly, yet the work holds: Gullinbursti, <a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a>, and Mjǫllnir, short-handled from the sting but judged the best of all. Loki concedes his head — and points out that the neck was never in the bargain. The dwarfs sew his lips shut instead.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p>
+<h3 class="scholars-h3">The Death of Baldr (Gylfaginning 49)</h3>
+<p>In a woman's shape he draws from <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> the single omission in her oath — the mistletoe, too young to swear. He pulls it up, puts it in the blind <a class="scholars-xlink" href="/hodr/">Hǫðr</a>'s hand, and guides the throw; <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> falls dead. When <a class="scholars-xlink" href="/hermod/">Hermóðr</a> wins the condition that all things must weep Baldr back from Hel, all things weep except the cave-giantess Þǫkk — 'let Hel hold what she has' — and the Æsir believe Þǫkk was Loki.<sup class="scholars-cite"><a href="#src-mythology-5">[5]</a></sup></p>
+<h3 class="scholars-h3">The Binding (Gylfaginning 50; Lokasenna prose)</h3>
+<p>Hiding on Franangr in a house with four doors, Loki takes salmon-shape in the falls and, brooding on how he might be caught, devises the net — the first ever made. Óðinn spies him from Hliðskjálf; the gods read the ash-pattern of the burnt net, remake it, and drag the falls until the salmon is taken. Then the punishment: his son <a href="/vali/" class="crosslink" data-crosslink="vali">Váli</a> is changed into a wolf and tears apart his brother Nari (Narfi in the Lokasenna prose), and with Nari's entrails the Æsir bind Loki across three stones; <a href="/skadi/" class="crosslink" data-crosslink="skadi">Skadi</a> fastens a venomous serpent above his face. <a class="scholars-xlink" href="/sigyn/">Sigyn</a>, his wife, holds a bowl beneath the drops, and only when she turns to empty it does the venom strike him — his writhing, Snorri says, is what men call earthquakes.<sup class="scholars-cite"><a href="#src-mythology-6">[6]</a></sup></p>
+<h3 class="scholars-h3">Ragnarök (Gylfaginning 51; Vǫluspá)</h3>
+<p>At the end the bonds break. Loki steers Naglfar — the ship built of dead men's nails — against the gods, while his children by the giantess <a class="scholars-xlink" href="/angrboda/">Angrboða</a> close in: <a href="/fenrir/" class="crosslink" data-crosslink="fenrir">Fenrir</a> with jaws from earth to heaven, <a href="/jormungandr/" class="crosslink" data-crosslink="jormungandr">Jǫrmungandr</a> blowing venom, Hel's host behind him. On the field of Vígríðr he meets <a href="/heimdallr/" class="crosslink" data-crosslink="heimdallr">Heimdallr</a>, and they kill each other. The sibyl of the Vǫluspá saw it centuries before Snorri: 'the kinsman of Býleistr' steers the ship from the east.<sup class="scholars-cite"><a href="#src-mythology-7">[7]</a></sup></p>
+<h3 class="scholars-h3">A Necessary Distinction: Útgarða-Loki and Logi</h3>
+<p>Two figures in Gylfaginning share his name or his old reputation and are neither of them Loki Laufeyjarson. Útgarða-Loki is the giant king of Útgarðr whose illusions humiliate Þórr on the eastern journey — a separate being, and Snorri never confuses them. And <a href="/logi/" class="crosslink" data-crosslink="logi">Logi</a>, 'wildfire', who beats Loki in the eating contest at Útgarðr, is the fire itself in person — the figure with whom the nineteenth century wrongly fused the god into a fire-deity.<sup class="scholars-cite"><a href="#src-mythology-8">[8]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Loki.</li><li id="src-mythology-2">Lokasenna (Poetic Edda), st. 9 and passim, with prose epilogue, trans. Larrington (2014).</li><li id="src-mythology-3">Þrymskviða (Poetic Edda), trans. Larrington (2014).</li><li id="src-mythology-4">Snorri Sturluson, Edda, Skáldskaparmál (Sif&#39;s hair; the wager of the head), trans. Faulkes (1987).</li><li id="src-mythology-5">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-mythology-6">Snorri Sturluson, Edda, Gylfaginning 50; Lokasenna prose epilogue, trans. Faulkes (1987) and Larrington (2014).</li><li id="src-mythology-7">Snorri Sturluson, Edda, Gylfaginning 51; Vǫluspá (Ragnarök stanzas), trans. Faulkes (1987) and Larrington (2014).</li><li id="src-mythology-8">Snorri Sturluson, Edda, Gylfaginning 44–47 (the journey to Útgarðr); Simek, Dictionary of Northern Mythology (1993), s.v. Útgarða-Loki, Logi.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>The standing comparative frame for Loki is the Greek <a class="scholars-xlink" href="/prometheus/">Promētheús</a>: a trickster-benefactor chained to rock, torn daily — the eagle and the dripping serpent were paired as early as the Romantic mythographers, and Rooth's monograph remains the standard weighing of the parallel. The comparison illuminates the punishment but not the god: <a href="/prometheus/" class="crosslink" data-crosslink="prometheus">Promētheús</a> suffers for helping mankind, Loki for destroying his own fellowship.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>The nineteenth century dissolved Loki into a fire-god on the strength of his name's resemblance to <em>Logi</em> 'flame' — the conflation Wagner's Loge made operatic — but modern philology rejects it: the o of Loki is short, and the texts keep <a href="/logi/" class="crosslink" data-crosslink="logi">Logi</a> and Loki apart as separate figures.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> A second honest distinction concerns Útgarða-Loki: the cunning giant-king of the eastern journey shares the name but not the identity, and scholarship since de Vries has treated the coincidence as onomastic, however suggestive the parallel mastery of illusion.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup> Within the corpus, closely related figures include <a class="scholars-xlink" href="/odinn/">Óðinn</a> (his blood-brother), <a class="scholars-xlink" href="/thor/">Þórr</a> (his traveling companion), <a class="scholars-xlink" href="/baldr/">Baldr</a> (his victim), and <a class="scholars-xlink" href="/heimdallr/">Heimdallr</a> (his last opponent), with <a class="scholars-xlink" href="/sigyn/">Sigyn</a> (his wife) and the monstrous children <a class="scholars-xlink" href="/fenrir/">Fenrir</a>, <a class="scholars-xlink" href="/jormungandr/">Jǫrmungandr</a>, and <a class="scholars-xlink" href="/hel/">Hel</a> completing the household.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Rooth, Anna Birgitta, Loki in Scandinavian Mythology (Lund: CWK Gleerup, 1961).</li><li id="src-syncretism-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Loki, Logi.</li><li id="src-syncretism-3">de Vries, Jan, Altgermanische Religionsgeschichte, 2nd ed., 2 vols. (Berlin: de Gruyter, 1956–57), on Loki and Útgarða-Loki.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Loki's afterlife forked early and never rejoined. The folk record kept a kinder god: the Faroese ballad <em>Lokka táttur</em> makes Lokki the clever helper who, with <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>, saves a farmer's son from a giant — a benevolent trickster surviving in oral tradition long after the Eddic damnation.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Learned Europe remade him as fire: Wagner's Loge in the <em>Ring</em> is the nineteenth century's conflation of Loki with <a href="/logi/" class="crosslink" data-crosslink="logi">Logi</a> rendered as opera, the cynical flame who talks the gods into their bargains.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>The twentieth and twenty-first centuries restored his ambiguity at mass scale: Neil Gaiman's 'Low Key Lyesmith' in <em>American Gods</em> (2001) hides the bound god in a prison cell, and Marvel's Loki — Þórr's adopted brother and rival, on page from 1962 and on screen from 2011 — has carried the name further than the Eddas ever traveled, at the price of thinning the mythology to a family quarrel. Modern heathenry remains honestly divided: many Ásatrú kindreds refuse to hail Loki at blót, reading him as the oath-breaker the Eddas describe, while others honor the necessary disturber without whom nothing in <a href="/asgardr/" class="crosslink" data-crosslink="asgardr">Ásgarðr</a> changes.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup> The quietest survivals are idiomatic: Scandinavian folk usage long attached his name to the shimmering air over hot ground and to knot-tying spiders — small, unsettled things that refuse to hold still.<sup class="scholars-cite"><a href="#src-cultural-legacy-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Rooth, Anna Birgitta, Loki in Scandinavian Mythology (Lund: CWK Gleerup, 1961), on the Lokka táttur and folk traditions.</li><li id="src-cultural-legacy-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Loki.</li><li id="src-cultural-legacy-3">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. Loki.</li><li id="src-cultural-legacy-4">Orchard, Andy, Cassell&#39;s Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Loki.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>One carved stone is nearly the whole candidate corpus for Loki's image. The Snaptun stone (Denmark, c. 1000), a hearth-stone or bellows-shield, bears a bearded face with scarred, sewn-shut lips and is commonly identified as Loki from the <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a> episode — an identification widely repeated but unprovable, since the stone carries no inscription.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> The Kirkby Stephen stone in Cumbria, showing a bound horned figure, has likewise been read as the bound Loki, though other scholars read it as a bound devil of Christian iconography.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>Beyond these disputed stones the attestation is textual: the Poetic Edda poems survive chiefly in the Codex Regius (GKS 2365 4to, c. 1270) and the Hauksbók, and Snorri's account is transmitted by the principal Snorra Edda manuscripts (GKS 2367 4to, Codex Wormianus, Codex Upsaliensis). No runic inscription names the god, and no Scandinavian place-name is securely his — a silence that matches his standing: the one major figure of the pantheon with no temple, toponym, or votive deposit.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Loki; Orchard, Dictionary of Norse Myth and Legend (1997), s.v. Loki.</li><li id="src-archaeology-2">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. Loki, on the iconographic candidates.</li><li id="src-archaeology-3">de Vries, Jan, Altgermanische Religionsgeschichte, 2nd ed. (Berlin: de Gruyter, 1956–57), on the absence of cult evidence for Loki.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Loki given in this edition rests on the witnesses and reference works listed below. The two Eddas supply the narratives; the lexica and etymological dictionaries secure what can honestly be said of the name; Rooth's monograph remains the standard dedicated study; the modern handbooks frame the scholarly consensus.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Lokasenna (the flyting and the blood-brother oath), Þrymskviða (the bridesmaid), Vǫluspá (the bound god and Ragnarök), Hyndluljóð (Loki's monstrous parenthood).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Snorri Sturluson, Edda, trans. Anthony Faulkes (London: Everyman, 1987): Gylfaginning 34–35, 42–51 (the children, the wall-builder, Útgarðr, <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>, the binding, Ragnarök); Skáldskaparmál (the kennings; Sif's hair and the wager).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. Loki, Loptr, lok.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. loki, loptr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. Loki.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> de Vries, Jan, Altgermanische Religionsgeschichte, 2nd ed., 2 vols. (Berlin: de Gruyter, 1956–57).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Rooth, Anna Birgitta, Loki in Scandinavian Mythology (Lund: CWK Gleerup, 1961).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Loki, <a href="/logi/" class="crosslink" data-crosslink="logi">Logi</a>, Útgarða-Loki, <a href="/sigyn/" class="crosslink" data-crosslink="sigyn">Sigyn</a>, <a href="/angrboda/" class="crosslink" data-crosslink="angrboda">Angrboða</a>.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Orchard, Andy, Cassell's Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Loki.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Loki.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-2">Snorri Sturluson, Edda, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-3">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-4">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-5">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962).</li><li id="src-scholarly-sources-6">de Vries, Jan, Altgermanische Religionsgeschichte, 2nd ed., 2 vols. (Berlin: de Gruyter, 1956–57).</li><li id="src-scholarly-sources-7">Rooth, Anna Birgitta, Loki in Scandinavian Mythology (CWK Gleerup, 1961).</li><li id="src-scholarly-sources-8">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-9">Orchard, Andy, Cassell&#39;s Dictionary of Norse Myth and Legend (Cassell, 1997).</li><li id="src-scholarly-sources-10">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda knows Loki at full length, and its two great witnesses pull in opposite directions. The <strong>Lokasenna</strong> is his tragedy in one night: barred from <a href="/aegir/" class="crosslink" data-crosslink="aegir">Ægir</a>'s feast, he kills the servant Fimafeng, returns on the strength of the blood-oath with <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> (st. 9 — 'we two blended our blood together; you said you would never taste ale unless it were brought to us both'), and works down the bench insulting every god and goddess until <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s hammer ends the night. The prose epilogue carries him to Franangr, the salmon-shape, the net, and the binding, naming Narfi and the wolf-changed <a href="/vali/" class="crosslink" data-crosslink="vali">Váli</a>.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup> The <strong>Þrymskviða</strong> shows the companion: Loki in <a href="/freyja/" class="crosslink" data-crosslink="freyja">Freyja</a>'s feather-coat, Loki as the quick-tongued bridesmaid whose lies ('she has not eaten for eight nights') hold <a href="/thrymr/" class="crosslink" data-crosslink="thrymr">Þrymr</a>'s hall together until <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a> is in Þórr's lap.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup></p>
+<p>Around these, the mythological poems fix his cosmic role. The Vǫluspá's sibyl sees him bound — 'there sits <a href="/sigyn/" class="crosslink" data-crosslink="sigyn">Sigyn</a>, not at all glad over her husband' — and sees him free at the end, steering the ship from the east as 'the kinsman of Býleistr'.<sup class="scholars-cite"><a href="#src-poetic-edda-3">[3]</a></sup> Hyndluljóð gives the genealogy in compressed form: Loki fathered the wolf on <a href="/angrboda/" class="crosslink" data-crosslink="angrboda">Angrboða</a>, bore <a href="/sleipnir/" class="crosslink" data-crosslink="sleipnir">Sleipnir</a> by Svaðilfari, and is brother to Býleistr — the poem's one stanza holding his whole family, monstrous and equine, in a single breath.<sup class="scholars-cite"><a href="#src-poetic-edda-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Lokasenna (Poetic Edda), with prose epilogue, trans. Larrington (2014).</li><li id="src-poetic-edda-2">Þrymskviða (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-3">Vǫluspá (Poetic Edda), the bound-Loki and Ragnarök stanzas, trans. Larrington (2014).</li><li id="src-poetic-edda-4">Hyndluljóð (Poetic Edda), the Loki stanza, trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Loki's fullest witness, and Snorri's systematic frame lets the whole arc be read in order. Gylfaginning 34–35 introduces him in the catalog of the Æsir with his pedigree — son of Fárbauti and Laufey, brother of Helblindi and Býleistr — and his monstrous parenthood by <a href="/angrboda/" class="crosslink" data-crosslink="angrboda">Angrboða</a>: <a href="/fenrir/" class="crosslink" data-crosslink="fenrir">Fenrir</a>, <a href="/jormungandr/" class="crosslink" data-crosslink="jormungandr">Jǫrmungandr</a>, and Hel, the three the gods bind, drown, and banish in advance.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> The Útgarðr journey (Gylfaginning 44–47) gives him the eating contest against <a href="/logi/" class="crosslink" data-crosslink="logi">Logi</a>, wildfire itself, and surrounds him with the name-double Útgarða-Loki — the giant king whose illusions humiliate <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>, and whom Snorri is careful never to identify with Loki Laufeyjarson.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p>
+<p>The <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> cycle (Gylfaginning 49) is Snorri's great narrative: the oath taken from all things, the overlooked mistletoe, Loki's woman-shape prying the secret from <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>, the guided hand of the blind Hǫðr, and — after <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a>'s ride — the giantess Þǫkk's dry tears, 'and this people believe was Loki'.<sup class="scholars-cite"><a href="#src-prose-edda-3">[3]</a></sup> The binding (Gylfaginning 50) and Ragnarök (Gylfaginning 51) complete the arc: the entrails of Nari, the three stones, <a href="/skadi/" class="crosslink" data-crosslink="skadi">Skadi</a>'s serpent, <a href="/sigyn/" class="crosslink" data-crosslink="sigyn">Sigyn</a>'s bowl, the earthquakes; then Naglfar, the steersman, and the mutual killing with <a href="/heimdallr/" class="crosslink" data-crosslink="heimdallr">Heimdallr</a>.<sup class="scholars-cite"><a href="#src-prose-edda-4">[4]</a></sup> Skáldskaparmál preserves the poets' Loki: the kenning-list with its verdicts ('slanderer of the gods', 'thief of the gods'), the Sif-hair tale, the wager of the head with <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a> and Eitri, the theft and recovery of <a href="/iounn/" class="crosslink" data-crosslink="iounn">Iðunn</a>, and the capture by <a href="/geirrodr/" class="crosslink" data-crosslink="geirrodr">Geirröðr</a> that sends Þórr out unarmed.<sup class="scholars-cite"><a href="#src-prose-edda-5">[5]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning 34–35, trans. Faulkes (1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Gylfaginning 44–47, trans. Faulkes (1987).</li><li id="src-prose-edda-3">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-prose-edda-4">Snorri Sturluson, Edda, Gylfaginning 50–51, trans. Faulkes (1987).</li><li id="src-prose-edda-5">Snorri Sturluson, Edda, Skáldskaparmál, the Loki kennings and narratives, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The runic corpus contains no attestation of Loki: no runestone invokes him, no amulet bears his name, and no inscription links a dedicant to any cult of his — a silence consistent with the broader absence of Loki from cult and toponymy.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What can be offered is the epigraphic reconstruction. In the Younger Futhark, the sixteen-rune row of the Viking Age, the name would have been carved approximately ᛚᚢᚴᛁ (l-u-k-i): the ᚢ-rune, which covered the u- and o-family vowels alike, would write the short o, and the runes would underspecify nothing the name actually contains. The reconstruction is a frame, not a witness — the normalized manuscript spelling <em>Loki</em> remains the primary attestation, and it is identical to the ASCII form the restoration carries.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. Loki.</li><li id="src-runic-evidence-2">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957), on the Younger Futhark.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Outside the two Eddas, Loki's medieval footprint is thinner than his modern fame suggests. The skaldic corpus preserves him chiefly through the mythological shield-poems: Þjóðólfr of Hvin's <strong>Haustlöng</strong> (c. 900), quoted extensively in Skáldskaparmál, knows the <a href="/thjazi/" class="crosslink" data-crosslink="thjazi">Þjazi</a> episode — Loki captured, <a href="/iounn/" class="crosslink" data-crosslink="iounn">Iðunn</a> stolen and recovered, the giant burned at <a href="/asgardr/" class="crosslink" data-crosslink="asgardr">Ásgarðr</a>'s wall — and names Loki as <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s companion at the duel with <a href="/hrungnir/" class="crosslink" data-crosslink="hrungnir">Hrungnir</a>; Þjóðólfr's verses are among the oldest datable witnesses to the god.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> Eilífr Goðrúnarson's <strong>Þórsdrápa</strong> continues the companion-role into the <a href="/geirrodr/" class="crosslink" data-crosslink="geirrodr">Geirröðr</a> journey.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup></p>
+<p>Saxo Grammaticus, who euhemerizes the gods at length in the Gesta Danorum, gives no corresponding narrative role to a Loki figure — a reminder that the flyting-and-binding cycle is specifically the Eddic tradition's property. The post-medieval folk record then reverses the polarity: the Faroese <strong>Lokka táttur</strong> ballad casts Lokki as the clever helper who saves a farmer's son from a giant where <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and Þórr cannot — evidence, as Rooth stressed, that a benevolent Loki survived in oral tradition independent of the Eddic damnation.<sup class="scholars-cite"><a href="#src-sagas-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Þjóðólfr of Hvin, Haustlöng, as preserved in Skáldskaparmál, trans. Faulkes (1987).</li><li id="src-sagas-2">Eilífr Goðrúnarson, Þórsdrápa, as preserved in Skáldskaparmál, trans. Faulkes (1987).</li><li id="src-sagas-3">Rooth, Anna Birgitta, Loki in Scandinavian Mythology (CWK Gleerup, 1961), on the Lokka táttur.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Loki is the god of the loophole, and the tradition built his ending out of his own materials. The net he invented catches him; the sons he fathered supply the rope; the wife he wronged with his shape-shifting stands over him with the bowl; and the earthquakes his writhing causes are the world's flinch at what it cannot quite punish away.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>If the uncertain etymology is even half right — the <em>luk-</em> root, the knot, the lock, the closing — then the name carried the whole story from the start: the mind that unties every oath, and the god who ends tied in the one knot he cannot pick. The Eddas never decide whether he saved the gods or damned them, because he did both, with the same wit, in the same lifetime. The honest question the myth leaves is not whether to love him or hate him, but whether a fellowship can survive its own indispensable saboteur — and the Eddic answer, written in <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s blood and the nails of Naglfar, is that it cannot, and keeps him at the table anyway, until the hall itself burns.<sup class="scholars-cite"><a href="#src-meditation-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Snorri Sturluson, Edda, Gylfaginning 50, trans. Faulkes (1987).</li><li id="src-meditation-2">Lokasenna (Poetic Edda); Snorri Sturluson, Edda, Gylfaginning 49–51, trans. Larrington (2014) and Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Loki</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᛚᚢᚴᛁ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'loki';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

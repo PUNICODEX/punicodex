@@ -320,18 +320,37 @@ function main() {
     'type/index.html',
   ];
 
+  function walkHtmlFiles(dir, excludeDirNames = new Set(['.backup'])) {
+    const out = [];
+    function walk(current) {
+      let entries;
+      try {
+        entries = fs.readdirSync(current, { withFileTypes: true });
+      } catch {
+        return;
+      }
+      for (const ent of entries) {
+        if (ent.isDirectory()) {
+          if (excludeDirNames.has(ent.name)) continue;
+          walk(path.join(current, ent.name));
+        } else if (ent.isFile() && ent.name.endsWith('.html')) {
+          out.push(path.join(current, ent.name));
+        }
+      }
+    }
+    walk(dir);
+    return out;
+  }
+
   let updatedFiles = 0;
 
   console.log('▸ Updating templates + generated HTML...');
 
   for (const dir of htmlDirs) {
     if (!fs.existsSync(dir)) continue;
-    const files = fs.readdirSync(dir, { recursive: true });
+    const files = walkHtmlFiles(dir);
     let processed = 0;
-    for (const rel of files) {
-      const full = path.join(dir, rel);
-      if (!full.endsWith('.html')) continue;
-      if (!fs.statSync(full).isFile()) continue;
+    for (const full of files) {
       if (updateHtmlFile(full, dimCache)) updatedFiles++;
       processed++;
       if (processed % 200 === 0) {

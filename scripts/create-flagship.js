@@ -2547,10 +2547,13 @@ function buildNameVariationsSection(entry, sectionNumber) {
     pushCard(i === 0 ? 'Owned · Primary' : 'Owned', form, why);
   });
   if (!ownedForms.length) {
+    // Domain-less flagship: never claim ownership — show the canonical form
+    // with an honest watched-for-release state.
+    const ideal = `${(entry.unicode || '').toLowerCase()}.com`;
     pushCard(
       'Canonical Restoration',
       entry.unicode,
-      `${restores}The full Unicode restoration. This domain is not in the PuniCodex collection.`
+      `${restores}The full Unicode restoration. <strong>${escapeHtml(ideal)}</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.`
     );
   }
   for (const v of byType('ideal')) {
@@ -2801,7 +2804,11 @@ function generateHomePage(
 function generateDashboardPage(entry, palette, templateDir, archetype = {}) {
   let html = fs.readFileSync(path.join(templateDir, 'dashboard.html'), 'utf8');
   const templeId = entry.id;
-  const domainUnicode = archetype.domainUnicode || `${entry.unicode}.com`;
+  // Domain-less flagships serve slots on punicodex.com/{id} — show sponsors
+  // the temple path, not an unresolvable domain.
+  const domainUnicode = archetype.domainless
+    ? `punicodex.com/${templeId}`
+    : archetype.domainUnicode || `${entry.unicode}.com`;
   const vars = {
     BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Dashboard', path: 'dashboard/' }),
     UNICODE: entry.unicode,
@@ -3144,7 +3151,7 @@ function sleepSync(ms) {
   }
 }
 
-function safeCopyFileSync(src, dest, retries = 10) {
+function safeCopyFileSync(src, dest, retries = 30) {
   let lastError;
   for (let i = 0; i < retries; i++) {
     try {
@@ -3153,7 +3160,7 @@ function safeCopyFileSync(src, dest, retries = 10) {
     } catch (err) {
       lastError = err;
       if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
-        sleepSync(100 * (i + 1));
+        sleepSync(150 * (i + 1));
         continue;
       }
       throw err;
@@ -3162,7 +3169,7 @@ function safeCopyFileSync(src, dest, retries = 10) {
   throw lastError;
 }
 
-function safeWriteFileSync(dest, data, encoding = 'utf8', retries = 10) {
+function safeWriteFileSync(dest, data, encoding = 'utf8', retries = 30) {
   let lastError;
   for (let i = 0; i < retries; i++) {
     try {
@@ -3171,7 +3178,7 @@ function safeWriteFileSync(dest, data, encoding = 'utf8', retries = 10) {
     } catch (err) {
       lastError = err;
       if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
-        sleepSync(100 * (i + 1));
+        sleepSync(150 * (i + 1));
         continue;
       }
       throw err;
@@ -3180,7 +3187,7 @@ function safeWriteFileSync(dest, data, encoding = 'utf8', retries = 10) {
   throw lastError;
 }
 
-function safeRenameSync(src, dest, retries = 5) {
+function safeRenameSync(src, dest, retries = 20) {
   let lastError;
   for (let i = 0; i < retries; i++) {
     try {
@@ -3189,7 +3196,7 @@ function safeRenameSync(src, dest, retries = 5) {
     } catch (err) {
       lastError = err;
       if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
-        sleepSync(50 * (i + 1));
+        sleepSync(75 * (i + 1));
         continue;
       }
       throw err;

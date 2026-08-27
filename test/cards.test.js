@@ -173,7 +173,11 @@ test('every flagship has a complete spec-valid legendary full-art printing', () 
     assert.strictEqual(card.flagship, true, `${arch.id} flagged flagship`);
     assert.ok(card.flavor && card.flavor.length >= 20, `${arch.id} grounded flavor text`);
     assert.ok(card.ability?.name, `${arch.id} named ability`);
-    assert.ok(card.ownedDomain, `${arch.id} owned domain shown`);
+    if (arch.domainless) {
+      assert.ok(!card.ownedDomain, `${arch.id} domain-less card shows no owned domain`);
+    } else {
+      assert.ok(card.ownedDomain, `${arch.id} owned domain shown`);
+    }
     assert.ok(card.art?.mascot, `${arch.id} mascot art`);
     assert.ok(card.art?.logomark, `${arch.id} logomark art`);
     assert.ok(

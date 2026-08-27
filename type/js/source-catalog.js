@@ -1410,6 +1410,97 @@ const SOURCE_CATALOG = {
         year: '1910',
         edition: 'Oxford',
         url: 'https://old-norse.net/'
+    },
+    'Ifá corpus': {
+        full: 'Ifá divinatory corpus (Odù Ifá)',
+        scope: 'Yoruba religion and divination',
+        year: 'oral',
+        edition: 'Recited and transmitted by Ifá priests (àwọn àbẹ̀bẹ̀); standard reference editions by W. Bascom and P. Adeboye',
+        url: 'https://www.sacred-texts.com/afr/ifa/index.htm'
+    },
+    'Jagannath tradition': {
+        full: 'Jagannātha temple tradition and pilgrimage literature (Puri, Odisha)',
+        scope: 'Hindu Vaishnava regional cult',
+        year: '1200',
+        edition: 'Temple chronicles, Mādalāpāñji, and Skanda Purāṇa references',
+        url: 'https://jagannath.nic.in/'
+    },
+    'Shang oracle bones': {
+        full: 'Shāng oracle-bone inscriptions (jiǎgǔwén)',
+        scope: 'Early Chinese religion and kingship',
+        year: '-1200',
+        edition: 'Corpus compiled from Yinxu excavations; Academia Sinica digital corpus',
+        url: 'http://www.ihp.sinica.edu.tw/~bronze/'
+    },
+    'Shijing': {
+        full: 'Shījīng (Classic of Poetry)',
+        scope: 'Early Chinese poetic and ritual corpus',
+        year: '-600',
+        edition: 'Máo edition; Chinese Text Project',
+        url: 'https://ctext.org/book-of-poetry'
+    },
+    'Shujing': {
+        full: 'Shūjīng (Classic of Documents)',
+        scope: 'Early Chinese historiography and state ritual',
+        year: '-500',
+        edition: 'Old Text recension; Chinese Text Project',
+        url: 'https://ctext.org/shang-shu'
+    },
+    'Taoist canon': {
+        full: 'Dàozàng (Taoist Canon)',
+        scope: 'Taoist scriptural and ritual corpus',
+        year: '1444',
+        edition: 'Zhēngtóng Dàozàng and later supplements (Daozang Jiyao)',
+        url: 'https://www.ctext.org/dao-zang'
+    },
+    'Yoruba oral tradition': {
+        full: 'Yorùbá oral tradition (ìtàn, ọ̀rọ̀ àgbà, and orin)',
+        scope: 'Yoruba history, genealogy, and praise poetry',
+        year: 'oral',
+        edition: 'Transmitted by bards, priests, and elders; documented in Bascom, Drewal, and Barber',
+        url: 'https://www.sacred-texts.com/afr/yor/index.htm'
+    },
+    'Fudoki': {
+        full: 'Fudoki (Records of Wind and Earth)',
+        scope: 'Japanese provincial gazetteers and myth',
+        year: '713',
+        edition: 'Kojiki, Nihon Shoki, and provincial Fudoki; translated excerpts in Philippi, Norito',
+        url: 'https://sacred-texts.com/shi/index.htm'
+    },
+    'Heart Sutra': {
+        full: 'Prajñāpāramitāhṛdaya Sūtra (Heart Sutra)',
+        scope: 'Mahāyāna Buddhist wisdom scripture',
+        year: '100',
+        edition: 'Translated by E. Conze; included in Mahāyāna Buddhist texts (SBE 49)',
+        url: 'https://sacred-texts.com/bud/sbe49/index.htm'
+    },
+    'Visuddhimagga': {
+        full: 'Visuddhimagga (Path of Purification)',
+        scope: 'Theravāda Buddhist commentarial treatise',
+        year: '430',
+        edition: 'Buddhaghosa; translated by Bhikkhu Ñāṇamoli',
+        url: 'https://www.accesstoinsight.org/lib/authors/buddhaghosa/wayofpurification.html'
+    },
+    'Völuspá': {
+        full: 'Völuspá (The Prophecy of the Seeress)',
+        scope: 'Norse mythological poetry',
+        year: '1270',
+        edition: 'Poetic Edda, ed. Neckel-Kuhn; trans. Carolyn Larrington, Oxford World\'s Classics (2014)',
+        url: 'https://sacred-texts.com/neu/poe/index.htm'
+    },
+    'Gylfaginning': {
+        full: 'Gylfaginning (The Deluding of Gylfi)',
+        scope: 'Norse mythological prose',
+        year: '1220',
+        edition: 'Snorri Sturluson, Prose Edda; trans. Anthony Faulkes, Everyman / Viking Society for Northern Research',
+        url: 'http://vsnrweb-publications.org.uk/EDDArestr.pdf'
+    },
+    'Durán, Book of the Gods and Rites': {
+        full: 'Diego Durán, Book of the Gods and Rites and the Ancient Calendar',
+        scope: 'Nahuatl / Aztec religion and ritual',
+        year: '1576',
+        edition: 'Translated and edited by Fernando Horcasitas and Doris Heyden, University of Oklahoma Press (1971)',
+        url: 'https://www.worldcat.org/title/book-of-the-gods-and-rites-and-the-ancient-calendar/oclc/262620'
     }
 };
 

@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sindri — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Sindri: a living, university-curated reference on Dwarf Smith. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Sindri — Scholarly Edition",
+    "headline": "Sindri — Scholarly Edition",
+    "description": "University-curated scholarly reference for Sindri (Dwarf Smith).",
+    "url": "https://punicodex.com/sindri/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᛋᛁᚾᛏᚱᛁ",
+        "alternateName": ["sindri", "Sindri"],
+        "description": "Dwarf Smith"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/sindri.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/sindri/scholars/">
+
+    <meta property="og:title" content="Sindri — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Sindri (Dwarf Smith).">
+    <meta property="og:url" content="https://punicodex.com/sindri/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/sindri.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/sindri.jpg">
+    <meta name="twitter:title" content="Sindri — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Sindri (Dwarf Smith).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Sindri",
+      "item": "https://punicodex.com/sindri/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/sindri/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="sindri-canvas" data-effect="threecastings-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/sindri_logolockup.webp" type="image/webp"><img src="../assets/sindri_logolockup.png" alt="Sindri" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/sindri/">Sindri</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Sindri</h1>
+            <p class="scholars-subtitle reveal-up">Dwarf Smith · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Sindri.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Sindri</strong> (<em>sindri</em>) — Dwarf Smith · Sparkling — is the dwarf at the anvil in the Prose Edda's great forge-scene: brother of <a class="scholars-xlink" href="/brokkr/">Brokkr</a>, who works the bellows while Sindri works the fire, and maker of the gods' three greatest treasures — the golden-bristled boar Gullinbursti for <a class="scholars-xlink" href="/freyr/">Freyr</a>, the ring <a class="scholars-xlink" href="/draupnir/">Draupnir</a> for <a class="scholars-xlink" href="/odinn/">Óðinn</a>, and the short-handled hammer <a class="scholars-xlink" href="/mjolnir/">Mjǫllnir</a> for <a class="scholars-xlink" href="/thor/">Þórr</a> — cast in three heats to win <a class="scholars-xlink" href="/loki/">Loki</a>'s wagered head.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> The verse tradition knows a grander figure: Völuspá counts a hall of gold standing north on Niðavellir, belonging to the kindred of Sindri — a dwarf chieftain with a family and a golden house, not merely a wagered-against craftsman.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>The name is the trade. Old Norse <em>sindra</em> means 'to sparkle, throw off sparks', and <em>sindr</em> is the slag and spark of the forge — cognate with Old English <em>sinder</em> and the modern English 'cinder'. The smith is named for what his fire throws off.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup> Part of the manuscript tradition of Skáldskaparmál names <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>'s brother Eitri rather than Sindri, and the handbooks treat the two as one smith under two forge-names.</p>
+<p>PuniCodex restores the name as <strong>Sindri</strong> — identical to the ASCII input, because normalized Old Norse writes no diacritic in this name. The mechanical rule therefore places the name in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the smith. The temple is domain-less: the plain-ASCII sindri.com is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Snorri Sturluson, Edda, Skáldskaparmál 35, ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-2">Völuspá 37 (Poetic Edda), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-overview-3">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. sindr, sindra, Sindri.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>Sindri</strong> — the dwarf's name, and in modern times an unbroken Icelandic male given name. Its etymology is among the most transparent in the northern onomasticon: it is built on the forge-word <em>sindra</em>, 'to sparkle, to throw off sparks', with the noun <em>sindr</em>, 'slag, sparks from the smith's fire', beside it. The smith is the sparkler — named for the bright debris of his own work.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The Germanic cognates run straight into English: Old English <em>sinder</em>, 'slag, dross of metal', is the same word, and modern English 'cinder' is its descendant — the cooled spark of the forge surviving in every fireplace.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The ASCII form is not a fallback here but the form itself: normalized Old Norse writes six plain Latin letters and a capital. The Unicode restoration <strong>Sindri</strong> therefore preserves nothing the ASCII alphabet loses, and the mechanical rule classifies the name Tier 2 — an orthographic fact, not a judgment on the smith.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>s</strong> → <strong>S</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li></ul>
+<p>The project holds no domain for this name. The plain-ASCII <strong>sindri.com</strong> is registered to a third party outside the collection and is watched for release; this temple claims nothing it does not hold.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. sindra, Sindri.</li><li id="src-the-name-2">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. sindr, sindra; Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. Sindri.</li><li id="src-the-name-3">PuniCodex lexicon record for sindri (tier, domain status), per the project&#39;s domain registry.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈsin.dri/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Si-</strong> — Voiceless alveolar sibilant [s] and short close front unrounded [i], stressed on the first syllable as in every Old Norse word</li><li><strong>-ndri</strong> — Nasal [n] plus the epenthetic stop [d] that Old Norse grew between n and r, then trilled or tapped [r], and a final short [i], fully sounded rather than reduced to schwa</li></ul>
+<p>For the modern speaker, the closest approximation is: 'SIN-dri' — two short beats, the weight on the first, the d clicked crisply between the n and the r as in 'laundry' said fast.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Sindri, brother of <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>, maker of Gullinbursti, <a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a>, and <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a></li><li><strong>Younger Futhark</strong> — ᛋᛁᚾᛏᚱᛁ (s-i-n-t-r-i), the Viking-Age runic rendering</li><li><strong>Manuscript variant</strong> — Eitri, the name part of the Skáldskaparmál tradition gives the same smith<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Modern Icelandic</strong> — Sindri, an unbroken living male given name</li></ul>
+<p>Sindri is Tier 2 because the restoration preserves nothing the ASCII form loses: no diacritic, no distinctive letter, no vowel length. English and Old Norse write the name identically.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology and grammar.</li><li id="src-pronunciation-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Sindri, Eitri.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>Sindri</strong> — Old Norse (North Germanic), attested 13th c. CE in the Codex Regius of the Prose Edda and related codices, recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse names were carved in the Younger Futhark; no runic attestation of this theonym survives, so the manuscript form is the primary witness. The runic rendering is <strong>ᛋᛁᚾᛏᚱᛁ</strong> (s-i-n-t-r-i), a normalized phonetic reconstruction.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is a simplex, not a compound: six letters, two syllables, built on the forge-word <em>sindra</em>, 'to sparkle'.</li><li>The n-d-r cluster of the Latin spelling reflects an epenthetic stop grown between nasal and r; the Younger Futhark's undifferentiated stop rune ᛏ writes the cluster without distinguishing the voicing.</li><li>Old Norse orthography needs no diacritic here: both vowels are short i, and no distinctive letter (þ, ð, æ, ǫ) occurs in the name.</li><li>The Unicode restoration Sindri is therefore identical to the ASCII form — the restoration is a matter of canonical reference, not rescued orthography.</li><li>The name's etymology — <em>sindra</em>, 'to sparkle, throw off sparks', beside <em>sindr</em>, 'forge-slag', cognate with Old English sinder and modern English cinder — is registered in the lexica, and unlike most northern names it is not disputed.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. sindra, Sindri; Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. sindr, sindra.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Sindri</strong> is catalogued under Dwarf Smith — and the gloss is exact: the sources give him one office, one scene, and one product line, and all three are the forge.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Anvil</h3>
+<p>Sindri's station in Skáldskaparmál 35 is the forge itself: he lays the metal, chooses the heats, and takes the work out of the fire, while his brother <a class="scholars-xlink" href="/brokkr/">Brokkr</a> holds the bellows. The chapter names the forge by the pair, but the craft by the smith alone — 'Sindri feared the work would fail' is the story's one glance into a craftsman's mind.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Three Treasures</h3>
+<p>Gullinbursti for <a class="scholars-xlink" href="/freyr/">Freyr</a>, <a class="scholars-xlink" href="/draupnir/">Draupnir</a> for <a class="scholars-xlink" href="/odinn/">Óðinn</a>, <a class="scholars-xlink" href="/mjolnir/">Mjǫllnir</a> for <a class="scholars-xlink" href="/thor/">Þórr</a>: one afternoon's output, and the Æsir's judgment that the marred third piece is the finest treasure ever made. Everything the gods trust at <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a> came off his anvil.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Wager</h3>
+<p>The forge-scene is staked on <a class="scholars-xlink" href="/loki/">Loki</a>'s head, and Sindri's victory ends with the trickster's lips sewn shut with the awl-thread Vartari — the smith who cannot take his stake taking the voice that staked it.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Golden Hall</h3>
+<p>Völuspá adds what Snorri withholds: a hall of gold north on Niðavellir belonging to Sindri's kindred — the craftsman of the prose tradition revealed as a chieftain of the verse one.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Skáldskaparmál 35, trans. Faulkes (1987).</li><li id="src-domains-2">Völuspá 37 (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>The iconography of Sindri is narrative rather than cultic — the corpus gives him no temple regalia, but fixed around his one forge-scene and one eddic stanza a set of objects no retelling can omit:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The bellows</strong> — the wager's condition and the forge's heartbeat: the one tool whose failure, for a single instant, marks the hammer forever</li><li><strong>The fly that stung</strong> — <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>'s sabotage in miniature: the god who cannot win fairly trying to spoil the work, and succeeding only at the handle</li><li><strong><a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a></strong> — the ring that drips eight rings of equal weight every ninth night: wealth that renews itself, later laid on <a class="scholars-xlink" href="/baldr/">Baldr</a>'s pyre and sent back from Hel<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong><a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a>'s short handle</strong> — the flaw in perfection: the Æsir's surest defense carrying the permanent mark of the interrupted bellows-stroke</li><li><strong>The golden hall at Niðavellir</strong> — Völuspá's witness: the house of gold of Sindri's kindred in the dwarf-fields<sup class="scholars-cite"><a href="#src-symbols-3">[3]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Skáldskaparmál 35, trans. Faulkes (1987).</li><li id="src-symbols-2">Snorri Sturluson, Edda, Gylfaginning 49 (Draupnir on Baldr&#39;s pyre; its return from Hel), trans. Faulkes (1987).</li><li id="src-symbols-3">Völuspá 37 (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Sindri's mythology is one long scene in Snorri and one stanza in Völuspá — a forge and a hall.</p>
+<h3 class="scholars-h3">The Wager of the Head (Skáldskaparmál 35)</h3>
+<p>It begins with a crime: <a class="scholars-xlink" href="/loki/">Loki</a>, for mischief, cuts off all the hair of <a class="scholars-xlink" href="/sif/">Sif</a>, <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s wife. Under Þórr's hands <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> swears to get the svartálfar to make hair of gold that will grow like living hair, and he goes first to the sons of Ívaldi, who make the golden hair and two more treasures — the ship Skíðblaðnir and the spear Gungnir. Then, flushed with success, Loki goes to the dwarf <a class="scholars-xlink" href="/brokkr/">Brokkr</a> and wagers his own head that <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>'s brother Sindri cannot make three treasures just as good. The bet is the engine of the chapter: a trickster's tongue staked against a smith's hands.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Three Castings, Three Stings (Skáldskaparmál 35)</h3>
+<p>Sindri lays a pigskin in the forge and tells Brokkr to blow and never cease; a fly stings Brokkr's hand, but out comes Gullinbursti, the boar with bristles of gold. Next gold goes into the fire; the fly stings Brokkr's neck, harder, but out comes the ring <a class="scholars-xlink" href="/draupnir/">Draupnir</a>. Last, iron — and now Sindri himself fears the work will fail if the blowing falters. The fly settles between Brokkr's eyes and stings until the blood blinds him; Brokkr sweeps it away, the bellows fall silent for one instant, and the hammer that comes out has a handle short by a finger's breadth. The fly is Loki, who cannot win fairly: the sabotage succeeds exactly as far as the handle and no farther.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Judgment and the Sewn Lips (Skáldskaparmál 35)</h3>
+<p>The Æsir judge the six treasures with <a class="scholars-xlink" href="/odinn/">Óðinn</a>, <a class="scholars-xlink" href="/thor/">Þórr</a>, and <a class="scholars-xlink" href="/freyr/">Freyr</a> as assessors. The boar runs through air and sea and lights the night; the ring drips eight rings every ninth night; the hammer never misses, never breaks, always returns to the hand, and shrinks small enough to carry inside the shirt — its one fault the short handle. The judgment is unanimous: <a class="scholars-xlink" href="/mjolnir/">Mjǫllnir</a> is the best of all the treasures, and the brothers have won. Loki offers ransom, flees on his sky-shoes, is caught, and pleads his last legalism — the head was staked, but not the neck. Brokkr takes an awl instead and sews Loki's lips together; the thread is called Vartari.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Golden Hall at Niðavellir (Völuspá 37)</h3>
+<p>The verse tradition knows a grander Sindri. Völuspá counts a hall that stands north on Niðavellir, made of gold, belonging to the kindred of Sindri — beside the giant Brimir's beer-hall at Ókólnir. Here Sindri is no lone craftsman but a dwarf chieftain, the head of a family rich enough to roof its house in the metal his name throws off as sparks.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup> The dwarf þulur preserved with Skáldskaparmál keep the name in the catalogues of dwarf heiti, and the manuscript tradition splits on the forge-scene itself: where part of the tradition names Brokkr's brother Sindri, another part calls him Eitri — one smith under two forge-names.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Snorri Sturluson, Edda, Skáldskaparmál 35, trans. Faulkes (1987).</li><li id="src-mythology-2">Völuspá 37 (Poetic Edda), trans. Larrington (2014).</li><li id="src-mythology-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Sindri, Eitri; Snorri Sturluson, Edda, Skáldskaparmál, þulur (dverga heiti), trans. Faulkes (1998).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Sindri's closest kin are inside the corpus itself. His brother <a class="scholars-xlink" href="/brokkr/">Brokkr</a> is the other half of one workshop — bellows and anvil, never separated in the sources.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> <a class="scholars-xlink" href="/andvari/">Andvari</a> is the corpus's other great dwarf of the gold, but inverted: <a href="/andvari/" class="crosslink" data-crosslink="andvari">Andvari</a>'s hoard is won by robbery and carries a curse, while Sindri's gold is made in three heats and carries only a wager. Vǫlundr of Vǫlundarkviða, 'prince of elves', is the verse tradition's other smith narrative — the smith wronged who takes revenge, where Sindri is the smith wagered against who wins.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p>
+<p>Cross-culturally the comparisons are structural, not borrowed: <a class="scholars-xlink" href="/hephaistos/">Hephaistos</a>, the Greek smith who forges the gods' masterworks and is himself marred; Ilmarinen of the Kalevala, who forges the Sampo under a bargain's pressure; Goibniu of the Irish Tuatha Dé Danann, whose smith-work arms the gods for their last battle. The pattern is old — the divine weapon must come from an other-than-divine hand — but Sindri's version is the only one where the masterpiece's flaw is timed to a single held breath of the bellows.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Sindri, Brokkr, dwarfs.</li><li id="src-syncretism-2">Vǫlundarkviða (Poetic Edda), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-syncretism-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Sindri, smiths; Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Sindri.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Sindri's afterlife is the afterlife of his three treasures: every retelling of Norse myth that reaches the forging of <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a> keeps his one afternoon and its three stings — the short handle is the detail no adapter has ever dared to cut, because it is the story.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> The smith himself has had a quieter reception than his work, and much of it flows under his manuscript double: the variant name Eitri carries the same dwarf-smith into a robust modern afterlife in games and film, where the forge that made the hammer is restaged for new audiences — the inventions are modern, but the forge, the brother, and the interrupted casting are Skáldskaparmál's own.</p>
+<p>The sturdiest legacy is the name: Sindri never died out in Iceland and remains a living male given name, borne today by men who inherit the forge's spark in its plainest form.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Mjǫllnir, Sindri.</li><li id="src-cultural-legacy-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Sindri, Eitri.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Sindri is a wholly textual dwarf: no runestone invokes him, no votive deposit names him, and no image can be securely identified with him. His attestation hangs on the manuscript witnesses — the Codex Regius and related codices of Snorri's Edda for Skáldskaparmál 35, with the Codex Upsaliensis tradition reading the brother's name as Eitri, and the Codex Regius of the Poetic Edda for Völuspá's golden hall at Niðavellir.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p>
+<p>The material context is nonetheless richer for him than for most dwarfs, because his products are findable. <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a>'s-hammer pendants — <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a> in miniature — are the commonest amulets of the late Viking Age, known by the hundred from tenth-century graves, hoards, and settlement sites across Scandinavia and the diaspora: the forge's most famous casting, worn at the neck of the converted and unconverted alike.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup> Gold arm-rings of <a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a>'s type fill the hoards. And the corpus's visual language of the smithy survives on the Gotland picture stones — Ardre VIII shows a smithy scene with tools and a headless body, usually read as Vǫlundr — proof that the smith at his forge was a carved subject in the Viking-Age north, though no carving names Sindri himself.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Snorri Sturluson, Edda, ed. Anthony Faulkes (London: Viking Society for Northern Research, 1987–1998), on the manuscript witnesses; Neckel, Gustav, and Hans Kuhn, eds., Edda: Die Lieder des Codex Regius, 5th ed. (Heidelberg: Winter, 1983).</li><li id="src-archaeology-2">Davidson, Hilda R. Ellis, &#39;Thor&#39;s Hammer&#39;, Folklore 76 (1965): 1–15; Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Mjǫllnir, Thor.</li><li id="src-archaeology-3">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Vǫlundr, dwarfs.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Sindri given in this edition rests on the witnesses and reference works listed below. Skáldskaparmál 35 supplies the forge-scene and the wager; Gylfaginning 49 the ring's later history; Völuspá and Grímnismál the eddic frame; Cleasby–Vigfusson, Zoëga, and de Vries the forge-word behind the name, with Simek, Orchard, and Lindow arbitrating attestation and the Sindri/Eitri equation.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Snorri Sturluson, Edda, Skáldskaparmál 35 (the cutting of Sif's hair; the sons of Ívaldi; the wager; Sindri at the forge and <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a> at the bellows; Gullinbursti, <a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a>, and the short-handled <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a>; the judgment; Vartari), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Snorri Sturluson, Edda, Gylfaginning 49 (Draupnir laid on <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s pyre; Baldr sends it back from Hel), trans. Faulkes (1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 37 (the hall of gold of Sindri's kindred, north on Niðavellir); Grímnismál 43 (Ívaldi's sons and Skíðblaðnir).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Snorri Sturluson, Edda, Skáldskaparmál, þulur (dverga heiti), trans. Anthony Faulkes (London: Viking Society for Northern Research, 1998).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Vǫlundarkviða (Poetic Edda), trans. Larrington (2014) — the corpus's other great smith narrative.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. sindr, sindra, Sindri, Eitri, Brokkr, Draupnir, Mjǫllnir, Gullinbursti.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. Sindri, draupnir, mjǫllnir.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. sindra, Sindri (the forge-word; cognates Old English sinder, English cinder).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Sindri, Eitri, Brokkr, Mjǫllnir (attestation; the Sindri/Eitri manuscript equation).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Sindri, dwarfs.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Sindri, Brokkr, dwarfs, Mjǫllnir.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Davidson, Hilda R. Ellis, '<a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a>'s Hammer', Folklore 76 (1965): 1–15 (the archaeological record of hammer amulets).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Snorri Sturluson, Edda, Skáldskaparmál 35, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-2">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-scholarly-sources-3">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-4">Snorri Sturluson, Edda, Skáldskaparmál, þulur, trans. Faulkes (VSNR, 1998).</li><li id="src-scholarly-sources-5">Vǫlundarkviða (Poetic Edda), trans. Larrington (2014).</li><li id="src-scholarly-sources-6">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-7">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-8">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962).</li><li id="src-scholarly-sources-9">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-10">Orchard, Andy, Dictionary of Norse Myth and Legend (Cassell, 1997).</li><li id="src-scholarly-sources-11">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li><li id="src-scholarly-sources-12">Davidson, Hilda R. Ellis, &#39;Thor&#39;s Hammer&#39;, Folklore 76 (1965): 1–15.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda never stages Sindri at the forge: no surviving eddic poem shows him casting, and the wager belongs to Snorri's prose alone. What the poems supply is the grander frame the prose withholds. Völuspá, in its survey of the world's dwellings, counts a hall that stands north on Niðavellir, made of gold, belonging to the kindred of Sindri — a dwarf chieftain of the verse tradition, the head of a family with a golden house in the dwarf-fields, set in the catalogue beside the giant Brimir's beer-hall at Ókólnir.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup></p>
+<p>Grímnismál fills in the rival workshop: Ívaldi's sons, the poem says, went in days of old to make Skíðblaðnir, best of ships — the eddic witness to the treasures whose superiority provoked the wager against Sindri in the first place.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> Between the two poems the verse tradition holds both halves of the contest: the sons of Ívaldi who made the first three treasures, and the golden hall of the kindred that answered them.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Völuspá 37 (Poetic Edda), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-poetic-edda-2">Grímnismál 43 (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Sindri's whole narrative witness, and it is enough. Skáldskaparmál 35 gives him the corpus's longest unbroken scene of craft: the wager of <a class="scholars-xlink" href="/loki/">Loki</a>'s head against <a class="scholars-xlink" href="/brokkr/">Brokkr</a>'s faith in his brother, the three metals laid in the fire, the three stings, the short handle, the judgment of the Æsir, and the sewing of the trickster's lips with Vartari. Snorri's craft deserves note: in a chapter built of catalogues he stops for narrative, and the one interior sentence he grants anyone — Sindri fearing the work will fail if the blowing falters — is granted to the smith.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup></p>
+<p>Gylfaginning gives his work its later history without naming him: the ring <a class="scholars-xlink" href="/draupnir/">Draupnir</a> is laid on <a class="scholars-xlink" href="/baldr/">Baldr</a>'s pyre aboard Hringhorni, and when <a class="scholars-xlink" href="/hermod/">Hermóðr</a> rides down to ransom the dead god, <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> sends the ring back to <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> — the forge's second casting making the round trip to Hel and home again.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup> The dwarf þulur preserved with Skáldskaparmál keep Sindri in the catalogues of dwarf heiti, and the manuscript tradition itself splits on his name, part of it reading Eitri for <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>'s brother — one smith, two forge-names, the scribes unable to choose.<sup class="scholars-cite"><a href="#src-prose-edda-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Skáldskaparmál 35, trans. Faulkes (1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-prose-edda-3">Snorri Sturluson, Edda, Skáldskaparmál, þulur (dverga heiti), trans. Anthony Faulkes (London: Viking Society for Northern Research, 1998); Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Sindri, Eitri.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The runic corpus contains no invocation of the dwarf Sindri. No runestone asks his favour, no amulet bears his name, and no inscription yet found links a dedicant to his cult — a silence he shares with virtually every dwarf in the corpus and one that marks him as a figure of the literary-mythological tradition rather than an independently culted being.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What can be said runologically is the rendering itself: in the Younger Futhark the name would have been carved ᛋᛁᚾᛏᚱᛁ (s-i-n-t-r-i), a normalized phonetic reconstruction. The short-twig row's stop runes do not distinguish voiced from voiceless, so the ᛏ (<a href="/tyr/" class="crosslink" data-crosslink="tyr">Týr</a>) rune writes the cluster that the Latin spelling gives as n-d-r — the epenthetic stop Old Norse grew between nasal and r is exactly the sound a single undifferentiated rune was built to carry. No Viking-Age carving of the theonym is known; the manuscript spelling of the Eddas remains the primary witness.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. dwarfs.</li><li id="src-runic-evidence-2">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957), runic appendix.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, Sindri's medieval afterlife is thin, and the record should say so plainly. The fornaldarsǫgur and chivalric sagas know dwarfs well — as smiths, treasure-keepers, and reluctant helpers of heroes — but they do not stage Sindri himself; his one afternoon at the forge belongs to Snorri's telling, and the legendary tradition borrowed the motif of the dwarf-forged weapon without borrowing the dwarf's name.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup></p>
+<p>His second medieval life is instead scribal. The manuscript tradition of Skáldskaparmál itself splits on the smith's name: where the Codex Regius line names <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>'s brother Sindri, the Codex Upsaliensis tradition reads Eitri — 'the venomous one', from eitr, 'poison' — and the handbooks treat the two as one smith under two forge-names.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup> The variant is not a confusion to be cleaned up but a fact of transmission: the medieval Icelanders who copied the forge-scene were already telling it with two names, and this temple keeps both in the record while restoring the elder and better-attested one.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. dwarfs.</li><li id="src-sagas-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Sindri, Eitri.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Sindri is the Edda's shortest sermon on how perfection fails. The gods' three greatest treasures are made in one afternoon by a smith whose name is a forge-word for sparks, and two of them are flawless. The third — the best, the one the Æsir will trust in the last battle — is marred by a single instant: a fly, an eyelid, a held breath of the bellows, and the handle is short forever.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>The tradition does not call the hammer ruined; it calls it the finest thing ever forged, short handle and all. That is the forge's verdict and the story's mercy: the masterpiece is not the work that never faltered but the work that survived its interruption. <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> wins the sting and loses the wager. Sindri wins everything except the head he was promised — and takes the trickster's voice instead, one stitch at a time, with an awl.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Snorri Sturluson, Edda, Skáldskaparmál 35, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Sindri</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᛋᛁᚾᛏᚱᛁ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'sindri';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

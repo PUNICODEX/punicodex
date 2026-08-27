@@ -653,11 +653,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Japanese characters",
     "scriptLabel": "Original Script"
   },
-  "susano": {
-    "originalScript": "須佐之男",
-    "scriptName": "Japanese characters",
-    "scriptLabel": "Original Script"
-  },
   "tsukuyomi": {
     "originalScript": "月読",
     "scriptName": "Japanese characters",
@@ -2083,11 +2078,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Greek",
     "scriptLabel": "Original Script"
   },
-  "jadeemperor": {
-    "originalScript": "玉皇",
-    "scriptName": "Chinese characters",
-    "scriptLabel": "Original Script"
-  },
   "guanyin": {
     "originalScript": "觀音",
     "scriptName": "Chinese characters",
@@ -2204,7 +2194,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "sunwukong": {
-    "originalScript": "孫悟空",
+    "originalScript": "孙悟空",
     "scriptName": "Chinese characters",
     "scriptLabel": "Original Script"
   },
@@ -2335,11 +2325,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   },
   "ismene": {
     "originalScript": "Ἰσμήνη",
-    "scriptName": "Greek",
-    "scriptLabel": "Original Script"
-  },
-  "oedipus": {
-    "originalScript": "Οἰδίπους",
     "scriptName": "Greek",
     "scriptLabel": "Original Script"
   },
@@ -3046,11 +3031,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "alalu": {
     "originalScript": "𒀭𒀀𒆷𒇻",
     "scriptName": "Cuneiform (Hittite/Hurrian cycle)",
-    "scriptLabel": "Original Script"
-  },
-  "confucius": {
-    "originalScript": "孔子",
-    "scriptName": "Chinese characters",
     "scriptLabel": "Original Script"
   },
   "mencius": {
@@ -3891,6 +3871,51 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "zhongkui": {
     "originalScript": "鍾馗",
     "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "omphalos": {
+    "originalScript": "ὀμφαλός",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "keraunos": {
+    "originalScript": "κεραυνός",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "susanoo": {
+    "originalScript": "須佐之男命",
+    "scriptName": "Japanese characters",
+    "scriptLabel": "Original Script"
+  },
+  "oidipous": {
+    "originalScript": "Οἰδίπους",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "kongzi": {
+    "originalScript": "孔子",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "yuhuang": {
+    "originalScript": "玉皇",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "kratos": {
+    "originalScript": "Κράτος",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
+  },
+  "shangdi": {
+    "originalScript": "上帝",
+    "scriptName": "Chinese characters",
+    "scriptLabel": "Original Script"
+  },
+  "jagannatha": {
+    "originalScript": "जगन्नाथ",
+    "scriptName": "Devanagari",
     "scriptLabel": "Original Script"
   }
 };

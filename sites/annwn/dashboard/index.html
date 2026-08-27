@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Temple Dashboard — PUNICODEX</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <script src="/vendor/chartjs/chart.umd.min.js"></script>
+    <style>
+        :root {
+            --bg: #080e19;
+            --bg-elevated: #0e1a2b;
+            --bg-card: #121f33;
+            --gold: #228B22;
+            --gold-dim: #1A6B1A;
+            --gold-bright: #32CD32;
+            --secondary: #B8D4E3;
+            --text: #e8e4dc;
+            --text-muted: #7a8a9e;
+            --success: #4ade80;
+            --danger: #ff6b6b;
+            --warning: #fbbf24;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+        .dash-header {
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--gold-dim);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .dash-header h1, .dash-header .dash-page-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+        .dash-header p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .dash-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .dash-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        .dash-card-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .dash-card-value {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .dash-card-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        .dash-section {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .dash-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .dash-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-left: 1rem;
+        }
+        .dash-status-live { background: rgba(74,222,128,0.1); color: var(--success); border: 1px solid rgba(74,222,128,0.2); }
+        .dash-status-pending { background: rgba(251,191,36,0.1); color: var(--warning); border: 1px solid rgba(251,191,36,0.2); }
+        .dash-status-ended { background: rgba(255,255,255,0.05); color: var(--text-muted); }
+        .dash-preview {
+            background: linear-gradient(145deg, rgba(14,26,43,0.92), rgba(8,15,25,0.97));
+            border: 1px solid var(--gold-dim);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            margin-bottom: 1rem;
+        }
+        .dash-preview img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            display: block;
+        }
+        .dash-preview.placeholder {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 2rem;
+            text-align: center;
+        }
+        .dash-form-label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin: 1rem 0 0.5rem;
+        }
+        .dash-form-label:first-child { margin-top: 0; }
+        .dash-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .dash-input:focus { border-color: var(--gold); }
+        .dash-placement-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .dash-placement-row span { color: var(--text-muted); }
+        .dash-placement-row strong { color: var(--text); font-weight: 500; text-align: right; overflow-wrap: anywhere; }
+        .dash-btn {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .dash-btn:hover { opacity: 0.9; }
+        .dash-btn--secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold-dim);
+        }
+        .dash-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .dash-notice {
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .dash-notice--pending { background: rgba(251,191,36,0.08); color: var(--warning); border: 1px solid rgba(251,191,36,0.15); }
+        .dash-notice--error { background: rgba(255,107,107,0.08); color: var(--danger); border: 1px solid rgba(255,107,107,0.15); }
+        .dash-notice--success { background: rgba(74,222,128,0.08); color: var(--success); border: 1px solid rgba(74,222,128,0.15); }
+        .chart-container { position: relative; height: 260px; }
+        .bundle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .bundle-slot {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .bundle-slot-header {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .bundle-slot-name { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); }
+        .bundle-slot-dims { font-size: 0.65rem; color: var(--text-muted); }
+        .bundle-slot-creative {
+            background: linear-gradient(145deg, rgba(14,26,43,0.92), rgba(8,15,25,0.97));
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .bundle-slot-creative img { max-width: 100%; max-height: 180px; object-fit: contain; display: block; }
+        .bundle-slot-creative.placeholder { color: var(--text-muted); font-size: 0.75rem; padding: 1.5rem; text-align: center; }
+        .bundle-slot-actions { padding: 0.75rem 1rem; display: flex; gap: 0.5rem; }
+        .bundle-slot-btn {
+            flex: 1;
+            padding: 0.45rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .dash-header { padding: 1rem; }
+            .dash-container { padding: 1rem; }
+            .bundle-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Annwn",
+      "item": "https://punicodex.com/annwn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Dashboard",
+      "item": "https://punicodex.com/annwn/dashboard/"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+    <h1 class="sr-only" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">punicodex.com/annwn Sponsorship Dashboard</h1>
+    <div id="app">
+        <div class="dash-empty" style="text-align:center;padding:4rem 2rem;color:var(--text-muted);">
+            <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:0.5rem;">Loading Dashboard...</h2>
+            <p>Please wait while we fetch your analytics.</p>
+        </div>
+    </div>
+
+    <!-- (Read-only by design: placement management lives in the advertiser panel.) -->
+
+    <script>
+        const API_BASE = window.PUNICODEX_API_BASE || '';
+        const token = new URLSearchParams(window.location.search).get('token');
+        const SITE_SLUG = 'annwn';
+
+        let chartInstance = null;
+        let currentBooking = null;
+        let slotCreatives = [];
+
+        const SLOT_DEFINITIONS = [
+            { id: 1, name: 'Crown Banner', dims: '1200 × 400' },
+            { id: 2, name: 'Prime Box A', dims: '600 × 600' },
+            { id: 3, name: 'Prime Box B', dims: '600 × 600' },
+            { id: 4, name: 'Upper Banner', dims: '1200 × 400' },
+            { id: 5, name: 'Mid Box A', dims: '600 × 600' },
+            { id: 6, name: 'Mid Box B', dims: '600 × 600' },
+            { id: 7, name: 'Center Banner', dims: '1200 × 400' },
+            { id: 8, name: 'Lower Box A', dims: '600 × 600' },
+            { id: 9, name: 'Lower Box B', dims: '600 × 600' },
+            { id: 10, name: 'Deep Banner', dims: '1200 × 400' },
+            { id: 11, name: 'Base Box A', dims: '600 × 600' },
+            { id: 12, name: 'Base Box B', dims: '600 × 600' },
+            { id: 13, name: 'Foundation Banner', dims: '1200 × 400' },
+        ];
+
+        async function api(path, opts = {}) {
+            const res = await fetch(`${API_BASE}${path}`, {
+                ...opts,
+                headers: { 'Content-Type': 'application/json', ...opts.headers }
+            });
+            return res.json();
+        }
+
+        async function fetchDashboard() {
+            if (!token) {
+                renderError('No access token provided.');
+                return;
+            }
+            try {
+                const res = await fetch(`${API_BASE}/api/analytics/dashboard/?token=${token}`);
+                const data = await res.json();
+                if (data.error) {
+                    renderError(data.error);
+                    return;
+                }
+                currentBooking = data.booking;
+                if (currentBooking.is_bundle) {
+                    const sc = await api(`/api/bookings/${token}/slots`);
+                    slotCreatives = sc && sc.creatives ? sc.creatives : [];
+                }
+                render(data);
+            } catch (err) {
+                renderError('Failed to load dashboard.');
+            }
+        }
+
+        function renderError(msg) {
+            document.getElementById('app').innerHTML = `
+                <div class="dash-empty" style="text-align:center;padding:4rem 2rem;color:var(--text-muted);">
+                    <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:0.5rem;">Dashboard Unavailable</h2>
+                    <p>${msg}</p>
+                </div>
+            `;
+        }
+
+        function getStatusClass(status) {
+            if (status === 'live') return 'dash-status-live';
+            if (status === 'ended') return 'dash-status-ended';
+            return 'dash-status-pending';
+        }
+
+        function getTimeLeft(endIso) {
+            const diff = new Date(endIso) - Date.now();
+            if (diff <= 0) return 'Expired';
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            return days > 0 ? `${days}d ${hours}h` : `${hours}h`;
+        }
+
+        function render(data) {
+            const b = data.booking;
+            const m = data.metrics;
+            const statusClass = getStatusClass(b.status);
+            const timeLeft = b.ends_at ? getTimeLeft(b.ends_at) : 'N/A';
+
+            const dailyMap = {};
+            m.daily.forEach(d => {
+                if (!dailyMap[d.day]) dailyMap[d.day] = { impressions: 0, clicks: 0 };
+                dailyMap[d.day][d.event_type === 'impression' ? 'impressions' : 'clicks'] = d.count;
+            });
+            const labels = Object.keys(dailyMap).sort().slice(-30);
+            const impData = labels.map(d => dailyMap[d]?.impressions || 0);
+            const clickData = labels.map(d => dailyMap[d]?.clicks || 0);
+
+            document.getElementById('app').innerHTML = `
+                <div class="dash-header">
+                    <div>
+                        <p class="dash-page-title">${b.company_name || 'Temple'} Dashboard</p>
+                        <p>${b.slot_name} &middot; ${b.width}×${b.height}px &middot; https://punicodex.com/annwn</p>
+                    </div>
+                    <span class="dash-status ${statusClass}">${b.status.replace(/_/g, ' ').toUpperCase()}</span>
+                </div>
+                <div class="dash-container">
+                    <div class="dash-grid">
+                        <div class="dash-card">
+                            <div class="dash-card-label">Impressions</div>
+                            <div class="dash-card-value">${m.totalImpressions.toLocaleString()}</div>
+                            <div class="dash-card-sub">${m.uniqueImpressions.toLocaleString()} unique</div>
+                        </div>
+                        <div class="dash-card">
+                            <div class="dash-card-label">Clicks</div>
+                            <div class="dash-card-value">${m.totalClicks.toLocaleString()}</div>
+                            <div class="dash-card-sub">CTR: ${m.ctr}%</div>
+                        </div>
+                        <div class="dash-card">
+                            <div class="dash-card-label">Time Remaining</div>
+                            <div class="dash-card-value" style="font-size:1.4rem;">${timeLeft}</div>
+                            <div class="dash-card-sub">${b.ends_at ? new Date(b.ends_at).toLocaleDateString() : '—'}</div>
+                        </div>
+                    </div>
+
+                    <div class="dash-section">
+                        <h2>Performance (Last 30 Days)</h2>
+                        <div class="chart-container">
+                            <canvas id="dashChart"></canvas>
+                        </div>
+                    </div>
+
+                    ${b.status !== 'ended' && b.status !== 'canceled' ? `
+                    <div class="dash-section">
+                        <h2>Your Placement</h2>
+                        ${b.custom_heading ? `<div class="dash-placement-row"><span>Heading</span><strong>${escapeHtml(b.custom_heading)}</strong></div>` : ''}
+                        ${b.custom_subtitle ? `<div class="dash-placement-row"><span>Subtitle</span><strong>${escapeHtml(b.custom_subtitle)}</strong></div>` : ''}
+                        ${b.website_url ? `<div class="dash-placement-row"><span>Destination</span><strong>${escapeHtml(b.website_url)}</strong></div>` : ''}
+                        <div class="dash-placement-row"><span>Status</span><strong>${escapeHtml(b.status)}</strong></div>
+                        <p style="font-size:0.85rem;color:var(--text-muted);margin:1rem 0 0;">To change your creative, heading, or destination URL, sign in to the advertiser panel — it manages every placement on your account.</p>
+                        <div class="dash-actions">
+                            <a class="dash-btn" href="/account/login/">Open the advertiser panel →</a>
+                        </div>
+                    </div>
+                    ` : ''}
+
+                    <div class="dash-section">
+                        <h2>Creative Preview</h2>
+                        <div class="dash-preview ${b.creative_path ? '' : 'placeholder'}">
+                            ${b.creative_path ? pictureTag(b.creative_path, b.creative_webp_path, 'Creative') : 'No creative uploaded'}
+                        </div>
+                    </div>
+
+                    ${b.is_bundle ? renderBundleSlots(b) : ''}
+                </div>
+            `;
+
+            initChart(labels, impData, clickData);
+        }
+
+        function pictureTag(path, webpPath, alt) {
+            const resolved = /^https?:\/\//.test(path) ? path : `${API_BASE}${path}`;
+            const img = `<img src="${resolved}" alt="${alt}">`;
+            return webpPath
+                ? `<picture><source type="image/webp" srcset="${API_BASE}${webpPath}">${img}</picture>`
+                : img;
+        }
+
+        function renderBundleSlots(b) {
+            const creativeMap = {};
+            slotCreatives.forEach(c => { creativeMap[c.slot_id] = c; });
+            const slotGrid = SLOT_DEFINITIONS.map(s => {
+                const sc = creativeMap[s.id];
+                const slotCreative = sc && sc.creative_path
+                    ? pictureTag(sc.creative_path, sc.creative_webp_path, s.name)
+                    : '<div class="bundle-slot-creative placeholder">No creative</div>';
+                return `
+                    <div class="bundle-slot">
+                        <div class="bundle-slot-header">
+                            <div>
+                                <div class="bundle-slot-name">${s.name}</div>
+                                <div class="bundle-slot-dims">${s.dims}</div>
+                            </div>
+                        </div>
+                        <div class="bundle-slot-creative">${slotCreative}</div>
+                    </div>
+                `;
+            }).join('');
+            return `
+                <div class="dash-section">
+                    <h2>Bundle Slots</h2>
+                    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">Your current creative on each of the 13 slots. To change any of them, use the advertiser panel.</p>
+                    <div class="bundle-grid">${slotGrid}</div>
+                </div>
+            `;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function initChart(labels, impData, clickData) {
+            const ctx = document.getElementById('dashChart');
+            if (!ctx) return;
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels.map(d => d.slice(5)),
+                    datasets: [
+                        {
+                            label: 'Impressions',
+                            data: impData,
+                            borderColor: 'var(--gold)',
+                            backgroundColor: 'rgba(212,175,55,0.08)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 2,
+                        },
+                        {
+                            label: 'Clicks',
+                            data: clickData,
+                            borderColor: '#4ade80',
+                            backgroundColor: 'rgba(74,222,128,0.08)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 2,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#7a8a9e', font: { size: 11 } } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#7a8a9e', maxTicksLimit: 10 }, grid: { color: 'rgba(255,255,255,0.03)' } },
+                        y: { ticks: { color: '#7a8a9e' }, grid: { color: 'rgba(255,255,255,0.03)' } },
+                    }
+                }
+            });
+        }
+
+        fetchDashboard();
+    </script>
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+</body>
+</html>

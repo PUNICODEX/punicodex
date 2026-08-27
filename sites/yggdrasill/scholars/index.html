@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yggdrasill — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Yggdrasill: a living, university-curated reference on World Tree. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Yggdrasill — Scholarly Edition",
+    "headline": "Yggdrasill — Scholarly Edition",
+    "description": "University-curated scholarly reference for Yggdrasill (World Tree).",
+    "url": "https://punicodex.com/yggdrasill/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᚢᚴᚴᛏᚱᛅᛋᛁᛚᛚ",
+        "alternateName": ["yggdrasill", "Yggdrasill"],
+        "description": "World Tree"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/yggdrasill.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/yggdrasill/scholars/">
+
+    <meta property="og:title" content="Yggdrasill — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Yggdrasill (World Tree).">
+    <meta property="og:url" content="https://punicodex.com/yggdrasill/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/yggdrasill.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/yggdrasill.jpg">
+    <meta name="twitter:title" content="Yggdrasill — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Yggdrasill (World Tree).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Yggdrasill",
+      "item": "https://punicodex.com/yggdrasill/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/yggdrasill/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="yggdrasill-canvas" data-effect="worldash-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/yggdrasill_logolockup.webp" type="image/webp"><img src="../assets/yggdrasill_logolockup.png" alt="Yggdrasill" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/yggdrasill/">Yggdrasill</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Yggdrasill</h1>
+            <p class="scholars-subtitle reveal-up">World Tree · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Yggdrasill.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Yggdrasill</strong> (<em>yggdrasill</em>) — World Tree · Ygg's horse (Odin's gallows) — is the great ash at the center of the Norse cosmos: not a god and not a place but the frame on which all gods and all places hang. Völuspá's seeress sees it before almost anything else — the towering ash, sprinkled with white clay, dews falling from its branches into the dales, standing ever green over <a href="/urdr/" class="crosslink" data-crosslink="urdr">Urðr</a>'s well — and beneath it the three norns who lay down laws and allot life.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The name itself is the tradition's darkest compression: Yggr, 'the Terrible', is an attested heiti of <a class="scholars-xlink" href="/odinn/">Óðinn</a>, and drasill is the poets' word for a horse — 'Yggr's steed', the gallows the hanged god rides, in the kenning-logic Hávamál's nine-night hanging made unforgettable. The axis of the universe is named for an execution, and specifically for the death a god inflicted on himself to buy the runes.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p>
+<p>Three roots run from the tree to three wells: to Urðarbrunnr in heaven, where the Æsir ride daily over <a class="scholars-xlink" href="/bifrost/">Bifröst</a> to hold court; to <a class="scholars-xlink" href="/mimir/">Mímir</a>'s well among the frost-giants, where wisdom is hidden and <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> pledged an eye; to Hvergelmir in <a class="scholars-xlink" href="/niflheimr/">Niflheimr</a>, where the serpent Níðhöggr gnaws.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> PuniCodex restores the name as <strong>Yggdrasill</strong> — identical to the ASCII input, because normalized Old Norse writes no diacritic in this name; the mechanical rule therefore places it in Tier 2, a statement about orthography and never about the concept. The temple is domain-less: the project holds no form of the name, and yggdrasill.com is watched for release.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 2 and 19–20; Hávamál 138–141.</li><li id="src-overview-2">Snorri Sturluson, Edda, Gylfaginning 15–16, ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-3">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. Yggdrasill; Cleasby &amp; Vigfússon, s.vv. Yggr, drasill.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>Yggdrasill</strong>, almost always in the fuller phrase <em>askr Yggdrasills</em>, 'the ash of Yggdrasill'. Its etymology is the secure kind, for once: Yggr, 'the Terrible One', is a standard <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>-heiti, and drasill is a poetic word for 'horse' — so 'Yggr's horse'.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The sense is completed by the old kenning-pattern in which the gallows is the hanged man's steed: the tree is the horse Óðinn rode when he hung nine nights, 'given to Óðinn, myself to myself'. A minority scholarly line has probed other derivations, and de Vries registers the debates without overturning the consensus; the poems' own theology — the windy tree, the hanging, the runes — argues for the gallows.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The ASCII form is not a fallback here but the form itself: normalized Old Norse writes ten plain Latin letters and a capital. The Unicode restoration <strong>Yggdrasill</strong> therefore preserves nothing the ASCII alphabet loses, and the mechanical rule classifies the name Tier 2 — an orthographic fact, not a judgment on the world tree.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>y</strong> → <strong>Y</strong> — Same, capitalized</li><li><strong>g</strong> → <strong>g</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>s</strong> → <strong>s</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li></ul>
+<p>The project holds no domain for this name. The plain-ASCII <strong>yggdrasill.com</strong> is watched for release; this temple claims nothing it does not hold.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.vv. Yggdrasill, drasill, Yggr.</li><li id="src-the-name-2">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. Yggdrasill; Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Yggdrasil.</li><li id="src-the-name-3">PuniCodex lexicon record for yggdrasill (tier, domain status), per the project&#39;s domain registry.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈyɡː.drɑ.silː/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Y-</strong> — Close front rounded [y], as in German ü, stressed on the first syllable as in every Old Norse word; the letter is a vowel here, never the English consonant 'y'</li><li><strong>-gg-</strong> — The geminate voiced velar stop [ɡː], held long across the syllable boundary, as in modern Icelandic</li><li><strong>-dr-</strong> — The onset cluster [dr] opening the second element — drasill, the poets' word for 'horse'<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>-a-</strong> — Short open back unrounded [ɑ], held brief — Old Norse short a, not long á</li><li><strong>-sill</strong> — Voiceless sibilant [s], short close front [i], and the geminate lateral [lː] closing the word, fully sounded</li></ul>
+<p>For the modern speaker, the closest approximation is: 'UEG-drah-sill' — the first vowel rounded like German ü, the double g and double l each held a fraction long.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Yggdrasill, usually askr Yggdrasills, 'the ash of Yggdrasill'; also mjötviðr, 'measuring tree', in Völuspá 2<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></li><li><strong>Younger Futhark</strong> — ᚢᚴᚴᛏᚱᛅᛋᛁᛚᛚ (ukktrasill), the normalized Viking-Age runic rendering</li><li><strong>Learned Latin-script</strong> — Yggdrasil, with a single l, the standard modern scholarly simplification in English and German handbooks</li><li><strong>Modern Icelandic</strong> — Yggdrasill, the unbroken living form</li></ul>
+<p>Yggdrasill is Tier 2 because the restoration preserves nothing the ASCII form loses: no diacritic, no distinctive letter, no vowel length. English and Old Norse write the name identically.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology and grammar.</li><li id="src-pronunciation-2">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.vv. drasill, Yggr.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>Yggdrasill</strong> — Old Norse (North Germanic), attested 13th c. CE in the Codex Regius of the Poetic Edda and the chief codices of the Prose Edda, recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse names were carved in the Younger Futhark; no runic attestation of this name survives, so the manuscript form is the primary witness. The runic rendering is <strong>ᚢᚴᚴᛏᚱᛅᛋᛁᛚᛚ</strong> (ukktrasill).</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is a compound: Yggr ('the Terrible', an <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>-heiti) + drasill (poetic 'horse') — 'Yggr's horse', the gallows-steed.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/, so the initial Y- needs no special rune.</li><li>ᚴ (kaun) writes both /k/ and /g/ (and the ng cluster), so the geminate gg surfaces as kk in the runic row.</li><li>ᛏ (<a href="/tyr/" class="crosslink" data-crosslink="tyr">Týr</a>) writes both /t/ and /d/, so the d of drasill appears as t.</li><li>The spelling ukktrasill is a normalized phonetic reconstruction; Younger Futhark does not distinguish voiced/voiceless stops or separate short and long vowels.</li><li>Old Norse orthography needs no diacritic in the Latin form either: the vowels are short, and no distinctive letter (þ, ð, æ, ǫ) occurs in the name. The Unicode restoration Yggdrasill is therefore identical to the ASCII form — the restoration is a matter of canonical reference, not rescued orthography.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. Yggdrasill; Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.vv. Yggdrasill, drasill, Yggr.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Yggdrasill</strong> is catalogued under World Tree — and the heading is exact: the sources give it no personality, no cult-statue, no priesthood, only structure. Everything the tradition knows about the arrangement of existence is hung on this one ash.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Axis of the Nine Worlds</h3>
+<p>Snorri calls it the chief sanctuary of the gods, greatest and best of all trees: its branches spread over the whole world and reach above the sky, and Völuspá's seeress remembers nine worlds and the measuring tree beneath the earth before she remembers anything else. The cosmos is not a map in the Eddas; it is a tree.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Fate</h3>
+<p>At <a href="/urdr/" class="crosslink" data-crosslink="urdr">Urðr</a>'s well, under the root that runs to heaven, the norns — Urðr, <a href="/verdandi/" class="crosslink" data-crosslink="verdandi">Verðandi</a>, <a href="/skuld/" class="crosslink" data-crosslink="skuld">Skuld</a> — lay down laws and allot the lives of men, and daily pour water and white clay over the roots so the tree shall not wither. Destiny in this tradition is not written in a book; it is watered like a garden.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Wisdom</h3>
+<p>The second root runs to <a class="scholars-xlink" href="/mimir/">Mímir</a>'s well, where wisdom and understanding are hidden, and where <a class="scholars-xlink" href="/odinn/">Óðinn</a> left an eye as a pledge for one drink. The tree draws its life partly from the cost of knowledge.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Sacrifice</h3>
+<p>The name remembers the gallows: Hávamál's windy tree, the spear-wound, the nine nights, the runes taken up screaming. The axis of the world is consecrated by a death that was also a self-offering.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Endurance</h3>
+<p>Grímnismál's verdict is the darkest said of any tree: the ash of Yggdrasill suffers more agony than men know — bitten from above, rotting at the sides, gnawed from below — and still stands. Order, for the North, is not the absence of damage but the refusal to fall.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 2, 19; Grímnismál 35; Hávamál 138.</li><li id="src-domains-2">Snorri Sturluson, Edda, Gylfaginning 15–16, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>The iconography of Yggdrasill is structural rather than cultic — the corpus gives it no temple regalia, but fixed around the tree a set of creatures and waters no retelling can omit:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></p>
+<ul class="scholars-list"><li><strong>The great ash</strong> — askr Yggdrasills: the axis that holds the nine worlds, greatest and best of trees</li><li><strong>The white clay and the dew</strong> — the shining loam the norns spread on the roots, and the dews that fall from the branches into the dales: the tree as the weather of the world</li><li><strong>The eagle and the hawk</strong> — the wise unnamed eagle in the crown, with Veðrfölnir sitting between its eyes: knowledge perched at the top of the world</li><li><strong><a href="/ratatoskr/" class="crosslink" data-crosslink="ratatoskr">Ratatoskr</a></strong> — the squirrel bearing words of spite between the eagle above and Níðhöggr below: communication as mischief<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></li><li><strong>The four stags</strong> — Dáinn, Dvalinn, Duneyrr, Duraþrór, browsing the highest shoots: the living world feeding on its own frame</li><li><strong>Níðhöggr</strong> — the serpent gnawing the root beneath <a href="/niflheimr/" class="crosslink" data-crosslink="niflheimr">Niflheimr</a>, with more snakes than any man can count: entropy working at the foundation</li><li><strong>The well of <a href="/urdr/" class="crosslink" data-crosslink="urdr">Urðr</a></strong> — where the norns shape fate and the Æsir ride over <a class="scholars-xlink" href="/bifrost/">Bifröst</a> to hold their þing: law and destiny at the tree's foot<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Grímnismál 31–35; Völuspá 19.</li><li id="src-symbols-2">Snorri Sturluson, Edda, Gylfaginning 15–16, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Yggdrasill has no adventures — it is the stage on which all adventures happen. The sources do not tell stories about the tree so much as take attendance at it, each witness from a different height of the cosmos.</p>
+<h3 class="scholars-h3">The Seeress's First Vision (Völuspá 19–20)</h3>
+<p>Reciting the world's history to <a class="scholars-xlink" href="/odinn/">Óðinn</a>, the seeress comes to the tree before almost anything else: 'An ash I know standing, called Yggdrasill, a high tree, sprinkled with white clay; from it come the dews that fall in the dales; it stands ever green over <a href="/urdr/" class="crosslink" data-crosslink="urdr">Urðr</a>'s well.' Beneath it come the three maidens — Urðr, <a href="/verdandi/" class="crosslink" data-crosslink="verdandi">Verðandi</a>, <a href="/skuld/" class="crosslink" data-crosslink="skuld">Skuld</a> — who carve on slips of wood and lay down laws, allotting life to the children of men. Earlier still she had remembered nine worlds and the mjötviðr, the measuring tree, beneath the earth: the frame was there before the filling.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Nine Nights on the Windy Tree (Hávamál 138–141)</h3>
+<p>Hávamál never names Yggdrasill, but the tradition has always read its most terrible stanzas onto it: 'I know that I hung on the windy tree nine whole nights, wounded by the spear, given to <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, myself to myself, on that tree of which no man knows from what roots it rises.' No bread fed him, no horn refreshed him; he peered downward, took up the runes screaming, and fell back. The name is the commentary — Yggr's horse is the gallows-steed of the hanged god.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Burden of the Ash (Grímnismál 29–35)</h3>
+<p>Bound between the fires, Óðinn recites the tree's census: three roots running to the Æsir, to the frost-giants, and over <a href="/niflheimr/" class="crosslink" data-crosslink="niflheimr">Niflheimr</a> where Hvergelmir boils; the eagle in the branches with Veðrfölnir between its eyes; <a href="/ratatoskr/" class="crosslink" data-crosslink="ratatoskr">Ratatoskr</a> running between the eagle and the gnawing Níðhöggr; the four stags biting the highest shoots. Then the verdict: 'The ash of Yggdrasill suffers more agony than men know — a stag bites it from above, its sides are rotting, Níðhöggr gnaws it from below.'<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Snorri's Map of the Worlds (Gylfaginning 15–16)</h3>
+<p>Snorri systematizes what the poems scatter: the chief sanctuary of the gods, its branches over the whole world; the root at Urðr's well where the Æsir hold court daily, riding over <a class="scholars-xlink" href="/bifrost/">Bifröst</a>; the root at <a class="scholars-xlink" href="/mimir/">Mímir</a>'s well where Óðinn pledged his eye; the root over Hvergelmir. The norns water the tree from the well with its white clay so it shall not wither, and the dew that falls from it men call honey-dew. Snorri's cosmology ends in hygiene: the tree must be watered, or the world dries out.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Tree at Ragnarök (Völuspá 47; Vafþrúðnismál 44–45)</h3>
+<p>When the end comes, the seeress gives the tree one line of pure dread: 'Yggdrasill's ash shudders as it stands, the old tree groans, and the giant slips free.' The cosmos announces its collapse through its axis — by trembling, not by falling. Vafþrúðnismál looks past the fire: Líf and Lífþrasir hide in Hodd-<a href="/mimir/" class="crosslink" data-crosslink="mimir">Mímir</a>'s wood through Fimbulvetr, living on morning dews, and from them the new mankind springs — the tree named for a gallows ending as the refuge of the living.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Mímameiðr (Fjölsvinnsmál 19–26)</h3>
+<p>The late eddic Svipdagsmál gives the tree a sister-image: Mímameiðr, 'Mímir's tree', whose branches spread over every land, which no fire nor iron harms, and from whose fruit women in childbirth are helped — the world tree read through the lens of wonder-tale, proof the image kept growing after the classical poems.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 2, 19–20, 47; Grímnismál 29–35; Hávamál 138–141; Vafþrúðnismál 44–45.</li><li id="src-mythology-2">Snorri Sturluson, Edda, Gylfaginning 8 and 15–16, trans. Faulkes (1987).</li><li id="src-mythology-3">Fjölsvinnsmál 19–26 (Svipdagsmál), in The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Yggdrasill's truest parallels are cultic, and the closest stands at <a class="scholars-xlink" href="/uppsala/">Uppsala</a>. Adam of Bremen, writing about 1075 from the reports of eyewitnesses at the Danish court, describes beside the temple a great tree, evergreen in winter and summer, its species unknown, with a spring into which human sacrifices were plunged — a living cult-tree of exactly the kind the poems mythologize.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> Tacitus, a thousand years of habit earlier, reports the sacred grove of the Semnones, entered only bound in cords, where the Germanic peoples believed their race began: the pattern of the world-centering tree and grove is old in the North.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p>
+<p>Cross-culturally, nineteenth-century mythographers ranged Yggdrasill beside every axis-tree of Eurasia — the shamanic world-trees of Siberia, the bodhi tree, the garden trees of Eden — and modern handbooks keep the comparisons while lowering the confidence: the world-tree motif is broadly Eurasian, but the specifically Norse details — the hanged god, the wells of fate and wisdom, the census of creatures — are native growth.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup> The Hávamál hanging itself has been read both as a genuine sacrificial self-immolation and, by older scholars, as an echo of the crucifixion; current scholarship is cautious, noting that 'myself to myself' resists any simple Christian gloss. What can be said cleanly is that no other tradition's world-tree is named for a gallows, and none keeps its fate and its wisdom in wells at its roots.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum IV.26–27, trans. Francis J. Tschan (New York: Columbia University Press, 1959).</li><li id="src-syncretism-2">Tacitus, Germania 39 (the grove of the Semnones), ed. and trans. J. B. Rives (Oxford: Clarendon Press, 1999).</li><li id="src-syncretism-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Yggdrasil; Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Yggdrasill.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Yggdrasill's modern afterlife begins with the romantic rediscovery of the Eddas and hardens into icon with Wagner: in the Ring cycle the Welt-Esche, the World Ash, anchors the whole drama — Wotan has torn a branch from it to make the spear on which the treaties are carved, the tree withers when the wellspring is disturbed, and the Norns spin their rope beneath it in the prologue to Götterdämmerung.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> From Wagner onward the tree became the default emblem of Norse myth itself, the one image every popular retelling reaches for.</p>
+<p>Modern Heathen and Ásatrú communities treat Yggdrasill as the living diagram of their cosmology — the nine worlds hung on a single axis — and the name has spread into fantasy literature, games, and film as shorthand for any world-connecting tree, usually in the single-l Yggdrasil of the handbooks.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup> Through it all the name keeps its strange fidelity: a modern world still speaks of the universe's scaffold in a word that means 'the Terrible One's gallows-horse', whether it knows it or not.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Wagner, Richard, Der Ring des Nibelungen (Welt-Esche: Das Rheingold scene 2; Siegfried act 3; Götterdämmerung prologue).</li><li id="src-cultural-legacy-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Yggdrasill (reception); Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Yggdrasil.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Yggdrasill is a textual cosmos: no runestone carves the name, no votive deposit invokes the tree, and no image can be securely identified with it.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> The witnesses are the great codices — the Codex Regius of the Poetic Edda (Reykjavík, GKS 2365 4to, c. 1270) for Völuspá, Grímnismál, and Hávamál, and the chief codices of Snorri's Edda (GKS 2367 4to, early fourteenth century; the Codex Upsaliensis, c. 1300; the Codex Wormianus) for Gylfaginning 15–16.</p>
+<p>The nearest material candidate is interpretive, not certain: the Överhogdal tapestries of Hälsingland, Sweden (late Viking Age or early medieval), depict a great branching tree with animals arranged about it, long read as Yggdrasill with its creatures — a plausible picture, not a proof.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> The truest material context is literary-ethnographic: Adam of Bremen's report of the evergreen tree and sacrificial spring beside the temple at <a class="scholars-xlink" href="/uppsala/">Uppsala</a>, and Tacitus's account of the bound grove of the Semnones, show that the North really did worship at world-centering trees; the myth grew from soil that was still visible when the poems were copied down.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Yggdrasill; Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Yggdrasil.</li><li id="src-archaeology-2">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum IV.26–27, trans. Francis J. Tschan (New York: Columbia University Press, 1959); Tacitus, Germania 39, ed. and trans. J. B. Rives (Oxford: Clarendon Press, 1999).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Yggdrasill given in this edition rests on the witnesses and reference works listed below. Völuspá, Grímnismál, Hávamál, Vafþrúðnismál, and Fjölsvinnsmál supply the poetic sightings; Gylfaginning 8 and 15–16 the systematic prose map; Cleasby–Vigfusson and de Vries the name's etymology, with Simek, Orchard, and Lindow arbitrating attestation and the world-tree problem.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 2, 19–20, 47; Grímnismál 29–35; Hávamál 138–141; Vafþrúðnismál 44–45; Fjölsvinnsmál 19–26.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Snorri Sturluson, Edda, Gylfaginning 8 and 15–16 (the ash, the three roots and wells, the norns, the Æsir's daily court, Bifröst, the watering), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Snorri Sturluson, Edda, Skáldskaparmál (tree-kennings and þulur), trans. Anthony Faulkes (London: Viking Society for Northern Research, 1998).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.vv. Yggdrasill, drasill, Yggr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. Yggdrasill.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. Yggdrasill.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Yggdrasil.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Yggdrasil.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Yggdrasill.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum IV.26–27 (the evergreen at <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a>), trans. Francis J. Tschan (New York: Columbia University Press, 1959).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-2">Snorri Sturluson, Edda, Gylfaginning 8 and 15–16, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-3">Snorri Sturluson, Edda, Skáldskaparmál, trans. Anthony Faulkes (Viking Society for Northern Research, 1998).</li><li id="src-scholarly-sources-4">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-5">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-6">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962).</li><li id="src-scholarly-sources-7">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-8">Orchard, Andy, Dictionary of Norse Myth and Legend (Cassell, 1997).</li><li id="src-scholarly-sources-9">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li><li id="src-scholarly-sources-10">Adam of Bremen, Gesta Hammaburgensis IV.26–27, trans. Francis J. Tschan (Columbia University Press, 1959).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda is Yggdrasill's primary habitat: the tree appears in the corpus's oldest and strangest layers, and every sighting carries weight. Völuspá frames the whole account — the seeress remembers the mjötviðr, the measuring tree beneath the earth, in her second stanza; sees the ash standing over <a href="/urdr/" class="crosslink" data-crosslink="urdr">Urðr</a>'s well in her nineteenth; and feels it shudder as <a class="scholars-xlink" href="/ragnarok/">Ragnarök</a> breaks in her forty-seventh. The poem's cosmology begins and ends at the tree.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup></p>
+<p>Grímnismál supplies the census: the three roots and their wells, the eagle and Veðrfölnir, <a href="/ratatoskr/" class="crosslink" data-crosslink="ratatoskr">Ratatoskr</a> running between eagle and serpent, the four stags, Níðhöggr and the innumerable snakes — and the poem's bleak summary, that the ash suffers more agony than men know. Hávamál supplies the theology: the nine nights on the windy tree, the spear, the self-sacrifice, the runes. Vafþrúðnismál supplies the aftermath: Líf and Lífþrasir sheltering in Hodd-<a href="/mimir/" class="crosslink" data-crosslink="mimir">Mímir</a>'s wood through Fimbulvetr, fed on morning dew, to people the world again.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup></p>
+<p>The late Svipdagsmál adds a coda: Fjölsvinnsmál's Mímameiðr, 'Mímir's tree', spreading over every land, unharmed by fire or iron, its fruit an aid to women in childbirth — the world tree translated into the idiom of wonder-tale, evidence that the image was still alive and growing in the later Middle Ages.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 2, 19–20, 47; Grímnismál 29–35; Hávamál 138–141; Vafþrúðnismál 44–45.</li><li id="src-poetic-edda-2">Fjölsvinnsmál 19–26 (Svipdagsmál), in The Poetic Edda, trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is where the sightings become a system. Gylfaginning 8 quotes Völuspá's stanza outright — the ash, the white clay, the dews — and Gylfaginning 15–16 builds the map: the ash Yggdrasill as the chief sanctuary of the gods, its branches over the whole world and above the sky; the root among the Æsir at <a href="/urdr/" class="crosslink" data-crosslink="urdr">Urðr</a>'s well, where the gods ride daily over <a class="scholars-xlink" href="/bifrost/">Bifröst</a> to hold court; the root among the frost-giants at <a class="scholars-xlink" href="/mimir/">Mímir</a>'s well, where wisdom is hidden and <a class="scholars-xlink" href="/odinn/">Óðinn</a> pledged his eye; the root over <a href="/niflheimr/" class="crosslink" data-crosslink="niflheimr">Niflheimr</a> and Hvergelmir, gnawed by Níðhöggr.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup></p>
+<p>Snorri's additions are as telling as his inheritances: the norns pouring water and white clay over the roots so the tree shall not wither; the honey-dew that falls from its branches and feeds the bees; the daily court held in the holiest place there is. Prose turns cosmology into maintenance — the world-order as something that must be tended every morning. Skáldskaparmál and its þulur keep the tree in the poets' word-hoard among the heiti for ash and tree, the image catalogued as faithfully as the gods themselves.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning 8 and 15–16, trans. Faulkes (1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Skáldskaparmál, þulur (tree-heiti), trans. Anthony Faulkes (London: Viking Society for Northern Research, 1998).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The runic corpus contains no carving of the name Yggdrasill. No runestone invokes the world tree, no amulet bears the name, and no inscription yet found depicts the cosmic ash with its creatures — a silence the tree shares with most of the mythological apparatus, which lives in the manuscript tradition rather than the epigraphic one.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What can be said runologically is the rendering itself: in the Younger Futhark the name would have been carved ᚢᚴᚴᛏᚱᛅᛋᛁᛚᛚ (ukktrasill). The sixteen-rune row underspecifies it in the usual ways: ᚢ (úr) writes the rounded back vowels including /y/, ᚴ (kaun) writes both /k/ and /g/, and ᛏ (<a href="/tyr/" class="crosslink" data-crosslink="tyr">Týr</a>) writes both /t/ and /d/, so the runic spelling ukktrasill is a normalized phonetic reconstruction — Younger Futhark does not distinguish voiced from voiceless stops or mark vowel length. No Viking-Age carving of the name is known; the manuscript spelling of the Eddas remains the primary witness.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Yggdrasill.</li><li id="src-runic-evidence-2">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957), runic appendix.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, Yggdrasill's medieval afterlife is quieter than the gods' but wider than it looks. The learned tradition kept the image alive in catalogues: the þulur preserved with Skáldskaparmál list the tree's names among the heiti for ash and tree, holding the cosmology in the poets' mnemonic shorthand.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> The late eddic Svipdagsmál — younger than the classical poems and steeped in wonder-tale — gives the tradition its most domestic form: Fjölsvinnsmál's Mímameiðr, whose branches spread over every land and whose fruit helps women in childbirth, the axis of the cosmos bent to a midwife's use.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup></p>
+<p>The most startling medieval witness is Latin and hostile. Adam of Bremen, writing the Gesta Hammaburgensis around 1075, describes the temple at <a class="scholars-xlink" href="/uppsala/">Uppsala</a> from eyewitness report: beside it stood a great tree, evergreen in winter and summer, its species unknown, and a spring where a man was drowned at the festival — a living pagan cult-tree described a generation before Iceland's poets were first written down.<sup class="scholars-cite"><a href="#src-sagas-3">[3]</a></sup> Whether Adam's tree is 'evidence for Yggdrasill' is the wrong question; it is evidence that the North worshipped at world-centering trees, and that the Eddas' cosmic ash is mythology with its boots still muddy.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Snorri Sturluson, Edda, Skáldskaparmál, þulur (tree-heiti), trans. Anthony Faulkes (London: Viking Society for Northern Research, 1998).</li><li id="src-sagas-2">Fjölsvinnsmál 19–26 (Svipdagsmál), in The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-sagas-3">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum IV.26–27, trans. Francis J. Tschan (New York: Columbia University Press, 1959).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>The Norse imagination did something no other mythology dared: it named the support of all existence after an instrument of execution. Yggdrasill is not 'the beautiful tree' or 'the tree of life' but 'Yggr's horse' — the gallows, remembered forever.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup> The claim folded into the etymology is that the cosmos is held up by a price already paid: the god's nine nights, the pledged eye, the runes taken up screaming.</p>
+<p>And the tree answers the claim by suffering in its turn — bitten from above, rotting at the sides, gnawed from below, enduring more agony than men know, and still standing. Between the hanged god and the wounded tree runs the Edda's deepest intuition: that order is not the absence of damage but the refusal to fall. When <a class="scholars-xlink" href="/ragnarok/">Ragnarök</a> comes, the ash shudders and groans — and the poems never say it breaks.<sup class="scholars-cite"><a href="#src-meditation-2">[2]</a></sup> Whatever burns, the frame holds long enough for Líf and Lífþrasir to wake in the morning dew.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Hávamál 138–141; Grímnismál 35.</li><li id="src-meditation-2">The Poetic Edda, trans. Larrington (2014): Völuspá 47; Vafþrúðnismál 44–45.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Yggdrasill</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᚢᚴᚴᛏᚱᛅᛋᛁᛚᛚ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'yggdrasill';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

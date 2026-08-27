@@ -47,6 +47,10 @@ const LORE_CATALOG = JSON.parse(fs.readFileSync(LORE_CATALOG_PATH, 'utf8'));
 const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
 
 const REGENERATE = process.argv.includes('--regenerate');
+const ONLY_ARG = process.argv.find((a) => a.startsWith('--only='));
+const ONLY_IDS = ONLY_ARG
+  ? new Set(ONLY_ARG.slice(7).split(',').map((s) => s.trim()).filter(Boolean))
+  : null;
 // Stamped only when a post is (re)generated; untouched posts keep their date.
 const PUBLISHED_AT = new Date().toISOString().slice(0, 10);
 
@@ -595,6 +599,48 @@ function pantheonBlock(data) {
   );
 }
 
+function marksDeepBlock(data) {
+  if (!data.breakdown.length) return '';
+  const changed = data.breakdown.filter((b) => b.type && b.type !== 'same');
+  if (!changed.length) return '';
+  const same = data.breakdown.length - changed.length;
+  const lines = data.breakdown
+    .map((b) => {
+      const change = b.type === 'same' ? 'stays as it is' : `becomes **${b.to || b.char}**`;
+      return `The **${b.char}** ${change}${b.note ? ` — ${b.note}` : ''}.`;
+    })
+    .join('\n\n');
+  return (
+    `A restored name is a small map. In **${data.unicode}**, the journey from the ASCII fallback *${data.ascii}* to the Unicode form can be read letter by letter, and each letter tells a story. ${same ? `Of the ${data.breakdown.length} characters, ${same} remain unchanged; they anchor the name to its modern shape. ` : ''}The remaining adjustments recover marks the source tradition used to distinguish this name from every other word built from the same letters.\n\n` +
+    `${lines}\n\n` +
+    `Together these changes are not decoration. They are the minimum set of marks needed to keep the name legible in its own tradition. Remove them and you still have a string of letters; you no longer have the name as it was written.`
+  );
+}
+
+function traditionContextBlock(data) {
+  return (
+    `**${data.unicode}** does not stand alone. It belongs to the ${data.pantheonDisplay} tradition, where it is counted among ${data.pantheonCount} names in the PuniCodex lexicon. ${data.sphere ? `Its sphere — ${data.sphere} — places it beside other figures who govern similar aspects of experience.` : 'Its place in that tradition shapes how the name is read, what stories attach to it, and why later cultures kept returning to it.'} ` +
+    `The restored spelling is therefore not only a philological decision; it is a way of keeping the name in the company of its kin. When the address bar shows **${data.unicode}**, it marks the boundary between a generic search term and a named entry in a living catalog of myth. ` +
+    `That catalog is the point of the project. Every restored name is a vote for specificity: the web should know the difference between a figure and a keyword, between a tradition and a trend. **${data.unicode}** is one such vote.`
+  );
+}
+
+function templeTourBlock(data) {
+  return (
+    `The temple page for **${data.unicode}** is more than a landing page. The home tab presents the character breakdown, the pronunciation guide, and the live domain status in a single view. The lore tab gathers the myths and narratives that give the name its depth. The Scholarly Edition tab publishes the sources, variant forms, and review history that justify the restoration. ` +
+    `Industry patterns show where the name appears in modern commerce and culture, while the gallery and creatives tabs collect visual and sponsor material. The patron wall lets visitors support the restoration directly. ` +
+    `Each tab is generated from the same canonical sources, so the domain, the blog, the scholars page, and the search index all agree. The result is a single source of truth about a name, delivered through several doors.`
+  );
+}
+
+function digitalLifeBlock(data) {
+  return (
+    `A domain name is a kind of publication. When **${data.unicode}** resolves, it proves that the restored spelling is not a theoretical exercise; it is a working address on the public internet. Search engines can index it, language models can encounter it, and anyone who copies it from a manuscript can paste it into a browser. ` +
+    `That practical reality changes the status of the restoration. Before Unicode domains, a scholar could write the name correctly in an article while the public web flattened it to *${data.ascii}*. Now the public web can carry the correct form end to end. ` +
+    `The punycode translation happens silently, so the infrastructure remains compatible while the visible name keeps its marks. That compromise — human-readable restoration, machine-readable encoding — is the foundation of every PuniCodex temple.`
+  );
+}
+
 function faqBlock(data) {
   const qa = [];
   qa.push(
@@ -616,6 +662,12 @@ function faqBlock(data) {
       );
     }
   }
+  qa.push(
+    `**Can I use ${data.unicode} in a normal browser?** Yes. The DNS resolves the punycode form automatically, and the type tool on this site converts ${data.ascii} to ${data.unicode} for copying and pasting.`
+  );
+  qa.push(
+    `**Where does the scholarly information come from?** The entry is built from lexica, inscriptional evidence, and reviewed scholarly sources listed in the Scholarly Edition. Every claim is traceable to a canonical source.`
+  );
   return qa.join('\n\n');
 }
 
@@ -719,6 +771,12 @@ function buildBody(data, angleIdx, links, sisters, sources) {
   push('sisters', 'Sister Temples', sistersBlock(data, sisters), true);
   push('closing', 'Why This Restoration Matters', CLOSINGS[angleIdx % CLOSINGS.length](data));
   push('explore', 'Explore Further', exploreBlock(data));
+  // Deepening sections for entries with thin canonical sources. They are
+  // inserted before the closing Related Names / Sources pair.
+  push('marksDeep', 'A Closer Look at the Marks', marksDeepBlock(data), true);
+  push('traditionContext', `${data.unicode} in Its Tradition`, traditionContextBlock(data), true);
+  push('templeTour', 'What You Will Find in the Temple', templeTourBlock(data), true);
+  push('digitalLife', 'The Restoration on the Live Web', digitalLifeBlock(data), true);
   // These two sections must always END the post, in this order.
   push('related', 'Related Names', relatedLinksMd(links));
   push('sources', 'Sources', sourcesMd(sources, data));
@@ -787,6 +845,10 @@ const counts = [];
 const outOfBand = [];
 
 for (const id of BUILT_IDS) {
+  if (ONLY_IDS && !ONLY_IDS.has(id)) {
+    skipped++;
+    continue;
+  }
   const outPath = path.join(BLOG_DIR, `${id}.json`);
   if (!REGENERATE && fs.existsSync(outPath)) {
     skipped++;

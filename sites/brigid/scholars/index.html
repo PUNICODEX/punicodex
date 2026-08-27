@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brigid — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Brigid: a living, university-curated reference on Poetry, Healing, Smithcraft, Fire. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Brigid — Scholarly Edition",
+    "headline": "Brigid — Scholarly Edition",
+    "description": "University-curated scholarly reference for Brigid (Poetry, Healing, Smithcraft, Fire).",
+    "url": "https://punicodex.com/brigid/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Brigid",
+        "alternateName": ["brigid", "Brigid"],
+        "description": "Poetry, Healing, Smithcraft, Fire"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/brigid.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/brigid/scholars/">
+
+    <meta property="og:title" content="Brigid — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Brigid (Poetry, Healing, Smithcraft, Fire).">
+    <meta property="og:url" content="https://punicodex.com/brigid/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/brigid.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/brigid.jpg">
+    <meta name="twitter:title" content="Brigid — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Brigid (Poetry, Healing, Smithcraft, Fire).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Brigid",
+      "item": "https://punicodex.com/brigid/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/brigid/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="brigid-canvas" data-effect="kildare-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/brigid_logolockup.webp" type="image/webp"><img src="../assets/brigid_logolockup.png" alt="Brigid" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/brigid/">Brigid</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Brigid</h1>
+            <p class="scholars-subtitle reveal-up">Poetry, Healing, Smithcraft, Fire · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Brigid.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Brigid</strong> (<em>brigid</em>) — Poetry, Healing, Smithcraft, Fire · The Exalted One — is the triple goddess of medieval Irish tradition: Brigit the poetess, daughter of the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a>, whom Cormac's Glossary pairs with two sisters of the same name — Brigit the woman of smithcraft and Brigit the female physician — so that the forge, the well, and the word all answer to a single divine name.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> The Lebor Gabála Érenn places her in the house of the Dagda among the Túatha Dé Danann,<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> and Cath Maige Tuired gives her the corpus's most terrible dignity: when her son Ruadán dies on the field of the Second Battle of Mag Tuired, her lament is the first keening heard in Ireland.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p>
+<p>Her feast is Imbolc, the first of February — the season Cormac glosses as <em>oimelc</em>, 'ewe's milk', when the flocks come into milk at the turning of the year<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> — and at Kildare a fire burned for her that Giraldus Cambrensis describes around 1188: hedged so no man might cross, tended by nineteen nuns in nightly turn, and on the twentieth night committed to Brigid herself, its ashes never increasing though the wood is always consumed.<sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup></p>
+<p>PuniCodex keeps the temple for this name <strong>without a domain</strong>: the plain-ASCII brigid.com is registered to a third party outside the collection and is watched for release. The normalized Old Irish form <em>Brigit</em> is already plain ASCII — no diacritic or distinctive letter survives for the restoration to recover — which places the name in Tier 2 by the project's mechanical rule. The temple's claim is scholarly, not territorial: the name and its sources, in full.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Sanas Cormaic (Cormac&#39;s Glossary), s.v. Brigit, oimelc; ed. Kuno Meyer, in Anecdota from Irish Manuscripts IV (Halle: Niemeyer, 1912).</li><li id="src-overview-2">Lebor Gabála Érenn, ed. and trans. R. A. S. Macalister, 5 vols., Irish Texts Society (Dublin, 1938–56), on Brigit the poetess, daughter of the Dagda.</li><li id="src-overview-3">Cath Maige Tuired, ed. and trans. Elizabeth A. Gray, Irish Texts Society 52 (Naas, 1982), §§125–131 (Ruadán&#39;s death and Brigit&#39;s keening).</li><li id="src-overview-4">Giraldus Cambrensis, Topographia Hiberniae II.34–36 (the perpetual fire of Kildare), ed. J. J. O&#39;Meara, &#39;Giraldus Cambrensis in Topographia Hibernie&#39;, Proceedings of the Royal Irish Academy 52 C (1949).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Irish as <strong>Brigit</strong> (genitive <em>Brigte</em>). It descends from Proto-Celtic <em>Brigantī</em>, 'the Exalted One', a feminine derivative of the root <em>brig- 'high, lofty' — the same element that produced the tribal name Brigantes of northern Britain, the Romano-British goddess Brigantia, the Gaulish divine name Brigindu, and place-names such as Brigantium (modern Bregenz and La Coruña).<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The standard comparison with Sanskrit </em>bṛhatī<em>, feminine of </em>bṛhant-* 'high, exalted', shows the etymology's Indo-European depth; among scholars it is one of the least contested in Celtic onomastics.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The modern English spelling <strong>Brigid</strong> and the normalized Old Irish <strong>Brigit</strong> are already plain ASCII: no diacritic, and no distinctive letter that the ASCII alphabet cannot write. There is therefore nothing for a Unicode restoration to recover — only the capital distinguishes the temple's form from the input — and the name is classified Tier 2 by the project's mechanical rule. This is a fact about orthography, not standing: the name's fame vastly outruns its spelling.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li></ul>
+<p>The project holds <strong>no domain</strong> for this name: brigid.com was registered by a third party decades ago in the ordinary way and is watched for release. This temple claims none.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Vendryes, Joseph, Lexique étymologique de l&#39;irlandais ancien (Dublin: Dublin Institute for Advanced Studies, 1959–), s.v. Brigit.</li><li id="src-the-name-2">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953), on *brig- and the Brigantes; Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.v. Brigit, Brigantia.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the Old Irish name is <strong>/ˈbrʲiɣʲitʲ/</strong> — Old Irish Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Br-</strong> — Voiced bilabial stop [b] and slender (palatalized) trill [rʲ]; Old Irish consonants came in broad and slender pairs, and the r of Brigit was slender, as it remains in modern Irish</li><li><strong>-i-</strong> — Short front [i]; in the later language the vowel lengthened, giving modern Irish Bríd</li><li><strong>-g-</strong> — Voiced velar fricative [ɣ] between vowels: not the hard stop of English 'big' but a soft continuant, the regular lenited value of Old Irish medial g</li><li><strong>-id</strong> — Short front [i] and slender final [dʲ]; the modern form keeps exactly this ending, /bʲrʲiːdʲ/</li></ul>
+<p>For the modern speaker, the closest approximation is: 'BRIJ-id' — like 'bridge' split into two syllables, the g softened toward a gargled continuant. The modern Irish form Bríd is simply pronounced 'breed'.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Irish</strong> — Brigit (genitive Brigte), daughter of the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a></li><li><strong>Proto-Celtic</strong> — *Brigantī, 'the Exalted One', source also of Brigantia and the Brigantes<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Modern Irish</strong> — Bríd, the living form of goddess and saint alike</li><li><strong>Scottish Gaelic / Manx</strong> — Brìde / Breeshey</li><li><strong>Watched form</strong> — brigid.com, held outside the collection; no form owned</li></ul>
+<p>Brigid is Tier 2 because the restoration has nothing to restore: the Old Irish spelling survives into ASCII whole.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Thurneysen, Rudolf, A Grammar of Old Irish, trans. D. A. Binchy and Osborn Bergin (Dublin: Dublin Institute for Advanced Studies, 1946), phonology of broad and slender consonants and lenition.</li><li id="src-pronunciation-2">Vendryes, Lexique étymologique de l&#39;irlandais ancien, s.v. Brigit.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in the medieval Irish manuscripts in the Latin alphabet, written in <strong>Insular script</strong> — the Irish bookhand — as <strong>Brigit</strong>, attested in Old Irish from the early medieval period in the glossaries, the Mythological Cycle, and the saints' Lives.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The script is written left-to-right; the older Ogham alphabet would have notched the name ᚁᚏᚔᚌᚔᚈ (B-R-I-G-I-T), but that rendering is a normalized reconstruction — no Ogham stone records the theonym.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Old Irish was written in the Latin alphabet in Insular minuscule; spelling varies across manuscripts between Brigit, Briget, and related forms.</li><li>The normalized scholarly form is Brigit, genitive Brigte, from Proto-Celtic *Brigantī 'the Exalted One'.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>No diacritic is required: the Old Irish spelling carries no long vowel and no distinctive letter, so the ASCII form Brigid is orthographically complete.</li><li>The temple therefore claims no restoration and no domain: brigid.com is held by a third party outside the collection and watched for release.</li></ul>
+<p>The single caution that attaches is etymological honesty: the derivation from *brig- 'high' is the standard and near-uncontested account, but the leap from name-element to the goddess's original character — exalted by height, by rank, or by fire — is inference, and the texts do not say.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Thurneysen, A Grammar of Old Irish (DIAS, 1946), on Old Irish orthography.</li><li id="src-original-script-2">McManus, A Guide to Ogam (An Sagart, 1991).</li><li id="src-original-script-3">Vendryes, Lexique étymologique de l&#39;irlandais ancien, s.v. Brigit.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Brigid</strong> is catalogued under the domain "Poetry, Healing, Smithcraft, Fire" — the triad of Cormac's Glossary plus the undying flame of her Kildare hearth.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Poetry</h3>
+<p>Brigit <em>banfhiled</em>, Brigit the woman-poet, is the Glossary's first sister: patroness of <em>filidecht</em>, the learned poetic craft, and of the word made durable — fittingly, her own one great speech-act in the texts is the invention of lamentation.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Smithcraft</h3>
+<p>Brigit <em>goband</em>, the woman of smithcraft, holds the forge-province of the triad — the divine smith's art that her own myth-world practices in Goibniu of the Túatha Dé Danann.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Healing</h3>
+<p>Brigit <em>légach</em>, the female physician, completes the triad; her province survives in the cure customs of the hundreds of Irish holy wells that bear the saint's name.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Fire</h3>
+<p>The perpetual fire of Kildare, hedged from men and tended by nineteen keepers, is the visible form of all three: a craft-flame that neither fails nor accumulates ash.<sup class="scholars-cite"><a href="#src-domains-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Sanas Cormaic, s.v. Brigit, ed. Meyer (1912).</li><li id="src-domains-2">Cath Maige Tuired, §§125–131, ed. and trans. Gray (1982).</li><li id="src-domains-3">Giraldus Cambrensis, Topographia Hiberniae II.34–36, ed. O&#39;Meara (1949).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Brigid's iconography is drawn from the texts and from living custom rather than from ancient images — no pre-Christian representation of the goddess survives:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The sacred flame of Kildare</strong> — the perpetual fire that neither dies nor accumulates ash: patronage that outlasts the night-watch of its keepers</li><li><strong>The anvil and the forge</strong> — the smith-sister's province: skill that gives raw metal a lasting form, as poetry gives raw speech one</li><li><strong>The holy well</strong> — the leech-sister's province: healing drawn from the ground, still visited at the hundreds of wells of St Brigit</li><li><strong>Fea and Femen, the two oxen</strong> — the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a>'s daughter's beasts in Cath Maige Tuired, with the plains Mag Fea and Mag Femen named for them: wealth and the working land<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>The rush cross</strong> — St Brigid's cross, woven on Imbolc eve: the small loom on which the goddess's feast was carried into the saint's day</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), s.v. Brigit.</li><li id="src-symbols-2">Cath Maige Tuired, ed. and trans. Gray (1982), on Brigit&#39;s oxen Fea and Femen.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Brigid's mythology is a small dossier of exact testimonies rather than a cycle of adventures: the genealogists know her family, the battle-tale knows her grief, and the glossary knows her triad.</p>
+<h3 class="scholars-h3">The Dagda's Daughter (Lebor Gabála Érenn)</h3>
+<p>The Book of Invasions files her in the house of the <a class="scholars-xlink" href="/dagda/">Dagda</a>: Brigit the poetess, daughter of the good god of the cauldron, among the Túatha Dé Danann — the divine race whose eponymous ancestress is <a class="scholars-xlink" href="/danu/">Danu</a>. The same tradition marries her to Bres, the half-Fomorian king whose beautiful face and niggardly rule provoked the great war, and gives her a son, Ruadán: the Exalted One stands by marriage and blood on both sides of the conflict.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The First Keening in Ireland (Cath Maige Tuired)</h3>
+<p>In the Second Battle of Mag Tuired — the tale in which <a class="scholars-xlink" href="/lugh/">Lug</a> leads the Túatha Dé Danann against the Fomorians — Ruadán is sent to spy on the divine smith Goibniu and hurls a spear at him; the smith casts it back, and Ruadán goes to his father to die. Brigit comes to the field and bewails her son, and the text is explicit: hers was the first keening and the first whistling for grief heard in Ireland. The goddess of the word is the one who taught Ireland what a mother says at a grave.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Three Sisters, One Name (Sanas Cormaic)</h3>
+<p>Cormac's Glossary (c. 900) preserves the triad on which her whole modern image rests: Brigit the poetess, daughter of the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a>, had two sisters, Brigits also — Brigit the woman of smithcraft and Brigit the female physician — from whose names all the Irish used to call a goddess Brigit. Whether three figures or one goddess's three provinces, the entry is the witness every later account follows.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The Fire at Kildare (Giraldus Cambrensis)</h3>
+<p>Gerald of Wales, c. 1188, describes the Kildare fire as a wonder of his own day: hedged against men, tended by nineteen nuns in nightly turn, and on the twentieth night committed to Brigid with the words 'guard your fire, it is yours' — burning always, its ashes never increasing. He records it as a marvel of the saint's church; the hedge, the nineteen keepers, and the unashing flame have never been doubted to belong to an older hearth.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Lebor Gabála Érenn, ed. and trans. Macalister (1938–56), on Brigit daughter of the Dagda.</li><li id="src-mythology-2">Cath Maige Tuired, §§125–131, ed. and trans. Gray (1982).</li><li id="src-mythology-3">Sanas Cormaic, s.v. Brigit, ed. Meyer (1912).</li><li id="src-mythology-4">Giraldus Cambrensis, Topographia Hiberniae II.34–36, ed. O&#39;Meara (1949).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Brigid's syncretic life runs in two directions. Across the water, her name is one with <strong>Brigantia</strong>, the goddess of Roman Britain honoured in inscriptions from the Wall country and portrayed on the Birrens relief with Minerva's globe and spear — the interpretatio romana pairing the exalted one with the Roman goddess of craft and war-wisdom. The tribal Brigantes and the Gaulish Brigindu carry the same name-element, and the comparison with Sanskrit <em>bṛhatī</em> shows how deep the root runs.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within Ireland, the identification is Christian: <strong>Brigit of Kildare</strong>, the sixth-century saint whose feast falls on Imbolc and whose church kept the perpetual fire. Cogitosus's Life of Brigit (c. 650), our earliest substantial Life of any Irish saint, presents wonder-tales in which the saint's patronage of poets, smiths, and the poor uncannily covers the goddess's provinces.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> Whether saint succeeded goddess, goddess was Christianized into saint, or two figures fused in one name, the sources do not decide — and Mac Cana and Koch both counsel holding the question open. What is certain is the continuity: the Exalted One never left Ireland's calendar.</p>
+<p>Within the pantheon, her closest kin are <a class="scholars-xlink" href="/dagda/">the Dagda</a> (her father), <a class="scholars-xlink" href="/lugh/">Lug</a> (the many-skilled master of all arts at Mag Tuired), and <a class="scholars-xlink" href="/danu/">Danu</a> (ancestress of the Túatha Dé Danann).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.v. Brigantia, Brigantes, Brigit.</li><li id="src-syncretism-2">Cogitosus, Vita Sanctae Brigitae, ed. in Acta Sanctorum, Febr. I (Antwerp, 1658); trans. S. Connolly and J.-M. Picard, &#39;Cogitosus&#39;s Life of St Brigit&#39;, Journal of the Royal Society of Antiquaries of Ireland 117 (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>No Celtic deity has a longer unbroken afterlife. Imbolc is still celebrated as St Brigid's Day — Lá Fhéile Bríde — and since 2023 it has been a public holiday in the Republic of Ireland, the first named for a woman.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Rushes are still woven into Brigid's crosses on the eve of the feast and hung above doors; the holy wells of St Brigit, with their rag-trees and cure customs, keep the leech-sister's province in living folk practice.</p>
+<p>Modern paganism and Celtic Reconstructionism restored the goddess explicitly, keeping Imbolc as the feast of the returning light and of the three crafts, and claiming her patronage for poets, smiths, and healers alike.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup> And the name itself — Brigid, Bridget, Bríd — never ceased to be given to Irish daughters, carrying the Proto-Celtic word for exaltation into every generation since the Iron Age.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on Brigit and Imbolc; Ó Catháin, Séamas, The Festival of Brigit (Dublin: DBA Publications, 1995), on the feast&#39;s folk customs.</li><li id="src-cultural-legacy-2">Koch, Celtic Culture: A Historical Encyclopedia (2006), s.v. Brigit, Imbolc.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Brigit herself is unattested in pre-Christian Irish material: no Ogham stone, votive deposit, or image names the goddess, and Ireland's Iron Age left no cult site securely hers.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p>
+<p>Her name's material record lies across the water. Romano-British inscriptions honour Brigantia from the Wall country — most famously the relief from Birrens (Dumfriesshire), where the goddess stands with Minerva's globe, spear, and mural crown — and a Gaulish inscription from Volnay (Côte-d'Or) invokes Brigindu, the same name-element on the Continent.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>In Ireland the evidence is ecclesiastical and customary: the monastic site of Kildare (Cill Dara, 'church of the oak'), with its round tower and its memory of the perpetual fire Giraldus describes, and the hundreds of holy wells dedicated to St Brigit, whose rag-trees and cure customs are the living deposit of the leech-sister's province.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Mac Cana, Celtic Mythology (1970), s.v. Brigit.</li><li id="src-archaeology-2">Koch, Celtic Culture: A Historical Encyclopedia (2006), s.v. Brigantia (the Birrens relief and the epigraphic record).</li><li id="src-archaeology-3">Ó Catháin, Séamas, The Festival of Brigit (Dublin: DBA Publications, 1995), on wells and folk practice.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Brigid given in this edition rests on the witnesses and reference works listed below. Cormac's Glossary and the Mythological Cycle supply the goddess's testimony; Giraldus and Cogitosus the Kildare tradition; the etymological and encyclopaedic works secure the name and its cognates.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Sanas Cormaic (Cormac's Glossary), s.v. Brigit, oimelc; ed. Kuno Meyer, Anecdota from Irish Manuscripts IV (Halle: Niemeyer, 1912).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Lebor Gabála Érenn, ed. and trans. R. A. S. Macalister, 5 vols., Irish Texts Society (Dublin, 1938–56).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Cath Maige Tuired, ed. and trans. Elizabeth A. Gray, Irish Texts Society 52 (Naas, 1982).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Giraldus Cambrensis, Topographia Hiberniae II.34–36, ed. J. J. O'Meara, PRIA 52 C (1949).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Cogitosus, Vita Sanctae Brigitae; trans. Connolly and Picard, JRSAI 117 (1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Vendryes, Joseph, Lexique étymologique de l'irlandais ancien (Dublin: DIAS, 1959–), s.v. Brigit.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.v. Brigit, Brigantia, Imbolc.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Thurneysen, Rudolf, A Grammar of Old Irish, trans. Binchy and Bergin (Dublin: DIAS, 1946).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Sanas Cormaic, ed. Kuno Meyer (Niemeyer, 1912).</li><li id="src-scholarly-sources-2">Lebor Gabála Érenn, ed. Macalister (Irish Texts Society, 1938–56).</li><li id="src-scholarly-sources-3">Cath Maige Tuired, ed. and trans. Elizabeth A. Gray (ITS 52, 1982).</li><li id="src-scholarly-sources-4">Giraldus Cambrensis, Topographia Hiberniae, ed. O&#39;Meara (1949).</li><li id="src-scholarly-sources-5">Cogitosus, Vita Sanctae Brigitae, trans. Connolly &amp; Picard (1987).</li><li id="src-scholarly-sources-6">Vendryes, Lexique étymologique de l&#39;irlandais ancien (DIAS, 1959–).</li><li id="src-scholarly-sources-7">Jackson, Language and History in Early Britain (Edinburgh, 1953).</li><li id="src-scholarly-sources-8">Mac Cana, Celtic Mythology (Hamlyn, 1970).</li><li id="src-scholarly-sources-9">Koch, Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006).</li><li id="src-scholarly-sources-10">Thurneysen, A Grammar of Old Irish (DIAS, 1946).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Brigit belongs to the <strong>Mythological Cycle</strong>, the cycle of the Túatha Dé Danann. Her genealogy is filed by the Lebor Gabála Érenn, the great pseudohistory that orders the gods into an ancestry of invasions: Brigit the poetess, daughter of the <a class="scholars-xlink" href="/dagda/">Dagda</a>, wife of Bres, mother of Ruadán.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup> Her one extended scene belongs to the cycle's central battle-tale, Cath Maige Tuired, where the <a class="scholars-xlink" href="/morrigan/">Morrígan</a> prophesies and ravens over the same field on which Brigit invents keening — the two great female voices of the war, one of doom and one of grief.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup></p>
+<p>She scarcely figures in the later Ulster and Fenian cycles; her afterlife runs instead through the third great stratum of Irish text, the saints' Lives, where Cogitosus's Brigit of Kildare inherits her name, her feast, and — in the wonder-tales — her provinces. The cycle that continued her story was the hagiographical one.<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">Lebor Gabála Érenn, ed. and trans. Macalister (1938–56).</li><li id="src-irish-cycles-2">Cath Maige Tuired, ed. and trans. Gray (1982).</li><li id="src-irish-cycles-3">Cogitosus, Vita Sanctae Brigitae, trans. Connolly &amp; Picard (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Welsh literature has no narrative of Brigid: the Mabinogion knows nothing of her, and no Welsh goddess-tale attaches to her name.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup> The Welsh record is onomastic and hagiographic rather than mythological. The name-element *brig- is genuine Brittonic inheritance — the Brigantes were a Brittonic-speaking people — and the River Braint in Anglesey is standardly derived from Brigantia, a survival of the goddess's name in Welsh water.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup></p>
+<p>The saint travelled further than the goddess: Brigit of Kildare was naturalized in Welsh as <strong>Ffraid</strong>, and Welsh churches and holy wells of St Ffraid — above all at Treffraid (Llansantffraid) sites across Wales — carry the Kildare tradition into the Welsh landscape. The Welsh evidence thus confirms the pattern of the Irish: the exalted one survives most durably in names of water, church, and daughter.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">Koch, Celtic Culture: A Historical Encyclopedia (2006), s.v. Brigit, Ffraid.</li><li id="src-welsh-sources-2">Jackson, Language and History in Early Britain (1953), on Brittonic *brig-, Brigantia, and river-names.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No Ogham inscription records the theonym Brigit. Ireland's earliest writing — the Ogham stones of the fourth to sixth centuries — preserves personal names in abundance, but the goddess's name is not among the attested dedications; a rendering such as ᚁᚏᚔᚌᚔᚈ (B-R-I-G-I-T) is a normalized modern reconstruction of how the name would have been notched, not a citation.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>The epigraphic record of the name belongs to her cognate: Romano-British altars and inscriptions to <strong>Brigantia</strong> from the Wall country — the relief from Birrens pairing her with Minerva's attributes is the most famous — and the Gaulish dedication to <strong>Brigindu</strong> at Volnay (Côte-d'Or).<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup> The pattern is instructive: the name of the Exalted One enters the epigraphic record wherever Roman lettering met the Celtic north, while in Ireland itself her name waited for the manuscript, the well, and the calendar.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">McManus, Damian, A Guide to Ogam (Maynooth: An Sagart, 1991), on the Ogham corpus and its personal-name content.</li><li id="src-inscriptions-2">Koch, Celtic Culture: A Historical Encyclopedia (2006), s.v. Brigantia (the Birrens relief; Volnay&#39;s Brigindu).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Brigit is the rare goddess whose three provinces are one act seen from three sides. The smith and the poet do the same thing: they take what is raw — ore, breath — and by heat and pressure give it a form that outlasts them. The healer does it too, coaxing the broken body back toward the shape it was made for. Cormac's three sisters are really a single lesson: making is sacred wherever it happens, at the anvil, on the tongue, or at the sickbed.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>Her fire at Kildare, hedged and watched and never consumed, is the emblem of that lesson — a flame tended by nineteen keepers that still belongs, on the twentieth night, to the name itself. Craft, kept in common, does not go out.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Sanas Cormaic, s.v. Brigit, ed. Meyer (1912); Giraldus Cambrensis, Topographia Hiberniae II.34–36, ed. O&#39;Meara (1949).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Brigid</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'brigid';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

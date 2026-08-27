@@ -465,6 +465,7 @@ const insertSite = db.prepare(`
 `);
 
 for (const f of flagships) {
+  if (!f.domain) continue; // Domain-less flagships have no live site to index.
   const title = `PUNICODEX Temple: ${f.domain}`;
   const desc = `Scholarly restoration of ${f.id} with full Unicode orthography.`;
   insertSite.run(
@@ -489,7 +490,7 @@ for (const f of flagships) {
     desc.length,
     0,
     'index,follow',
-    `https://${f.punycode}`
+    `https://${f.punycode || f.domain}`
   );
 }
 

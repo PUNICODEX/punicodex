@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niflheimr — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Niflheimr: a living, university-curated reference on Mist World, Realm of Ice. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Niflheimr — Scholarly Edition",
+    "headline": "Niflheimr — Scholarly Edition",
+    "description": "University-curated scholarly reference for Niflheimr (Mist World, Realm of Ice).",
+    "url": "https://punicodex.com/niflheimr/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᚾᛁᚠᛚᚼᛁᛘᚱ",
+        "alternateName": ["niflheimr", "Niflheimr"],
+        "description": "Mist World, Realm of Ice"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/niflheimr.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/niflheimr/scholars/">
+
+    <meta property="og:title" content="Niflheimr — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Niflheimr (Mist World, Realm of Ice).">
+    <meta property="og:url" content="https://punicodex.com/niflheimr/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/niflheimr.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/niflheimr.jpg">
+    <meta name="twitter:title" content="Niflheimr — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Niflheimr (Mist World, Realm of Ice).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Niflheimr",
+      "item": "https://punicodex.com/niflheimr/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/niflheimr/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="niflheimr-canvas" data-effect="hvergelmir-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/niflheimr_logolockup.webp" type="image/webp"><img src="../assets/niflheimr_logolockup.png" alt="Niflheimr" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/niflheimr/">Niflheimr</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Niflheimr</h1>
+            <p class="scholars-subtitle reveal-up">Mist World, Realm of Ice · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Niflheimr.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Niflheimr</strong> (<em>niflheimr</em>) — Mist World, Realm of Ice · the Mist-home — is the oldest world in the Norse cosmos: the realm of fog and rime that Snorri says was made many ages before the earth itself, with the roaring well Hvergelmir in its middle and the eleven rivers of the Élivágar already running from it.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The word is a transparent Old Norse compound — <em>nifl-</em> ‘mist, fog, darkness’ + <em>heimr</em> ‘world, home, abode’ — and its first element is among the most securely inherited vocabulary in Germanic, the same mist that Latin keeps in <em>nebula</em> and Greek in <em>nephélē</em>.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> Niflheimr's one great role is cosmogonic: opposite the fire of <a class="scholars-xlink" href="/muspellheimr/">Muspellsheimr</a>, across the mild void of <a class="scholars-xlink" href="/ginnungagap/">Ginnungagap</a>, its poisoned ice thawed in the warmth and dripped into life as <a class="scholars-xlink" href="/ymir/">Ymir</a>, the first giant. In the poems the same word, in its older shape <em>niflhel</em>, already names the world below <a class="scholars-xlink" href="/hel/">Hel</a> — the mist-world darkening into the deepest address of the dead.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Niflheimr</strong> — identical to the ASCII input apart from the capital, because normalized Old Norse writes no diacritic in this compound; the mechanical rule therefore classifies it Tier 2. The project holds no domain for the name: the plain-ASCII niflheimr.com is registered by a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Snorri Sturluson, Edda, Gylfaginning 4 (Niflheimr made before the earth; Hvergelmir and the eleven rivers), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-2">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. nifl-heimr, heimr.</li><li id="src-overview-3">Vafþrúðnismál 43 (nine worlds below Niflhel); Baldrs draumar 2 (the ride down to Niflhel), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>niflheimr</strong> (masculine), a transparent compound of <em>nifl-</em> and <em>heimr</em> ‘world, home’. The second element is ordinary: <em>heimr</em> is the same word as Gothic <em>haims</em> and Old English <em>hām</em> — English <em>home</em> itself. The first element occurs only in compounds and poetic usage (<em>niflhel</em>, <em>niflungar</em> in the older continental material, <em>niflrökr</em> in poetry) and means ‘mist, fog, darkness’; its pedigree is Indo-European, from the root *<em>nebh-</em> ‘cloud, fog’, whence also Latin <em>nebula</em>, Greek <em>nephélē</em>, Old High German <em>nebul</em>, and Sanskrit <em>nábhas</em>.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The lexicon's gloss ‘Mist-home’ is thus not a loose paraphrase but the compound's literal sense.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The ASCII form is not a compromise: normalized Old Norse <em>niflheimr</em> is already written in plain ASCII letters. There is no diacritic and no distinctive letter for the restoration to recover, and the mechanical tier rule therefore classifies the name Tier 2 — a statement about orthography, not about standing. The Unicode form <strong>Niflheimr</strong> differs from the input only in its capital.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>n</strong> → <strong>N</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>f</strong> → <strong>f</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>h</strong> → <strong>h</strong> — Same</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>m</strong> → <strong>m</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>niflheimr.com</strong> is registered by a third party outside the PuniCodex collection and is watched for release. This temple claims nothing it does not hold.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. nifl-, heimr.</li><li id="src-the-name-2">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. nifl-heimr, nifl-hel, heimr.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈnivlˌhɛimr̩/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Nifl-</strong> — Dental nasal [n], short close [i], the f voiced to [v] between voiced sounds (Old Norse wrote <em>f</em> but pronounced <em>v</em> here, exactly as modern Icelandic still does in <em>Niflheimur</em>), and a clear [l]; the first element carries the compound's main stress</li><li><strong>-heimr</strong> — Voiceless [h], the falling diphthong [ɛi] of Old Norse <em>ei</em>, bilabial [m], and the final syllabic nominative [r̩], the masculine <em>-r</em> ending sounded as its own light beat</li></ul>
+<p>For the modern speaker, the closest approximation is: ‘NIVL-haym-r’ — the f soft as v, the second element gliding like ‘aim’ with an h before it, and a light trilled r at the end.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — niflheimr, ‘mist-world’; the manuscript form, unchanged since the Eddas</li><li><strong>Modern Icelandic</strong> — Niflheimur, the learned word kept alive from the medieval corpus</li><li><strong>Old Norse near-kin</strong> — niflhel ‘mist-Hel’, the poetic word for the world below Hel, used by Vafþrúðnismál and Baldrs draumar where the prose says Niflheimr<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Indo-European kin</strong> — Latin nebula, Greek nephélē ‘cloud’, Sanskrit nábhas — the first element's family across the daughter languages</li></ul>
+<p>Niflheimr is Tier 2 because the restoration preserves nothing the ASCII form loses: the compound carries no diacritic and no distinctive letter. The classification reports on the name's spelling, never on the world's standing.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology and grammar.</li><li id="src-pronunciation-2">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. niflheimr, niflhel.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>niflheimr</strong> — Old Norse (North Germanic), attested 13th c. CE in the codices of the Prose Edda (as the world-name of Gylfaginning) and, in its near-kin form <em>niflhel</em>, in the Codex Regius of the Poetic Edda and AM 748 I 4to, recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse was carved in the younger futhark; no runic attestation of the compound survives, so the manuscript form is the primary witness.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The compound is <em>nifl-</em> ‘mist, fog, darkness’ + <em>heimr</em> ‘world, home’ — ‘Mist-home’, the gloss the lexicon carries.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>The first element descends from Indo-European *<em>nebh-</em> ‘cloud’ — Latin <em>nebula</em>, Greek <em>nephélē</em>, Sanskrit <em>nábhas</em> are its cousins.</li><li>Old Norse orthography writes no diacritic in this word: the vowels carry no length marks, and every letter is plain ASCII.</li><li>In the Younger Futhark the word would have been carved ᚾᛁᚠᛚᚼᛁᛘᛦ — the i-rune writing both e and i, the ᛦ carrying the final nominative -r.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Niflheimr therefore changes nothing but the capital; the ASCII form loses nothing, which is exactly why the mechanical rule classifies the name Tier 2.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Jónas Kristjánsson, Eddas and Sagas: Iceland&#39;s Medieval Literature, trans. Peter Foote (Reykjavík: Hið íslenska bókmenntafélag, 1988).</li><li id="src-original-script-2">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. nifl-heimr, heimr; de Vries, Altnordisches etymologisches Wörterbuch, s.v. nifl-.</li><li id="src-original-script-3">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Niflheimr</strong> is catalogued under the domain “Mist World, Realm of Ice”, and the sources earn every term of it: it is at once the first climate of the cosmos, the springhead of its waters, and the floor beneath its dead.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Mist World</h3>
+<p>Snorri places Niflheimr first in time: it was made many ages before the earth, a world of fog and bitter cold whose rime would later fill the northern half of <a class="scholars-xlink" href="/ginnungagap/">Ginnungagap</a>. The mist is not weather in this world; it is the world.</p>
+<h3 class="scholars-h3">The Realm of Ice</h3>
+<p>The Élivágar, the ice-waves, ran from Hvergelmir carrying the yeasty venom that hardened like dross from a fire; layered rime built across the gap until the warm breath of <a class="scholars-xlink" href="/muspellheimr/">Muspellsheimr</a> thawed it into the first life. Ice is Niflheimr's raw export: creation was built out of it.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Well of Rivers</h3>
+<p>Hvergelmir, the roaring kettle, is the spring from which Grímnismál says all waters have their course — the eleven rivers of Gylfaginning's list, and with them every river that runs near gods, giants, or men.</p>
+<h3 class="scholars-h3">The World Below</h3>
+<p>In the poems the mist-world slides downward: <em>niflhel</em> is the region below Hel, the ninth world, the place to which <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> rides to wake the dead. Creation's old north pole ends as the cosmos's cellar.<sup class="scholars-cite"><a href="#src-domains-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Gylfaginning 4, 15–16, trans. Faulkes (1987).</li><li id="src-domains-2">Snorri Sturluson, Edda, Gylfaginning 5–8 (the rime and the quickening), trans. Faulkes (1987).</li><li id="src-domains-3">Vafþrúðnismál 43; Baldrs draumar 2, trans. Larrington (2014); Grímnismál 26 (Hvergelmir), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>A world rather than a person, Niflheimr has no regalia — but the corpus fixed around it a small set of emblems no retelling can omit:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Hvergelmir</strong> — ‘the roaring kettle’, the well in the mist-world's middle: the one spring beneath all rivers, dripping-fed by the hart on Valhöll's roof and drunk by the ash's oldest root</li><li><strong>The Élivágar</strong> — ‘the ice-waves’: the eleven rivers older than the earth — Svöl, Gunnþrá, Fjörm, Fimbulþul, Slíðr, Hríð, Sylgr, Ylgr, Víð, Leiptr — and Gjöll, the resounding, which runs nearest the gate of Hel</li><li><strong>The yeasty venom (eitr)</strong> — the poison in the ice-waves that hardened to rime and quickened into <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>: the tradition's cool insistence that the first flesh was brewed from something dangerous</li><li><strong>The rime fog</strong> — cold as substance rather than absence: layer upon layer of it filled the gap's northern half before anything lived</li><li><strong>Níðhöggr</strong> — ‘the malice-striker’, the serpent gnawing <a href="/yggdrasill/" class="crosslink" data-crosslink="yggdrasill">Yggdrasill</a>'s third root from below, where it stands over Niflheimr above the well: decay stationed at the cosmos's oldest corner<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Gylfaginning 4, 6–7, trans. Faulkes (1987).</li><li id="src-symbols-2">Snorri Sturluson, Edda, Gylfaginning 15–16 (the third root and Níðhöggr); Grímnismál 34–35 (the serpents beneath the ash), trans. Faulkes (1987) and Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Niflheimr's mythology is the mythology of before: the world stars in no adventure, because its work is finished before the gods' stories begin — yet every river, every rime-giant, and every soul that sinks past <a class="scholars-xlink" href="/helheimr/">Helheimr</a> is still living downstream of it.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The World Before the Earth (Gylfaginning 4)</h3>
+<p>Snorri's chronology opens with a climate, not a god. Niflheimr was made many ages before the earth was created, and in its middle is the well called Hvergelmir, from which flow the rivers: Svöl the cool, Gunnþrá the battle-defiant, Fjörm the swift, Fimbulþul the loud-babbling, Slíðr the fearsome, Hríð the storming, Sylgr and Ylgr, Víð the broad, Leiptr the flashing — and Gjöll, nearest the gate of Hel. Before there was an earth to water, the mist-world already had its watershed.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Yeasty Venom and the Quickening (Gylfaginning 5–8 · Vafþrúðnismál 21)</h3>
+<p>South of the void lay <a class="scholars-xlink" href="/muspellheimr/">Muspellsheimr</a>, light and hot, guarded by <a class="scholars-xlink" href="/surtr/">Surtr</a> with his flaming sword; the middle of <a class="scholars-xlink" href="/ginnungagap/">Ginnungagap</a> was mild as a windless sky. But the Élivágar had run so far from their source that the yeasty venom in them hardened, like dross running out of a fire, and became ice; rime and drizzling rain rose layer upon layer across the gap's northern half. Where the warm breath from the south met the rime, it thawed and dripped — and the dripping drops quickened, by the power of the heat, into the likeness of a man: <a class="scholars-xlink" href="/ymir/">Ymir</a>, whom the rime-giants call Aurgelmir. The Poetic Edda keeps the same recipe in three lines: out of Élivágar, Vafþrúðnismál says, venom-drops spurted and grew until a giant was made; from him come all the rime-giants' kin — and, through <a class="scholars-xlink" href="/buri/">Búri</a>'s line, the gods themselves.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Root Over the Well (Gylfaginning 15–16 · Grímnismál 26)</h3>
+<p>When the world was built from <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>'s body, Niflheimr kept the oldest seat in it. <a class="scholars-xlink" href="/yggdrasill/">Yggdrasill</a>'s third root extends over Niflheimr; beneath that root is Hvergelmir, and the serpent Níðhöggr gnaws the root from below — the ash is always being eaten at its oldest corner. Grímnismál closes the water-cycle: the hart Eikþyrnir stands on Valhöll's roof cropping the leaves, and from his horns it drips into Hvergelmir, whence all waters have their course.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">Down to the Ninth World (Vafþrúðnismál 43 · Baldrs draumar 2 · Gylfaginning 3)</h3>
+<p>In the poems the mist-world deepens into the world below the world. <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, staking his head against the giant Vafþrúðnir's wisdom, numbers his credentials by the roads he has travelled: nine worlds he journeyed, down below Niflhel. In Baldrs draumar the same god saddles <a href="/sleipnir/" class="crosslink" data-crosslink="sleipnir">Sleipnir</a> and rides down to Niflhel to wake a dead seeress and force from her the prophecy of <a class="scholars-xlink" href="/baldr/">Baldr</a>'s death. And Snorri states the grim geography plainly: evil men go to Hel, and thence down to Niflhel — that is down in the ninth world. The world that was first becomes the world that is lowest.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Snorri Sturluson, Edda, Gylfaginning 4, trans. Faulkes (1987).</li><li id="src-mythology-2">Snorri Sturluson, Edda, Gylfaginning 5–8; Vafþrúðnismál 20–21, 31, trans. Faulkes (1987) and Larrington (2014).</li><li id="src-mythology-3">Snorri Sturluson, Edda, Gylfaginning 15–16; Grímnismál 26, trans. Faulkes (1987) and Larrington (2014).</li><li id="src-mythology-4">Vafþrúðnismál 43; Baldrs draumar 2, trans. Larrington (2014); Snorri Sturluson, Edda, Gylfaginning 3, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Niflheimr needs no borrowing to explain it: the compound is transparent Germanic, and its first element is one of the most securely inherited words in the family — the same mist that Greek keeps in <em>nephélē</em>, Latin in <em>nebula</em>, Old High German in <em>nebul</em>, and Sanskrit in <em>nábhas</em>, all from Indo-European *<em>nebh-</em> ‘cloud, fog’. Four daughter traditions and the North descend from the same cloud.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>The genuine scholarly argument is internal. <em>Niflheimr</em> is essentially a prose word: the poems overwhelmingly know <em>niflhel</em>, mist-Hel, and the fully mapped Niflheimr of Gylfaginning — with its well, its eleven named rivers, and its fixed place opposite Muspellsheimr — reads to many scholars as Snorri's thirteenth-century systematization raised on genuinely older material, since Hvergelmir and the Élivágar themselves are Eddic, attested in Grímnismál and Vafþrúðnismál centuries before the Prose Edda. Lindow and Simek both register the caution: the architecture is Snorri's; the stones are old.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> The comparative pattern — a pole of cold set against a pole of fire at the beginning of things — is common across cosmogonies; the Norse version is unusual in making the cold not merely older than the gods but older than the earth itself. Within the corpus, Niflheimr's closest kin are the two worlds its own extremes define: <a class="scholars-xlink" href="/ginnungagap/">Ginnungagap</a>, the mild void it faced across, and <a class="scholars-xlink" href="/helheimr/">Helheimr</a>, the death-realm it came to underlie.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. nifl-.</li><li id="src-syncretism-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Niflheim, Élivágar; Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Niflheim, Hvergelmir.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>The mist-world's afterlife runs through every retelling that needs a bottom floor for the cosmos. Wagner rebuilt it as <strong>Nibelheim</strong>, the smoke-filled subterranean forge-realm where Alberich enslaves the Nibelungs in <em>Das Rheingold</em> — a conflation of Niflheimr with the continental Nibelung dwarf-lore that no saga ever made, and one of the most consequential conflations in the modern reception of the myths.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p>
+<p>Modern popular cosmography keeps the map: Marvel's comics and films count ‘Niffleheim’ among their Nine Realms, and the mist-world has become a standing level-design in games, most visibly as the fog-shrouded optional realm of the 2018 <em>God of War</em>. In Iceland the word never needed reviving: <em>Niflheimur</em> is simply the old word, still in service. What survives beneath every adaptation is the Edda's strangest idea — that the first thing was not light but fog, and that everything warm is a late arrival.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Wagner, Richard, Das Rheingold, scenes 2–4 (Nibelheim), in Der Ring des Nibelungen (first performed Bayreuth, 1876).</li><li id="src-cultural-legacy-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Niflheim.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Niflheimr is a textual world: it has no cult, no toponym, and no carved witness — unsurprising for a cosmographical term rather than a deity. Its attestation is manuscriptal. Grímnismál and Vafþrúðnismál, which preserve Hvergelmir and the Élivágar, survive in the Codex Regius of the Poetic Edda (c. 1270); Baldrs draumar, with its ride down to Niflhel, hangs by the single thread of AM 748 I 4to (early fourteenth century); and the fully mapped Niflheimr of Gylfaginning survives in the thirteenth- and fourteenth-century codices of the Prose Edda.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p>
+<p>No runic inscription records the word, and the image tradition is indirect at most. Scholars have been tempted to see the world-tree's serpent-gnawed roots in Scandinavian picture stones and church carvings, but nothing is labelled, and the mist-world itself — a climate rather than a figure — was never the kind of thing a Viking Age carver set in stone.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Jónas Kristjánsson, Eddas and Sagas: Iceland&#39;s Medieval Literature, trans. Peter Foote (Reykjavík: Hið íslenska bókmenntafélag, 1988).</li><li id="src-archaeology-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Niflheim, Yggdrasill.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Niflheimr given in this edition rests on the witnesses and reference works listed below. The Eddas supply the cosmogony and the underworld geography; the lexica secure the compound's etymology; the handbooks arbitrate the systematization debate and the reception history.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Snorri Sturluson, Edda, Gylfaginning 3–8, 15–16 (Niflheimr and Hvergelmir; the Élivágar; the quickening of <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>; the third root), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Vafþrúðnismál 20–21, 31, 43; Grímnismál 26–29, 34–35; Baldrs draumar 2.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. nifl-heimr, nifl-hel, heimr, hver-gelmir, él.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. niflheimr, niflhel, hvergelmir.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. nifl-, heimr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Niflheim, Hvergelmir, Élivágar.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Niflheim, Élivágar, Hvergelmir.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Niflheim.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Jónas Kristjánsson, Eddas and Sagas: Iceland's Medieval Literature, trans. Peter Foote (Reykjavík: Hið íslenska bókmenntafélag, 1988).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Wagner, Richard, Das Rheingold (first performed Bayreuth, 1876), for the Nibelheim reception.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Snorri Sturluson, Edda, Gylfaginning 3–8, 15–16, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-2">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-3">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-4">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-5">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962).</li><li id="src-scholarly-sources-6">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-scholarly-sources-7">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-8">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li><li id="src-scholarly-sources-9">Orchard, Andy, Dictionary of Norse Myth and Legend (Cassell, 1997).</li><li id="src-scholarly-sources-10">Jónas Kristjánsson, Eddas and Sagas, trans. Foote (Hið íslenska bókmenntafélag, 1988).</li><li id="src-scholarly-sources-11">Wagner, Richard, Das Rheingold (Bayreuth, 1876).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda knows the mist-world in its older, darker name: <em>niflhel</em>, mist-Hel. Vafþrúðnismál gives the corpus's deepest cosmography when <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, proving his wisdom to the giant, says he journeyed through nine worlds down below Niflhel — and the same poem supplies the mist-world's raw material, for it is from the Élivágar that the venom-drops spurted and grew until a giant was made, the ancestor of all the rime-giants' kin.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup></p>
+<p>Grímnismál keeps the well: the hart Eikþyrnir stands on Valhöll's roof and bites the foliage, and from his horns it drips into Hvergelmir, ‘thence all waters have their course’ — after which the poem unrolls its great river-catalogue, Svöl and Gunnþrö, Fjörm and Fimbulþul, Gjöll and Leiptr, the rivers that fall near men and those that fall to Hel.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> And Baldrs draumar opens its tragedy on the mist-world's road: Óðinn saddles <a href="/sleipnir/" class="crosslink" data-crosslink="sleipnir">Sleipnir</a> and rides down to Niflhel, to the high house of Hel, to wake a dead völva and wring from her the prophecy of <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s death.<sup class="scholars-cite"><a href="#src-poetic-edda-3">[3]</a></sup> What the poems never do is draw Snorri's tidy map: the word <em>niflheimr</em> itself is nearly absent from Eddic verse, which speaks instead of the well, the rivers, and the road down — the pieces, that is, from which the prose world was assembled.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Vafþrúðnismál 20–21, 31, 43 (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-2">Grímnismál 26–29, 34–35 (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-3">Baldrs draumar 1–2 (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Niflheimr's cartographer. Gylfaginning 4 gives the foundational notice: Niflheimr was made many ages before the earth was created, and in its middle is the well called Hvergelmir, from which flow the rivers — Svöl, Gunnþrá, Fjörm, Fimbulþul, Slíðr and Hríð, Sylgr and Ylgr, Víð, Leiptr, and Gjöll, which is nearest the gate of Hel.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup></p>
+<p>Gylfaginning 5–8 builds the cosmogony on the contrast: Muspellsheimr in the south, bright and burning, guarded by <a href="/surtr/" class="crosslink" data-crosslink="surtr">Surtr</a>; <a href="/ginnungagap/" class="crosslink" data-crosslink="ginnungagap">Ginnungagap</a> mild in the middle; and the northern half filling with ice and rime as the Élivágar's yeasty venom hardened, until the warm breath from the south thawed the rime and the dripping drops quickened into <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup> Later, Gylfaginning 15–16 stations the world-tree over the old geography: the third root of <a href="/yggdrasill/" class="crosslink" data-crosslink="yggdrasill">Yggdrasill</a> extends over Niflheimr, beneath that root is Hvergelmir, and Níðhöggr gnaws the root from below — while Gylfaginning 3 completes the vertical map downward, ruling that evil men go to Hel and thence down to Niflhel, ‘that is down in the ninth world’.<sup class="scholars-cite"><a href="#src-prose-edda-3">[3]</a></sup> Snorri's craft is the systematization itself: the Eddic well, rivers, and Niflhel become, in his prose, a single mapped world with a fixed address at both ends of the cosmos — first in time, lowest in space.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning 4, trans. Faulkes (1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Gylfaginning 5–8, trans. Faulkes (1987).</li><li id="src-prose-edda-3">Snorri Sturluson, Edda, Gylfaginning 3, 15–16, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The runic corpus contains no attestation of Niflheimr — and none was to be expected. Cosmographical compounds are not what runestones record: the inscriptions commemorate the dead, claim land, and mark bridges and boundaries, and no carver yet found had occasion to write the mist-world's name on wood, bone, or stone.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What the runic record can supply is the spelling system. In the Younger Futhark of the Viking Age the compound would have been carved <strong>ᚾᛁᚠᛚᚼᛁᛘᛦ</strong> (n-i-f-l-h-i-m-R): the single ᛁ-rune writing both the e and the i of <em>heimr</em>, since the sixteen-rune row makes no such vowel distinctions, and the ᛦ carrying the final nominative -r. The manuscript form of the Eddas, written in the Latin bookhand after the conversion, remains the primary witness — a word whose plainness in ASCII is an accident of history, not of the runes.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Niflheim.</li><li id="src-runic-evidence-2">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957), on runic orthography.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, Niflheimr barely leaves the cosmological shelf. The Icelandic sagas — even the legendary fornaldarsögur that cheerfully send heroes sailing to <a class="scholars-xlink" href="/jotunheimr/">Jötunheimr</a> and the underworld — do not route journeys through the mist-world: it belongs to the learned, systematic stratum of Old Norse writing, to Snorri's Edda and the scholarly tradition around it, rather than to narrative itinerary.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup></p>
+<p>Its medieval afterlife is therefore a scholarly one. The compound survives in the Eddic codices and the þulur tradition that kept cosmographical vocabulary catalogued for poets; its near-kin <em>niflhel</em> did the underworld's work in verse. That division of labour — the poems keeping the dark road, the prose keeping the map — is itself the most instructive fact about the word's transmission: Niflheimr is the one major world of the nine that the tradition preserved as an idea before it preserved it as a place.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Jónas Kristjánsson, Eddas and Sagas: Iceland&#39;s Medieval Literature, trans. Peter Foote (Reykjavík: Hið íslenska bókmenntafélag, 1988).</li><li id="src-sagas-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Niflheim, Niflhel.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Niflheimr is the patron of what was here first. Before the gods, before the giants, before the earth itself, there was a world of mist with a well in the middle of it, and rivers already running.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>The Norse imagination refused to let creation begin with a decree; it began with weather — with frost accumulating in a silence no one had yet named, thawed, at last, by a warmth it never asked for. There is a hard comfort in the sequence: nothing needed to deserve the thaw; the ice simply stood where the heat could reach it, and the world followed. Every river still runs from that well, which is the myth's way of saying that every living thing is downstream of the cold it rose from — and that the oldest thing in any life is not what it chose, but what it was given to thaw.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Snorri Sturluson, Edda, Gylfaginning 4–7, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Niflheimr</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᚾᛁᚠᛚᚼᛁᛘᚱ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'niflheimr';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

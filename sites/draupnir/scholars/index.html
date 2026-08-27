@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draupnir — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Draupnir: a living, university-curated reference on Odin's Ring, Wealth. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Draupnir — Scholarly Edition",
+    "headline": "Draupnir — Scholarly Edition",
+    "description": "University-curated scholarly reference for Draupnir (Odin's Ring, Wealth).",
+    "url": "https://punicodex.com/draupnir/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᛏᚱᛅᚢᛒᚾᛁᚱ",
+        "alternateName": ["draupnir", "Draupnir"],
+        "description": "Odin's Ring, Wealth"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/draupnir.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/draupnir/scholars/">
+
+    <meta property="og:title" content="Draupnir — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Draupnir (Odin's Ring, Wealth).">
+    <meta property="og:url" content="https://punicodex.com/draupnir/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/draupnir.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/draupnir.jpg">
+    <meta name="twitter:title" content="Draupnir — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Draupnir (Odin's Ring, Wealth).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Draupnir",
+      "item": "https://punicodex.com/draupnir/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/draupnir/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="draupnir-canvas" data-effect="ringdrip-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/draupnir_logolockup.webp" type="image/webp"><img src="../assets/draupnir_logolockup.png" alt="Draupnir" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/draupnir/">Draupnir</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Draupnir</h1>
+            <p class="scholars-subtitle reveal-up">Odin's Ring, Wealth · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Draupnir.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Draupnir</strong> (<em>draupnir</em>) — Odin's Ring, Wealth · The Dripper — is the golden arm-ring of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and the one treasure in the northern corpus whose nature is increase: every ninth night, eight rings of equal weight drip from it.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> Forged by the dwarf <a href="/sindri/" class="crosslink" data-crosslink="sindri">Sindri</a> while his brother <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a> worked the bellows, it came out of the same wager that produced the boar Gullinbursti and <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s hammer <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a>, and was judged beside them at <a href="/asgardr/" class="crosslink" data-crosslink="asgardr">Ásgarðr</a>.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>Its career in the corpus is short and perfectly shaped. Skáldskaparmál tells its making; Skírnismál catches it in motion, offered as bride-price to the giantess Gerðr and refused; and Gylfaginning 49 gives it the two gestures that define it — Óðinn laying it on <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s pyre, and Baldr sending it back from Hel with <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a> as a keepsake for his father.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup><sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup> Völuspá's catalogue of dwarfs preserves the name's older root: a dwarf Draupnir stands in the dvergatal, the treasure wearing a name the smith-lists already owned.<sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Draupnir</strong> — identical to the ASCII input, because the normalized Old Norse form is itself plain ASCII: no diacritic, no distinctive letter, nothing for the ASCII alphabet to lose. The name is therefore Tier 2 by the project's mechanical rule — a property of its orthography, not of the treasure's standing. The plain-ASCII domain draupnir.com is registered to a third party outside the collection and is watched for release; the project claims no domain for this temple.<sup class="scholars-cite"><a href="#src-overview-5">[5]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Snorri Sturluson, Edda, Skáldskaparmál (the forging of Draupnir and the judgment of the treasures), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-2">Skírnismál 21–22 (Poetic Edda), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-overview-3">Snorri Sturluson, Edda, Gylfaginning 49 (Baldr&#39;s funeral; Hermóðr&#39;s ride), trans. Faulkes (1987).</li><li id="src-overview-4">Völuspá, dvergatal (Poetic Edda), trans. Larrington (2014).</li><li id="src-overview-5">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. draupnir, drjúpa.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>Draupnir</strong> (masculine; genitive <em>Draupnis</em>). It is a transparent deverbal formation: the verb <em>drjúpa</em> 'to drip' plus the agent and instrument suffix <em>-nir</em> — the same ending that makes <em><a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a></em> 'the grinder' from <em>mala/mylja</em> — yielding 'the dripper'.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The name states the ring's single miraculous property as plainly as a label: it is called after what it does, which is to drip gold.</p>
+<p>The Poetic Edda knows the same word as a dwarf-name: in Völuspá's dvergatal, Draupnir stands in the catalogue among the earth-smiths.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup> The double life of the word — dwarf in the oldest poem, treasure in the prose tradition — is typical of the corpus's wonder-names, and scholars have long read the ring's name as a dwarf's name transferred to a dwarf's work.</p>
+<p>The ASCII form is not a compromise here: normalized Old Norse <em>Draupnir</em> is already written in plain ASCII letters. There is no diacritic, no thorn or eth, no vowel-length mark for the early domain-name system to have stripped; the diphthong <em>au</em> is written with two ordinary letters. The name is classified Tier 2 by the project's mechanical rule — the restoration preserves nothing the ASCII form loses — which is a statement about orthography, never about the treasure. The final <em>-r</em> belongs to the nominative ending fused into the <em>-nir</em> suffix.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>d</strong> → <strong>D</strong> — Same, capitalized</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>p</strong> → <strong>p</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>draupnir.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. draupnir, drjúpa.</li><li id="src-the-name-2">Völuspá, dvergatal (Poetic Edda), trans. Larrington (2014).</li><li id="src-the-name-3">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. draupnir, drjúpa.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈdrɑup.nir/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Dr-</strong> — Fully voiced dental stop [d] releasing directly into a trilled [r]; the cluster is voiced throughout, with no aspiration after the d</li><li><strong>-au-</strong> — The falling diphthong [ɑu], open back vowel gliding to [u]; the sound Old Norse wrote au, cousin to the 'ow' of English 'cow'</li><li><strong>-pnir</strong> — Voiceless bilabial [p], alveolar nasal [n], short close [i], and the final trilled [r] of the agent suffix -nir</li></ul>
+<p>For the modern speaker, the closest approximation is: 'DROYP-nir' — two syllables, stress on the first; 'droyp' rhyming with 'cowp', the r's lightly trilled.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Draupnir, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s ring; from drjúpa 'to drip' + -nir; also a dwarf-name in Völuspá</li><li><strong>Younger Futhark</strong> — ᛏᚱᛅᚢᛒᚾᛁᛦ, the Viking-Age runic rendering (t-r-au-b-n-i-R)</li><li><strong>Modern Icelandic</strong> — Draupnir, the unbroken living form</li></ul>
+<p>Draupnir is Tier 2 because the Old Norse form is already plain ASCII: nothing distinctive is lost in transit. The diphthong au and the suffix -nir are written with the plainest letters the language owns.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology and grammar.</li><li id="src-pronunciation-2">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. draupnir.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>Draupnir</strong> — Old Norse (North Germanic), attested 13th c. CE in the Codex Regius of the Prose Edda (Skáldskaparmál, Gylfaginning) and the Codex Regius of the Poetic Edda (Skírnismál, Völuspá), recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The manuscript form is itself plain ASCII: Old Norse writes no diacritic in this name, and the restoration changes nothing but the capital. In the Younger Futhark the name would have been carved <strong>ᛏᚱᛅᚢᛒᚾᛁᛦ</strong> (t-r-au-b-n-i-R); the runic row underspecifies what the manuscripts fix, with ᛏ writing both t and d, ᛒ writing both b and p, and ᛦ the final nominative -r.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The word is a deverbal masculine: <em>drjúpa</em> 'to drip' + the agent suffix <em>-nir</em>, hence 'the dripper'.</li><li>The diphthong <em>au</em> is written with two plain letters; Old Norse orthography requires no accent anywhere in the word.</li><li>The name also occurs as a dwarf-name in Völuspá's dvergatal; the treasure and the smith share one word.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Draupnir is therefore identical to the ASCII form — a Tier 2 name by the mechanical rule, whose dignity comes from the treasure, not from rescued diacritics.</li></ul>
+<p>PuniCodex holds no domain for this name: the plain-ASCII <strong>draupnir.com</strong> is registered to a third party outside the collection and is watched for release.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. draupnir, drjúpa.</li><li id="src-original-script-3">Völuspá, dvergatal (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Draupnir</strong> is catalogued under Odin's Ring, Wealth — and the sources earn both halves of the phrase.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Odin's Ring</h3>
+<p>The ring is <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s own, one of his two great treasures from the forging wager, beside the spear Gungnir. It moves only at his giving: onto <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s pyre, and — in Skírnismál — into the wooing-gifts carried for <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>'s suit.</p>
+<h3 class="scholars-h3">Wealth</h3>
+<p>Its single property is increase: eight rings of equal weight every ninth night. Snorri states it in one sentence and the whole tradition repeats it — the ring is wealth's self-portrait, gold that breeds gold without labour or taking.</p>
+<h3 class="scholars-h3">The Gift</h3>
+<p>Every appearance of the ring in the corpus is a gift: judged and given at <a href="/asgardr/" class="crosslink" data-crosslink="asgardr">Ásgarðr</a>, offered as bride-price, laid on the pyre as a father's last giving, returned from Hel as a keepsake. It is never bought, sold, won, or stolen.</p>
+<h3 class="scholars-h3">The Number Nine</h3>
+<p>The multiplication runs on the corpus's sacred interval — nine nights, the same rhythm as Óðinn's hanging on the world-tree and <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a>'s ride to Hel.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Skáldskaparmál and Gylfaginning 49, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Draupnir is itself the symbol — a treasure whose whole meaning is its working — but the tradition has fixed a small constellation of attributes around it:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The eight rings</strong> — The dripping yield of every ninth night: increase as a calendar, wealth arriving on a schedule rather than by conquest</li><li><strong><a href="/sindri/" class="crosslink" data-crosslink="sindri">Sindri</a>'s forge and <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>'s bellows</strong> — The making under pressure: the unbroken blast that produced the ring while <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>, in a fly's shape, spent his malice on the bellows-hand</li><li><strong>The fly</strong> — The sting that cost <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a> its handle but never touched the ring: the proof that not all sabotage succeeds</li><li><strong>The pyre</strong> — <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s last gift laid in the fire with <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>: the one inexhaustible treasure deliberately given away</li><li><strong>The return token</strong> — The ring in <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a>'s hand on the road back from Hel: the only object in the corpus to cross the boundary of death in both directions<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Skáldskaparmál, trans. Faulkes (1987).</li><li id="src-symbols-2">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Draupnir's mythology divides into its making and its journey, with the Poetic Edda catching it twice between.</p>
+<h3 class="scholars-h3">The Wager of Loki's Head (Skáldskaparmál)</h3>
+<p>It begins with <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>'s crime against <a class="scholars-xlink" href="/sif/">Sif</a>, whose hair he cuts off for mischief, and his oath to replace it with gold. From the sons of Ivaldi he gets the golden hair, the ship Skíðblaðnir, and the spear Gungnir — and then, boasting, he wagers his own head with the dwarf <a class="scholars-xlink" href="/brokkr/">Brokkr</a> that <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>'s brother <a class="scholars-xlink" href="/sindri/">Sindri</a> cannot make three treasures as good. The bet frames the whole episode: everything that follows is forge-work under a death-wager.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Three Treasures from the Bellows (Skáldskaparmál)</h3>
+<p><a href="/sindri/" class="crosslink" data-crosslink="sindri">Sindri</a> lays pigskin, then gold, then iron in the forge, and Brokkr blows without ceasing while a fly — Loki — stings his hand, his neck, and at last his eyelid until blood blinds him and the bellows falter for one stroke. Out come the golden boar Gullinbursti, the ring Draupnir, and the short-handled hammer <a class="scholars-xlink" href="/mjolnir/">Mjǫllnir</a>. Judged at <a href="/asgardr/" class="crosslink" data-crosslink="asgardr">Ásgarðr</a> against Loki's three, the treasures are dealt out: Gungnir and Draupnir to <a class="scholars-xlink" href="/odinn/">Óðinn</a> — and Snorri fixes the ring's nature in the sentence the whole tradition repeats: every ninth night, eight rings of equal weight drip from it. <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a> is judged the best for the defence of the gods; Loki keeps his head on the point of law that Brokkr may not take the neck, and has his lips sewn shut instead.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Ring Refused (Skírnismál 21–22)</h3>
+<p>When <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>'s servant Skírnir woos the giantess Gerðr for his master, his second gift is 'the ring that was burned with <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s young son; eight of equal weight drip from it every ninth night' — unnamed, unmistakably Draupnir. Gerðr refuses: she lacks no gold in Gymir's halls. The self-breeding treasure of the Allfather, the one offer that cannot be outbid, is weighed by a giantess and found worthless — the poem's verdict that gold, even multiplying gold, buys nothing that matters. Only Skírnir's rune-carved curse moves her.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Pyre and the Return (Gylfaginning 49)</h3>
+<p>At <a class="scholars-xlink" href="/baldr/">Baldr</a>'s funeral on Hringhorni, Óðinn lays Draupnir on the pyre with his dead son — the fountain of his gold given away in the one gesture that makes a treasure a gift. Then <a class="scholars-xlink" href="/hermod/">Hermóðr</a> rides the nine nights to Hel, wins the famous condition, and brings the tokens back: first among them Draupnir, sent by <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> to Óðinn as a keepsake. The ransom fails at Þökk's refusal and Baldr remains with the dead; but the ring completes the journey no other object makes, out of the fire, into Hel, and home again.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The Dwarf's Name (Völuspá)</h3>
+<p>In Völuspá's dvergatal, the great catalogue of the earth-smiths, a dwarf named Draupnir stands in the list. The treasure-name and the smith-name are one word — 'the dripper' — and the corpus seems to keep, fossilized in its oldest poem, the truth that such wonders come from under the earth.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Snorri Sturluson, Edda, Skáldskaparmál (the wager, the forging, the judgment), trans. Faulkes (1987).</li><li id="src-mythology-2">Skírnismál 21–22 (Poetic Edda), trans. Larrington (2014).</li><li id="src-mythology-3">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-mythology-4">Völuspá, dvergatal (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Draupnir's true company is objects, not gods, and the corpus itself supplies the sharpest contrast: <a class="scholars-xlink" href="/andvari/">Andvari</a>'s ring Andvaranaut, extorted at the waterfall and answered with a curse, kills every hand that holds it, while Draupnir — made freely, on a wager's terms, for the gods — breeds gold for its keeper. The taken ring destroys; the given ring multiplies.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> The wider Germanic frame is the ring-giving culture the heroic poetry everywhere assumes: the lord of Beowulf is the <em>beaga brytta</em>, the 'ring-giver', and arm-rings are the very currency of the loyalty between lord and man — a self-breeding ring is that economy's dream made metal.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p>
+<p>Folklorists file Draupnir among the self-multiplying magic treasures of the international motif-index, beside inexhaustible purses, tables that set themselves, and horns of plenty; its nearest mythic kin are things, not deities. Within the corpus, its kin are its fellow-wonders of the wager — Gullinbursti and <a class="scholars-xlink" href="/mjolnir/">Mjǫllnir</a> — and its makers <a class="scholars-xlink" href="/brokkr/">Brokkr</a> and <a class="scholars-xlink" href="/sindri/">Sindri</a>, the dwarf-brothers whose names the corpus binds to the finest smith-work in the world.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Draupnir, Andvaranaut.</li><li id="src-syncretism-2">Beowulf, ed. and trans. R. M. Liuzza, 2nd ed. (Peterborough, ON: Broadview, 2013), on the ring-giver and the gift-economy.</li><li id="src-syncretism-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Draupnir, Sindri, Brokk.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Draupnir's afterlife is the afterlife of an idea: the treasure that makes treasure. The nineteenth-century Norse revival fixed the forging-wager as a set-piece — the Kearys' The Heroes of Asgard (1857) carried <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a> and <a href="/sindri/" class="crosslink" data-crosslink="sindri">Sindri</a> at the bellows to generations of English-speaking children, and every handbook since has repeated the ninth-night dripping.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p>
+<p>In contemporary popular culture the name has become a byword for self-replicating wonders. God of War Ragnarök (2022) gives Brok and Sindri a Draupnir of its own — a spear forged through the ring's multiplying magic, reproducing itself in the wielder's hand — the most widely seen adaptation of the dwarf-brothers and their craft in any medium.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup> Fantasy games and fiction reach for the name whenever gear must breed gear. In Iceland the word never needed reviving: Draupnir remains a living name for ships, firms, and horses, the dripper doing ordinary work in the language that wrote the Eddas. And wherever a modern storyteller needs wealth that grows honestly — by time, by patience, by nature rather than by taking — the shape they reach for is <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s ring, whether they name it or not.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Keary, Annie, and Eliza Keary, The Heroes of Asgard: Tales from Scandinavian Mythology (London: Macmillan, 1857).</li><li id="src-cultural-legacy-2">God of War Ragnarök (Santa Monica Studio, 2022): the Draupnir Spear questline, &#39;The Realms at War&#39;.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Draupnir is a literary object: no inscription names it and no find can be identified with it. But the ring it describes belongs to one of the best-attested object-classes in the northern record. Gold and silver arm-rings are the standard currency of Viking-Age hoards — the great Gotlandic deposits, crowned by the Spillings hoard of 1999, the largest Viking silver hoard yet found, are full of ring-money cut and weighed as bullion, the archaeological reality behind the poetry's ring-giver.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p>
+<p>The ring's social weight is documented from both sides of the conversion. Eyrbyggja saga (ch. 4) describes a ring of twenty ounces lying on the altar of the hof at Þórsnes, on which all oaths were sworn; and the Forsa ring of Hälsingland — an iron ring bearing a runic law inscription, the oldest legal text in Scandinavia — survives as that practice's one famous material witness.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup> Earlier still, the ring-swords of the Vendel-period elite, with a ring mounted on the pommel as the sign of the oath between lord and man — attested at Valsgärde and famously at Sutton Hoo — carry the ring's meaning back into the Migration Age.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup> The manuscript witnesses are the usual two codices: Skáldskaparmál and Gylfaginning in the Codex Regius of the Prose Edda (GKS 2367 4to), Skírnismál and Völuspá in the Codex Regius of the Poetic Edda (GKS 2365 4to).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. rings, oath.</li><li id="src-archaeology-2">Eyrbyggja saga, ch. 4 (the altar ring at Þórsnes); the Forsa ring (Hälsingland), runic law inscription.</li><li id="src-archaeology-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. ring.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Draupnir given in this edition rests on the witnesses and reference works listed below. Skáldskaparmál supplies the making; Gylfaginning 49 the pyre and the return; Skírnismál and Völuspá the poetic attestations; the lexica secure the name's etymology.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Snorri Sturluson, Edda, Skáldskaparmál (the wager of <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>'s head; the forging of Gullinbursti, Draupnir, and <a href="/mjolnir/" class="crosslink" data-crosslink="mjolnir">Mjǫllnir</a>; the judgment of the treasures), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Snorri Sturluson, Edda, Gylfaginning 49 (<a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s funeral; <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> lays Draupnir on the pyre; <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a>'s ride and the keepsake), trans. Faulkes (1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Skírnismál 21–22 (the ring offered to Gerðr); Völuspá, dvergatal (Draupnir among the dwarf-names).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. draupnir, drjúpa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. draupnir, drjúpa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Draupnir, Brokk, <a href="/sindri/" class="crosslink" data-crosslink="sindri">Sindri</a>, ring.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Draupnir.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Draupnir, Andvaranaut, rings.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Eyrbyggja saga, ch. 4 (the altar ring at Þórsnes); the Forsa ring of Hälsingland.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Snorri Sturluson, Edda, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-2">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-3">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-4">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-5">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-6">Orchard, Andy, Dictionary of Norse Myth and Legend (Cassell, 1997).</li><li id="src-scholarly-sources-7">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li><li id="src-scholarly-sources-8">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-scholarly-sources-9">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957).</li><li id="src-scholarly-sources-10">Eyrbyggja saga, ch. 4 (the altar ring at Þórsnes); the Forsa ring of Hälsingland.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda attests Draupnir twice, and never by name in the same breath as its owner. Skírnismál 21–22 catches the ring in motion: among the wooing-gifts Skírnir carries to Gerðr is 'the ring that was burned with <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s young son; eight of equal weight drip from it every ninth night' — a description no other object in the corpus fits, read from the prose commentators onward as Draupnir itself. Gerðr's refusal is the poem's own judgment on treasure: she lacks no gold in Gymir's halls, and the one offer that cannot be outbid buys nothing.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup></p>
+<p>Völuspá gives the name its older root. In the dvergatal — the catalogue of dwarfs interpolated into the seeress's account of the world's making — a smith named Draupnir stands in the list. The treasure of the Prose Edda wears a name the oldest poem assigns to a dwarf: the dripper was a person before it was a possession, or the corpus kept the smith's name on the smith's work.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> Between the two attestations the Edda sketches the ring's whole character without ever telling its story: a thing made under the earth, offered as a gift, and counted worthless by the one being wooed.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Skírnismál 21–22 (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-2">Völuspá, dvergatal (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Draupnir's great witness, and it owns both ends of the ring's story. Skáldskaparmál tells the making as part of the wager of <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>'s head: the crime against Sif's hair, the three treasures of the sons of Ivaldi, the bet with <a href="/brokkr/" class="crosslink" data-crosslink="brokkr">Brokkr</a>, and the forging under the fly's assault — pigskin, gold, iron; boar, ring, hammer. Snorri's style is at its best here: the whole catastrophe of the short handle turns on one interrupted stroke of the bellows, while the ring, made in the middle assault, comes out flawless. His sentence on its nature is the tradition's fixed formula: every ninth night eight rings of equal weight drip from it.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup></p>
+<p>Gylfaginning 49 gives the ring its two gestures. At <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s funeral <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> lays Draupnir on the pyre — one of the few named acts of the burning, beside <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s hallowing and <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s death of grief. And when <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a> rides back out of Hel with the ransom's condition, Baldr's tokens come with him, Draupnir first: the dead god's keepsake to his father. Snorri lets the object carry what the narrative cannot — the ransom fails, the god stays dead, and the ring comes home anyway.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup> No other object in the corpus makes that crossing in both directions, and Snorri makes nothing of it, which is the surest sign the tradition found it self-evident.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Skáldskaparmál, trans. Faulkes (1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No runic inscription names Draupnir: the ring belongs to the literary record, and the rune-stones keep their silence about it as they do for most mythological objects.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup> What the runic corpus does preserve is the ring's social world. The Forsa ring of Hälsingland — an iron oath-ring bearing the oldest legal inscription in Scandinavia — is the material proof of the ring's juridical weight: law itself was, in one famous instance, carried on a ring. The altar ring of twenty ounces that Eyrbyggja saga describes at Þórsnes, on which all oaths were sworn, belongs to the same complex.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p>
+<p>In the Younger Futhark the name would have been carved ᛏᚱᛅᚢᛒᚾᛁᛦ (t-r-au-b-n-i-R): the ᛏ-rune writing the voiced d, ᛒ writing p, and ᛦ the final nominative -r — a rendering that underspecifies exactly what the manuscripts fix, in the usual way of the sixteen-rune row.<sup class="scholars-cite"><a href="#src-runic-evidence-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. rings, oath.</li><li id="src-runic-evidence-2">Eyrbyggja saga, ch. 4; the Forsa ring (Hälsingland), runic law inscription.</li><li id="src-runic-evidence-3">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957), on the Younger Futhark.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Outside the Eddas, Draupnir's medieval afterlife is quiet but real, and it runs along the ring's social meaning rather than its mythology. The Íslendingasögur keep the oath-ring complex alive: Eyrbyggja saga's account of the Þórsnes hof — the ring of twenty ounces on the altar, the oath sworn upon it — is the corpus's fullest picture of the ring as the instrument of law and cult, the everyday institution behind the mythic wonder.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup></p>
+<p>The skaldic and learned tradition keeps the name in its proper place: Snorri's Skáldskaparmál, which preserves the forging tale, frames it as background for the poets' periphrases — the treasures of the gods are catalogued so that verse can be understood — and the þulur, the mnemonic name-lists, keep Draupnir among the registered wonders.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup> Saxo Grammaticus, whose <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> narrative diverges so sharply from Snorri's, knows no Draupnir on his Balderus's pyre: the ring's role in the funeral belongs to the Icelandic telling, a reminder that the corpus's most famous treasure-journey rests on one tradition's account.<sup class="scholars-cite"><a href="#src-sagas-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Eyrbyggja saga, ch. 4, trans. Hermann Pálsson and Paul Edwards (Edinburgh: Edinburgh University Press, 1989).</li><li id="src-sagas-2">Snorri Sturluson, Edda, Skáldskaparmál and the þulur, trans. Faulkes (1987).</li><li id="src-sagas-3">Saxo Grammaticus, Gesta Danorum, Book 3 (Balderus and Høtherus), trans. Peter Fisher, ed. Hilda Ellis Davidson (Cambridge: D. S. Brewer, 1979).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>The North was not sentimental about gold. Its greatest hoard is cursed at birth, its dragons die on beds of metal, and its poets ken gold as the fire of the flood where the Niflungar sank it. Against all of that stands one exception, and it is the highest treasure of the highest god: a ring whose only property is that it increases.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>Draupnir does not shine, speak, strike, or protect. It drips — on a schedule, in the dark, eight for one every ninth night, wealth arriving the way wealth actually arrives for those who keep it lawfully: slowly, cyclically, by nature rather than by conquest. The myth then does the two most instructive things a myth can do with such an object. It gives it away: <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> lays the one inexhaustible treasure in the world on his son's pyre, because no fountain of gold outweighs one act of love. And it sends it back: the dead return the gift to the living, because some bonds outlast the boundary. Gold that is kept breeds gold. Gold that is given breeds everything else.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Snorri Sturluson, Edda, Skáldskaparmál and Gylfaginning 49, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Draupnir</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᛏᚱᛅᚢᛒᚾᛁᚱ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'draupnir';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

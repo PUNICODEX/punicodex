@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beli — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Beli: a living, university-curated reference on Light, Sun. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Beli — Scholarly Edition",
+    "headline": "Beli — Scholarly Edition",
+    "description": "University-curated scholarly reference for Beli (Light, Sun).",
+    "url": "https://punicodex.com/beli/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Beli",
+        "alternateName": ["beli", "Beli"],
+        "description": "Light, Sun"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/beli.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/beli/scholars/">
+
+    <meta property="og:title" content="Beli — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Beli (Light, Sun).">
+    <meta property="og:url" content="https://punicodex.com/beli/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/beli.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/beli.jpg">
+    <meta name="twitter:title" content="Beli — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Beli (Light, Sun).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Beli",
+      "item": "https://punicodex.com/beli/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/beli/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="beli-canvas" data-effect="crownroots-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/beli_logolockup.webp" type="image/webp"><img src="../assets/beli_logolockup.png" alt="Beli" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/beli/">Beli</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Beli</h1>
+            <p class="scholars-subtitle reveal-up">Light, Sun · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Beli.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Beli</strong> (<em>beli</em>) — Light, Sun · Bright, shining — is Beli mawr, Beli the Great, son of Manogan: the ancestor-king who stands at the head of the Mabinogion's British dynasties. The tale of Lludd and Llefelys opens with him — king of the Island of Britain, father of Lludd, Caswallawn, Nynniaw, and 'a fourth son called Llefelys' — and finishes him in a sentence; the Second Branch then watches his son Caswallawn take the crown from the children of Llŷr under a veil of illusion.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>Beyond the tales, Beli's real dominion was genealogical. The Harleian genealogies carry the royal pedigrees of the Welsh kingdoms back to Beli mawr, and the convention held for centuries: descent from Beli the Great was the deepest legitimacy a British dynasty could print.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> Geoffrey of Monmouth Latinized him as Heli, father of Lud, Cassibelaunus, and Nennius, and through Geoffrey his house entered the bloodstream of European letters.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p>
+<p>The name's traditional gloss is 'bright, shining', reached through its long-proposed connection with the continental Celtic god Belenos — Tertullian's god of the Noricans, the Apollo Belis of Aquileia — conventionally derived from the root *bhel-, 'to shine'. The derivation of Belenos itself is debated, and the identification of the Welsh ancestor with the god is a venerable possibility, not a proof; the lexicon records the gloss as the tradition gives it.<sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Beli</strong> — identical to the ASCII input, because Middle Welsh writes no diacritic in this name. The mechanical rule therefore places it in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the figure. No domain is claimed: the plain-ASCII <strong>beli.com</strong> is registered to a third party outside the collection and is watched for release.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), &#39;Lludd and Llefelys&#39; and &#39;Branwen daughter of Llŷr&#39;.</li><li id="src-overview-2">Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (Cardiff: University of Wales Press, 1966).</li><li id="src-overview-3">Reeve, Michael D., ed., and Neil Wright, trans., Geoffrey of Monmouth, The History of the Kings of Britain (Woodbridge: Boydell, 2007), III.20.</li><li id="src-overview-4">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Beli Mawr, Belenos.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Middle Welsh as <strong>Beli</strong>, characteristically with the epithet — <em>Beli mawr uab Manogan</em>, 'Beli the Great, son of Manogan' — in the Mabinogion and in the genealogical tracts.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> Geoffrey of Monmouth writes it in Latin as <strong>Heli</strong>, a form his translators later Englished as both Heli and Beli.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The traditional gloss is 'bright, shining', and it arrives by way of the continental theonym <strong>Belenos / Belinus</strong> — the god the Latin tradition equated with Apollo — whose name has conventionally been derived from Proto-Indo-European *bhel-, 'to shine'. The link between the Welsh ancestor and the god is one of the oldest proposals in Celtic scholarship and remains unproven; the etymology of Belenos itself is disputed, and rival derivations exist. This edition records the gloss as the tradition hands it down, with the uncertainty attached.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p>
+<p>The name should also be distinguished from its homonyms. Geoffrey's <strong>Belinus</strong>, son of Dunvallo and brother of Brennius, is a different figure who shares nothing with Beli Mawr but the name; and several historical Welsh dynasts bore Beli as a personal name — Beli son of Rhun stands in the Gwynedd pedigree — without being the ancestor-king.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup></p>
+<p>The ASCII form <em>beli</em> loses nothing, because the attested Welsh spelling is already plain Latin letters; the restoration is a matter of canonical reference, not rescued diacritics, and the name is classified Tier 2 by the project's mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>i</strong> → <strong>i</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>beli.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (Cardiff: University of Wales Press, 1966), for the manuscript forms and the pedigrees.</li><li id="src-the-name-2">Reeve, Michael D., ed., and Neil Wright, trans., Geoffrey of Monmouth, The History of the Kings of Britain (Woodbridge: Boydell, 2007), III.20.</li><li id="src-the-name-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Beli Mawr, Belenos; MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Beli.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The pronunciation of the name is <strong>/ˈbɛlɪ/</strong> — Modern Welsh standard.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Be-</strong> — Voiced bilabial stop [b], then the open front vowel [ɛ] of English 'bed', stressed</li><li><strong>-li</strong> — Clear lateral [l], closing on the short close vowel [ɪ]</li></ul>
+<p>For the modern speaker, the closest approximation is: 'BEL-ee' — two syllables, stress on the first, the e open as in 'bed', never the long ay of 'bailey'.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Middle Welsh</strong> — Beli mawr uab Manogan, the Mabinogion form</li><li><strong>Latin</strong> — Heli, Geoffrey of Monmouth's form</li><li><strong>Proposed cognate</strong> — Gaulish Belenos / Latin Belinus, the continental theonym</li><li><strong>Attested form</strong> — Beli, identical to the manuscript spelling<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li></ul>
+<p>Beli is Tier 2 because the restoration preserves nothing ASCII loses: the letters of the manuscript form are the letters of the keyboard. The capital alone marks the temple form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964), on Middle Welsh orthography and phonology.</li><li id="src-pronunciation-2">Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (Cardiff: University of Wales Press, 1966); Reeve and Wright, Geoffrey of Monmouth (2007), III.20.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in Middle Welsh in the Latin alphabet as <strong>Beli</strong> — attested in the White Book of Rhydderch (c. 1350) and the Red Book of Hergest (c. 1382–1410), the two great codices of the Mabinogion, and in the genealogical collections preserved in Harley MS 3859 and its sister manuscripts.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Middle Welsh writes the name in plain ASCII letters: there is no diacritic and no distinctive letter for the restoration to recover, which is why the name stands in Tier 2.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Welsh was written in the Latin alphabet from the early medieval period; the spelling Beli requires no diacritic.</li><li>Geoffrey of Monmouth's Latin form Heli reflects the same name carried into the orthographic conventions of twelfth-century Anglo-Latin.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>The proposed connection with Gaulish Belenos is a question of etymology and mythography, not of attestation: no British inscription preserves the name in either form.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Beli is therefore identical to the ASCII form apart from the capital; the temple form is a canonical reference, not a rescued spelling.</li></ul>
+<p>One caution attaches to the record: the traditional gloss 'bright, shining' belongs to the Belenos connection and is recorded here as tradition, not as a demonstrated derivation of the Welsh name.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Huws, Daniel, Medieval Welsh Manuscripts (Cardiff: University of Wales Press, 2000), on the White Book, the Red Book, and the genealogical codices.</li><li id="src-original-script-2">Reeve, Michael D., ed., and Neil Wright, trans., Geoffrey of Monmouth, The History of the Kings of Britain (Woodbridge: Boydell, 2007), III.20.</li><li id="src-original-script-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Beli Mawr, Belenos.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Beli</strong> is catalogued under the domain 'Light, Sun' — the name's traditional solar reading, inherited from its long-proposed connection with the 'bright, shining' god Belenos. His attested role in the texts is something adjacent: the luminous first term of a dynasty, the light at the root of the tree rather than a god in the sky.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Light</h3>
+<p>The traditional gloss of the name — 'bright, shining' — reaches Beli through Belenos, the continental god the Latin sources equated with Apollo. Whether the Welsh ancestor descends from the god is unproven, but the gloss is old, and it fits the figure's function: he is the name the whole tradition is lit from.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Sun</h3>
+<p>No Welsh text gives Beli a solar myth — there is no chariot, no journey, no setting. The solar reading lives entirely in the etymology and in the continental altars. What the Welsh record offers instead is the genealogical counterpart of a sun: the single source from which the royal lines radiate, the Harleian pedigrees climbing back to Beli mawr as to a first light.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Kingship the Domain Implies</h3>
+<p>What the texts actually give Beli is the Island of Britain: its crown, its walled city, and the sons who inherit both. If a solar god stands behind him, the Welsh tradition has long since dimmed the god into the ancestor — and the ancestor is the figure the record can defend.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Beli Mawr, Belenos.</li><li id="src-domains-2">Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (Cardiff: University of Wales Press, 1966).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Beli's attributes are institutional rather than mythic — the regalia of a founding king rather than the wonders of a tale:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The Island of Britain</strong> — The single realm he held and his sons inherited; kingship imagined whole before it was ever divided</li><li><strong>The family tree</strong> — The pedigrees of the Welsh dynasties growing back to one root; ancestry as the ground of legitimacy</li><li><strong>The veil of illusion</strong> — Caswallawn's invisible cloak in the Second Branch, the house of Beli taking the crown unseen<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></li><li><strong>The walled city</strong> — London, rebuilt by his son Lludd, the memory of the dynasty fixed in stone and street-names<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>The sun's brightness</strong> — The traditional gloss of the name, carried from the Belenos inscriptions into the Welsh ancestor<sup class="scholars-cite"><a href="#src-symbols-3">[3]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), &#39;Lludd and Llefelys&#39;, &#39;Branwen daughter of Llŷr&#39;.</li><li id="src-symbols-2">Reeve, Michael D., ed., and Neil Wright, trans., Geoffrey of Monmouth, The History of the Kings of Britain (Woodbridge: Boydell, 2007), III.20.</li><li id="src-symbols-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Belenos.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Beli has no adventure of his own: his story is his house. The Mabinogion knows him as the dead king whose sons inherit Britain, France, and the quarrels of the next generation; the pedigrees know him as the root; Geoffrey knows him as the father of the builder of London.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Four Sons of Beli (Mabinogion, Lludd a Llefelys)</h3>
+<p>The tale opens with the settlement of the island: Beli the Great, son of Manogan, was king of this island, and he had three sons — Lludd, Caswallawn, Nynniaw — and, as the story tells, a fourth son called Llefelys. When Beli died, the kingdom of the Island of Britain fell to Lludd as the eldest; Lludd ruled prosperously, rebuilt the walls of London, and lived there for most of the year. Llefelys went to France, won the old king's only daughter, and inherited that kingdom in his turn. What follows — the three plagues, the counsel from the middle of the Channel — belongs to the sons; Beli's part is finished in the opening lines, which is precisely his function: the point from which legitimacy flows.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Caswallawn's Veil (Mabinogion, Branwen ferch Llŷr)</h3>
+<p>While Brân the Blessed marched into Ireland, he left seven regents in Britain, his son Caradog at their head. Caswallawn son of Beli marched against them wearing a veil of illusion, so that no one could see him — only his sword killing. He slew the seven; Caradog died of a broken heart; and Caswallawn son of Beli became king in London. The branch never explains or excuses the usurpation: while the children of Llŷr spent themselves overseas, the children of Beli took the island.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Root of the Royal Trees (Harleian Genealogies)</h3>
+<p>The Harleian genealogies — the Welsh royal pedigrees preserved in British Library, Harley MS 3859 (c. 1100) — carry the lines of the British kingdoms back generation by generation until they reach Beli mawr, who stands near the root of the trees. To claim a throne in early Wales was in part to publish a pedigree, and the pedigrees converge on him; the convention held for centuries in the genealogical tracts.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Heli, Father of Lud (Geoffrey of Monmouth)</h3>
+<p>Geoffrey's Historia Regum Britanniae (c. 1136) carried Beli into Latin as Heli, father of Lud, Cassibelaunus, and Nennius. Lud rebuilt Trinovantum with noble walls and renamed it Kaerlud — whence London, Geoffrey says, and the gate called Ludgate; Cassibelaunus became the enemy of Caesar. Through the Historia, one of the most copied books of the Middle Ages, Beli's house entered European letters.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The Bright One Behind the King (Tertullian; Herodian)</h3>
+<p>Around the year 200 Tertullian lists the local gods of the provinces and gives the Noricans Belenus; a generation later Herodian tells how, at the siege of Aquileia in 238, the citizens credited their deliverance to Apollo, the god the region worshipped under the name Belis. The altars agree — dedications Belino Augusto sacrum cluster at Aquileia and across the eastern Alpine provinces. Whether the Welsh ancestor descends from this 'bright, shining' god is the standing question of Beli scholarship; no text performs the identification, and the honest verdict is the one the handbooks give: a venerable possibility, unproven.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), &#39;Lludd and Llefelys&#39;, &#39;Branwen daughter of Llŷr&#39;.</li><li id="src-mythology-2">Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (Cardiff: University of Wales Press, 1966); Phillimore, Egerton, &#39;The Annales Cambriae and Old-Welsh Genealogies from Harleian MS. 3859&#39;, Y Cymmrodor 9 (1888), 141–183.</li><li id="src-mythology-3">Reeve, Michael D., ed., and Neil Wright, trans., Geoffrey of Monmouth, The History of the Kings of Britain (Woodbridge: Boydell, 2007), III.20.</li><li id="src-mythology-4">Tertullian, Apologeticum 24; Herodian, History 8.3; Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Belenos.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Beli's whole cross-cultural argument is the Belenos question. The continental god is attested from Aquileia to Noricum, glossed by the ancients as a Celtic Apollo, and derived by tradition from *bhel-, 'to shine'; the Welsh Beli Mawr matches the name nearly perfectly, and from O'Rahilly onward scholars have set the Irish ancestor-figure Bile beside both, proposing a single Celtic 'bright one' dimmed into three literatures as three ancestors. Mac Cana and Koch record the comparison; neither certifies it.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Welsh corpus his closest kin are the other fountainheads of dynasty: <a class="scholars-xlink" href="/don/">Dôn</a>, mother of the Children of Dôn, and the house of Llŷr, whose sons Brân and <a class="scholars-xlink" href="/manawydan/">Manawydan</a> lose the island's crown to Beli's son Caswallawn in the Second Branch.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> Two distinctions are worth keeping: Geoffrey's Belinus, son of Dunvallo and brother of Brennius, is a different figure who shares nothing with Beli Mawr but the name; and the historical Welsh dynasts called Beli — Beli son of Rhun stands in the Gwynedd pedigree — are bearers of the name, not the ancestor-king.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">O&#39;Rahilly, T. F., Early Irish History and Mythology (Dublin: Dublin Institute for Advanced Studies, 1946); Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970); Koch, Celtic Culture (2006), s.v. Beli Mawr, Belenos.</li><li id="src-syncretism-2">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), &#39;Branwen daughter of Llŷr&#39;.</li><li id="src-syncretism-3">Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (Cardiff: University of Wales Press, 1966).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Beli's afterlife is genealogical before it is literary. The medieval pedigrees made descent from Beli Mawr the deepest claim a British dynasty could print, and the convention outlived the Middle Ages: Tudor and Stuart antiquaries, eager to trace the crown to British and Trojan roots, found Beli waiting at the root of the trees Geoffrey had Latinized.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Through Geoffrey's Heli he fathered the legend of London itself — Lud's town, Lud's gate, the name written into the city's streets — and through his son Cassibelaunus he stands two generations above Shakespeare's Cymbeline, whose Britain is still Beli's island.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>In modern Wales the name persists quietly: Beli remains a Welsh personal name, and Beli Mawr keeps his place in the national memory as the grandfather of kings. Modern Celtic pagan and Druid practice honors the ancestral Belenus beside him, keeping the old question — king or bright god — alive rather than answered.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (Cardiff: University of Wales Press, 1966).</li><li id="src-cultural-legacy-2">Reeve, Michael D., ed., and Neil Wright, trans., Geoffrey of Monmouth, The History of the Kings of Britain (Woodbridge: Boydell, 2007), III.20.</li><li id="src-cultural-legacy-3">MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Beli.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Beli is a textual figure: no inscription, image, or votive object from Britain names him, and no cult site is his.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> His witnesses are codices — the White Book of Rhydderch (Aberystwyth, NLW Peniarth 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410) for the Mabinogion tales, and British Library Harley MS 3859 (c. 1100) for the genealogies that root the Welsh dynasties in him.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>The material evidence belongs to his proposed continental cognate: the dedications Belino Augusto sacrum from Aquileia and the eastern Alps are real stones with a real theonym — the strongest archaeological fact in the whole dossier, and the reason the 'bright, shining' gloss will not go away.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup> But they are comparative evidence only: no altar from the Celtic provinces can be read as addressed to the Welsh ancestor-king himself.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Beli Mawr.</li><li id="src-archaeology-2">Huws, Daniel, Medieval Welsh Manuscripts (Cardiff: University of Wales Press, 2000).</li><li id="src-archaeology-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Belenos, on the Aquileian and Norican dedications.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Beli given in this edition rests on the witnesses and reference works listed below. The Mabinogion supplies the narrative; the Harleian genealogies the pedigrees; Geoffrey of Monmouth the Latin afterlife; Tertullian and Herodian the continental comparison; the modern handbooks secure the frame and mark the uncertainties.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), 'Lludd and Llefelys' and 'Branwen daughter of Llŷr'.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (Cardiff: University of Wales Press, 1966).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Phillimore, Egerton, 'The Annales Cambriae and Old-Welsh Genealogies from Harleian MS. 3859', Y Cymmrodor 9 (1888), 141–183.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Reeve, Michael D., ed., and Neil Wright, trans., Geoffrey of Monmouth, The History of the Kings of Britain (Woodbridge: Boydell, 2007), III.20.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Tertullian, Apologeticum 24.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Herodian, History 8.3.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Beli Mawr, Belenos.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Beli.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> O'Rahilly, T. F., Early Irish History and Mythology (Dublin: Dublin Institute for Advanced Studies, 1946).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Triads of the Island of Britain, 3rd ed. (Cardiff: University of Wales Press, 2006).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Huws, Daniel, Medieval Welsh Manuscripts (Cardiff: University of Wales Press, 2000).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-13">[13]</a></sup> Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Davies, Sioned, trans., The Mabinogion (Oxford University Press, 2007).</li><li id="src-scholarly-sources-2">Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (University of Wales Press, 1966).</li><li id="src-scholarly-sources-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006).</li><li id="src-scholarly-sources-4">MacKillop, James, A Dictionary of Celtic Mythology (Oxford University Press, 1998).</li><li id="src-scholarly-sources-5">Tertullian, Apologeticum 24.</li><li id="src-scholarly-sources-6">Herodian, History 8.3.</li><li id="src-scholarly-sources-7">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Beli Mawr, Belenos.</li><li id="src-scholarly-sources-8">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li id="src-scholarly-sources-9">MacKillop, James, A Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Beli.</li><li id="src-scholarly-sources-10">O&#39;Rahilly, T. F., Early Irish History and Mythology (Dublin: Dublin Institute for Advanced Studies, 1946).</li><li id="src-scholarly-sources-11">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Triads of the Island of Britain, 3rd ed. (Cardiff: University of Wales Press, 2006).</li><li id="src-scholarly-sources-12">Huws, Daniel, Medieval Welsh Manuscripts (Cardiff: University of Wales Press, 2000).</li><li id="src-scholarly-sources-13">Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beli belongs to Welsh rather than Irish literature, and the Irish corpus knows no figure of the name — but it may know the god. O'Rahilly proposed that the Irish ancestor-figure <strong>Bile</strong>, whose name is also the Irish word for a sacred tree, preserves the same Celtic original as Welsh Beli and continental Belenos: three literatures, three ancestors, one dimmed 'bright one' at the root.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup></p>
+<p>The proposal is carried at arm's length. The Irish texts place Bile among the ancestral generations of the invasion tradition — the Milesian line of the Lebor Gabála Érenn — rather than among the gods of the Túatha Dé Danann, which is exactly where a euhemerized Belenus would land. But no Irish text makes the identification, and the modern handbooks treat the triple correspondence as suggestive rather than demonstrated.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup> What the Irish comparison genuinely shows is the pattern Beli exemplifies: in the insular traditions, the deepest divine figures survive not as actors in myths but as names at the roots of genealogies — compare how the Túatha Dé Danann themselves are remembered, in the end, as kings in an invasion book.<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">O&#39;Rahilly, T. F., Early Irish History and Mythology (Dublin: Dublin Institute for Advanced Studies, 1946).</li><li id="src-irish-cycles-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Beli Mawr, Belenos, Bile.</li><li id="src-irish-cycles-3">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on euhemerism in the insular traditions.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beli's home witnesses are three. First, the Mabinogion: the tale of Lludd and Llefelys, which opens with his reign and his four sons, and the Second Branch, Branwen ferch Llŷr, where his son Caswallawn takes the island under the veil of illusion — both preserved in the White Book of Rhydderch (c. 1350) and the Red Book of Hergest (c. 1382–1410), in Sioned Davies's Oxford translation.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup></p>
+<p>Second, the pedigrees: the Harleian genealogies of British Library, Harley MS 3859 (c. 1100), printed by Phillimore and edited in Bartrum's Early Welsh Genealogical Tracts, carry the royal lines of Wales back to Beli mawr; the Triads and the later genealogical literature keep his son Caswallawn in the canon of British worthies.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup> Third, Geoffrey of Monmouth's Historia Regum Britanniae, itself a Latinization of Welsh tradition, gives him as Heli, father of Lud, Cassibelaunus, and Nennius — the form in which the rest of Europe met him.<sup class="scholars-cite"><a href="#src-welsh-sources-3">[3]</a></sup></p>
+<p>One Welsh caution: Beli was also a living personal name — Beli son of Rhun stands in the Gwynedd pedigree — and the genealogical tradition does not always keep the dynasts and the ancestor-king tidily apart. The texts are what they are; this edition reads them as the tradition wrote them.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007); Huws, Daniel, Medieval Welsh Manuscripts (Cardiff: University of Wales Press, 2000).</li><li id="src-welsh-sources-2">Bartrum, Peter C., ed., Early Welsh Genealogical Tracts (Cardiff: University of Wales Press, 1966); Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein, 3rd ed. (Cardiff: University of Wales Press, 2006).</li><li id="src-welsh-sources-3">Reeve, Michael D., ed., and Neil Wright, trans., Geoffrey of Monmouth, The History of the Kings of Britain (Woodbridge: Boydell, 2007), III.20.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No British inscription names Beli. The inscribed stones of early medieval Wales — Latin and ogham monuments of the fifth to seventh centuries — commemorate secular kindreds in formulaic genitives, and none carries the name of the ancestor-king; the epigraphic silence is expected for a figure of the mythological-genealogical stratum.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>The epigraphy that matters to his dossier is continental, and it belongs to the proposed cognate, not to him: the dedications <strong>Belino Augusto sacrum</strong> of Aquileia and the eastern Alpine provinces, where a Celtic Apollo was worshipped under the name Tertullian reports for the Noricans and Herodian for the Aquileians.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup> These are real stones and a real theonym — but they attest Belenos, not Beli Mawr, and this edition cites them as comparative evidence only. The Welsh ancestor-king exists on vellum, and only on vellum.<sup class="scholars-cite"><a href="#src-inscriptions-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950), on the Welsh inscribed-stone corpus.</li><li id="src-inscriptions-2">Tertullian, Apologeticum 24; Herodian, History 8.3; Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Belenos.</li><li id="src-inscriptions-3">Huws, Daniel, Medieval Welsh Manuscripts (Cardiff: University of Wales Press, 2000).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Beli is the patron of everything that matters most and does least: the dead father, the founding reign, the name at the root of the tree. He fights no monster, wins no bride, casts no spell; the Mabinogion finishes him in a sentence, and then builds a world on him. His sons inherit his island and quarrel over it; his house takes the crown under a veil of illusion; the pedigrees spend a thousand years climbing back to him.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>That is how ancestry actually works — the founder is never the hero of the story, only its premise. Beli asks the genealogist's hard question of every institution and every family: not what have you done, but what are you descended from, and does the root still hold. And the name itself holds its own question: whether the bright one, the shining god of the continental altars, lies behind the sober Welsh king. Some roots run deeper than the record can follow. Beli is the place where Britain's goes dark.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Beli</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'beli';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

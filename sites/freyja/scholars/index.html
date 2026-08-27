@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freyja — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Freyja: a living, university-curated reference on Love, Fertility, Seiðr. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Freyja — Scholarly Edition",
+    "headline": "Freyja — Scholarly Edition",
+    "description": "University-curated scholarly reference for Freyja (Love, Fertility, Seiðr).",
+    "url": "https://punicodex.com/freyja/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᚠᚱᛅᚢᛁᛅ",
+        "alternateName": ["freyja", "Freyja"],
+        "description": "Love, Fertility, Seiðr"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/freyja.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/freyja/scholars/">
+
+    <meta property="og:title" content="Freyja — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Freyja (Love, Fertility, Seiðr).">
+    <meta property="og:url" content="https://punicodex.com/freyja/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/freyja.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/freyja.jpg">
+    <meta name="twitter:title" content="Freyja — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Freyja (Love, Fertility, Seiðr).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Freyja",
+      "item": "https://punicodex.com/freyja/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/freyja/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="freyja-canvas" data-effect="brising-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/freyja_logolockup.webp" type="image/webp"><img src="../assets/freyja_logolockup.png" alt="Freyja" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/freyja/">Freyja</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Freyja</h1>
+            <p class="scholars-subtitle reveal-up">Love, Fertility, Seiðr · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Freyja.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Freyja</strong> (<em>freyja</em>) — Love, War, Magic · The Lady of the Vanir — is the preeminent goddess of the Norse pantheon: owner of the necklace Brísingamen, mistress of seiðr magic, driver of a chariot drawn by cats, and chooser of half the battle-dead, whom she seats in her hall Sessrúmnir on the field Fólkvangr.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>Old Norse <em>Freyja</em> is the common noun <em>freyja</em> ‘lady’ elevated to a proper name — the feminine counterpart of her brother <a class="scholars-xlink" href="/freyr/">Freyr</a>, ‘lord’, and the direct cognate of the modern German <em>Frau</em>.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> She belongs to the Vanir, the gods of fertility and wealth, but dwells among the Æsir after the war between the two kindreds; Heimskringla remembers that it was she who first taught the Æsir seiðr, ‘which had been customary among the Vanir’.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup> Her mythology is the richest of any Norse goddess: the refusal of the hammer-ransom in Þrymskviða, the ride for Óttarr in Hyndluljóð, the weeping of red gold for the absent Óðr, the necklace won back in seal-shape, and the standing doctrine that she takes half the slain.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>PuniCodex keeps the name as <strong>Freyja</strong> — which is also the Old Norse spelling, letter for letter. Unusually among the restorations, ASCII loses nothing here: the normalized form carries no diacritic, no thorn, no eth, so the name is classified Tier 2, plain and complete. The plain-ASCII domain freyja.com is registered outside the collection and watched for release; the temple stands canonically at its /sites/freyja/ path in the meantime.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Snorri Sturluson, Edda, Gylfaginning 24 and 35 (Freyja, Fólkvangr, the half of the slain), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-2">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. freyja, freyr.</li><li id="src-overview-3">Snorri Sturluson, Heimskringla, Ynglinga saga 4 (Freyja teaches seiðr), trans. Lee M. Hollander (Austin: University of Texas Press, 1964).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>Freyja</strong> (nominative), identical with the common noun <em>freyja</em> ‘lady, mistress of a household’. It is not a compound but a transparent title: the feminine formation on the same root as <em>freyr</em> ‘lord’, her brother's name, both descending from Proto-Germanic <em>frawjǭ</em> / <em>frawô</em>.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The cognate line is one of the clearest in Germanic: Old High German <em>frouwa</em> gives modern German <em>Frau</em>, and Old English <em>frēa</em> ‘lord’ preserves the masculine side. To name the goddess was simply to say ‘the Lady’.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The name's aliases are part of its record: Snorri's Skáldskaparmál lists Vanadís ‘dís of the Vanir’, Hörn, Gefn, Sýr ‘Sow’, and Mardöll, and she is Valfreyja, ‘Lady of the Slain’, for her share of the battle-dead.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p>
+<p>Because the attested spelling is plain Latin letters, the ASCII form <em>freyja</em> loses nothing — there is no accent, length mark, or distinctive letter to restore. The name is therefore Tier 2: complete in ASCII, with only capitalization separating the temple form from the dictionary entry.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>f</strong> → <strong>F</strong> — Same, capitalized</li><li><strong>r</strong> → <strong>r</strong> — Same</li><li><strong>e</strong> → <strong>e</strong> — Same</li><li><strong>y</strong> → <strong>y</strong> — Same</li><li><strong>j</strong> → <strong>j</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li></ul>
+<p>The domain freyja.com is registered outside the PuniCodex collection; the project watches it for release and serves the temple at /sites/freyja/.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. freyja.</li><li id="src-the-name-2">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. freyja, freyr.</li><li id="src-the-name-3">Snorri Sturluson, Edda, Skáldskaparmál (Freyja&#39;s names and gold-kennings), trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈfrœy.jɑ/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Frey-</strong> — Voiceless labiodental [f], trilled [r], and the Old Norse diphthong <em>ey</em>, a rounded front glide [œy] that survives in modern Icelandic as a sound close to English ‘ay’ in ‘say’; the first syllable carries the stress, as in all Old Norse words</li><li><strong>-ja</strong> — Palatal glide [j] followed by open [ɑ], the unstressed second syllable sounding like English ‘ya’</li></ul>
+<p>For the modern speaker, the closest approximation is: ‘FRAY-ya’ — the first syllable as in ‘fray’, the second a light ‘ya’.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Freyja, ‘the Lady’, the attested form</li><li><strong>Proto-Germanic</strong> — *frawjǭ, ‘lady’, the reconstructed ancestor</li><li><strong>Old High German</strong> — frouwa, ancestor of modern German <em>Frau</em></li><li><strong>Modern Icelandic</strong> — Freyja, unchanged, and still a living given name</li></ul>
+<p>Freyja is Tier 2 because the attested form needs nothing ASCII lacks: every letter of the Old Norse spelling is already a plain Latin letter, and the diphthong <em>ey</em> was never marked with a diacritic. English ‘Freyja’ and Old Norse <em>Freyja</em> are the same word in the same letters.<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology and grammar.</li><li id="src-pronunciation-2">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. Freyja.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>Freyja</strong> — Old Norse (North Germanic), attested 13th c. CE in the Codex Regius of the Poetic Edda and the Prose Edda's codices, recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse names were carved in the Younger Futhark; no runic attestation of this theonym survives, so the manuscript form is the primary witness.</p>
+<p>The scholarly rendering is, for once, a short story:</p>
+<ul class="scholars-list"><li>The name is the common noun <em>freyja</em> ‘lady’, feminine counterpart of <em>freyr</em> ‘lord’, used as a theonym.</li><li>Old Norse orthography writes the diphthong as <em>ey</em> (runic ᛅᚢ, the au-rune) and requires no accent or special letter anywhere in the word.</li><li>A hypothetical Younger Futhark rendering approximates ᚠᚱᛅᚢᛁᛅ (f-r-au-i-a).</li><li>The temple form Freyja and the ASCII form <em>freyja</em> are therefore the same letters; the restoration is complete in plain Latin, and the name is Tier 2 by rule.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li></ul>
+<p>The plain-ASCII domain freyja.com is registered outside the PuniCodex collection and watched for release; the temple is served canonically at /sites/freyja/.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. Freyja.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Freyja</strong> governs the triad her temple carries — Love, War, Magic — and the sources give each sphere a concrete, attested shape.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Love</h3>
+<p>Goddess of desire and of its costs: she weeps tears of red gold for the absent Óðr, and the skalds call gold itself ‘Freyja's tears’ in her memory.</p>
+<h3 class="scholars-h3">War</h3>
+<p>She rides to battle and takes half the slain, seating them in Sessrúmnir on Fólkvangr — the only figure in the pantheon who divides the war-dead with <a class="scholars-xlink" href="/odinn/">Óðinn</a> as an equal.</p>
+<h3 class="scholars-h3">Magic</h3>
+<p>Mistress of seiðr: Heimskringla remembers that she, a blótgyðja of the Vanir, first taught the art to the Æsir — the craft <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> would later wield beyond anyone.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Vanir</h3>
+<p>She is Vanadís, ‘the dís of the Vanir’: fertility, wealth, and desire carried into the Æsir's halls after the war between the two kindreds.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Gylfaginning 24, 35, and Skáldskaparmál, trans. Faulkes (1987).</li><li id="src-domains-2">Snorri Sturluson, Heimskringla, Ynglinga saga 4, trans. Hollander (1964).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Freyja's attributes are the most concrete of any Norse goddess — the corpus hands her a full set of regalia:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>Brísingamen</strong> — the necklace of the Brísings, her great treasure: worn by <a class="scholars-xlink" href="/thor/">Þórr</a> in his bridal disguise, fought for by <a class="scholars-xlink" href="/loki/">Loki</a> and <a class="scholars-xlink" href="/heimdallr/">Heimdallr</a> in seal-shape at Singasteinn, and so bound to her that gold itself takes her name in the kennings</li><li><strong>The cat-drawn chariot</strong> — she drives a wagon harnessed to two cats, the only such team in the Eddas; the household animal raised to divine harness</li><li><strong>The falcon-feather cloak</strong> — her <em>valshamr</em>, the coat that lends flight between worlds; <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> borrows it twice, and the giant <a href="/thjazi/" class="crosslink" data-crosslink="thjazi">Þjazi</a> names it as part of her ransom-price</li><li><strong>Hildisvíni</strong> — ‘battle-swine’, the boar she rides in Hyndluljóð, her devotee Óttarr in animal shape beneath her</li><li><strong>Tears of red gold</strong> — her weeping for Óðr on his long journeys, the myth the skalds built into the kenning ‘Freyja's tears’ for gold<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>Sessrúmnir</strong> — ‘the seat-roomy hall’ on Fólkvangr, where her half of the slain are housed</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Gylfaginning 24, 35 and Skáldskaparmál, trans. Faulkes (1987).</li><li id="src-symbols-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Freyja.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Freyja's mythology is the fullest of any Norse goddess, spread across both Eddas and Heimskringla.</p>
+<h3 class="scholars-h3">The Half of the Slain (Gylfaginning 24; Grímnismál)</h3>
+<p>Snorri numbers Freyja with <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> as foremost of the goddesses and gives her a war-office no other goddess holds: ‘whenever she rides to battle, she takes half of the slain, and half belong to <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>’. Her hall is Sessrúmnir, ‘seat-roomy’, on the field Fólkvangr. Grímnismál preserves the same doctrine in older verse — she chooses her half of the slain each day.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">She Taught the Æsir Seiðr (Ynglinga saga 4)</h3>
+<p>Heimskringla's euhemerized account makes her the transmitter of magic: Freyja, a sacrificial priestess of the Vanir, ‘was the first to teach the Æsir seiðr, which had been customary among the Vanir’. The same chapter says Óðinn learned the art and wielded it beyond anyone — the Vanir craft passing to the Æsir through her hands.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Hammer-Ransom (Þrymskviða)</h3>
+<p>When <a href="/thrymr/" class="crosslink" data-crosslink="thrymr">Þrymr</a> steals Mjölnir and demands Freyja as his bride, her refusal shakes the hall of the Æsir and bursts the Brísingamen at her throat: ‘You will know me to be most mad for a man, if I drive with you to the realm of the giants.’ <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a> goes in her stead, dressed in her bridal linen with her necklace at his throat and <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> as handmaid, and recovers the hammer beneath the veil.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">Óttarr and Hyndla (Hyndluljóð)</h3>
+<p>Freyja protects her devotee Óttarr, transformed into her boar Hildisvíni, and forces the giantess Hyndla to recite the ancestry his inheritance depends on — demanding the memory-ale that will carry the lore through his lawsuit.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">Óðr, the Gold, and the Necklace (Skáldskaparmál)</h3>
+<p>Her husband Óðr fares away on long journeys; she seeks him among strange peoples and weeps tears of red gold. Her daughters are Hnoss and Gersimi — ‘Treasure’ and ‘Gem’. And the necklace: Húsdrápa remembers that Loki and <a href="/heimdallr/" class="crosslink" data-crosslink="heimdallr">Heimdallr</a> fought for the Brísingamen at Singasteinn, each in the shape of a seal.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p>
+<h3 class="scholars-h3">The Flyting (Lokasenna)</h3>
+<p>When Freyja speaks against Loki at <a href="/aegir/" class="crosslink" data-crosslink="aegir">Ægir</a>'s feast, he answers with the flyting's standard charge against her lovers; <a href="/njordr/" class="crosslink" data-crosslink="njordr">Njǫrðr</a> her father replies: ‘It is no great harm though a woman gets herself a man, a husband or a lover or both.’ The corpus's own verdict on her independence.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Snorri Sturluson, Edda, Gylfaginning 24 and 35; Grímnismál (Poetic Edda), trans. Faulkes (1987) and Larrington (2014).</li><li id="src-mythology-2">Snorri Sturluson, Heimskringla, Ynglinga saga 4, trans. Hollander (1964).</li><li id="src-mythology-3">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Þrymskviða, Hyndluljóð, Lokasenna.</li><li id="src-mythology-4">Snorri Sturluson, Edda, Skáldskaparmál (Óðr, Hnoss and Gersimi, Freyja&#39;s tears; Húsdrápa on the necklace), trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>The great open question of Freyja scholarship is her relationship to <a class="scholars-xlink" href="/frigg/">Frigg</a>. Both are chief goddesses; both own a falcon cloak; both weep for a wandering husband — and Óðr's name is a consonant's breadth from <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s. Since the nineteenth century, scholars have argued whether the two were originally one goddess whom the recording traditions split in two; the sources leave the question open, and the modern handbooks — Simek, Orchard, Lindow — still mark it unsettled rather than resolved.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>The interpretatio latina equated her with <a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a>, and the Germanic week keeps the trace: Friday is dies Veneris, ‘the Lady's day’ — though whether the day was named for Freyja or for <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> is itself part of the same debate.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> Beyond Germania there is no borrowing to claim: the Vanir complex — fertility, wealth, seiðr, and a share of the battle-dead — is the North's own construction, and the goddess who taught magic to the Æsir has no exact counterpart in any other pantheon. Closely related figures in the corpus include <a class="scholars-xlink" href="/freyr/">Freyr</a> (her brother and masculine counterpart), <a class="scholars-xlink" href="/odinn/">Óðinn</a> (who shares the slain with her and learned her craft), and <a class="scholars-xlink" href="/heimdallr/">Heimdallr</a> (who fought for her necklace in seal-shape).</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Freyja, Frigg.</li><li id="src-syncretism-2">Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Freyja, Friday.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Freyja's afterlife is the longest of any Norse goddess. Wagner fused her with <a href="/iounn/" class="crosslink" data-crosslink="iounn">Iðunn</a> into Freia, the goddess of the golden apples whose ransom sets the Ring cycle in motion, and the nineteenth-century mythographies cast her as the <a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a> of the North — a comparison older than the Romantics, since the interpretatio latina had made it a millennium before.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p>
+<p>In modern practice she stands at the center of Heathenry and Ásatrú: honored as mistress of seiðr, patron of the half of the slain, and model of ungoverned desire; the contemporary revival of seiðr work in Scandinavia and beyond traces its warrant directly to her teaching in Ynglinga saga, with Neil Price's scholarship as its academic frame.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup> Her name never left Scandinavia: Freyja is a living — and in recent decades a strikingly popular — girls' given name in Iceland and across the North. And the week still keeps her cognate every Friday, dies Veneris, the Lady's day, whichever goddess the naming finally credited.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Freyja; Simek, Dictionary of Northern Mythology (1993), s.v. Freia, Friday.</li><li id="src-cultural-legacy-2">Price, Neil, The Viking Way: Magic and Mind in Late Iron Age Scandinavia, 2nd ed. (Oxford: Oxbow, 2019).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>No inscription names the goddess Freyja: like most of the pantheon, her attestation is textual, and the material record offers context rather than proofs.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> The theophoric place-names of Sweden and Norway are dense with the Frö-/Frøy- element, but most are assigned to her brother <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>; a smaller set — Norway's island Frøya among them — is argued either way, and the name's transparency (‘the Lady’) makes secure attribution harder, not easier.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>The strongest material witness belongs to her craft rather than her cult. The seiðr she taught the Æsir is the best-attested ritual complex in the Viking-Age graves: the so-called völva burials of Scandinavia, furnished with iron staffs, high-status goods, and in some cases the seeds of mind-altering plants, are the archaeological frame in which Neil Price's The Viking Way reads the whole practice. Small silver pendants of standing female figures, long labelled valkyries, have been drawn into the same reinterpretation — the tradition's seeress and its Lady overlap in the metal as they do in the verse.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Freyja.</li><li id="src-archaeology-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (1993), s.v. Freyja; on theophoric place-names.</li><li id="src-archaeology-3">Price, Neil, The Viking Way: Magic and Mind in Late Iron Age Scandinavia, 2nd ed. (Oxford: Oxbow, 2019), on staff burials and the archaeology of seiðr.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Freyja given in this edition rests on the witnesses and reference works listed below. The Eddas and Heimskringla supply the narrative; the lexica secure the name's etymology; the modern handbooks and Price's study of seiðr frame the interpretation.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Snorri Sturluson, Edda, Gylfaginning 24, 35 (Freyja; Fólkvangr; the half of the slain) and Skáldskaparmál (Óðr, the gold-kennings, the aliases, Húsdrápa), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Grímnismál, Þrymskviða, Hyndluljóð, Lokasenna.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Snorri Sturluson, Heimskringla, Ynglinga saga 4 (Freyja teaches seiðr), trans. Lee M. Hollander (Austin: University of Texas Press, 1964).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. freyja, freyr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. Freyja.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. freyja.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Freyja.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Freyja.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Freyja.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Price, Neil, The Viking Way: Magic and Mind in Late Iron Age Scandinavia, 2nd ed. (Oxford: Oxbow, 2019).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Snorri Sturluson, Edda, Gylfaginning and Skáldskaparmál, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-2">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-3">Snorri Sturluson, Heimskringla, Ynglinga saga, trans. Lee M. Hollander (University of Texas Press, 1964).</li><li id="src-scholarly-sources-4">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-5">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-6">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962).</li><li id="src-scholarly-sources-7">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-8">Orchard, Andy, Dictionary of Norse Myth and Legend (Cassell, 1997).</li><li id="src-scholarly-sources-9">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li><li id="src-scholarly-sources-10">Price, Neil, The Viking Way, 2nd ed. (Oxbow, 2019).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda gives Freyja her widest stage. Grímnismál preserves, in older verse, the doctrine Snorri would repeat in prose: Freyja chooses half the slain each day and seats them in Sessrúmnir — <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> takes the other half.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup></p>
+<p>Þrymskviða gives her the corpus's most quoted refusal: the enraged snort that shakes the hall and bursts the Brísingamen, followed by the comedy of <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s bridal disguise — her linen, her keys, her necklace — with <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> as handmaid. Hyndluljóð shows her as a patron in action: her devotee Óttarr transformed into the boar Hildisvíni beneath her, the giantess Hyndla compelled to recite the ancestry his inheritance depends on, and the memory-ale demanded to make the lore stick through the lawsuit.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> And Lokasenna closes the sequence with the flyting — Loki's charge of promiscuity answered by <a href="/njordr/" class="crosslink" data-crosslink="njordr">Njǫrðr</a>'s flat refusal to call it shame. Together the four poems sketch the whole figure: war-share, refusal, patronage, and ungoverned desire.<sup class="scholars-cite"><a href="#src-poetic-edda-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Grímnismál (Poetic Edda), stanza on Fólkvangr and the half of the slain, trans. Larrington (2014).</li><li id="src-poetic-edda-2">Þrymskviða and Hyndluljóð (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-3">Lokasenna (Poetic Edda), Freyja&#39;s exchange and Njǫrðr&#39;s answer, trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Freyja's systematic witness. Gylfaginning 24 places her beside <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> as foremost of the goddesses and states the war-office in full: the hall Sessrúmnir, the field Fólkvangr, and half the slain whenever she rides to battle; Gylfaginning 35 repeats her standing among the ásynjur and her title Valfreyja.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup></p>
+<p>Skáldskaparmál builds her poetic dossier: the husband Óðr who fared away on long journeys; the daughters Hnoss and Gersimi, ‘Treasure’ and ‘Gem’, whose names became bywords for what is costly; the tears of red gold that made ‘Freyja's tears’ the skalds' kenning for gold; and the catalogue of aliases — Vanadís, Hörn, Gefn, Sýr, Mardöll. The necklace runs through the kennings too: gold may be called Brísingamen for her, and the quotation from Húsdrápa preserves the fight for the jewel at Singasteinn, where <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> and <a href="/heimdallr/" class="crosslink" data-crosslink="heimdallr">Heimdallr</a> contended in the shapes of seals.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning 24 and 35, trans. Faulkes (1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Skáldskaparmál (Óðr, Hnoss and Gersimi, the aliases, Húsdrápa), trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No runic inscription invokes the goddess Freyja: no runestone asks her favour, no amulet bears her name, and no inscription yet found links a dedicant to her cult — a silence she shares with most of the pantheon.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What the epigraphic record does preserve is the name's raw material and its world. The word's root is among the most productive in Germanic: the masculine side, <em>frawô</em> ‘lord’, stands behind <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>'s name and the Old English <em>frēa</em>, and the feminine line runs unbroken into German <em>Frau</em>. A hypothetical Younger Futhark rendering of the theonym would approximate ᚠᚱᛅᚢᛁᛅ (f-r-au-i-a); the futhark's au-rune ᛅᚢ would carry the diphthong the Latin manuscripts write as ey. The material context for her attested craft is firmer: the iron staffs of the Viking-Age ‘völva burials’ are the archaeological signature of the seiðr that Ynglinga saga says she taught the Æsir.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Freyja.</li><li id="src-runic-evidence-2">Price, Neil, The Viking Way, 2nd ed. (Oxbow, 2019), on staff burials; Cleasby &amp; Vigfússon, s.v. freyja.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, Freyja's most consequential saga appearance is programmatic: Ynglinga saga, the opening of Snorri's Heimskringla, makes her the hinge between the Vanir and the Æsir. Daughter of <a href="/njordr/" class="crosslink" data-crosslink="njordr">Njǫrðr</a>, sister-bride in the Vanir custom, blótgyðja — sacrificial priestess — she is the one who ‘first taught the Æsir seiðr, which had been customary among the Vanir’; the same passage says <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> took the craft up and practised it beyond anyone.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup></p>
+<p>The later legendary material keeps the necklace in play: Sǫrla þáttr, a fourteenth-century þáttr attached to Óláfs saga Tryggvasonar in Flateyjarbók, tells how Freyja acquired the Brísingamen from four dwarf smiths and how Óðinn set <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> to steal it — a late, euhemerized tale, but the medieval tradition's only connected account of the jewel's purchase, and the reason the necklace's price became proverbial.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup> Across the sagas more broadly her name does quieter work: the kenning ‘Freyja's tears’ for gold, learned from Skáldskaparmál, echoes through skaldic verse wherever poets needed to say wealth beautifully.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Snorri Sturluson, Heimskringla, Ynglinga saga 4, trans. Hollander (1964).</li><li id="src-sagas-2">Sǫrla þáttr (Flateyjarbók), on the acquisition of the Brísingamen; see Orchard, Dictionary of Norse Myth and Legend (1997), s.v. Brísingamen.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Freyja holds two things the world keeps trying to separate. She is the goddess of love — desire, gold, the necklace, the weeping for Óðr — and she is a commander of the dead, choosing half the slain before <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> takes his half. The Edda refuses the split: the same figure who weeps tears of red gold rides to battle; the same word that means ‘lady’ heads a war-dead of her own.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>Her refusals are as load-bearing as her powers. Offered to <a href="/thrymr/" class="crosslink" data-crosslink="thrymr">Þrymr</a> as a bride-price, she does not argue; the hall shakes and the necklace bursts. Charged by <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> with her lovers, the tradition answers through her father: it is no shame. The corpus never lets her be traded, commanded, or shamed — only impersonated, invoked, and followed. To say her name in Old Norse was simply to say ‘the lady’: the title and the goddess are one word, and the one word was always enough.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Snorri Sturluson, Edda, Gylfaginning 24 and Skáldskaparmál, trans. Faulkes (1987); Þrymskviða and Lokasenna, trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Freyja</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᚠᚱᛅᚢᛁᛅ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'freyja';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

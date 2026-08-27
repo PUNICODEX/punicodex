@@ -1,0 +1,615 @@
+<!DOCTYPE html><html lang="en"><head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gwydion — Magic, Poetry, Trickery | Lore | PUNICODEX</title>
+    <meta name="description" content="Gwydion's afterlife runs from Welsh tradition into modern letters. Explore the original script, pronunciation, mythology, and the restored Unicode temple.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .pantheon-text { display: flex; flex-direction: column; gap: 1.25rem; }
+        .pantheon-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); }
+        .pantheon-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: var(--white); letter-spacing: 0.05em; }
+        .pantheon-body { font-size: 1.05rem; color: var(--white-dim); line-height: 1.8; }
+        .pantheon-mascot { display: flex; justify-content: center; align-items: center; }
+        .pantheon-mascot-img { max-width: 300px; width: 100%; height: auto; filter: brightness(1.5) contrast(1.1) saturate(1.05); }
+        @media (max-width: 900px) { .pantheon-content { grid-template-columns: 1fr; text-align: center; } .pantheon-mascot { order: -1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Gwydion — Magic, Poetry, Trickery | Lore",
+    "description": "Gwydion's afterlife runs from Welsh tradition into modern letters. Explore the original script, pronunciation, mythology, and the restored Unicode temple.",
+    "url": "https://punicodex.com/gwydion/lore/",
+    "about": {
+        "@type": "Thing",
+        "name": "Gwydion",
+        "alternateName": ["gwydion", "Gwydion"],
+        "description": "Magic, Poetry, Trickery"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/gwydion.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/gwydion/lore/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Gwydion — Magic, Poetry, Trickery | Lore | PUNICODEX">
+    <meta property="og:description" content="Gwydion's afterlife runs from Welsh tradition into modern letters. Explore the original script, pronunciation, mythology, and the restored Unicode temple.">
+    <meta property="og:url" content="https://punicodex.com/gwydion/lore/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/gwydion.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/gwydion.jpg">
+    <meta name="twitter:title" content="Gwydion — Magic, Poetry, Trickery | Lore | PUNICODEX">
+    <meta name="twitter:description" content="Gwydion's afterlife runs from Welsh tradition into modern letters. Explore the original script, pronunciation, mythology, and the restored Unicode temple.">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Gwydion",
+      "item": "https://punicodex.com/gwydion/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Lore",
+      "item": "https://punicodex.com/gwydion/lore/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="flowerwolf-canvas" class="hero-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/gwydion_logolockup.webp" type="image/webp"><img src="../assets/gwydion_logolockup.png" alt="Gwydion" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="./" class="nav-link active">Lore</a>
+                <a href="../gallery/" class="nav-link">Gallery</a>
+                <a href="extended/" class="nav-link">Extended</a>
+                <a href="../patterns/" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+        <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+                <li><a href="https://punicodex.com/">Home</a></li>
+                <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+                <li><a href="https://punicodex.com/gwydion/">Gwydion</a></li>
+                <li><span aria-current="page">Lore</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
+        <a href="../" class="nav-link">Home</a>
+        <a href="./" class="nav-link active">Lore</a>
+        <a href="../gallery/" class="nav-link">Gallery</a>
+        <a href="extended/" class="nav-link">Extended</a>
+        <a href="../patterns/" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <h1 class="hero-title reveal-up">
+                    
+                    <span class="title-trans">Gwydion</span>
+                </h1>
+                <p class="hero-subtitle reveal-up">Magic, Poetry, Trickery · Born of trees</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 2</span>
+                    <span class="meta-domain">Gwydion</span>
+                </div>
+                <div class="hero-cta reveal-up">
+                    <a href="#the-name" class="btn-primary">
+                        <span>Enter the Temple</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/gwydion_mascot.webp" type="image/webp"><img src="../assets/gwydion_mascot.webp" alt="Gwydion — Magic, Poetry, Trickery" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- The Name Section -->
+    <section class="section section-name" id="the-name">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-number">01</span>
+                <h2 class="section-title">The Authentic Name</h2>
+                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
+            </div>
+
+            <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Scholarly Transliteration</h3>
+                    <p class="card-greek">Gwydion</p>
+                    <p class="card-body">The name survives in scholarly transliteration. <strong>Gwydion</strong> is the standard Celtic romanisation, documented in academic sources — “Born of trees”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="100">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">ASCII Constraint</h3>
+                    <p class="card-ascii">gwydion</p>
+                    <p class="card-body">The plain <strong>gwydion</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+                </div>
+
+                <div class="name-card reveal-up" data-delay="200">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Unicode Restoration</h3>
+                    <p class="card-unicode">Gwydion</p>
+                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Gwydion</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+                </div>
+            </div>
+
+            <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Gwydion.com → gwydion.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Gwydion</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Gwydion</em>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Gwydion is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Gwydion</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Gwydion</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Gwydion</p>
+                    <p class="card-body">The full Unicode restoration. <strong>gwydion.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Gwydion was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈɡwɪdjɔn/</span>
+            <span class="ipa-label">Modern Welsh</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">GWID-yon — the gw is a single lip-rounded consonant, the y sounds like the i of 'kin', and the stress falls on the first syllable.</p>
+            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Gwydion uab Dôn, the manuscript form in the White Book of Rhydderch and the Red Book of Hergest</li><li><strong>Welsh</strong> gwydd, 'trees, wood' — the proposed cognate behind the *widu- etymology</li><li><strong>Old Irish</strong> fid, 'wood, tree' — cognate of the proposed root *widu-</li><li><strong>Attested form</strong> Gwydion — plain ASCII, identical to the manuscript spelling</li></ul>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Middle Welsh Gwydion (Gwydion uab Dôn) is already written in the Latin alphabet, so the ASCII form loses nothing: the name is Tier 2 by the mechanical rule, since the restoration preserves no diacritic or distinctive letter that ASCII drops. The etymology is honestly debated: a derivation from the Celtic root *widu- 'wood, forest' has often been proposed (compare Welsh gwydd 'trees', Old Irish fid, Gaulish vidu-), but the connection is not proven and the standard handbooks mark it uncertain.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Magic, Poetry, Trickery</h2>
+            <p class="section-subtitle">The domain of Gwydion</p>
+        </div>
+        
+      <div class="domains-intro reveal-up"><p>In the celtic tradition, <strong>Gwydion</strong> governed magic, craft, vengeance. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p></div>
+      <div class="domains-grid">
+      <div class="domain-card reveal-up">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 38C12 28 20 22 32 22C44 22 52 28 52 38C52 46 46 52 32 52C18 52 12 46 12 38ZM20 22L16 14M44 22L48 14M28 38H36"></path></svg></div>
+        <h4 class="domain-name">The Enchanted Swine</h4>
+        <p class="domain-desc">Disguised as a poet, Gwydion conjured illusory stallions, hounds, and shields to trade for <a href="/pryderi/" class="crosslink" data-crosslink="pryderi">Pryderi</a>'s otherworld pigs — the first swine in Wales — and started a war with a vanishing herd.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="100">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 48L44 20M40 16L48 24M44 12L52 20M38 22L46 30"></path></svg></div>
+        <h4 class="domain-name">Math's Wand</h4>
+        <p class="domain-desc">The wand that transformed Gwydion and Gilfaethwy into deer, boars, and wolves for three years — and that later struck Lleu from eagle back into man.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="200">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 52V32M32 32C32 22 24 18 18 18C18 28 24 32 32 32ZM32 32C32 22 40 18 46 18C46 28 40 32 32 32ZM32 18V10"></path></svg></div>
+        <h4 class="domain-name">The Flower-Maiden</h4>
+        <p class="domain-desc">With <a href="/math/" class="crosslink" data-crosslink="math">Math</a>, Gwydion fashioned <a href="/blodeuwedd/" class="crosslink" data-crosslink="blodeuwedd">Blodeuwedd</a> from the flowers of oak, broom, and meadowsweet — a wife made by craft for the man no earthly wife was allowed.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 14 18 24 18 34C18 46 24 54 32 58C40 54 46 46 46 34C46 24 40 14 32 8ZM32 22L28 30H36Z"></path></svg></div>
+        <h4 class="domain-name">The Eagle on the Oak</h4>
+        <p class="domain-desc">When Lleu was struck into eagle-shape, Gwydion followed a sow to the oak, sang three englynion to bring him down, and turned vengeance into restoration.</p>
+      </div></div>
+      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
+      <div class="symbol-item">
+        <span class="symbol-name">The magic wand</span>
+        <span class="symbol-meaning">Math's wand of transformation — punishment, testing, and restoration carried in a single rod</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Oak, broom, and meadowsweet</span>
+        <span class="symbol-meaning">The three flowers from which Blodeuwedd was made by enchantment</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The illusory horses and hounds</span>
+        <span class="symbol-meaning">Gwydion's conjured wealth, real for a day and gone by morning — craft as currency</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The eagle on the oak</span>
+        <span class="symbol-meaning">Lleu wounded into bird-shape, rotting flesh feeding a sow beneath the tree</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The sow</span>
+        <span class="symbol-meaning">The beast Gwydion followed through the valley to find his foster-son</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The shoemaker's disguise</span>
+        <span class="symbol-meaning">The craft under which Gwydion tricked Arianrhod into naming her own son</span>
+      </div></div></div>
+    </div>
+</section>
+
+    <!-- Mythology -->
+    <section class="section section-mythology" id="mythology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Gwydion</p>
+        </div>
+        
+      <p class="lead-text"><strong>Gwydion</strong> fab Dôn is the enchanter of the Fourth Branch of the Mabinogi, 'Math fab Mathonwy': nephew of Math the king of Gwynedd, brother of Gilfaethwy, and the foremost magician of medieval Welsh literature. He is poet, trickster, foster-father, and avenger in one figure — the man who makes illusions that pass for wealth, who pays for his crimes in animal skins, and who ends the tale as the careful hand that puts a broken world back into shape.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The War for the Swine</h3>
+          <p class="myth-text">King Math of Gwynedd could live only with his feet in the lap of a virgin, except in time of war, and the maiden Goewin held that office. When Gilfaethwy desired her, Gwydion devised the remedy: war. He went to Pryderi of Dyfed in the guise of a poet and asked for the swine — the hobeu, the first pigs ever brought to Wales, a gift from <a href="/arawn/" class="crosslink" data-crosslink="arawn">Arawn</a> of Annwfn. Refused, he conjured twelve stallions with golden harness, twelve greyhounds with golden collars, and twelve golden shields, and traded the apparitions for the herd. By the time Pryderi's glamour faded, Gwydion was gone, and Pryderi came north with an army.</p><p class="myth-text">While Math marched to meet him, Gwydion and Gilfaethwy forced Goewin. At the peace-talks Pryderi demanded single combat, 'for it was because of me that the hosts came'; at Maenor Penard, the tale says, Gwydion slew him 'by strength and valour and by magic and enchantment', and Dyfed went home under tribute. The victory is real and so is its cost: Gwydion's finest trick is also his crime, and the Fourth Branch never lets the two be separated.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The Punishment of the Brothers</h3>
+          <p class="myth-text">Math's justice is the strangest in the Mabinogi. He struck Gwydion and Gilfaethwy with his magic wand and turned them into a stag and a hind, and sent them into the wild for a year; when they returned with a fawn, he made them a boar and a sow for the second year, and a wolf and a she-wolf for the third. Each year their offspring — Hyddwn, Hychddwn Hir, and Bleiddwn — were sent to the court, baptized, and raised.</p><p class="myth-text">After the third year Math struck them back into their own shapes: 'You have had punishment enough, and you have been greatly shamed.' The punishment is exact and even-handed — the brothers suffer in the flesh what they did, and when the debt is paid the king takes them back into honour. It is the Fourth Branch's doctrine of justice in miniature: transformation as sentence, restoration as mercy.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The Naming and Arming of Lleu</h3>
+          <p class="myth-text">When Gwydion proposed his sister Arianrhod as Math's new footholder, she stepped over the wand for the virginity test and dropped a yellow-haired boy — Dylan, who made for the sea — and 'something small' that Gwydion hid in a chest at the foot of his bed. From the chest came the boy who would be Lleu. Gwydion fostered him, and Arianrhod, shamed, laid three tynghedau upon him: he should have no name until she named him, no arms until she armed him, and no wife of any race then on earth.</p><p class="myth-text">Gwydion undid the destinies by craft. Disguised as a shoemaker with the boy at his side, he came beneath Caer Arianrhod, and when Lleu flung a stone and knocked a wren's leg askew, Arianrhod cried that the fair one had struck it with a skilful hand — and so named him Lleu Llaw Gyffes. For the arms, Gwydion conjured a phantom fleet against the castle until Arianrhod herself armed the defenders. The magician wins not by force but by arranging the world so that his opponent speaks the words he needs.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The Flower-Maiden and the Eagle</h3>
+          <p class="myth-text">For the third tynged there was no earthly answer, so Gwydion and Math took their wands and made one: from the flowers of the oak, the broom, and the meadowsweet they fashioned the fairest woman anyone had seen, and named her Blodeuwedd, 'Flower-face'. She married Lleu — and betrayed him with Gronw Pebr of Penllyn, drawing from her husband the secret of how he could be killed, so that Gronw's spear struck him at the impossible meeting of conditions. Lleu flew off in the shape of an eagle, screaming.</p><p class="myth-text">Gwydion searched Gwynedd and Powys until he followed a sow to an oak where rotten flesh and maggots fell to her snout, and in the top of the tree sat the eagle. He sang three englynion down the years of the bird's perches until Lleu came to his knee, then struck him with the wand back into human shape — skin and bone, a man to be nursed back with doctors and good care. The vengeance that followed was as crafted as the rescue: Blodeuwedd he would not kill, but turned into an owl, 'the shape hated by all the birds', renamed Blodeuwedd, 'Flower-face' become 'Owl'; and Gronw, standing where Lleu had stood, took Lleu's spear-cast through the slab at Llech Gronw and died. Maker of the woman, finder of the man, instrument of the sentence: the whole of Gwydion's domain is in this last movement.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Kat Godeu</span>
+          <h3 class="myth-title">The Battle of the Trees</h3>
+          <p class="myth-text">Outside the Mabinogi, the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a> preserves Gwydion's other great fame: Kat Godeu, 'The Battle of the Trees', in which he enchants the trees of the forest to march as an army against Arawn of Annwfn — alder at the front, oak in the thick of it. The poem's voice, Taliesin, boasts that he was there when Gwydion 'made the sally of the trees'. In the later tale-tradition around the poem, Gwydion also guesses the hidden name of the opponent's champion from the alder twigs in his hand — the same gift of naming-by-craft that the Fourth Branch shows in the wren scene. Whether the poem preserves older myth or learned fancy is debated, but its Gwydion is unmistakably the Mabinogi's: the magician whose weapons are other things' natures.</p>
+        </div>
+      </div></div>
+    </div>
+</section>
+
+    <!-- Related Names -->
+    <section class="section section-related" id="related">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Related Names</h2>
+            <p class="section-subtitle">Other figures in the celtic pantheon</p>
+        </div>
+        <div class="related-grid reveal-up">
+            
+    <a href="/lugh/" class="related-card reveal-up">
+      <span class="related-name">Lúg</span>
+      
+      <span class="related-domain">Light, Crafts, Skills</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Celtic</span>
+      </div>
+    </a>
+    <a href="/morrigan/" class="related-card reveal-up">
+      <span class="related-name">Morrígan</span>
+      
+      <span class="related-domain">War, Fate, Death, Sovereignty</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Celtic</span>
+      </div>
+    </a>
+    <a href="/manannan/" class="related-card reveal-up">
+      <span class="related-name">Manannán</span>
+      
+      <span class="related-domain">Sea, Otherworld, Mist</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Celtic</span>
+      </div>
+    </a>
+    <a href="/cernunnos/" class="related-card reveal-up">
+      <span class="related-name">Cernunnos</span>
+      
+      <span class="related-domain">Wilderness, Animals, Fertility</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Celtic</span>
+      </div>
+    </a>
+    <a href="/brigid/" class="related-card reveal-up">
+      <span class="related-name">Brigid</span>
+      
+      <span class="related-domain">Poetry, Healing, Smithcraft, Fire</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Celtic</span>
+      </div>
+    </a>
+    <a href="/dagda/" class="related-card reveal-up">
+      <span class="related-name">Dagda</span>
+      
+      <span class="related-domain">Abundance, Strength, Magic</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Celtic</span>
+      </div>
+    </a>
+        </div>
+    </div>
+</section>
+
+    <!-- In the Texts & Everyday Words -->
+    
+
+    <!-- Extended Lore CTA -->
+    <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
+    <div class="container">
+        <div class="pantheon-content reveal-up">
+            <div class="pantheon-text">
+                <span class="pantheon-eyebrow">Go Deeper</span>
+                <h2 class="pantheon-title">Extended Lore</h2>
+                <p class="pantheon-body">Gwydion is what a culture makes of cleverness when it refuses to call cleverness innocent. His illusions win a war and buy a rape; the tale answers by putting him, for three years, into the bodies of beasts, one year for each shape of the debt. But the same hands that tricked a king out of his swine later coax a dying god out of a tree, one verse at a time, and the same wand that punishes him he is finally trusted to hold. The Fourth Branch's calm is that magic and justice are one craft: to know the true shape of a thing — a name, a name-day, a wound, a woman made of flowers — is to be able to change it, and to be answerable for the change. Gwydion is the enchanter who learns, and teaches, that power over forms is a form of responsibility.</p>
+                <a href="extended/" class="btn-primary btn-ghost">
+                    <span>Enter Extended Lore</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="pantheon-mascot">
+                <picture><source srcset="../assets/gwydion_mascot.webp" type="image/webp"><img src="../assets/gwydion_mascot.png" alt="Gwydion mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Restoration</span>
+                        <span class="footer-value">Gwydion</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Scholarly Transliteration</span>
+                        <span class="footer-value">Gwydion</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Explore</span>
+                        <span class="footer-value"><a href="https://punicodex.com/pantheon/" style="color:inherit;text-decoration:none;">Pantheon</a> · <a href="https://punicodex.com/lexicon/" style="color:inherit;text-decoration:none;">Lexicon</a> · <a href="https://punicodex.com/texts/" style="color:inherit;text-decoration:none;">Texts</a> · <a href="https://punicodex.com/everyday/" style="color:inherit;text-decoration:none;">Words</a> · <a href="https://punicodex.com/ink/" style="color:inherit;text-decoration:none;">Ink</a> · <a href="https://punicodex.com/pronunciation/" style="color:inherit;text-decoration:none;">Pronunciation</a> · <a href="https://punicodex.com/blog/" style="color:inherit;text-decoration:none;">Blog</a> · <a href="https://punicodex.com/store/gwydion/" style="color:inherit;text-decoration:none;">Reliquary</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-newsletter" data-newsletter="temple"></div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/gwydion_logomark.webp" type="image/webp"><img src="../assets/gwydion_logomark.webp" alt="Gwydion logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer=""></script>
+
+
+</body></html>

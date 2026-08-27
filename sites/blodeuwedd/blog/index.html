@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Celtic transcription… | Blodeuwedd Blog | PUNICODEX</title>
+    <meta name="description" content="From Celtic transcription to Unicode: why Blodeuwedd is more than a domain name.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/blodeuwedd/blog/">
+    <meta property="og:title" content="From Celtic transcription to Unicode: the journey of Blodeuwedd | Blodeuwedd Blog | PUNICODEX">
+    <meta property="og:description" content="From Celtic transcription to Unicode: why Blodeuwedd is more than a domain name.">
+    <meta property="og:url" content="https://punicodex.com/blodeuwedd/blog/">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-26">
+    <meta property="article:section" content="Blog">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/blodeuwedd.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/blodeuwedd.jpg">
+    <meta name="twitter:title" content="From Celtic transcription to Unicode: the journey of Blodeuwedd | Blodeuwedd Blog | PUNICODEX">
+    <meta name="twitter:description" content="From Celtic transcription to Unicode: why Blodeuwedd is more than a domain name.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "From Celtic transcription to Unicode: the journey of Blodeuwedd",
+        "description": "From Celtic transcription to Unicode: why Blodeuwedd is more than a domain name.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-26",
+        "dateModified": "2026-08-26",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/blodeuwedd/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Blodeuwedd", "blodeuwedd", "celtic mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Celtic transcription restoration"],
+        "url": "https://punicodex.com/blodeuwedd/blog/",
+        "image": "https://punicodex.com/assets/og/blodeuwedd.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Blodeuwedd",
+      "item": "https://punicodex.com/blodeuwedd/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/blodeuwedd/blog/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="blodeuwedd-canvas" data-effect="stars" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/blodeuwedd_logolockup.webp" type="image/webp"><img src="../assets/blodeuwedd_logolockup.png" alt="Blodeuwedd" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (Home → Pantheon → temple; the tab crumb lives in the JSON-LD trail) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/blodeuwedd/">Blodeuwedd</a></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Blodeuwedd — Blog</p>
+                <p class="hero-title reveal-up">From Celtic transcription to Unicode: the journey of Blodeuwedd</p>
+                <p class="hero-subtitle reveal-up">Flower Bride, Betrayal</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 2</span>
+                    <span class="meta-domain">Blodeuwedd</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/blodeuwedd_mascot.webp" type="image/webp"><img src="../assets/blodeuwedd_mascot.webp" alt="Blodeuwedd — Flower Bride, Betrayal" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-26">2026-08-26</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>15 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>From Celtic transcription to Unicode: the journey of Blodeuwedd</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Blodeuwedd</strong> begins in Celtic transcription, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Blodeuwedd</li>
+  <li><strong>ASCII form:</strong> blodeuwedd</li>
+  <li><strong>Meaning:</strong> "Flower face"</li>
+  <li><strong>Domain of influence:</strong> Flower Bride, Betrayal</li>
+  <li><strong>Pantheon:</strong> Celtic</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Blodeuwedd</strong> (<em>blodeuwedd</em>) — Flower Bride, Betrayal · Flower face — is the flower-bride of the Fourth Branch of the Mabinogi: the fairest woman anyone had ever seen, fashioned by <a href="/gwydion/">Gwydion</a> and King <a href="/math/">Math</a> from the blossoms of oak, broom, and meadowsweet to give Lleu Llaw Gyffes the wife his mother's destiny had forbidden him, and the bride who loved <a href="/gronwpebr/">Gronw Pebr</a> of Penllyn, drew her husband's death-secret out of him, and was sentenced by her maker into the shape of the owl.</p>
+<p>The name is a transparent Welsh compound — <em>blodau</em>, 'flowers', plus <em>gwedd</em>, 'face, appearance' — and the Fourth Branch uses it with full awareness: made as 'Flower-face', she keeps the name in her sentence, and in modern Welsh <em>blodeuwedd</em> has become the ordinary common noun for the owl, a semantic circle the tale itself closes. Because the Middle Welsh manuscripts write the name in plain Latin letters, the ASCII form loses nothing: Tier 2 by the mechanical rule, a statement about orthography and never about the figure.</p>
+<p>PuniCodex records the name as <strong>Blodeuwedd</strong> — the normalized manuscript spelling, identical in ASCII and Unicode apart from the capital. The plain-ASCII domain <em>blodeuwedd.com</em> is registered to a third party and held outside the collection; it is watched for release, and this temple meanwhile stands without a domain of its own.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Middle Welsh as <strong>Blodeuwedd</strong> (also written <em>Blodeuedd</em>) in the White Book of Rhydderch and the Red Book of Hergest. It is a compound the tale's own audience could parse at sight: <em>blodau</em>, 'flowers', and <em>gwedd</em>, 'face, appearance, form' — Flower-face, the exact and almost mocking right name for a woman made out of blossoms. The Fourth Branch exploits the transparency twice: once at her making, when <a href="/math/" class="crosslink" data-crosslink="math">Math</a> and <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> name the flower-woman, and once at her sentencing, when Gwydion rules that she shall not lose the name but bear it forever in bird-shape — the etiological aition for the modern Welsh fact that <em>blodeuwedd</em> means 'owl'.</p>
+<p>Because the manuscript spelling is plain Latin letters, the ASCII form <em>blodeuwedd</em> is not a flattening but the attested form itself: no diacritic is restored and no distinctive letter is rescued, which places the name in Tier 2. The Unicode form <strong>Blodeuwedd</strong> differs from the ASCII only by capitalisation.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li>
+  <li><strong>l</strong> → <strong>l</strong> — Same</li>
+  <li><strong>o</strong> → <strong>o</strong> — Same</li>
+  <li><strong>d</strong> → <strong>d</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>u</strong> → <strong>u</strong> — Same</li>
+  <li><strong>w</strong> → <strong>w</strong> — Same</li>
+  <li><strong>e</strong> → <strong>e</strong> — Same</li>
+  <li><strong>d</strong> → <strong>d</strong> — Same</li>
+  <li><strong>d</strong> → <strong>d</strong> — Same</li>
+</ul>
+<p>The plain-ASCII domain <em>blodeuwedd.com</em> is registered to a third party and held outside the collection; it is watched for release.</p>
+<h2 id="the-original-script">The Original Script</h2>
+<p>Welsh is written in the Latin alphabet, and the name is preserved in Middle Welsh manuscripts as <strong>Blodeuwedd</strong> (also <em>Blodeuedd</em>) — attested 14th–15th c. CE in the White Book of Rhydderch (Aberystwyth, National Library of Wales, Peniarth 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1400), the two great codices of the Mabinogion.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul>
+  <li>The manuscript spelling <em>Blodeuwedd</em> is the form regularised in Ifor Williams's standard edition of the Four Branches; the variant <em>Blodeuedd</em> reflects ordinary Middle Welsh orthographic fluctuation, not a different name.</li>
+  <li>No runic, ogham, or other non-Latin attestation exists; the figure belongs to the codex tradition, not to the epigraphic record.</li>
+  <li>The ASCII form <em>blodeuwedd</em> differs only in capitalisation; nothing is lost or restored between the two.</li>
+  <li>The plain-ASCII domain <em>blodeuwedd.com</em> is registered to a third party, held outside the collection, and watched for release.</li>
+</ul>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The modern Welsh pronunciation of the name is <strong>/blɔˈdɛu̯.wɛð/</strong> — Modern Welsh standard.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>Blo-</strong> — Voiced bilabial stop [b] into the lateral [l] and a short open rounded [ɔ], as in British English 'lot'; unstressed</li>
+  <li><strong>-deu-</strong> — Voiced dental stop [d] into the Welsh diphthong <em>eu</em> [ɛu̯], a glide from open e toward a close rounded vowel; the stress falls here, on the penult, by the universal Welsh rule</li>
+  <li><strong>-wedd</strong> — Labial-velar glide [w], short open [ɛ], and final <em>dd</em> [ð], the voiced dental fricative of English 'this' — never a stopped d</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: 'blo-DEH-weth' — three syllables, the weight on the middle one, and the last consonant the soft th of 'this'.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Middle Welsh</strong> — Blodeuwedd (Blodeuedd), the manuscript form</li>
+  <li><strong>Welsh elements</strong> — blodau 'flowers' + gwedd 'face, appearance', the compound's parts</li>
+  <li><strong>Modern Welsh</strong> — blodeuwedd, the everyday common noun 'owl'</li>
+  <li><strong>Attested form</strong> — Blodeuwedd</li>
+</ul>
+<p>Blodeuwedd is Tier 2 because the restoration preserves nothing ASCII loses: the name arrives in the Latin alphabet, without diacritics, in the manuscripts themselves. Its interest lies in its meaning — a name that names her substance — not in rescued marks.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Blodeuwedd's mythology is contained entire in the Fourth Branch of the Mabinogi, 'Math uab Mathonwy' — one witness, and the masterpiece of medieval Welsh prose.</p>
+<h3 id="made-of-flowers">Made of Flowers</h3>
+<p>Arianrhod's third destiny on her son — no wife of any race then on earth — was answered by craft. Math and <a href="/gwydion/">Gwydion</a> took the flowers of the oak, the broom, and the meadowsweet and made from them the fairest woman ever seen; they baptized her and named her Blodeuwedd. She married Lleu, who was given the cantref of Dinoding, and the pair held court at Mur Castell in Ardudwy — the tale's one sentence of contentment before the turn.</p>
+<h3 id="gronw-of-penllyn">Gronw of Penllyn</h3>
+<p>While Lleu visited Math at Caer Dathyl, <a href="/gronwpebr/">Gronw Pebr</a>, lord of Penllyn, came hunting into the district; Blodeuwedd welcomed him at nightfall, and that night they loved each other. Three nights they lay together while her husband sat at his uncle's court, and the question they put to themselves was how to make it permanent.</p>
+<h3 id="the-impossible-conditions">The Impossible Conditions</h3>
+<p>Blodeuwedd asked her husband, 'in the guise of concern', how he could be killed, and Lleu trusted her with the whole of it: neither indoors nor out, neither on horseback nor on foot — only standing with one foot on the rim of a cauldron under a thatched frame by a river and the other on a billy-goat, and only by a spear worked for a year during Sunday Mass. She sent the terms to Gronw. When the year was out she asked to see the marvellous stance; Gronw rose from Bryn Cyfergyr and cast, the spear struck Lleu in the side, and with a terrible scream he flew off as an eagle. Gronw took the lordship.</p>
+<h3 id="the-lake-of-the-maidens">The Lake of the Maidens</h3>
+<p>When Math and Gwydion came against Gronw, Blodeuwedd fled into the mountains with her maidens; fear made them walk backward, watching for pursuit, and they walked into a lake and drowned, all save her — the place called Llyn y Morwynion ever since. Gwydion overtook her and took her.</p>
+<h3 id="the-owl-s-sentence">The Owl's Sentence</h3>
+<p>Gwydion's judgement: 'I will not kill you; I will do what is worse' — the shape of a bird, the daylight ban, the enmity of all birds, and the kept name: 'you shall not lose your name, but shall always be called Blodeuwedd.' The tale closes its own etymology: blodeuwedd is what the owl is called to this day. The aftermath is Lleu's: nursed back from the eagle's shape, he stood where Gronw had stood and drove his spear through the stone slab Gronw raised — Llech Ronw, Gronw's stone, on the bank of the Cynfael.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>Blodeuwedd's attributes are narrative rather than cultic — the Welsh corpus preserves no regalia, but the Fourth Branch fixed a recognisable set of objects around her:</p>
+<ul>
+  <li><strong>Oak, broom, and meadowsweet</strong> — The three blossoms of her making, gathered by <a href="/math/">Math</a> and <a href="/gwydion/">Gwydion</a> and worked with their wands</li>
+  <li><strong>The spear a year in the forging</strong> — Worked only during the hours of Mass on Sundays, the weapon the stolen death-secret specified</li>
+  <li><strong>The cauldron and the billy-goat</strong> — The two footings of the impossible stance: one foot on the cauldron's rim, one on the goat, neither indoors nor out, neither mounted nor afoot</li>
+  <li><strong>The owl</strong> — The shape of her sentence: never to show its face by day, mobbed by all birds wherever found</li>
+  <li><strong>Llyn y Morwynion</strong> — The Lake of the Maidens, where her retinue, looking backward as they fled, walked into the water</li>
+  <li><strong>Mur Castell</strong> — Her bridal court in Ardudwy, the stage of the whole tragedy</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Blodeuwedd has no material cult record: no inscription, image, or votive deposit names her, and her witnesses are manuscripts — the White Book of Rhydderch (NLW Peniarth 4–5, c. 1350) and the Red Book of Hergest (Jesus College Oxford MS 111, c. 1400), on which all editions of the Fourth Branch rest.</p>
+<p>What she has instead of temples is topography. Mur Castell, her bridal court, is traditionally placed at Tomen y Mur in Ardudwy, beside the Roman fort; Llyn y Morwynion, the Lake of the Maidens where her retinue drowned, is pointed out above Ffestiniog; and on the bank of the river Cynfael stands a holed stone locally called Llech Ronw, 'Gronw's stone', the slab Lleu's spear pierced. The identifications are local tradition rather than proof, but they show how early and how firmly the story was staked into the landscape of Gwynedd: medieval hearers, like modern walkers, could be taken to the places where the Fourth Branch happens.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Blodeuwedd</strong> is catalogued under the domain 'Flower Bride, Betrayal' — the two poles of her single story, and the Fourth Branch gives equal weight to both.</p>
+<h3 id="the-flower-bride">The Flower Bride</h3>
+<p>She is the counter-spell to Arianrhod's third <em>tynged</em>: since no wife of any race on earth was permitted to Lleu, <a href="/math/">Math</a> and <a href="/gwydion/">Gwydion</a> made one from the flowers of the oak, the broom, and the meadowsweet — 'the fairest and most beautiful woman anyone had ever seen' — baptized her, named her Flower-face, and married her to the boy-king of Dinoding.</p>
+<h3 id="betrayal">Betrayal</h3>
+<p>Welcomed in hospitality, <a href="/gronwpebr/">Gronw Pebr</a> of Penllyn became her chosen love; and it is she who asks Lleu, 'in the guise of concern', how a man so strangely fated could ever die — extracting the impossible conditions and sending every term to Gronw, whose spear was a year in the forging.</p>
+<h3 id="transformation-and-sentence">Transformation and Sentence</h3>
+<p>Her domain's third term is written in her own body: the made thing remade by judgement. Gwydion will not kill her; he gives her the owl's shape, the hatred of all birds, the daylight ban — and the kept name, so that the sentence and the beauty can never be separated.</p>
+<h3 id="the-court-of-mur-castell">The Court of Mur Castell</h3>
+<p>Her seat in Ardudwy is the tale's domestic centre: the bridal court where the hunter was welcomed, from which the secret was sent, and from which she fled into the mountains with her maidens.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Blodeuwedd's closest comparative kin is the made bride. Greek tradition offers <a href="/pandora/">Pandora</a>, the woman fashioned by the gods as a gift that is also a trap: beauty assembled by divine craft and handed to a man with ruin folded in. The parallel is one of motif, not borrowing — both figures are manufactured women whose makers intend one destiny and whose own desires rewrite it, though <a href="/pandora/" class="crosslink" data-crosslink="pandora">Pandora</a>'s makers send her as the trap while Blodeuwedd's makers are the betrayed.</p>
+<p>Within Celtic scholarship she has been read in the sovereignty frame: Mac Cana and others note the pattern by which the woman's favour carries the land, since Gronw takes Lleu's lordship with his wife. Her triple flowers have also attracted the tree-calendar speculation associated with Robert Graves's The White Goddess, which the handbooks do not accept as philology. The sober verdict is that she belongs to the international complexes of the faithless bride and the manufactured woman — with a sentence that is the Mabinogi's alone: no other tradition punishes a woman by making her keep her name forever.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Blodeuwedd's afterlife runs in a word and a novel. The word is her name itself: in modern Welsh <em>blodeuwedd</em> simply means 'owl', so that every Welsh speaker who names the bird repeats her sentence — a folk-etymology the Fourth Branch deliberately installed. The novel is Alan Garner's The Owl Service (1967), winner of the Carnegie Medal, which takes the Fourth Branch's triangle as a pattern that replays down the generations of a Welsh valley: a dinner service whose painted flowers resolve into owls, and three young people cast again as the flower-bride, the lord, and the hunter. It remains the most powerful modern reworking of any Mabinogi material.</p>
+<p>Beyond Garner, the tale is a set text of Welsh education and a standing subject of Welsh-language criticism, where she has been read as traitor, as sovereignty figure, and as the literature's first portrait of a made thing demanding a will of its own. In scholarship she holds a fixed place: Ifor Williams's edition, Mac Cana's study, and Koch's encyclopedia all treat her episode as the Fourth Branch's tragic heart.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Blodeuwedd given in this edition rests on the witnesses and reference works listed below. The Fourth Branch supplies the narrative entire; the editions and dictionaries secure the text and the name; the handbooks arbitrate the sovereignty and comparative readings.</p>
+<ul>
+  <li> The Mabinogion, Fourth Branch (Math uab Mathonwy), trans. Sioned Davies (Oxford: Oxford University Press, 2007).</li>
+  <li> Ifor Williams, ed., Pedeir Keinc y Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1951).</li>
+  <li> Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press, 1950–2002), s.v. blodeuwedd, blodau, gwedd.</li>
+  <li> Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992).</li>
+  <li> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Blodeuwedd, Mabinogi.</li>
+  <li> Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964).</li>
+  <li> Huws, Daniel, Medieval Welsh Manuscripts (Cardiff: University of Wales Press, 2000).</li>
+  <li> Garner, Alan, The Owl Service (London: Collins, 1967).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Blodeuwedd is the Mabinogi's argument about what making means. Math and Gwydion make a woman the way they make illusions — by craft, for a purpose, to defeat a destiny — and the Fourth Branch's quiet question is what a made thing owes its makers. She has no mother, no father, no childhood, and no choice in her marriage; she is given beauty, a name, a husband, and a court, and the tale watches without comment as the one thing she chooses for herself is a man and a murder.</p>
+<p>Gwydion's sentence is exact in its cruelty: not death, which would end her, but the kept name — Flower-face worn forever on the face of the night-bird every other bird hates. The punishment preserves her even as it damns her. Seven centuries later the Welsh word for owl is still her name: the flowers never stopped blooming in it, and the shame never left it either.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Blodeuwedd is classified as <strong>Tier 2</strong>: the restoration needs no distinctive letters or diacritics its ASCII form would lose. The ASCII fallback <em>blodeuwedd</em> still resolves everywhere, but it is the restored form that carries the name's full information. That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>Every stage of the journey from Celtic transcription to Unicode was an act of care: the scribe who first wrote the name, the lexicographer who glossed it, the engineer who taught the DNS to carry it. The PuniCodex restoration is the latest stage, not the last word — the Scholarly Edition is revised as the evidence improves. What does not change is the principle: a name deserves to be written the way its own tradition wrote it. <strong>Blodeuwedd</strong> in the address bar is that principle, made routable.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PuniCodex blog</a>.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/sites/etain/">Étaín</a></li>
+  <li><a href="/sites/fionn/">Fionn</a></li>
+  <li><a href="/sites/gawain/">Gawain</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
+<ul>
+  <li>The Mabinogion, Fourth Branch (Math uab Mathonwy), trans. Sioned Davies (Oxford: Oxford University Press, 2007).</li>
+  <li>Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press, 1950–2002), s.v. blodeuwedd.</li>
+  <li>Ifor Williams, ed., Pedeir Keinc y Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1951).</li>
+  <li>Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (University of Wales Press, 1950–2002), s.v. blodau, gwedd, blodeuwedd.</li>
+  <li>Lexicon authorities for this entry: Mabinogion, MacKillop.</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">celtic</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Blodeuwedd collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 67 in the series: <a href="./restoration/">How Blodeuwedd was rebuilt, mark by mark</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">The appointments Blodeuwedd made — and who is keeping them</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">Blodeuwedd versus the internet</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">Blodeuwedd</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">—</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/blodeuwedd_logomark.webp" type="image/webp"><img src="../assets/blodeuwedd_logomark.png" alt="Blodeuwedd logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

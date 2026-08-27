@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fulla — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Fulla: a living, university-curated reference on Abundance, Secrets. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Fulla — Scholarly Edition",
+    "headline": "Fulla — Scholarly Edition",
+    "description": "University-curated scholarly reference for Fulla (Abundance, Secrets).",
+    "url": "https://punicodex.com/fulla/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᚠᚢᛚᛚᛅ",
+        "alternateName": ["fulla", "Fulla"],
+        "description": "Abundance, Secrets"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/fulla.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/fulla/scholars/">
+
+    <meta property="og:title" content="Fulla — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Fulla (Abundance, Secrets).">
+    <meta property="og:url" content="https://punicodex.com/fulla/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/fulla.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/fulla.jpg">
+    <meta name="twitter:title" content="Fulla — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Fulla (Abundance, Secrets).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Fulla",
+      "item": "https://punicodex.com/fulla/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/fulla/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="fulla-canvas" data-effect="eski-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/fulla_logolockup.webp" type="image/webp"><img src="../assets/fulla_logolockup.png" alt="Fulla" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/fulla/">Fulla</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Fulla</h1>
+            <p class="scholars-subtitle reveal-up">Abundance, Secrets · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Fulla.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Fulla</strong> (<em>fulla</em>) — Abundance, Secrets · <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s Handmaid, the Keeper of the Casket — is the most trusted figure in the queen's hall: the virgin ásynja who goes with her hair loose and a golden band about her head, who carries Frigg's little box, looks after her shoes, and shares her secret counsels.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>Old Norse <em>Fulla</em> is a transparent formation on <em>fullr</em> 'full' — the same word as English 'full' and German 'voll' — so the name means 'Fullness, Plenty': an abstract noun worn as a personal name, like her sister ásynjur Sjǫfn ('affection') and Lofn ('praise, permission').<sup class="scholars-cite"><a href="#src-overview-5">[5]</a></sup> Her dossier is four precise notices: Snorri's portrait in Gylfaginning 35, her errand to King <a href="/geirrodr/" class="crosslink" data-crosslink="geirrodr">Geirröðr</a> in the prose introduction to Grímnismál, the finger-ring <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a> sends her from Hel in Gylfaginning 49, and — if the identification holds — her continental echo as Volla, sister of Friia, in the Second Merseburg Charm.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup><sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup><sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Fulla</strong> — identical to the ASCII input, because normalized Old Norse writes no diacritic in this name. The mechanical rule therefore places it in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the goddess. This temple is domain-less: the plain-ASCII fulla.com is registered to a third party outside the collection and is watched for release; no form of the name is claimed.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Snorri Sturluson, Edda, Gylfaginning 35 (Fulla&#39;s portrait: virgin, golden band, eski, shoes, secret counsels), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-2">Grímnismál, prose introduction (Poetic Edda), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-overview-3">Snorri Sturluson, Edda, Gylfaginning 49 (Hermóðr&#39;s ride; Nanna&#39;s finger-ring for Fulla), trans. Faulkes (1987).</li><li id="src-overview-4">The Second Merseburg Charm (Friia and Volla her sister), ed. Braune–Ebbinghaus, Althochdeutsches Lesebuch, 16th ed. (Tübingen: Niemeyer, 1979).</li><li id="src-overview-5">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. Fulla, fullr.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>Fulla</strong> — a feminine weak noun formed directly on the adjective <em>fullr</em> 'full', hence 'Fullness, Plenty, the Bountiful one'.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> It belongs to the family of abstract-noun goddess-names in Gylfaginning's catalogue of the ásynjur: Sjǫfn from <em>sjafni</em> 'affection', Lofn from <em>lof</em> 'praise, permission', Vár from <em>várar</em> 'vows' — qualities and states given names and errands of their own.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup> The name answers her office exactly: the keeper of the queen's treasure-box is herself called Plenty.</p>
+<p>The ASCII form and the restored form are identical because the normalized Old Norse spelling carries no diacritic and no distinctive letter: five plain Latin letters. The mechanical tier rule therefore classifies the name Tier 2 — the restoration preserves nothing the ASCII form loses. This is an orthographic report, not a judgment of standing.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>f</strong> → <strong>F</strong> — Same, capitalized</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li></ul>
+<p>No form of the name is held in the collection: the plain-ASCII fulla.com is registered outside the project and watched for release.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. Fulla, fullr.</li><li id="src-the-name-2">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. Fulla.</li><li id="src-the-name-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Fulla.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈful.la/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Fu-</strong> — Voiceless labiodental [f], short close rounded [u] as in English <em>put</em>; stressed first syllable, as in every Old Norse word</li><li><strong>-lla</strong> — A true geminate [lː], the double l held twice as long as a single l, then a short open [a]</li></ul>
+<p>For the modern speaker, the closest approximation is: 'FULL-ah' — but with the vowel of <em>put</em>, not <em>pool</em>, and the l genuinely doubled, two even syllables with the weight on the first.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Fulla, <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s handmaid; from <em>fullr</em>, 'full'</li><li><strong>Old High German</strong> — Volla, Friia's sister in the Second Merseburg Charm, widely read as the same figure<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Proto-Germanic</strong> — *fullaz, 'full' — the ancestor of English 'full', German 'voll', Gothic fulls, and Norse fullr<sup class="scholars-cite"><a href="#src-pronunciation-3">[3]</a></sup></li><li><strong>Owned form</strong> — None; the temple claims no domain, and fulla.com is held outside the collection</li></ul>
+<p>Fulla is Tier 2 by rule: the normalized Old Norse form is already plain ASCII, and the restoration loses nothing in transit. The doubled l — which the runic row would write with a single ᛚ — is the one feature no plain spelling can show.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology and grammar.</li><li id="src-pronunciation-2">The Second Merseburg Charm, ed. Braune–Ebbinghaus, Althochdeutsches Lesebuch, 16th ed. (Tübingen: Niemeyer, 1979).</li><li id="src-pronunciation-3">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. fullr.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>Fulla</strong> — Old Norse (North Germanic), attested 13th c. CE in the Codex Regius (the Grímnismál prose) and the Prose Edda codices, recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse names were carved in the Younger Futhark; no runic attestation of this theonym survives, so the manuscript form is the primary witness.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is a feminine weak noun formed on the adjective <em>fullr</em> 'full'; as an a-stem it carries no nominative <em>-r</em>, which is why the name ends in plain -a.</li><li>The double l is a true geminate /lː/; the Younger Futhark rendering ᚠᚢᛚᛅ writes it with a single ᛚ, as the runic row does not mark consonant length.</li><li>The vowels are short: no length marks appear in normalized Old Norse orthography, and none are restored.</li><li>The Unicode restoration <strong>Fulla</strong> is therefore identical to the ASCII form apart from the capital: the name carries no diacritic and no distinctive letter, and is Tier 2 by the mechanical rule.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li></ul>
+<p>The temple claims no domain: the plain-ASCII fulla.com is held by a third party outside the collection and is watched for release.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. Fulla.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Fulla</strong> is catalogued under Abundance, Secrets — and the sources earn both terms of it: her name is Fullness itself, and her defining duty is the keeping of what the queen does not say aloud.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Abundance</h3>
+<p>Her name is the abstract noun of <em>fullr</em>, 'full': Plenty given a person, a golden band, and a casket to carry — the goddess in whose keeping the queen's portable wealth actually lives.</p>
+<h3 class="scholars-h3">Secrets</h3>
+<p>She shares <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s <em>leyniráðagørðir</em>, the queen's secret deliberations: of the three duties in her portrait, the counsels are the one that admits her past every door.</p>
+<h3 class="scholars-h3">Fidelity and Service</h3>
+<p>The casket and the shoes are the badges of the trusted chamber-servant — the lowest duties of the hall held, in her case, at the highest level of confidence.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Queen's Hall</h3>
+<p>Every notice the tradition keeps of her places her at Frigg's side: named beside Gná, Frigg's errand-rider, in the catalogue of the ásynjur, and remembered beside the queen herself when <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s gifts come back from Hel.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Gylfaginning 35 and 49, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Fulla's iconography is the iconography of trust — Snorri fixes her appearance and office in a single sentence, and the tradition never adds to it:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The eski</strong> — <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s little casket, which Fulla carries: the portable treasury of the queen of the gods, and the clearest badge of her office</li><li><strong>The golden band</strong> — the gold snood she wears about her loose hair: unmarried freedom dressed in plenty, and Snorri's one detail of dress</li><li><strong>The loose hair itself</strong> — the virgin's unbound hair, the visible sign of her status in a hall of married goddesses</li><li><strong>Frigg's shoes</strong> — the queen's footwear in her keeping: the humblest duty in the catalogue, and the surest sign of a servant admitted to every chamber</li><li><strong>The finger-ring from Hel</strong> — <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s gift, carried back by <a class="scholars-xlink" href="/hermod/">Hermóðr</a>: a token from the dead addressed, of all the ásynjur, to her<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Gylfaginning 35 and 49, trans. Faulkes (1987).</li><li id="src-symbols-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Fulla.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Fulla has no saga of her own: her mythology is four precise notices, and every one of them places her at <a class="scholars-xlink" href="/frigg/">Frigg</a>'s side. What the tradition lost in narrative it kept in definition — no goddess in the Edda is more exactly described in a single sentence.</p>
+<h3 class="scholars-h3">The Keeper of the Casket (Gylfaginning 35)</h3>
+<p>Snorri's catalogue of the ásynjur gives Fulla her entire portrait at once: 'Fulla is a virgin and goes with her hair loose and a golden band about her head; she carries <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s eski, looks after her footwear, and shares her secret counsels with her.' The three duties descend in rank and rise in intimacy — the box is treasure, the shoes are service, the counsels are trust itself. She is named immediately after Gná, Frigg's errand-rider, and the pairing has stuck: where Gná carries the queen's words out through the worlds, Fulla keeps the queen's words that never leave the hall.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Warning to Geirröðr (Grímnismál, prose)</h3>
+<p>Her one errand in the Poetic Edda is given in prose. <a class="scholars-xlink" href="/odinn/">Óðinn</a> and Frigg had quarrelled over their foster-sons: Frigg accused King <a href="/geirrodr/" class="crosslink" data-crosslink="geirrodr">Geirröðr</a>, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s favourite, of being so stingy he tortured his guests, and Óðinn laid a wager and set off disguised to test him. Frigg sent her handmaid Fulla to Geirröðr ahead of him, to warn the king to beware of a sorcerer coming to bewitch him — with the token that no dog, however fierce, would leap at the man. The warning is the trap: Geirröðr seized the stranger, named Grímnir, and tortured him between two fires, and out of that fire the god spoke the whole catalogue of the worlds. Fulla appears only to deliver the message and vanish, but the wager, the torture, and the poem's entire revelation turn on her errand.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Ring from Hel (Gylfaginning 49)</h3>
+<p>When <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a> rode nine nights to ransom <a class="scholars-xlink" href="/baldr/">Baldr</a> and came home with the tidings, he brought tokens from the dead: <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> sent back the ring <a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a> to Óðinn, and <a class="scholars-xlink" href="/nanna/">Nanna</a> — Baldr's wife, who had died of grief on his pyre — sent gifts out of Hel to the two women of Frigg's hall: a linen headdress for Frigg, and a finger-ring for Fulla. When a dead goddess thinks of <a href="/asgardr/" class="crosslink" data-crosslink="asgardr">Ásgarðr</a>'s household, she thinks of the queen and of the queen's handmaid by name.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">Volla, Friia's Sister (Second Merseburg Charm)</h3>
+<p>The one continental witness is the Second Merseburg Charm, the only pagan theogonic text in Old High German: Phol and Wodan rode to the wood, Balder's foal wrenched its foot, and the goddesses chant over it in sequence — Sinthgunt, Sunna her sister; Friia, Volla her sister; and at last Wodan, who knows how. Since Jacob Grimm, Volla — Friia's sister — has widely been read as Fulla: the name is the exact Old High German form of the same word, and the charm puts her, precisely as the Edda does, at Friia's right hand. The identification is argued, not proven.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Snorri Sturluson, Edda, Gylfaginning 35 and 49, trans. Faulkes (1987).</li><li id="src-mythology-2">Grímnismál, prose introduction (Poetic Edda), trans. Larrington (2014).</li><li id="src-mythology-3">The Second Merseburg Charm, ed. Braune–Ebbinghaus (Niemeyer, 1979).</li><li id="src-mythology-4">Grimm, Jacob, Teutonic Mythology, trans. James Steven Stallybrass, 4 vols. (London: George Bell, 1882–88), on Fulla and Volla.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Fulla's cross-border life runs through one word and one relationship. The word is <em>fullr</em>: Proto-Germanic <em>fullaz</em> gives English 'full', German 'voll', Gothic fulls, and Old Norse Fulla — a goddess whose name is the ordinary adjective turned abstract noun, 'Fullness'.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> The relationship is the one the Merseburg Charm preserves: Volla beside Friia, as Fulla beside <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> — and since Grimm the identification of the two has been the standing reading, with Simek registering both the fit and the doubt.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup><sup class="scholars-cite"><a href="#src-syncretism-4">[4]</a></sup></p>
+<p>The deeper question is what kind of being she is. Gylfaginning's ásynjur catalogue is full of abstract-noun goddesses — Sjǫfn, Lofn, Vár — and scholars have long suspected that Fulla, Gná, and their sisters are facets of Frigg herself: the queen's plenitude and far-ranging given names and errands of their own.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup> Whether she began as an independent goddess of plenty or as an aspect that walked off on its own, the sources keep her a person: she receives a ring, runs an errand, and wears her own gold. Within the corpus, her closest kin are the figures of Frigg's household: <a class="scholars-xlink" href="/frigg/">Frigg</a> herself, <a class="scholars-xlink" href="/nanna/">Nanna</a>, who sends her the ring, and the other ásynjur of Snorri's catalogue, among them <a class="scholars-xlink" href="/syn/">Syn</a>, who guards the door against those who should not enter, and <a class="scholars-xlink" href="/eir/">Eir</a>, the best of physicians.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">The Second Merseburg Charm, ed. Braune–Ebbinghaus (Niemeyer, 1979).</li><li id="src-syncretism-2">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. fullr.</li><li id="src-syncretism-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Fulla, Gná.</li><li id="src-syncretism-4">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (George Bell, 1882–88).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Fulla's afterlife is scholarly and liturgical rather than popular. Grimm devoted sustained attention to her and Volla in Teutonic Mythology, and every handbook since — Simek, Orchard, Lindow — keeps her as the standing example of the abstract-noun ásynja: the goddess whose name tells you exactly what she is.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup><sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup><sup class="scholars-cite"><a href="#src-cultural-legacy-4">[4]</a></sup> Her image — loose hair, golden band, the queen's casket on her arm — became the fixed picture of the trusted northern handmaid, and she enters nearly every retelling of the <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> cycle by virtue of one finger-ring.<sup class="scholars-cite"><a href="#src-cultural-legacy-5">[5]</a></sup></p>
+<p>In contemporary practice, modern Heathen and Ásatrú communities keep her at <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s side as a goddess of plenty, household trust, and well-kept secrets, invoked where abundance must be held in confidence. She never became a pop-culture figure; she remained what the Edda made her — the most trusted person in the queen's hall, and the tradition's proof that even abundance has a keeper.<sup class="scholars-cite"><a href="#src-cultural-legacy-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (George Bell, 1882–88), on Fulla and Volla.</li><li id="src-cultural-legacy-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Fulla.</li><li id="src-cultural-legacy-3">Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Fulla.</li><li id="src-cultural-legacy-4">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Fulla.</li><li id="src-cultural-legacy-5">Snorri Sturluson, Edda, Gylfaginning 49 (Nanna&#39;s finger-ring for Fulla), trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Fulla is an entirely textual goddess: no cult site, toponym, votive deposit, or inscription names her, and the runic corpus is silent — unsurprising for a figure the sources place inside the queen's household rather than in the public cult.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> Her witnesses are manuscripts. The Grímnismál prose, which preserves her one errand, survives in the Codex Regius (c. 1270); her portrait in Gylfaginning 35 and her ring in Gylfaginning 49 come with the Prose Edda codices of the thirteenth and fourteenth centuries; and her name recurs in the þulur, the metrical name-lists appended to Skáldskaparmál.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup><sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup><sup class="scholars-cite"><a href="#src-archaeology-4">[4]</a></sup></p>
+<p>The one continental witness is the Second Merseburg Charm, copied into a theological manuscript at Fulda in the tenth century and now in the Merseburg cathedral library: its Volla, sister of Friia, is the only attestation of the figure outside Iceland and, if the identification holds, the oldest by centuries.<sup class="scholars-cite"><a href="#src-archaeology-5">[5]</a></sup> Against this single Carolingian-era survival, the whole archaeological record — the Migration-Age gold of the period's hoards, the picture stones, the amulets — offers atmosphere rather than attribution: golden bands are abundant in the ground, but none can be assigned to Fulla.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Fulla.</li><li id="src-archaeology-2">Grímnismál, prose introduction (Poetic Edda; Codex Regius, c. 1270), trans. Larrington (2014).</li><li id="src-archaeology-3">Snorri Sturluson, Edda, Gylfaginning 35 and 49, trans. Faulkes (1987).</li><li id="src-archaeology-4">Snorri Sturluson, Edda, Skáldskaparmál, þulur of the ásynjur, trans. Faulkes (1987).</li><li id="src-archaeology-5">The Second Merseburg Charm, ed. Braune–Ebbinghaus, Althochdeutsches Lesebuch, 16th ed. (Tübingen: Niemeyer, 1979).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Fulla given in this edition rests on the witnesses and reference works listed below. Gylfaginning 35 supplies the portrait, Gylfaginning 49 the ring, the Grímnismál prose the errand, and the Second Merseburg Charm the continental question; the lexica secure the name's etymology, and the handbooks arbitrate the Volla identification and the abstract-noun ásynjur.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Snorri Sturluson, Edda, Gylfaginning 35 (Fulla's portrait: virgin, golden band, eski, shoes, secret counsels), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Grímnismál, prose introduction (Fulla sent to warn <a href="/geirrodr/" class="crosslink" data-crosslink="geirrodr">Geirröðr</a>), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Snorri Sturluson, Edda, Gylfaginning 49 (<a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a>'s ride; <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s finger-ring for Fulla), trans. Faulkes (1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> The Second Merseburg Charm (Friia and Volla her sister), ed. Braune–Ebbinghaus, Althochdeutsches Lesebuch, 16th ed. (Tübingen: Niemeyer, 1979).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. Fulla, fullr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. Fulla.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Fulla, Gná.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Fulla.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Snorri Sturluson, Edda, Skáldskaparmál, þulur of the ásynjur, trans. Faulkes (1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Grimm, Jacob, Teutonic Mythology, trans. James Steven Stallybrass, 4 vols. (London: George Bell, 1882–88).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. fullr.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Snorri Sturluson, Edda, Gylfaginning 35 and 49, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-2">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-3">The Second Merseburg Charm, ed. Braune–Ebbinghaus (Niemeyer, 1979).</li><li id="src-scholarly-sources-4">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-5">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-6">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-7">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li><li id="src-scholarly-sources-8">Grimm, Jacob, Teutonic Mythology, trans. Stallybrass (George Bell, 1882–88).</li><li id="src-scholarly-sources-9">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962).</li><li id="src-scholarly-sources-10">Grimm, Jacob, Teutonic Mythology, trans. James Steven Stallybrass, 4 vols. (London: George Bell, 1882–88).</li><li id="src-scholarly-sources-11">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. fullr.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda knows Fulla only in prose — but the notice it gives her is her one errand in the entire corpus, and the machinery of a whole poem turns on it. The prose introduction to Grímnismál sets the wager between <a class="scholars-xlink" href="/odinn/">Óðinn</a> and <a class="scholars-xlink" href="/frigg/">Frigg</a> over their foster-sons, and it is Fulla whom <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> sends to King <a href="/geirrodr/" class="crosslink" data-crosslink="geirrodr">Geirröðr</a> with the warning about the coming sorcerer and the token of the dogs. Geirröðr acts on it, seizes the blue-cloaked Grímnir, and tortures him between the fires — and the poem that follows, the god's great catalogue of the worlds, is the direct consequence of the handmaid's message.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup></p>
+<p>The Edda's silence elsewhere is itself information. Grímnismál's verse catalogue of the dwellings of the gods names hall after hall — Þrúðheimr, Breiðablik, Himinbjǫrg, Fensalir — but assigns Fulla none: she lives, as her office says, inside Frigg's own hall of Fensalir, without an address of her own. The þulur tradition, which survives with the Eddic materials, keeps her name in the metrical lists of the ásynjur, preserving her where narrative does not.<sup class="scholars-cite"><a href="#src-poetic-edda-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Grímnismál, prose introduction (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-2">Grímnismál 4–13 (the dwellings of the gods; Fensalir), trans. Larrington (2014).</li><li id="src-poetic-edda-3">Snorri Sturluson, Edda, Skáldskaparmál, þulur of the ásynjur, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Fulla's home text: it contains her portrait, her place in the pantheon's order, and her one moment in the great narrative. Gylfaginning 35 names her among the ásynjur, immediately after Gná, and gives the sentence on which her entire tradition rests — the virgin with the loose hair and golden band, who carries <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s eski, tends her footwear, and shares her secret counsels.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> Snorri's catalogue is systematic, and the company he keeps her in matters: she stands among the named ásynjur — <a href="/saga/" class="crosslink" data-crosslink="saga">Sága</a>, <a class="scholars-xlink" href="/eir/">Eir</a>, <a href="/gefjon/" class="crosslink" data-crosslink="gefjon">Gefjon</a>, <a class="scholars-xlink" href="/syn/">Syn</a>, and the rest — not as a metaphor but as one of the numbered goddesses of <a href="/asgardr/" class="crosslink" data-crosslink="asgardr">Ásgarðr</a>.</p>
+<p>Gylfaginning 49 gives her the narrative moment. As <a class="scholars-xlink" href="/hermod/">Hermóðr</a> prepares to ride back from Hel with the ransom almost won, <a class="scholars-xlink" href="/nanna/">Nanna</a> commits her gifts to him: a linen headdress for Frigg, and a finger-ring for Fulla. In the longest and most carefully staged episode of the whole Edda — the death of <a class="scholars-xlink" href="/baldr/">Baldr</a> — Fulla's part is a single word of bequest, and it is exactly proportioned to her office: the dead remember the queen's household by naming its two women.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup> The þulur of Skáldskaparmál then preserve her name in the metrical lists, the memorial verse-catalogues where the tradition filed what it could not narrate.<sup class="scholars-cite"><a href="#src-prose-edda-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning 35, trans. Faulkes (1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-prose-edda-3">Snorri Sturluson, Edda, Skáldskaparmál, þulur of the ásynjur, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The runic corpus contains no attestation of Fulla. No runestone invokes her, no amulet carries her name, and no inscription links a dedicant to her cult — a silence she shares with nearly all the ásynjur of Snorri's catalogue and one that marks her as a figure of the household mythology rather than of public dedicatory practice.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What the runic tradition contributes is orthographic. In the sixteen-rune Younger Futhark, the name would have been carved ᚠᚢᛚᛅ — f-u-l-a — and the rendering teaches the usual lesson: the runic row underspecifies what the manuscripts fix. The ᛚ rune writes both single and geminate l, so the carving cannot show the doubled consonant that defines the name's sound; and the name carries no final nominative -r, since Fulla is a feminine weak noun. No Viking-Age carving of the theonym is known, so the runic form remains a normalized reconstruction, with the manuscript spelling as the primary witness.</p>
+<p>The nearest epigraphic kin is not runic at all: the Second Merseburg Charm's Volla, written in a tenth-century Carolingian bookhand at Fulda, is the only written attestation of the figure outside the Icelandic codices.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Fulla.</li><li id="src-runic-evidence-2">The Second Merseburg Charm, ed. Braune–Ebbinghaus (Niemeyer, 1979).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, Fulla's medieval afterlife is thin and telling: the kings' sagas, the sagas of Icelanders, and Saxo Grammaticus know nothing of her. Heimskringla's euhemerized gods at <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a> keep <a class="scholars-xlink" href="/odinn/">Óðinn</a>, <a href="/njordr/" class="crosslink" data-crosslink="njordr">Njǫrðr</a>, and <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>, but <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s household — and with it Fulla — does not survive the translation into history. Saxo's Gesta Danorum, which retells the <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> story at length with its own Høtherus and Balderus, gives no corresponding role to a Fulla: in his version the divine household is stripped to its principals, and the queen's handmaid vanishes with the queen's other attendants.</p>
+<p>Her continental survival is earlier and stranger than any saga: the Second Merseburg Charm, copied at Fulda in the tenth century, preserves Volla beside Friia in the healing sequence for Balder's foal — a fossil of the figure from four centuries before the Icelandic books, in a manuscript that had no literary reason to keep her.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> Between that Carolingian survival and Snorri's thirteenth-century catalogue, the written record is empty; the figure lived, if she lived anywhere, in the oral tradition the þulur and the Eddas finally wrote down.<sup class="scholars-cite"><a href="#src-sagas-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">The Second Merseburg Charm, ed. Braune–Ebbinghaus (Niemeyer, 1979).</li><li id="src-sagas-2">Saxo Grammaticus, Gesta Danorum, Book 3 (Høtherus and Balderus), trans. Peter Fisher, ed. Hilda Ellis Davidson (Cambridge: D. S. Brewer, 1979).</li><li id="src-sagas-3">Snorri Sturluson, Edda, Skáldskaparmál, þulur of the ásynjur, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Fulla is the goddess of what is held in trust. Every detail of her portrait is a form of custody: the casket she carries but does not own, the shoes she tends but does not wear, the counsels she shares but does not speak. Even her name works this way — Fullness is not a thing she does but a thing she keeps.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>The tradition gives her no adventure because her office is the adventure's opposite: Gná rides out with the queen's words; Fulla stays, and what is entrusted to her stays with her. <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s ring from Hel is the tradition's own verdict on that office — when the dead send gifts home, they send one to the keeper.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup> In a mythology that ends in fire and betrayal, Fulla is the quiet counterweight: the proof that some things, once entrusted, are simply kept.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Snorri Sturluson, Edda, Gylfaginning 35 and 49, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Fulla</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᚠᚢᛚᛚᛅ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'fulla';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

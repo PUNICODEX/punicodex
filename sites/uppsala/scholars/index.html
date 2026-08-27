@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uppsala — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Uppsala: a living, university-curated reference on Temple, Freyr, Sacred Grove. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Uppsala — Scholarly Edition",
+    "headline": "Uppsala — Scholarly Edition",
+    "description": "University-curated scholarly reference for Uppsala (Temple, Freyr, Sacred Grove).",
+    "url": "https://punicodex.com/uppsala/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᚢᛒᛒᛋᛅᛚᛅ",
+        "alternateName": ["uppsala", "Uppsala"],
+        "description": "Temple, Freyr, Sacred Grove"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/uppsala.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/uppsala/scholars/">
+
+    <meta property="og:title" content="Uppsala — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Uppsala (Temple, Freyr, Sacred Grove).">
+    <meta property="og:url" content="https://punicodex.com/uppsala/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/uppsala.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/uppsala.jpg">
+    <meta name="twitter:title" content="Uppsala — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Uppsala (Temple, Freyr, Sacred Grove).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Uppsala",
+      "item": "https://punicodex.com/uppsala/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/uppsala/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="uppsala-canvas" data-effect="temple-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/uppsala_logolockup.webp" type="image/webp"><img src="../assets/uppsala_logolockup.png" alt="Uppsala" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/uppsala/">Uppsala</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Uppsala</h1>
+            <p class="scholars-subtitle reveal-up">Temple, Freyr, Sacred Grove · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Uppsala.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Uppsala</strong> (<em>uppsala</em>) — Upper halls · Temple, <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>, Sacred Grove — is the one sanctuary of the Norse world the medieval record describes in full: the golden temple at Ubsola where, in Adam of Bremen's account (c. 1075), the statues of <a class="scholars-xlink" href="/thor/">Þórr</a>, Wodan, and Fricco sat enthroned; the sacred grove beside it, every tree made divine by the offerings hung in its branches; and the nine-day festival, renewed every ninth year, at which nine males of every living kind were sacrificed to placate the gods.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> Snorri's Ynglingasaga gives the site its founding god — <a class="scholars-xlink" href="/freyr/">Freyr</a> built the temple at Uppsalir, made it his chief seat, endowed it with the Uppsala wealth, and lies in a mound beside it — while the three royal mounds of Gamla Uppsala, cremation graves of sixth- and seventh-century kings, stand on the same ground as archaeology's answer to the saga.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>The name is a transparent compound: <em>upp</em> 'up' + <em>salir</em>, plural of <em>salr</em> 'hall' — 'the upper halls'.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup> PuniCodex restores the name as <strong>Uppsala</strong> — identical to the ASCII input, because normalized Old Norse writes no diacritic in this name. The mechanical rule therefore places the name in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the place. The temple is domain-less: the plain-ASCII uppsala.com is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26–27 with scholia, trans. Francis J. Tschan, rev. Timothy Reuter (New York: Columbia University Press, 2002).</li><li id="src-overview-2">Snorri Sturluson, Heimskringla, Ynglingasaga 10, trans. Lee M. Hollander (Austin: University of Texas Press, 1964).</li><li id="src-overview-3">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. uppsalir; PuniCodex lexicon record for uppsala (tier, domain status).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>Uppsalir</strong> — a nominative plural, genitive <strong>Uppsala</strong> — a compound of <em>upp</em> 'up' and <em>salir</em>, the plural of <em>salr</em> 'hall': 'the upper halls'. The plural form and the elevated site on the ridge above the Fyris plain have long been read together: the halls up above, royal and divine at once.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> Adam of Bremen, the name's earliest literary witness, Latinizes it as <em>Ubsola</em>; the modern Swedish form Uppsala descends from the Old Norse genitive, and the name has never died out.</p>
+<p>The ASCII form is not a fallback here but the form itself: normalized Old Norse writes seven plain Latin letters and a capital. The Unicode restoration <strong>Uppsala</strong> therefore preserves nothing the ASCII alphabet loses, and the mechanical rule classifies the name Tier 2 — an orthographic fact, not a judgment on the sanctuary.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>u</strong> → <strong>U</strong> — Same, capitalized</li><li><strong>p</strong> → <strong>p</strong> — Same</li><li><strong>p</strong> → <strong>p</strong> — Same</li><li><strong>s</strong> → <strong>s</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li></ul>
+<p>The project holds no domain for this name. The plain-ASCII <strong>uppsala.com</strong> is registered to a third party outside the collection and is watched for release; this temple claims nothing it does not hold.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. uppsalir, upp, salr; Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. uppsalir.</li><li id="src-the-name-2">PuniCodex lexicon record for uppsala (tier, domain status), per the project&#39;s domain registry.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the Old Norse form is <strong>/ˈupː.sɑ.lir/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>U-</strong> — Short high back rounded [u], stressed on the first syllable as in every Old Norse word, held brief and fully rounded</li><li><strong>-pp-</strong> — The geminate voiceless bilabial stop [pː] held audibly long across the syllable boundary, as in modern Swedish</li><li><strong>-sa-</strong> — Voiceless alveolar [s] and short open back unrounded [ɑ]</li><li><strong>-lir</strong> — Light alveolar [l], short close [i], and a trilled final [r]: the plural ending -ir, fully sounded</li></ul>
+<p>For the modern speaker, the closest approximation is: 'OOP-sah-lir' — three beats, the double p held a fraction long, the final r trilled. Modern Swedish Uppsala ('OOP-sah-lah') has shed the old plural ending.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Uppsalir (nominative plural), genitive Uppsala: 'the upper halls'</li><li><strong>Medieval Latin</strong> — Ubsola, Adam of Bremen's spelling (c. 1075), the name's earliest literary witness<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Younger Futhark</strong> — ᚢᛒᛒᛋᛅᛚᛅ (ubbsala), a normalized phonetic reconstruction; the sixteen-rune row writes no b/p or vowel-length distinctions</li><li><strong>Modern Swedish</strong> — Uppsala, the unbroken living name of the city, its cathedral, and its university</li></ul>
+<p>Uppsala is Tier 2 because the restoration preserves nothing the ASCII form loses: no diacritic, no distinctive letter, no vowel length. English and Old Norse write the name identically.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology and grammar.</li><li id="src-pronunciation-2">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26, trans. Tschan, rev. Reuter (Columbia University Press, 2002).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval manuscripts in the Latin alphabet as <strong>Uppsalir</strong> (genitive <strong>Uppsala</strong>) — Old Norse (North Germanic), attested in the Icelandic and Latin textual record of the twelfth and thirteenth centuries, and Latinized as <em>Ubsola</em> by Adam of Bremen around 1075, the name's earliest witness.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse names were carved in the Younger Futhark; no runic attestation of the place-name survives, so the manuscript form is the primary witness. The runic rendering is <strong>ᚢᛒᛒᛋᛅᛚᛅ</strong> (ubbsala).</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is a compound, not a simplex: <em>upp</em> 'up' + <em>salir</em>, plural of <em>salr</em> 'hall' — 'the upper halls'.</li><li>ᚢ (úr) writes the rounded back vowels /u, o, ø, ǫ, y/ and /w/; the initial u needs no diacritic.</li><li>ᛒ (bjarkan) writes both /b/ and /p/, so the carving cannot mark the geminate voiceless stop the manuscripts write pp.</li><li>ᛋ (sól) writes /s/; ᛅ (ár) writes /a/; ᛚ (lögr) writes /l/ — and the sixteen-rune row separates neither short from long vowels nor voiced from voiceless stops.</li><li>The spelling ubbsala is therefore a normalized phonetic reconstruction, and the Unicode restoration Uppsala is identical to the ASCII form — the restoration is a matter of canonical reference, not rescued orthography.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26, trans. Tschan, rev. Reuter (2002); Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. uppsalir; Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910), s.v. uppsalir.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Uppsala</strong> is catalogued under Temple, <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>, Sacred Grove — the three facts on which every witness agrees, and the three registers in which the site operated: cult house, god's seat, and holy ground.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Temple</h3>
+<p>Adam of Bremen describes the temple at Ubsola as entirely decked with gold, a golden chain hanging from its gable, and within it the enthroned statues of the three gods — <a class="scholars-xlink" href="/thor/">Þórr</a> central with his sceptre, Wodan armed, Fricco shaped for peace and pleasure — each served by his own priests. It is the fullest description of a Norse cult building that survives.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Freyr</h3>
+<p>Snorri's Ynglingasaga makes the site the seat of <a class="scholars-xlink" href="/freyr/">Freyr</a> himself: the god built the temple at Uppsalir, endowed it with all his revenues — the origin of the Uppsala wealth, the crown estate of the Swedish kings — and was buried in a mound on the same ground. Cult and kingship at Uppsala are one inheritance.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Sacred Grove</h3>
+<p>Beside the temple stood the grove in which the nine-year sacrifice was hung — men, horses, and dogs among the branches, every tree held divine because of the death and decay of the victims. A spring beside the temple received a living man; if he was not found again, the people's wish would be granted.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Kingship</h3>
+<p>The three royal mounds of Gamla Uppsala and the dynasty the poems call Ynglings or Scylfings bind the sanctuary to the crown: the site where <a class="scholars-xlink" href="/odinn/">Óðinn</a>'s priestly legacy, Freyr's temple, and the kings' graves occupy one ridge.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26–27 with scholia, trans. Tschan, rev. Reuter (2002).</li><li id="src-domains-2">Snorri Sturluson, Heimskringla, Ynglingasaga 10, trans. Hollander (1964).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>The iconography of Uppsala is architectural and ritual rather than mythic — the corpus fixes around the sanctuary a small set of objects no account can omit:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The gilded temple</strong> — the gold-decked hall where the triad sat enthroned: the sacral core of Swedish kingship, visible wealth offered to the gods</li><li><strong>The enthroned triad</strong> — <a class="scholars-xlink" href="/thor/">Þórr</a> central with his sceptre, Wodan armed like <a href="/mars/" class="crosslink" data-crosslink="mars">Mars</a>, Fricco shaped for peace and pleasure: sovereignty, war, and fertility enshrined in one room</li><li><strong>The sacred grove</strong> — trees made divine by sacrifice: the boundary where offering becomes landscape and the forest itself turns temple</li><li><strong>The hanging offerings</strong> — men, horses, and dogs suspended in the branches, nine of every kind: the commonwealth renewed at the price of nine-year blood</li><li><strong>The royal mound</strong> — the barrow of kings and, by Snorri's account, of <a class="scholars-xlink" href="/freyr/">Freyr</a> himself: dynasty made continuous with the god who endowed it<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26–27 with scholia, trans. Tschan, rev. Reuter (2002).</li><li id="src-symbols-2">Snorri Sturluson, Heimskringla, Ynglingasaga 10, trans. Hollander (1964).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Uppsala's mythology is a sanctuary's record rather than a god's biography — the fullest any Norse holy place receives, carried by four witnesses.</p>
+<h3 class="scholars-h3">The Golden Temple (Adam of Bremen 4.26)</h3>
+<p>Adam of Bremen, writing about 1075 from the reports of the Danish king Sven Estridsen, describes the famous temple called Ubsola near Sigtuna, entirely decked with gold. Within it the people worship the statues of three gods: the most powerful, <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a>, occupies the throne in the middle of the hall, with Wodan and Fricco on either side. Thor governs the air, thunder, lightning, winds, rains, fair weather and crops, and holds his sceptre like Jove; Wodan — 'that is, Frenzy' — rules war and is carved armed like <a href="/mars/" class="crosslink" data-crosslink="mars">Mars</a>; Fricco, bestower of peace and pleasure, is shaped with an immense phallus. Each god has his priests; in plague or famine the people sacrifice to Thor, for war to Wodan, for weddings to Fricco.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Nine-Day Sacrifice (Adam of Bremen 4.27)</h3>
+<p>Every nine years, Adam records, a solemn assembly of all the provinces of Sweden is held at Uppsala, from which no one may purchase exemption. Of every living creature that is male, nine head are offered, and the bodies are hung in the grove adjoining the temple — a grove so sacred that each tree is believed divine because of the death and putrefaction of the victims. Dogs and horses hang there with the men; one of the Christians told Adam he had seen seventy-two bodies hanging together. The incantations sung at the rite, Adam adds, are so disgraceful that it is better to say nothing of them. A scholion adds the spring beside the temple in which a living man was drowned.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Freyr's Temple and the Uppsala Wealth (Ynglingasaga 10)</h3>
+<p>Snorri gives the site its founding god. <a class="scholars-xlink" href="/freyr/">Freyr</a>, succeeding his father <a class="scholars-xlink" href="/njord/">Njörðr</a>, built a great temple at Uppsalir, made it his chief seat, and endowed it with lands, livestock, and money — the origin of the Uppsala auðr, the crown estate of the Swedish kings. In his days began the peace and good seasons the Swedes remembered as the best of times; his other name was Yngvi, and from him the royal house took its name, the Ynglings. When <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a> died, his men hid the news, raised a mound with three holes, and received the people's offerings of gold, silver, and copper through them for three years — the god of the temple buried on his own ground, cult and kingship one estate.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">Kraki's Seed on the Fyrisvellir (Skáldskaparmál / Hrólfs saga kraka)</h3>
+<p>Snorri, explaining in Skáldskaparmál why gold may be called 'Kraki's seed', tells how Hrólfr kraki of the Danes fled Uppsala with treasure taken from King Aðils and sowed the gold along the Fyrisvellir, the plain of the river Fyris, so that the pursuing Swedes stopped to gather it. Aðils himself stooped from his horse for the ring Svíagriss — and Hrólfr declared he had now bent low the mightiest man in Sweden. The same dynasty rides through Beowulf, where Eadgils son of Ohthere is king of the Scylfings.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26, trans. Tschan, rev. Reuter (2002).</li><li id="src-mythology-2">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.27 with scholia 134–139, trans. Tschan, rev. Reuter (2002).</li><li id="src-mythology-3">Snorri Sturluson, Heimskringla, Ynglingasaga 10, trans. Hollander (1964).</li><li id="src-mythology-4">Snorri Sturluson, Edda, Skáldskaparmál (the kenning &#39;Kraki&#39;s seed&#39;), trans. Anthony Faulkes (London: Viking Society for Northern Research, 1998); Hrólfs saga kraka, trans. Jesse L. Byock (London: Penguin, 1998).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Uppsala's closest kin are not gods but holy places. Thietmar of Merseburg, writing two generations before Adam, describes the nine-year sacrifice at Lejre in Denmark — ninety-nine men, horses, dogs and cocks offered to placate the gods — the Danish counterpart of the Uppsala rite, and the proof that Adam's nine-year cycle was pan-Scandinavian grammar rather than local invention.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> Behind both stands the deepest stratum: Tacitus' Germania records the sacred grove of the Semnones, entered bound and widened by human sacrifice, and the grove and wagon of Nerthus — the goddess whose name is the feminine counterpart of <a class="scholars-xlink" href="/njord/">Njörðr</a>, father of the <a class="scholars-xlink" href="/freyr/">Freyr</a> whose seat was Uppsala.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p>
+<p>The enthroned triad itself has been read since Dumézil against the archaic Roman triad of Jupiter, <a href="/mars/" class="crosslink" data-crosslink="mars">Mars</a> and Quirinus — sovereignty, war, and the fertile commons — though Adam's own glosses (<a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a> as Jove, Wodan as Mars, Fricco as peace and pleasure) show the comparison began with the medieval churchman, not the modern comparatist. Modern handbooks urge matching caution: Adam's testimony is secondhand, channelled through Danish informants a kingdom away from the Swedish cult he wanted abolished, and Simek, Orchard, and Lindow treat the account as the fullest and most dangerous source for Norse religion.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup> What remains undisputed is the place: no other site in the North is so continuously written about, from the royal mounds' century to the last generation of the old religion. Within the corpus, its related figures are the triad it enshrined — <a class="scholars-xlink" href="/thor/">Þórr</a>, <a class="scholars-xlink" href="/odinn/">Óðinn</a>, <a class="scholars-xlink" href="/freyr/">Freyr</a> — and the Vanir homeland <a class="scholars-xlink" href="/vanaheimr/">Vanaheimr</a> from which <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>'s house came.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Thietmar of Merseburg, Chronicle 1.17, trans. David A. Warner (Manchester: Manchester University Press, 2001).</li><li id="src-syncretism-2">Tacitus, Germania 39–40 (the grove of the Semnones; the rite of Nerthus).</li><li id="src-syncretism-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Uppsala; Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Uppsala; Lindow, John, Norse Mythology: A Guide (Oxford: Oxford University Press, 2001), s.v. Uppsala.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Uppsala never stopped being the stage on which Sweden remembers itself. The old cult centre became the church's: Gamla Uppsala was the seat of Sweden's first archbishopric from 1164 until the see moved to Östra Aros — the modern city of Uppsala — in 1273, and the medieval church still stands on the artificial plateau where Adam's temple is sought.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p>
+<p>Nineteenth-century romantic nationalism made the mounds the nation's ancestral shrine; their excavation in 1846–47, ordered to still public argument about what they contained, yielded the cremated kings of the Vendel era and made Old Uppsala the birthplace of Swedish field archaeology. The university at Uppsala, founded in 1477, gave the name a second, learned fame that now outruns the temple's. For modern scholarship the site remains the test case for the union of cult and kingship in the North — Olof Sundqvist's <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>'s Offspring is built on its ground — and for modern Heathen and Ásatrú communities the grove and the mounds are the north's most numinous standing landscape, the one address where the old religion can still be visited rather than merely read about.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Uppsala.</li><li id="src-cultural-legacy-2">Sundqvist, Olof, Freyr&#39;s Offspring: Rulers and Religion in Ancient Svea Society (Uppsala: Uppsala University, 2002).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Uppsala is the rare Norse holy place where the texts can be tested against the ground. The three royal mounds of Gamla Uppsala — the largest barrows in Sweden — were opened in 1846–47 under Bror Emil Hildebrand: beneath each lay a cremation of the sixth or seventh century, burned in its finery and sealed under birch bark, with weapons, game equipment, and sacrificed animals — the graves of the dynasty the poems call Ynglings or Scylfings.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p>
+<p>Beside them the medieval church — seat of Sweden's first archbishop from 1164 — stands on a great artificial plateau of levelled terraces, the one construction on the site that matches Adam's scale. Sune Lindqvist's excavation beneath the church floor in 1926 revealed the postholes of a very large wooden building, and the argument whether it was the pagan temple, a royal feasting hall, or both has run ever since; Olof Sundqvist's work on the Svea cult-and-kingship complex is the standard modern frame.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup> The surrounding landscape is dense with the dynasty's furniture: boat-graves at Valsgärde a few miles north, the Vendel graves across the river, hundreds of smaller mounds on the Fyris plain. No runestone carves the place-name itself; the Younger Futhark rendering ᚢᛒᛒᛋᛅᛚᛅ (ubbsala) is a normalized reconstruction, though Uppland is the richest runestone province in Scandinavia.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Lindow, John, Norse Mythology: A Guide (Oxford: Oxford University Press, 2001), s.v. Uppsala; Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Uppsala.</li><li id="src-archaeology-2">Sundqvist, Olof, Freyr&#39;s Offspring: Rulers and Religion in Ancient Svea Society (Uppsala: Uppsala University, 2002).</li><li id="src-archaeology-3">Jansson, Sven B. F., Runes in Sweden, trans. Peter Foote (Stockholm: Gidlunds, 1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Uppsala given in this edition rests on the witnesses and reference works listed below. Adam of Bremen supplies the temple, the triad, the festival, and the grove; Snorri's Heimskringla the founding god and the Uppsala wealth; the Prose Edda and Hrólfs saga kraka the gold of the Fyrisvellir; Thietmar and Tacitus the northern and continental parallels; the lexica the name's etymology; and the modern handbooks the arbitration of attestation and the archaeology.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26–27 with scholia 134–139 (the temple at Ubsola, the enthroned triad, the nine-year festival, the sacred grove, and the spring), trans. Francis J. Tschan, rev. Timothy Reuter (New York: Columbia University Press, 2002).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Snorri Sturluson, Heimskringla, Ynglingasaga 10 (<a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a> builds the temple at Uppsalir, endows the Uppsala wealth, and is buried in a mound there), trans. Lee M. Hollander (Austin: University of Texas Press, 1964).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Snorri Sturluson, Edda, Skáldskaparmál (the kenning 'Kraki's seed' — the gold sown on the Fyrisvellir), trans. Anthony Faulkes (London: Viking Society for Northern Research, 1998).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Hrólfs saga kraka (King Aðils at Uppsala; the flight of Hrólfr and the gold-sowing), trans. Jesse L. Byock (London: Penguin, 1998).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Thietmar of Merseburg, Chronicle 1.17 (the nine-year sacrifice at Lejre), trans. David A. Warner (Manchester: Manchester University Press, 2001).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Tacitus, Germania 39–40 (the grove of the Semnones; the grove and procession of Nerthus).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. uppsalir.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. uppsalir.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Uppsala.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Uppsala.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Sundqvist, Olof, Freyr's Offspring: Rulers and Religion in Ancient Svea Society (Uppsala: Uppsala University, 2002).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Jansson, Sven B. F., Runes in Sweden, trans. Peter Foote (Stockholm: Gidlunds, 1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-13">[13]</a></sup> Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26–27 with scholia, trans. Tschan, rev. Reuter (Columbia University Press, 2002).</li><li id="src-scholarly-sources-2">Snorri Sturluson, Heimskringla, Ynglingasaga 10, trans. Hollander (University of Texas Press, 1964).</li><li id="src-scholarly-sources-3">Snorri Sturluson, Edda, Skáldskaparmál, trans. Faulkes (Viking Society for Northern Research, 1998).</li><li id="src-scholarly-sources-4">Hrólfs saga kraka, trans. Jesse L. Byock (Penguin, 1998).</li><li id="src-scholarly-sources-5">Thietmar of Merseburg, Chronicle 1.17, trans. Warner (Manchester University Press, 2001).</li><li id="src-scholarly-sources-6">Tacitus, Germania 39–40.</li><li id="src-scholarly-sources-7">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-8">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-9">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-10">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li><li id="src-scholarly-sources-11">Sundqvist, Olof, Freyr&#39;s Offspring: Rulers and Religion in Ancient Svea Society (Uppsala University, 2002).</li><li id="src-scholarly-sources-12">Jansson, Sven B. F., Runes in Sweden, trans. Foote (Gidlunds, 1987).</li><li id="src-scholarly-sources-13">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No surviving eddic poem names Uppsala: the Codex Regius knows the gods Adam saw enthroned there, but not the temple itself — a silence that reminds us the poems were Iceland's inheritance, while the sanctuary was Sweden's. What the poems supply is the frame of the cult. Grímnismál, in its numbered survey of heaven's dwellings, gives <a class="scholars-xlink" href="/freyr/">Freyr</a> his hall: the gods gave him <a href="/alfheimr/" class="crosslink" data-crosslink="alfheimr">Álfheimr</a> as a tooth-gift in days of old — the eddic anchor for the god whose earthly seat, by Snorri's account, was the temple at Uppsalir.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup></p>
+<p>The deeper eddic context is the Vanir theology the Uppsala triad embodied. Lokasenna stages <a class="scholars-xlink" href="/freyja/">Freyja</a> and <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a> among the Æsir as hostages of the older divine family, and the myth of <a class="scholars-xlink" href="/vanaheimr/">Vanaheimr</a> — the Vanir homeland from which Freyr's father <a class="scholars-xlink" href="/njord/">Njörðr</a> came — stands behind every account of the fertility cult that Adam describes enshrined at the Upper Halls. The poems do not name the place; they name the gods the place was built for.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Grímnismál 5 (Poetic Edda), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-poetic-edda-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Uppsala, Freyr.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda names Sweden but not the temple: Snorri's euhemerized account in Gylfaginning brings <a class="scholars-xlink" href="/odinn/">Óðinn</a> north to settle among the Swedes and founds the northern priesthood at Sigtuna, while the great temple account of the Swedish centre belongs to Adam of Bremen and to Snorri's own Heimskringla.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> What the Edda does give Uppsala is one of its most famous kennings. In Skáldskaparmál's catalogue of the names of gold, Snorri explains why gold may be called 'Kraki's seed': King Aðils at Uppsala pursued the fleeing Hrólfr kraki across the Fyrisvellir, and Hrólfr sowed the stolen gold on the plain so that the Swedes stopped to gather it — the seed of the Danish king scattered under the walls of the Upper Halls.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p>
+<p>The pairing is characteristic: the Prose Edda, a poet's handbook, remembers Uppsala as the place where gold fell like grain; Heimskringla, a king's history, remembers it as the place where a god became an estate. Between the two Snorris the site holds its double identity — sanctuary and treasury, temple and throne.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning, trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Skáldskaparmál (the kenning &#39;Kraki&#39;s seed&#39;), trans. Anthony Faulkes (London: Viking Society for Northern Research, 1998).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No Viking-Age runestone carves the place-name Uppsalir in any attested spelling. The runic corpus of Uppland — the richest runestone province in Scandinavia, with well over a thousand inscriptions — records the dead, their bridges, and their estates, but not the sanctuary on the ridge; the name's runic rendering is therefore a normalized reconstruction rather than a witnessed form.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What can be said runologically is the rendering itself: in the Younger Futhark the name would have been carved ᚢᛒᛒᛋᛅᛚᛅ (ubbsala). The sixteen-rune row underspecifies heavily here: ᚢ (úr) writes all the rounded back vowels and /w/; ᛒ (bjarkan) writes both /b/ and /p/, so the carving cannot distinguish the doubled voiceless stop the manuscripts write pp; ᛋ (sól) writes /s/; and the row marks no vowel length at all. The manuscript spelling of the medieval texts remains the primary witness.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Jansson, Sven B. F., Runes in Sweden, trans. Peter Foote (Stockholm: Gidlunds, 1987).</li><li id="src-runic-evidence-2">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957), runic appendix.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, Uppsala's medieval afterlife belongs to the kings' sagas and the legendary cycle. Snorri's Ynglingasaga makes the site the sacral capital of the Swedish dynasty: <a class="scholars-xlink" href="/freyr/">Freyr</a> builds the temple, endows the Uppsala wealth, and lies in a mound there; his descendants the Ynglings rule from the ridge for generations, and the phrase 'the Uppsala wealth' becomes shorthand for the crown estate itself.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup></p>
+<p>Hrólfs saga kraka sets the dynasty's most famous feud on the same ground: King Aðils at Uppsala, his Danish rival Hrólfr kraki, and the flight across the Fyrisvellir with the gold sown behind — the saga that Snorri's kenning 'Kraki's seed' presupposes. Aðils keeps the hall at Uppsala to the end of his strange life, a king remembered for sorcery, sacrifice, and the ring Svíagriss.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup></p>
+<p>The same royal house rides through Beowulf, where the Swedish kings of the Scylfing line — Ongenþeow, Onela, Eadgils — feud with the Geats in the generation the mounds were raised; the identification of Beowulf's Eadgils with the sagas' Aðils of Uppsala is one of the oldest convictions of northern scholarship, and the one that ties the Upper Halls to the greatest poem of the Germanic North.<sup class="scholars-cite"><a href="#src-sagas-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Snorri Sturluson, Heimskringla, Ynglingasaga 10 and passim, trans. Lee M. Hollander (Austin: University of Texas Press, 1964).</li><li id="src-sagas-2">Hrólfs saga kraka, trans. Jesse L. Byock (London: Penguin, 1998).</li><li id="src-sagas-3">Beowulf (Eadgils, king of the Scylfings), trans. Seamus Heaney (London: Faber, 1999); Lindow, John, Norse Mythology: A Guide (Oxford: Oxford University Press, 2001), s.v. Uppsala.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Every other sanctuary of the Norse world survives as a sentence or a stone; Uppsala survives as a chapter. Adam of Bremen, wanting it torn down, preserved it — the gold on the beams, the sceptre in <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a>'s fist, the disgraceful songs he would not quote, the seventy-two bodies a Christian eyewitness counted in the grove. Snorri, wanting kings, gave it a god for a founder and a mound for the god. The excavators, wanting proof, found postholes under the church floor and a hall where the temple should be. Each witness buries the last, and the place absorbs them all, as it absorbed its offerings.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>The Upper Halls are the North's one complete lesson in how a holy place works: the land, the wealth, the king, and the god are a single estate, renewed every ninth year in nine-day blood, and written down only at the moment of its ending. To read the Uppsala record is to watch a whole religion hold its last festival — and to find, eighteen centuries on, that the grove has not entirely stopped being visited.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26–27 with scholia, trans. Tschan, rev. Reuter (2002).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Uppsala</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᚢᛒᛒᛋᛅᛚᛅ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'uppsala';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

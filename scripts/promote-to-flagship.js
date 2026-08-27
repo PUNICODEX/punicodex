@@ -43,17 +43,20 @@ function parseArgs(argv) {
   let domain = null;
   let skipGenerate = false;
   let skipValidate = false;
+  let domainless = false;
   for (let i = 1; i < argv.length; i++) {
     if (argv[i] === '--domain' && argv[i + 1]) {
       domain = argv[i + 1];
       i++;
+    } else if (argv[i] === '--domainless') {
+      domainless = true;
     } else if (argv[i] === '--skip-generate') {
       skipGenerate = true;
     } else if (argv[i] === '--skip-validate') {
       skipValidate = true;
     }
   }
-  return { id, domain, skipGenerate, skipValidate };
+  return { id, domain, skipGenerate, skipValidate, domainless };
 }
 
 function assetExists(dir, name, exts) {
@@ -61,10 +64,14 @@ function assetExists(dir, name, exts) {
 }
 
 function main() {
-  const { id, domain, skipGenerate, skipValidate } = parseArgs(process.argv.slice(2));
+  const { id, domain, skipGenerate, skipValidate, domainless } = parseArgs(process.argv.slice(2));
 
   if (!id) {
-    console.error('Usage: node scripts/promote-to-flagship.js <id> [--domain <domain>] [--skip-generate] [--skip-validate]');
+    console.error('Usage: node scripts/promote-to-flagship.js <id> [--domain <domain> | --domainless] [--skip-generate] [--skip-validate]');
+    process.exit(1);
+  }
+  if (domain && domainless) {
+    console.error('--domain and --domainless are mutually exclusive');
     process.exit(1);
   }
 
@@ -105,10 +112,10 @@ function main() {
   // Build/update archetype
   const { src: archetypesSrc, list: archetypes } = loadArchetypes();
   const existing = archetypes.find(a => a.id === id);
-
-  const domainUnicode = domain ? normalizeDomain(domain) : (existing?.domainUnicode || `${entry.ascii}.com`);
-  const domainPuny = punycode(domainUnicode);
-
+  // Domainless flagships (ASCII-only names whose plain .com is unregistrable,
+  // or taken names watched for a drop) carry NO domain fields — the temple
+  // displays the canonical form with a "watched for release" state and never
+  // claims ownership.
   const archetype = {
     id,
     name: entry.unicode,
@@ -119,9 +126,7 @@ function main() {
     tierDetail: entry.tier === 'dual' ? 'dual-tier' : 'single-tier',
     pantheon: entry.pantheon,
     folder: id,
-    domainUnicode,
-    domainPunycode: domainPuny,
-    domainAlt: existing?.domainAlt || [],
+    rentalTier: existing?.rentalTier,
     colors: existing?.colors,
     mascotPath: `/sites/${id}/assets/${id}_mascot.webp`,
     mascotFallback: `/sites/${id}/assets/${id}_mascot.webp`,
@@ -130,6 +135,13 @@ function main() {
     hasAdSite: true,
     darkPunchline: false,
   };
+  if (domainless) {
+    archetype.domainless = true;
+  } else {
+    archetype.domainUnicode = domain ? normalizeDomain(domain) : (existing?.domainUnicode || `${entry.ascii}.com`);
+    archetype.domainPunycode = punycode(archetype.domainUnicode);
+    archetype.domainAlt = existing?.domainAlt || [];
+  }
 
   let newArchetypesSrc = upsertArchetype(archetypesSrc, archetype);
 

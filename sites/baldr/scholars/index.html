@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baldr — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Baldr: a living, university-curated reference on Light, Beauty, Purity. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Baldr — Scholarly Edition",
+    "headline": "Baldr — Scholarly Edition",
+    "description": "University-curated scholarly reference for Baldr (Light, Beauty, Purity).",
+    "url": "https://punicodex.com/baldr/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᛒᛅᛚᛏᚱ",
+        "alternateName": ["baldr", "Baldr"],
+        "description": "Light, Beauty, Purity"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/baldr.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/baldr/scholars/">
+
+    <meta property="og:title" content="Baldr — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Baldr (Light, Beauty, Purity).">
+    <meta property="og:url" content="https://punicodex.com/baldr/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/baldr.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/baldr.jpg">
+    <meta name="twitter:title" content="Baldr — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Baldr (Light, Beauty, Purity).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Baldr",
+      "item": "https://punicodex.com/baldr/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/baldr/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="baldr-canvas" data-effect="lightfall-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/baldr_logolockup.webp" type="image/webp"><img src="../assets/baldr_logolockup.png" alt="Baldr" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/baldr/">Baldr</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Baldr</h1>
+            <p class="scholars-subtitle reveal-up">Light, Beauty, Purity · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Baldr.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Baldr</strong> (<em>baldr</em>) — Light, Beauty, Purity · The Best and Fairest of the Æsir — is the shining son of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> whose death by the mistletoe shaft is the first grief of the gods and the certain herald of <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a>.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> Snorri introduces him with the formula the whole tradition repeats: he is the best, and all praise him — so fair and bright that light streams from him, wisest and most gracious of the Æsir, and yet shadowed by one flaw, that none of his judgments can stand.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>His attestation is thin but pivotal. The Poetic Edda knows him through prophecy rather than deed: Völuspá's seeress sees his doom, and the whole of <em>Baldrs draumar</em> is Óðinn's ride to wring that doom from a dead völva.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup> The Prose Edda gives the narrative — Frigg's oath, the gods' game, <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>'s hand guiding blind <a href="/hodr/" class="crosslink" data-crosslink="hodr">Höðr</a>'s throw, the burning of Hringhorni with <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a> dead of grief beside him, <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a>'s nine-night ride, and the giantess Þökk's one refusal.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> Saxo's euhemerized Balderus and the Second Merseburg Charm's enigmatic Phol are the only substantial witnesses outside the Icelandic corpus.<sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Baldr</strong> — identical to the ASCII input, because the normalized Old Norse form is itself plain ASCII: no diacritic, no distinctive letter, nothing for the ASCII alphabet to lose. The name is therefore Tier 2 by the project's mechanical rule — a property of its orthography, not of the god's standing. The plain-ASCII domain baldr.com is registered to a third party outside the collection and is watched for release; the project claims no domain for this temple.<sup class="scholars-cite"><a href="#src-overview-5">[5]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Snorri Sturluson, Edda, Gylfaginning 49 (Baldr&#39;s death and its aftermath), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-2">Snorri Sturluson, Edda, Gylfaginning 22 (Baldr the Good among the Æsir), trans. Faulkes (1987).</li><li id="src-overview-3">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 31–33, 62; Baldrs draumar.</li><li id="src-overview-4">Saxo Grammaticus, Gesta Danorum, Book 3 (Balderus and Høtherus), trans. Peter Fisher, ed. Hilda Ellis Davidson (Cambridge: D. S. Brewer, 1979); the Second Merseburg Charm, in Althochdeutsches Lesebuch, ed. Wilhelm Braune, rev. Ernst A. Ebbinghaus, 17th ed. (Tübingen: Niemeyer, 1994).</li><li id="src-overview-5">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. baldr.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>Baldr</strong> (nominative; genitive <em>Balders</em>). Its etymology is genuinely disputed, and honesty requires both main lines. The stronger philological line derives it from Proto-Germanic <em>balþraz</em>, 'bold, lordly': Old Norse preserves <em>baldr</em> as a rare poetic common noun meaning 'lord, prince', and Old English <em>bealdor</em> 'prince, hero' is its exact cognate — the god's name would then simply be the title, 'the Lord'.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The alternative, favored by scholars impressed by the god's shining character, connects the name with Baltic <em>baltas</em> 'white' (Lithuanian baltas), yielding 'the shining, the white one' — attractive to the myth, but philologically weaker, and Simek and Orchard both register the dispute rather than settle it.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The ASCII form is not a compromise here: normalized Old Norse <em>Baldr</em> is already written in plain ASCII letters. There is no diacritic, no thorn or eth, no vowel-length mark for the early domain-name system to have stripped. The name is classified Tier 2 by the project's mechanical rule — the restoration preserves nothing the ASCII form loses — which is a statement about orthography, never about the god. The final <em>-r</em> is the Old Norse nominative masculine ending, borne by the plain letter itself.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>r</strong> → <strong>r</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>baldr.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. baldr; Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. baldr.</li><li id="src-the-name-2">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Baldr; Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Balder.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈbɑl.dr̩/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>B-</strong> — Voiced bilabial stop [b], fully voiced in initial position, as in English 'bald'</li><li><strong>-a-</strong> — Short open back unrounded [ɑ], held brief; Old Norse short a, not the long á</li><li><strong>-ldr</strong> — Lateral [l], voiced stop [d], and the syllabic trill [r̩] of the nominative ending, which carries its own beat</li></ul>
+<p>For the modern speaker, the closest approximation is: 'BAHL-dur' — a short open 'ah', the l and d run together, and a light syllabic r at the end, as in modern Icelandic Baldur.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — Baldr, son of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>; also a rare poetic noun, 'lord, prince'</li><li><strong>Old High German</strong> — Phol, paired with Wodan in the Second Merseburg Charm, widely read as Baldr<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Old English</strong> — Bældæg, son of Woden in the Anglo-Saxon royal genealogies<sup class="scholars-cite"><a href="#src-pronunciation-3">[3]</a></sup></li><li><strong>Latinized</strong> — Balderus, the form Saxo Grammaticus writes</li><li><strong>Modern Icelandic</strong> — Baldur, the unbroken living form</li></ul>
+<p>Baldr is Tier 2 because the Old Norse form is already plain ASCII: nothing distinctive is lost in transit. The god's fame vastly outruns his name's orthography.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology.</li><li id="src-pronunciation-2">The Second Merseburg Charm, in Althochdeutsches Lesebuch, ed. Wilhelm Braune, rev. Ernst A. Ebbinghaus, 17th ed. (Tübingen: Niemeyer, 1994), no. II.</li><li id="src-pronunciation-3">Anglo-Saxon Chronicle, genealogical preface (Bældæg son of Woden); Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (D. S. Brewer, 1993), s.v. Bældæg.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>Baldr</strong> — Old Norse (North Germanic), attested 13th c. CE in the Codex Regius and the codices of the Prose Edda, recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The manuscript form is itself plain ASCII: Old Norse writes no diacritic in this name, and the restoration changes nothing but the capital. In the Younger Futhark — the sixteen-rune Viking-Age row — the name would have been carved <strong>ᛒᛅᛚᛏᛦ</strong> (b-a-l-t-R); the runic row underspecifies what the manuscripts fix, with ᛏ writing both t and d and ᛦ the final nominative -r.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The name is a single stem, <em>bald-</em> + the nominative masculine ending <em>-r</em>; no compound, no prefix.</li><li>Old Norse orthography requires no accent: the a is short, and short vowels carry no mark.</li><li>The etymology is disputed: Proto-Germanic <em>balþraz</em> 'bold, lordly' (with the poetic noun baldr 'lord, prince' and Old English bealdor as cognates) against the 'white, shining' line that would connect the name to the god's radiance; the handbooks register the dispute rather than settle it.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Baldr is therefore identical to the ASCII form — a Tier 2 name by the mechanical rule, whose dignity comes from the god, not from rescued diacritics.</li></ul>
+<p>PuniCodex holds no domain for this name: the plain-ASCII <strong>baldr.com</strong> is registered to a third party outside the collection and is watched for release.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-original-script-2">Gordon, E. V., An Introduction to Old Norse, runic appendix (Clarendon Press, 1957).</li><li id="src-original-script-3">Cleasby &amp; Vigfússon, s.v. baldr; Simek, Dictionary of Northern Mythology, s.v. Baldr (etymology).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Baldr</strong> is catalogued under Light, Beauty, Purity — and the sources earn every term of it: light streams from his face, his eyelash names the whitest plant in the world, and his hall admits nothing impure.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Light</h3>
+<p>Snorri's portrait makes brightness a physical property: Baldr is so fair that a splendour radiates from him, and the daisy, whitest of all plants, is baldrs brá, 'Baldr's eyelash' — his brightness the standard by which whiteness itself is measured.</p>
+<h3 class="scholars-h3">Beauty</h3>
+<p>'He is the best, and all praise him': the formula is repeated across the corpus as the fixed epithet of the fairest of the Æsir, most beautifully spoken and most merciful.</p>
+<h3 class="scholars-h3">Purity</h3>
+<p>His dwelling is Breiðablik, the broad-gleaming, 'in the land where the fewest bale-runes lie' — Grímnismál's way of saying that nothing unclean has footing there.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Peace and Judgment</h3>
+<p>He is the mildest of judges, and Snorri adds the haunting rider that none of his judgments can stand — as if the tradition already knew his goodness was not for this world. His son <a class="scholars-xlink" href="/forseti/">Forseti</a> inherits the office of reconciliation in full.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Gylfaginning 22, trans. Faulkes (1987).</li><li id="src-domains-2">Grímnismál 12 (Breiðablik), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Baldr's iconography is the iconography of his death — the corpus gives him no regalia in life, but fixed around his pyre a set of objects no retelling can omit:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The mistletoe</strong> — The one shoot <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> judged too young to swear the oath: slender, fair, and fatal; Völuspá calls it high-grown and very beautiful, which is the myth's whole irony in a plant</li><li><strong>Hringhorni</strong> — His ship, 'greatest of all ships', which the Æsir could not launch until the giantess Hyrrokkin came riding a wolf with vipers for reins and shoved it to the sea</li><li><strong><a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a></strong> — The drip-gold ring <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> laid on the pyre; Baldr sent it back from Hel with <a class="scholars-xlink" href="/hermod/">Hermóðr</a> as the token that the dead god had received the errand</li><li><strong>Breiðablik</strong> — The broad-gleaming hall, Grímnismál's seventh station of heaven, where the fewest evils lie</li><li><strong>Baldrs brá (the daisy)</strong> — The whitest of all plants, named for his eyelash: the only attribute Baldr carries in living botany</li><li><strong>The ring of the fire</strong> — The pyre itself, hallowed by <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s hammer Mjölnir, into which the dwarf Litr was kicked — the funeral as the gods' last ceremony in an unbroken world</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-symbols-2">Völuspá 31–33; Grímnismál 12, trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Baldr's mythology is a single arc — foreseen, enfolded, executed, mourned, and answered only after the end of the world — told across both Eddas with unusual agreement.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Dreams and the Prophecy (Baldrs draumar · Völuspá)</h3>
+<p>It begins with dreams: Baldr dreams balefully for his life, and the Æsir take counsel. In <em>Baldrs draumar</em>, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> himself saddles <a href="/sleipnir/" class="crosslink" data-crosslink="sleipnir">Sleipnir</a>, rides down to Niflhel, and raises a dead völva from her grave east of Hel's gate. She answers what she would not: the benches of Hel are strewn and the mead brewed for Baldr; <a class="scholars-xlink" href="/hodr/">Höðr</a> will be the slayer; <a class="scholars-xlink" href="/vali/">Váli</a>, born to Óðinn, will avenge him one night old, neither washing his hands nor combing his hair until Baldr's foe burns; and Þökk will weep dry tears — let Hel hold what she has.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup> Völuspá gives the same doom to its seeress: she saw the mistletoe, slim and very fair, and from that shoot the sorrow-dart, and <a href="/hodr/" class="crosslink" data-crosslink="hodr">Höðr</a> shooting.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The Oath and the Throw (Gylfaginning 49)</h3>
+<p><a class="scholars-xlink" href="/frigg/">Frigg</a> fights the prophecy with an oath, exacted from all things — fire, water, metals, stones, earth, trees, sicknesses, beasts, birds, serpents — that they will not harm Baldr. Only the mistletoe, growing west of <a href="/valholl/" class="crosslink" data-crosslink="valholl">Valhǫll</a>, seemed too young to ask. The gods' pastime becomes shooting and hurling at Baldr, whom nothing can hurt, until <a class="scholars-xlink" href="/loki/">Loki</a>, in a woman's shape, learns the omission from <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>, puts the mistletoe in blind Höðr's hand, and guides the throw. The shaft goes through Baldr and he falls — Snorri calls it the most ill-fated deed done among gods and men. The Æsir cannot even weep at first; and they cannot take vengeance, for the place is a sanctuary.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Burning of Hringhorni</h3>
+<p>The Æsir bear Baldr to the sea and bring out Hringhorni, greatest of all ships, which they cannot move; the giantess Hyrrokkin launches it with one shove, fire flying from the rollers. On the pyre they lay Baldr, and <a class="scholars-xlink" href="/nanna/">Nanna</a>, his wife, daughter of Nepr, dies of grief at the sight and is laid beside him. <a class="scholars-xlink" href="/odinn/">Óðinn</a> lays the ring <a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a> on the fire; <a class="scholars-xlink" href="/thor/">Þórr</a> hallows the pyre with Mjölnir and kicks the dwarf Litr into the flames.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Ransom and the Refusal</h3>
+<p><a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a> the Bold rides nine nights to Hel and begs for Baldr's release; Hel answers that all things, living and lifeless, must weep him out. Messengers go through the world and all things weep — men and beasts, earth and stones, trees and metals — save the giantess Þökk in her cave: 'Let Hel hold what she has.' The Æsir believed Þökk was <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>. The condition fails by one refusal, and Baldr remains with the dead.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Vengeance and the Return</h3>
+<p><a href="/vali/" class="crosslink" data-crosslink="vali">Váli</a>, born to Óðinn for the purpose, kills Höðr when one night old, and Loki is bound until <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a>. Then comes the corpus's strangest consolation: after the fire and flood, Völuspá says, Baldr and Höðr come back together from Hel — slain and slayer reconciled — to the green earth, where the fields grow unsown.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">Saxo's Counter-Tradition</h3>
+<p>Saxo Grammaticus tells the death as heroic history: Balderus, a demigod son of Odin whom no ordinary steel can wound, and the human prince Høtherus contend for <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s hand; Høtherus wins the sword Mimming from the satyr Mimingus, wounds Balderus, and the demigod dies after three days; Bous — Saxo's Váli — is begotten to avenge him. The euhemerized skeleton keeps the myth's bones: the invulnerable man, the one weapon, the rival's hand, the begotten avenger.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-mythology-2">Baldrs draumar (Poetic Edda), trans. Larrington (2014).</li><li id="src-mythology-3">Völuspá 31–33, 62 (Poetic Edda), trans. Larrington (2014).</li><li id="src-mythology-4">Saxo Grammaticus, Gesta Danorum, Book 3, trans. Peter Fisher, ed. Hilda Ellis Davidson (Cambridge: D. S. Brewer, 1979).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>The single continental witness is the Second Merseburg Charm, preserved in a tenth-century Fulda manuscript: 'Phol and Wodan rode to the wood; then Balder's foal wrenched its foot,' and Wodan charms the limb whole, bone to bone, blood to blood. Since Jacob Grimm, Phol has widely been read as Baldr — which would make this the god's only Old High German attestation — but the identification is argued, not proven, and modern handbooks print it with a question mark.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> Old English offers a genealogical shadow rather than a myth: Bældæg, 'son of Woden', stands in the West Saxon royal genealogies, his name compounding the same word with 'day'.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p>
+<p>The larger syncretic debate is the scholarship's own. Nineteenth- and early twentieth-century readers, struck by the innocent god who dies and returns, aligned Baldr with the Christ of the Gospels or with Frazer's dying-and-rising vegetation spirits — the 'Balder the Beautiful' volumes of The Golden Bough made him the type of the slain god. Current scholarship is cooler: Lindow and Orchard observe that Baldr's return is scheduled strictly after <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a>, that his death functions as the tragedy of the gods rather than as a fertility rite, and that the myth's true company is the northern complex of fratricide, failed ransom, and prophesied loss.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">The Second Merseburg Charm, in Althochdeutsches Lesebuch, ed. Braune, rev. Ebbinghaus, 17th ed. (Niemeyer, 1994); Simek, Dictionary of Northern Mythology, s.v. Merseburg charms, Baldr.</li><li id="src-syncretism-2">Anglo-Saxon Chronicle, genealogical preface (Bældæg son of Woden).</li><li id="src-syncretism-3">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Baldr; Orchard, Andy, Dictionary of Norse Myth and Legend (Cassell, 1997), s.v. Balder.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Baldr's afterlife is outsized precisely because his dossier is thin: the beautiful dead god became a vessel every age refills. Matthew Arnold's 'Balder Dead' (1855) made him the Victorian emblem of vanished perfection, and the nineteenth-century Norse revival cast him as the North's own god of light and innocence.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Frazer's The Golden Bough built whole volumes — 'Balder the Beautiful' — on the mistletoe, and though the theory has faded, the phrase fixed Baldr in the English imagination as the slain god par excellence.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>In the North itself the name never died: Icelandic Baldur and Danish-Norwegian Balder remain living given names, and the daisy still carries his eyelash in the Old Norse word baldrs brá. Modern Heathen and Ásatrú communities keep him at the centre of their rites of mourning and midsummer, reading his death and promised return as the tradition's theology of loss. In modern fiction, games, and comics he appears whenever a retelling needs the gods' innocence to break — his death is the standard first movement of any <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a> narrative.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Arnold, Matthew, &#39;Balder Dead&#39;, in Poems (London: Longman, 1855).</li><li id="src-cultural-legacy-2">Frazer, James George, The Golden Bough: Balder the Beautiful, 2 vols., 3rd ed. (London: Macmillan, 1913).</li><li id="src-cultural-legacy-3">Lindow, John, Norse Mythology: A Guide (Oxford University Press, 2001), s.v. Baldr (reception).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Baldr is an almost entirely textual god: no runestone invokes him, no votive deposit names him, and the place-name evidence sometimes claimed on his behalf is insecure.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> The material witnesses are indirect but real. Úlfr Uggason's <em>Húsdrápa</em>, composed about 983 and preserved in Skáldskaparmál, describes the funeral procession — <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>, <a href="/heimdallr/" class="crosslink" data-crosslink="heimdallr">Heimdallr</a>, the valkyries, and Hyrrokkin launching the ship — as carved on the panels of Óláfr pái's hall at Hjarðarholt in Iceland, proving that the Baldr myth was monumental art a generation before the conversion.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>On the continent, the Second Merseburg Charm survives in a tenth-century theological manuscript from Fulda — the only Old High German text that may carry the god's name, whatever one makes of Phol. The poetic witnesses are likewise codicological: Völuspá and Grímnismál in the Codex Regius (c. 1270), while <em>Baldrs draumar</em> is found only in the fourteenth-century manuscript AM 748 I 4to — a reminder that the poem on which so much rests hangs by a single thread.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (D. S. Brewer, 1993), s.v. Baldr.</li><li id="src-archaeology-2">Úlfr Uggason, Húsdrápa, preserved in Skáldskaparmál, trans. Faulkes (1987); Lindow, Norse Mythology: A Guide (2001), s.v. Húsdrápa.</li><li id="src-archaeology-3">The Poetic Edda, trans. Larrington, 2nd ed. (Oxford University Press, 2014), manuscript introduction.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Baldr given in this edition rests on the witnesses and reference works listed below. The Eddas supply the narrative and the prophecy; Saxo the counter-tradition; the Merseburg charm the continental question; the lexica the name's disputed etymology.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Snorri Sturluson, Edda, Gylfaginning 22 and 49, ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 31–33, 62; Baldrs draumar; Grímnismál 12.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Saxo Grammaticus, Gesta Danorum, Book 3 (Balderus and Høtherus), trans. Peter Fisher, ed. Hilda Ellis Davidson (Cambridge: D. S. Brewer, 1979).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> The Second Merseburg Charm, in Althochdeutsches Lesebuch, ed. Wilhelm Braune, rev. Ernst A. Ebbinghaus, 17th ed. (Tübingen: Niemeyer, 1994), no. II.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. baldr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. baldr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Baldr, Merseburg charms.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Balder.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Baldr, Húsdrápa.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Frazer, James George, The Golden Bough: Balder the Beautiful, 2 vols., 3rd ed. (London: Macmillan, 1913).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Snorri Sturluson, Edda, Gylfaginning 22 and 49, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-2">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-3">Saxo Grammaticus, Gesta Danorum, Book 3, trans. Peter Fisher, ed. Hilda Ellis Davidson (D. S. Brewer, 1979).</li><li id="src-scholarly-sources-4">Althochdeutsches Lesebuch, ed. Braune, rev. Ebbinghaus, 17th ed. (Niemeyer, 1994).</li><li id="src-scholarly-sources-5">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-6">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-7">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-8">Orchard, Andy, Dictionary of Norse Myth and Legend (Cassell, 1997).</li><li id="src-scholarly-sources-9">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li><li id="src-scholarly-sources-10">Frazer, James George, The Golden Bough: Balder the Beautiful, 3rd ed. (Macmillan, 1913).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda knows Baldr almost entirely through prophecy — he is the one god whose story is told before it happens. Völuspá's seeress sees it: the mistletoe 'stood slim and very fair, high-grown'; from that shoot came a dangerous dart of sorrow, and <a href="/hodr/" class="crosslink" data-crosslink="hodr">Höðr</a> shot it; and <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s son <a href="/vali/" class="crosslink" data-crosslink="vali">Váli</a>, one night old, will neither wash his hands nor comb his hair until Baldr's slayer burns.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup> The same poem closes the arc: after <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a>, Baldr and Höðr return from Hel together, and the fields grow unsown.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup></p>
+<p><em>Baldrs draumar</em> is the corpus's most concentrated Baldr text — the whole poem is the foreknowledge of his death. Óðinn rides to Niflhel, wakes a long-dead völva east of Hel's gate, and forces the doom from her stanza by stanza: Hel's hall is decked for Baldr; Höðr will strike; Váli will avenge; and the poem ends with the völva recognizing her questioner — 'you are not Végtam, as I thought; you are Óðinn, the old enchanter' — and her final word that none will wake her again until <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> breaks free and the destroyers come.<sup class="scholars-cite"><a href="#src-poetic-edda-3">[3]</a></sup> Grímnismál contributes the one bright note: Breiðablik, the seventh land, where Baldr built his hall and where the fewest bale-runes lie.<sup class="scholars-cite"><a href="#src-poetic-edda-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Völuspá 31–33 (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-2">Völuspá 62 (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-3">Baldrs draumar (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-4">Grímnismál 12 (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Baldr's great narrative witness. Gylfaginning 22 paints the portrait — the best and fairest, light streaming from his face, baldrs brá the whitest plant, wisest and most merciful, and the strange rider that none of his judgments can stand — so that Gylfaginning 49 can spend it. That chapter is the longest continuous narrative in the Edda: the dreams, <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s oath from all things, the mistletoe's exemption, the gods' game, <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>'s disguised questions, <a href="/hodr/" class="crosslink" data-crosslink="hodr">Höðr</a>'s guided throw, the gods struck speechless in the sanctuary, the funeral they cannot begin until Hyrrokkin launches Hringhorni, <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s death, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s ring, <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s hammer and the dwarf Litr, <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a>'s nine nights, Hel's condition, the world's weeping, and Þökk's refusal — 'the most ill-fated deed done among gods and men'.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup></p>
+<p>Skáldskaparmál keeps the myth inside the poetic system itself: poets are taught to call Baldr 'son of Óðinn and Frigg, husband of Nanna, father of <a href="/forseti/" class="crosslink" data-crosslink="forseti">Forseti</a>, owner of Hringhorni and <a href="/draupnir/" class="crosslink" data-crosslink="draupnir">Draupnir</a>, foe of Höðr, companion of Hel' — the god's whole biography compressed into a kenning list. And it is Skáldskaparmál that preserves Úlfr Uggason's Húsdrápa, the tenth-century poem describing the funeral as carved on an Icelandic hall — proof that Snorri was codifying a myth his audience had seen on walls for two hundred years.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning 22 and 49, trans. Faulkes (1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Skáldskaparmál (kennings for Baldr; Húsdrápa), trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The runic corpus contains no invocation of the god Baldr. No runestone asks his favour, no amulet bears his name, and no inscription links a dedicant to his cult — a silence consistent with a god whose prominence in the surviving myth far outruns his footprint in lived religion.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What the epigraphic and onomastic record does preserve is the name's raw material. Old Norse <em>baldr</em> survives as a rare poetic common noun, 'lord, prince', and its cognate Old English <em>bealdor</em> 'prince, hero' is ordinary heroic vocabulary in Beowulf — the theonym is an elevated title, whatever its ultimate etymology.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup> In the Younger Futhark the name would have been carved ᛒᛅᛚᛏᛦ (b-a-l-t-R): the t-rune ᛏ writes both t and d, and ᛦ carries the final nominative -r — a normalized reconstruction, since no Viking-Age carving of the name is known.<sup class="scholars-cite"><a href="#src-runic-evidence-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (D. S. Brewer, 1993), s.v. Baldr.</li><li id="src-runic-evidence-2">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. baldr; Beowulf, ed. and trans. R. M. Liuzza, 2nd ed. (Broadview, 2013), s.v. bealdor.</li><li id="src-runic-evidence-3">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957), runic appendix.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, the great counter-witness is Saxo Grammaticus, whose Gesta Danorum (Book 3) tells the Baldr story as Danish history a generation before Snorri's text reached its final form. Saxo's Balderus is a demigod son of Odin whose body no ordinary steel can wound; his rival is the human prince Høtherus, and the prize is <a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>. The myth's machinery survives in heroic dress: Høtherus wins the sword Mimming from the satyr Mimingus, receives strength-stealing food from strange forest maidens, wounds Balderus at last, and the demigod dies on the third day and is buried in a barrow; Bous — Saxo's form of <a href="/vali/" class="crosslink" data-crosslink="vali">Váli</a> — is begotten of Odin and Rinda to avenge him, and kills Høtherus before dying of his own wounds.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup> The two accounts are the tradition's own proof that the story was old, northern, and told in more than one key.</p>
+<p>In the skaldic record the myth is older than any prose telling: Úlfr Uggason's Húsdrápa (c. 983) describes the funeral on Óláfr pái's carved hall panels, and the skalds use Baldr in kennings for men — a warrior is a 'Baldr' of the sword or the shield, the god's name having become a common noun for a fighting man.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup> Saxo knows no <a href="/hodr/" class="crosslink" data-crosslink="hodr">Höðr</a> as blind brother and no mistletoe; Snorri knows no Mimming. Between them stands the whole problem of Baldr: one death, two traditions, and no version that can be dismissed.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Saxo Grammaticus, Gesta Danorum, Book 3, trans. Peter Fisher, ed. Hilda Ellis Davidson (Cambridge: D. S. Brewer, 1979).</li><li id="src-sagas-2">Úlfr Uggason, Húsdrápa, in Skáldskaparmál, trans. Faulkes (1987); Cleasby &amp; Vigfússon, s.v. baldr (the noun in kennings).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Baldr is the god the Edda built out of an absence. He is given no adventure, no trial, no weapon of his own — only perfection, prophecy, and the one overlooked thing. The myth's engineering is merciless: <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>'s oath is nearly complete, and nearly is the whole story; the gods' game is nearly harmless, and the mistletoe is nearly a plant; the world's weeping is nearly unanimous. Each near-victory is a door closing.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>What remains is the strangest consolation in the northern corpus — not rescue, but return. After the fire and the flood of <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a>, Völuspá says, Baldr and <a href="/hodr/" class="crosslink" data-crosslink="hodr">Höðr</a> come back together from Hel, the slain and the slayer reconciled, to a green earth.<sup class="scholars-cite"><a href="#src-meditation-2">[2]</a></sup> The Edda does not promise that loss can be prevented. It promises that what was best is not lost from the world for good — and asks, in the meantime, what a life is worth that is lived inside a prophecy it cannot escape.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Snorri Sturluson, Edda, Gylfaginning 49, trans. Faulkes (1987).</li><li id="src-meditation-2">Völuspá 62 (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Baldr</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᛒᛅᛚᛏᚱ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'baldr';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

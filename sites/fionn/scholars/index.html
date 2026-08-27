@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fionn — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Fionn: a living, university-curated reference on Hunter, Seer, Leader. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Fionn — Scholarly Edition",
+    "headline": "Fionn — Scholarly Edition",
+    "description": "University-curated scholarly reference for Fionn (Hunter, Seer, Leader).",
+    "url": "https://punicodex.com/fionn/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Fionn",
+        "alternateName": ["fionn", "Fionn"],
+        "description": "Hunter, Seer, Leader"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/fionn.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/fionn/scholars/">
+
+    <meta property="og:title" content="Fionn — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Fionn (Hunter, Seer, Leader).">
+    <meta property="og:url" content="https://punicodex.com/fionn/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/fionn.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/fionn.jpg">
+    <meta name="twitter:title" content="Fionn — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Fionn (Hunter, Seer, Leader).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Fionn",
+      "item": "https://punicodex.com/fionn/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/fionn/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="fionn-canvas" data-effect="salmon-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/fionn_logolockup.webp" type="image/webp"><img src="../assets/fionn_logolockup.png" alt="Fionn" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/fionn/">Fionn</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Fionn</h1>
+            <p class="scholars-subtitle reveal-up">Hunter, Seer, Leader · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Fionn.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Fionn</strong> (<em>fionn</em>) — Hunter, Seer, Leader · Fair, white — is the great captain of the Fianna, the roving war-band of medieval Irish tradition who hunted and fought on the marches of Ireland under the high king's peace: the boy who burned his thumb on the Salmon of Knowledge and swallowed wisdom with it, the youth who saved <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a> from Aillén's Samain fires, and the aging leader who spent sixteen years pursuing Diarmaid and Gráinne across the country he was sworn to protect.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>Old Irish writes the name <strong>Find</strong> — modern Irish Fionn — from the adjective <em>find</em>, 'fair, white', descending from Proto-Celtic <em>windos</em>, the same root as Welsh <em>gwyn</em> and Gaulish <em>Vindo-</em>.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> His dossier is the fullest of any Irish hero: the <em>Boyhood Deeds</em> give his birth to Muirne after Cumhall's fall at Cnucha, his fostering by the druidess Bodbmall and the warrior-woman Liath Luachra, the salmon of the Boyne, and the earning of his father's heritage; the Fenian lays and the <em>Acallam na Senórach</em> give the long captaincy and its Christian-era memory.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Fionn</strong> — identical to the ASCII input, because normalized Irish writes no diacritic in this name. The mechanical rule therefore places it in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the hero. No domain is claimed: the plain-ASCII <strong>fionn.com</strong> is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Meyer, Kuno, ed. and trans., &#39;Macgnímartha Finn (The Boyhood Deeds of Fionn)&#39;, Revue Celtique 5 (1882), 195–204; Ériu 1 (1904), 180–190.</li><li id="src-overview-2">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. find; Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (Dublin: DIAS, 1959–96), s.v. find.</li><li id="src-overview-3">Dooley, Ann, and Harry Roe, trans., Tales of the Elders of Ireland (Acallam na Senórach) (Oxford: Oxford University Press, 1999).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Irish as <strong>Find</strong> (modern Irish Fionn), the adjective <em>find</em>, 'fair, white', used as a personal name — the tradition explains it by the hero's fairness of hair and skin.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The etymological dictionaries derive it from Proto-Celtic <em>windos</em>, 'white', with Welsh <em>gwyn</em> and Gaulish <em>Vindo-</em> (in names such as Vindonissa) as cognates; the same root underlies the Welsh Otherworld huntsman Gwyn ap Nudd, 'white son of Nudd', long compared with Fionn in the handbooks.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The name was not his first. The Boyhood Deeds give his birth-name as <strong>Demne</strong>, and the renaming is built into the myth: when the boy burned his thumb cooking the Salmon of Knowledge, his master Finn Éces — Finn the poet, who had waited seven years for that fish and believed himself the Finn of the prophecy — declared that Finn must be the boy's name, for it was a Finn who was destined to eat the salmon.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The patronymic <em>mac Cumaill</em>, 'son of Cumhall', ties him to the father he never knew, the Fianna captain killed at Cnucha by Goll mac Morna before the child was born.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup></p>
+<p>The ASCII form <em>fionn</em> loses nothing, because the normalized Irish spelling is already plain Latin letters; the restoration is a matter of canonical reference, not rescued diacritics, and the name is classified Tier 2 by the project's mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>f</strong> → <strong>F</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>o</strong> → <strong>o</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>fionn.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Meyer, Kuno, ed. and trans., &#39;Macgnímartha Finn&#39;, Revue Celtique 5 (1882); Ériu 1 (1904).</li><li id="src-the-name-2">Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (Dublin: DIAS, 1959–96), s.v. find; MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Finn mac Cumaill, Gwyn ap Nudd.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈfʲiːn̪ˠ/</strong> — Modern Irish (Old Irish Find).<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>F-</strong> — Slender (palatalized) labiodental [fʲ], the Irish f before i, light and lifted toward the palate</li><li><strong>-io-</strong> — Long close [iː], the stressed vowel, the 'ee' of 'fleece' held long</li><li><strong>-nn</strong> — Broad dental nasal [n̪ˠ], the velarized double-n, tongue against the upper teeth</li></ul>
+<p>For the modern speaker, the closest approximation is: 'FEEN' — one syllable; 'Fionn mac Cumhaill' runs roughly 'FEEN mak KOO-il'.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Irish</strong> — Find mac Cumaill, the manuscripts' form</li><li><strong>Proto-Celtic</strong> — *windos, 'white, fair'; Welsh gwyn and Gaulish Vindo- as cognates</li><li><strong>Birth name</strong> — Demne, before the salmon renamed him</li><li><strong>Modern Irish</strong> — Fionn mac Cumhaill, the unbroken living form<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li></ul>
+<p>Fionn is Tier 2 because the restoration preserves nothing ASCII loses: the letters of the manuscript form are the letters of the keyboard. The capital alone marks the temple form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Thurneysen, Rudolf, A Grammar of Old Irish, trans. D. A. Binchy and Osborn Bergin (Dublin: DIAS, 1946), on the broad/slender system and lenition.</li><li id="src-pronunciation-2">Dictionary of the Irish Language (Royal Irish Academy, 1913–76; eDIL 2019), s.v. find.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Irish manuscripts in the Latin alphabet as <strong>Find</strong> (modern Irish Fionn) — Old and Middle Irish in Insular script, attested from the early medieval period in the Fenian lays, the Boyhood Deeds, and the great codices that preserve the Acallam na Senórach.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The earlier monumental alphabet, ogham, predates the manuscript tradition, but no attestation of this name has ever been read on an ogham stone; the manuscript form is the primary witness.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Old Irish was written in the Latin alphabet using Insular script from the early medieval period; the spelling Find requires no diacritic.</li><li>The adjective <em>find</em>, 'fair, white', is the name's whole substance; the dictionaries derive it from Proto-Celtic <em>windos</em>, with Welsh gwyn and Gaulish Vindo- as cognates.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The digraph io of the modern spelling Fionn is Irish's ordinary way of writing the long [iː] before a broad consonant; nothing distinctive is lost in ASCII.</li><li>The Unicode restoration Fionn is therefore identical to the ASCII form apart from the capital; the temple form is a canonical reference, not a rescued spelling.</li></ul>
+<p>One caution attaches to the record: the hero's birth-name was Demne, and 'Finn' is itself a name conferred by the salmon episode — the tradition's own note that names are given by deeds, not birth.<sup class="scholars-cite"><a href="#src-original-script-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Dictionary of the Irish Language (Royal Irish Academy, 1913–76; eDIL 2019), s.v. find.</li><li id="src-original-script-2">McManus, Damian, A Guide to Ogam (Maynooth: An Sagart, 1991).</li><li id="src-original-script-3">Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (Dublin: DIAS, 1959–96), s.v. find.</li><li id="src-original-script-4">Meyer, Kuno, ed. and trans., &#39;Macgnímartha Finn&#39;, Revue Celtique 5 (1882); Ériu 1 (1904).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Fionn</strong> is catalogued under the domain 'Hunter, Seer, Leader' — three words that map exactly onto the three acts of his cycle.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Hunter</h3>
+<p>The Fianna lived by the chase: war-bands in winter quarters, hunters from Beltane to Samain, bound by tests of speed, woodcraft, and verse. Fionn's hounds Bran and Sceólang, born of his own transformed kin, are the type-case of the Fenian hunt — the wild running at the leader's heel.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Seer</h3>
+<p>The Salmon of Knowledge made him a seer: thereafter he chewed his thumb and the imbas, the great knowledge that illuminates, came to him. Wisdom-by-taste is the cycle's founding miracle, and the tradition is careful to make it accidental — the fish was seven years promised to another man.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Leader</h3>
+<p>Captain of the Fianna from the night he killed Aillén and saved <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a>, reconciler of his father's killer Goll mac Morna, and commander of the war-band until its destruction at Gabhra — leadership, not solitary prowess, is what separates him from <a class="scholars-xlink" href="/cuchulainn/">Cú Chulainn</a>, the Ulster Cycle's lone champion.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup><sup class="scholars-cite"><a href="#src-domains-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The Price of Command</h3>
+<p>The pursuit of Diarmaid and Gráinne is the domain read in reverse: sixteen years of royal authority spent on a personal grudge, ending at Ben Bulben with the water he twice let slip through his fingers.<sup class="scholars-cite"><a href="#src-domains-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Meyer, Kuno, ed. and trans., &#39;Macgnímartha Finn&#39;, Revue Celtique 5 (1882); Ériu 1 (1904).</li><li id="src-domains-2">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Bran and Sceolang.</li><li id="src-domains-3">Nagy, Joseph Falaky, The Wisdom of the Outlaw: The Boyhood Deeds of Finn in Gaelic Narrative Tradition (Berkeley: University of California Press, 1985).</li><li id="src-domains-4">Ní Shéaghdha, Nessa, ed., Tóruigheacht Dhiarmada agus Ghráinne (The Pursuit of Diarmaid and Gráinne), Irish Texts Society 48 (Dublin: Irish Texts Society, 1967).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Fionn's attributes are a meal, a limb, a weapon, a pair of hounds, and a mountain — the most personal regalia in the Irish corpus:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The Salmon of Knowledge</strong> — An eo fis, the fish that fed on the nuts of the nine hazels over the well of Segais; whoever ate it would know all things — wisdom caught in an instant, meant for another</li><li><strong>The thumb</strong> — Burned on the salmon's blister and sucked by reflex; thereafter chewing it summoned the imbas — knowledge held in the body</li><li><strong>The magic spear (birga)</strong> — Given by Fíacha mac Conga at <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a>; held with its point to the forehead, its enchantment kept a man awake against Aillén's music — vigilance as a weapon</li><li><strong>Bran and Sceólang</strong> — His two great hounds, born of his transformed kin — the chase made family<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>Ben Bulben</strong> — The boar's mountain in Sligo, where Diarmaid died and the healing water slipped through Fionn's fingers<sup class="scholars-cite"><a href="#src-symbols-3">[3]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Meyer, Kuno, ed. and trans., &#39;Macgnímartha Finn&#39;, Revue Celtique 5 (1882); Ériu 1 (1904).</li><li id="src-symbols-2">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Bran and Sceolang.</li><li id="src-symbols-3">Ní Shéaghdha, Nessa, ed., Tóruigheacht Dhiarmada agus Ghráinne, Irish Texts Society 48 (1967).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Fionn's mythology is the fullest hero-corpus Ireland kept: the Boyhood Deeds that make him wise, the Fenian lays and ballads that make him captain, and the two late romances — the pursuit of Diarmaid and the lay of <a class="scholars-xlink" href="/oisin/">Oisín</a> — that make him tragic.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Boy in the Wild (Macgnímartha Finn)</h3>
+<p>His father Cumhall, captain of the Fianna, abducted Muirne, daughter of the druid Tadg, when her father refused her; Tadg's appeal brought the king's army, and Cumhall fell at the battle of Cnucha to Goll mac Morna of the rival Clann Morna. Muirne bore the child in danger and gave him to two women to rear in secret: Bodbmall the druidess and Liath Luachra the warrior-woman, who raised him in the wild away from his father's enemies. The boy they hid was named Demne.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Salmon of Knowledge (Macgnímartha Finn)</h3>
+<p>Demne came to learn poetry from Finn Éces, who had waited seven years on the Boyne for the salmon of knowledge — the fish that fed on the nuts of the nine hazels dropping into the well of Segais, so that all knowledge was in its flesh. The poet set the boy to cook the salmon and forbade him to taste it; a blister rose on its skin, Demne pressed it with his thumb, burned himself, and thrust the thumb into his mouth — and the knowledge was his. Finn Éces, hearing the boy's name was Demne, declared that Finn must be his name now, for it was a Finn who was prophesied to eat the salmon. Ever after, Fionn chewed his thumb to know what was hidden.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Aillén and the Burning of Tara (Macgnímartha Finn)</h3>
+<p>Every Samain night for twenty-three years, Aillén of the three tongues came out of síd Finnachaidh and burned <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a>: his timpán lulled the whole fortress to sleep, and then he breathed fire over the hall. Fionn came to Tara on Samain, and Fíacha mac Conga, his father's companion, gave him a magic spear — hold its point to your forehead and you will not sleep. Wakeful while the court slept, Fionn cast the spear through Aillén as he turned for the síd. Conn Cétchathach restored to him his father's treasure and made him head of the Fianna; Goll mac Morna accepted the peace and became the most loyal of his captains.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Pursuit of Diarmaid and Gráinne (Tóruigheacht Dhiarmada agus Ghráinne)</h3>
+<p>In his age Fionn was betrothed to Gráinne, daughter of Cormac mac Airt, but at the feast she gave the company a sleeping-draught and laid a geis on Diarmaid Ó Duibhne to take her away — Diarmaid, who bore a ball seirce, a love-spot no woman could see without loving him. For sixteen years the Fianna hunted the pair the length of Ireland, with <a class="scholars-xlink" href="/aengus/">Aengus</a> of the Brug shielding Diarmaid where he could, until the tale came to the boar-hunt on Ben Bulben: the beast was Diarmaid's own transformed foster-brother, and it was fated to be his death. Diarmaid killed the boar and took its venom in the doing. Fionn could heal with water carried in his two cupped hands; twice he brought it from the well and let it slip through his fingers, remembering Gráinne, and when Óscar's reproach sent him back the third time, Diarmaid was dead.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Oisín in Tír na nÓg and the Long Memory (Acallam; Laoi Oisín)</h3>
+<p>Fionn's son <a class="scholars-xlink" href="/oisin/">Oisín</a> was taken across the sea by <a href="/niamh/" class="crosslink" data-crosslink="niamh">Niamh</a> of the Golden Hair, riding behind her on a white horse to Tír na nÓg, the Land of Youth; what he counted as three years there were three hundred in Ireland. Warned on no account to set foot on Irish soil, he returned to find the Fianna gone; the girth broke as he stooped to help men shift a stone, he touched the ground, and three hundred years fell on him at once. The medieval <em>Acallam na Senórach</em> frames the whole Fenian memory on this survival: the old, blind <a href="/oisin/" class="crosslink" data-crosslink="oisin">Oisín</a> and Caílte mac Rónáin traveling Christian Ireland with Saint Patrick, naming every hill and ford and telling how it was won.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup><sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Meyer, Kuno, ed. and trans., &#39;Macgnímartha Finn&#39;, Revue Celtique 5 (1882); Ériu 1 (1904).</li><li id="src-mythology-2">Ní Shéaghdha, Nessa, ed., Tóruigheacht Dhiarmada agus Ghráinne, Irish Texts Society 48 (1967).</li><li id="src-mythology-3">Stokes, Whitley, ed., Acallamh na Senórach, Irische Texte IV.1 (Leipzig: Hirzel, 1900); Dooley and Roe, trans., Tales of the Elders of Ireland (Oxford, 1999).</li><li id="src-mythology-4">Comyn, Michael, Laoi Oisín ar Thír na nÓg (The Lay of Oisín in the Land of Youth, 18th c.), as discussed in MacKillop, Dictionary of Celtic Mythology (1998), s.v. Oisín, Tír na nÓg.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Fionn's deepest kin are onomastic and Insular. His name descends from Proto-Celtic <em>windos</em>, 'white, fair', and the handbooks have long set him beside the Welsh Gwyn ap Nudd — 'white son of Nudd', the Otherworld huntsman of Welsh tradition — as two regional developments of a Celtic figure built on the same word: the fair one who rides between this world and the wild.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>The more famous comparison is with the Norse corpus: like <a href="/sigurd/" class="crosslink" data-crosslink="sigurd">Sigurðr</a>, who tasted the blood of <a href="/fafnir/" class="crosslink" data-crosslink="fafnir">Fáfnir</a>'s heart and understood the speech of birds, Fionn receives a whole mode of knowledge through a single accidental taste. The parallel is a commonplace of the comparative literature, though the two traditions grew the motif independently.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p>
+<p>Within Ireland his nearest mirror is <a class="scholars-xlink" href="/cuchulainn/">Cú Chulainn</a>, the Ulster Cycle's solitary champion set against Fionn's communal war-band: the two heroes divide the Irish heroic imagination between them — the one who dies young and alone against an army, and the one who leads the army and lives to be betrayed by his own memory.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Finn mac Cumaill, Gwyn ap Nudd; Vendryes, LEIA, s.v. find.</li><li id="src-syncretism-2">Ó hÓgáin, Dáithí, Fionn mac Cumhaill: Images of the Gaelic Hero (Dublin: Gill and Macmillan, 1988), on the comparative material.</li><li id="src-syncretism-3">Nagy, Joseph Falaky, The Wisdom of the Outlaw (Berkeley: University of California Press, 1985), on the Fenian hero-type against the Ulster model.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Fionn became, for a century, the most famous Celt in Europe. James Macpherson's Fragments of Ancient Poetry (1760) and Fingal (1762) presented 'Ossian' — <a class="scholars-xlink" href="/oisin/">Oisín</a> — as the bard of a northern Homer, with Fingal his mighty father; the poems swept the continent, were carried by Napoleon and quoted by Goethe, and set off a running war over their authenticity in which Samuel Johnson demanded the manuscripts and Macpherson never produced them.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> The Celtic Revival reclaimed the genuine cycle: Lady Gregory's Gods and Fighting Men (1904) brought the Fenian tales into modern English, and Irish scholarship — Meyer's Fianaigecht, Murphy's Duanaire Finn, Dooley and Roe's Acallam translation — rebuilt the cycle from its real witnesses.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>In Ireland the name never faded: the volunteer tradition named itself Fianna Éireann after his war-band, the political movement Fianna Fáil — 'the war-band of Ireland' — borrowed the same word, Finn is once again a living given name, and Tír na nÓg remains the Irish idiom for youth that outlasts its bargain.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Macpherson, James, Fragments of Ancient Poetry (Edinburgh, 1760) and Fingal (London, 1762); on the controversy, MacKillop, Dictionary of Celtic Mythology (1998), s.v. Ossian.</li><li id="src-cultural-legacy-2">Gregory, Lady Augusta, Gods and Fighting Men (London: John Murray, 1904); Meyer, Kuno, Fianaigecht, Todd Lecture Series 16 (Dublin: Royal Irish Academy, 1910); Dooley and Roe, Tales of the Elders of Ireland (Oxford, 1999).</li><li id="src-cultural-legacy-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Finn mac Cumaill, fían.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Fionn is a textual hero: no ogham stone names him, and his cycle survives in the great Irish codices — the Acallam in the Book of Lismore and its sister manuscripts, the Boyhood Deeds and the Fenian lays across the Laud and Book of Leinster traditions.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p>
+<p>His landscape, by contrast, is real and visitable. The salmon of knowledge was caught in the Boyne, the river that bends around Brú na Bóinne — the Newgrange passage-tomb complex (c. 3200 BCE) that the myths make the síd of <a class="scholars-xlink" href="/aengus/">Aengus</a>, Diarmaid's protector.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup> <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a>, the royal seat Aillén burned every Samain, is the hill of Teamhair in County Meath, an Iron Age ceremonial complex of earthworks and standing stones.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup> Ben Bulben, where the boar killed Diarmaid, stands over Sligo as the tales describe it. The Fenian cycle is unusual among Irish corpora for how densely it maps onto ground that can still be walked.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Dooley, Ann, and Harry Roe, trans., Tales of the Elders of Ireland (Oxford, 1999), introduction, on the manuscripts.</li><li id="src-archaeology-2">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Boyne, Brú na Bóinne.</li><li id="src-archaeology-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Tara.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Fionn given in this edition rests on the witnesses and reference works listed below. The Boyhood Deeds supply the birth, the salmon, and <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a>; the Acallam the Fenian memory; the Pursuit of Diarmaid and Gráinne the late romance; the dictionaries and handbooks secure the name.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Meyer, Kuno, ed. and trans., 'Macgnímartha Finn (The Boyhood Deeds of Fionn)', Revue Celtique 5 (1882), 195–204; Ériu 1 (1904), 180–190.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Stokes, Whitley, ed., Acallamh na Senórach, Irische Texte IV.1 (Leipzig: Hirzel, 1900).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Dooley, Ann, and Harry Roe, trans., Tales of the Elders of Ireland (Acallam na Senórach) (Oxford: Oxford University Press, 1999).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Ní Shéaghdha, Nessa, ed., Tóruigheacht Dhiarmada agus Ghráinne (The Pursuit of Diarmaid and Gráinne), Irish Texts Society 48 (Dublin: Irish Texts Society, 1967).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> MacNeill, Eoin, and Gerard Murphy, ed., Duanaire Finn (The Poem-Book of Fionn), Irish Texts Society (London/Dublin, 1908–53).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Meyer, Kuno, Fianaigecht, Todd Lecture Series 16 (Dublin: Royal Irish Academy, 1910).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Comyn, Michael, Laoi <a href="/oisin/" class="crosslink" data-crosslink="oisin">Oisín</a> ar Thír na nÓg (The Lay of Oisín in the Land of Youth, 18th c.).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. find.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Vendryes, Joseph (gen. ed.), Lexique étymologique de l'irlandais ancien (Dublin: DIAS, 1959–96), s.v. find.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Finn mac Cumaill, Oisín, Tír na nÓg, Gwyn ap Nudd.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Ó hÓgáin, Dáithí, Fionn mac Cumhaill: Images of the Gaelic Hero (Dublin: Gill and Macmillan, 1988).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Nagy, Joseph Falaky, The Wisdom of the Outlaw: The Boyhood Deeds of Finn in Gaelic Narrative Tradition (Berkeley: University of California Press, 1985).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-13">[13]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Finn mac Cumaill, fían.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-14">[14]</a></sup> Gregory, Lady Augusta, Gods and Fighting Men (London: John Murray, 1904).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Meyer, Kuno, ed. and trans., &#39;Macgnímartha Finn&#39;, Revue Celtique 5 (1882); Ériu 1 (1904).</li><li id="src-scholarly-sources-2">Dooley, Ann, and Harry Roe, trans., Tales of the Elders of Ireland (Oxford, 1999).</li><li id="src-scholarly-sources-3">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998).</li><li id="src-scholarly-sources-4">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006).</li><li id="src-scholarly-sources-5">MacNeill, Eoin, and Gerard Murphy, ed., Duanaire Finn (The Poem-Book of Fionn), Irish Texts Society (London/Dublin, 1908–53).</li><li id="src-scholarly-sources-6">Meyer, Kuno, Fianaigecht, Todd Lecture Series 16 (Dublin: Royal Irish Academy, 1910).</li><li id="src-scholarly-sources-7">Comyn, Michael, Laoi Oisín ar Thír na nÓg (The Lay of Oisín in the Land of Youth, 18th c.).</li><li id="src-scholarly-sources-8">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. find.</li><li id="src-scholarly-sources-9">Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (Dublin: DIAS, 1959–96), s.v. find.</li><li id="src-scholarly-sources-10">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Finn mac Cumaill, Oisín, Tír na nÓg, Gwyn ap Nudd.</li><li id="src-scholarly-sources-11">Ó hÓgáin, Dáithí, Fionn mac Cumhaill: Images of the Gaelic Hero (Dublin: Gill and Macmillan, 1988).</li><li id="src-scholarly-sources-12">Nagy, Joseph Falaky, The Wisdom of the Outlaw: The Boyhood Deeds of Finn in Gaelic Narrative Tradition (Berkeley: University of California Press, 1985).</li><li id="src-scholarly-sources-13">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Finn mac Cumaill, fían.</li><li id="src-scholarly-sources-14">Gregory, Lady Augusta, Gods and Fighting Men (London: John Murray, 1904).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Fionn is the center of the Fenian Cycle (the Ossianic Cycle), the stratum of Irish literature that stages not gods but a war-band: the Fianna of Cumhall and then of Fionn, sworn to the high king yet living outside the túath's ordinary law. His spine is the <em>Macgnímartha Finn</em>, the Boyhood Deeds: Cnucha and the secret fostering, the salmon of the Boyne, and the slaying of Aillén at <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a> that won him his father's heritage.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup></p>
+<p>Around that spine the later corpus builds the captain. The Fenian lays of <em>Duanaire Finn</em> preserve the war-band's own verse;<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup> <em>Tóruigheacht Dhiarmada agus Ghráinne</em> gives the sixteen-year pursuit and Ben Bulben;<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup> and the <em>Acallam na Senórach</em> frames the entire memory as the old <a class="scholars-xlink" href="/oisin/">Oisín</a> and Caílte mac Rónáin answering Saint Patrick's questions — the pagan cycle deliberately handed over, hill by hill, to the Christian record.<sup class="scholars-cite"><a href="#src-irish-cycles-4">[4]</a></sup> The tradition gives the war-band's end at the battle of Gabhra, where Fionn's grandson Óscar and the king's son Cairbre Lifechair killed each other, and records Fionn's own death at Aichill near the Boyne — the same river-valley where the salmon had made him wise.<sup class="scholars-cite"><a href="#src-irish-cycles-5">[5]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">Meyer, Kuno, ed. and trans., &#39;Macgnímartha Finn&#39;, Revue Celtique 5 (1882); Ériu 1 (1904).</li><li id="src-irish-cycles-2">MacNeill, Eoin, and Gerard Murphy, ed., Duanaire Finn, Irish Texts Society (1908–53).</li><li id="src-irish-cycles-3">Ní Shéaghdha, Nessa, ed., Tóruigheacht Dhiarmada agus Ghráinne, Irish Texts Society 48 (1967).</li><li id="src-irish-cycles-4">Dooley, Ann, and Harry Roe, trans., Tales of the Elders of Ireland (Oxford, 1999).</li><li id="src-irish-cycles-5">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Finn mac Cumaill, Gabhra.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Welsh corpus knows no Fionn by name, but it keeps his closest cognate-type. <strong>Gwyn ap Nudd</strong> — 'white son of Nudd' — is the Welsh Otherworld's huntsman: in Culhwch ac Olwen he is the one rider who can hunt the great boar Twrch Trwyth, and the medieval tradition makes him a psychopomp and lord of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>, contested for by the saints. The name is the exact Welsh cognate of Irish <em>find</em>: both descend from Proto-Celtic <em>windos</em>, 'white, fair'.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup></p>
+<p>The parallel has been a fixture of the handbooks since the nineteenth century: two Insular developments of a figure built on the same word — the fair one who rides the boundary between this world and the wild, with the hunt and the Otherworld in his train. What Wales does not preserve is the war-band and the captaincy: the Fenian social world, with its winter quarters, its tests of verse and woodcraft, and its service to the high king, is Irish alone. The comparison secures the name's antiquity; the hero is Ireland's own.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Gwyn ap Nudd; Vendryes, LEIA, s.v. find.</li><li id="src-welsh-sources-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Finn mac Cumaill, Gwyn ap Nudd.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription names Fionn. <strong>Ogham</strong>, the early Irish monumental script of roughly the fourth to seventh centuries, survives on some four hundred stones bearing mostly personal names in formulaic genitives; no reading of Find or any Fenian name has been proposed for any of them, and none would be expected — ogham stones mark graves and boundaries, not heroes' deeds, and the Fenian cycle belongs to the manuscript centuries that followed.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>The name's root, however, is epigraphically old: Proto-Celtic <em>windos</em> appears across the continental record in Gaulish names with the Vindo- element, from personal names to the place-name Vindonissa — the same word the Irish adjective <em>find</em> continues. The epigraphy therefore secures the antiquity of the name's material without attesting the hero, which is the normal condition of Irish heroic legend: literature abundant, dedications absent.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-inscriptions-2">Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (Dublin: DIAS, 1959–96), s.v. find.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Fionn is the patron of accidental wisdom — of the knowledge you were not supposed to have, caught while doing someone else's cooking. The salmon was seven years promised to Finn Éces, and it went to the kitchen-boy's burned thumb instead; the tradition does not call this theft, and it does not pretend the boy planned it.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup> It says something harder: that readiness is the only part of fortune you can control.</p>
+<p>The rest of Fionn's life is the price and use of that gift — the long captaincy, the saved <a href="/tara/" class="crosslink" data-crosslink="tara">Tara</a>, the sixteen-year pursuit in which knowledge and desire pulled opposite ways and he let the water fall.<sup class="scholars-cite"><a href="#src-meditation-2">[2]</a></sup> The Acallam gives him the last word through his son: wisdom is memory kept against time, and it survives only as long as somebody keeps telling it.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Meyer, Kuno, ed. and trans., &#39;Macgnímartha Finn&#39;, Revue Celtique 5 (1882); Ériu 1 (1904).</li><li id="src-meditation-2">Ní Shéaghdha, Nessa, ed., Tóruigheacht Dhiarmada agus Ghráinne, Irish Texts Society 48 (1967).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Fionn</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'fionn';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

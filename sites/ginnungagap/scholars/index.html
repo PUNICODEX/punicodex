@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ginnungagap — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Ginnungagap: a living, university-curated reference on Primordial Void. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Ginnungagap — Scholarly Edition",
+    "headline": "Ginnungagap — Scholarly Edition",
+    "description": "University-curated scholarly reference for Ginnungagap (Primordial Void).",
+    "url": "https://punicodex.com/ginnungagap/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "ᚴᛁᚾᚾᚢᚾᚴᛅᚴᛅᛒ",
+        "alternateName": ["ginnungagap", "Ginnungagap"],
+        "description": "Primordial Void"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/ginnungagap.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/ginnungagap/scholars/">
+
+    <meta property="og:title" content="Ginnungagap — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Ginnungagap (Primordial Void).">
+    <meta property="og:url" content="https://punicodex.com/ginnungagap/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/ginnungagap.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/ginnungagap.jpg">
+    <meta name="twitter:title" content="Ginnungagap — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Ginnungagap (Primordial Void).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Ginnungagap",
+      "item": "https://punicodex.com/ginnungagap/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/ginnungagap/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="ginnungagap-canvas" data-effect="yawningvoid-canvas" data-primary="#C0C0C0" data-secondary="#5C9BD1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/ginnungagap_logolockup.webp" type="image/webp"><img src="../assets/ginnungagap_logolockup.png" alt="Ginnungagap" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/ginnungagap/">Ginnungagap</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Ginnungagap</h1>
+            <p class="scholars-subtitle reveal-up">Primordial Void · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Ginnungagap.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#poetic-edda">12 &mdash; Poetic Edda</a></li>
+<li><a href="#prose-edda">13 &mdash; Prose Edda</a></li>
+<li><a href="#runic-evidence">14 &mdash; Runic Evidence</a></li>
+<li><a href="#sagas">15 &mdash; Sagas & Medieval Sources</a></li>
+<li><a href="#meditation">16 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">17 &mdash; Edit History</a></li>
+<li><a href="#attribution">18 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Ginnungagap</strong> (<em>ginnungagap</em>) — Primordial Void · the Yawning Gap — is the Norse cosmogony's answer to the question of what was there first: the vast, mild, windless chasm that stretched between the rime and fog of <a class="scholars-xlink" href="/niflheimr/">Niflheimr</a> in the north and the fire and sparks of <a class="scholars-xlink" href="/muspellheimr/">Muspellsheimr</a> in the south, in whose middle the two extremes met, melted, and quickened into <a class="scholars-xlink" href="/ymir/">Ymir</a> — the first shape, from whose body the gods would later build the world.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The term is a transparent Old Norse compound: the genitive plural <em>ginnunga</em> — of disputed sense, read either as 'magic-charged, mighty' (the <em>ginn-</em> of <em>ginnregin</em> and <em>ginnheilagr</em>) or as 'deceptive' (the verb <em>ginna</em>, 'to dupe, bewilder') — plus <em>gap</em>, 'chasm, yawning void', the very word Old Norse lent to English. The Poetic Edda knows the phrase in its own word order: Völuspá's <em>gap var ginnunga</em>, 'a gap of ginnungs there was, but grass nowhere'.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Ginnungagap</strong> — identical to the ASCII input but for the capital, because normalized Old Norse writes no diacritic in this compound. The mechanical rule therefore places it in Tier 2: nothing distinctive is lost in transit. The project holds no domain for this name; the plain-ASCII ginnungagap.com is registered by a third party outside the collection and watched for release.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Snorri Sturluson, Edda, Gylfaginning 4–8 (the two worlds, the mildness of the gap, the quickening of Ymir, the fashioning of the world), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-overview-2">Völuspá 3 (Poetic Edda), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-overview-3">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. ginnunga-gap, gap, ginna.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Old Norse as <strong>ginnungagap</strong>, a neuter compound whose second element is the everyday noun <em>gap</em> — 'chasm, gap, yawning void', the Old Norse word English borrowed as <em>gap</em> in the Viking Age.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The first element is the genitive plural of <em>ginnung</em>, and here honesty requires registering a genuine dispute. One line, followed by the lexicon's gloss, connects <em>ginn-</em> with the intensive or numinous prefix of <em>ginnregin</em> 'the mighty powers' and <em>ginnheilagr</em> 'most holy', yielding 'the magic-charged, mighty void'; the other derives it from the verb <em>ginna</em> 'to deceive, dupe, bewilder', yielding 'the void of deception'.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup> Cleasby–Vigfusson glosses the compound simply as 'the great gap of ginnungs' and leaves the ginnungs unexplained; Simek and de Vries record both readings without settling them.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p>
+<p>The ASCII form is not a compromise here: normalized Old Norse <em>ginnungagap</em> is already written in plain ASCII letters. There is no diacritic and no distinctive letter for the restoration to recover, and the mechanical tier rule therefore classifies the name Tier 2 — a statement about orthography, not about standing. The Unicode form <strong>Ginnungagap</strong> differs from the input only in its capital.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>g</strong> → <strong>G</strong> — Same, capitalized</li><li><strong>i</strong> → <strong>i</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>u</strong> → <strong>u</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>g</strong> → <strong>g</strong> — Same</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>p</strong> → <strong>p</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>ginnungagap.com</strong> is registered by a third party outside the PuniCodex collection and is watched for release. This temple claims nothing it does not hold.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. ginnunga-gap, gap.</li><li id="src-the-name-2">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. ginnunga-gap, ginna, ginnregin.</li><li id="src-the-name-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Ginnungagap.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈɡinː.uŋ.ɡa.ɣap/</strong> — Old Norse Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Gi-</strong> — Voiced velar stop [ɡ] as in English <em>give</em>, short close [i], and the long geminate nasal [nː] written by the doubled n; Old Norse, like modern Icelandic, holds the double consonant</li><li><strong>-nnunga</strong> — Short back [u], then the velar nasal [ŋ] before the following stop</li><li><strong>-gap</strong> — Hard [ɡ] at the head of the second element, short open [a], and final unaspirated [p]; the word's own everyday noun, said as plainly as it is written</li></ul>
+<p>For the modern speaker, the closest approximation is: 'GIN-noong-ahp' — stress the first syllable, hold the double n, keep the u short as in <em>put</em>, and clip the final p.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Norse</strong> — ginnungagap, 'gap of the ginnungs'; Völuspá's own order is <em>gap ginnunga</em> (st. 3)<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li><li><strong>Modern Icelandic</strong> — ginnungagap, the learned word for the primordial void</li><li><strong>English</strong> — gap, the Viking-Age loan that is the compound's second element</li></ul>
+<p>Ginnungagap is Tier 2 because the restoration preserves nothing the ASCII form loses: the normalized Old Norse spelling is already plain ASCII, and only the capital changes. The void was never hard to type — only hard to imagine.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), phonology and grammar.</li><li id="src-pronunciation-2">Völuspá 3 (Poetic Edda), trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Icelandic manuscripts in the Latin alphabet as <strong>ginnungagap</strong> — Old Norse (North Germanic), attested 13th c. CE in the Codex Regius of the Poetic Edda (as the phrase <em>gap ginnunga</em> in Völuspá 3) and in the codices of the Prose Edda (as the compound place-name), recording material centuries older.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> Before the Latin bookhand, Old Norse was carved in the younger futhark; no runic attestation of the compound survives, so the manuscript form is the primary witness.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>The compound is <em>ginnunga</em> (genitive plural of <em>ginnung</em>, sense disputed: 'magic-charged, mighty' or 'deceptive') + <em>gap</em> 'chasm, yawning void' — the word Old Norse lent to English.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>Old Norse orthography writes no diacritic in this word: vowels are short throughout, and every letter is plain ASCII.</li><li>The doubled <em>nn</em> marks a long geminate consonant, held in pronunciation as in modern Icelandic.</li><li>In the Younger Futhark the word would have been carved ᚴᛁᚾᚢᚾᚴᛅᚴᛅᛒ — the k-rune writing g, the b-rune writing final p, the geminate written once.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Ginnungagap therefore changes nothing but the capital; the ASCII form loses nothing, which is exactly why the mechanical rule classifies the name Tier 2.</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Jónas Kristjánsson, Eddas and Sagas: Iceland&#39;s Medieval Literature, trans. Peter Foote (Reykjavík: Hið íslenska bókmenntafélag, 1988).</li><li id="src-original-script-2">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957), s.v. ginnunga-gap, gap, ginna.</li><li id="src-original-script-3">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Ginnungagap</strong> is catalogued under the domain Primordial Void, and it is the one entry in the lexicon whose domain is itself: the emptiness that precedes and permits the world.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Primordial Void</h3>
+<p>Before earth, sea, or sky, there was the gap — 'a gap of ginnungs, but grass nowhere', as Völuspá puts it. Snorri adds the detail that makes it habitable to thought: Ginnungagap was as mild as a windless sky, neutral weather between two extremes.</p>
+<h3 class="scholars-h3">The Meeting of Opposites</h3>
+<p>The void's function is to hold rime and fire apart and then let them touch: where the sparks and embers flying out of <a class="scholars-xlink" href="/muspellheimr/">Muspellsheimr</a> met the rime drifting from <a class="scholars-xlink" href="/niflheimr/">Niflheimr</a>, the gap thawed, dripped, and the drops quickened into <a class="scholars-xlink" href="/ymir/">Ymir</a>.</p>
+<h3 class="scholars-h3">The Cradle of Gods and Giants</h3>
+<p>Everything that lives descends through the gap: the giants from <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>, the gods from <a href="/buri/" class="crosslink" data-crosslink="buri">Búri</a>, whom the cow Auðhumla licked free of the rime-stones — the ancestor of <a class="scholars-xlink" href="/odinn/">Óðinn</a> himself.</p>
+<h3 class="scholars-h3">The Frame of the Made World</h3>
+<p>The world was not made elsewhere and moved in: <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and his brothers dragged Ymir's body into the middle of Ginnungagap and built the earth, sea, and sky out of it there. The gap is the world's frame as well as its beginning.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Snorri Sturluson, Edda, Gylfaginning 4–8; Völuspá 3, trans. Faulkes (1987) and Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>A place rather than a person, Ginnungagap carries no regalia and receives no cult; its iconography is the inventory of the creation scene itself:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The gap itself</strong> — Emptiness as precondition: the room in which opposites can meet and anything at all can begin</li><li><strong>Rime and spark</strong> — The two weathers of the void: ice and freezing fog drifting from the Élivágar of <a class="scholars-xlink" href="/niflheimr/">Niflheimr</a>, embers and glowing sparks flying out of <a class="scholars-xlink" href="/muspellheimr/">Muspellsheimr</a></li><li><strong>The quickening drops</strong> — Life condensing out of the meltwater where the extremes collided, the drops that 'took the likeness of a man' and became <a class="scholars-xlink" href="/ymir/">Ymir</a></li><li><strong>The windless mildness</strong> — Snorri's strangest detail, that the gap between ice-world and fire-world was as mild as a windless sky: the void is neutral, not hostile</li><li><strong>The rime-stones and Auðhumla</strong> — The salt-licked ice from which the first ancestor of the gods, <a class="scholars-xlink" href="/buri/">Búri</a>, emerged over three days: even the divine line begins as something the void's weather set free<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Snorri Sturluson, Edda, Gylfaginning 4–6, trans. Faulkes (1987).</li><li id="src-symbols-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Ginnungagap, Auðhumla.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Ginnungagap has no adventures, because it is not a character but the condition of there being characters at all. Its mythology is the first chapter of everything: the Norse creation, told in Völuspá's three terse lines and unpacked by Snorri into the finest cosmogony the Germanic world preserved.</p>
+<h3 class="scholars-h3">The Gap of Ginnungs (Völuspá 3)</h3>
+<p>The seeress reaches back before memory: early in time, when <a class="scholars-xlink" href="/ymir/">Ymir</a> made his settlement, there was no sand nor sea nor cool waves; earth was found nowhere, nor the sky above — <em>gap var ginnunga, en gras hvergi</em>, 'a gap of ginnungs there was, but grass nowhere'. That is the oldest notice of the void, and everything Snorri builds hangs on its two words.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Fog in the North, Fire in the South (Gylfaginning 4–5)</h3>
+<p>Asked what was before the earth, Hár tells Gylfi that <a class="scholars-xlink" href="/niflheimr/">Niflheimr</a> was made many ages before the world: a dark world of mist with the spring Hvergelmir at its heart, from which run the rivers called the Élivágar, which hardened far from their source like slag from a forge and spread rime northward into the gap. But the southern part of Ginnungagap faced <a class="scholars-xlink" href="/muspellheimr/">Muspellsheimr</a>, the bright, burning world no foreigner can enter, where <a class="scholars-xlink" href="/surtr/">Surtr</a> stands at the frontier with a flaming sword — and the sparks that flew out of it lightened the gap from below.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Mild Void and the Quickening (Gylfaginning 5–6)</h3>
+<p>Between the two, Ginnungagap was as mild as a windless sky. Where the warm air met the rime, the ice thawed and dripped, and by the power of the one who sent the heat the drops quickened into the likeness of a man: <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>, whom the rime-giants call Aurgelmir. Asked whether Ymir was a god, Hár answers flatly that he and all his kin were evil. From the same rime-drops came the cow Auðhumla, whose milk fed the giant and who licked the salty rime-stones until, over three days, <a class="scholars-xlink" href="/buri/">Búri</a> emerged — the grandfather of <a class="scholars-xlink" href="/odinn/">Óðinn</a>.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Flood and the Fashioning (Gylfaginning 7–8)</h3>
+<p><a href="/buri/" class="crosslink" data-crosslink="buri">Búri</a>'s grandson <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and his brothers Vili and Vé killed Ymir, and so much blood ran from his wounds that the race of rime-giants drowned, save Bergelmir, who escaped with his wife onto his lúðr. The brothers dragged Ymir's body into the middle of Ginnungagap and made the world of it: earth from his flesh, sea from his blood, mountains from his bones, sky from his skull — held up by the dwarfs Norðri, Suðri, Austri, and Vestri — and clouds from his brains; the sparks of Muspellsheimr they set in the sky as stars. The gap was not filled so much as furnished: everything that exists is a giant's body arranged inside the old emptiness.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Poets' Version (Vafþrúðnismál 21 · Grímnismál 40–41)</h3>
+<p>The Poetic Edda confirms the outline from its own witnesses: Vafþrúðnir tells Óðinn that out of the Élivágar sprang poison-drops that grew until a giant came from them, and Grímnismál gives the fashioning in verse — 'from Ymir's flesh the earth was shaped, and the mountains from his bones; the sky from the skull of the frost-cold giant, and from his blood the sea'.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Völuspá 3 (Poetic Edda), trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-mythology-2">Snorri Sturluson, Edda, Gylfaginning 4–8, trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-mythology-3">Vafþrúðnismál 21 and Grímnismál 40–41 (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>The obvious cross-border twin is Hesiod's <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>: 'first of all came Chaos' opens the Greek theogony, and the Greek word itself derives from a root meaning 'to yawn, gape' — chaos and gap are the same image in two languages, the world beginning as an open mouth.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> The parallel is real but easy to overdraw: Hesiod's Chaos is a begetter, parent of Erebos and Night, while Ginnungagap begets nothing by itself — it is the neutral stage on which rime and fire do the begetting, and the North reserves the making for the gods who arrive later.</p>
+<p>The deeper comparison is structural. Scholars such as Lindow have set the Norse account among the broader Indo-European creation patterns — the primordial being dismembered into the world has cousins from Vedic Puruṣa onward — but the void itself, cold at one end and burning at the other, is the corpus's own signature.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> Within the pantheon, the gap's closest kin are the two worlds that flank it, <a class="scholars-xlink" href="/niflheimr/">Niflheimr</a> and <a class="scholars-xlink" href="/muspellheimr/">Muspellsheimr</a>, and <a class="scholars-xlink" href="/ragnarok/">Ragnarǫk</a>, the fire that ends what the gap's fire began.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Hesiod, Theogony 116 (Chaos first of all), ed. and trans. Glenn W. Most, Loeb Classical Library (Cambridge, MA: Harvard University Press, 2006).</li><li id="src-syncretism-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. creation, Ginnungagap.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Ginnungagap is the rare cosmological term that never had to be revived, because it was never allowed to die: Modern Icelandic keeps <em>ginnungagap</em> as its word for the primordial void, and Icelandic science writing reaches for it when describing the nothing before the Big Bang.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup></p>
+<p>The nineteenth-century Norse revival made the scene a set-piece: the Kearys' <em>The Heroes of Asgard</em> (1857), the first popular English retelling of the myths, opens its cosmology in the great gulf between ice and fire, and every handbook since — from Simek to Orchard — has treated the word as the North's answer to chaos.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup> Modern Heathenry honours the creation narrative as its cosmogony, and popular culture borrows the name wherever a story needs a primal abyss, from Marvel's <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a> comics to fantasy games. Its deepest legacy is conceptual: the idea, natural to the North, that the precondition of creation is not a maker's word but an empty space where opposites can meet.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Ginnungagap.</li><li id="src-cultural-legacy-2">Keary, Annie, and Eliza Keary, The Heroes of Asgard: Tales from Scandinavian Mythology (London: Macmillan, 1857).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>A void can leave no votives: Ginnungagap's evidence is entirely manuscript evidence, and unusually good of its kind. Völuspá, Vafþrúðnismál, and Grímnismál survive in the Codex Regius of the Poetic Edda (GKS 2365 4to, c. 1270), the Reykjavík codex that preserves nearly the whole mythological corpus.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> Snorri's Gylfaginning, with its systematic account of the gap, is transmitted in the Codex Regius of the Prose Edda (GKS 2367 4to, early 14th century), the Codex Wormianus, and the Codex Upsaliensis, the last sometimes held to preserve an earlier redaction.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup></p>
+<p>No runic inscription names the compound — a silence it shares with every other item of cosmological furniture — and no picture stone can be securely read as the meeting of rime and fire.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup> The archaeology of Ginnungagap is thus the archaeology of the bookhand: a phrase in thirteenth-century Icelandic codices, preserving the first sentence of the northern world.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Jónas Kristjánsson, Eddas and Sagas: Iceland&#39;s Medieval Literature, trans. Peter Foote (Reykjavík: Hið íslenska bókmenntafélag, 1988), on the Codex Regius and the transmission of the Eddas.</li><li id="src-archaeology-2">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Ginnungagap.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Ginnungagap given in this edition rests on the witnesses and reference works listed below. The Eddas supply the cosmogony; the lexica secure the compound's disputed etymology; the handbooks frame the comparative and manuscript context.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Snorri Sturluson, Edda, Gylfaginning 4–9 (the creation narrative), ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014): Völuspá 3; Vafþrúðnismál 21; Grímnismál 40–41.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Cleasby, Richard, and Guðbrandur Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Oxford: Clarendon Press, 1957), s.v. ginnunga-gap, gap, ginna, ginn-regin.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Oxford: Clarendon Press, 1910), s.v. ginnungagap, gap, ginna.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Leiden: Brill, 1962), s.v. ginnunga-gap, ginna, ginnregin.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Ginnungagap, <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>, <a href="/niflheimr/" class="crosslink" data-crosslink="niflheimr">Niflheimr</a>, Muspellsheimr.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Orchard, Andy, Dictionary of Norse Myth and Legend (London: Cassell, 1997), s.v. Ginnungagap.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. creation, Ginnungagap, Auðhumla.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Hesiod, Theogony 116, ed. and trans. Glenn W. Most, Loeb Classical Library (Cambridge, MA: Harvard University Press, 2006).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Jónas Kristjánsson, Eddas and Sagas: Iceland's Medieval Literature, trans. Peter Foote (Reykjavík: Hið íslenska bókmenntafélag, 1988).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Keary, Annie, and Eliza Keary, The Heroes of Asgard: Tales from Scandinavian Mythology (London: Macmillan, 1857).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Snorri Sturluson, Edda, Gylfaginning 4–9, trans. Anthony Faulkes (Everyman, 1987).</li><li id="src-scholarly-sources-2">The Poetic Edda, trans. Carolyne Larrington, 2nd ed. (Oxford University Press, 2014).</li><li id="src-scholarly-sources-3">Cleasby &amp; Vigfússon, An Icelandic-English Dictionary, 2nd ed. (Clarendon Press, 1957).</li><li id="src-scholarly-sources-4">Zoëga, Geir T., A Concise Dictionary of Old Icelandic (Clarendon Press, 1910).</li><li id="src-scholarly-sources-5">de Vries, Jan, Altnordisches etymologisches Wörterbuch, 2nd ed. (Brill, 1962).</li><li id="src-scholarly-sources-6">Simek, Rudolf, Dictionary of Northern Mythology, trans. Hall (D. S. Brewer, 1993).</li><li id="src-scholarly-sources-7">Orchard, Andy, Dictionary of Norse Myth and Legend (Cassell, 1997).</li><li id="src-scholarly-sources-8">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford University Press, 2001).</li><li id="src-scholarly-sources-9">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. Taylor (Clarendon Press, 1957).</li><li id="src-scholarly-sources-10">Hesiod, Theogony, ed. and trans. Glenn W. Most (Harvard University Press, 2006).</li><li id="src-scholarly-sources-11">Jónas Kristjánsson, Eddas and Sagas, trans. Peter Foote (Hið íslenska bókmenntafélag, 1988).</li><li id="src-scholarly-sources-12">Keary, Annie, and Eliza Keary, The Heroes of Asgard (Macmillan, 1857).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="poetic-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Poetic Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Poetic Edda's notice of the void is one stanza, and it is the foundation of everything Snorri says. Völuspá's seeress, reaching back before memory, sets the scene in three lines: early in time, when <a class="scholars-xlink" href="/ymir/">Ymir</a> made his settlement, there was no sand nor sea nor cool waves; earth was found nowhere, nor the sky above — <em>gap var ginnunga, en gras hvergi</em>, 'a gap of ginnungs there was, but grass nowhere'.<sup class="scholars-cite"><a href="#src-poetic-edda-1">[1]</a></sup> The poem never explains the ginnungs; it simply registers the emptiness where the world will later be, with the first giant already housed at its edge.</p>
+<p>The Edda's other witnesses supply the inventory without the name. Vafþrúðnismál, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s wisdom-contest with the giant, gives the origin of giantkind: out of the Élivágar sprang poison-drops, which grew until a giant came from them — the quickening Snorri stages inside the gap.<sup class="scholars-cite"><a href="#src-poetic-edda-2">[2]</a></sup> Grímnismál gives the fashioning in verse: from <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>'s flesh the earth was shaped, from his blood the sea, from his bones the mountains, from his skull the sky — and adds that the gracious powers made <a href="/midgardr/" class="crosslink" data-crosslink="midgardr">Miðgarðr</a> for men's sons from his eyebrows, and the hard-mooded clouds from his brains.<sup class="scholars-cite"><a href="#src-poetic-edda-3">[3]</a></sup> The poems and Snorri agree on the structure; only the staging differs.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-poetic-edda-1">Völuspá 3 (Poetic Edda), trans. Carolyne Larrington, 2nd ed. (Oxford: Oxford University Press, 2014).</li><li id="src-poetic-edda-2">Vafþrúðnismál 21 (Poetic Edda), trans. Larrington (2014).</li><li id="src-poetic-edda-3">Grímnismál 40–41 (Poetic Edda), trans. Larrington (2014).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="prose-edda">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Prose Edda</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Prose Edda is Ginnungagap's great witness: the compound appears as a fixed cosmological term only here, and Snorri's Gylfaginning 4–9 gives the fullest creation narrative the Germanic world preserved.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> The account is built as a geography of the void. North lies <a class="scholars-xlink" href="/niflheimr/">Niflheimr</a>, made many ages before the world, with the spring Hvergelmir feeding the rivers called the Élivágar, whose waters hardened far from their source and spread rime and freezing fog into the gap. South lies <a class="scholars-xlink" href="/muspellheimr/">Muspellsheimr</a>, bright and burning, impassable to any not native to it, with <a class="scholars-xlink" href="/surtr/">Surtr</a> standing at the frontier with a flaming sword, its sparks and embers lighting the gap from below. Between them, Snorri insists, Ginnungagap was as mild as a windless sky — the neutral medium in which the extremes could meet.</p>
+<p>The meeting itself is told with a physicist's patience: the warm air thawed the rime, the ice dripped, and by the power of the one who sent the heat the drops quickened into the likeness of a man — <a class="scholars-xlink" href="/ymir/">Ymir</a>, called Aurgelmir by the rime-giants, and emphatically no god. Then come the cow Auðhumla, the salt-licked rime-stones, and <a class="scholars-xlink" href="/buri/">Búri</a>; then the killing of <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a> by <a class="scholars-xlink" href="/odinn/">Óðinn</a> and his brothers, the blood-flood that drowns the giants save Bergelmir, and the fashioning of earth, sea, mountains, sky, clouds, and stars from the giant's body in the middle of the gap.<sup class="scholars-cite"><a href="#src-prose-edda-1">[1]</a></sup> Snorri's method deserves note: he anchors his systematic prose in quotation, opening the account with Völuspá's own stanza on the gap of ginnungs, so that the poem's two words carry the whole edifice.<sup class="scholars-cite"><a href="#src-prose-edda-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-prose-edda-1">Snorri Sturluson, Edda, Gylfaginning 4–9, ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-prose-edda-2">Snorri Sturluson, Edda, Gylfaginning 4, quotation of Völuspá 3, trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="runic-evidence">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Runic Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The runic corpus contains no attestation of Ginnungagap. No stone invokes the void, no amulet names it, and no inscription yet found preserves the compound — a silence it shares with every other item of Norse cosmological furniture, since runestones commemorate people and their deeds, not the furniture of the sky.<sup class="scholars-cite"><a href="#src-runic-evidence-1">[1]</a></sup></p>
+<p>What the runic record offers is orthographic context. Had a Viking-Age carver written the compound in the Younger Futhark, the normalized rendering would be <strong>ᚴᛁᚾᚢᚾᚴᛅᚴᛅᛒ</strong> (k-i-n-u-n-k-a-k-a-p): the k-rune ᚴ writes both k and g, the b-rune ᛒ writes both b and p, and runic practice economizes geminates, so the doubled n of <em>ginnunga</em> would be carved once.<sup class="scholars-cite"><a href="#src-runic-evidence-2">[2]</a></sup> The manuscript form in the Latin bookhand — plain ginnungagap — is therefore the primary witness, and the restoration changes nothing but the capital.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-runic-evidence-1">Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford: Oxford University Press, 2001), s.v. Ginnungagap.</li><li id="src-runic-evidence-2">Gordon, E. V., An Introduction to Old Norse, 2nd ed. rev. A. R. Taylor (Oxford: Clarendon Press, 1957), on runic orthography and the Younger Futhark.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="sagas">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Sagas & Medieval Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Beyond the Eddas, the void keeps a low profile. The sagas proper never stage the creation: the fornaldarsǫgur and the Íslendingasǫgur begin long after the world is built, and even Snorri's own Heimskringla opens with the euhemerized geography of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s migration rather than with cosmogony. Ginnungagap belongs to the learned stratum of the tradition — the stratum of encyclopedic prose and mythological verse — and it is there that its medieval life is spent.<sup class="scholars-cite"><a href="#src-sagas-1">[1]</a></sup></p>
+<p>Two scholarly questions frame that life. The first is Snorri's own framing: the Prologue to his Edda offers a rationalizing, creationist account of how men came to speculate about the world's making, so that the pagan cosmogony he then retells arrives already enclosed in a Christian scholar's commentary.<sup class="scholars-cite"><a href="#src-sagas-2">[2]</a></sup> The second is the modern debate over the term itself: because the compound <em>ginnungagap</em> as a fixed place-name appears only in Snorri, while the Poetic Edda has the freer phrase <em>gap ginnunga</em>, scholars have asked how far Snorri systematized a looser poetic image into cosmic geography — Simek registers the question, and the honest answer is that the poem's phrase is old and the tidy map may be younger.<sup class="scholars-cite"><a href="#src-sagas-3">[3]</a></sup> The word's afterlife, in any case, is secure: Modern Icelandic keeps ginnungagap as its learned word for the primordial void.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-sagas-1">Jónas Kristjánsson, Eddas and Sagas: Iceland&#39;s Medieval Literature, trans. Peter Foote (Reykjavík: Hið íslenska bókmenntafélag, 1988).</li><li id="src-sagas-2">Snorri Sturluson, Edda, Prologue, ed. and trans. Anthony Faulkes (London: Everyman, 1987).</li><li id="src-sagas-3">Simek, Rudolf, Dictionary of Northern Mythology, trans. Angela Hall (Cambridge: D. S. Brewer, 1993), s.v. Ginnungagap.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Every cosmogony must answer the same rude question: what was there before anything was? The North's answer is the strangest and, in its way, the most honest — room. Not a god, not a word, not even darkness with a personality: a gap, mild as a windless sky, with ice weather at one end and fire weather at the other.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>Creation, in this telling, is not commanded; it condenses. Two climates that could never touch are given somewhere to meet, and the world is what drips out of the meeting. Ginnungagap asks a quieter question than most voids — not what made you, but what made room for you — and it suggests that every beginning, cosmological or personal, starts the same way: with an emptiness patient enough to hold the opposites apart until they are ready to collide.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Snorri Sturluson, Edda, Gylfaginning 5 (the mildness of the gap), trans. Faulkes (1987).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">18</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Ginnungagap</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Original Script</span>
+                <span class="footer-value">ᚴᛁᚾᚾᚢᚾᚴᛅᚴᛅᛒ</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">norse</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'ginnungagap';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

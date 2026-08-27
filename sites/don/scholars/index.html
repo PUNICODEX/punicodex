@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Don: a living, university-curated reference on Mother of Gods. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Don — Scholarly Edition",
+    "headline": "Don — Scholarly Edition",
+    "description": "University-curated scholarly reference for Don (Mother of Gods).",
+    "url": "https://punicodex.com/don/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Don",
+        "alternateName": ["don", "Don"],
+        "description": "Mother of Gods"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/don.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/don/scholars/">
+
+    <meta property="og:title" content="Don — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Don (Mother of Gods).">
+    <meta property="og:url" content="https://punicodex.com/don/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/don.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/don.jpg">
+    <meta name="twitter:title" content="Don — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Don (Mother of Gods).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Don",
+      "item": "https://punicodex.com/don/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/don/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="don-canvas" data-effect="matriline-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/don_logolockup.webp" type="image/webp"><img src="../assets/don_logolockup.png" alt="Don" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/don/">Don</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Don</h1>
+            <p class="scholars-subtitle reveal-up">Mother of Gods · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Don.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Don</strong> (<em>don</em>) — Mother of Gods · Goddess — is the matriarch of the Mabinogi's magical house: sister of <a href="/math/" class="crosslink" data-crosslink="math">Math</a> fab Mathonwy, lord of Gwynedd, and mother of the kindred the Welsh tradition called <strong>Plant Dôn</strong>, the Children of Dôn — <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> the enchanter, Gilfaethwy his brother, Arianrhod ferch Dôn, Gofannon the smith, and Amaethon the ploughman.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> She is the only major figure of the Four Branches who never speaks, acts, or appears: the whole of the Fourth Branch, <em>Math fab Mathonwy</em>, unfolds among her children and her brother, and she is present only in the matronymics they carry — <em>uab Dôn</em>, son of Dôn; <em>uerch Dôn</em>, daughter of Dôn.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>The name's etymology is genuinely unsettled. The lexicon's traditional gloss is 'Goddess', reflecting the standard derivation from Common Celtic <em>dēwā</em>, 'goddess' — the same word the Welsh language preserves in Dyfrdwy, its name for the River Dee; a river-name origin is also argued, and the handbooks leave the question open.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> The long-standing comparison with the Irish <a class="scholars-xlink" href="/danu/">Danu</a>, mother in name of the Túatha Dé Danann, is registered by the reference works as typological, not genealogical.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Don</strong> — identical to the ASCII input, because the Middle Welsh manuscripts write the name in plain Latin letters and the circumflex of modern Welsh <em>Dôn</em> is a modern length-mark, not a letter the manuscripts carry; the name is Tier 2 by the mechanical rule. No domain is claimed: the plain-ASCII <strong>don.com</strong> is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), &#39;Math fab Mathonwy&#39;; Welsh text ed. Ifor Williams, Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li id="src-overview-2">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953); Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.vv. Dôn, Dee.</li><li id="src-overview-3">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Dôn, Danu.</li><li id="src-overview-4">Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press, 1950–2002), s.v. Dôn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Middle Welsh as <strong>Don</strong>, matriarch of the northern divine house, in the Fourth Branch of the Mabinogi and in <em>Culhwch ac Olwen</em> — always in the matronymic: <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> <em>uab</em> Dôn, Gilfaethwy <em>uab</em> Dôn, Arianrhod <em>uerch</em> Dôn, Gofannon <em>uab</em> Dôn, Amaethon <em>uab</em> Dôn.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The genealogical tradition supplies her own lineage — Dôn daughter of Mathonwy — which makes her sister to <a class="scholars-xlink" href="/math/">Math fab Mathonwy</a> and explains her children's standing at his court; the later genealogies give her <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a> Mawr for a husband, a marriage the Mabinogi itself never mentions.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The etymology behind the lexicon's gloss 'Goddess' is the standard one, and it is disputed. The traditional derivation runs to Common Celtic <em>dēwā</em>, 'goddess', the word the Welsh language still keeps in Dyfrdwy, the River Dee; the competing reading takes the name as a river-name of the Danube–Don type. The comparison with Irish <a class="scholars-xlink" href="/danu/">Danu</a> — mother in name of the Túatha Dé Danann, 'the peoples of the goddess <a href="/danu/" class="crosslink" data-crosslink="danu">Danu</a>' — has been a commonplace of Celtic studies since the nineteenth century, but no Welsh text equates the names, and the modern handbooks register the parallel without endorsing the identification.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup></p>
+<p>The ASCII form is not a compromise here: Middle Welsh writes the name in plain Latin letters, and the normalized temple spelling follows the manuscripts as <em>Don</em>. Modern Welsh orthography writes <em>Dôn</em> with a circumflex, but that mark is a modern length-sign for the long vowel, not a letter any manuscript carries. There is therefore no diacritic and no distinctive letter for the restoration to recover; only the capital distinguishes the restored form from the input, which places the name in Tier 2 by the mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>d</strong> → <strong>D</strong> — Same, capitalized</li><li><strong>o</strong> → <strong>o</strong> — Same</li><li><strong>n</strong> → <strong>n</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>don.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple is served at /sites/don/ and claims no domain it does not hold.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Math fab Mathonwy&#39;; Bromwich, Rachel, and D. Simon Evans, eds., Culhwch and Olwen (Cardiff: University of Wales Press, 1992).</li><li id="src-the-name-2">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Dôn, Beli Mawr; Koch, Celtic Culture (2006), s.v. Dôn.</li><li id="src-the-name-3">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh, 1953); MacKillop, Dictionary (1998), s.v. Danu; Koch, Celtic Culture (2006), s.vv. Dôn, Danu, Dee.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The pronunciation of the name is <strong>/doːn/</strong> — Modern Welsh.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>D-</strong> — Voiced alveolar stop [d], fully voiced as in English 'door'</li><li><strong>-ô-</strong> — Long close-mid back rounded [oː], the vowel modern Welsh orthography marks with the circumflex; a pure sustained 'oh', never the diphthong of English 'doe'</li><li><strong>-n</strong> — Final alveolar nasal [n], closing the single syllable cleanly</li></ul>
+<p>For the modern speaker, the closest approximation is: 'DOHN' — one syllable, one long pure 'oh' held steady, like English 'dawn' with the vowel kept clean.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Middle Welsh</strong> — Don, the manuscript form in the White Book of Rhydderch and the Red Book of Hergest, written without any length mark</li><li><strong>Modern Welsh</strong> — Dôn, the same name with the circumflex that modern orthography uses to mark the long vowel</li><li><strong>Welsh river-name</strong> — Dyfrdwy, the Welsh name of the River Dee, from *Dēwā 'the goddess'</li><li><strong>Irish comparison</strong> — <a class="scholars-xlink" href="/danu/">Danu</a> (or Dana), the standing handbook comparison, never an equation<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li></ul>
+<p>Don is Tier 2 because the restoration preserves nothing ASCII loses: the letters of the manuscript form are the letters of the keyboard. The capital alone marks the temple form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff, 1950–2002), s.v. Dôn.</li><li id="src-pronunciation-2">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh, 1953); MacKillop, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Dôn, Danu.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in Middle Welsh manuscripts in the Latin alphabet as <strong>Don</strong> — Middle Welsh (Brythonic Celtic), attested in the White Book of Rhydderch (c. 1350) and the Red Book of Hergest (c. 1375–1420), recording material composed centuries earlier.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The script is written left-to-right in the medieval Welsh bookhand.</p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Middle Welsh writes the name in three plain Latin letters; the manuscripts carry no mark of any kind on the vowel.</li><li>Modern Welsh orthography writes <em>Dôn</em> with a circumflex, but that mark is a modern length-sign for the long vowel /oː/, not a letter any manuscript carries; the temple form therefore follows the manuscript spelling.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></li><li>The etymology is unsettled — Common Celtic <em>dēwā</em> 'goddess' (the reading behind the lexicon's gloss) beside a river-name origin — but no variant spelling of the name is attested in the manuscripts.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Don therefore changes nothing but the capital; the name stands in Tier 2 by the mechanical rule, and the plain-ASCII domain don.com — held by a third party outside the PuniCodex collection and watched for release — is the philologically complete form.</li></ul>
+<p>One caution attaches to the record: the gloss 'Goddess' is the traditional etymological rendering, not a settled philological result, and this edition presents it as such.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), introduction, on the manuscript witnesses.</li><li id="src-original-script-2">Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff, 1950–2002), s.v. Dôn.</li><li id="src-original-script-3">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh, 1953); Koch, Celtic Culture (2006), s.vv. Dôn, Dee.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Don</strong> is catalogued under the domain 'Mother of Gods' — a domain that is a genealogy, and the genealogy is the whole record.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Sister-Sons</h3>
+<p><a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> and Gilfaethwy, sons of Dôn, are <a href="/math/" class="crosslink" data-crosslink="math">Math</a>'s sister-sons and the animating pair of the Fourth Branch: <a class="scholars-xlink" href="/gwydion/">Gwydion</a> 'the best teller of tales in the world', the foremost enchanter of Welsh prose, and Gilfaethwy, whose desire for Goewin his brother turns into a war. Every introduction names them through the mother.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Daughter</h3>
+<p>Arianrhod ferch Dôn is proposed as Math's footholder, tested by the wand, and revealed as the mother of Dylan Eil Ton and of the boy who becomes Lleu; her three <em>tynghedau</em> against her son drive the branch's second half. She is the Fourth Branch's proudest and most wounded figure.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Craftsman-Sons</h3>
+<p>Culhwch ac Olwen adds the older arts: Gofannon fab Dôn the smith and Amaethon fab Dôn the ploughman, each indispensable to Ysbaddaden's impossible tasks — the forge and the furrow lodged in the matriarch's house.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The House Named for the Mother</h3>
+<p>Plant Dôn, the Children of Dôn, stands beside Plant Llŷr as one of the two great kindreds of the Mabinogi world — a divine house organized around a mother who never appears in it. The parallel with Ireland's Túatha Dé Danann, the peoples of the goddess <a class="scholars-xlink" href="/danu/">Danu</a>, is the standard comparison of the handbooks.<sup class="scholars-cite"><a href="#src-domains-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Math fab Mathonwy&#39;.</li><li id="src-domains-2">Bromwich, Rachel, and D. Simon Evans, eds., Culhwch and Olwen (Cardiff, 1992).</li><li id="src-domains-3">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Dôn, Danu; Koch, Celtic Culture (2006), s.v. Plant Dôn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Dôn has no regalia of her own — the sources give her none. Her symbolic record is carried by her house:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The matronymic (uab Dôn)</strong> — 'Son of Dôn': the mother-name standing at the head of every child's name, her whole presence in the text</li><li><strong><a href="/math/" class="crosslink" data-crosslink="math">Math</a>'s wand</strong> — Her brother's instrument of testing and transformation, laid across her children's fates: the wand that tested Arianrhod and punished <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> and Gilfaethwy</li><li><strong>Plough and anvil</strong> — Amaethon's plough and Gofannon's smithy, the crafts of cultivation and making her sons carry into the oldest tale<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>The Dee (Dyfrdwy)</strong> — The river the Welsh still call 'the goddess' — *Dēwā, the name's closest living relative in the landscape<sup class="scholars-cite"><a href="#src-symbols-3">[3]</a></sup></li><li><strong>The star-castles</strong> — Caer Arianrhod and Caer Gwydion, her daughter's and her son's halls written into the Welsh night sky by later tradition<sup class="scholars-cite"><a href="#src-symbols-4">[4]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Math fab Mathonwy&#39;.</li><li id="src-symbols-2">Bromwich, Rachel, and D. Simon Evans, eds., Culhwch and Olwen (Cardiff, 1992).</li><li id="src-symbols-3">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh, 1953); Koch, Celtic Culture (2006), s.v. Dee.</li><li id="src-symbols-4">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Arianrhod, Gwydion.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Dôn has no myth of her own — no tale, no speech, no deed the sources record. What she has is a family, and the family is the mythology.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Sister-Sons at Math's Court (Math fab Mathonwy)</h3>
+<p>The Fourth Branch opens at the court of <a href="/math/" class="crosslink" data-crosslink="math">Math</a> fab Mathonwy, lord of Gwynedd — who cannot live unless his feet rest in a virgin's lap, except in time of war — and introduces its great men by their mother's name: <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> and Gilfaethwy, sons of Dôn, Math's sister-sons. Gilfaethwy desires Goewin, the maiden of the foothold; Gwydion engineers a war against <a class="scholars-xlink" href="/pryderi/">Pryderi</a> of Dyfed with conjured stallions, hounds, and shields that vanish after a day; and while the king is in the field, the brothers force Goewin. Math's justice turns the brothers through three years of animal shapes — stag and hind, boar and sow, wolf and she-wolf — and takes them back into honour when the debt is paid. Through all of it the mother never appears: she is present exactly as a name inside other names.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Arianrhod ferch Dôn and the Wand (Math fab Mathonwy)</h3>
+<p>When Math needs a new footholder, Gwydion proposes his sister, Arianrhod daughter of Dôn. Stepping over the wand to prove her virginity, she drops a yellow-haired boy — Dylan, who makes at once for the sea — and 'something small' that Gwydion hides in a chest: the boy who becomes Lleu. Shamed, Arianrhod lays the three <em>tynghedau</em> on her son — no name until she names him, no arms until she arms him, no wife of any race then on earth — and the rest of the branch is Gwydion undoing each destiny by craft, down to the making of <a class="scholars-xlink" href="/blodeuwedd/">Blodeuwedd</a> from flowers.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Ploughman and the Smith (Culhwch ac Olwen)</h3>
+<p>The oldest Arthurian tale names the <em>anoethau</em>, the impossible tasks set by Ysbaddaden Bencawr, and two sons of Dôn stand inside the list: Amaethon fab Dôn, without whom the giant's ground cannot be tilled, and Gofannon fab Dôn the smith, who must be brought to the work of the headlands. Agriculture and smithcraft, the two oldest arts, belong to the matriarch's sons.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p>
+<h3 class="scholars-h3">The Futile Battle (Welsh Triads; Kat Godeu)</h3>
+<p>The triad of the Three Futile Battles of the Island of Britain gives one to the house of Dôn: Cad Goddeu, the Battle of the Trees, fought on account of a bitch, a roebuck, and a lapwing that Amathaon fab Dôn brought away from <a class="scholars-xlink" href="/annwn/">Annwn</a>. The Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>'s poem <em>Kat Godeu</em> remembers the same war from the other side of the family — <a class="scholars-xlink" href="/gwydion/">Gwydion</a> enchanting the forest into an army against <a class="scholars-xlink" href="/arawn/">Arawn</a>. One son's theft begins the quarrel; another son's enchantment fights it.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">Plant Dôn (the genealogical tradition)</h3>
+<p>The Welsh tradition organized its divine world by the mother's name: Plant Dôn beside Plant Llŷr. The genealogies make Dôn a daughter of Mathonwy — sister to Math — and later ones supply the husband the tales omit, <a class="scholars-xlink" href="/beli/">Beli Mawr</a>. The Mabinogi gives her neither husband nor speech: the only major figure of the Four Branches who never appears, and the only one whose name all the others carry.<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Math fab Mathonwy&#39;; Welsh text ed. Williams, Pedeir Keinc y Mabinogi (1930).</li><li id="src-mythology-2">Bromwich, Rachel, and D. Simon Evans, eds., Culhwch and Olwen (Cardiff, 1992).</li><li id="src-mythology-3">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Triads of the Island of Britain, 3rd ed. (Cardiff: University of Wales Press, 2006), the Three Futile Battles; Haycock, Marged, ed. and trans., Legendary Poems from the Book of Taliesin (Aberystwyth: CMCS, 2007), &#39;Kat Godeu&#39;.</li><li id="src-mythology-4">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Dôn, Beli Mawr; Koch, Celtic Culture (2006), s.v. Plant Dôn.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Dôn's great comparison is Irish, and it is as old as modern Celtic studies: <a class="scholars-xlink" href="/danu/">Danu</a> (or Dana), the equally shadowy mother after whom the <strong>Túatha Dé Danann</strong> — the peoples of the goddess <a href="/danu/" class="crosslink" data-crosslink="danu">Danu</a> — are named. A Welsh divine kindred called the Children of Dôn and an Irish one called the peoples of Danu look like two faces of one inheritance, and MacKillop and Koch both register the comparison as standard. But it is a comparison, not an equation: no Welsh text identifies the two names, and the philology is genuinely disputed — <em>dēwā</em> 'goddess' beside a river-name of the Danube–Don type, with the handbooks leaving the question open.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup></p>
+<p>Within the Welsh corpus her closest kin are the tradition's other mothers and queens: <a class="scholars-xlink" href="/rhiannon/">Rhiannon</a>, the Great Queen of Dyfed, whose name the handbooks reconstruct as <em>Rīgantonā</em>; and, in the later genealogical frame, her pairing with <a class="scholars-xlink" href="/beli/">Beli Mawr</a> as father of her children — asserted by the genealogies, unmentioned by the Mabinogi.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> Comparative scholarship sets her beside the Irish sovereignty mothers, <a class="scholars-xlink" href="/macha/">Macha</a> above all, but the parallel is structural rather than verbal. Her husbandless, speechless sovereignty has no exact parallel anywhere in Celtic literature: she is the matriarch reduced to pure name.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Dôn, Danu; Koch, John T., ed., Celtic Culture (ABC-CLIO, 2006), s.vv. Dôn, Danu.</li><li id="src-syncretism-2">MacKillop, Dictionary (1998), s.vv. Beli Mawr, Rhiannon; Koch, Celtic Culture (2006), s.v. Dôn.</li><li id="src-syncretism-3">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992), on the structure of the divine kindreds.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Dôn rode into English on the same wagon as the rest of the Mabinogi: Lady Charlotte Guest's translation (1838–49) first carried the Fourth Branch into print, and the antiquarian mythography that followed made <em>Plant Dôn</em> the standard label for the northern divine kindred — the house of <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a>, set beside the house of Llŷr, in every Victorian account of the Welsh gods.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Twentieth-century scholarship fixed her place with precision: Ifor Williams's <em>Pedeir Keinc y Mabinogi</em> (1930) established the text, Mac Cana's <em>The Mabinogi</em> read the Fourth Branch as the masterpiece of Welsh prose, and the great encyclopedias — Koch's <em>Celtic Culture</em> and MacKillop's <em>Dictionary</em> — gave the matriarch her standing head-words, <a href="/danu/" class="crosslink" data-crosslink="danu">Danu</a> comparison and all.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>Her widest modern audience came through a children's classic: Lloyd Alexander's <em>Chronicles of Prydain</em> (1964–68) made 'the Sons of Don' the ruling house of Prydain, with <a href="/math/" class="crosslink" data-crosslink="math">Math</a> son of Mathonwy and Prince Gwydion at Caer Dathyl — her name on the throne of the best-loved Welsh-derived fantasy ever written.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup> Modern Druid and pagan practice honours her as the Welsh mother-goddess and mother of the magical line, and the Welsh sky keeps her children's names: Caer Gwydion, the Milky Way, and Caer Arianrhod among the stars.<sup class="scholars-cite"><a href="#src-cultural-legacy-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Guest, Lady Charlotte, trans., The Mabinogion, 3 vols. (London, 1838–49).</li><li id="src-cultural-legacy-2">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff, 1930); Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff, 1992); Koch, Celtic Culture (2006); MacKillop, Dictionary (1998).</li><li id="src-cultural-legacy-3">Alexander, Lloyd, The Chronicles of Prydain, 5 vols. (New York: Holt, Rinehart and Winston, 1964–68).</li><li id="src-cultural-legacy-4">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Arianrhod, Gwydion.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Dôn is a textual figure: no temple, votive deposit, or inscription names her, and the epigraphic record of early Wales — the Latin and ogham memorial stones of roughly the fifth to seventh centuries — records personal names in funerary formulae, not theonyms.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> Her evidence is manuscript evidence. The Fourth Branch survives complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1375–1420), with earlier fragments in Peniarth 6; <em>Culhwch ac Olwen</em> is preserved in the same two codices, and the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a> (NLW Peniarth MS 2, early fourteenth century) holds <em>Kat Godeu</em>. The tales' date of composition is debated, most often placed in the later eleventh or twelfth century.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>The geography of her house is real — Gwynedd and Arfon in the north-west of Wales, where <a href="/math/" class="crosslink" data-crosslink="math">Math</a>'s court and Arianrhod's castle stand in the tale — but no sanctuary of hers is known.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup> The closest thing to a material trace of the name is a river: Dyfrdwy, the Welsh name of the Dee, continues Common Celtic *Dēwā, 'the goddess', and keeps the matriarch's name-element flowing through the landscape to this day.<sup class="scholars-cite"><a href="#src-archaeology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li><li id="src-archaeology-2">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), introduction, on the manuscripts and the dating debate; Haycock, Legendary Poems from the Book of Taliesin (2007), introduction.</li><li id="src-archaeology-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Math fab Mathonwy.</li><li id="src-archaeology-4">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh, 1953); Koch, Celtic Culture (2006), s.v. Dee.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Don given in this edition rests on the witnesses and reference works listed below. The Fourth Branch of the Mabinogi supplies the narrative spine; Culhwch ac Olwen and the Welsh Triads the wider dossier of the children; the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a> the tree-battle; Jackson and the Geiriadur Prifysgol Cymru arbitrate the name's unsettled etymology.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007), '<a href="/math/" class="crosslink" data-crosslink="math">Math</a> fab Mathonwy'.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Bromwich, Rachel, and D. Simon Evans, eds., Culhwch and Olwen: An Edition and Study of the Oldest Arthurian Tale (Cardiff: University of Wales Press, 1992).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Triads of the Island of Britain, 3rd ed. (Cardiff: University of Wales Press, 2006).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Haycock, Marged, ed. and trans., Legendary Poems from the Book of Taliesin (Aberystwyth: CMCS, 2007), 'Kat Godeu'.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Guest, Lady Charlotte, trans., The Mabinogion, 3 vols. (London, 1838–49).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.vv. Dôn, Plant Dôn, <a href="/danu/" class="crosslink" data-crosslink="danu">Danu</a>, Dee, Math fab Mathonwy.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Dôn, Danu, Amaethon, Gofannon, <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a> Mawr, Arianrhod, <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a>.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press, 1950–2002), s.v. Dôn.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-13">[13]</a></sup> Alexander, Lloyd, The Chronicles of Prydain, 5 vols. (New York: Holt, Rinehart and Winston, 1964–68).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007); Williams, Ifor, ed., Pedeir Keinc y Mabinogi (1930).</li><li id="src-scholarly-sources-2">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein, 3rd ed. (University of Wales Press, 2006); Bromwich and Evans, eds., Culhwch and Olwen (1992).</li><li id="src-scholarly-sources-3">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (University of Wales Press, 1992).</li><li id="src-scholarly-sources-4">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006).</li><li id="src-scholarly-sources-5">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998).</li><li id="src-scholarly-sources-6">Guest, Lady Charlotte, trans., The Mabinogion, 3 vols. (London, 1838–49).</li><li id="src-scholarly-sources-7">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992).</li><li id="src-scholarly-sources-8">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh: Edinburgh University Press, 1953).</li><li id="src-scholarly-sources-9">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.vv. Dôn, Plant Dôn, Danu, Dee, Math fab Mathonwy.</li><li id="src-scholarly-sources-10">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.vv. Dôn, Danu, Amaethon, Gofannon, Beli Mawr, Arianrhod, Gwydion.</li><li id="src-scholarly-sources-11">Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (Cardiff: University of Wales Press, 1950–2002), s.v. Dôn.</li><li id="src-scholarly-sources-12">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li><li id="src-scholarly-sources-13">Alexander, Lloyd, The Chronicles of Prydain, 5 vols. (New York: Holt, Rinehart and Winston, 1964–68).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Dôn has no place in the Irish cycles — no Irish text names her — and yet her standing comparison is the most Irish comparison in all of Celtic studies: <a class="scholars-xlink" href="/danu/">Danu</a>, the shadowy mother after whom the <strong>Túatha Dé Danann</strong>, 'the peoples of the goddess <a href="/danu/" class="crosslink" data-crosslink="danu">Danu</a>', take their name. The parallel is direct and structural. Irish tradition organizes its divine race as the children or descendants of a mother who barely appears in its texts; Welsh tradition organizes the divine house of the Mabinogi as <strong>Plant Dôn</strong>, the Children of Dôn, after a mother who never appears at all. Mac Cana made the structural comparison precise: two pantheons, each reckoned as a matronymic kindred, each named for a matriarch who is present only as a name inside other names — the Irish mother embedded in the corporate title Túatha Dé Danann, the Welsh in the matronymics <em>uab Dôn</em> and <em>uerch Dôn</em> that introduce her children scene by scene.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup></p>
+<p>The etymological debate decides how much weight the parallel can bear. The traditional derivation runs to Common Celtic <em><strong>dēwā</strong></em>, 'goddess' — the word Welsh preserves in Dyfrdwy, its name for the River Dee — which would make Dôn and Danu near-kin in sense as well as in structure; the competing reading takes Dôn as a river-name of the Danube–Don type, which would dissolve the kinship into coincidence. The Irish side of the equation is itself unsettled, and no Welsh text ever equates the two mothers.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup> What the Irish record can and cannot witness is also uneven: the Túatha Dé Danann of <em>Cath Maige Tuired</em> are fully dramatized — kings, craftsmen, and battle-mothers in a complete mythic cycle — while Plant Dôn remain a kindred sketched inside someone else's tale; the comparison therefore joins a dossier of actions to a dossier of names.<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup> Sims-Williams's study of Irish influence on medieval Welsh literature supplies the final caution: contact and borrowing between the two literatures are demonstrable, which means a shared matronymic house could reflect an inherited inheritance, a borrowing, or an independent solution to the same genealogical problem — and the texts do not tell us which.<sup class="scholars-cite"><a href="#src-irish-cycles-4">[4]</a></sup></p>
+<p>The identification of Dôn with Danu therefore remains probable-but-unproven: registered as the standard comparison by every modern handbook, never endorsed as an equation. This edition follows the handbooks exactly — the parallel stands, the equation does not.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992), on the structure of the divine kindreds and the matronymic houses.</li><li id="src-irish-cycles-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.vv. Dôn, Danu, Dee.</li><li id="src-irish-cycles-3">Gray, Elizabeth A., ed. and trans., Cath Maige Tuired: The Second Battle of Mag Tuired, Irish Texts Society 52 (Naas: Irish Texts Society, 1982).</li><li id="src-irish-cycles-4">Sims-Williams, Patrick, Irish Influence on Medieval Welsh Literature (Oxford: Oxford University Press, 2011).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Dôn's dossier is spread across the whole breadth of the medieval Welsh record, and everywhere it is the same dossier: the mother in the matronymic. The Fourth Branch of the Mabinogi, <em>Math fab Mathonwy</em>, is her spine — <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> and Gilfaethwy sons of Dôn at <a href="/math/" class="crosslink" data-crosslink="math">Math</a>'s court, Arianrhod daughter of Dôn tested by the wand, and the whole tragedy of the branch played out among her children.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup> <em>Culhwch ac Olwen</em>, the oldest Arthurian tale, adds the craftsman-sons: Amaethon fab Dôn the ploughman and Gofannon fab Dôn the smith, each named among the <em>anoethau</em> without whom Ysbaddaden's tasks cannot be done.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup></p>
+<p>The triadic tradition gives her house its war: among the Three Futile Battles of the Island of Britain stands Cad Goddeu, fought on account of a bitch, a roebuck, and a lapwing that Amathaon fab Dôn brought from <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a> — the quarrel the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>'s <em>Kat Godeu</em> fights from Gwydion's side, with the trees of the forest enchanted into an army.<sup class="scholars-cite"><a href="#src-welsh-sources-3">[3]</a></sup> The genealogical tracts supply what the tales withhold: Dôn daughter of Mathonwy, sister to Math, and in the later genealogies wife of <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a> Mawr.<sup class="scholars-cite"><a href="#src-welsh-sources-4">[4]</a></sup> The tales survive complete in the White Book of Rhydderch (c. 1350) and the Red Book of Hergest (c. 1375–1420); Lady Charlotte Guest's translation (1838–49) first carried them into English, Ifor Williams's edition (1930) fixed the standard Welsh text, and Sioned Davies's translation (2007) is the current scholarly English version.<sup class="scholars-cite"><a href="#src-welsh-sources-5">[5]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Math fab Mathonwy&#39;.</li><li id="src-welsh-sources-2">Bromwich, Rachel, and D. Simon Evans, eds., Culhwch and Olwen (Cardiff, 1992).</li><li id="src-welsh-sources-3">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein, 3rd ed. (Cardiff, 2006); Haycock, Marged, ed. and trans., Legendary Poems from the Book of Taliesin (Aberystwyth, 2007).</li><li id="src-welsh-sources-4">MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Dôn, Beli Mawr; Koch, Celtic Culture (2006), s.v. Dôn.</li><li id="src-welsh-sources-5">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (1930); Guest, Lady Charlotte, trans., The Mabinogion (1838–49).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription names Dôn, and none was to be expected. The early inscribed stones of Wales — the Latin and ogham memorial stones of roughly the fifth to seventh centuries catalogued by Nash-Williams — record personal names in funerary formulae, not theonyms; votive epigraphy of the Welsh kind simply does not survive, and the theonymic record of pre-Christian Wales is known from literature and place-lore rather than stone.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>There is no continental contrast to set against the silence, as there is for some Celtic figures: no Gaulish altar or Romano-British dedication has ever been proposed as naming Dôn or any secure antecedent of the name. The nearest epigraphic cousin is a river-name: Dyfrdwy, the Welsh Dee, which continues *Dēwā, 'the goddess' — hydronymy, not votive stone, is where the name's element survives outside the books.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup> The matriarch of the Mabinogi is a creature of the Welsh bookhand, and her dossier — manuscript, triad, genealogy, and folklore — is complete without a single carved letter.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li><li id="src-inscriptions-2">Jackson, Kenneth H., Language and History in Early Britain (Edinburgh, 1953); Koch, Celtic Culture (2006), s.v. Dee.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Dôn is the matriarch who never speaks. Every other great figure of the Four Branches is given a scene, a speech, a deed — <a class="scholars-xlink" href="/gwydion/">Gwydion</a> his enchantments, Arianrhod her curses, <a class="scholars-xlink" href="/math/">Math</a> his wand — and Dôn is given nothing but the space before her children's names. Yet the whole architecture of the tale leans on that silence: the northern house of Welsh mythology is not the house of Mathonwy her father, or of <a href="/math/" class="crosslink" data-crosslink="math">Math</a> her brother, but the Children of <em>Dôn</em>, the kindred named for the mother.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>The sources are telling us something about where authority lived in the world behind the tales — that the line itself could be reckoned through the woman, and the name that organized a pantheon could be hers alone. Her restoration is like her: three plain letters, hidden in plain sight. Don is an English word, an English river, a Spanish title — and underneath all of them the Welsh mother of gods, carrying a name the tradition glossed as 'goddess' itself. The project rescues diacritics from the address bar; it cannot rescue a scene the manuscripts never wrote. What it can do, and does here, is keep the mother-name at the head of the house, spelled exactly as the White Book and the Red Book spell it.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Davies, Sioned, trans., The Mabinogion (Oxford, 2007), &#39;Math fab Mathonwy&#39;.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Don</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'don';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

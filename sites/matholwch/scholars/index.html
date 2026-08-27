@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matholwch — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Matholwch: a living, university-curated reference on King of Ireland. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Matholwch — Scholarly Edition",
+    "headline": "Matholwch — Scholarly Edition",
+    "description": "University-curated scholarly reference for Matholwch (King of Ireland).",
+    "url": "https://punicodex.com/matholwch/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Matholwch",
+        "alternateName": ["matholwch", "Matholwch"],
+        "description": "King of Ireland"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/matholwch.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/matholwch/scholars/">
+
+    <meta property="og:title" content="Matholwch — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Matholwch (King of Ireland).">
+    <meta property="og:url" content="https://punicodex.com/matholwch/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/matholwch.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/matholwch.jpg">
+    <meta name="twitter:title" content="Matholwch — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Matholwch (King of Ireland).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Matholwch",
+      "item": "https://punicodex.com/matholwch/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/matholwch/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="matholwch-canvas" data-effect="irishsea-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/matholwch_logolockup.webp" type="image/webp"><img src="../assets/matholwch_logolockup.png" alt="Matholwch" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/matholwch/">Matholwch</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Matholwch</h1>
+            <p class="scholars-subtitle reveal-up">King of Ireland · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Matholwch.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Matholwch</strong> (<em>matholwch</em>) — King of Ireland · Good bear — is the king of Ireland in the Second Branch of the Mabinogi, <em>Branwen ferch Llŷr</em>: the bridegroom who came with thirteen ships to Harlech to ask the sister of Bendigeidfran in marriage, the wronged man compensated with a golden platter and the Cauldron of Rebirth, and the husband who could not protect his queen when the insult of the maimed horses came home to his court.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> He exists nowhere else: no Irish tale names him, and his kingship is a fact of Welsh literature, not of Irish tradition — the branch stages him as the hinge on which the peace between the two islands turns and breaks.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup></p>
+<p>His tale is the Mabinogion's national tragedy. A marriage made in good faith between the Island of the Mighty and Ireland is undone by an insult — <a class="scholars-xlink" href="/efnysien/">Efnisien</a>'s maiming of the Irish horses — that no honor-price could make forgotten, and it ends with the hosts of both islands destroyed, the cauldron burst, Branwen dead of grief on the bank of the Alaw, and Matholwch himself unrecorded even in death.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Matholwch</strong> — identical to the ASCII input, because normalized Middle Welsh writes no diacritic in this name. The mechanical rule therefore places it in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the king. No domain is claimed: the plain-ASCII <strong>matholwch.com</strong> is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Davies, Sioned, trans., The Mabinogion, Oxford World&#39;s Classics (Oxford: Oxford University Press, 2007), &#39;Branwen Daughter of Llŷr&#39;.</li><li id="src-overview-2">Mac Cana, Proinsias, Branwen Daughter of Llŷr: A Study of the Irish Affinities and of the Composition of the Second Branch of the Mabinogi (Cardiff: University of Wales Press, 1958).</li><li id="src-overview-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Matholwch.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The name is attested in Middle Welsh as <strong>Matholwch</strong>, in the White Book of Rhydderch and the Red Book of Hergest, the two great codices that preserve the Four Branches complete.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The traditional gloss, printed in the standard dictionaries of Celtic mythology, is 'Good bear', and it is honestly presented as a gloss rather than a demonstration: the etymology of the name is not settled.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>The philological record runs as follows. The first element, <em>math-</em>, invites comparison with Old Irish <em>math</em>, 'bear' — the word behind the Irish personal name Mathgamain, 'bear-cub' — and with Gaulish personal names in <em>Matu-</em> (Matugenos and kin) attested epigraphically on the continent.<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup> It also recalls the other great math- name of the Four Branches, <a class="scholars-xlink" href="/math/">Math</a> fab Mathonwy, though the resemblance has never been turned into a demonstrated kinship.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup> An alternative line of analysis takes the first element as Celtic <em>mata-</em>, 'good, fortunate', and the second as a word of rank or wealth; what the compound meant to the tale's first tellers is no longer recoverable with confidence.<sup class="scholars-cite"><a href="#src-the-name-4">[4]</a></sup></p>
+<p>The ASCII form <em>matholwch</em> loses nothing, because the normalized Middle Welsh spelling is already plain Latin letters: Welsh writes its distinctive sounds with digraphs (th, ch, ll) and the vowel-letter w, none of which the ASCII alphabet lacks. The restoration is therefore a matter of canonical reference, not rescued diacritics, and the name is classified Tier 2 by the project's mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>m</strong> → <strong>M</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>t</strong> → <strong>t</strong> — Same</li><li><strong>h</strong> → <strong>h</strong> — Same</li><li><strong>o</strong> → <strong>o</strong> — Same</li><li><strong>l</strong> → <strong>l</strong> — Same</li><li><strong>w</strong> → <strong>w</strong> — Same</li><li><strong>c</strong> → <strong>c</strong> — Same</li><li><strong>h</strong> → <strong>h</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>matholwch.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li id="src-the-name-2">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Matholwch.</li><li id="src-the-name-3">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on the Celtic bear-element in personal names.</li><li id="src-the-name-4">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Matholwch.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/maˈθɔl.ʊx/</strong> — Medieval Welsh Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ma-</strong> — Unstressed open [ma], the light first syllable</li><li><strong>-th-</strong> — Voiceless dental fricative [θ], the 'th' of English 'thin'; Welsh writes it as the digraph th, sharply distinct from dd, the voiced 'th' of 'this'</li><li><strong>-ol-</strong> — Short stressed [ɔ], carrying the penultimate stress that Welsh assigns to nearly every word</li><li><strong>-wch</strong> — Welsh w is a full vowel, here short [ʊ] like the 'u' of 'put'; ch is the voiceless velar fricative [x], the rough ch of Scottish 'loch'</li></ul>
+<p>For the modern speaker, the closest approximation is: 'ma-THOL-ukh' — stress the middle syllable; the ending rhymes, roughly, with the Scottish pronunciation of 'loch' after a short 'oo'.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Middle Welsh</strong> — Matholwch, the manuscript form of the White Book of Rhydderch and the Red Book of Hergest</li><li><strong>Old Irish</strong> — math, 'bear', the word the first element is compared with; cf. Mathgamain, 'bear-cub'</li><li><strong>Gaulish</strong> — Matu- personal names (Matugenos and kin), epigraphic cousins of the same element, comparative only</li><li><strong>Welsh</strong> — <a class="scholars-xlink" href="/math/">Math</a> fab Mathonwy, the other great math- name of the Four Branches; the resemblance is real, the kinship unproven<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li></ul>
+<p>Matholwch is Tier 2 because the restoration preserves nothing ASCII loses: the letters of the manuscript form are the letters of the keyboard. The capital alone marks the temple form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964), on orthography, stress, and the values of th, ch, and w.</li><li id="src-pronunciation-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Matholwch, Math fab Mathonwy.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Welsh manuscripts in the Latin alphabet as <strong>Matholwch</strong> — Middle Welsh in the bookhand of the White Book of Rhydderch and the Red Book of Hergest, attested c. 1350–1425 in the codices that preserve the Four Branches complete.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The earlier monumental scripts of the two islands — the ogham stones of Ireland and western Wales — predate the manuscript tradition, but no attestation of this name has ever been read on any of them; the manuscript form is the primary witness.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Middle Welsh was written in the Latin alphabet; its distinctive sounds are carried by digraphs — th for [θ], ch for [x], ll for [ɬ] — and by the vowel-letter w, none of which requires any mark outside the ASCII set.</li><li>The spelling Matholwch is stable across the two great codices; Williams's edition prints it without variant.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></li><li>The name's traditional gloss 'Good bear' rests on comparison with Old Irish <em>math</em>, 'bear', and Gaulish <em>Matu-</em> names; the etymology is not settled, and this edition registers the gloss as traditional rather than demonstrated.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Matholwch is therefore identical to the ASCII form apart from the capital; the temple form is a canonical reference, not a rescued spelling.</li></ul>
+<p>One caution attaches to the record: the kingship itself is a literary fact only. No Irish source knows a King Matholwch; the title 'King of Ireland' belongs to the Second Branch and to nothing else.<sup class="scholars-cite"><a href="#src-original-script-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li id="src-original-script-2">McManus, Damian, A Guide to Ogam (Maynooth: An Sagart, 1991).</li><li id="src-original-script-3">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Matholwch; Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Matholwch.</li><li id="src-original-script-4">Mac Cana, Proinsias, Branwen Daughter of Llŷr (Cardiff: University of Wales Press, 1958).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Matholwch</strong> is catalogued under the domain 'King of Ireland' — a title that is a fact of Welsh literature and of nothing else, since no Irish text knows him.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup> The title unpacks into four realities in the tale.</p>
+<h3 class="scholars-h3">The Sea-Kingdom</h3>
+<p>He comes with thirteen ships — the branch's exact number — and the fleet is his kingship made visible: Ireland arriving as a suitor at Harlech, and Ireland sailing home with its bride. Every movement of his power in the tale is a movement across the sea.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Bridegroom</h3>
+<p>The marriage is an act of state: Branwen is given so that Ireland and the Island of the Mighty 'might be joined and grow stronger together'. Matholwch is the bridegroom of an alliance, and the tale measures everything that follows against the good faith of its beginning.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The War</h3>
+<p>His is the kingdom the insult poisons. The compensation — horses replaced, silver staff, golden platter, and the Cauldron of Rebirth — is paid in full and fails in full, because his nobles will not let the maiming be forgotten. The war that follows destroys the hosts of both islands; the tale does not even grant him a death-scene, only the general ruin.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Cauldron's Keeper</h3>
+<p>By the compensation, Matholwch becomes keeper of the Pair Dadeni, the Cauldron of Rebirth: the vessel in which the slain are cast at evening to rise fighting-fit by morning, speechless. In the last battle it is Ireland's engine of war — until <a class="scholars-xlink" href="/efnysien/">Efnisien</a> is thrown into it among the dead and bursts it from within.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Davies, Sioned, trans., The Mabinogion, Oxford World&#39;s Classics (Oxford: Oxford University Press, 2007), &#39;Branwen Daughter of Llŷr&#39;.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Matholwch's attributes are not regalia but the furniture of his tragedy — the objects the Second Branch fixes around his kingship:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The thirteen ships</strong> — Sea-borne kingship: the power that comes across the water to ask, and can always sail away</li><li><strong>The maimed horses</strong> — Efnisien's insult: lips cut to the teeth, ears to the heads, tails to the skin, eyelids to the bone — an injury to property felt as an injury to honor</li><li><strong>The Cauldron of Rebirth</strong> — The compensation that outlasted the peace: resurrection without speech, the body restored and the voice withheld</li><li><strong>The starling</strong> — Branwen's tamed messenger, taught to speak, carrying her letter to Brân when no ship could sail from Ireland</li><li><strong>The house of a hundred pillars</strong> — Peace built as a trap: a bag on every pillar, an armed man in every bag, and Efnisien going down the row asking what was in them — 'Flour,' they said</li><li><strong>Gwern</strong> — His son by Branwen, offered the kingship of Ireland as the price of peace, and cast into the fire by <a class="scholars-xlink" href="/efnysien/">Efnisien</a> at the feast meant to seal it</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Davies, Sioned, trans., The Mabinogion, Oxford World&#39;s Classics (Oxford: Oxford University Press, 2007), &#39;Branwen Daughter of Llŷr&#39;.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Matholwch has essentially one story — but it is the Second Branch of the Mabinogi, and medieval Welsh literature remembers it as its national tragedy.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Thirteen Ships at Harlech</h3>
+<p>Bendigeidfran — Brân the Blessed, crowned king of Britain — was seated on the rock of Harlech above the sea, with his brother <a class="scholars-xlink" href="/manawydan/">Manawydan</a> and his half-brothers <a class="scholars-xlink" href="/nisien/">Nisien</a> and <a class="scholars-xlink" href="/efnysien/">Efnisien</a>, when thirteen ships came from the south of Ireland, fair and swift, their shields above their gunwales. It was Matholwch, king of Ireland, come to ask for Branwen, Brân's sister, so that Ireland and the Island of the Mighty might be joined by marriage and grow stronger together. Brân consented; the wedding was held at Aberffraw, and because no house had ever been built that could contain Brân, they slept in tents.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Maiming of the Horses and the Recompense</h3>
+<p>Efnisien, the half-brother whose gift was quarreling, had not been consulted, and took the omission as an insult to his honor. Falling on Matholwch's horses, he cut their lips to the teeth, their ears to their heads, their tails to the skin, and their eyelids to the bone. Matholwch's party armed for home in silence, which Brân read rightly as the beginning of a war. An embassy led by <a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a> carried the offer of recompense: the horses replaced in full, a silver staff as tall as himself, a golden platter as broad as his face — and, beyond price, the Cauldron of Rebirth. The honor-price was paid, the peace was sworn, and neither was ever real again.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Cauldron of Rebirth</h3>
+<p>Matholwch asked where such a cauldron had come from, and Brân told him: it had come to him out of Ireland itself. Llassar Llaes Gyfnewid and his wife Cymidei Cymeinfoll — a woman who gave birth to a fully armed warrior every six weeks — had fled the Irish king's plot to burn them alive in a white-hot iron house, and had brought the cauldron with them to Wales. Its property: cast a slain warrior into it at evening, and by morning he rises as fighting-fit as before, except that he never again has the power of speech.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Starling and the Crossing of the Sea</h3>
+<p>Matholwch sailed home with his bride; Ireland welcomed her, and she bore a son, Gwern. But the insult would not lie down: his nobles nursed the grudge until they drove their king to atone for it, and Branwen was put out of the chamber into the kitchen, where the butcher came every day and struck her on the ear. All passage to Wales was stopped. Branwen reared a starling at the edge of the kneading-trough, taught it speech, tied her letter beneath its wing, and sent it across the sea; the bird found Brân at Caer Seint in Arfon. The crowned king of Britain crossed at the head of his host — wading, for no ship could hold him — and when the Irish destroyed the bridges and his men asked his counsel, he answered with the sentence Welsh has never let go: 'A fo ben, bid bont' — he who would be a leader, let him be a bridge — and lay down across the river so the host could pass over him.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Hundred Pillars and the End of the Cauldron</h3>
+<p>The Irish sued for peace: the kingship of Ireland would go to Gwern, and a house would be built for Brân — the first ever made that could hold him. The house rose with a hundred pillars, a bag on every pillar, an armed man in every bag; Efnisien came in first to inspect the peace and crushed each head between his fingers. At the feast the boy Gwern was passed lovingly from lap to lap until he came to Efnisien's, and Efnisien cast him into the fire. In the battle that followed, the Irish threw their slain into the cauldron and sent them back each morning, mute and fighting — until Efnisien lay down among the Irish dead as if slain, was cast in with the corpses, and stretched himself until the cauldron burst in pieces and his own heart burst with it. Of the Irish there escaped only five pregnant women, from whom the five provinces of Ireland were repeopled; of the Welsh, seven men — <a class="scholars-xlink" href="/pryderi/">Pryderi</a>, Manawydan, Glifieu, <a class="scholars-xlink" href="/taliesin/">Taliesin</a>, Ynawg, Grudyeu, and Heilyn — and Brân, dying of a poisoned spear in the foot, who bade them cut off his head. Branwen died of a broken heart on the bank of the Alaw, crying that two good islands had been laid waste because of her. Of Matholwch himself the tale says nothing more: he is not given a death, only swallowed in the general ruin of his kingdom.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Concealment and the Disclosure (Triads)</h3>
+<p>The triadic tradition keeps the tale's ending: Brân's head, buried in the White Hill in London facing France, was one of the Three Fortunate Concealments of the Island of Britain — no oppression would come across the sea while it lay hidden — and Arthur's digging of it up, because he would not hold the island by any strength but his own, was one of the Three Unfortunate Disclosures.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Davies, Sioned, trans., The Mabinogion, Oxford World&#39;s Classics (Oxford: Oxford University Press, 2007), &#39;Branwen Daughter of Llŷr&#39;; Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li id="src-mythology-2">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Triads of the Island of Britain, 3rd ed. (Cardiff: University of Wales Press, 2006), no. 37, &#39;Three Fortunate Concealments / Three Unfortunate Disclosures&#39;.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Matholwch is a Welsh invention wearing an Irish crown, and the tradition knows it: no Irish-language tale names him, and his kingship of Ireland exists only inside <em>Branwen ferch Llŷr</em>. The honest comparisons are structural, and Proinsias Mac Cana's monograph on the branch mapped them: Brân's sea-crossing against the Voyage of Bran mac Febail (<em>Immram Brain</em>), the children of Llŷr against the Irish family of Lir, and above all the Cauldron of Rebirth against the cauldron-lore of Ireland.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> The standard parallel is the cauldron of the <a class="scholars-xlink" href="/dagda/">Dagda</a>, brought from the city of Murias, from which no company ever went away unsatisfied: the Welsh and Irish vessels divide the motif between them — Ireland's feeds the living without limit, Wales's revives the dead and takes their speech as payment.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup></p>
+<p>Arthurian scholarship, from Loomis onward, has long set the cauldron and Brân's carried head beside the Grail procession of <em>Peredur</em>; the comparison is illuminating and unprovable, and this temple registers it as such.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup> The Christian redactors of the White Book and the Red Book made no attempt to euhemerize Matholwch: he was already only a king, the one fully human principal in a tale of giants and wonders.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Mac Cana, Proinsias, Branwen Daughter of Llŷr: A Study of the Irish Affinities and of the Composition of the Second Branch of the Mabinogi (Cardiff: University of Wales Press, 1958).</li><li id="src-syncretism-2">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on the Celtic cauldron of plenty and rebirth.</li><li id="src-syncretism-3">Loomis, Roger Sherman, The Grail: From Celtic Myth to Christian Symbol (Cardiff: University of Wales Press; New York: Columbia University Press, 1963).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>Matholwch entered the world's reading with Lady Charlotte Guest's translation of the Mabinogion (1838–49), which carried the Second Branch into English and made the maimed horses and the Cauldron of Rebirth part of the general inheritance of fantasy literature.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Ifor Williams's <em>Pedeir Keinc y Mabinogi</em> (1930) fixed the text for scholarship, and Sioned Davies's translation (2007) is the modern English standard.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>The branch's sentences have never left Welsh letters — 'a fo ben, bid bont' is quoted wherever leadership is discussed — and Evangeline Walton's <em>The Children of Llyr</em> (1971) retells the whole catastrophe as a novel. The cauldron motif, transmitting through the Welsh tradition, stands behind every modern cauldron that raises armies of the dead, and Lloyd Alexander's Prydain chronicles drew freely on the Mabinogion's world.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup> On Anglesey, the Bronze Age cairn beside the river Alaw still answers to the name Bedd Branwen, Branwen's grave — the tale's one fixed point in the landscape of the two islands it ruined.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Guest, Lady Charlotte, trans., The Mabinogion, 3 vols. (London: Longman, 1838–49).</li><li id="src-cultural-legacy-2">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930); Davies, Sioned, trans., The Mabinogion (Oxford: Oxford University Press, 2007).</li><li id="src-cultural-legacy-3">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Mabinogion, reception.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Matholwch is a textual figure: no inscription, ogham stone, or place-name in Ireland names him, and his kingship exists entirely within the Welsh tale.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> His manuscript witnesses are exact: the Second Branch survives complete in the White Book of Rhydderch (Aberystwyth, National Library of Wales, Peniarth MS 4, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1375–1425), the two great codices on which Williams's edition rests.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>The tale's one fixed point in the landscape is Welsh: Bedd Branwen, the cairn beside the river Alaw on Anglesey where the branch says Branwen was buried, is a genuine Bronze Age burial monument — cremation urns were recovered when the cairn was opened in the early nineteenth century, and later investigation confirmed its prehistoric date. The name attached to it is medieval folklore rather than prehistory, but it proves the story was already rooted in Welsh ground centuries ago.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup> The nearest epigraphic kin of his name-element are the Gaulish personal names in Matu- (Matugenos and kin): comparative evidence only, never identification.<sup class="scholars-cite"><a href="#src-archaeology-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-archaeology-2">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930), introduction, on the manuscripts.</li><li id="src-archaeology-3">Royal Commission on the Ancient and Historical Monuments of Wales and Monmouthshire, An Inventory of the Ancient Monuments in Anglesey (London: HMSO, 1937), s.v. Bedd Branwen.</li><li id="src-archaeology-4">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on the Celtic bear-element in personal names.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Matholwch given in this edition rests on the witnesses and reference works listed below. The Second Branch itself, in Williams's critical edition and Davies's translation, supplies the whole narrative; Mac Cana's monograph maps its Irish affinities; Bromwich preserves the triadic afterlife; the dictionaries arbitrate the name.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Davies, Sioned, trans., The Mabinogion, Oxford World's Classics (Oxford: Oxford University Press, 2007), 'Branwen Daughter of Llŷr'.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Mac Cana, Proinsias, Branwen Daughter of Llŷr: A Study of the Irish Affinities and of the Composition of the Second Branch of the Mabinogi (Cardiff: University of Wales Press, 1958).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Triads of the Island of Britain, 3rd ed. (Cardiff: University of Wales Press, 2006), no. 37.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Matholwch, Branwen ferch Llŷr, <a href="/math/" class="crosslink" data-crosslink="math">Math</a> fab Mathonwy.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998), s.v. Matholwch.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Guest, Lady Charlotte, trans., The Mabinogion, 3 vols. (London: Longman, 1838–49).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Loomis, Roger Sherman, The Grail: From Celtic Myth to Christian Symbol (Cardiff: University of Wales Press; New York: Columbia University Press, 1963).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930).</li><li id="src-scholarly-sources-2">Davies, Sioned, trans., The Mabinogion, Oxford World&#39;s Classics (Oxford: Oxford University Press, 2007).</li><li id="src-scholarly-sources-3">Mac Cana, Proinsias, Branwen Daughter of Llŷr (Cardiff: University of Wales Press, 1958).</li><li id="src-scholarly-sources-4">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li id="src-scholarly-sources-5">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein, 3rd ed. (Cardiff: University of Wales Press, 2006).</li><li id="src-scholarly-sources-6">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006).</li><li id="src-scholarly-sources-7">MacKillop, James, Dictionary of Celtic Mythology (Oxford: Oxford University Press, 1998).</li><li id="src-scholarly-sources-8">Evans, D. Simon, A Grammar of Middle Welsh (Dublin: Dublin Institute for Advanced Studies, 1964).</li><li id="src-scholarly-sources-9">Guest, Lady Charlotte, trans., The Mabinogion, 3 vols. (London: Longman, 1838–49).</li><li id="src-scholarly-sources-10">Loomis, Roger Sherman, The Grail: From Celtic Myth to Christian Symbol (Cardiff: University of Wales Press; New York: Columbia University Press, 1963).</li><li id="src-scholarly-sources-11">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-scholarly-sources-12">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Irish corpus knows no Matholwch, and the silence deserves to be recorded rather than repaired. He is a king of Ireland invented by a Welsh tale, and no Irish saga, king-list, or dinnshenchas preserves his name; the Ireland of the Second Branch is a stage-set Ireland, the neighboring island required by the plot.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup></p>
+<p>The affinities, however, are real and were mapped by Proinsias Mac Cana in his monograph on the branch: Brân's expedition against the Voyage of Bran mac Febail (<em>Immram Brain</em>), the children of Llŷr against the Irish family of Lir whose tragedy is told in the fate of the children of Lir, and the Cauldron of Rebirth against Ireland's own cauldron-lore.<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup> The type-case is the cauldron of the <a class="scholars-xlink" href="/dagda/">Dagda</a>, brought from the city of Murias, from which no company ever went away unsatisfied: the Welsh and Irish vessels divide the motif between them — Ireland's feeds the living without limit, Wales's revives the dead and takes their speech as payment.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup> The tale even hands the cauldron an Irish passport: it came out of Ireland with Llassar Llaes Gyfnewid and Cymidei Cymeinfoll, fled from the iron house, and returns with Matholwch as the price of peace.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">Mac Cana, Proinsias, Branwen Daughter of Llŷr: A Study of the Irish Affinities and of the Composition of the Second Branch of the Mabinogi (Cardiff: University of Wales Press, 1958).</li><li id="src-irish-cycles-2">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on the Celtic cauldron of plenty and rebirth.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Matholwch's whole dossier is one branch of one book: <em>Branwen ferch Llŷr</em>, the Second Branch of the Mabinogi, preserved complete in the White Book of Rhydderch (c. 1350) and the Red Book of Hergest (c. 1375–1425).<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup> Ifor Williams's <em>Pedeir Keinc y Mabinogi</em> (1930) is the standard critical edition; Sioned Davies's Oxford World's Classics translation (2007) is the modern English text; Lady Charlotte Guest's translation (1838–49) first carried the branch into English.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup></p>
+<p>Outside the branch itself he leaves almost no trace in Welsh literature — no other tale names him — and his afterlife runs through the triads' account of Brân's head rather than through his own: the head's burial in the White Hill was one of the Three Fortunate Concealments of the Island of Britain, and Arthur's digging of it up one of the Three Unfortunate Disclosures.<sup class="scholars-cite"><a href="#src-welsh-sources-3">[3]</a></sup> The concentration is itself the scholarly point: Matholwch is not a fragment of a lost cycle but a character built for a single, perfectly constructed tragedy, and the branch's economy — every gift returned, every insult answered, every sentence load-bearing — is what Ifor Williams's edition made available for study.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">Williams, Ifor, ed., Pedeir Keinc y Mabinogi (Cardiff: University of Wales Press, 1930), introduction, on the manuscripts.</li><li id="src-welsh-sources-2">Davies, Sioned, trans., The Mabinogion, Oxford World&#39;s Classics (Oxford: Oxford University Press, 2007); Guest, Lady Charlotte, trans., The Mabinogion, 3 vols. (London: Longman, 1838–49).</li><li id="src-welsh-sources-3">Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Triads of the Island of Britain, 3rd ed. (Cardiff: University of Wales Press, 2006), no. 37.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription names Matholwch. <strong>Ogham</strong>, the early monumental script of Ireland and western Wales, survives on some four hundred Irish stones and a smaller Welsh corpus bearing mostly personal names in formulaic genitives; no reading of Matholwch has ever been proposed for any of them, and none would be expected — the name is a literary creation of the Middle Welsh tale tradition, centuries later than the stones.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup> The early Christian Latin-letter monuments of Wales likewise preserve no trace of him.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup></p>
+<p>The nearest epigraphic witnesses to his name-element are Gaulish: personal names in <strong>Matu-</strong> (Matugenos and kin) are attested in the epigraphy of the Celtic provinces, the continental cousins of the first syllable that the dictionaries compare with Old Irish <em>math</em>, 'bear'. The comparison is standard and strictly comparative: no altar or stone from the Celtic provinces can be read as naming the Welsh king of Ireland.<sup class="scholars-cite"><a href="#src-inscriptions-3">[3]</a></sup> The epigraphic silence is exactly what the literary record predicts — Matholwch was never a god or an ancestor, only the human king at the hinge of the Second Branch.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-inscriptions-2">Nash-Williams, V. E., The Early Christian Monuments of Wales (Cardiff: University of Wales Press, 1950).</li><li id="src-inscriptions-3">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on the Celtic bear-element in personal names.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Matholwch is the king who accepted the compensation and could not accept it. Nothing in the Second Branch is more carefully drawn than the failure of the settlement: the horses replaced, the silver staff, the golden platter, the cauldron itself — a full honor-price, formally paid, formally received. And still the insult kept working, not in him alone but in his nobles, until it expelled the queen to the kitchen and the butcher's daily blow. The tale is the Mabinogion's treatise on the difference between settling a wrong and healing one.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>His cauldron is the perfect emblem of the settlement's logic: it undoes the death and keeps the silence. The men who climb out of it fight as well as ever and cannot speak — cannot say what the war cost, cannot forgive, cannot testify. Matholwch ends as he began, a king whose kingdom is decided by what others do around him: Efnisien maims his horses, his nobles disgrace his wife, his guests massacre his peace, his bridegroom's gift arms his own destruction. The tale does not even grant him a death. It grants him something more instructive — a marriage made in good faith between two islands, and the proof that good faith is not enough when honor has been taught to count higher.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Davies, Sioned, trans., The Mabinogion, Oxford World&#39;s Classics (Oxford: Oxford University Press, 2007), &#39;Branwen Daughter of Llŷr&#39;.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Matholwch</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'matholwch';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

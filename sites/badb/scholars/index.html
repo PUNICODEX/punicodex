@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badb — Scholarly Edition | PUNICODEX</title>
+    <meta name="description" content="The Scholarly Edition of Badb: a living, university-curated reference on Battle, Death, Crow. Editable by verified scholars, with full revision history and attribution.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+
+    <style>
+        .scholars-hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: calc(var(--nav-height) + 4rem); padding-bottom: 3rem; position: relative; }
+        .scholars-hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 1.5rem; }
+        .scholars-eyebrow { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--white); letter-spacing: 0.03em; line-height: 1.1; margin-bottom: 1rem; }
+        .scholars-subtitle { font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--white-dim); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.7; }
+        .scholars-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+        .scholars-toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: left; }
+        .scholars-toc-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 1rem; }
+        .scholars-toc-list { columns: 2; column-gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        .scholars-toc-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+        .scholars-toc-list a { color: var(--white-dim); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .scholars-toc-list a:hover { color: var(--primary); }
+        @media (max-width: 640px) { .scholars-toc-list { columns: 1; } }
+        @media (max-width: 768px) {
+            .scholars-hero { padding-top: calc(var(--nav-height) + 5rem); }
+            .scholars-title { font-size: clamp(1.75rem, 8vw, 2.5rem); word-break: break-word; }
+            .scholars-subtitle { font-size: 0.95rem; }
+            .scholars-section-header { flex-wrap: wrap; gap: 0.5rem; }
+            .scholars-section-status { margin-left: 0; }
+            .scholars-edit-btn { margin-left: 0; }
+            .scholars-toc { padding: 1rem; }
+        }
+
+        .scholars-section { padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .scholars-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+        .scholars-section-number { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.15em; color: var(--primary); }
+        .scholars-section-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--white); margin: 0; }
+        .scholars-section-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.08); color: var(--white-dim); margin-left: auto; }
+        .scholars-section-status.empty { background: rgba(212,175,55,0.12); color: var(--primary); }
+        .scholars-section-body { color: var(--white-dim); line-height: 1.8; font-size: 1.05rem; }
+        .scholars-empty-state { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 2rem; text-align: center; }
+        .scholars-empty-state p { margin: 0 0 0.75rem; color: var(--white-dim); }
+        .scholars-empty-state .contribute-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        .scholars-empty-state .contribute-cta:hover { text-decoration: underline; }
+
+        .scholars-attribution { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+        .scholars-attribution-title { font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-attribution-list { list-style: none; padding: 0; margin: 0; color: var(--white-dim); }
+        .scholars-attribution-list li { margin-bottom: 0.5rem; }
+
+        .scholars-edit-history { margin-top: 4rem; }
+
+        .scholars-edit-btn { margin-left: auto; background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 0.4rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, color 0.2s; }
+        .scholars-edit-btn:hover { background: var(--primary); color: #000; }
+        .scholars-editor { margin-top: 1.5rem; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.25rem; }
+        .scholars-editor label { display: block; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.5rem; }
+        .scholars-editor textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 0.75rem; color: var(--white); font-family: inherit; font-size: 0.95rem; margin-bottom: 1rem; resize: vertical; }
+        .scholars-editor textarea:focus { outline: none; border-color: var(--primary); }
+        .scholars-editor-actions { display: flex; gap: 0.75rem; }
+        .scholars-editor-actions button { padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: none; }
+        .scholars-editor-actions .submit-edit { background: var(--primary); color: #000; }
+        .scholars-editor-actions .cancel-edit { background: rgba(255,255,255,0.1); color: var(--white); }
+        .editor-message { margin-top: 0.75rem; font-size: 0.9rem; }
+        .editor-message.success { color: #7fd67f; }
+        .editor-message.error { color: #ff7f7f; }
+        .scholars-sources { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-sources h4 { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); margin-bottom: 0.75rem; }
+        .scholars-sources ol { padding-left: 1.25rem; color: var(--white-dim); }
+        .scholars-sources li { margin-bottom: 0.35rem; }
+        @keyframes scholars-cite-flash { from { background: rgba(212,175,55,0.35); } to { background: rgba(212,175,55,0.12); } }
+        .scholars-sources li:target { background: rgba(212,175,55,0.12); border-radius: 6px; padding: 0.15rem 0.4rem; margin-left: -0.4rem; animation: scholars-cite-flash 1.6s ease-out; }
+        sup.scholars-cite { font-size: 0.72em; line-height: 0; margin-left: 0.1em; }
+        sup.scholars-cite a { color: var(--primary); text-decoration: none; }
+        sup.scholars-cite a:hover { color: var(--primary-bright); }
+        .scholars-xlink { color: var(--primary); text-decoration: underline; text-decoration-color: rgba(212,175,55,0.35); text-underline-offset: 3px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .scholars-xlink:hover { color: var(--primary-bright); text-decoration-color: currentColor; }
+        .scholars-ext { color: var(--white-dim); text-decoration: underline; text-decoration-color: rgba(255,255,255,0.25); text-underline-offset: 3px; transition: color 0.2s; }
+        .scholars-ext:hover { color: var(--primary); }
+        .scholars-h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.04em; color: var(--primary); margin: 1.75rem 0 0.75rem; }
+        .scholars-list { padding-left: 1.5rem; margin: 0.75rem 0 1.25rem; list-style: disc; }
+        .scholars-list li { margin-bottom: 0.5rem; }
+        .scholars-list li::marker { color: var(--primary); }
+        .scholars-attribution-line { margin-top: 1rem; font-size: 0.85rem; color: var(--primary); font-style: italic; }
+        .scholars-attribution-list li { line-height: 1.7; }
+        .scholars-attribution-list li strong { color: var(--white); }
+        .scholars-media-upload { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+        .scholars-media-upload label { display: block; margin-bottom: 0.5rem; }
+        .scholars-media-upload input[type="file"] { display: block; margin-bottom: 0.75rem; color: var(--white-dim); }
+        .scholars-media-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.75rem; }
+        .scholars-media-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); }
+        .scholars-media-item { position: relative; }
+        .scholars-media-item .media-status { position: absolute; bottom: 4px; left: 4px; font-size: 0.6rem; text-transform: uppercase; padding: 0.1rem 0.35rem; border-radius: 4px; background: rgba(0,0,0,0.7); color: var(--primary); }
+        .upload-status { font-size: 0.85rem; margin-top: 0.5rem; }
+        .upload-status.success { color: #7fd67f; }
+        .upload-status.error { color: #ff7f7f; }
+        .scholars-history-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .scholars-history-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem 1rem; color: var(--white-dim); font-size: 0.95rem; }
+
+        .scholars-auth-banner {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .scholars-auth-banner.logged-in { border-color: rgba(212,175,55,0.2); }
+        .scholars-auth-message { color: var(--white-dim); font-size: 0.95rem; }
+        .scholars-auth-message strong { color: var(--primary); }
+        .scholars-auth-actions { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .scholars-auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .scholars-auth-btn:hover { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary { background: var(--primary); color: #000; }
+        .scholars-auth-btn.primary:hover { background: var(--primary-bright); border-color: var(--primary-bright); }
+        .scholars-role-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(212,175,55,0.12);
+            color: var(--primary);
+            vertical-align: middle;
+        }
+        .scholars-expired-note {
+            color: #ff7f7f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .scholars-auth-banner { flex-direction: column; align-items: flex-start; }
+        }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+        .temple-breadcrumb-list [aria-current] { color: var(--primary, #d4af37); }
+    </style>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "name": "Badb — Scholarly Edition",
+    "headline": "Badb — Scholarly Edition",
+    "description": "University-curated scholarly reference for Badb (Battle, Death, Crow).",
+    "url": "https://punicodex.com/badb/scholars/",
+    "about": {
+        "@type": "Thing",
+        "name": "Badb",
+        "alternateName": ["badb", "Badb"],
+        "description": "Battle, Death, Crow"
+    },
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "PUNICODEX",
+        "url": "https://punicodex.com"
+    },
+    "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://punicodex.com/assets/og/badb.jpg"
+    }
+}
+    </script>
+
+    <link rel="canonical" href="https://punicodex.com/badb/scholars/">
+
+    <meta property="og:title" content="Badb — Scholarly Edition | PUNICODEX">
+    <meta property="og:description" content="University-curated scholarly reference for Badb (Battle, Death, Crow).">
+    <meta property="og:url" content="https://punicodex.com/badb/scholars/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/badb.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/badb.jpg">
+    <meta name="twitter:title" content="Badb — Scholarly Edition | PUNICODEX">
+    <meta name="twitter:description" content="University-curated scholarly reference for Badb (Battle, Death, Crow).">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Badb",
+      "item": "https://punicodex.com/badb/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Scholars",
+      "item": "https://punicodex.com/badb/scholars/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="badb-canvas" data-effect="scaldcrow-canvas" data-primary="#228B22" data-secondary="#B8D4E3" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/badb_logolockup.webp" type="image/webp"><img src="../assets/badb_logolockup.png" alt="Badb" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="./" class="nav-link active">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (mirrors the BreadcrumbList JSON-LD) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/badb/">Badb</a></li>
+            <li><span aria-current="page">Scholars</span></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="../blog/index.html" class="nav-link">Blog</a>
+        <a href="./" class="nav-link active">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Scholars Hero -->
+    <header class="scholars-hero" id="hero">
+        <div class="scholars-hero-content">
+            <p class="scholars-eyebrow reveal-up">PUNICODEX Scholarly Edition</p>
+            <h1 class="scholars-title reveal-up">Badb</h1>
+            <p class="scholars-subtitle reveal-up">Battle, Death, Crow · A living, university-curated reference. Verified scholars contribute; every edit is attributed, reviewed, and preserved.</p>
+            <div class="scholars-meta reveal-up">
+                <span class="meta-badge">Tier-2</span>
+                <span class="meta-domain">Badb.com</span>
+            </div>
+            <nav class="scholars-toc reveal-up" aria-label="Scholarly sections">
+                <div class="scholars-toc-title">Table of Contents</div>
+                <ol class="scholars-toc-list">
+                    <li><a href="#overview">01 &mdash; Overview</a></li>
+<li><a href="#the-name">02 &mdash; The Name</a></li>
+<li><a href="#pronunciation">03 &mdash; Pronunciation</a></li>
+<li><a href="#original-script">04 &mdash; Original Script & Provenance</a></li>
+<li><a href="#domains">05 &mdash; Domains & Attributes</a></li>
+<li><a href="#symbols">06 &mdash; Symbols</a></li>
+<li><a href="#mythology">07 &mdash; Mythology</a></li>
+<li><a href="#syncretism">08 &mdash; Syncretism & Reception</a></li>
+<li><a href="#cultural-legacy">09 &mdash; Cultural Legacy</a></li>
+<li><a href="#archaeology">10 &mdash; Archaeology & Material Evidence</a></li>
+<li><a href="#scholarly-sources">11 &mdash; Scholarly Sources</a></li>
+<li><a href="#irish-cycles">12 &mdash; Irish Mythological Cycles</a></li>
+<li><a href="#welsh-sources">13 &mdash; Welsh Sources</a></li>
+<li><a href="#inscriptions">14 &mdash; Inscriptions & Seals</a></li>
+<li><a href="#meditation">15 &mdash; Meditation & Reflection</a></li>
+<li><a href="#edit-history">16 &mdash; Edit History</a></li>
+<li><a href="#attribution">17 &mdash; Attribution</a></li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Scholarly Sections -->
+    <main class="container">
+        <section class="scholars-section" id="overview">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">01</span>
+        <h2 class="scholars-section-title">Overview</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Concise scholarly summary of the figure, name, tradition, and significance.</p>
+        <p><strong>Badb</strong> (<em>badb</em>) — Battle, Death, Crow · Crow, scald-crow — is the Irish war-goddess whose name is her shape: Old Irish <em>badb</em>, the scald-crow, is the common noun for the hooded crow (<em>Corvus cornix</em>) and the theonym in a single word, and the medieval writers never felt the need to choose between them.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup> Her standing title in the texts is <em>badb catha</em>, 'crow of battle' — the bird that haunts the field and the goddess who owns it, named in one breath.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p>
+<p>She belongs to the war-goddess complex the Lebor Gabála Érenn calls the daughters of Ernmas — Badb, <a href="/macha/" class="crosslink" data-crosslink="macha">Macha</a>, and Anand, of whom are the Paps of Anu in Luachair — a genealogy the verse recension gives as Badb, Macha, and the Morrígu, so that the tradition itself is of two minds as to whether the <a href="/morrigan/" class="crosslink" data-crosslink="morrigan">Morrígan</a> is the third sister or the single name for all three.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> The same book marries her to the war-god: Neit son of Indui had two wives, Badb and Nemain.<sup class="scholars-cite"><a href="#src-overview-2">[2]</a></sup> Her dossier is voice and omen rather than adventure: the shriek over the hosts in the Táin that kills a hundred warriors with fright,<sup class="scholars-cite"><a href="#src-overview-3">[3]</a></sup> the war-goddess washing at the ford of the Unius before Mag Tuired,<sup class="scholars-cite"><a href="#src-overview-4">[4]</a></sup> and the scald-crows settling on the dying Cú Chulainn's pillar-stone.<sup class="scholars-cite"><a href="#src-overview-5">[5]</a></sup></p>
+<p>PuniCodex restores the name as <strong>Badb</strong> — identical to the ASCII input, because normalized Old Irish writes no diacritic in this name. The mechanical rule therefore places it in Tier 2: nothing distinctive is lost in transit, a statement about orthography and never about the goddess. No domain is claimed: the plain-ASCII <strong>badb.com</strong> is registered to a third party outside the collection and is watched for release.<sup class="scholars-cite"><a href="#src-overview-1">[1]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-overview-1">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. badb.</li><li id="src-overview-2">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, vol. 4 (Dublin: Irish Texts Society, 1941).</li><li id="src-overview-3">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (Dublin: Dublin Institute for Advanced Studies, 1976).</li><li id="src-overview-4">Gray, Elizabeth A., ed. and trans., Cath Maige Tuired: The Second Battle of Mag Tuired, Irish Texts Society 52 (Naas: Irish Texts Society, 1982).</li><li id="src-overview-5">Stokes, Whitley, ed. and trans., &#39;The Death of Cú Chulainn&#39;, Revue Celtique 3 (1877), 175–185.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="the-name">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">02</span>
+        <h2 class="scholars-section-title">The Name</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Etymology, ASCII constraint, Unicode restoration, name variations, tier classification.</p>
+        <p>The theonym is attested in Old and Middle Irish as <strong>badb</strong> (later <em>badhbh</em>), a feminine noun whose first and never-abandoned sense is zoological: the scald-crow, the grey-and-black hooded crow of the Irish countryside.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> The Dictionary of the Irish Language records both registers — the bird and the supernatural battle-being — and the texts exploit the identity deliberately: when the war-goddess is named, the hearer already knows her shape.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup> Her standing phrase is <em>badb catha</em>, 'the crow of battle', used of the battlefield terror itself as readily as of the goddess.<sup class="scholars-cite"><a href="#src-the-name-1">[1]</a></sup></p>
+<p>The etymology is old Celtic, not Irish alone. Vendryes' LEIA and Matasović's Proto-Celtic dictionary trace the word to Proto-Celtic <em>bodwā</em>, 'battle, fighting' — a root the continental languages kept in war-names — and the Gaulish altar from Mieussy in Haute-Savoie dedicates to <strong>Cathubodua</strong>, <em>catu-</em>bodwā, 'battle-crow': the precise reverse compound of the Irish phrase.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup> The crow of battle is therefore not an Irish literary conceit but an inherited Celtic formation, attested in stone on the continent and in saga in Ireland.<sup class="scholars-cite"><a href="#src-the-name-2">[2]</a></sup></p>
+<p>Within the Irish tradition the name shades into her sisters': the Táin couples her with Bé Néit, 'woman of battle', and Némain,<sup class="scholars-cite"><a href="#src-the-name-3">[3]</a></sup> and the Lebor Gabála's two recensions of the daughters of Ernmas make the <a href="/morrigan/" class="crosslink" data-crosslink="morrigan">Morrígan</a> now the third sister, now the collective name.<sup class="scholars-cite"><a href="#src-the-name-4">[4]</a></sup> The honest verdict of the handbooks is fluidity, not error: Badb, <a href="/macha/" class="crosslink" data-crosslink="macha">Macha</a>, Némain, and the Morrígan behave as one complex with several voices.<sup class="scholars-cite"><a href="#src-the-name-5">[5]</a></sup></p>
+<p>The ASCII form <em>badb</em> loses nothing, because the normalized Old Irish spelling is already plain Latin letters; the restoration is therefore a matter of canonical reference, not rescued diacritics, and the name is classified Tier 2 by the project's mechanical rule.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul class="scholars-list"><li><strong>b</strong> → <strong>B</strong> — Same, capitalized</li><li><strong>a</strong> → <strong>a</strong> — Same</li><li><strong>d</strong> → <strong>d</strong> — Same</li><li><strong>b</strong> → <strong>b</strong> — Same</li></ul>
+<p>The project holds no domain for this name: <strong>badb.com</strong> is registered to a third party outside the PuniCodex collection and is watched for release. The temple lives at its canonical lexicon address.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-the-name-1">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. badb.</li><li id="src-the-name-2">Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (Dublin: Dublin Institute for Advanced Studies, 1959–96), s.v. badb; Matasović, Ranko, Etymological Dictionary of Proto-Celtic (Leiden: Brill, 2009), s.v. *bodwo-; Delamarre, Xavier, Dictionnaire de la langue gauloise (Paris: Errance, 2003), s.v. catu-, boduā.</li><li id="src-the-name-3">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (1976).</li><li id="src-the-name-4">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, vol. 4 (1941).</li><li id="src-the-name-5">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on the war-goddess complex.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="pronunciation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">03</span>
+        <h2 class="scholars-section-title">Pronunciation</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">IPA reconstruction, phoneme breakdown, approximation, kin forms.</p>
+        <p>The reconstructed pronunciation of the name is <strong>/ˈbaðβ/</strong> — Old Irish Reconstruction.<sup class="scholars-cite"><a href="#src-pronunciation-1">[1]</a></sup></p>
+<p>Phoneme by phoneme:</p>
+<ul class="scholars-list"><li><strong>Ba-</strong> — Broad bilabial stop [b] and short open [a], stressed on the first — here the only — syllable, as in all Old Irish</li><li><strong>-db</strong> — Lenited [ð], the voiced dental fricative of English <em>this</em>, running into lenited final [β], a soft bilabial v; both consonants melt in speech though the spelling keeps them whole</li></ul>
+<p>For the modern speaker, the closest approximation is: 'BAH-dhuv' — one short syllable, the d softened to the 'th' of <em>this</em>, the final b to a light v. Modern Irish <em>badhbh</em> keeps the softening, and English ears often hear the word as something like 'bave'.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul class="scholars-list"><li><strong>Old Irish</strong> — badb, 'scald-crow', the common noun and the theonym in one word; badb catha, 'crow of battle'</li><li><strong>Proto-Celtic</strong> — *bodwā, 'battle, fighting', the root beneath the name (Matasović, EDPC)</li><li><strong>Gaulish</strong> — Cathubodua, 'battle-crow', the goddess of the Mieussy altar</li><li><strong>Modern Irish</strong> — badhbh, 'scald-crow, hooded crow', the unbroken living word<sup class="scholars-cite"><a href="#src-pronunciation-2">[2]</a></sup></li></ul>
+<p>Badb is Tier 2 because the restoration preserves nothing ASCII loses: the letters of the manuscript form are the letters of the keyboard. The capital alone marks the temple form.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-pronunciation-1">Thurneysen, Rudolf, A Grammar of Old Irish, trans. D. A. Binchy and Osborn Bergin (Dublin: Dublin Institute for Advanced Studies, 1946), on lenition and initial stress.</li><li id="src-pronunciation-2">Matasović, Ranko, Etymological Dictionary of Proto-Celtic (Leiden: Brill, 2009), s.v. *bodwo-; Delamarre, Xavier, Dictionnaire de la langue gauloise (Paris: Errance, 2003), s.v. boduā.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="original-script">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">04</span>
+        <h2 class="scholars-section-title">Original Script & Provenance</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Original writing system, transliteration steps, uncertainty markers, font/display notes.</p>
+        <p>The name is preserved in medieval Irish manuscripts in the Latin alphabet as <strong>badb</strong> — Old Irish / Middle Irish in Insular script, attested Old Irish, c. 7th–10th c. CE, in the glossaries and in the great codices that preserve the Táin and the Lebor Gabála.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup> The earlier monumental alphabet, ogham, predates the manuscript tradition, but no attestation of this theonym has ever been read on an ogham stone; the manuscript form is the primary witness.<sup class="scholars-cite"><a href="#src-original-script-2">[2]</a></sup></p>
+<p>The scholarly rendering proceeds step by step:</p>
+<ul class="scholars-list"><li>Old Irish was written in the Latin alphabet using Insular minuscule from the early medieval period; the spelling badb requires no diacritic.</li><li>The word is a common noun — the scald-crow, the hooded crow — and the theonym is the same word; the Dictionary of the Irish Language records both registers.<sup class="scholars-cite"><a href="#src-original-script-1">[1]</a></sup></li><li>The medial d and final b are lenited in pronunciation — [ð] and [β] — but the orthography writes plain d and b; nothing distinctive is lost in ASCII.<sup class="scholars-cite"><a href="#src-original-script-3">[3]</a></sup></li><li>The Unicode restoration Badb is therefore identical to the ASCII form apart from the capital; the temple form is a canonical reference, not a rescued spelling.</li></ul>
+<p>One caution attaches to the record: the texts keep her name fluid with her sisters' — Bé Néit, Némain, <a class="scholars-xlink" href="/macha/">Macha</a>, <a class="scholars-xlink" href="/morrigan/">the Mórrígan</a> — and the handbooks treat the complex as one figure with several voices rather than a scribal confusion to be solved.<sup class="scholars-cite"><a href="#src-original-script-4">[4]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-original-script-1">Dictionary of the Irish Language (Royal Irish Academy, 1913–76; eDIL 2019), s.v. badb.</li><li id="src-original-script-2">McManus, Damian, A Guide to Ogam (Maynooth: An Sagart, 1991).</li><li id="src-original-script-3">Thurneysen, Rudolf, A Grammar of Old Irish, trans. Binchy and Bergin (Dublin: Dublin Institute for Advanced Studies, 1946).</li><li id="src-original-script-4">Mac Cana, Proinsias, Celtic Mythology (Hamlyn, 1970).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="domains">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">05</span>
+        <h2 class="scholars-section-title">Domains & Attributes</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sphere of influence, titles, epithets, domain cards.</p>
+        <p><strong>Badb</strong> is catalogued under the domain 'Battle, Death, Crow' — three words that map exactly onto her dossier: the field she haunts, the knowledge she carries, and the shape she wears.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">Battle</h3>
+<p>She never fights, and the texts are exact about it: her weapon is the voice. In the Táin, Badb and Bé Néit and Némain shriek above the marching hosts at Gáirech and Irgáirech until a hundred warriors fall dead of fright — the battle's true opening, fought and won before a spear is cast.<sup class="scholars-cite"><a href="#src-domains-2">[2]</a></sup></p>
+<h3 class="scholars-h3">Death</h3>
+<p>She is the reader of the doomed: the war-goddess washing at the ford of the Unius on the eve of Mag Tuired,<sup class="scholars-cite"><a href="#src-domains-3">[3]</a></sup> the scald-crows settling on <a class="scholars-xlink" href="/cuchulainn/">Cú Chulainn</a>'s pillar-stone to tell his enemies he is gone — 'that pillar is not wont to be under birds'.<sup class="scholars-cite"><a href="#src-domains-4">[4]</a></sup> Death is not her doing; it is her knowledge.</p>
+<h3 class="scholars-h3">Crow</h3>
+<p>Her name is the animal: <em>badb</em>, the scald-crow, the grey-and-black hooded crow that comes down to the field when the field is finished. The theonym refuses metaphor — the goddess has a species.<sup class="scholars-cite"><a href="#src-domains-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Moment Before</h3>
+<p>The connective tissue of all three domains is foreknowledge: shriek, washing, and settling are the same act in three scenes — the end of the day, seen at its beginning. The later Gaelic washer at the ford, the Scottish bean nighe, keeps exactly this brief.<sup class="scholars-cite"><a href="#src-domains-5">[5]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-domains-1">Dictionary of the Irish Language (Royal Irish Academy, 1913–76; eDIL 2019), s.v. badb.</li><li id="src-domains-2">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (1976).</li><li id="src-domains-3">Gray, Elizabeth A., ed. and trans., Cath Maige Tuired, Irish Texts Society 52 (1982).</li><li id="src-domains-4">Stokes, Whitley, ed. and trans., &#39;The Death of Cú Chulainn&#39;, Revue Celtique 3 (1877).</li><li id="src-domains-5">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="symbols">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">06</span>
+        <h2 class="scholars-section-title">Symbols</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Iconography, attributes, and their meanings.</p>
+        <p>Badb's attributes are a species, a sound, a place, a number, and a chore — the sparest regalia in the Irish corpus, and the most exact:<sup class="scholars-cite"><a href="#src-symbols-1">[1]</a></sup></p>
+<ul class="scholars-list"><li><strong>The scald-crow</strong> — The hooded crow, grey and black: her name, her shape, and her retinue on every field</li><li><strong>The shriek</strong> — Panic as a weapon: the sound over the hosts that kills men with fear before the spear is thrown<sup class="scholars-cite"><a href="#src-symbols-2">[2]</a></sup></li><li><strong>The ford</strong> — The boundary between bank and bank, living and dead: the water where the war-goddess stands washing<sup class="scholars-cite"><a href="#src-symbols-3">[3]</a></sup></li><li><strong>The triad</strong> — Badb, <a href="/macha/" class="crosslink" data-crosslink="macha">Macha</a>, Némain: the three of war, one terror in three voices<sup class="scholars-cite"><a href="#src-symbols-4">[4]</a></sup></li><li><strong>The washing of spoils</strong> — The harness and garments of the soon-dead, rinsed in the ford before the battle that will bloody them<sup class="scholars-cite"><a href="#src-symbols-5">[5]</a></sup></li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-symbols-1">Dictionary of the Irish Language (Royal Irish Academy, 1913–76; eDIL 2019), s.v. badb.</li><li id="src-symbols-2">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (1976).</li><li id="src-symbols-3">Gray, Elizabeth A., ed. and trans., Cath Maige Tuired, Irish Texts Society 52 (1982).</li><li id="src-symbols-4">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, vol. 4 (1941).</li><li id="src-symbols-5">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970), on the washer at the ford.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="mythology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">07</span>
+        <h2 class="scholars-section-title">Mythology</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Core myths, primary narratives, and textual evidence.</p>
+        <p>Badb's mythology is genealogy, sound, and omen rather than adventure: she is the sister in the list, the voice over the army, the bird on the pillar-stone. Four texts carry her dossier, and the commentators have spent a century and a half working out where she ends and her sisters begin.<sup class="scholars-cite"><a href="#src-mythology-1">[1]</a></sup></p>
+<h3 class="scholars-h3">The Daughters of Ernmas (Lebor Gabála Érenn)</h3>
+<p>The Lebor Gabála Érenn gives the war-goddesses their pedigree: 'Badb and <a href="/macha/" class="crosslink" data-crosslink="macha">Macha</a> and Anand, of whom are the Paps of Anu in Luachair, were the three daughters of Ernmas the she-farmer.' The verse recension sings the family in another key — 'Badb and Macha, greatness of wealth, Morrígu, springs of craftiness, sources of bitter fighting, were the three daughters of Ernmas' — so the tradition itself is of two minds about the third sister.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup> The same book marries her into the war-god's house: Neit son of Indui, god of battle, had two wives, Badb and Nemain, and the pedigree records their slaying at Ailech by the Fomorians.<sup class="scholars-cite"><a href="#src-mythology-2">[2]</a></sup> Cormac's Glossary had already fixed the marriage in the record: <a href="/neith/" class="crosslink" data-crosslink="neith">Neith</a>, the god of battle among the pagan Gael, and Nemon his wife.<sup class="scholars-cite"><a href="#src-mythology-3">[3]</a></sup></p>
+<h3 class="scholars-h3">The Shriek over the Hosts (Táin Bó Cúailnge)</h3>
+<p>When the men of Ireland march under <a class="scholars-xlink" href="/medb/">Medb</a> for the brown bull of Cooley, the Táin marks the nights of the hosting with the sound of the war-goddesses: 'Badb and Bé Néit and Némain shrieked above them that night in Gáirech and Irgáirech, so that a hundred of their warriors fell dead of fright.'<sup class="scholars-cite"><a href="#src-mythology-4">[4]</a></sup> She does not wound; she announces. The shriek is prophecy delivered as noise — and the Irish phrase for battlefield terror, <em>badb catha</em>, is simply her name at work as a common noun.</p>
+<h3 class="scholars-h3">The War-Goddess at Mag Tuired (Cath Maige Tuired)</h3>
+<p>On Samain night before the Second Battle of Mag Tuired, <a class="scholars-xlink" href="/dagda/">the Dagda</a> met the <a href="/morrigan/" class="crosslink" data-crosslink="morrigan">Morrígan</a> at the ford of the Unius in Connacht, where she stood washing with one foot on either bank; she pledged herself to the Túatha Dé Danann's cause, promising the hearts of the Fomorian host and the blood of their king Indech.<sup class="scholars-cite"><a href="#src-mythology-5">[5]</a></sup> After <a class="scholars-xlink" href="/lugh/">Lugh</a>'s sling-stone felled <a class="scholars-xlink" href="/balor/">Balor</a>, it was the Morrígan who proclaimed the rout to the heights of Ireland and uttered the prophecy — 'Peace up to heaven, heaven down to earth, earth beneath heaven' — and then its darker twin, the vision of the world's ending.<sup class="scholars-cite"><a href="#src-mythology-5">[5]</a></sup> The texts keep the sisters' voices interchangeable; what the manuscript gives to the Morrígan, the tradition hears also in Badb's register.</p>
+<h3 class="scholars-h3">The Crow on the Pillar-Stone (Aided Con Culainn)</h3>
+<p>Cú Chulainn's death-tale, Brislech Mór Maige Muirthemni, gives the crow-goddesses the last word. Mortally wounded, <a class="scholars-xlink" href="/cuchulainn/">Cú Chulainn</a> lashed himself to a pillar-stone to die on his feet, and for three days his enemies would not close in — until the battle-goddess Morrígu came with her sisters in the form of scald-crows and settled on his shoulder. 'That pillar is not wont to be under birds,' said Erc, and only then did the host dare take the hero's head.<sup class="scholars-cite"><a href="#src-mythology-6">[6]</a></sup> The living man keeps her off; the dead man is her perch.</p>
+<h3 class="scholars-h3">The Washer at the Ford (Gaelic tradition)</h3>
+<p>The medieval texts give the war-goddess her washing-place at the ford of the Unius;<sup class="scholars-cite"><a href="#src-mythology-5">[5]</a></sup> the later Gaelic tradition gives the figure her full shape — the washer at the ford, rinsing the blood-stained garments of those about to die in battle. In Scottish Gaelic folklore she is the bean nighe, and the commentators, Mac Cana among them, treat her as the folk continuation of the Badb's own figure.<sup class="scholars-cite"><a href="#src-mythology-7">[7]</a></sup> The washing is prophecy, not threat: the doom is already written, and she merely launders the evidence.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-mythology-1">Hennessy, W. M., &#39;The Ancient Irish Goddess of War&#39;, Revue Celtique 1 (1870), 27–57.</li><li id="src-mythology-2">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, vol. 4 (Dublin: Irish Texts Society, 1941).</li><li id="src-mythology-3">Meyer, Kuno, ed., &#39;Sanas Cormaic: An Old-Irish Glossary&#39;, Anecdota from Irish Manuscripts 4 (Halle: Niemeyer; Dublin: Hodges, Figgis, 1912), s.v. Neth.</li><li id="src-mythology-4">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (Dublin: Dublin Institute for Advanced Studies, 1976).</li><li id="src-mythology-5">Gray, Elizabeth A., ed. and trans., Cath Maige Tuired: The Second Battle of Mag Tuired, Irish Texts Society 52 (Naas: Irish Texts Society, 1982).</li><li id="src-mythology-6">Stokes, Whitley, ed. and trans., &#39;The Death of Cú Chulainn&#39;, Revue Celtique 3 (1877), 175–185.</li><li id="src-mythology-7">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="syncretism">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">08</span>
+        <h2 class="scholars-section-title">Syncretism & Reception</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cross-cultural identification, later adaptations, and interpretatio.</p>
+        <p>Badb's clearest cross-border witness is Gaulish, and it is exact. An altar from Mieussy in Haute-Savoie dedicates to <strong>Cathubodua</strong> — <em>catu-</em>bodwā, 'battle-crow' — the precise reverse compound of Irish <em>badb catha</em>. Delamarre and Koch treat the two names as one formation across the Celtic languages: the crow of battle named in stone on the continent and in saga in Ireland.<sup class="scholars-cite"><a href="#src-syncretism-1">[1]</a></sup> The Welsh corpus, by contrast, is silent on her — no figure of the <em>Mabinogi</em> continues the name, and the Brythonic silence is recorded rather than repaired.<sup class="scholars-cite"><a href="#src-syncretism-2">[2]</a></sup> Typological comparison has set her beside the Norse valkyries, the raven-feeding choosers of the slain; the handbooks note the parallel without claiming descent.<sup class="scholars-cite"><a href="#src-syncretism-3">[3]</a></sup></p>
+<p>Within the Irish tradition her closest kin are her own sisters, <a class="scholars-xlink" href="/morrigan/">the Mórrígan</a> and <a class="scholars-xlink" href="/macha/">Macha</a> — one complex with several voices — and the war she prophesied binds her to <a class="scholars-xlink" href="/dagda/">the Dagda</a>, <a class="scholars-xlink" href="/lugh/">Lugh</a>, and <a class="scholars-xlink" href="/nuada/">Nuadu</a>. The Christian scribes who preserved her did not euhemerize her into a queen or a druid, as they did the great gods; they left her what she was, a bird and a voice, which may be why the name needed no rehabilitation.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-syncretism-1">Delamarre, Xavier, Dictionnaire de la langue gauloise (Paris: Errance, 2003), s.v. catu-, boduā; Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (Santa Barbara: ABC-CLIO, 2006), s.v. Cathubodua.</li><li id="src-syncretism-2">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Badb.</li><li id="src-syncretism-3">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="cultural-legacy">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">09</span>
+        <h2 class="scholars-section-title">Cultural Legacy</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Modern influence, literature, art, popular culture, and contemporary practice.</p>
+        <p>The crow of battle rode the Celtic revival in English dress. W. M. Hennessy's 'The Ancient Irish Goddess of War' (Revue Celtique, 1870) had already gathered the <a href="/morrigan/" class="crosslink" data-crosslink="morrigan">Morrígan</a> material for scholars, and Lady Gregory's <em>Gods and Fighting Men</em> (1904) carried Cath Maige Tuired and its war-goddesses to a wide reading public, crow-form and prophecy complete.<sup class="scholars-cite"><a href="#src-cultural-legacy-1">[1]</a></sup> Modern fantasy and games have made the war-goddess's crow-shape one of the stock images of the genre, and contemporary pagan practice honors Badb among the three of the Morrígan.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p>
+<p>In the Irish language the word never needed reviving: <em>badhbh</em> has meant the hooded crow all along, and the grey bird on the battlefield needed no gloss for any Irish hearer.<sup class="scholars-cite"><a href="#src-cultural-legacy-3">[3]</a></sup> Across the water, the Scottish bean nighe kept her folk shape washing at the ford deep into the era of the great folklore collections — the longest-lived of all her forms, and the one that never had to be reconstructed.<sup class="scholars-cite"><a href="#src-cultural-legacy-2">[2]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-cultural-legacy-1">Hennessy, W. M., &#39;The Ancient Irish Goddess of War&#39;, Revue Celtique 1 (1870); Gregory, Lady Augusta, Gods and Fighting Men (London: John Murray, 1904).</li><li id="src-cultural-legacy-2">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li id="src-cultural-legacy-3">Dictionary of the Irish Language (Royal Irish Academy, 1913–76; eDIL 2019), s.v. badb.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="archaeology">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">10</span>
+        <h2 class="scholars-section-title">Archaeology & Material Evidence</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Sites, inscriptions, artifacts, and physical attestations.</p>
+        <p>Badb is a textual goddess: no ogham stone names her, no votive inscription invokes her, and Irish paganism generally left literature rather than dedications.<sup class="scholars-cite"><a href="#src-archaeology-1">[1]</a></sup> Her manuscript witnesses, however, are exact. The Táin Bó Cúailnge survives in its oldest recension in Lebor na hUidre, the Book of the Dun Cow (Royal Irish Academy, c. 1100), and in the twelfth-century Book of Leinster; Lebor Gabála Érenn likewise rests on the Book of Leinster and its sister codices; and Cath Maige Tuired survives uniquely in the sixteenth-century British Library MS Harley 5280, the basis of Gray's edition.<sup class="scholars-cite"><a href="#src-archaeology-2">[2]</a></sup></p>
+<p>The nearest epigraphic witness is continental: the altar from Mieussy in Haute-Savoie dedicating to <strong>Cathubodua</strong>, 'battle-crow', is the standing proof that the crow-of-battle compound is old Celtic and not an Irish literary invention — comparative evidence across the water, never an identification.<sup class="scholars-cite"><a href="#src-archaeology-3">[3]</a></sup></p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-archaeology-1">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-archaeology-2">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (1976); Gray, Elizabeth A., ed. and trans., Cath Maige Tuired, Irish Texts Society 52 (1982), introduction, on the manuscript.</li><li id="src-archaeology-3">Delamarre, Xavier, Dictionnaire de la langue gauloise (Paris: Errance, 2003), s.v. boduā; Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Cathubodua.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="scholarly-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">11</span>
+        <h2 class="scholars-section-title">Scholarly Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Cited primary and secondary sources with full bibliographic metadata.</p>
+        <p>The account of Badb given in this edition rests on the witnesses and reference works listed below. The Táin supplies the voice; the Lebor Gabála the family; Cath Maige Tuired the ford and the prophecy; the death-tale the pillar-stone; the glossaries and etymological dictionaries secure the name; the Gaulish material is cited for comparison only.</p>
+<ul class="scholars-list"><li><sup class="scholars-cite"><a href="#src-scholarly-sources-1">[1]</a></sup> O'Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (Dublin: Dublin Institute for Advanced Studies, 1976).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-2">[2]</a></sup> Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, 5 vols. (Dublin: Irish Texts Society, 1938–56).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-3">[3]</a></sup> Gray, Elizabeth A., ed. and trans., Cath Maige Tuired: The Second Battle of Mag Tuired, Irish Texts Society 52 (Naas: Irish Texts Society, 1982).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-4">[4]</a></sup> Stokes, Whitley, ed. and trans., 'The Second Battle of Moytura', Revue Celtique 12 (1891), 52–130, 306–308.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-5">[5]</a></sup> Stokes, Whitley, ed. and trans., 'The Death of Cú Chulainn', Revue Celtique 3 (1877), 175–185.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-6">[6]</a></sup> Hennessy, W. M., 'The Ancient Irish Goddess of War', Revue Celtique 1 (1870), 27–57.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-7">[7]</a></sup> Meyer, Kuno, ed., 'Sanas Cormaic: An Old-Irish Glossary', Anecdota from Irish Manuscripts 4 (Halle: Niemeyer; Dublin: Hodges, Figgis, 1912), s.v. Neth.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-8">[8]</a></sup> Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. badb.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-9">[9]</a></sup> Vendryes, Joseph (gen. ed.), Lexique étymologique de l'irlandais ancien (Dublin: Dublin Institute for Advanced Studies, 1959–96), s.v. badb.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-10">[10]</a></sup> Matasović, Ranko, Etymological Dictionary of Proto-Celtic (Leiden: Brill, 2009), s.v. *bodwo-.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-11">[11]</a></sup> Delamarre, Xavier, Dictionnaire de la langue gauloise (Paris: Errance, 2003), s.v. catu-, boduā.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-12">[12]</a></sup> Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-13">[13]</a></sup> Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Myles Dillon (London: Methuen, 1949).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-14">[14]</a></sup> Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Badb, Cathubodua, Mórrígan.</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-15">[15]</a></sup> Gregory, Lady Augusta, Gods and Fighting Men (London: John Murray, 1904).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-16">[16]</a></sup> McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li><sup class="scholars-cite"><a href="#src-scholarly-sources-17">[17]</a></sup> Thurneysen, Rudolf, A Grammar of Old Irish, trans. D. A. Binchy and Osborn Bergin (Dublin: Dublin Institute for Advanced Studies, 1946).</li></ul><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-scholarly-sources-1">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (1976).</li><li id="src-scholarly-sources-2">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn (Irish Texts Society, 1938–56).</li><li id="src-scholarly-sources-3">Gray, Elizabeth A., ed. and trans., Cath Maige Tuired, Irish Texts Society 52 (1982).</li><li id="src-scholarly-sources-4">Mac Cana, Proinsias, Celtic Mythology (Hamlyn, 1970).</li><li id="src-scholarly-sources-5">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006).</li><li id="src-scholarly-sources-6">Hennessy, W. M., &#39;The Ancient Irish Goddess of War&#39;, Revue Celtique 1 (1870), 27–57.</li><li id="src-scholarly-sources-7">Meyer, Kuno, ed., &#39;Sanas Cormaic: An Old-Irish Glossary&#39;, Anecdota from Irish Manuscripts 4 (Halle: Niemeyer; Dublin: Hodges, Figgis, 1912), s.v. Neth.</li><li id="src-scholarly-sources-8">Dictionary of the Irish Language (Dublin: Royal Irish Academy, 1913–76; electronic ed. eDIL 2019), s.v. badb.</li><li id="src-scholarly-sources-9">Vendryes, Joseph (gen. ed.), Lexique étymologique de l&#39;irlandais ancien (Dublin: Dublin Institute for Advanced Studies, 1959–96), s.v. badb.</li><li id="src-scholarly-sources-10">Matasović, Ranko, Etymological Dictionary of Proto-Celtic (Leiden: Brill, 2009), s.v. *bodwo-.</li><li id="src-scholarly-sources-11">Delamarre, Xavier, Dictionnaire de la langue gauloise (Paris: Errance, 2003), s.v. catu-, boduā.</li><li id="src-scholarly-sources-12">Mac Cana, Proinsias, Celtic Mythology (London: Hamlyn, 1970).</li><li id="src-scholarly-sources-13">Sjoestedt, Marie-Louise, Gods and Heroes of the Celts, trans. Myles Dillon (London: Methuen, 1949).</li><li id="src-scholarly-sources-14">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia, 5 vols. (Santa Barbara: ABC-CLIO, 2006), s.v. Badb, Cathubodua, Mórrígan.</li><li id="src-scholarly-sources-15">Gregory, Lady Augusta, Gods and Fighting Men (London: John Murray, 1904).</li><li id="src-scholarly-sources-16">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-scholarly-sources-17">Thurneysen, Rudolf, A Grammar of Old Irish, trans. D. A. Binchy and Osborn Bergin (Dublin: Dublin Institute for Advanced Studies, 1946).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="irish-cycles">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">12</span>
+        <h2 class="scholars-section-title">Irish Mythological Cycles</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>Badb walks two cycles. To the Mythological Cycle she belongs by blood and marriage: the Lebor Gabála Érenn makes her a daughter of Ernmas beside <a class="scholars-xlink" href="/macha/">Macha</a> and the <a href="/morrigan/" class="crosslink" data-crosslink="morrigan">Morrígan</a>, and a wife of the war-god Neit son of Indui;<sup class="scholars-cite"><a href="#src-irish-cycles-1">[1]</a></sup> Cath Maige Tuired gives the war-goddess her two great scenes — the washing at the ford of the Unius with <a class="scholars-xlink" href="/dagda/">the Dagda</a> on Samain night, and the proclamation of victory with its prophecy of peace after <a class="scholars-xlink" href="/lugh/">Lugh</a>'s sling felled <a class="scholars-xlink" href="/balor/">Balor</a>.<sup class="scholars-cite"><a href="#src-irish-cycles-2">[2]</a></sup></p>
+<p>To the Ulster Cycle she belongs by voice. The Táin Bó Cúailnge opens its killing with her shriek over the hosts of <a class="scholars-xlink" href="/medb/">Medb</a> at Gáirech and Irgáirech,<sup class="scholars-cite"><a href="#src-irish-cycles-3">[3]</a></sup> and the death-tale of <a class="scholars-xlink" href="/cuchulainn/">Cú Chulainn</a>, Brislech Mór Maige Muirthemni, closes the hero's life with the scald-crows on his pillar-stone — 'that pillar is not wont to be under birds'.<sup class="scholars-cite"><a href="#src-irish-cycles-4">[4]</a></sup> The glossaries keep her household in the record: Cormac's Glossary glosses <a href="/neith/" class="crosslink" data-crosslink="neith">Neith</a> as the god of battle among the pagan Gael, with Nemon his wife.<sup class="scholars-cite"><a href="#src-irish-cycles-5">[5]</a></sup> Medieval scribes euhemerized the great gods into kings and druids; her they left as she was — a bird and a voice — and she is perhaps the least rehabilitated figure in the whole corpus.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-irish-cycles-1">Macalister, R. A. S., ed. and trans., Lebor Gabála Érenn, vol. 4 (1941).</li><li id="src-irish-cycles-2">Gray, Elizabeth A., ed. and trans., Cath Maige Tuired, Irish Texts Society 52 (1982).</li><li id="src-irish-cycles-3">O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (1976).</li><li id="src-irish-cycles-4">Stokes, Whitley, ed. and trans., &#39;The Death of Cú Chulainn&#39;, Revue Celtique 3 (1877).</li><li id="src-irish-cycles-5">Meyer, Kuno, ed., &#39;Sanas Cormaic&#39;, Anecdota from Irish Manuscripts 4 (1912), s.v. Neth.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="welsh-sources">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">13</span>
+        <h2 class="scholars-section-title">Welsh Sources</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>The Welsh corpus is silent on Badb, and the silence deserves to be recorded rather than repaired. Neither the <em>Mabinogi</em> nor the wider Brythonic tradition preserves a figure derived from the same name, and no convincing Welsh counterpart has been established by the modern handbooks.<sup class="scholars-cite"><a href="#src-welsh-sources-1">[1]</a></sup></p>
+<p>The instructive comparison therefore runs not west to Wales but east to Gaul. The altar from Mieussy in Haute-Savoie dedicates to <strong>Cathubodua</strong> — <em>catu-</em>bodwā, 'battle-crow' — the exact reverse compound of the Irish <em>badb catha</em>: the crow of battle turns out to be old Celtic common property, named in stone on the continent and in saga in Ireland, with Wales simply absent from the attestation map.<sup class="scholars-cite"><a href="#src-welsh-sources-2">[2]</a></sup> Where the Irish war-goddess complex is rich and tripled, the Welsh tradition distributes its war and sovereignty figures otherwise; the honest note is that the two insular traditions did not divide the same inheritance evenly.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-welsh-sources-1">Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Badb.</li><li id="src-welsh-sources-2">Delamarre, Xavier, Dictionnaire de la langue gauloise (Paris: Errance, 2003), s.v. catu-, boduā.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="inscriptions">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">14</span>
+        <h2 class="scholars-section-title">Inscriptions & Seals</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        
+        <p>No inscription names Badb. <strong>Ogham</strong>, the early Irish monumental script of roughly the fourth to seventh centuries, survives on some four hundred stones bearing mostly personal names in formulaic genitives; no reading of this theonym has been proposed for any of them, and none would be expected — ogham stones mark graves and boundaries, not votive dedications.<sup class="scholars-cite"><a href="#src-inscriptions-1">[1]</a></sup></p>
+<p>The nearest epigraphic witness to her name is continental and exact: the altar from Mieussy in Haute-Savoie dedicated to <strong>Cathubodua</strong>, <em>catu-</em>bodwā, 'battle-crow' — the precise reverse compound of the Irish <em>badb catha</em>. The inscription proves that the crow-of-battle formation predates and outreaches the Irish literary tradition; it remains comparative evidence, never an identification of the Irish goddess with the Gaulish one.<sup class="scholars-cite"><a href="#src-inscriptions-2">[2]</a></sup> The epigraphic silence at home is characteristic of Irish paganism, whose cult left place-names and literature rather than stone.</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-inscriptions-1">McManus, Damian, A Guide to Ogam, Maynooth Monographs 4 (Maynooth: An Sagart, 1991).</li><li id="src-inscriptions-2">Delamarre, Xavier, Dictionnaire de la langue gauloise (Paris: Errance, 2003), s.v. boduā; Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.v. Cathubodua.</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section" id="meditation">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">15</span>
+        <h2 class="scholars-section-title">Meditation & Reflection</h2>
+        <span class="scholars-section-status">Contributed by PuniCodex Team</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Contemplative or interpretive essay on the figure's enduring meaning.</p>
+        <p>Badb is the rare theonym that refuses to be a metaphor: the word for the bird and the name of the goddess are one, and the medieval writers never felt the need to choose between them. To name her is already to say what she does. Other gods have attributes; she has a species — the grey scald-crow that comes down to the field when the field is finished, and the texts simply ask us to understand that the bird knew all along.<sup class="scholars-cite"><a href="#src-meditation-1">[1]</a></sup></p>
+<p>Her power is the moment before. In no surviving text does she strike a blow: she shrieks over the marching column, washes at the boundary water, settles on the pillar-stone — the goddess of foreknowledge and of aftermath, of everything in a battle except the fighting. That is not a small dossier but a strange and exact one: she is what war feels like to those who already know its end. The name keeps the question open in every grey bird on a fence-post: if you could see the end of the day at its beginning, what would you do with the hours between?</p><div class="scholars-sources"><h4>Sources</h4><ol><li id="src-meditation-1">Dictionary of the Irish Language (Royal Irish Academy, 1913–76; eDIL 2019), s.v. badb; O&#39;Rahilly, Cecile, ed. and trans., Táin Bó Cúailnge, Recension 1 (1976).</li></ol></div>
+    </div>
+</section>
+
+<section class="scholars-section scholars-edit-history" id="edit-history">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">16</span>
+        <h2 class="scholars-section-title">Edit History</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Immutable revision timeline and attribution.</p>
+        <div class="scholars-empty-state">
+            <p>Every approved change will appear here with a timestamp, diff, and credit to the contributing university and student.</p>
+        </div>
+    </div>
+</section>
+
+<section class="scholars-section" id="attribution">
+    <div class="scholars-section-header">
+        <span class="scholars-section-number">17</span>
+        <h2 class="scholars-section-title">Attribution</h2>
+        <span class="scholars-section-status meta">Live Record</span>
+    </div>
+    <div class="scholars-section-body">
+        <p class="scholars-section-purpose">Universities and students credited for contributions.</p>
+        <div class="scholars-empty-state">
+            <p>Verified universities and their students will be credited here as the Scholarly Edition grows.</p>
+        </div>
+    </div>
+</section>
+    </main>
+
+
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="section footer-section">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-block">
+                <span class="footer-label">Unicode Restoration</span>
+                <span class="footer-value">Badb</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Scholarly Transliteration</span>
+                <span class="footer-value">—</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Pantheon</span>
+                <span class="footer-value">celtic</span>
+            </div>
+            <div class="footer-block">
+                <span class="footer-label">Classification</span>
+                <span class="footer-value">Tier-2</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Part of the <a href="https://punicodex.com/">PUNICODEX</a> temple network.</p>
+            <p class="footer-legal">Scholarly Edition content is contributed under CC BY 4.0 and reviewed by PUNICODEX curators.</p>
+        </div>
+    </div>
+</footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script>/**
+ * PuniCodex — Scholarly Edition Markdown Renderer
+ *
+ * Dual-mode renderer: loadable via require() in Node (build-time baking in
+ * scripts/generate-scholars.js) and inlineable verbatim into a browser
+ * <script> block (runtime refresh from the Scholars API, exposed as
+ * `PxScholarsMarkdown`). Both environments must produce byte-identical HTML,
+ * so the generator injects this file's raw source into the page.
+ *
+ * Security: ALL input is HTML-escaped before any transform runs. Transforms
+ * only ever re-emit escaped text wrapped in our own trusted tags — raw HTML
+ * can never reach the output.
+ */
+
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (root) root.PxScholarsMarkdown = api;
+})(typeof self !== 'undefined' ? self : globalThis, () => {
+  const ESCAPE_MAP = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+
+  const ENTRY_ID_RE = /^[a-z0-9-]+$/;
+  const SAFE_URL_RE = /^https?:\/\//i;
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, (ch) => ESCAPE_MAP[ch]);
+  }
+
+  function sanitizeSectionKey(sectionKey) {
+    return String(sectionKey || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
+  // Inline transforms. `escaped` is ALWAYS pre-escaped text; replacements
+  // re-emit slices of it inside trusted tags only.
+  function renderInline(escaped, sectionKey) {
+    let out = escaped;
+
+    // Crosslinks: [[entry-id|Display Text]] or [[entry-id]].
+    out = out.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, id, label) => {
+      const entryId = id.trim();
+      if (!ENTRY_ID_RE.test(entryId)) return match;
+      const text = label ? label.trim() : entryId;
+      return `<a class="scholars-xlink" href="/${entryId}/">${text}</a>`;
+    });
+
+    // External links: [text](https://example.com). Only http/https allowed.
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, text, url) => {
+      if (!SAFE_URL_RE.test(url)) return match;
+      return `<a class="scholars-ext" href="${url}" rel="noopener noreferrer" target="_blank">${text}</a>`;
+    });
+
+    // Citations: [^n] -> superscript anchor into the section's sources list.
+    out = out.replace(
+      /\[\^(\d+)\]/g,
+      (_match, n) => `<sup class="scholars-cite"><a href="#src-${sectionKey}-${n}">[${n}]</a></sup>`
+    );
+
+    // Emphasis: bold before italic, no nesting.
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    return out;
+  }
+
+  // One blank-line-separated block: headings, list runs, and paragraphs.
+  function renderBlock(block, sectionKey) {
+    const lines = block.split('\n');
+    let html = '';
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i];
+      if (line.startsWith('### ')) {
+        html += `<h3 class="scholars-h3">${renderInline(line.slice(4), sectionKey)}</h3>`;
+        i += 1;
+      } else if (line.startsWith('- ')) {
+        const items = [];
+        while (i < lines.length && lines[i].startsWith('- ')) {
+          items.push(`<li>${renderInline(lines[i].slice(2), sectionKey)}</li>`);
+          i += 1;
+        }
+        html += `<ul class="scholars-list">${items.join('')}</ul>`;
+      } else {
+        const para = [];
+        while (i < lines.length && !lines[i].startsWith('### ') && !lines[i].startsWith('- ')) {
+          para.push(renderInline(lines[i], sectionKey));
+          i += 1;
+        }
+        html += `<p>${para.join('<br>')}</p>`;
+      }
+    }
+    return html;
+  }
+
+  function renderMarkdown(body, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (body == null || String(body).trim() === '') return '';
+    const escaped = escapeHtml(body).replace(/\r\n?/g, '\n');
+    const out = [];
+    for (const block of escaped.split(/\n\n+/)) {
+      const trimmed = block.trim();
+      if (trimmed === '') continue;
+      out.push(renderBlock(trimmed, sectionKey));
+    }
+    return out.join('\n');
+  }
+
+  function renderSources(sources, opts = {}) {
+    const sectionKey = sanitizeSectionKey(opts.sectionKey);
+    if (!Array.isArray(sources) || sources.length === 0) return '';
+    const items = sources.map((source, index) => {
+      const citation =
+        typeof source === 'string' ? source : source?.citation || JSON.stringify(source);
+      const url = source && typeof source === 'object' ? source.url : null;
+      let html = escapeHtml(citation);
+      if (url && SAFE_URL_RE.test(String(url))) {
+        html += ` <a class="scholars-ext" href="${escapeHtml(
+          String(url)
+        )}" rel="noopener noreferrer" target="_blank">↗</a>`;
+      }
+      return `<li id="src-${sectionKey}-${index + 1}">${html}</li>`;
+    });
+    return `<div class="scholars-sources"><h4>Sources</h4><ol>${items.join('')}</ol></div>`;
+  }
+
+  return { renderMarkdown, renderSources };
+});
+</script>
+    <script>
+    (function() {
+        const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || 'badb';
+        const apiBase = '/api/v1/scholars/';
+        let currentUser = null;
+        let sessionExpired = false;
+
+        function getSessionId() {
+            return localStorage.getItem('scholars_session');
+        }
+
+        async function api(path, options = {}) {
+            const sessionId = getSessionId();
+            const res = await fetch(apiBase + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(sessionId ? { 'x-scholars-session': sessionId } : {}),
+                    ...(options.headers || {}),
+                },
+            });
+            const data = await res.json().catch(() => ({ success: false, error: 'Invalid response' }));
+            if (res.status === 401 && getSessionId()) {
+                localStorage.removeItem('scholars_session');
+                currentUser = null;
+                sessionExpired = true;
+                renderAuthState();
+            }
+            return { ok: res.ok, status: res.status, data };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+
+        function getLoginUrl() {
+            const redirect = encodeURIComponent(window.location.href);
+            return `/scholars/login/?redirect=${redirect}`;
+        }
+
+        async function loadSession() {
+            const { data } = await api('/auth/session');
+            currentUser = data?.data?.user || null;
+            if (currentUser) {
+                document.body.classList.add('scholars-logged-in');
+                document.body.dataset.scholarsRole = currentUser.role;
+            }
+            renderAuthState();
+        }
+
+        function renderAuthState() {
+            const existing = document.getElementById('scholars-auth-banner');
+            if (existing) existing.remove();
+
+            const main = document.querySelector('main.container');
+            if (!main) return;
+
+            const banner = document.createElement('div');
+            banner.id = 'scholars-auth-banner';
+            banner.className = 'scholars-auth-banner' + (currentUser ? ' logged-in' : '');
+
+            if (currentUser) {
+                const actions = [];
+                if (currentUser.role === 'curator') {
+                    actions.push('<a href="/scholars/admin/index.html" class="scholars-auth-btn">Curator Admin</a>');
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                } else if (currentUser.role === 'reviewer') {
+                    actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                }
+                if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                    actions.push('<a href="/scholars/institution/index.html" class="scholars-auth-btn">Institution Dashboard</a>');
+                    if (currentUser.role === 'inst_admin' || currentUser.role === 'dept_admin') {
+                        actions.push('<a href="/scholars/review/index.html" class="scholars-auth-btn">Review Queue</a>');
+                    }
+                }
+                actions.push('<button type="button" class="scholars-auth-btn" id="scholars-sign-out">Sign Out</button>');
+
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        Signed in as <strong>${escapeHtml(currentUser.displayName || currentUser.email)}</strong>
+                        <span class="scholars-role-badge">${escapeHtml(currentUser.role)}</span>
+                        ${sessionExpired ? '<div class="scholars-expired-note">Your session expired. Please sign in again.</div>' : ''}
+                    </div>
+                    <div class="scholars-auth-actions">${actions.join('')}</div>
+                `;
+            } else {
+                banner.innerHTML = `
+                    <div class="scholars-auth-message">
+                        ${sessionExpired ? '<strong>Session expired.</strong> Sign in again to propose edits.' : 'Sign in to propose scholarly edits to this temple.'}
+                    </div>
+                    <div class="scholars-auth-actions">
+                        <a href="${escapeHtml(getLoginUrl())}" class="scholars-auth-btn primary">Sign In</a>
+                    </div>
+                `;
+            }
+
+            main.insertBefore(banner, main.firstChild);
+
+            const signOutBtn = document.getElementById('scholars-sign-out');
+            if (signOutBtn) {
+                signOutBtn.addEventListener('click', async () => {
+                    await api('/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('scholars_session');
+                    currentUser = null;
+                    sessionExpired = false;
+                    renderAuthState();
+                    document.querySelectorAll('.scholars-edit-btn').forEach((btn) => btn.remove());
+                });
+            }
+        }
+
+        function canProposeEdit() {
+            if (!currentUser) return false;
+            return ['student', 'reviewer', 'dept_admin', 'inst_admin', 'curator'].includes(currentUser.role);
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        async function loadTemple() {
+            const { ok, data } = await api(`/temples/${templeId}`);
+            if (!ok || !data?.data) return;
+            const temple = data.data;
+            const sections = temple.sections || [];
+            const contributors = new Map();
+
+            for (const section of sections) {
+                const el = document.getElementById(section.key);
+                if (!el) continue;
+                const statusEl = el.querySelector('.scholars-section-status');
+                const bodyEl = el.querySelector('.scholars-section-body');
+                if (statusEl) {
+                    statusEl.textContent = section.status === 'published'
+                        ? `Contributed by ${section.lastModifiedBy || 'PuniCodex Team'}`
+                        : 'Open for Contribution';
+                    statusEl.className = 'scholars-section-status ' + (section.status === 'published' ? '' : 'empty');
+                }
+                if (section.status === 'published' && section.body) {
+                    const purposeEl = bodyEl.querySelector('.scholars-section-purpose');
+                    const purposeHtml = purposeEl ? purposeEl.outerHTML : '';
+                    bodyEl.innerHTML = purposeHtml
+                        + PxScholarsMarkdown.renderMarkdown(section.body, { sectionKey: section.key })
+                        + PxScholarsMarkdown.renderSources(section.sources, { sectionKey: section.key });
+                    const history = await loadSectionHistory(section.id);
+                    if (history.length > 0) {
+                        const latest = history[0];
+                        const attr = latest.attribution || {};
+                        const credit = attr.userId ? `Contributed by ${latest.display_name || latest.email || 'a scholar'} on ${formatDate(latest.applied_at)}.` : `Migrated on ${formatDate(latest.applied_at)}.`;
+                        bodyEl.innerHTML += `<div class="scholars-attribution-line">${escapeHtml(credit)}</div>`;
+                        addHistoryEntries(section, history);
+                        collectContributors(contributors, section, history);
+                    }
+                }
+                if (canProposeEdit()) {
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'scholars-edit-btn';
+                    editBtn.textContent = 'Propose Edit';
+                    editBtn.onclick = () => openEditor(section, el);
+                    const header = el.querySelector('.scholars-section-header');
+                    if (header) header.appendChild(editBtn);
+                }
+            }
+
+            renderAttribution(contributors);
+
+            document.querySelectorAll('[data-scholars-contribute]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!currentUser) {
+                        window.location.href = getLoginUrl();
+                        return;
+                    }
+                    const sectionEl = link.closest('.scholars-section');
+                    if (!sectionEl) return;
+                    const section = sections.find((s) => s.key === sectionEl.id);
+                    if (section) openEditor(section, sectionEl);
+                });
+            });
+        }
+
+        async function loadSectionHistory(sectionId) {
+            const { ok, data } = await api(`/sections/${sectionId}/history?limit=20`);
+            if (!ok || !data?.data) return [];
+            return data.data;
+        }
+
+        function addHistoryEntries(section, history) {
+            const historySection = document.getElementById('edit-history');
+            if (!historySection) return;
+            const statusEl = historySection.querySelector('.scholars-section-status');
+            const bodyEl = historySection.querySelector('.scholars-section-body');
+            if (statusEl) {
+                statusEl.textContent = 'Revisions';
+                statusEl.className = 'scholars-section-status';
+            }
+            // Clear empty state on first populated section.
+            if (!historySection.dataset.initialized) {
+                bodyEl.innerHTML = '<div class="scholars-history-list"></div>';
+                historySection.dataset.initialized = 'true';
+            }
+            const list = historySection.querySelector('.scholars-history-list');
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const author = escapeHtml(h.display_name || h.email || 'Unknown');
+                const item = document.createElement('div');
+                item.className = 'scholars-history-item';
+                item.innerHTML = `<strong>${escapeHtml(section.label)}</strong> · ${formatDate(h.applied_at)} · ${author}`;
+                list.appendChild(item);
+            }
+        }
+
+        function collectContributors(contributors, section, history) {
+            for (const h of history) {
+                const attr = h.attribution || {};
+                const name = h.display_name || h.email || null;
+                if (!attr.userId || !name) continue;
+                const institution = attr.institution || attr.institutionName || attr.institution_name || null;
+                const key = String(attr.userId);
+                let entry = contributors.get(key);
+                if (!entry) {
+                    entry = { name, institution, sections: [], latest: null };
+                    contributors.set(key, entry);
+                }
+                if (institution && !entry.institution) entry.institution = institution;
+                if (!entry.sections.includes(section.label)) entry.sections.push(section.label);
+                if (!entry.latest || new Date(h.applied_at) > new Date(entry.latest)) {
+                    entry.latest = h.applied_at;
+                }
+            }
+        }
+
+        function renderAttribution(contributors) {
+            if (contributors.size === 0) return;
+            const attrSection = document.getElementById('attribution');
+            if (!attrSection) return;
+            const statusEl = attrSection.querySelector('.scholars-section-status');
+            const bodyEl = attrSection.querySelector('.scholars-section-body');
+            if (!bodyEl) return;
+            const items = [];
+            for (const c of contributors.values()) {
+                const details = [];
+                if (c.institution) details.push(escapeHtml(c.institution));
+                details.push(`Sections: ${c.sections.map(escapeHtml).join(', ')}`);
+                if (c.latest) details.push(`Latest: ${formatDate(c.latest)}`);
+                items.push(`<li><strong>${escapeHtml(c.name)}</strong> — ${details.join(' · ')}</li>`);
+            }
+            bodyEl.innerHTML = `<ul class="scholars-attribution-list">${items.join('')}</ul>`;
+            if (statusEl) {
+                statusEl.textContent = 'Contributors';
+                statusEl.className = 'scholars-section-status';
+            }
+        }
+
+        function openEditor(section, el) {
+            const existing = el.querySelector('.scholars-editor');
+            if (existing) return;
+            const editor = document.createElement('div');
+            editor.className = 'scholars-editor';
+            editor.innerHTML = `
+                <label>Scholarly content</label>
+                <textarea rows="8" placeholder="Write the ${escapeHtml(section.label)} section here. Cite sources.">${escapeHtml(section.body || '')}</textarea>
+                <label>Sources (one per line)</label>
+                <textarea rows="3" class="sources-input" placeholder="Author, Title, Year, URL/DOI">${escapeHtml((section.sources || []).map((s) => typeof s === 'string' ? s : s.citation || '').join('\n'))}</textarea>
+                <div class="scholars-media-upload">
+                    <label>Media attachments</label>
+                    <input type="file" accept="image/webp,image/png,image/jpeg" class="media-file-input">
+                    <button type="button" class="upload-media-btn" style="background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.2); padding: 0.45rem 0.9rem; border-radius: 6px; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer;">Upload Image</button>
+                    <div class="upload-status"></div>
+                    <div class="scholars-media-list"></div>
+                </div>
+                <div class="scholars-editor-actions">
+                    <button class="submit-edit">Submit for Review</button>
+                    <button class="cancel-edit">Cancel</button>
+                </div>
+                <div class="editor-message"></div>
+            `;
+            el.appendChild(editor);
+
+            const uploadedMedia = [];
+            const mediaList = editor.querySelector('.scholars-media-list');
+            const uploadStatus = editor.querySelector('.upload-status');
+
+            function renderMediaItem(item) {
+                const div = document.createElement('div');
+                div.className = 'scholars-media-item';
+                div.innerHTML = `
+                    <img src="${escapeHtml(item.url)}" alt="" class="scholars-media-thumb">
+                    <span class="media-status">${escapeHtml(item.status)}</span>
+                `;
+                mediaList.appendChild(div);
+            }
+
+            editor.querySelector('.upload-media-btn').onclick = async () => {
+                const input = editor.querySelector('.media-file-input');
+                const file = input.files[0];
+                if (!file) {
+                    uploadStatus.textContent = 'Select an image first.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                if (!['image/webp', 'image/png', 'image/jpeg'].includes(file.type)) {
+                    uploadStatus.textContent = 'Only WebP, PNG, and JPEG images are allowed.';
+                    uploadStatus.className = 'upload-status error';
+                    return;
+                }
+                uploadStatus.textContent = 'Uploading…';
+                uploadStatus.className = 'upload-status';
+                const reader = new FileReader();
+                reader.onload = async () => {
+                    const base64 = reader.result;
+                    const { ok, data } = await api('/media', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            data: base64,
+                            filename: file.name,
+                            mimeType: file.type,
+                        }),
+                    });
+                    if (ok && data?.data) {
+                        uploadStatus.textContent = 'Image uploaded and awaiting review.';
+                        uploadStatus.className = 'upload-status success';
+                        const item = { mediaId: data.data.mediaId, url: data.data.url, status: data.data.status };
+                        uploadedMedia.push(item);
+                        renderMediaItem(item);
+                        input.value = '';
+                    } else {
+                        uploadStatus.textContent = data?.error || 'Upload failed.';
+                        uploadStatus.className = 'upload-status error';
+                    }
+                };
+                reader.onerror = () => {
+                    uploadStatus.textContent = 'Could not read file.';
+                    uploadStatus.className = 'upload-status error';
+                };
+                reader.readAsDataURL(file);
+            };
+
+            editor.querySelector('.cancel-edit').onclick = () => editor.remove();
+            editor.querySelector('.submit-edit').onclick = async () => {
+                const body = editor.querySelector('textarea').value.trim();
+                const sourcesText = editor.querySelector('.sources-input').value.trim();
+                const sources = sourcesText ? sourcesText.split('\n').map((s) => s.trim()).filter(Boolean).map((citation) => ({ citation })) : [];
+                const { ok, data } = await api(`/temples/${templeId}/sections/${section.key}/edits`, {
+                    method: 'POST',
+                    body: JSON.stringify({ proposedBody: body, proposedSources: sources, proposedMedia: uploadedMedia }),
+                });
+                const msg = editor.querySelector('.editor-message');
+                if (ok) {
+                    msg.textContent = 'Edit submitted for review.';
+                    msg.className = 'editor-message success';
+                    setTimeout(() => editor.remove(), 1500);
+                } else if (data?.code === 401 || data?.error?.toLowerCase().includes('session') || data?.error?.toLowerCase().includes('unauthorized')) {
+                    msg.textContent = 'Your session expired. Redirecting to sign in…';
+                    msg.className = 'editor-message error';
+                    setTimeout(() => { window.location.href = getLoginUrl(); }, 1200);
+                } else {
+                    msg.textContent = data?.error || 'Failed to submit edit.';
+                    msg.className = 'editor-message error';
+                }
+            };
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadSession();
+            await loadTemple();
+        });
+    })();
+    </script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

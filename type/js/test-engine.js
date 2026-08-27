@@ -334,22 +334,22 @@ test('Correct pantheon counts', () => {
   LEXICON.forEach((e) => {
     counts[e.pantheon] = (counts[e.pantheon] || 0) + 1;
   });
-  assert.strictEqual(counts.greek, 271, 'Greek count');
+  assert.strictEqual(counts.greek, 274, 'Greek count');
   assert.strictEqual(counts['greek-location'], 24, 'Greek-location count');
-  assert.strictEqual(counts.norse, 94, 'Norse count');
+  assert.strictEqual(counts.norse, 95, 'Norse count');
   assert.strictEqual(counts.egyptian, 66, 'Egyptian count');
-  assert.strictEqual(counts.sanskrit, 99, 'Sanskrit count');
+  assert.strictEqual(counts.sanskrit, 100, 'Sanskrit count');
   assert.strictEqual(counts.celtic, 49, 'Celtic count');
   assert.strictEqual(counts.mesopotamian, 30, 'Mesopotamian count');
   assert.strictEqual(counts.polynesian, 24, 'Polynesian count');
   assert.strictEqual(counts.japanese, 45, 'Japanese count');
-  assert.strictEqual(counts.nahuatl, 30, 'Nahuatl count');
-  assert.strictEqual(counts.yoruba, 20, 'Yoruba count');
+  assert.strictEqual(counts.nahuatl, 31, 'Nahuatl count');
+  assert.strictEqual(counts.yoruba, 21, 'Yoruba count');
   assert.strictEqual(counts.aboriginal, 12, 'Aboriginal count');
   assert.strictEqual(counts.slavic, 21, 'Slavic count');
   assert.strictEqual(counts.zoroastrian, 20, 'Zoroastrian count');
   assert.strictEqual(counts.incan, 11, 'Incan count');
-  assert.strictEqual(counts.chinese, 58, 'Chinese count');
+  assert.strictEqual(counts.chinese, 59, 'Chinese count');
   assert.strictEqual(counts.buddhist, 26, 'Buddhist count');
   assert.strictEqual(counts.taoist, 12, 'Taoist count');
   assert.strictEqual(counts.korean, 12, 'Korean count');
