@@ -88,6 +88,8 @@ const scripts = [
   'scripts/stamp-asset-versions.js',
   // Home-page fleet stats from canonical sources (never hand-maintained).
   'scripts/sync-hero-stats.js',
+  // Stale counter sweep for hand-edited marketing/pitch pages.
+  'scripts/sync-stale-counters.js',
   'scripts/gen-sitemap.js',
   'scripts/inject-analytics.js',
   'scripts/inject-university-collaborators.js',

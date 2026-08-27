@@ -218,7 +218,7 @@ const lines = [
     '/**',
     ' * PuniCodex — Central Archetype Database',
     ' * Handcrafted flagship temples only.',
-    ` * ${allEntries.length} handcrafted archetypes.`,
+    ` * ${allEntries.length} handcrafted archetypes (${allEntries.filter((a) => a.built).length} built, ${allEntries.filter((a) => !a.built).length} awaiting).`,
     ' */',
     '',
     'const ARCHETYPES = [',

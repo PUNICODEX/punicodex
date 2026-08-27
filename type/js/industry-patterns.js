@@ -1551,8 +1551,6 @@ const INDUSTRY_GROUPS = [
       { id: 'kleio', weight: 2, why: 'The Muse of History herself — she who proclaims glory; every archive\'s first page is hers.' },
       { id: 'mnemosyne', weight: 2, why: 'Memory personified, mother of the Muses — the archive is her household by birthright.' },
       { id: 'thoth', weight: 2, why: 'The divine scribe — writing itself was his gift; every record ever kept runs on his invention.' },
-      { id: 'urdr', weight: 2, why: 'The Norn of the Past — the Norse memory of what has been, spinning the record at the well.' },
-      { id: 'calliope', weight: 1, why: 'The epic voice — the great deeds set down in verse so they outlive the doers.' },
       { id: 'kongzi', weight: 1, why: 'The great compiler — he edited the classics and preserved the record of a civilization.' },
       { id: 'bragi', weight: 1, why: "The skald-god — deeds held in poetry, the North\'s own way of keeping the record." },
     ],
