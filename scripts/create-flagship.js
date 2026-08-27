@@ -56,7 +56,10 @@ function getBespokeEffectJs(id) {
 
 function applyBespokeCanvas(html, id, primary, secondary) {
   const canvasId = BESPOKE_EFFECTS[id]?.canvasId;
-  if (!canvasId) return html;
+  // Only swap to the bespoke canvas when both the effect registry entry AND
+  // the per-temple effect script exist. Otherwise keep the data-effect canvas
+  // so the shared flagship-canvas.js library can render a fallback effect.
+  if (!canvasId || !getBespokeEffectJs(id)) return html;
   return html.replace(
     /<canvas\s+id="[^"]*-canvas"\s+data-effect="[^"]*"\s+data-primary="[^"]*"\s+data-secondary="[^"]*"[^>]*><\/canvas>/g,
     `<canvas id="${canvasId}" class="hero-canvas" data-primary="${primary}" data-secondary="${secondary}" aria-hidden="true"></canvas>`
