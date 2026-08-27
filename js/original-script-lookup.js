@@ -3908,6 +3908,16 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Greek",
     "scriptLabel": "Original Script"
   },
+  "tonatiuh": {
+    "originalScript": "Tōnatiuh",
+    "scriptName": "Colonial Nahuatl (Latin script)",
+    "scriptLabel": "Original Script"
+  },
+  "oduduwa": {
+    "originalScript": "Òdùduwà",
+    "scriptName": "Yoruba (modern Latin orthography)",
+    "scriptLabel": "Original Script"
+  },
   "shangdi": {
     "originalScript": "上帝",
     "scriptName": "Chinese characters",
@@ -3916,6 +3926,11 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "jagannatha": {
     "originalScript": "जगन्नाथ",
     "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "jord": {
+    "originalScript": "ᛁᚬᚱᚦ",
+    "scriptName": "Younger Futhark",
     "scriptLabel": "Original Script"
   },
   "audhumla": {
