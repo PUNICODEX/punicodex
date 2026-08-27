@@ -17,18 +17,18 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 62,663 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 15,334 | `data/corpus/chat-eval.jsonl` |
-| **Total** | **77,997** | — |
+| Train | 62,671 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 15,335 | `data/corpus/chat-eval.jsonl` |
+| **Total** | **78,006** | — |
 
 Source corpora:
-- `instructions.jsonl`: 9,250 examples
+- `instructions.jsonl`: 9,253 examples
 - `safety-examples.jsonl`: 44,942 examples
 - `dialogue-examples.jsonl`: 3,566 examples
 - `tool-use-examples.jsonl`: 4,883 examples
-- `multimodal-examples.jsonl`: 2,376 examples
+- `multimodal-examples.jsonl`: 2,379 examples
 - `preference-examples.jsonl`: 3,987 examples
-- `reasoning-examples.jsonl`: 3,876 examples
+- `reasoning-examples.jsonl`: 3,879 examples
 - `mythology-synthesis.jsonl`: 404 examples
 - `oracle-examples.jsonl`: 1,977 examples
 - `symbolic-correspondences.jsonl`: 1,236 examples
@@ -71,7 +71,7 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 5,865 training documents (732,682 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 5,868 training documents (733,216 whitespace tokens).
 - `data/corpus/pretrain-validation.jsonl` — 296 validation documents (38,903 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 

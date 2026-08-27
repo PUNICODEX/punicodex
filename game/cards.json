@@ -10,22 +10,22 @@
     ],
     "spec": "docs/card-game-spec.md",
     "counts": {
-      "total": 2133,
+      "total": 2136,
       "standard": 1793,
-      "originalScript": 340,
+      "originalScript": 343,
       "flagship": 1218,
       "byEdition": {
         "common": 406,
         "holo": 406,
         "full-art": 406,
-        "secret": 340,
+        "secret": 343,
         "archive": 575
       },
       "byRarity": {
         "common": 567,
         "rare": 748,
         "legendary": 406,
-        "mythic": 340,
+        "mythic": 343,
         "uncommon": 72
       }
     }
@@ -20777,7 +20777,7 @@
       "domain": "Phonological Reconstruction, Wind, Air, Storms, Kingship",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 8,
+      "cost": 7,
       "power": 91,
       "health": 92,
       "speed": 3,
@@ -25093,7 +25093,7 @@
       "domain": "Creation, Purity, Peace",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 6,
+      "cost": 5,
       "power": 84,
       "health": 86,
       "speed": 7,
@@ -45684,7 +45684,7 @@
       "domain": "Dwarf Smith, Fafnir's Brother",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 3,
+      "cost": 2,
       "power": 63,
       "health": 94,
       "speed": 7,
@@ -57708,7 +57708,7 @@
       "domain": "Wisdom, Divination, Ifá",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 6,
+      "cost": 5,
       "power": 88,
       "health": 82,
       "speed": 6,
@@ -64694,7 +64694,7 @@
       "domain": "Sea, Protection, Seafaring",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 8,
+      "cost": 7,
       "power": 86,
       "health": 97,
       "speed": 4,
@@ -65161,7 +65161,7 @@
       "domain": "Moon, Immortality, Mid-Autumn",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 7,
+      "cost": 6,
       "power": 93,
       "health": 83,
       "speed": 6,
@@ -87683,7 +87683,7 @@
       "domain": "Vital Essence, Life Force",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 4,
+      "cost": 3,
       "power": 89,
       "health": 73,
       "speed": 5,
@@ -106364,7 +106364,7 @@
       "domain": "Confucius, Moral Teaching, Ritual",
       "rarity": "mythic",
       "rarityOrder": 6,
-      "cost": 5,
+      "cost": 4,
       "power": 96,
       "health": 70,
       "speed": 4,
@@ -106818,7 +106818,7 @@
       "setId": "first-restoration",
       "name": "Tōnatiuh",
       "ascii": "tonatiuh",
-      "original": "—",
+      "original": "Tōnatiuh",
       "pantheon": "nahuatl",
       "category": "celestial",
       "categoryLabel": "Celestial",
@@ -106867,7 +106867,7 @@
       "setId": "first-restoration",
       "name": "Tōnatiuh",
       "ascii": "tonatiuh",
-      "original": "—",
+      "original": "Tōnatiuh",
       "pantheon": "nahuatl",
       "category": "celestial",
       "categoryLabel": "Celestial",
@@ -106917,7 +106917,7 @@
       "setId": "first-restoration",
       "name": "Tōnatiuh",
       "ascii": "tonatiuh",
-      "original": "—",
+      "original": "Tōnatiuh",
       "pantheon": "nahuatl",
       "category": "celestial",
       "categoryLabel": "Celestial",
@@ -106968,6 +106968,66 @@
       }
     },
     {
+      "id": "tonatiuh-secret",
+      "entryId": "tonatiuh",
+      "baseCardId": "tonatiuh-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Tōnatiuh",
+      "ascii": "tonatiuh",
+      "original": "Tōnatiuh",
+      "pantheon": "nahuatl",
+      "category": "celestial",
+      "categoryLabel": "Celestial",
+      "categoryIcon": "☉",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Sun, Heat, Fifth Age",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 6,
+      "power": 86,
+      "health": 84,
+      "speed": 4,
+      "ability": {
+        "id": "ability-tonatiuh",
+        "entryId": "tonatiuh",
+        "name": "Sun",
+        "description": "Halve an enemy card’s speed. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "slow-enemy",
+              "target": "enemy-minion"
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "The stories of Tōnatiuh circulate within the Nahuatl corpus, where the figure embodies sun, heat, fifth age.",
+      "flagship": true,
+      "ownedDomain": "tōnatiuh.com",
+      "art": {
+        "mascot": "/sites/tonatiuh/assets/tonatiuh_mascot.webp",
+        "logomark": "/sites/tonatiuh/assets/tonatiuh_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/tonatiuh_comp-canvas.png",
+        "colors": {
+          "primary": "#50C878",
+          "secondary": "#2F2F2F",
+          "glow": "rgba(80,200,120,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
+    },
+    {
       "id": "oduduwa-common",
       "entryId": "oduduwa",
       "baseCardId": "oduduwa-common",
@@ -106976,7 +107036,7 @@
       "setId": "first-restoration",
       "name": "Odùduwà",
       "ascii": "oduduwa",
-      "original": "—",
+      "original": "Òdùduwà",
       "pantheon": "yoruba",
       "category": "deity",
       "categoryLabel": "Deity",
@@ -107026,7 +107086,7 @@
       "setId": "first-restoration",
       "name": "Odùduwà",
       "ascii": "oduduwa",
-      "original": "—",
+      "original": "Òdùduwà",
       "pantheon": "yoruba",
       "category": "deity",
       "categoryLabel": "Deity",
@@ -107077,7 +107137,7 @@
       "setId": "first-restoration",
       "name": "Odùduwà",
       "ascii": "oduduwa",
-      "original": "—",
+      "original": "Òdùduwà",
       "pantheon": "yoruba",
       "category": "deity",
       "categoryLabel": "Deity",
@@ -107117,6 +107177,57 @@
         },
         "artist": null
       }
+    },
+    {
+      "id": "oduduwa-secret",
+      "entryId": "oduduwa",
+      "baseCardId": "oduduwa-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Odùduwà",
+      "ascii": "oduduwa",
+      "original": "Òdùduwà",
+      "pantheon": "yoruba",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Progenitor, Ile-Ife, First King",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 8,
+      "power": 92,
+      "health": 100,
+      "speed": 5,
+      "ability": {
+        "id": "ability-oduduwa",
+        "entryId": "oduduwa",
+        "name": "Progenitor",
+        "description": "Your allies gain +1 power. +2 power (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "buff-allies",
+          "power": 3,
+          "health": 0
+        }
+      },
+      "flavor": "The stories of Odùduwà circulate within the Yoruba corpus, where the figure embodies progenitor, ile-ife, first king.",
+      "flagship": true,
+      "ownedDomain": "odùduwà.com",
+      "art": {
+        "mascot": "/sites/oduduwa/assets/oduduwa_mascot.webp",
+        "logomark": "/sites/oduduwa/assets/oduduwa_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/oduduwa_comp-canvas.png",
+        "colors": {
+          "primary": "#D4AF37",
+          "secondary": "#4B0082",
+          "glow": "rgba(212,175,55,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "shangdi-common",
@@ -107547,7 +107658,7 @@
       "setId": "first-restoration",
       "name": "Jǫrð",
       "ascii": "jord",
-      "original": "—",
+      "original": "ᛁᚬᚱᚦ",
       "pantheon": "norse",
       "category": "deity",
       "categoryLabel": "Deity",
@@ -107596,7 +107707,7 @@
       "setId": "first-restoration",
       "name": "Jǫrð",
       "ascii": "jord",
-      "original": "—",
+      "original": "ᛁᚬᚱᚦ",
       "pantheon": "norse",
       "category": "deity",
       "categoryLabel": "Deity",
@@ -107646,7 +107757,7 @@
       "setId": "first-restoration",
       "name": "Jǫrð",
       "ascii": "jord",
-      "original": "—",
+      "original": "ᛁᚬᚱᚦ",
       "pantheon": "norse",
       "category": "deity",
       "categoryLabel": "Deity",
@@ -107695,6 +107806,66 @@
         },
         "artist": null
       }
+    },
+    {
+      "id": "jord-secret",
+      "entryId": "jord",
+      "baseCardId": "jord-common",
+      "edition": "secret",
+      "variant": "original-script",
+      "setId": "first-restoration",
+      "name": "Jǫrð",
+      "ascii": "jord",
+      "original": "ᛁᚬᚱᚦ",
+      "pantheon": "norse",
+      "category": "deity",
+      "categoryLabel": "Deity",
+      "categoryIcon": "✦",
+      "tier": "1",
+      "tierLabel": "Tier 1",
+      "domain": "Earth, Mother of Thor",
+      "rarity": "mythic",
+      "rarityOrder": 6,
+      "cost": 8,
+      "power": 96,
+      "health": 99,
+      "speed": 8,
+      "ability": {
+        "id": "ability-jord",
+        "entryId": "jord",
+        "name": "Earth",
+        "description": "Your allies gain a 2 shield. Its bearer also rallies the pantheon (Full-Art).",
+        "trigger": "on_play",
+        "effect": {
+          "kind": "all",
+          "effects": [
+            {
+              "kind": "shield-allies",
+              "amount": 2
+            },
+            {
+              "kind": "buff-allies",
+              "power": 1,
+              "health": 1
+            }
+          ]
+        }
+      },
+      "flavor": "The stories of Jǫrð circulate within the Norse corpus, where the figure embodies earth, mother of thor.",
+      "flagship": true,
+      "ownedDomain": "jǫrð.com",
+      "art": {
+        "mascot": "/sites/jord/assets/jord_mascot.webp",
+        "logomark": "/sites/jord/assets/jord_logomark.webp",
+        "fullArt": "https://punycodex-masters.vercel.app/jord_comp-canvas.png",
+        "colors": {
+          "primary": "#C0C0C0",
+          "secondary": "#5C9BD1",
+          "glow": "rgba(192,192,192,0.3)"
+        },
+        "artist": null
+      },
+      "foil": true
     },
     {
       "id": "audhumla-common",
