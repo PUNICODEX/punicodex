@@ -23,7 +23,11 @@ const ROOT = path.join(__dirname, '..');
 const ALLOWED = new Set(['.env.example', '.env.sample', '.env.template']);
 
 function gitTracked() {
-  return execFileSync('git', ['ls-files'], { cwd: ROOT, encoding: 'utf8' })
+  return execFileSync('git', ['ls-files'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+    maxBuffer: 32 * 1024 * 1024,
+  })
     .split('\n')
     .filter(Boolean);
 }
