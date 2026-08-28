@@ -1574,7 +1574,6 @@ const LEXICON_IDS = new Set([
   'asanga',
   'aseratu',
   'asgardr',
-  'ashavahishta',
   'ashavahista',
   'asherah',
   'ashur',

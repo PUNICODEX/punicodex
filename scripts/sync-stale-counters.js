@@ -27,40 +27,41 @@ const tier2 = LEXICON.filter((e) => e.tier === '2').length;
 console.log(`Canonical: ${temples} flagships, ${entries} entries, ${pantheons} pantheons, ${domains} domains, ${baseTemples} base temples`);
 
 const replacements = [
-  // index.html title + any remaining 924
+  // index.html title + any remaining stale numbers
   {
     file: 'index.html',
     rules: [
-      [/PUNICODEX — The Unicode Pantheon: 924 Restored Names/g, `PUNICODEX — The Unicode Pantheon: ${entries} Restored Names`],
-      [/Hand-crafting 266 archetype temples/g, `Hand-crafting ${temples} archetype temples`],
+      [/PUNICODEX — The Unicode Pantheon: \d+ Restored Names/g, `PUNICODEX — The Unicode Pantheon: ${entries} Restored Names`],
+      [/Hand-crafting \d+ archetype temples/g, `Hand-crafting ${temples} archetype temples`],
     ],
   },
-  // pantheon OG
+  // pantheon OG + summary
   {
     file: 'pantheon/index.html',
     rules: [
-      [/282 flagship temples/g, `${temples} flagship temples`],
+      [/(The complete Unicode Pantheon: )\d+( flagship temples)/g, `$1${temples}$2`],
+      [/(Enter a temple — )\d+( restored flagships)/g, `$1${temples}$2`],
     ],
   },
   // about page
   {
     file: 'about/index.html',
     rules: [
-      [/927 temples built/g, `${entries} temples built`],
-      [/296 domains registered/gi, `${domains} domains registered`],
-      [/266 world archetypes/gi, `${temples} world archetypes`],
-      [/<span class="stat-num">296<\/span><span class="stat-desc">Domains Registered<\/span>/g, `<span class="stat-num">${domains}</span><span class="stat-desc">Domains Registered</span>`],
-      [/<span class="stat-num">266<\/span><span class="stat-desc">World Archetypes<\/span>/g, `<span class="stat-num">${temples}</span><span class="stat-desc">World Archetypes</span>`],
-      [/<span class="stat-num">927<\/span><span class="stat-desc">Temples Built<\/span>/g, `<span class="stat-num">${entries}</span><span class="stat-desc">Temples Built</span>`],
+      [/(\d+) temples built/g, `${entries} temples built`],
+      [/(\d+) domains registered/gi, `${domains} domains registered`],
+      [/(\d+) world archetypes/gi, `${temples} world archetypes`],
+      [/<span class="stat-num">\d+<\/span><span class="stat-desc">Domains Registered<\/span>/g, `<span class="stat-num">${domains}</span><span class="stat-desc">Domains Registered</span>`],
+      [/<span class="stat-num">\d+<\/span><span class="stat-desc">World Archetypes<\/span>/g, `<span class="stat-num">${temples}</span><span class="stat-desc">World Archetypes</span>`],
+      [/<span class="stat-num">\d+<\/span><span class="stat-desc">Temples Built<\/span>/g, `<span class="stat-num">${entries}</span><span class="stat-desc">Temples Built</span>`],
     ],
   },
   // about founder
   {
     file: 'about/founder/index.html',
     rules: [
-      [/196 flagship temples/g, `${temples} flagship temples`],
-      [/926 restorations/g, `${entries} restorations`],
-      [/196 of them built out as flagships/g, `${temples} of them built out as flagships`],
+      [/(\d+) of them built out as flagships/g, `${temples} of them built out as flagships`],
+      [/(\d+) flagship temples — one per owned domain/g, `${temples} flagship temples — one per owned domain`],
+      [/(\d+) restorations across/g, `${entries} restorations across`],
     ],
   },
   // type page
@@ -76,7 +77,8 @@ const replacements = [
   {
     file: 'herald/index.html',
     rules: [
-      [/927 lexicon entries\. 266 flagship temples\. 24 pantheons\. 296 domains owned/g, `${entries} lexicon entries. ${temples} flagship temples. ${pantheons} pantheons. ${domains} domains owned`],
+      [/(\d+) lexicon entries\. (\d+) flagship temples\. (\d+) pantheons\. (\d+) domains owned/g, `${entries} lexicon entries. ${temples} flagship temples. ${pantheons} pantheons. ${domains} domains owned`],
+      [/(\d+) flagship temples — each a complete scholarly edition/g, `${temples} flagship temples — each a complete scholarly edition`],
       [/two hundred sixty-six flagship temples/g, `${temples} flagship temples`],
       [/two hundred sixty-six times over/g, `${temples} times over`],
     ],
@@ -85,16 +87,16 @@ const replacements = [
   {
     file: 'cards/index.html',
     rules: [
-      [/282 flagship temples/g, `${temples} flagship temples`],
+      [/(\d+) flagship temples and the wider archive/g, `${temples} flagship temples and the wider archive`],
     ],
   },
   // codex building-the-temple
   {
     file: 'codex/building-the-temple/index.html',
     rules: [
-      [/all 927 names/g, `all ${entries} names`],
-      [/generating 680 base temples/g, `generating ${baseTemples} base temples`],
-      [/hand-expanding 235 flagships/g, `hand-expanding ${temples} flagships`],
+      [/all \d+ names/g, `all ${entries} names`],
+      [/generating \d+ base temples/g, `generating ${baseTemples} base temples`],
+      [/hand-expanding \d+ flagships/g, `hand-expanding ${temples} flagships`],
     ],
   },
   // mobile manifest
@@ -215,6 +217,14 @@ const replacements = [
     rules: [
       [/data-count="\d+">0<\/span>\s*<span class="os-stat-label">Canonical lexicon entries<\/span>/g, `data-count="${entries}">0</span>\n            <span class="os-stat-label">Canonical lexicon entries</span>`],
       [/data-count="\d+">0<\/span>\s*<span class="os-stat-label">Flagship temples<\/span>/g, `data-count="${temples}">0</span>\n            <span class="os-stat-label">Flagship temples</span>`],
+      [/(\d+) lexicon entries, original-script provenance/g, `${entries} lexicon entries, original-script provenance`],
+    ],
+  },
+  // rulebook
+  {
+    file: 'rulebook/index.html',
+    rules: [
+      [/every one of the (\d+) lexicon entries/g, `every one of the ${entries} lexicon entries`],
     ],
   },
   // type test page

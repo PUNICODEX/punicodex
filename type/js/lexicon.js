@@ -31365,95 +31365,6 @@ const LEXICON = [
     ]
   },
   {
-    "id": "ashavahishta",
-    "ascii": "ashavahishta",
-    "unicode": "AšaVahišta",
-    "greek": "—",
-    "pantheon": "zoroastrian",
-    "tier": "1",
-    "tierLabel": "Tier 1",
-    "domain": "Truth, Best Order, Fire",
-    "meaning": "Best truth",
-    "sources": [
-      "AirWb",
-      "Bartholomae"
-    ],
-    "breakdown": [
-      {
-        "char": "a",
-        "to": "A",
-        "type": "same",
-        "note": "Same, capitalized"
-      },
-      {
-        "char": "s",
-        "to": "š",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "h",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "v",
-        "to": "V",
-        "type": "same",
-        "note": "Same, capitalized"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "h",
-        "to": "h",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "i",
-        "to": "i",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "s",
-        "to": "š",
-        "type": "special",
-        "note": "Special character"
-      },
-      {
-        "char": "h",
-        "to": "",
-        "type": "drop",
-        "note": "Dropped"
-      },
-      {
-        "char": "t",
-        "to": "t",
-        "type": "same",
-        "note": "Same"
-      },
-      {
-        "char": "a",
-        "to": "a",
-        "type": "same",
-        "note": "Same"
-      }
-    ]
-  },
-  {
     "id": "khshathravairya",
     "ascii": "khshathravairya",
     "unicode": "XšaθraVairya",
@@ -56164,7 +56075,17 @@ const LEXICON = [
     ],
     "domainUnicode": "ašavahišta.com",
     "domainPunycode": "xn--aavahita-5wbf.com",
-    "hasAdSite": true
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "AšaVahišta",
+        "ascii": "ashavahishta",
+        "type": "alt",
+        "label": "Vahišta-with-medial-h",
+        "note": "Alternate Avestan orthography with explicit h before šta; canonical PuniCodex form is Ašavahišta",
+        "sources": ["AirWb", "Bartholomae"]
+      }
+    ]
   },
   {
     "id": "adonis",

@@ -1993,11 +1993,6 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Avestan",
     "scriptLabel": "Original Script"
   },
-  "ashavahishta": {
-    "originalScript": "𐬀𐬴𐬀 𐬬𐬀𐬵𐬌𐬱𐬙𐬀",
-    "scriptName": "Avestan",
-    "scriptLabel": "Original Script"
-  },
   "khshathravairya": {
     "originalScript": "𐬑𐬱𐬀𐬚𐬭𐬀 𐬬𐬀𐬌𐬭𐬌𐬌𐬀",
     "scriptName": "Avestan",
