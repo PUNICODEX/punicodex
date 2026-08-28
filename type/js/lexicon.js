@@ -1,6 +1,6 @@
 /*
  * PUNICODEX Lexicon
- * 978 validated entries across multiple pantheons
+ * 980 validated entries across multiple pantheons
  */
 
 const LEXICON = [
@@ -1682,7 +1682,7 @@ const LEXICON = [
   },
   {
     "id": "epimetheus",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "epimetheus",
     "unicode": "Epimētheús",
     "greek": "Ἐπιμηθεύς",
@@ -1823,7 +1823,8 @@ const LEXICON = [
         "type": "same",
         "note": "Sigma"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "eros",
@@ -2870,7 +2871,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "moirai",
@@ -3331,7 +3333,8 @@ const LEXICON = [
         "type": "length",
         "note": "Long final alpha"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "thebai",
@@ -3590,7 +3593,8 @@ const LEXICON = [
         "type": "same",
         "note": "Sigma"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "boiotia",
@@ -4044,7 +4048,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ragnarok",
@@ -4571,7 +4576,8 @@ const LEXICON = [
         }
       ],
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "thor",
@@ -4837,7 +4843,8 @@ const LEXICON = [
       "protoGloss": "Lord",
       "derivation": "Lord (from *frawjaz)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "freyja",
@@ -4898,7 +4905,8 @@ const LEXICON = [
       "protoGloss": "Lady",
       "derivation": "Lady (from *frawjōn)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "frigg",
@@ -4952,7 +4960,8 @@ const LEXICON = [
       "protoGloss": "Beloved",
       "derivation": "Beloved (from *frijjō)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "njordr",
@@ -5012,7 +5021,8 @@ const LEXICON = [
       "protoGloss": "Vigorous",
       "derivation": "Vigorous (from *nerþuz)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "skadi",
@@ -5066,7 +5076,8 @@ const LEXICON = [
       "protoGloss": "Shadow, harm",
       "derivation": "Shadow, harm (from *skadwō)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "heimdallr",
@@ -5138,7 +5149,8 @@ const LEXICON = [
         "note": "Same"
       }
     ],
-    "variants": []
+    "variants": [],
+    "hasAdSite": true
   },
   {
     "id": "vidarr",
@@ -5233,7 +5245,8 @@ const LEXICON = [
       "protoGloss": "Hidden one",
       "derivation": "Hidden one (from *heljan)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "nidhogg",
@@ -5399,7 +5412,8 @@ const LEXICON = [
       "protoGloss": "Twin, screamer",
       "derivation": "Twin, screamer (from *ymijaz)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "fenrir",
@@ -5452,7 +5466,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ra",
@@ -5629,7 +5644,8 @@ const LEXICON = [
           "Faulkner"
         ]
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "horus",
@@ -5736,7 +5752,8 @@ const LEXICON = [
           "Faulkner"
         ]
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "thoth",
@@ -5907,7 +5924,8 @@ const LEXICON = [
         "note": "Dropped: merged into ḥ"
       }
     ],
-    "variants": []
+    "variants": [],
+    "hasAdSite": true
   },
   {
     "id": "sekhmet",
@@ -5966,7 +5984,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "bastet",
@@ -6020,7 +6039,8 @@ const LEXICON = [
         "note": "Same"
       }
     ],
-    "variants": []
+    "variants": [],
+    "hasAdSite": true
   },
   {
     "id": "hathor",
@@ -6341,7 +6361,8 @@ const LEXICON = [
         "type": "same",
         "note": "Short /a/"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "durga",
@@ -6394,7 +6415,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long /aː/"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "shiva",
@@ -6749,7 +6771,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long /iː/"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "saraswati",
@@ -6826,7 +6849,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long /iː/"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "brahma",
@@ -6940,7 +6964,8 @@ const LEXICON = [
         "note": "Short /a/"
       }
     ],
-    "variants": []
+    "variants": [],
+    "hasAdSite": true
   },
   {
     "id": "indra",
@@ -7211,7 +7236,8 @@ const LEXICON = [
         "type": "special",
         "note": "Long ā on final syllable"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "lugh",
@@ -7379,7 +7405,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "cernunnos",
@@ -7449,7 +7476,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "brigid",
@@ -7501,7 +7529,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "dagda",
@@ -7547,7 +7576,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ishtar",
@@ -7684,7 +7714,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "shamash",
@@ -7743,7 +7774,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped: not represented"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "marduk",
@@ -7985,7 +8017,8 @@ const LEXICON = [
       "protoGloss": "Man",
       "derivation": "Man (from Proto-Polynesian *tane)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "tu",
@@ -8487,7 +8520,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hokkaido",
@@ -8552,7 +8586,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "shikoku",
@@ -8611,7 +8646,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nagoya",
@@ -8664,7 +8700,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "amaterasu",
@@ -8741,7 +8778,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tsukuyomi",
@@ -8812,7 +8850,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "izanagi",
@@ -8871,7 +8910,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "inari",
@@ -8918,7 +8958,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hachiman",
@@ -8983,7 +9024,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "benzaiten",
@@ -9054,7 +9096,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "quetzalcoatl",
@@ -9142,7 +9185,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tezcatlipoca",
@@ -9240,7 +9284,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tlaloc",
@@ -9370,7 +9415,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "chicomecoatl",
@@ -9740,7 +9786,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "xipe",
@@ -9989,7 +10036,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "yemoja",
@@ -10099,7 +10147,8 @@ const LEXICON = [
         "type": "stress",
         "note": "Grave: low tone"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ogun",
@@ -10139,7 +10188,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "obatala",
@@ -10278,7 +10328,8 @@ const LEXICON = [
         "type": "stress",
         "note": "Grave on e"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "dazhbog",
@@ -10336,7 +10387,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "chernobog",
@@ -11761,7 +11813,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tefnut",
@@ -11985,7 +12038,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "garmr",
@@ -12032,7 +12086,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hrungnir",
@@ -12097,7 +12152,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "surtr",
@@ -12203,7 +12259,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "logi",
@@ -12244,7 +12301,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hraesvelgr",
@@ -12439,7 +12497,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "loki",
@@ -12491,7 +12550,8 @@ const LEXICON = [
           "Poetic Edda"
         ]
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "chandra",
@@ -12685,7 +12745,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long a"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "parvati",
@@ -12750,7 +12811,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long i"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kali",
@@ -12860,7 +12922,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long a"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "arjuna",
@@ -13173,7 +13236,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long a"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "angramainyu",
@@ -13668,7 +13732,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "atalanta",
@@ -14818,7 +14883,8 @@ const LEXICON = [
         "type": "length",
         "note": "Eta: long epsilon"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "thetis",
@@ -15202,7 +15268,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long eta"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "narcissus",
@@ -15852,7 +15919,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long eta"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "cassiopeia",
@@ -16247,7 +16315,8 @@ const LEXICON = [
         "type": "same",
         "note": "a same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "phoebe",
@@ -16300,7 +16369,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nyx",
@@ -16388,7 +16458,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hemera",
@@ -16448,7 +16519,8 @@ const LEXICON = [
         "type": "same",
         "note": "a same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "aither",
@@ -16582,7 +16654,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ananke",
@@ -16635,7 +16708,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "phanes",
@@ -16688,7 +16762,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "odysseus",
@@ -16753,7 +16828,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "iason",
@@ -16812,7 +16888,8 @@ const LEXICON = [
           "Beekes"
         ]
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "argos",
@@ -16859,7 +16936,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "midas",
@@ -16906,7 +16984,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "menelaus",
@@ -17557,7 +17636,8 @@ const LEXICON = [
         "note": "Long omega with acute (Κλειώ)"
       }
     ],
-    "variants": []
+    "variants": [],
+    "hasAdSite": true
   },
   {
     "id": "thaleia",
@@ -17616,7 +17696,8 @@ const LEXICON = [
         "type": "same",
         "note": "a same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "euterpe",
@@ -18197,7 +18278,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nemesis",
@@ -18346,7 +18428,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hypnos",
@@ -18399,7 +18482,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "thanatos",
@@ -18784,7 +18868,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hydra",
@@ -18831,7 +18916,8 @@ const LEXICON = [
         "type": "same",
         "note": "a same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "minotauros",
@@ -18973,7 +19059,8 @@ const LEXICON = [
         "type": "same",
         "note": "a same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sphinx",
@@ -19087,7 +19174,8 @@ const LEXICON = [
         "type": "same",
         "note": "n same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "harpyia",
@@ -19205,7 +19293,8 @@ const LEXICON = [
         "type": "same",
         "note": "x same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "griffin",
@@ -19607,7 +19696,8 @@ const LEXICON = [
         "type": "dual",
         "note": "Stress + length"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "telos",
@@ -20048,7 +20138,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "forseti",
@@ -20107,7 +20198,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "bragi",
@@ -20154,7 +20246,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "iounn",
@@ -20254,7 +20347,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sif",
@@ -20289,7 +20383,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "fulla",
@@ -20336,7 +20431,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "syn",
@@ -20371,7 +20467,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nanna",
@@ -20418,7 +20515,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "brynhildr",
@@ -20489,7 +20587,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "gunnr",
@@ -20536,7 +20635,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "skuld",
@@ -20583,7 +20683,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "urdr",
@@ -20789,7 +20890,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "geirrodr",
@@ -20901,7 +21003,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "andvari",
@@ -20960,7 +21063,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "brokkr",
@@ -21013,7 +21117,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "fafnir",
@@ -21072,7 +21177,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "reginn",
@@ -21125,7 +21231,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sindri",
@@ -21178,7 +21285,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "niflheimr",
@@ -21249,7 +21357,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "muspellheimr",
@@ -21418,7 +21527,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "svartalfaheimr",
@@ -21596,7 +21706,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ginnungagap",
@@ -21679,7 +21790,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "wyrd",
@@ -21733,7 +21845,8 @@ const LEXICON = [
         }
       ],
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "min",
@@ -22986,7 +23099,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "apsu",
@@ -23191,7 +23305,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "enkidu",
@@ -23486,7 +23601,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "radha",
@@ -23539,7 +23655,8 @@ const LEXICON = [
         "type": "length",
         "note": "Long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sati",
@@ -24470,7 +24587,8 @@ const LEXICON = [
         ],
         "note": "Popular transliteration of Om with raised anusvara dot"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "vyasa",
@@ -24921,7 +25039,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "diancecht",
@@ -25045,7 +25164,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "badb",
@@ -25086,7 +25206,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "macha",
@@ -25133,7 +25254,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "danu",
@@ -25298,7 +25420,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ogma",
@@ -25339,7 +25462,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "arawn",
@@ -25386,7 +25510,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "gwydion",
@@ -25445,7 +25570,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "rhiannon",
@@ -25510,7 +25636,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "pryderi",
@@ -25569,7 +25696,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ceridwen",
@@ -25634,7 +25762,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tirnanog",
@@ -25746,7 +25875,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "pooka",
@@ -25923,7 +26053,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "leprechaun",
@@ -26059,7 +26190,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ninigi",
@@ -26112,7 +26244,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "raijin",
@@ -26165,7 +26298,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "fujin",
@@ -26212,7 +26346,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kannon",
@@ -26265,7 +26400,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "jizo",
@@ -26361,7 +26497,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "fuji",
@@ -26402,7 +26539,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ise",
@@ -26437,7 +26575,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "takachiho",
@@ -26508,7 +26647,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kumano",
@@ -26561,7 +26701,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ebisu",
@@ -26608,7 +26749,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "okuninushi",
@@ -26685,7 +26827,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sarutahiko",
@@ -26762,7 +26905,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kagutsuchi",
@@ -26839,7 +26983,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kane",
@@ -29287,7 +29432,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mictlantecuhtli",
@@ -29876,7 +30022,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "orunmila",
@@ -29951,7 +30098,8 @@ const LEXICON = [
         "type": "stress",
         "note": "Stress on a"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ochosi",
@@ -30015,7 +30163,8 @@ const LEXICON = [
         "type": "stress",
         "note": "Grave: low tone"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "osanyin",
@@ -30252,7 +30401,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Not written"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "osumare",
@@ -30480,6 +30630,7 @@ const LEXICON = [
       "AIATSIS",
       "Parker"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "b",
@@ -30533,6 +30684,7 @@ const LEXICON = [
       "AIATSIS",
       "Massola"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "b",
@@ -30586,6 +30738,7 @@ const LEXICON = [
       "AIATSIS",
       "Parker"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "d",
@@ -30657,6 +30810,7 @@ const LEXICON = [
       "AIATSIS",
       "Strehlow"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "a",
@@ -30716,6 +30870,7 @@ const LEXICON = [
       "AIATSIS",
       "Berndt"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "n",
@@ -30775,6 +30930,7 @@ const LEXICON = [
       "AIATSIS",
       "Crawford"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "w",
@@ -30840,6 +30996,7 @@ const LEXICON = [
       "AIATSIS",
       "Berndt"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "w",
@@ -30899,6 +31056,7 @@ const LEXICON = [
       "AIATSIS",
       "Berndt"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "y",
@@ -30970,6 +31128,7 @@ const LEXICON = [
       "AIATSIS",
       "Berndt"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "t",
@@ -31035,6 +31194,7 @@ const LEXICON = [
       "AIATSIS",
       "Berndt"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "e",
@@ -31094,6 +31254,7 @@ const LEXICON = [
       "AIATSIS",
       "Berndt"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "m",
@@ -31165,6 +31326,7 @@ const LEXICON = [
       "AIATSIS",
       "Massola"
     ],
+    "hasAdSite": true,
     "breakdown": [
       {
         "char": "g",
@@ -31635,7 +31797,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ameretat",
@@ -31700,7 +31863,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sraosha",
@@ -31871,7 +32035,8 @@ const LEXICON = [
         "type": "length",
         "note": "Long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mamaquilla",
@@ -32986,7 +33151,8 @@ const LEXICON = [
         "type": "same",
         "note": "r same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hydor",
@@ -33062,7 +33228,8 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "aer",
@@ -33139,7 +33306,8 @@ const LEXICON = [
         "type": "same",
         "note": "x same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "lethe",
@@ -33245,7 +33413,8 @@ const LEXICON = [
         "type": "same",
         "note": "n same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "cocytus",
@@ -33440,7 +33609,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "lanling",
@@ -33564,7 +33734,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tianhou",
@@ -33694,7 +33865,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "yamen",
@@ -33788,7 +33960,8 @@ const LEXICON = [
         "type": "stress",
         "note": "Stress on a"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "taichi",
@@ -33841,7 +34014,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "wuxing",
@@ -33894,7 +34068,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "qi",
@@ -33999,7 +34174,8 @@ const LEXICON = [
         "type": "length",
         "note": "Long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nuwa",
@@ -34040,7 +34216,8 @@ const LEXICON = [
         "type": "length",
         "note": "Long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "shennong",
@@ -34329,7 +34506,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mazu",
@@ -34370,7 +34548,8 @@ const LEXICON = [
         "type": "special",
         "note": "Special character"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "erlang",
@@ -34470,7 +34649,8 @@ const LEXICON = [
         "type": "length",
         "note": "Long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "change",
@@ -34523,7 +34703,8 @@ const LEXICON = [
         "type": "stress",
         "note": "Stress on e"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "houyi",
@@ -34570,7 +34751,8 @@ const LEXICON = [
         "type": "stress",
         "note": "Stress on i"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sunwukong",
@@ -36788,7 +36970,8 @@ const LEXICON = [
         "type": "ascii",
         "note": "Standard Latin/English form"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ladon",
@@ -38529,7 +38712,8 @@ const LEXICON = [
         "type": "special",
         "note": "Eth (ð) + nominative -r"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "magni",
@@ -38576,7 +38760,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "modi",
@@ -38617,7 +38802,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "thrud",
@@ -38746,7 +38932,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "skoll",
@@ -38864,7 +39051,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "draupnir",
@@ -38929,7 +39117,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mjolnir",
@@ -38988,7 +39177,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "wadjet",
@@ -39041,7 +39231,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped: vowel not written"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nekhbet",
@@ -39153,7 +39344,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped: vowel not written"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mafdet",
@@ -39383,7 +39575,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "matholwch",
@@ -39454,7 +39647,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "efnysien",
@@ -39519,7 +39713,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nisien",
@@ -39572,7 +39767,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "blodeuwedd",
@@ -39649,7 +39845,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "gronwpebr",
@@ -39791,7 +39988,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "myrddin",
@@ -39850,7 +40048,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "gawain",
@@ -39903,7 +40102,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "bedwyr",
@@ -39956,7 +40156,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kai",
@@ -39991,7 +40192,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "don",
@@ -40026,7 +40228,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "beli",
@@ -40067,7 +40270,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "math",
@@ -40108,7 +40312,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "amenouzume",
@@ -40286,7 +40491,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "omononushi",
@@ -40363,7 +40569,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sukunahikona",
@@ -40452,7 +40659,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tajikarao",
@@ -40523,7 +40731,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "toyotama",
@@ -40588,7 +40797,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ugayafukiaezu",
@@ -40683,7 +40893,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hoderi",
@@ -40736,7 +40947,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hoori",
@@ -40783,7 +40995,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nishinakahime",
@@ -40878,7 +41091,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kingu",
@@ -42230,7 +42444,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "akshobhya",
@@ -42307,7 +42522,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ratnasambhava",
@@ -42645,7 +42861,8 @@ const LEXICON = [
         "type": "length",
         "note": "Long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "samantabhadra",
@@ -42835,7 +43052,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "vajrapani",
@@ -42912,7 +43130,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tara",
@@ -43598,7 +43817,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mara",
@@ -43645,7 +43865,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "laozi",
@@ -43692,7 +43913,8 @@ const LEXICON = [
         "type": "special",
         "note": "Special character"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "zhuangzi",
@@ -44130,7 +44352,8 @@ const LEXICON = [
         "type": "special",
         "note": "Special character"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "dongwanggong",
@@ -45383,7 +45606,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mot",
@@ -45418,7 +45642,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "yammu",
@@ -45524,7 +45749,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kothar",
@@ -45624,7 +45850,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "astartu",
@@ -47217,7 +47444,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "karnak",
@@ -47618,7 +47846,8 @@ const LEXICON = [
         "type": "length",
         "note": "Long vowel"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sarnath",
@@ -48007,7 +48236,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "momos",
@@ -48740,7 +48970,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "angrboda",
@@ -48907,7 +49138,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kebechet",
@@ -49326,7 +49558,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "midir",
@@ -49373,7 +49606,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "etain",
@@ -49479,7 +49713,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "niamh",
@@ -49526,7 +49761,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "oisin",
@@ -49691,7 +49927,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "goshin",
@@ -49744,7 +49981,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nabu",
@@ -50144,7 +50382,8 @@ const LEXICON = [
         "type": "special",
         "note": "Special phonetic character"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "maa",
@@ -50981,7 +51220,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "asherah",
@@ -51556,7 +51796,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ankh",
@@ -51597,7 +51838,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped: English placeholder"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nht",
@@ -51697,7 +51939,8 @@ const LEXICON = [
         "type": "special",
         "note": "Heh h"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "david",
@@ -51743,7 +51986,8 @@ const LEXICON = [
         "type": "special",
         "note": "Dalet with line below"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "solomon",
@@ -51801,7 +52045,8 @@ const LEXICON = [
         "type": "special",
         "note": "Heh h"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "noah",
@@ -51841,7 +52086,8 @@ const LEXICON = [
         "type": "special",
         "note": "Voiceless pharyngeal fricative"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "cain",
@@ -51887,7 +52133,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "abel",
@@ -51933,7 +52180,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "long",
@@ -51974,7 +52222,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "wuji",
@@ -52015,7 +52264,8 @@ const LEXICON = [
         "type": "stress",
         "note": "Second tone"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "yinyang",
@@ -52081,7 +52331,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hygieia",
@@ -52176,7 +52427,8 @@ const LEXICON = [
         "type": "etymology",
         "text": "The English word \"hygiene\" derives directly from her name via Latin hygīena."
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "papatuanuku",
@@ -52301,7 +52553,8 @@ const LEXICON = [
         "type": "scholarly",
         "text": "In Māori cosmology, the separation of Papa and Rangi by their children created the world of light."
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tiandi",
@@ -52386,7 +52639,8 @@ const LEXICON = [
         "type": "scholarly",
         "text": "Often used to describe the natural order, the emperor's mandate, or the relationship between macrocosm and microcosm."
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "yam",
@@ -52463,7 +52717,8 @@ const LEXICON = [
         "type": "mythological",
         "text": "Represents the chaotic, untamable primordial waters surrounding the ordered world."
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "adamas",
@@ -52565,7 +52820,8 @@ const LEXICON = [
         "type": "encyclopedic",
         "text": "In Homer the adamant binds the Titans; in later Greek philosophy it becomes a metaphor for unshakeable truth."
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "narke",
@@ -52818,7 +53074,8 @@ const LEXICON = [
         "type": "encyclopedic",
         "text": "Plato's Atlantis has inspired centuries of speculation, exploration, and utopian literature."
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "elysion",
@@ -53982,7 +54239,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "achilleus",
@@ -56083,7 +56341,10 @@ const LEXICON = [
         "type": "alt",
         "label": "Vahišta-with-medial-h",
         "note": "Alternate Avestan orthography with explicit h before šta; canonical PuniCodex form is Ašavahišta",
-        "sources": ["AirWb", "Bartholomae"]
+        "sources": [
+          "AirWb",
+          "Bartholomae"
+        ]
       }
     ]
   },
@@ -56431,7 +56692,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "bhaisajyaguru",
@@ -56594,7 +56856,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "budai",
@@ -57268,7 +57531,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mars",
@@ -57351,7 +57615,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mimir",
@@ -57777,7 +58042,8 @@ const LEXICON = [
         "type": "merge",
         "note": "Eth ð (voiced dental fricative) + nominative -r of Sigurðr"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sleipnir",
@@ -57843,7 +58109,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sol",
@@ -59379,406 +59646,407 @@ const LEXICON = [
     "hasAdSite": true
   },
   {
-  "id": "audhumla",
-  "ascii": "audhumla",
-  "unicode": "Auðhumla",
-  "greek": "—",
-  "pantheon": "norse",
-  "tier": "1",
-  "tierLabel": "Tier 1",
-  "domain": "Primeval Cow, Nourisher of Creation",
-  "meaning": "Wealth-humla (primeval cow)",
-  "sources": [
-    "Prose Edda",
-    "Cleasby-Vigfusson",
-    "Zoëga"
-  ],
-  "breakdown": [
-    {
-      "char": "a",
-      "to": "A",
-      "type": "same",
-      "note": "Same, capitalized"
+    "id": "audhumla",
+    "ascii": "audhumla",
+    "unicode": "Auðhumla",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Primeval Cow, Nourisher of Creation",
+    "meaning": "Wealth-humla (primeval cow)",
+    "sources": [
+      "Prose Edda",
+      "Cleasby-Vigfusson",
+      "Zoëga"
+    ],
+    "breakdown": [
+      {
+        "char": "a",
+        "to": "A",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "d",
+        "to": "ð",
+        "type": "special",
+        "note": "Eth: voiced dental fricative"
+      },
+      {
+        "char": "h",
+        "to": "h",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "u",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "m",
+        "to": "m",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "l",
+        "to": "l",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "a",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "old-norse",
+      "protoGloss": "primeval cow",
+      "derivation": "Old Norse Auðhumla, the primeval cow that licked the salt blocks and revealed Búri, ancestor of the gods.",
+      "certainty": "attested"
     },
-    {
-      "char": "u",
-      "to": "u",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "d",
-      "to": "ð",
-      "type": "special",
-      "note": "Eth: voiced dental fricative"
-    },
-    {
-      "char": "h",
-      "to": "h",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "u",
-      "to": "u",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "m",
-      "to": "m",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "l",
-      "to": "l",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "a",
-      "to": "a",
-      "type": "same",
-      "note": "Same"
-    }
-  ],
-  "etymology": {
-    "protoForm": "",
-    "protoLanguage": "old-norse",
-    "protoGloss": "primeval cow",
-    "derivation": "Old Norse Auðhumla, the primeval cow that licked the salt blocks and revealed Búri, ancestor of the gods.",
-    "certainty": "attested"
+    "hasAdSite": true
   },
-  "hasAdSite": true
-},
   {
-  "id": "fjorgyn",
-  "ascii": "fjorgyn",
-  "unicode": "Fjǫrgyn",
-  "greek": "—",
-  "pantheon": "norse",
-  "tier": "1",
-  "tierLabel": "Tier 1",
-  "domain": "Earth, Mother of Thor",
-  "meaning": "Earth (Fjǫrgyn)",
-  "sources": [
-    "Poetic Edda",
-    "Prose Edda",
-    "Cleasby-Vigfusson"
-  ],
-  "breakdown": [
-    {
-      "char": "f",
-      "to": "F",
-      "type": "same",
-      "note": "Same, capitalized"
+    "id": "fjorgyn",
+    "ascii": "fjorgyn",
+    "unicode": "Fjǫrgyn",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Earth, Mother of Thor",
+    "meaning": "Earth (Fjǫrgyn)",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson"
+    ],
+    "breakdown": [
+      {
+        "char": "f",
+        "to": "F",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "j",
+        "to": "j",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "ǫ",
+        "type": "special",
+        "note": "O with ogonek: nasalized vowel"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "g",
+        "to": "g",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "y",
+        "to": "y",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*fergunja",
+      "protoLanguage": "proto-germanic",
+      "protoGloss": "mountain, wood, earth",
+      "derivation": "Old Norse Fjǫrgyn, byname of Jǫrð and mother of Thor; related to Proto-Germanic *fergunja \"mountain, woodland\".",
+      "certainty": "attested"
     },
-    {
-      "char": "j",
-      "to": "j",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "o",
-      "to": "ǫ",
-      "type": "special",
-      "note": "O with ogonek: nasalized vowel"
-    },
-    {
-      "char": "r",
-      "to": "r",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "g",
-      "to": "g",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "y",
-      "to": "y",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "n",
-      "to": "n",
-      "type": "same",
-      "note": "Same"
-    }
-  ],
-  "etymology": {
-    "protoForm": "*fergunja",
-    "protoLanguage": "proto-germanic",
-    "protoGloss": "mountain, wood, earth",
-    "derivation": "Old Norse Fjǫrgyn, byname of Jǫrð and mother of Thor; related to Proto-Germanic *fergunja \"mountain, woodland\".",
-    "certainty": "attested"
+    "hasAdSite": true
   },
-  "hasAdSite": true
-},
   {
-  "id": "gna",
-  "ascii": "gna",
-  "unicode": "Gná",
-  "greek": "—",
-  "pantheon": "norse",
-  "tier": "1",
-  "tierLabel": "Tier 1",
-  "domain": "Messenger of Frigg",
-  "meaning": "To project, to gaze",
-  "sources": [
-    "Prose Edda",
-    "Cleasby-Vigfusson"
-  ],
-  "breakdown": [
-    {
-      "char": "g",
-      "to": "G",
-      "type": "same",
-      "note": "Same, capitalized"
+    "id": "gna",
+    "ascii": "gna",
+    "unicode": "Gná",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Messenger of Frigg",
+    "meaning": "To project, to gaze",
+    "sources": [
+      "Prose Edda",
+      "Cleasby-Vigfusson"
+    ],
+    "breakdown": [
+      {
+        "char": "g",
+        "to": "G",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on a"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "old-norse",
+      "protoGloss": "projection, gaze",
+      "derivation": "Old Norse Gná, one of Frigg's handmaidens, whose name may relate to \"to project\" or \"to gaze afar\".",
+      "certainty": "uncertain"
     },
-    {
-      "char": "n",
-      "to": "n",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "a",
-      "to": "á",
-      "type": "stress",
-      "note": "Acute on a"
-    }
-  ],
-  "etymology": {
-    "protoForm": "",
-    "protoLanguage": "old-norse",
-    "protoGloss": "projection, gaze",
-    "derivation": "Old Norse Gná, one of Frigg's handmaidens, whose name may relate to \"to project\" or \"to gaze afar\".",
-    "certainty": "uncertain"
+    "hasAdSite": true
   },
-  "hasAdSite": true
-},
   {
-  "id": "thrudr",
-  "ascii": "thrudr",
-  "unicode": "Þrúðr",
-  "greek": "—",
-  "pantheon": "norse",
-  "tier": "1",
-  "tierLabel": "Tier 1",
-  "domain": "Strength, Daughter of Thor",
-  "meaning": "Strength, power",
-  "sources": [
-    "Poetic Edda",
-    "Prose Edda",
-    "Cleasby-Vigfusson"
-  ],
-  "breakdown": [
-    {
-      "char": "t",
-      "to": "Þ",
-      "type": "special",
-      "note": "Thorn: voiceless dental fricative"
+    "id": "thrudr",
+    "ascii": "thrudr",
+    "unicode": "Þrúðr",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Strength, Daughter of Thor",
+    "meaning": "Strength, power",
+    "sources": [
+      "Poetic Edda",
+      "Prose Edda",
+      "Cleasby-Vigfusson"
+    ],
+    "breakdown": [
+      {
+        "char": "t",
+        "to": "Þ",
+        "type": "special",
+        "note": "Thorn: voiceless dental fricative"
+      },
+      {
+        "char": "h",
+        "to": "",
+        "type": "drop",
+        "note": "Dropped: merged with t into thorn"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "u",
+        "to": "ú",
+        "type": "stress",
+        "note": "Acute on u"
+      },
+      {
+        "char": "d",
+        "to": "ð",
+        "type": "special",
+        "note": "Eth: voiced dental fricative"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*þrūþiz",
+      "protoLanguage": "proto-germanic",
+      "protoGloss": "strength",
+      "derivation": "Old Norse Þrúðr, daughter of Thor and Sif, whose name means \"strength, power\"; cognate with Old English þrýð.",
+      "certainty": "attested"
     },
-    {
-      "char": "h",
-      "to": "",
-      "type": "drop",
-      "note": "Dropped: merged with t into thorn"
-    },
-    {
-      "char": "r",
-      "to": "r",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "u",
-      "to": "ú",
-      "type": "stress",
-      "note": "Acute on u"
-    },
-    {
-      "char": "d",
-      "to": "ð",
-      "type": "special",
-      "note": "Eth: voiced dental fricative"
-    },
-    {
-      "char": "r",
-      "to": "r",
-      "type": "same",
-      "note": "Same"
-    }
-  ],
-  "etymology": {
-    "protoForm": "*þrūþiz",
-    "protoLanguage": "proto-germanic",
-    "protoGloss": "strength",
-    "derivation": "Old Norse Þrúðr, daughter of Thor and Sif, whose name means \"strength, power\"; cognate with Old English þrýð.",
-    "certainty": "attested"
+    "hasAdSite": true
   },
-  "hasAdSite": true
-},
   {
-  "id": "vor",
-  "ascii": "vor",
-  "unicode": "Vǫr",
-  "greek": "—",
-  "pantheon": "norse",
-  "tier": "1",
-  "tierLabel": "Tier 1",
-  "domain": "Wisdom, Oaths, Knowledge",
-  "meaning": "The careful one, oath-goddess",
-  "sources": [
-    "Prose Edda",
-    "Cleasby-Vigfusson"
-  ],
-  "breakdown": [
-    {
-      "char": "v",
-      "to": "V",
-      "type": "same",
-      "note": "Same, capitalized"
+    "id": "vor",
+    "ascii": "vor",
+    "unicode": "Vǫr",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Wisdom, Oaths, Knowledge",
+    "meaning": "The careful one, oath-goddess",
+    "sources": [
+      "Prose Edda",
+      "Cleasby-Vigfusson"
+    ],
+    "breakdown": [
+      {
+        "char": "v",
+        "to": "V",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "o",
+        "to": "ǫ",
+        "type": "special",
+        "note": "O with ogonek: nasalized vowel"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "old-norse",
+      "protoGloss": "oath, pledge",
+      "derivation": "Old Norse Vǫr, goddess associated with wisdom and oaths; her name is related to vörðr \"pledge, vow\".",
+      "certainty": "uncertain"
     },
-    {
-      "char": "o",
-      "to": "ǫ",
-      "type": "special",
-      "note": "O with ogonek: nasalized vowel"
-    },
-    {
-      "char": "r",
-      "to": "r",
-      "type": "same",
-      "note": "Same"
-    }
-  ],
-  "etymology": {
-    "protoForm": "",
-    "protoLanguage": "old-norse",
-    "protoGloss": "oath, pledge",
-    "derivation": "Old Norse Vǫr, goddess associated with wisdom and oaths; her name is related to vörðr \"pledge, vow\".",
-    "certainty": "uncertain"
+    "hasAdSite": true
   },
-  "hasAdSite": true
-},
   {
-  "id": "var",
-  "ascii": "var",
-  "unicode": "Vár",
-  "greek": "—",
-  "pantheon": "norse",
-  "tier": "1",
-  "tierLabel": "Tier 1",
-  "domain": "Oaths, Marriage Agreements",
-  "meaning": "Agreement, vow",
-  "sources": [
-    "Prose Edda",
-    "Cleasby-Vigfusson"
-  ],
-  "breakdown": [
-    {
-      "char": "v",
-      "to": "V",
-      "type": "same",
-      "note": "Same, capitalized"
+    "id": "var",
+    "ascii": "var",
+    "unicode": "Vár",
+    "greek": "—",
+    "pantheon": "norse",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Oaths, Marriage Agreements",
+    "meaning": "Agreement, vow",
+    "sources": [
+      "Prose Edda",
+      "Cleasby-Vigfusson"
+    ],
+    "breakdown": [
+      {
+        "char": "v",
+        "to": "V",
+        "type": "same",
+        "note": "Same, capitalized"
+      },
+      {
+        "char": "a",
+        "to": "á",
+        "type": "stress",
+        "note": "Acute on a"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "",
+      "protoLanguage": "old-norse",
+      "protoGloss": "agreement, vow",
+      "derivation": "Old Norse Vár, goddess who hears oaths and contracts; her name means \"agreement, vow\".",
+      "certainty": "attested"
     },
-    {
-      "char": "a",
-      "to": "á",
-      "type": "stress",
-      "note": "Acute on a"
-    },
-    {
-      "char": "r",
-      "to": "r",
-      "type": "same",
-      "note": "Same"
-    }
-  ],
-  "etymology": {
-    "protoForm": "",
-    "protoLanguage": "old-norse",
-    "protoGloss": "agreement, vow",
-    "derivation": "Old Norse Vár, goddess who hears oaths and contracts; her name means \"agreement, vow\".",
-    "certainty": "attested"
+    "hasAdSite": true
   },
-  "hasAdSite": true
-},
   {
-  "id": "oneiros",
-  "ascii": "oneiros",
-  "unicode": "Óneiros",
-  "greek": "Ὄνειρος",
-  "pantheon": "greek",
-  "tier": "1",
-  "tierLabel": "Tier 1",
-  "domain": "Dreams, Dream-Visions",
-  "meaning": "Dream",
-  "sources": [
-    "Homer",
-    "Hesiod",
-    "LSJ"
-  ],
-  "breakdown": [
-    {
-      "char": "o",
-      "to": "Ó",
-      "type": "stress",
-      "note": "Same, capitalized with acute"
+    "id": "oneiros",
+    "ascii": "oneiros",
+    "unicode": "Óneiros",
+    "greek": "Ὄνειρος",
+    "pantheon": "greek",
+    "tier": "1",
+    "tierLabel": "Tier 1",
+    "domain": "Dreams, Dream-Visions",
+    "meaning": "Dream",
+    "sources": [
+      "Homer",
+      "Hesiod",
+      "LSJ"
+    ],
+    "breakdown": [
+      {
+        "char": "o",
+        "to": "Ó",
+        "type": "stress",
+        "note": "Same, capitalized with acute"
+      },
+      {
+        "char": "n",
+        "to": "n",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "e",
+        "to": "e",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "i",
+        "to": "i",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "r",
+        "to": "r",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "o",
+        "to": "o",
+        "type": "same",
+        "note": "Same"
+      },
+      {
+        "char": "s",
+        "to": "s",
+        "type": "same",
+        "note": "Same"
+      }
+    ],
+    "etymology": {
+      "protoForm": "*óneiros",
+      "protoLanguage": "proto-greek",
+      "protoGloss": "dream",
+      "derivation": "Greek Ὄνειρος, personification of dreams; attested in Homer and Hesiod as a daimon of dreams.",
+      "certainty": "attested"
     },
-    {
-      "char": "n",
-      "to": "n",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "e",
-      "to": "e",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "i",
-      "to": "i",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "r",
-      "to": "r",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "o",
-      "to": "o",
-      "type": "same",
-      "note": "Same"
-    },
-    {
-      "char": "s",
-      "to": "s",
-      "type": "same",
-      "note": "Same"
-    }
-  ],
-  "etymology": {
-    "protoForm": "*óneiros",
-    "protoLanguage": "proto-greek",
-    "protoGloss": "dream",
-    "derivation": "Greek Ὄνειρος, personification of dreams; attested in Homer and Hesiod as a daimon of dreams.",
-    "certainty": "attested"
-  },
-  "hasAdSite": true
-  }];
+    "hasAdSite": true
+  }
+];
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { LEXICON };
 }

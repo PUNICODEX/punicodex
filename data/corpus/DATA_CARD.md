@@ -1,7 +1,7 @@
 # PuniCodex AI Training Corpus — Data Card
 
-**Data version:** 2.0.133  
-**Generated:** 2026-08-28T05:01:36.860Z  
+**Data version:** 2.0.135  
+**Generated:** 2026-08-28T08:59:18.219Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
@@ -12,14 +12,14 @@ This corpus is the foundational training and evaluation data for a specialized A
 
 | File | Examples | Size | Description |
 |------|----------|------|-------------|
-| entries.jsonl | 980 | 6.26 MB | Rich structured record for every lexicon entry. |
-| instructions.jsonl | 9,276 | 4.64 MB | Scholarly question/answer pairs (Phase 1). |
-| instructions-train.jsonl | 43,335 | 26.40 MB | Training split (80%) of scholarly + safety examples. |
-| eval.jsonl | 10,853 | 6.62 MB | Held-out evaluation split (20%) of scholarly + safety examples. |
+| entries.jsonl | 980 | 6.35 MB | Rich structured record for every lexicon entry. |
+| instructions.jsonl | 9,288 | 4.66 MB | Scholarly question/answer pairs (Phase 1). |
+| instructions-train.jsonl | 43,346 | 26.42 MB | Training split (80%) of scholarly + safety examples. |
+| eval.jsonl | 10,854 | 6.63 MB | Held-out evaluation split (20%) of scholarly + safety examples. |
 | safety-examples.jsonl | 44,912 | 28.38 MB | Adversarial safety examples (Phase 2). |
-| dialogue-examples.jsonl | 3,595 | 2.67 MB | Multi-turn conversation examples (Phase 3). |
+| dialogue-examples.jsonl | 3,607 | 2.69 MB | Multi-turn conversation examples (Phase 3). |
 | tool-use-examples.jsonl | 4,878 | 10.39 MB | Function-calling / tool-use examples (Phase 4). |
-| multimodal-examples.jsonl | 2,439 | 1.13 MB | Vision-language pairs for mascots, logomarks, scripts (Phase 5). |
+| multimodal-examples.jsonl | 2,463 | 1.14 MB | Vision-language pairs for mascots, logomarks, scripts (Phase 5). |
 | preference-examples.jsonl | 3,984 | 2.19 MB | Chosen/rejected pairs for RLHF (Phase 6). |
 | reasoning-examples.jsonl | 3,875 | 2.19 MB | Chain-of-thought reasoning traces (Phase 7). |
 | benchmark.jsonl | 6,662 | 2.24 MB | Held-out evaluation benchmark with known answers (Phase 8). |
@@ -27,13 +27,13 @@ This corpus is the foundational training and evaluation data for a specialized A
 | oracle-examples.jsonl | 1,977 | 2.26 MB | Conversational Oracle training examples with system/user/assistant turns (Phase 11). |
 | symbolic-correspondences.jsonl | 1,236 | 750.6 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
 | scientific-analogies.jsonl | 1,500 | 1.03 MB | Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13). |
-| chat-train.jsonl | 62,559 | 85.15 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
-| chat-eval.jsonl | 15,517 | 21.14 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
+| chat-train.jsonl | 62,598 | 85.22 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
+| chat-eval.jsonl | 15,526 | 21.16 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
 | MODEL_CARD.md | 78 | 4.4 KB | Model card with training recipe, evaluation plan, and hardware guidance (Phases 14-15). |
-| pretrain.jsonl | 5,908 | 5.52 MB | Raw-text continual pretraining corpus, 95% split (Phase 15). |
-| pretrain-validation.jsonl | 286 | 290.9 KB | Held-out raw-text validation split, 5% (Phase 15). |
-| huggingface/train.jsonl | 5,908 | 4.74 MB | HuggingFace-compatible continual pretraining split (Phase 15). |
-| huggingface/validation.jsonl | 286 | 252.8 KB | HuggingFace-compatible validation split (Phase 15). |
+| pretrain.jsonl | 5,903 | 5.58 MB | Raw-text continual pretraining corpus, 95% split (Phase 15). |
+| pretrain-validation.jsonl | 303 | 302.5 KB | Held-out raw-text validation split, 5% (Phase 15). |
+| huggingface/train.jsonl | 5,903 | 4.80 MB | HuggingFace-compatible continual pretraining split (Phase 15). |
+| huggingface/validation.jsonl | 303 | 261.6 KB | HuggingFace-compatible validation split (Phase 15). |
 | manifest.json | 319 | 10.0 KB | Machine-readable corpus manifest. |
 
 ## Phase Summary
