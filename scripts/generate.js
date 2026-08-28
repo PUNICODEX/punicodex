@@ -153,15 +153,15 @@ function run(script) {
   // Retry transient write failures: on Windows, AV/indexer locks on freshly
   // written files intermittently fail a spawn with UNKNOWN(-4094). All
   // generate scripts are idempotent, so a retry is always safe.
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  for (let attempt = 1; attempt <= 5; attempt++) {
     const result = spawnSync(process.execPath, ['--max-old-space-size=8192', scriptPath, ...args], {
       cwd: root,
       stdio: 'inherit',
     });
     if (result.status === 0) return;
-    console.error(`\n✗ ${script} failed with exit code ${result.status} (attempt ${attempt}/3)`);
-    if (attempt < 3) {
-      const wait = 1000 * attempt;
+    console.error(`\n✗ ${script} failed with exit code ${result.status} (attempt ${attempt}/5)`);
+    if (attempt < 5) {
+      const wait = 2000 * attempt;
       console.error(`  retrying in ${wait}ms (idempotent script)...`);
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, wait);
     }

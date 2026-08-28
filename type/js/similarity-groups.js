@@ -63,7 +63,8 @@ const FUNCTION_GROUPS = [
     ids: [
       'poseidon', 'pontos', 'njordr', 'manannan', 'tangaroa', 'viracocha', 'babaluaye',
       'mamaqucha', 'tianhou', 'mazu', 'manawydan', 'toyotama', 'yongwang', 'aseratu',
-      'yammu', 'yam', 'varuna', 'ea', 'longwang', 'susanoo',
+      'yammu', 'yam', 'varuna', 'ea', 'longwang', 'susanoo', 'benzaiten', 'hoderi',
+      'kotoshironushi',
     ],
   },
   {
@@ -74,7 +75,7 @@ const FUNCTION_GROUPS = [
     ids: [
       'hades', 'persephone', 'hel', 'yama', 'veles', 'garmr', 'cerberus', 'nergal',
       'ereshkigal', 'kanaloa', 'supay', 'mot', 'serapis', 'sokar', 'anubis', 'orpheus',
-      'thanatos', 'ker',
+      'thanatos', 'ker', 'izanami',
     ],
   },
   {
@@ -85,7 +86,7 @@ const FUNCTION_GROUPS = [
     ids: [
       'ares', 'athena', 'tyr', 'odinn', 'sekhmet', 'durga', 'morrigan', 'ishtar',
       'ashur', 'tu', 'hachiman', 'huitzilopochtli', 'ogun', 'anat', 'nezha', 'kratos',
-      'narasimha', 'thrudr',
+      'narasimha', 'thrudr', 'marishiten',
     ],
   },
   {
@@ -95,7 +96,7 @@ const FUNCTION_GROUPS = [
     note: 'Deities of love, beauty, fertility, desire, and erotic attraction.',
     ids: [
       'aphrodite', 'eros', 'freyja', 'hathor', 'krishna', 'ishtar', 'xochiquetzal',
-      'oshun', 'inanna', 'radha', 'aengus', 'lada', 'astartu', 'helene',
+      'oshun', 'inanna', 'radha', 'aengus', 'lada', 'astartu', 'helene', 'benzaiten',
     ],
   },
   {
@@ -135,6 +136,7 @@ const FUNCTION_GROUPS = [
     note: 'Divine messengers, psychopomps, travellers, and intermediaries between worlds.',
     ids: [
       'hermes', 'agni', 'hanuman', 'eshu', 'iris', 'narada', 'hermod', 'sosin', 'gna',
+      'sarutahiko',
     ],
   },
   {
@@ -147,7 +149,8 @@ const FUNCTION_GROUPS = [
       'matzemlya', 'tlaltecuhtli', 'babaluaye', 'kishar', 'halmoni', 'rhea', 'demeter',
       'freyr', 'freyja', 'bastet', 'sobek', 'cernunnos', 'ishtar', 'inari', 'oshun',
       'parvati', 'sita', 'gefjon', 'min', 'heqet', 'makemake', 'anahita', 'hp', 'dagan',
-      'jord', 'fjorgyn', 'audhumla', 'shakti',
+      'jord', 'fjorgyn', 'audhumla', 'shakti', 'ninigi', 'nishinakahime', 'omononushi',
+      'hoori', 'toyotama', 'ugayafukiaezu',
     ],
   },
   {
@@ -225,7 +228,7 @@ const FUNCTION_GROUPS = [
     note: 'Guardian figures, boundary protectors, and monstrous sentinels.',
     ids: [
       'medousa', 'garmr', 'suttungr', 'cerberus', 'griffin', 'andvari', 'simargl',
-      'seonangshin', 'fafnir',
+      'seonangshin', 'fafnir', 'goshin', 'sarutahiko', 'tajikarao',
     ],
   },
   {
@@ -261,7 +264,7 @@ const FUNCTION_GROUPS = [
     strength: 2,
     note: 'Bodhisattvas and savior deities whose primary domain is mercy and liberation.',
     ids: [
-      'avalokiteshvara', 'guanyin', 'ksitigarbha',
+      'avalokiteshvara', 'guanyin', 'ksitigarbha', 'amida', 'kannon',
     ],
   },
   {
@@ -270,7 +273,7 @@ const FUNCTION_GROUPS = [
     strength: 2,
     note: 'Deities of wealth, fortune, abundance, and material prosperity.',
     ids: [
-      'caishen', 'lakshmi', 'freyja',
+      'caishen', 'lakshmi', 'freyja', 'ebisu', 'benzaiten', 'inari',
     ],
   },
   {
@@ -315,7 +318,8 @@ const FUNCTION_GROUPS = [
     strength: 2,
     note: 'Sacred places and objects regarded as the center or axis of the world.',
     ids: [
-      'omphalos', 'delphoi', 'yggdrasill',
+      'omphalos', 'delphoi', 'yggdrasill', 'fuji', 'ise', 'takachiho', 'kumano', 'shikoku',
+      'nagoya',
     ],
   },
   {
@@ -446,6 +450,25 @@ const CURATED_PAIRS = [
   { sourceId: 'gna', targetId: 'hermes', relationship: 'Divine messengers', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Gná Frigg\'s messenger and Hermês the herald of Olympus both carry words between worlds.' },
   { sourceId: 'epimetheus', targetId: 'prometheus', relationship: 'Afterthought and forethought', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The Titan brothers of hindsight and foresight whose divided counsel shaped mortal destiny.' },
   { sourceId: 'caishen', targetId: 'lakshmi', relationship: 'Wealth deities', category: 'function', strength: 3, bidirectional: true, note: 'The Chinese God of Wealth and the Hindu goddess of fortune both command prosperity and abundance.' },
+  { sourceId: 'izanagi', targetId: 'izanami', relationship: 'Creation couple / Yomi separation', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The primordial Shinto creator pair whose union births the islands and whose separation at Yomi bounds life and death.' },
+  { sourceId: 'amaterasu', targetId: 'tsukuyomi', relationship: 'Sun-moon sibling rivalry', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The Shinto sun goddess and moon god are siblings whose quarrels shape the day-night order.' },
+  { sourceId: 'amaterasu', targetId: 'ninigi', relationship: 'Solar grandmother and divine grandson', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Amaterasu sends her grandson Ninigi to rule the Central Land of Reed Plains, founding the imperial line.' },
+  { sourceId: 'izanagi', targetId: 'amaterasu', relationship: 'Father and sun goddess', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Izanagi washes his left eye and begets Amaterasu, the sun, from his purification after Yomi.' },
+  { sourceId: 'susanoo', targetId: 'tsukuyomi', relationship: 'Storm and moon siblings', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The Shinto storm god and moon god are brothers born from Izanagi\'s purification.' },
+  { sourceId: 'hoori', targetId: 'toyotama', relationship: 'Hunter husband and sea wife', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Hoori the fire-subduing hunter marries Toyotama, daughter of the sea god, binding land and ocean.' },
+  { sourceId: 'hoori', targetId: 'ugayafukiaezu', relationship: 'Father and ancestor of Jimmu', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Hoori and Toyotama\'s son Ugayafukiaezu continues the divine lineage that produces Emperor Jimmu.' },
+  { sourceId: 'toyotama', targetId: 'ugayafukiaezu', relationship: 'Mother and ancestor of Jimmu', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Toyotama the sea princess gives birth to Ugayafukiaezu, linking the ocean realm to the imperial line.' },
+  { sourceId: 'hoderi', targetId: 'hoori', relationship: 'Elder and younger fire brothers', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Hoderi the fire-shining fisherman and Hoori the fire-subduing hunter are brothers whose rivalry and exchange of fortunes shape the royal genealogy.' },
+  { sourceId: 'tajikarao', targetId: 'amaterasu', relationship: 'Strong hand opens the cave of the sun', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Tajikarao the strong-hand kami wrenches open the Ama-no-Iwato cave to restore Amaterasu and daylight to the world.' },
+  { sourceId: 'tajikarao', targetId: 'takachiho', relationship: 'Strength god and the sacred gorge', category: 'phenomenon', strength: 3, bidirectional: true, note: 'Takachiho Gorge is the mythic stage where Tajikarao\'s strength frees Amaterasu from the heavenly rock cave.' },
+  { sourceId: 'ise', targetId: 'amaterasu', relationship: 'Shrine and enshrined sun goddess', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Ise Grand Shrine is the principal sanctuary of Amaterasu, the sun goddess and imperial ancestor.' },
+  { sourceId: 'ebisu', targetId: 'benzaiten', relationship: 'Seven Lucky Gods / fortune pair', category: 'function', strength: 3, bidirectional: true, note: 'Ebisu and Benzaiten are two of the Shichifukujin, the seven deities of fortune, presiding over commerce and the arts.' },
+  { sourceId: 'ebisu', targetId: 'inari', relationship: 'Japanese fortune and harvest deities', category: 'function', strength: 3, bidirectional: true, note: 'Ebisu of commerce and Inari of rice together command prosperity, abundance, and the fertility of land and trade.' },
+  { sourceId: 'benzaiten', targetId: 'inari', relationship: 'Fortune, harvest, and abundance', category: 'function', strength: 3, bidirectional: true, note: 'Benzaiten of wealth and the arts and Inari of rice and foxes are two faces of Japanese prosperity.' },
+  { sourceId: 'amida', targetId: 'kannon', relationship: 'Pure Land savior and bodhisattva of compassion', category: 'function', strength: 3, bidirectional: true, note: 'Amida the Buddha of Infinite Light welcomes the faithful to the Pure Land; Kannon the compassionate bodhisattva hears their cries.' },
+  { sourceId: 'kannon', targetId: 'avalokiteshvara', relationship: 'Same bodhisattva, two traditions', category: 'identity', strength: 3, bidirectional: true, note: 'Kannon is Avalokiteśvara received in Japanese Buddhism — the same compassionate savior under a different transmission.' },
+  { sourceId: 'marishiten', targetId: 'hachiman', relationship: 'Warrior-protector deities of Japan', category: 'function', strength: 3, bidirectional: true, note: 'Marishiten the solar warrior goddess of invisibility and Hachiman the god of war both protect armies and rulers in Japanese tradition.' },
+  { sourceId: 'sarutahiko', targetId: 'amenouzume', relationship: 'Crossroads guardian and dawn dancer', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Sarutahiko the long-nosed crossroads kami meets Ame-no-Uzume the dawn dancer at the road between heaven and earth.' },
 ];
 
 function validateGroups(groups) {

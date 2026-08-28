@@ -75,6 +75,9 @@ const INDUSTRY_GROUPS = [
       { id: 'hemera', weight: 1, why: 'Daylight is the industry\'s working capital, and the day is her entire person.' },
       { id: 'houyi', weight: 1, why: 'He shot down nine of the ten suns when they rose together — the sky\'s solar surplus answered by one archer.' },
       { id: 'tonatiuh', weight: 2, why: 'The Nahuatl sun god whose name means "he who goes forth shining"; the Fifth Age is lit by his face.' },
+      { id: 'amaterasu', weight: 2, why: 'The sun goddess whose retreat into the Ama-no-Iwato cave darkened the world until she was lured out — Shintō\'s solar sovereign.' },
+      { id: 'amida', weight: 1, why: 'Infinite Light is the doctrinal core of the Pure Land; the Buddha-field is luminous by definition.' },
+      { id: 'marishiten', weight: 1, why: 'The Buddhist goddess of war and invisibility is also a solar deity whose chariot mirrors the dawn.' },
     ],
   },
   {
@@ -117,6 +120,8 @@ const INDUSTRY_GROUPS = [
       { id: 'trengtreng', weight: 1, why: 'A living volcanic peak whose eruptions are the voice of Pillán; the cordillera\'s geothermal fire is his body.' },
       { id: 'perkunas', weight: 1, why: 'The fire struck from the sky, kindled anew from lightning-hit oaks and preserved as sacred flame in Baltic rite.' },
       { id: 'typhon', weight: 1, why: 'Chained beneath Etna, his breath is the eruption; geothermal pressure personified.' },
+      { id: 'hoderi', weight: 2, why: 'Fire-shining deity and fisherman; his very name names flame.' },
+      { id: 'kagutsuchi', weight: 2, why: 'The fire kami whose birth burned Izanami; volcanoes and forges answer to him.' },
     ],
   },
   {
@@ -145,6 +150,7 @@ const INDUSTRY_GROUPS = [
       { id: 'longwang', weight: 1, why: 'Rain decrees are his paperwork — the Journey to the West\'s Jìng River king was executed for falsifying one forecast.' },
       { id: 'keraunos', weight: 2, why: 'The thunderbolt itself — the weapon whose Greek name names the lightning every storm model tries to predict.' },
       { id: 'susanoo', weight: 2, why: 'The Shinto storm kami whose long vowel marks the canonical form; tempest and sea-churn are his signature.' },
+      { id: 'raijin', weight: 2, why: 'The thunder kami who beats his drums around the storm; Japanese art pairs him with Fūjin as the weather itself.' },
     ],
   },
   {
@@ -177,6 +183,11 @@ const INDUSTRY_GROUPS = [
       { id: 'europe', weight: 1, why: 'The bull-crossing from Tyre to Crete; a continent named for a sea voyage.' },
       { id: 'longwang', weight: 2, why: 'The four seas are his family\'s jurisdiction; every hull in Chinese waters sailed under the Dragon Kings\' toll.' },
       { id: 'susanoo', weight: 2, why: 'Impulsive ruler of sea and storm; the kami who churned the waters until the eight-forked serpent was slain.' },
+      { id: 'ebisu', weight: 2, why: 'Patron of fishermen and the working sea; the only one of the Seven Lucky Gods of native Japanese origin.' },
+      { id: 'hoderi', weight: 2, why: 'The fire-shining fisherman; the sea\'s harvest is his oldest domain.' },
+      { id: 'kotoshironushi', weight: 2, why: 'The oracular kami of fishing who yields the sea\'s knowledge along with its catch.' },
+      { id: 'toyotama', weight: 2, why: 'The sea-goddess mother of the imperial line; the ocean is her body and birthright.' },
+      { id: 'ugayafukiaezu', weight: 1, why: 'Born of the sea-foam and cormorant-thatched palace; the maritime ancestor of Jimmu.' },
     ],
   },
   {
@@ -236,6 +247,7 @@ const INDUSTRY_GROUPS = [
       { id: 'nike', weight: 1, why: 'Winged and swift, she lent her name to NASA\'s Nike sounding rockets.' },
       { id: "sleipnir", weight: 1, why: 'He runs through air and over sea; the steed that knows no route as closed.' },
       { id: 'gna', weight: 1, why: 'Swift messenger; her errands cross the boundaries between realms as aviation crosses the sky.' },
+      { id: 'nagoya', weight: 1, why: 'Japan\'s aerospace capital; the Chūbu manufacturing belt builds the country\'s wings.' },
     ],
   },
   {
@@ -283,6 +295,7 @@ const INDUSTRY_GROUPS = [
       { id: 'change', weight: 2, why: 'China\'s lunar exploration program flies her name — the Chang\'e orbiters and sample-return landers are the moon goddess made mission architecture.' },
       { id: 'mani', weight: 2, why: 'The moon personified, driving its chariot across the night sky — the Norse moon made god, pursued nightly by Hati.' },
       { id: 'tonatiuh', weight: 1, why: 'The sun at the center of the Aztec cosmos; every solar observation still tracks his daily birth from the east.' },
+      { id: 'tsukuyomi', weight: 2, why: 'The moon kami; every lunar mission and calendar still reads his phases.' },
     ],
   },
   {
@@ -353,6 +366,10 @@ const INDUSTRY_GROUPS = [
       { id: 'thrudr', weight: 1, why: 'Strength and power; the daughter of Þórr embodies the force behind every defensive line.' },
       { id: 'kratos', weight: 2, why: 'Strength and sovereign power personified; the Greek word for force that brands muscle and military alike.' },
       { id: 'narasimha', weight: 2, why: 'The man-lion avatāra who tears apart threats to cosmic order — protective violence as divine duty.' },
+      { id: 'goshin', weight: 2, why: 'The five protective deities; their very name means the divine guard.' },
+      { id: 'hachiman', weight: 2, why: 'The war kami and divine protector of Japan; archery, warriors, and the state fall under his bow.' },
+      { id: 'marishiten', weight: 2, why: 'Buddhist goddess of war and invisibility, patron of archers and warriors who confounds the enemy.' },
+      { id: 'tajikarao', weight: 1, why: 'The strong-hand kami whose power pulled Amaterasu from the cave; raw force in defense of the realm.' },
     ],
   },
   {
@@ -384,6 +401,8 @@ const INDUSTRY_GROUPS = [
       { id: "skuld", weight: 1, why: 'The future she weaves is the threat model every defender tries to read.' },
       { id: "syn", weight: 2, why: 'The goddess who bars the door and denies entry — access refusal made divine.' },
       { id: "yggdrasill", weight: 1, why: 'The tree whose roots are gnawed from every side is infrastructure under constant threat.' },
+      { id: 'goshin', weight: 1, why: 'Five deities of protection; the layered-guard logic is already divine.' },
+      { id: 'marishiten', weight: 2, why: 'Goddess of invisibility and concealment; the stealth that hides a network is her modern art.' },
     ],
   },
   {
@@ -470,6 +489,7 @@ const INDUSTRY_GROUPS = [
       { id: "sleipnir", weight: 2, why: 'The eight-legged horse carries Odinn between worlds — the original all-terrain courier.' },
       { id: "yggdrasill", weight: 2, why: 'The world-ash connects every realm — the cosmic network trunk.' },
       { id: 'gna', weight: 1, why: 'Messenger of Frigg; the swift courier who moves between worlds on her errand.' },
+      { id: 'sarutahiko', weight: 2, why: 'The long-nosed kami of crossroads and guidance who shows the way at every fork.' },
     ],
   },
   {
@@ -579,6 +599,12 @@ const INDUSTRY_GROUPS = [
       { id: 'fjorgyn', weight: 2, why: 'Earth herself and mother of Þórr; the soil that every farm works is her body.' },
       { id: 'jord', weight: 2, why: 'Earth personified and mother of Þórr; the soil from which every harvest grows.' },
       { id: 'tonatiuh', weight: 1, why: 'The sun whose warmth and calendar determine planting and harvest across Mesoamerican tradition.' },
+      { id: 'hoori', weight: 2, why: 'The fire-subduing hunter and agricultural kami; the field and the hunt are his twin harvests.' },
+      { id: 'inari', weight: 2, why: 'The kami of rice, fertility, and foxes; the harvest itself is shaped like their tails.' },
+      { id: 'izanami', weight: 1, why: 'The creation goddess whose body became the earth; soil and fertility are her afterlife.' },
+      { id: 'ninigi', weight: 2, why: 'The august rice spirit who descended to rule; the imperial line carries the grain mandate.' },
+      { id: 'nishinakahime', weight: 2, why: 'The day-sun wave princess of rice and agriculture; the crop is her court.' },
+      { id: 'omononushi', weight: 1, why: 'The mountain deity of Miwa; upland rice and sacred earth answer to him.' },
     ],
   },
   {
@@ -607,6 +633,10 @@ const INDUSTRY_GROUPS = [
       { id: 'nikko', weight: 1, why: 'Thousands of giant cryptomeria line her avenues; the approach itself is a sacred forest.' },
       { id: 'skadi', weight: 2, why: 'The ski-borne huntress of the winter mountains — Þrymheimr\'s snowfields are her domain; the outdoor industry is her cult.' },
       { id: "ullr", weight: 1, why: 'The snow-shoe god of the backcountry — winter wilderness as his range.' },
+      { id: 'fuji', weight: 1, why: 'Japan\'s sacred mountain; its forests, snowcap, and pilgrimage trails are a conservation icon.' },
+      { id: 'hoori', weight: 1, why: 'The hunter of the high places; the wild wood and the chase are his realm.' },
+      { id: 'kumano', weight: 1, why: 'The sacred mountain region whose cedar-lined trails are a UNESCO heritage corridor.' },
+      { id: 'omononushi', weight: 2, why: 'The mountain kami of Miwa; the forested peak is his shrine and his body.' },
     ],
   },
   {
@@ -652,6 +682,9 @@ const INDUSTRY_GROUPS = [
       { id: 'pontos', weight: 1, why: 'The sea as environment rather than deity; ocean conservation\'s primordial stakeholder.' },
       { id: "vanaheimr", weight: 1, why: 'The realm of natural cycles and growth — ecology as divine homeland.' },
       { id: 'jord', weight: 1, why: 'The Norse earth whose renewed green world rises after Ragnarök; planetary resilience made personal.' },
+      { id: 'fuji', weight: 1, why: 'The snow-capped volcano is a climate sentinel; its cone names the nation.' },
+      { id: 'kagutsuchi', weight: 1, why: 'Volcanic fire made kami; geothermal Japan personified.' },
+      { id: 'takachiho', weight: 1, why: 'The sacred gorge where the gods descended; the landscape is the myth.' },
     ],
   },
   {
@@ -684,6 +717,9 @@ const INDUSTRY_GROUPS = [
       { id: "reginn", weight: 2, why: 'The smith who reforged Gram from Sigmundrs shards — the divine forge that armed the dragon-slayer.' },
       { id: "sindri", weight: 2, why: 'He forged Mjolnir, Draupnir, and Gullinbursti — the divine workshop that outwitted Loki.' },
       { id: 'thrudr', weight: 1, why: 'Strength in material; the name itself is the Norse word for force and endurance.' },
+      { id: 'kagutsuchi', weight: 1, why: 'Fire kami of the forge; metal and volcano are the same craft to him.' },
+      { id: 'nagoya', weight: 2, why: 'Japan\'s industrial heartland; Toyota and the Chūbu manufacturing belt make things at scale.' },
+      { id: 'tajikarao', weight: 1, why: 'The strong-hand kami; his grip is the force behind every tool.' },
     ],
   },
   {
@@ -716,6 +752,7 @@ const INDUSTRY_GROUPS = [
       { id: 'hephaistos', weight: 1, why: 'He built each god a house on Olympus with knowing skill; Olympus\' first architect.' },
       { id: "uppsala", weight: 1, why: 'The sacred grove and temple described by Adam of Bremen shaped northern sacred architecture.' },
       { id: 'omphalos', weight: 1, why: 'The navel-stone of Delphi — the axis mundi that marks a place as the symbolic center of the world.' },
+      { id: 'ise', weight: 1, why: 'The Ise Grand Shrine and its twenty-year rebuilding cycle are the world\'s longest-running sacred design brief.' },
     ],
   },
   {
@@ -827,6 +864,8 @@ const INDUSTRY_GROUPS = [
       { id: 'hypnos', weight: 1, why: 'The sedative-hypnotic drug class carries his name through the pharmacopeia.' },
       { id: 'aither', weight: 1, why: 'Ether was surgery\'s first anesthetic; his name numbed the world for a century.' },
       { id: 'bhaisajyaguru', weight: 2, why: 'The Medicine Buddha whose vow is to heal every ailment; the East Asian patron of physicians and pharmacists.' },
+      { id: 'kannon', weight: 2, why: 'The bodhisattva of compassion who hears the cries of the world; healing begins with mercy.' },
+      { id: 'sukunahikona', weight: 2, why: 'The renowned little prince of healing and smallpox; folk medicine still invokes his name.' },
     ],
   },
   {
@@ -867,6 +906,7 @@ const INDUSTRY_GROUPS = [
       { id: 'psyche', weight: 2, why: 'Soul and breath in Greek — the root of psychology and the emblem of the inner life clinicians tend.' },
       { id: 'oidipous', weight: 2, why: 'The strict transliteration of Oedipus; the tragedy that gave psychoanalysis one of its founding complexes.' },
       { id: 'avalokiteshvara', weight: 1, why: 'The bodhisattva of compassion; self-compassion practices in mental health borrow from his vow.' },
+      { id: 'kannon', weight: 2, why: 'She who perceives the sounds of suffering; compassion as the first therapy.' },
     ],
   },
   {
@@ -921,6 +961,10 @@ const INDUSTRY_GROUPS = [
       { id: 'bhaisajyaguru', weight: 2, why: 'Healing light and medicinal vows; the Buddha whose realm is the recovery of body and mind.' },
       { id: 'shakti', weight: 1, why: 'The active power behind every deity; yoga and energy work are disciplines of shakti.' },
       { id: 'narasimha', weight: 1, why: 'Fierce protective presence; devotional practice channels his energy for spiritual defense.' },
+      { id: 'amaterasu', weight: 1, why: 'Light returned from the cave is the original wellness metaphor; her emergence restores the world.' },
+      { id: 'amida', weight: 2, why: 'Infinite Light and the Pure Land; the promise of release underlies contemplative wellness.' },
+      { id: 'fuji', weight: 1, why: 'Pilgrimage to the sacred summit is Japan\'s oldest wellness journey.' },
+      { id: 'nishinakahime', weight: 1, why: 'The rice princess as nourishment and sustenance; the calm of the full granary.' },
     ],
   },
   {
@@ -947,6 +991,7 @@ const INDUSTRY_GROUPS = [
       { id: 'herakles', weight: 1, why: 'The mortal who earned immortality by labour; longevity\'s founding success story.' },
       { id: 'xiwangmu', weight: 2, why: 'She holds the elixir of immortality itself — the drug Hòuyì won and Cháng\'é carried to the moon; life extension\'s founding myth.' },
       { id: 'bhaisajyaguru', weight: 1, why: 'The medicine-buddha ideal of complete healing maps onto longevity science\'s aspiration to extend healthy life.' },
+      { id: 'sukunahikona', weight: 1, why: 'Healing and smallpox mastery; the small divine prince of longevity lore.' },
     ],
   },
   {
@@ -991,6 +1036,7 @@ const INDUSTRY_GROUPS = [
       { id: 'angrboda', weight: 2, why: 'She who offers sorrow and mothers monsters; the giantess whose name belongs to sorcery and shadow.' },
       { id: 'ereshkigal', weight: 1, why: 'Queen of the Mesopotamian underworld; necromantic and chthonic traditions return to her court.' },
       { id: 'pandora', weight: 1, why: 'The all-gifted first woman whose opened box released every hidden ill — the original sealed secret.' },
+      { id: 'kotoshironushi', weight: 1, why: 'The kami of oracles and hidden knowledge; divination is his original craft.' },
     ],
   },
   {
@@ -1073,6 +1119,19 @@ const INDUSTRY_GROUPS = [
       { id: 'bhaisajyaguru', weight: 1, why: 'The Medicine Buddha is a focus of faith-healing and apotropaic devotion across Mahāyāna temples.' },
       { id: 'shakti', weight: 1, why: 'Divine power personified; Śākta devotion is one of Hinduism\'s major living streams.' },
       { id: 'ravana', weight: 2, why: 'The ten-headed sovereign of Laṅkā and the Rāmāyaṇa\'s great antagonist — a figure of power, learning, and penance in Hindu and Buddhist telling.' },
+      { id: 'amaterasu', weight: 2, why: 'The sun goddess at the apex of Shintō; the imperial line descends from her.' },
+      { id: 'amida', weight: 2, why: 'Amitābha in Japanese dress; the Pure Land is one of the world\'s most practiced Buddhist paths.' },
+      { id: 'goshin', weight: 2, why: 'The five deities as a protective cult; guardian faith in collective form.' },
+      { id: 'ise', weight: 2, why: 'The Ise Grand Shrine is the spiritual home of the Japanese polity.' },
+      { id: 'izanagi', weight: 2, why: 'The male creator who stirred the primordial brine and gave birth to the islands.' },
+      { id: 'izanami', weight: 2, why: 'The female creator whose death founded the underworld and whose body became the land.' },
+      { id: 'kannon', weight: 2, why: 'The bodhisattva of compassion is one of East Asia\'s most invoked objects of devotion; her temples outnumber many denominations.' },
+      { id: 'kotoshironushi', weight: 1, why: 'The oracular kami enshrined at Izumo and beyond; divination and sacred proxy are acts of faith.' },
+      { id: 'kumano', weight: 2, why: 'The three shrines of the Kumano Sanzan are one of Shintō\'s great pilgrimage circuits.' },
+      { id: 'omononushi', weight: 2, why: 'The great thing lord of Miwa; one of the oldest kami cults in Japan.' },
+      { id: 'shikoku', weight: 2, why: 'The eighty-eight-temple pilgrimage turns the whole island into a devotional path.' },
+      { id: 'takachiho', weight: 2, why: 'The gorge where Ninigi descended to rule; the mythic landing site of Japanese faith.' },
+      { id: 'tsukuyomi', weight: 2, why: 'The moon kami of Shintō; night, calendar, and celestial order are his liturgy.' },
     ],
   },
   {
@@ -1116,6 +1175,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ravana', weight: 1, why: 'The Rāmāyaṇa and its many retellings keep his ten-headed sovereignty in constant print and performance.' },
       { id: 'oidipous', weight: 1, why: 'Sophocles\' tragedy is a foundational text of Western drama, endlessly translated, staged, and cited.' },
       { id: 'pandora', weight: 2, why: 'The all-gifted first woman and her box is a story still retold in every medium; the name is a publishing archetype.' },
+      { id: 'benzaiten', weight: 1, why: 'Goddess of eloquence; the word made persuasive is her instrument.' },
     ],
   },
   {
@@ -1158,6 +1218,8 @@ const INDUSTRY_GROUPS = [
       { id: 'sunwukong', weight: 1, why: 'Peking opera, shadow puppetry, and countless East Asian performances make the Monkey King a stage staple.' },
       { id: 'ravana', weight: 2, why: 'The Rāvaṇa of the Rāmāyaṇa is a master of the vīṇā and a patron of music and the arts in South Asian tradition.' },
       { id: 'pandora', weight: 1, why: 'The myth of all-gifted Pandora is a recurring theme in opera, ballet, and visual art.' },
+      { id: 'benzaiten', weight: 2, why: 'The only female among the Seven Lucky Gods, patron of music, song, and the biwa.' },
+      { id: 'raijin', weight: 2, why: 'The thunder kami whose taiko drums circle every storm; Sōtatsu\'s Fūjin-Raijin screens are national treasures.' },
     ],
   },
   {
@@ -1275,6 +1337,9 @@ const INDUSTRY_GROUPS = [
       { id: 'thrudr', weight: 2, why: 'Strength personified; the daughter of Þórr whose name is the Norse word for power and force.' },
       { id: 'kratos', weight: 1, why: 'Strength and power — the Greek word names the force every strength sport seeks to express.' },
       { id: 'theseus', weight: 1, why: 'The Athenian hero\'s labors and the labyrinth-run are archetypes of athletic trial and endurance.' },
+      { id: 'hachiman', weight: 1, why: 'Archery, war, and competition; the bow is his attribute and the contest his rite.' },
+      { id: 'hoori', weight: 1, why: 'The hunter whose skill with bow and field defines the athletic chase.' },
+      { id: 'tajikarao', weight: 2, why: 'The strong-hand kami; strength sports and feats of power are his literal domain.' },
     ],
   },
   {
@@ -1368,6 +1433,15 @@ const INDUSTRY_GROUPS = [
       { id: 'jagannatha', weight: 2, why: 'The Rath Yatra at Puri is one of the largest annual religious processions and a major pilgrimage event.' },
       { id: 'tonatiuh', weight: 1, why: 'Aztec sun cults, the Stone of the Sun, and Tenochtitlan heritage anchor Mesoamerican cultural tourism.' },
       { id: 'helene', weight: 1, why: 'Sparta and Troy still trade on her story; the face that launched a thousand ships is a heritage-tourism archetype.' },
+      { id: 'fuji', weight: 2, why: 'Japan\'s most photographed peak; the climb is a secular pilgrimage.' },
+      { id: 'ise', weight: 2, why: 'The Ise Grand Shrine draws millions on pilgrimage; the inner and outer shrines define sacred travel.' },
+      { id: 'izanagi', weight: 1, why: 'The creator\'s footsteps formed the Japanese islands; the myth is the itinerary.' },
+      { id: 'kumano', weight: 2, why: 'The Kumano Kodō pilgrimage routes are a UNESCO World Heritage walking trail.' },
+      { id: 'sarutahiko', weight: 1, why: 'The kami who guides travelers at the crossroads; every journey begins with his leave.' },
+      { id: 'shikoku', weight: 2, why: 'The eighty-eight-temple circuit is one of the world\'s great pilgrimage journeys.' },
+      { id: 'takachiho', weight: 2, why: 'The gorge of the heavenly descent; mythic tourism in Miyazaki.' },
+      { id: 'toyotama', weight: 1, why: 'The sea-goddess of the Ryukyu mythic corridor; the ocean road is her realm.' },
+      { id: 'tsukuyomi', weight: 1, why: 'Moon-viewing tourism and night-sky travel follow his silver calendar.' },
     ],
   },
   {
@@ -1451,6 +1525,9 @@ const INDUSTRY_GROUPS = [
       { id: 'ganesha', weight: 1, why: 'Remover of obstacles, invoked at every new venture; the first name in Indian commerce.' },
       { id: 'fafnir', weight: 1, why: 'The cursed hoard of Andvari is greed made plot — the gold that buys kingdoms and kills its owners; finance\'s oldest cautionary tale wears his coils.' },
       { id: 'caishen', weight: 2, why: 'The Chinese god of wealth whose image appears in shops, homes, and businesses during the New Year.' },
+      { id: 'benzaiten', weight: 2, why: 'Wealth, fortune, and commercial luck; her biwa plays the sound of money.' },
+      { id: 'ebisu', weight: 2, why: 'The laughing god of commerce, fishermen, and daily prosperity.' },
+      { id: 'inari', weight: 2, why: 'Rice, fertility, and fox-shaped fortune; the merchant\'s prayer is offered at their gates.' },
     ],
   },
   {
@@ -1481,6 +1558,9 @@ const INDUSTRY_GROUPS = [
       { id: 'leviathan', weight: 1, why: 'The deep’s ultimate peril; marine risk named a monster before it named a premium.' },
       { id: 'tyr', weight: 1, why: 'The hand in Fenrir\'s mouth — the pledge that made the binding hold; surety personified.' },
       { id: 'njordr', weight: 1, why: 'He stills sea and fire — marine and flame, the two oldest insured perils, answered by one god.' },
+      { id: 'goshin', weight: 2, why: 'Five protective deities; the layered-guard model is cosmic insurance.' },
+      { id: 'hachiman', weight: 1, why: 'The protective war kami; safeguarding the state and the home.' },
+      { id: 'raijin', weight: 1, why: 'Thunder and lightning are the oldest insurable risks; his drums are the claim siren.' },
     ],
   },
   {
@@ -1608,6 +1688,12 @@ const INDUSTRY_GROUPS = [
       { id: 'oduduwa', weight: 1, why: 'First king of the Yoruba and progenitor of its royal lines; kingship begins with his descent.' },
       { id: 'caishen', weight: 1, why: 'Prosperity follows good stewardship; his cult is invoked by merchants and household leaders alike.' },
       { id: 'theseus', weight: 1, why: 'Founder-king of Athens and unifier of Attica; the hero who became a statesman.' },
+      { id: 'amaterasu', weight: 2, why: 'The solar sovereign from whom the imperial line claims descent; Japan\'s highest kami.' },
+      { id: 'hachiman', weight: 1, why: 'Deified emperor and guardian of the state; leadership by divine protection.' },
+      { id: 'izanagi', weight: 2, why: 'The creator who organized the islands and the pantheon; primordial executive authority.' },
+      { id: 'ninigi', weight: 2, why: 'The grandson of Amaterasu sent to rule; the mandate from heaven made flesh.' },
+      { id: 'sarutahiko', weight: 1, why: 'The kami who guides the great way; leadership as showing the path.' },
+      { id: 'ugayafukiaezu', weight: 1, why: 'Ancestor of the first emperor; imperial leadership begins with him.' },
     ],
   },
   {
@@ -1774,6 +1860,8 @@ const INDUSTRY_GROUPS = [
       { id: 'kronos', weight: 1, why: 'Father of six Olympians; the ruling dynasty\'s patriarch and cautionary progenitor.' },
       { id: 'audhumla', weight: 1, why: 'The primeval nourisher; from her milk the first giant grew and the gods were licked from the ice.' },
       { id: 'oduduwa', weight: 2, why: 'The primordial ancestor of the Yoruba people; every royal lineage in Ilé-Ifẹ̀ traces descent from him.' },
+      { id: 'toyotama', weight: 2, why: 'The sea-goddess mother of Jimmu, the first emperor; the imperial line passes through her.' },
+      { id: 'ugayafukiaezu', weight: 2, why: 'The cormorant-grass prince and father of Jimmu; Japanese imperial ancestry begins here.' },
     ],
   },
   {
@@ -1848,6 +1936,7 @@ const INDUSTRY_GROUPS = [
       { id: 'houyi', weight: 1, why: 'When ten suns rose together and the world burned, he ended the catastrophe with a bow — cosmic correction as emergency response.' },
       { id: 'keraunos', weight: 1, why: 'The thunderbolt is the original natural hazard; lightning protection is disaster resilience in its oldest form.' },
       { id: 'angrboda', weight: 1, why: 'Mother of Fenrir, Jörmungandr, and Hel — the progenitor of the catastrophes that end the world.' },
+      { id: 'kagutsuchi', weight: 2, why: 'Fire and volcano; the kami whose birth is the original disaster.' },
     ],
   },
   {
@@ -1886,6 +1975,7 @@ const INDUSTRY_GROUPS = [
       { id: 'hekate', weight: 1, why: 'Torch-bearer and keyholder who walks with souls between the realms; the underworld\'s escort.' },
       { id: 'erebus', weight: 1, why: 'The dead cross his darkness on the way down; the underworld\'s outer gate.' },
       { id: 'ereshkigal', weight: 2, why: 'Lady of the Great Earth and queen of the Mesopotamian underworld — death\'s first named monarch.' },
+      { id: 'izanami', weight: 2, why: 'She who died giving birth and became queen of Yomi; death and return are her myth.' },
     ],
   },
   {
@@ -1910,6 +2000,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ananke', weight: 1, why: 'In Orphic cosmogony she entwines Chronos himself; the calendar is necessity\'s schedule.' },
       { id: 'rta', weight: 1, why: 'The seasons turn by ṛta, and ṛtu — the Sanskrit word for season — is its own child.' },
       { id: 'mani', weight: 1, why: 'Moon and month share his name\'s root in every Germanic language; the first calendar counted by his phases.' },
+      { id: 'tsukuyomi', weight: 2, why: 'The moon marks months and festivals; the oldest clock in the Japanese sky.' },
     ],
   },
   {
@@ -1994,6 +2085,7 @@ const INDUSTRY_GROUPS = [
       { id: 'gauri', weight: 2, why: '“Gaurī kā vivāha” is everyday Hindi for the ideal marriage; her wedding to Śiva is the Purāṇic template.' },
       { id: 'var', weight: 2, why: 'Marriage agreements and sworn vows; the bond itself is her divine office.' },
       { id: 'helene', weight: 1, why: 'The face that launched a thousand ships remains the archetype of the bride around whom dynasties turn.' },
+      { id: 'toyotama', weight: 1, why: 'The sea-goddess wife of Hoori and mother of Jimmu; the founding family of the imperial line.' },
     ],
   },
   {
@@ -2034,6 +2126,7 @@ const INDUSTRY_GROUPS = [
       { id: 'odysseus', weight: 1, why: 'The archetypal journey home; every road trip and long haul is his.' },
       { id: 'hermes', weight: 1, why: 'God of roads and wayfarers; the traveller’s patron, the journey made safe.' },
       { id: 'nezha', weight: 1, why: 'He rides the Wind Fire Wheels — myth\'s first personal mobility device; the Neta marque sells electric cars under his name.' },
+      { id: 'nagoya', weight: 2, why: 'Toyota City and the Chūbu automotive belt; the world learned lean manufacturing here.' },
     ],
   },
   {
@@ -2048,6 +2141,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ptah', weight: 2, why: 'The creator who made the world by craft and word; Egypt’s patron of artisans and builders.' },
       { id: 'athena', weight: 1, why: 'Techne personified — the craft of making, guided by wisdom.' },
       { id: 'bifrost', weight: 2, why: 'The bridge that spans Miðgarðr and Ásgarðr — joining two worlds is the industry\'s founding dream, guarded and load-bearing.' },
+      { id: 'tajikarao', weight: 2, why: 'The strong-hand kami who rolled back the cave stone; raw strength is the trade.' },
     ],
   },
   {
@@ -2065,6 +2159,13 @@ const INDUSTRY_GROUPS = [
       { id: 'xiwangmu', weight: 1, why: 'The Peach Banquet she hosts for the assembled immortals is the feast as institution — hospitality\'s most exclusive table.' },
       { id: 'audhumla', weight: 1, why: 'The primeval cow whose milk nourished creation; dairy and abundance at the first table.' },
       { id: 'jagannatha', weight: 1, why: 'The temple at Puri is famous for mahāprasāda — sacred food prepared in vast kitchens and distributed to millions.' },
+      { id: 'ebisu', weight: 1, why: 'The smiling god of fishermen and the seafood economy; his face sells sake and sushi.' },
+      { id: 'hoderi', weight: 1, why: 'The fisherman; the sea\'s kitchen is his congregation.' },
+      { id: 'inari', weight: 2, why: 'Rice, sake, and fox; the Inari-zushi roll carries their name to every table.' },
+      { id: 'ninigi', weight: 1, why: 'The rice spirit; every bowl of sake begins with his grain.' },
+      { id: 'nishinakahime', weight: 1, why: 'The rice princess; the harvest is the first course.' },
+      { id: 'shikoku', weight: 1, why: 'Sanuki udon and island seafood; the pilgrimage is fed locally.' },
+      { id: 'sukunahikona', weight: 2, why: 'The small prince of sake; brewing is his gift.' },
     ],
   },
   {

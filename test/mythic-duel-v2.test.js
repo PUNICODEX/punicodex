@@ -23,7 +23,12 @@ function test(name, fn) {
 }
 
 function makeBattle(seed = 7) {
-  const deck = SET.cards.slice(0, 30).map(Engine.toBattleCard);
+  let deckCards = SET.cards.slice(0, 30);
+  if (!deckCards.some((c) => c.cost <= 2)) {
+    const cheap = SET.cards.find((c) => c.cost <= 2);
+    if (cheap) deckCards = [cheap, ...deckCards.slice(1)];
+  }
+  const deck = deckCards.map(Engine.toBattleCard);
   const aiDeck = SET.cards.slice(30, 60).map(Engine.toBattleCard);
   return Engine.createGame({ playerDeck: deck, aiDeck, seed });
 }

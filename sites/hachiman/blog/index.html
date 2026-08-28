@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Hachiman got its accent back | Hachiman Blog | PUNICODEX</title>
+    <meta name="description" content="Discover Hachiman: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/hachiman/blog/">
+    <meta property="og:title" content="How Hachiman got its accent back | Hachiman Blog | PUNICODEX">
+    <meta property="og:description" content="Discover Hachiman: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <meta property="og:url" content="https://punicodex.com/hachiman/blog/">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-28">
+    <meta property="article:section" content="Blog">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/hachiman.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/hachiman.jpg">
+    <meta name="twitter:title" content="How Hachiman got its accent back | Hachiman Blog | PUNICODEX">
+    <meta name="twitter:description" content="Discover Hachiman: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How Hachiman got its accent back",
+        "description": "Discover Hachiman: the story behind the Unicode domain, the original script, and the scholars preserving it.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-28",
+        "dateModified": "2026-08-28",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/hachiman/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Hachiman", "hachiman", "japanese mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Japanese characters restoration"],
+        "url": "https://punicodex.com/hachiman/blog/",
+        "image": "https://punicodex.com/assets/og/hachiman.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Hachiman",
+      "item": "https://punicodex.com/hachiman/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/hachiman/blog/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="hachiman-canvas" data-effect="particles" data-primary="#DC143C" data-secondary="#1A1A1A" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/hachiman_logolockup.webp" type="image/webp"><img src="../assets/hachiman_logolockup.png" alt="Hachiman" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (Home → Pantheon → temple; the tab crumb lives in the JSON-LD trail) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/hachiman/">Hachiman</a></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Hachiman — Blog</p>
+                <p class="hero-title reveal-up">How Hachiman got its accent back</p>
+                <p class="hero-subtitle reveal-up">War, Archery, Protection</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 2</span>
+                    <span class="meta-domain">Hachiman</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/hachiman_mascot.webp" type="image/webp"><img src="../assets/hachiman_mascot.webp" alt="Hachiman — War, Archery, Protection" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-28">2026-08-28</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>14 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-japanese-pantheon">The Japanese Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-hachiman">Typing Hachiman</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#hachiman-in-its-tradition">Hachiman in Its Tradition</a></li>
+                <li><a href="#what-you-will-find-in-the-temple">What You Will Find in the Temple</a></li>
+                <li><a href="#the-restoration-on-the-live-web">The Restoration on the Live Web</a></li>
+                <li><a href="#restoration-notes">Restoration Notes</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>How Hachiman got its accent back</h1>
+<p>The ASCII form <em>hachiman</em> is missing something. <strong>Hachiman</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Japanese characters evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Hachiman will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Hachiman</li>
+  <li><strong>ASCII form:</strong> hachiman</li>
+  <li><strong>Meaning:</strong> "Eight banners"</li>
+  <li><strong>Domain of influence:</strong> War, Archery, Protection</li>
+  <li><strong>Pantheon:</strong> Japanese</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 八幡 (Japanese characters)</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Hachiman</strong> (<em>hachiman</em>) — War, Archery, Protection — belongs to the Japanese tradition. The name means "Eight banners".</p>
+<p>Hachiman is the god of war, archery, and divine protection, widely identified with the deified Emperor Ōjin.</p>
+<p>PuniCodex restores the name as <strong>Hachiman</strong>. The plain ASCII form <em>hachiman</em> is the modern Hepburn romanization; the restoration capitalizes the conventional spelling. Because the Japanese source script uses logographic characters whose distinctive visual form cannot be conveyed in the basic Latin alphabet, and because no diacritic or special letter is added in this restoration, the name is placed in Tier 2. The Unicode form remains the philologically complete reference, while the ASCII spelling is a practical convenience for the domain-name system.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Japanese characters as <strong>八幡</strong>. Etymologically it means "Eight banners".</p>
+<p>Hachiman means "eight banners," from <em>hachi</em> (eight) and <em>hata</em> (banner, written with the <em>man</em> reading of 幡). The name probably refers to the eight banners displayed at the inauguration of a new shrine or to the eight great clans (<em>hachiōji</em>) that supported his cult. He is widely identified with the deified Emperor Ōjin and, in some traditions, with the Korean prince-statesman Takenouchi no Sukune.</p>
+<p>The ASCII form <em>hachiman</em> survives only because the early domain-name system could not carry Japanese characters or diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Hachiman</strong> gives the conventional Hepburn romanization with initial capitalization, the standard scholarly way to cite a proper name in romanized Japanese. The name is Tier 2 because the restoration does not add a distinctive diacritic or special letter absent from the ASCII form.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>c</strong> → <strong>c</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is written in Japanese characters as <strong>八幡</strong> — Japanese logographic and syllabic script (kanji plus kana where attested), attested in the classical Japanese sources. The script is written top-to-bottom in traditional contexts and left-to-right in modern reproductions.</p>
+<p>The scholarly transliteration is <em>Hachiman</em> (Hepburn romanization with initial capitalization), giving the normalized reading //ha.tɕi.maɴ//.</p>
+<p>The characters 八幡 are semantic: 八 (eight) and 幡 (banner, flag). The full cult title is <em>Hachiman Daijin</em> or <em>Yawata no kami</em>, the latter being a phonetic reading of the same characters.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The conventional reading of the name is <strong>/ha.tɕi.maɴ/</strong> — Modern Japanese (Standard Japanese).</p>
+<p>For the modern speaker, the closest approximation is: 'HACHIMAN' — pronounce each vowel clearly and avoid English diphthongs. Japanese is mora-timed, so each syllable receives roughly equal weight.</p>
+<p>Hachiman is Tier 2 because the ASCII form <em>hachiman</em> already represents the same phonemic sequence; no stress mark, length mark, or distinctive letter is required to recover the spoken name.</p>
+<p>Japanese is a mora-timed language: each short syllable receives roughly equal temporal weight, and long vowels or double consonants count as separate morae. The name <strong>Hachiman</strong> therefore falls into a regular rhythmic pattern that is lost if an English speaker stresses one syllable heavily. The Hepburn romanization used here records the modern standard pronunciation; it does not preserve the historical pitch accent of the word, which differs across dialects. When reading the name aloud, keep the vowels pure and avoid English diphthongs: the restoration <strong>Hachiman</strong> is the conventional scholarly citation form, not a phonetic transcription with added diacritics. Because the ASCII string <em>hachiman</em> already encodes the same phonemic sequence, the name remains Tier 2 in the PuniCodex system.</p>
+<h2 id="mythology">Mythology</h2>
+<p>The <em>Nihon Shoki</em> identifies Hachiman with Emperor Ōjin (r. 270–310 CE according to tradition), the son of Empress Jingū, who is said to have conquered Korea while pregnant. After Ōjin's death he was deified as the kami of war and enshrined at Usa in <a href="/kyushu/" class="crosslink" data-crosslink="kyushu">Kyūshū</a>. In 749 he was invoked to protect the state and the construction of the Great Buddha of Nara; his oracles through the Usa Hachiman shrine influenced imperial policy.</p>
+<p>The narrative of <strong>Hachiman</strong> participates in the larger mythic program of the <em>Kojiki</em> and <em>Nihon Shoki</em>: to explain the origins of the imperial house, the division of divine labour, and the relationship between the human and kami worlds. Because these chronicles were compiled in the eighth century under imperial patronage, the myths also serve a political theology, grounding earthly authority in divine descent and cosmic order. Read comparatively, the story of hachiman illustrates how Japanese myth uses genealogy, descent from heaven, and the negotiation of rival domains to construct a coherent sacred history.</p>
+<h3 id="the-deified-emperor-ojin-imperial-legend">The Deified Emperor Ōjin (Imperial legend)</h3>
+<p>Emperor Ōjin, the 15th emperor, was posthumously worshipped as Hachiman after his death in the 4th century. The Kojiki and Nihon Shoki describe his mother, Empress Jingū, conquering Korea while pregnant with him; he was born on campaign and grew into a ruler who promoted Korean culture and technology. His deification made him a divine ancestor of war and statecraft.</p>
+<h3 id="guardian-of-the-north-usa-hachiman">Guardian of the North (Usa Hachiman)</h3>
+<p>The great shrine at Usa in Kyūshū became Hachiman's principal cult center. In the 8th century the shrine's oracle supported the imperial move of the capital and the suppression of the Emi rebellion. Hachiman was thus drawn into the political center: a regional war god became protector of the realm.</p>
+<h3 id="hachiman-daibosatsu-medieval-buddhism">Hachiman Daibosatsu (Medieval Buddhism)</h3>
+<p>In medieval Japan, Hachiman was identified with the Buddhist bodhisattva Hachiman Daibosatsu. Major temples such as Tōdai-ji housed shrines to him, and samurai clans claimed his protection before battle. The fusion of kami and bodhisattva was only dismantled by the Meiji separation of Shinto and Buddhism.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<ul>
+  <li><strong>Bow and arrows</strong> — emblems of his role as patron of archery and war.</li>
+  <li><strong>Eight banners</strong> — the standard from which his name is derived.</li>
+  <li><strong>White doves</strong> — his messengers, often seen at Hachiman shrines.</li>
+  <li><strong>Armor and helmet</strong> — reflecting his identity as the deified warrior-emperor Ōjin.</li>
+  <li><strong>Lotus or Buddhist robe</strong> — when syncretised with <a href="/amida/" class="crosslink" data-crosslink="amida">Amida</a> or the <em>gongen</em> form.</li>
+</ul>
+<ul>
+  <li><strong>Helmet and armor</strong> — The martial regalia of the deified warrior</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>Usa Hachiman-gū in Ōita Prefecture is the head shrine of the Hachiman cult and preserves a layered archaeological record from the eighth century onward. The <em>Usa no ikenshō</em> (oracles) and the <em>Iwashimizu</em> shrine near Kyoto document the medieval alliance between Hachiman and the imperial house.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p>Hachiman is the god of war, archery, and divine protection, especially of the nation and the imperial house. He is the tutelary kami of the samurai class and was adopted as a protector deity by the medieval military government. At the same time, he is a compassionate kami who protects Buddhism, often syncretised with the bodhisattva Amida.</p>
+<p>The domain of <strong>Hachiman</strong> is understood within the broader Japanese religious landscape as both a specific functional sphere and a node in a network of kami, buddhas, and local spirits. Shrines, temples, and household rites all invoke the figure in ways that blur strict boundaries between Shinto and Buddhist practice. The restoration <strong>Hachiman</strong> therefore names not only a mythic person but a living field of ritual activity: pilgrimage, festival, iconography, and prayer continue to define what the name means in contemporary Japan. This combinatory or "syncretic" context is essential for interpreting the domains listed above.</p>
+<h3 id="war-god">War God</h3>
+<p>Patron of warriors, archers, and those who fight in defense of order.</p>
+<h3 id="eight-banners">Eight Banners</h3>
+<p>His name refers to the eight ritual banners that accompanied his divine birth.</p>
+<h3 id="divine-protector">Divine Protector</h3>
+<p>Guardian of the nation, invoked by the imperial house and local communities.</p>
+<h3 id="shinbutsu-synthesis">Shinbutsu Synthesis</h3>
+<p>Worshipped both as a kami and as the Buddhist bodhisattva Hachiman Daibosatsu.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Hachiman is the archetypal <em>gongen</em> (<em>avatar</em>) figure: a Shinto kami manifested as a Buddhist bodhisattva, usually Amida or a <em>Myō-ō</em>. The great Hachiman shrines — Usa, Iwashimizu, and Tsurugaoka — all developed within a <em>shinbutsu-shūgō</em> framework. After the Meiji separation of kami and buddhas his Buddhist accoutrements were stripped away, but his role as protector of warriors and the nation persisted.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Hachiman remains one of the most widely venerated kami in Japan, with more than twenty-five thousand Hachiman shrines. The <em>Yabusame</em> mounted archery ritual, the <em>Boys' Festival</em> (<em>Tango no sekku</em>), and the martial arts all retain his patronage. His white doves are familiar shrine messengers, and the Hachiman cult shaped the ideology of the samurai state.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Hachiman given in this edition rests on the witnesses and reference works listed below. The primary chronicles secure the form and meaning of the name; the secondary studies supply historical, archaeological, and ritual context.</p>
+<ul>
+  <li> Kojiki (Records of Ancient Matters), 712. <a href="https://sacred-texts.com/shi/kj/index.htm">Full text</a></li>
+  <li> Nihon Shoki (Chronicles of Japan), 720. <a href="https://sacred-texts.com/shi/nihon0.htm">Full text</a></li>
+  <li> Shinto: The Kami Way, Ono Sokyo, 1962.</li>
+  <li> Breen, John, and Mark Teeuwen, A New History of Shinto (Wiley-Blackwell, 2010).</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Hachiman embodies war, archery, protection in the Japanese imagination. The name's restoration is not merely cosmetic: it preserves the capitalized scholarly romanization by which the figure is cited in academic and ritual contexts. The ASCII form flattens the visual identity of the original characters into plain letters, but the spoken name and the mythic role remain intact.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Hachiman is classified as <strong>Tier 2</strong>: the restoration needs no distinctive letters or diacritics its ASCII form would lose. The ASCII fallback <em>hachiman</em> still resolves everywhere, but it is the restored form that carries the name's full information. That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>hachiman</em> to <strong>Hachiman</strong>, one character at a time:</p>
+<ul>
+  <li><strong>h</strong> → <strong>H</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>c</strong> → <strong>c</strong> — Same</li>
+  <li><strong>h</strong> → <strong>h</strong> — Same</li>
+  <li><strong>i</strong> → <strong>i</strong> — Same</li>
+  <li><strong>m</strong> → <strong>m</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+</ul>
+<h2 id="the-japanese-pantheon">The Japanese Pantheon</h2>
+<p>Hachiman is one of 45 entries the PuniCodex lexicon catalogues under the Japanese pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition's major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 981 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Hachiman mean?</strong> The traditional gloss is "Eight banners."</p>
+<p><strong>Which tradition does Hachiman belong to?</strong> Hachiman is catalogued in the Japanese pantheon of the PuniCodex lexicon.</p>
+<p><strong>Why is Hachiman classified as Tier 2?</strong> Because the restoration needs no distinctive letters or diacritics its ASCII form would lose — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Can I use Hachiman in a normal browser?</strong> Yes. The DNS resolves the punycode form automatically, and the type tool on this site converts hachiman to Hachiman for copying and pasting.</p>
+<p><strong>Where does the scholarly information come from?</strong> The entry is built from lexica, inscriptional evidence, and reviewed scholarly sources listed in the Scholarly Edition. Every claim is traceable to a canonical source.</p>
+<h2 id="typing-hachiman">Typing Hachiman</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PuniCodex Type Tool</a> converts the ASCII form <em>hachiman</em> into <strong>Hachiman</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Japanese pantheon include <a href="/nikko/">Nikkō</a>, <a href="/raijin/">Raijin</a>, and <a href="/takachiho/">Takachiho</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Hachiman</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>hachiman</em> is a choice to leave evidence on the table. The PuniCodex temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PuniCodex blog</a>.</p>
+<h2 id="hachiman-in-its-tradition">Hachiman in Its Tradition</h2>
+<p><strong>Hachiman</strong> does not stand alone. It belongs to the Japanese tradition, where it is counted among 45 names in the PuniCodex lexicon. Its sphere — War, Archery, Protection — places it beside other figures who govern similar aspects of experience. The restored spelling is therefore not only a philological decision; it is a way of keeping the name in the company of its kin. When the address bar shows <strong>Hachiman</strong>, it marks the boundary between a generic search term and a named entry in a living catalog of myth. That catalog is the point of the project. Every restored name is a vote for specificity: the web should know the difference between a figure and a keyword, between a tradition and a trend. <strong>Hachiman</strong> is one such vote.</p>
+<h2 id="what-you-will-find-in-the-temple">What You Will Find in the Temple</h2>
+<p>The temple page for <strong>Hachiman</strong> is more than a landing page. The home tab presents the character breakdown, the pronunciation guide, and the live domain status in a single view. The lore tab gathers the myths and narratives that give the name its depth. The Scholarly Edition tab publishes the sources, variant forms, and review history that justify the restoration. Industry patterns show where the name appears in modern commerce and culture, while the gallery and creatives tabs collect visual and sponsor material. The patron wall lets visitors support the restoration directly. Each tab is generated from the same canonical sources, so the domain, the blog, the scholars page, and the search index all agree. The result is a single source of truth about a name, delivered through several doors.</p>
+<h2 id="the-restoration-on-the-live-web">The Restoration on the Live Web</h2>
+<p>A domain name is a kind of publication. When <strong>Hachiman</strong> resolves, it proves that the restored spelling is not a theoretical exercise; it is a working address on the public internet. Search engines can index it, language models can encounter it, and anyone who copies it from a manuscript can paste it into a browser. That practical reality changes the status of the restoration. Before Unicode domains, a scholar could write the name correctly in an article while the public web flattened it to <em>hachiman</em>. Now the public web can carry the correct form end to end. The punycode translation happens silently, so the infrastructure remains compatible while the visible name keeps its marks. That compromise — human-readable restoration, machine-readable encoding — is the foundation of every PuniCodex temple.</p>
+<h2 id="restoration-notes">Restoration Notes</h2>
+<p>Restoring a name is not a single decision; it is a sequence of smaller decisions, each backed by a different kind of evidence. For <strong>Hachiman</strong>, the chain begins with the attested form in Japanese characters, continues through the standard scholarly romanizations, and ends with the DNS-compatible Unicode spelling used by this temple. The meaning "Eight banners" anchors the name in its semantic field; without that anchor, the marks would float free of the figure they name. The restored form <strong>Hachiman</strong> and the ASCII form <em>hachiman</em> share the same Latin letters; the restoration here is a conventional capitalization rather than a recovery of lost diacritics or special characters. Those adjustments are not arbitrary styling. They follow the tier rule that places Hachiman in <strong>Tier 2</strong>: the restoration needs no distinctive letters or diacritics its ASCII form would lose. The rule is mechanical, not editorial, which means the same standard applies to every entry in the lexicon. A visitor who disagrees with the classification can at least see exactly which evidence produced it, because every step is recorded in the Scholarly Edition. That transparency is the difference between a restoration project and a branding exercise. The name is being put back, not invented.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/honshu/">Honshū</a></li>
+  <li><a href="/hoori/">Hoori</a></li>
+  <li><a href="/inari/">Inari</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
+<ul>
+  <li><a href="https://sacred-texts.com/shi/kj/index.htm">Kojiki (Records of Ancient Matters), 712.</a></li>
+  <li><a href="https://sacred-texts.com/shi/nihon0.htm">Nihon Shoki (Chronicles of Japan), 720.</a></li>
+  <li>Hepburn, James Curtis, A Japanese-English and English-Japanese Dictionary, 1867.</li>
+  <li>Breen, John, and Mark Teeuwen, A New History of Shinto (Wiley-Blackwell, 2010).</li>
+  <li>Shinto: The Kami Way, Ono Sokyo, 1962.</li>
+  <li>Ono, Sokyo, Shinto: The Kami Way (Tuttle, 1962).</li>
+  <li>Lexicon authorities for this entry: Hepburn, Kojiki.</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">japanese</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Hachiman collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 153 in the series: <a href="./restoration/">Why Hachiman is spelled that way — and what it costs to get it right</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">The working life of Hachiman: from the myths to the modern trades</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">The canonical register: Hachiman</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">Hachiman</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">八幡</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/hachiman_logomark.webp" type="image/webp"><img src="../assets/hachiman_logomark.png" alt="Hachiman logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

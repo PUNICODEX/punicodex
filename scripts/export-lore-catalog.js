@@ -15,6 +15,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const { writeFileWithRetry } = require('./write-file-retry');
+
 const ROOT = path.join(__dirname, '..');
 const SOURCE = path.join(ROOT, 'scripts', 'lore-catalog.json');
 
@@ -73,7 +75,7 @@ function main() {
 
   for (const dest of OUTPUTS) {
     fs.mkdirSync(path.dirname(dest), { recursive: true });
-    fs.writeFileSync(dest, json, 'utf8');
+    writeFileWithRetry(dest, json, 'utf8');
   }
 
   console.log(`✓ Exported ${Object.keys(catalog).length} flagship lore entries to ${OUTPUTS.length} consumers.`);

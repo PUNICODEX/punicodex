@@ -13,6 +13,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+const { writeFileWithRetry } = require('./write-file-retry');
+
 const ROOT = path.join(__dirname, '..');
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
@@ -69,7 +71,7 @@ function bake(relPath, entries) {
   if (anchors.length === 0) throw new Error(`${relPath}: no </head>`);
   const insertAt = Math.min(...anchors);
   html = `${html.slice(0, insertAt)}    ${block}\n${html.slice(insertAt)}`;
-  fs.writeFileSync(file, html, 'utf8');
+  writeFileWithRetry(file, html, 'utf8');
   console.log(`${relPath}: ItemList baked (${entries.length} items)`);
 }
 

@@ -602,7 +602,20 @@ function pantheonBlock(data) {
 function marksDeepBlock(data) {
   if (!data.breakdown.length) return '';
   const changed = data.breakdown.filter((b) => b.type && b.type !== 'same');
-  if (!changed.length) return '';
+
+  // ASCII-only restorations still deserve a deepening section: explain the
+  // original script and why the conventional spelling is the philological
+  // reference form, even when no diacritic is recovered.
+  if (!changed.length) {
+    return (
+      `A restored name is a small map. In the case of **${data.unicode}**, the map does not lead through diacritics or special letters, because the source tradition wrote the name in ${data.scriptName} rather than in the Latin alphabet. The ASCII form *${data.ascii}* and the restored form share the same letters; the restoration is a decision about which conventional spelling should serve as the public reference.\n\n` +
+      `That decision is not cosmetic. ${data.originalScript ? `The original script attestation — **${data.originalScript}** — carries semantic and phonetic information that no romanization can fully reproduce.` : `The original script attestation carries semantic and phonetic information that no romanization can fully reproduce.`} ` +
+      `By fixing one conventional spelling as the canonical domain form, the project prevents the drift that happens when a name is romanized differently in every article, map, and database. ` +
+      `The breakdown still lists each character — ${data.breakdown.map((b) => `**${b.char}**`).join(', ')} — so visitors can see exactly what is being carried forward and what is not. ` +
+      `What looks like "no change" is, in fact, a deliberate choice to keep the name stable, searchable, and addressable.`
+    );
+  }
+
   const same = data.breakdown.length - changed.length;
   const lines = data.breakdown
     .map((b) => {
@@ -638,6 +651,24 @@ function digitalLifeBlock(data) {
     `A domain name is a kind of publication. When **${data.unicode}** resolves, it proves that the restored spelling is not a theoretical exercise; it is a working address on the public internet. Search engines can index it, language models can encounter it, and anyone who copies it from a manuscript can paste it into a browser. ` +
     `That practical reality changes the status of the restoration. Before Unicode domains, a scholar could write the name correctly in an article while the public web flattened it to *${data.ascii}*. Now the public web can carry the correct form end to end. ` +
     `The punycode translation happens silently, so the infrastructure remains compatible while the visible name keeps its marks. That compromise — human-readable restoration, machine-readable encoding — is the foundation of every PuniCodex temple.`
+  );
+}
+
+function restorationNotesBlock(data) {
+  const changed = data.breakdown.filter((b) => b.type && b.type !== 'same');
+  const changedDescription = changed.length
+    ? `Of the ${data.breakdown.length} characters in the ASCII form, ${changed.length} carry adjusted marks: ${changed
+        .map((b) => `**${b.char}** becomes **${b.to || b.char}**${b.note ? ` (${b.note})` : ''}`)
+        .join(', ')}.`
+    : `The restored form **${data.unicode}** and the ASCII form *${data.ascii}* share the same Latin letters; the restoration here is a conventional capitalization rather than a recovery of lost diacritics or special characters.`;
+
+  return (
+    `Restoring a name is not a single decision; it is a sequence of smaller decisions, each backed by a different kind of evidence. For **${data.unicode}**, the chain begins with the attested form in ${data.scriptName}, continues through the standard scholarly romanizations, and ends with the DNS-compatible Unicode spelling used by this temple. ` +
+    `${data.meaning ? `The meaning "${data.meaning}" anchors the name in its semantic field; without that anchor, the marks would float free of the figure they name.` : 'The lexicon records no single-line gloss, so the restoration relies on contextual usage and the scholarly record assembled in the sections above.'} ` +
+    `${changedDescription} ` +
+    `Those adjustments are not arbitrary styling. They follow the tier rule that places ${data.unicode} in **${data.tierLabel}**: ${tierExplanation(data)}. ` +
+    `The rule is mechanical, not editorial, which means the same standard applies to every entry in the lexicon. A visitor who disagrees with the classification can at least see exactly which evidence produced it, because every step is recorded in the Scholarly Edition. ` +
+    `That transparency is the difference between a restoration project and a branding exercise. The name is being put back, not invented.`
   );
 }
 
@@ -777,6 +808,7 @@ function buildBody(data, angleIdx, links, sisters, sources) {
   push('traditionContext', `${data.unicode} in Its Tradition`, traditionContextBlock(data), true);
   push('templeTour', 'What You Will Find in the Temple', templeTourBlock(data), true);
   push('digitalLife', 'The Restoration on the Live Web', digitalLifeBlock(data), true);
+  push('restorationNotes', 'Restoration Notes', restorationNotesBlock(data), true);
   // These two sections must always END the post, in this order.
   push('related', 'Related Names', relatedLinksMd(links));
   push('sources', 'Sources', sourcesMd(sources, data));
