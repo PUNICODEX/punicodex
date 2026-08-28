@@ -31,7 +31,7 @@ const FUNCTION_GROUPS = [
     ids: [
       'zeus', 'thor', 'indra', 'shango', 'perun', 'perkunas', 'raijin', 'illapa',
       'trengtreng', 'adad', 'baal', 'marduk', 'enlil', 'vajrapani', 'tawhirimatea',
-      'oya', 'ninurta', 'stribog', 'seth', 'tarhunash',
+      'oya', 'ninurta', 'stribog', 'seth', 'tarhunash', 'keraunos', 'susanoo',
     ],
   },
   {
@@ -42,7 +42,7 @@ const FUNCTION_GROUPS = [
     ids: [
       'helios', 'ra', 'surya', 'shamash', 'amaterasu', 'inti', 'dazhbog', 'khepri',
       'gnowee', 'beli', 'shapash', 'arinniti', 'esengraim', 'marishiten', 'hyperion',
-      'apollon', 'huitzilopochtli',
+      'apollon', 'huitzilopochtli', 'tonatiuh',
     ],
   },
   {
@@ -63,7 +63,7 @@ const FUNCTION_GROUPS = [
     ids: [
       'poseidon', 'pontos', 'njordr', 'manannan', 'tangaroa', 'viracocha', 'babaluaye',
       'mamaqucha', 'tianhou', 'mazu', 'manawydan', 'toyotama', 'yongwang', 'aseratu',
-      'yammu', 'yam', 'varuna', 'ea', 'longwang',
+      'yammu', 'yam', 'varuna', 'ea', 'longwang', 'susanoo',
     ],
   },
   {
@@ -84,7 +84,8 @@ const FUNCTION_GROUPS = [
     note: 'Deities of war, battle fury, military strategy, and martial power.',
     ids: [
       'ares', 'athena', 'tyr', 'odinn', 'sekhmet', 'durga', 'morrigan', 'ishtar',
-      'ashur', 'tu', 'hachiman', 'huitzilopochtli', 'ogun', 'anat', 'nezha',
+      'ashur', 'tu', 'hachiman', 'huitzilopochtli', 'ogun', 'anat', 'nezha', 'kratos',
+      'narasimha', 'thrudr',
     ],
   },
   {
@@ -94,7 +95,7 @@ const FUNCTION_GROUPS = [
     note: 'Deities of love, beauty, fertility, desire, and erotic attraction.',
     ids: [
       'aphrodite', 'eros', 'freyja', 'hathor', 'krishna', 'ishtar', 'xochiquetzal',
-      'oshun', 'inanna', 'radha', 'aengus', 'lada', 'astartu',
+      'oshun', 'inanna', 'radha', 'aengus', 'lada', 'astartu', 'helene',
     ],
   },
   {
@@ -104,7 +105,7 @@ const FUNCTION_GROUPS = [
     note: 'Deities of wisdom, writing, magic, learning, and esoteric knowledge.',
     ids: [
       'athena', 'odinn', 'thoth', 'ganesha', 'quetzalcoatl', 'ahuramazda', 'orunmila',
-      'anahita', 'saga', 'sophia', 'manjushri', 'ecne', 'nabu',
+      'anahita', 'saga', 'sophia', 'manjushri', 'ecne', 'nabu', 'kongzi', 'vor',
     ],
   },
   {
@@ -133,7 +134,7 @@ const FUNCTION_GROUPS = [
     strength: 2,
     note: 'Divine messengers, psychopomps, travellers, and intermediaries between worlds.',
     ids: [
-      'hermes', 'agni', 'hanuman', 'eshu', 'iris', 'narada', 'hermod', 'sosin',
+      'hermes', 'agni', 'hanuman', 'eshu', 'iris', 'narada', 'hermod', 'sosin', 'gna',
     ],
   },
   {
@@ -146,6 +147,7 @@ const FUNCTION_GROUPS = [
       'matzemlya', 'tlaltecuhtli', 'babaluaye', 'kishar', 'halmoni', 'rhea', 'demeter',
       'freyr', 'freyja', 'bastet', 'sobek', 'cernunnos', 'ishtar', 'inari', 'oshun',
       'parvati', 'sita', 'gefjon', 'min', 'heqet', 'makemake', 'anahita', 'hp', 'dagan',
+      'jord', 'fjorgyn', 'audhumla', 'shakti',
     ],
   },
   {
@@ -164,7 +166,8 @@ const FUNCTION_GROUPS = [
     note: 'Forces of chaos, primordial oceans, world-encircling serpents, and cosmic disorder.',
     ids: [
       'chaos', 'tiamat', 'ymir', 'apep', 'typhon', 'leviathan', 'jormungandr', 'nidhogg',
-      'yammu', 'angramainyu', 'seth', 'loki', 'sunwukong', 'hati', 'yam',
+      'yammu', 'angramainyu', 'seth', 'loki', 'sunwukong', 'hati', 'yam', 'angrboda',
+      'ravana',
     ],
   },
   {
@@ -174,7 +177,7 @@ const FUNCTION_GROUPS = [
     note: 'Deities of healing, medicine, herbal lore, and restorative magic.',
     ids: [
       'asklepios', 'brigid', 'eir', 'diancecht', 'sukunahikona', 'gula', 'serket', 'paean',
-      'hygieia',
+      'hygieia', 'bhaisajyaguru',
     ],
   },
   {
@@ -184,6 +187,7 @@ const FUNCTION_GROUPS = [
     note: 'Deities and concepts of cosmic order, justice, law, oath, and truth.',
     ids: [
       'maat', 'yama', 'shamash', 'shango', 'forseti', 'ochosi', 'rashnu', 'erlang', 'mafdet',
+      'var',
     ],
   },
   {
@@ -202,6 +206,7 @@ const FUNCTION_GROUPS = [
     note: 'Creator deities and primordial architects of the world or cosmos.',
     ids: [
       'izanagi', 'ahuramazda', 'viracocha', 'makemake', 'baiame', 'bunjil', 'pachacamac',
+      'oduduwa', 'jagannatha', 'audhumla',
     ],
   },
   {
@@ -230,6 +235,123 @@ const FUNCTION_GROUPS = [
     note: 'Personifications of fate, destiny, time, and cosmic order.',
     ids: [
       'moirai', 'kronos',
+    ],
+  },
+  {
+    relationship: 'Heavenly sovereign / supreme deity',
+    category: 'function',
+    strength: 2,
+    note: 'Supreme sky-fathers and highest celestial rulers across pantheons.',
+    ids: [
+      'zeus', 'odinn', 'yuhuang', 'shangdi', 'olodumare', 'tiandi',
+    ],
+  },
+  {
+    relationship: 'Sleep / dream / death-like trance',
+    category: 'phenomenon',
+    strength: 2,
+    note: 'Powers of sleep, dream, and the liminal state between life and death.',
+    ids: [
+      'hypnos', 'oneiros', 'thanatos',
+    ],
+  },
+  {
+    relationship: 'Compassion / mercy / savior',
+    category: 'function',
+    strength: 2,
+    note: 'Bodhisattvas and savior deities whose primary domain is mercy and liberation.',
+    ids: [
+      'avalokiteshvara', 'guanyin', 'ksitigarbha',
+    ],
+  },
+  {
+    relationship: 'Wealth / prosperity / abundance',
+    category: 'function',
+    strength: 2,
+    note: 'Deities of wealth, fortune, abundance, and material prosperity.',
+    ids: [
+      'caishen', 'lakshmi', 'freyja',
+    ],
+  },
+  {
+    relationship: 'Mythic hero / monster-slayer / city-founder',
+    category: 'narrative-role',
+    strength: 2,
+    note: 'Culture heroes who slay monsters, found cities, and establish social order.',
+    ids: [
+      'theseus', 'herakles', 'perseus', 'gilgamesh',
+    ],
+  },
+  {
+    relationship: 'Riddles / oracle / prophecy',
+    category: 'narrative-role',
+    strength: 2,
+    note: 'Figures and places bound to prophecy, riddles, and oracular revelation.',
+    ids: [
+      'oidipous', 'sphinx', 'python',
+    ],
+  },
+  {
+    relationship: 'Titan / forethought and afterthought',
+    category: 'narrative-role',
+    strength: 2,
+    note: 'Titanic siblings and culture-bearers of foresight, hindsight, and cosmic burden.',
+    ids: [
+      'prometheus', 'epimetheus', 'atlas',
+    ],
+  },
+  {
+    relationship: 'Monster progenitor / parent of apocalypse',
+    category: 'narrative-role',
+    strength: 2,
+    note: 'Parents of monsters and progenitors whose children bring cosmic destruction.',
+    ids: [
+      'angrboda', 'typhon', 'tiamat',
+    ],
+  },
+  {
+    relationship: 'Sacred center / world navel / axis mundi',
+    category: 'phenomenon',
+    strength: 2,
+    note: 'Sacred places and objects regarded as the center or axis of the world.',
+    ids: [
+      'omphalos', 'delphoi', 'yggdrasill',
+    ],
+  },
+  {
+    relationship: 'Soul / breath / animating spirit',
+    category: 'phenomenon',
+    strength: 2,
+    note: 'Personifications and concepts of the soul, breath, and life-force.',
+    ids: [
+      'psyche', 'ka', 'ba',
+    ],
+  },
+  {
+    relationship: 'Divine feminine power / shakti',
+    category: 'function',
+    strength: 2,
+    note: 'The active, fierce, and creative power of the divine feminine.',
+    ids: [
+      'shakti', 'kali', 'durga',
+    ],
+  },
+  {
+    relationship: 'Avatar / protector manifestation',
+    category: 'narrative-role',
+    strength: 2,
+    note: 'Divine avatars and protective manifestations descended to restore order.',
+    ids: [
+      'narasimha', 'vishnu', 'krishna', 'varaha',
+    ],
+  },
+  {
+    relationship: 'Forbidden gift / bound fate',
+    category: 'narrative-role',
+    strength: 2,
+    note: 'Figures whose gifts, curiosity, or divided wisdom bind the fate of mortals.',
+    ids: [
+      'pandora', 'prometheus', 'epimetheus',
     ],
   },
 ];
@@ -294,6 +416,36 @@ const CURATED_PAIRS = [
   { sourceId: 'bifrost', targetId: 'iris', relationship: 'Rainbow between worlds', category: 'phenomenon', strength: 2, bidirectional: true, note: 'Norse and Greek rainbows as the passage between gods and mortals — the bridge that is walked and the messenger who walks it.' },
   { sourceId: 'bifrost', targetId: 'heimdallr', relationship: 'The watchman and the bridge', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Heimdallr keeps his watch at Himinbjǫrg where the rainbow bridge meets heaven — the sentry and the span are one institution.' },
   { sourceId: 'mjolnir', targetId: 'draupnir', relationship: 'Dwarf-forged treasures of the Æsir', category: 'narrative-role', strength: 2, bidirectional: true, note: 'Sindri and Brokkr\'s masterworks, won in the same wager with Loki\'s head as the stake — the hammer and the self-multiplying ring.' },
+  { sourceId: 'kratos', targetId: 'zeus', relationship: 'Strength serves the sovereign', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The personification of strength and the thunder sovereign he serves in the Titanomachy.' },
+  { sourceId: 'angrboda', targetId: 'loki', relationship: 'Monster mother and trickster father', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Angrboða and Loki are the parents of Fenrir, Jörmungandr, and Hel — the three great enemies of the gods.' },
+  { sourceId: 'ereshkigal', targetId: 'nergal', relationship: 'Queen and king of the underworld', category: 'function', strength: 3, bidirectional: true, note: 'The rulers of the Mesopotamian underworld — Ereškigal queen of the dead and Nergal who descended to become her consort.' },
+  { sourceId: 'avalokiteshvara', targetId: 'guanyin', relationship: 'Same bodhisattva, two traditions', category: 'identity', strength: 3, bidirectional: true, note: 'Avalokiteśvara and Guānyīn are the same compassionate savior bodhisattva in Sanskrit and Chinese transmission.' },
+  { sourceId: 'bhaisajyaguru', targetId: 'asklepios', relationship: 'Medicine and healing', category: 'function', strength: 3, bidirectional: true, note: 'The Buddhist Medicine Buddha and the Greek god of medicine both preside over restoration and cure.' },
+  { sourceId: 'susanoo', targetId: 'amaterasu', relationship: 'Storm-sun sibling rivalry', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The Shinto storm god and sun goddess are siblings whose quarrel shapes heaven and earth.' },
+  { sourceId: 'helene', targetId: 'aphrodite', relationship: 'Beauty that moves worlds', category: 'function', strength: 2, bidirectional: true, note: 'The most beautiful mortal woman and the goddess of beauty whose gift set the Trojan War in motion.' },
+  { sourceId: 'psyche', targetId: 'eros', relationship: 'Soul and Love', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The soul and desire personified — lovers whose trials became the archetype of the soul\'s union with love.' },
+  { sourceId: 'pandora', targetId: 'epimetheus', relationship: 'The jar and afterthought', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Epimetheus accepted Pandora and her jar, releasing the ills that sorrow mortality.' },
+  { sourceId: 'ravana', targetId: 'rama', relationship: 'Demon king and divine hero', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The ten-headed king of Laṅkā and the avatāra of Viṣṇu whose war is the Rāmāyaṇa.' },
+  { sourceId: 'oduduwa', targetId: 'olodumare', relationship: 'Creator and progenitor', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Olódùmarè the supreme creator sent Odùduwà to found Ilé-Ifẹ̀ and shape the Yoruba world.' },
+  { sourceId: 'yuhuang', targetId: 'shangdi', relationship: 'Chinese supreme sky sovereigns', category: 'function', strength: 2, bidirectional: true, note: 'The Jade Emperor and Shàngdì are the highest celestial rulers of Chinese religious imagination across epochs.' },
+  { sourceId: 'kongzi', targetId: 'laozi', relationship: 'Chinese sage founders', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Master Kong the teacher of ritual and Lǎozǐ the teacher of the Way — the two pillars of Chinese philosophy.' },
+  { sourceId: 'narasimha', targetId: 'vishnu', relationship: 'Avatar and preserver', category: 'identity', strength: 3, bidirectional: true, note: 'Narasiṃha the man-lion is an avatāra of Viṣṇu, the preserver, sprung to save his devotee.' },
+  { sourceId: 'jagannatha', targetId: 'krishna', relationship: 'Krishna as Lord of the World', category: 'identity', strength: 3, bidirectional: true, note: 'Jagannātha is Kṛṣṇa worshipped as the Lord of the Universe at Purī.' },
+  { sourceId: 'theseus', targetId: 'herakles', relationship: 'Greek monster-slayers', category: 'narrative-role', strength: 2, bidirectional: true, note: 'The Athenian slayer of the Minotaur and the pan-Hellenic strongman-hero — the two great Greek monster-slayers.' },
+  { sourceId: 'tonatiuh', targetId: 'huitzilopochtli', relationship: 'Aztec sun and war', category: 'function', strength: 3, bidirectional: true, note: 'The Fifth Sun and the hummingbird-warrior god who feeds him hearts in the Aztec cosmos.' },
+  { sourceId: 'shakti', targetId: 'shiva', relationship: 'Power and the god it animates', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Śakti is the active power of which Śiva is the possessor — the goddess and the god inseparable in tantra.' },
+  { sourceId: 'keraunos', targetId: 'zeus', relationship: 'Thunderbolt and wielder', category: 'phenomenon', strength: 3, bidirectional: true, note: 'Keraunós is the thunderbolt itself, the sovereign weapon of Zeus.' },
+  { sourceId: 'omphalos', targetId: 'delphoi', relationship: 'Navel stone and oracle', category: 'phenomenon', strength: 3, bidirectional: true, note: 'The omphalós stone at Delphoi marks the navel of the world and the seat of Apollo\'s oracle.' },
+  { sourceId: 'oidipous', targetId: 'sphinx', relationship: 'Riddle solver and riddler', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Oidípous solved the Sphinx\'s riddle and destroyed the monster — question and answer bound in one fate.' },
+  { sourceId: 'oneiros', targetId: 'hypnos', relationship: 'Dream and sleep', category: 'phenomenon', strength: 3, bidirectional: true, note: 'Óneiros the dream and Hýpnos sleep are brothers who visit mortals by night.' },
+  { sourceId: 'audhumla', targetId: 'ymir', relationship: 'Primeval nourisher and frost giant', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Auðhumla the primeval cow licked the salty ice and nourished Ymir, the first frost giant.' },
+  { sourceId: 'jord', targetId: 'thor', relationship: 'Earth mother and thunder son', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Jǫrð the earth is the mother of Þórr the thunder-god in Norse genealogy.' },
+  { sourceId: 'fjorgyn', targetId: 'jord', relationship: 'Same goddess, two traditions', category: 'identity', strength: 3, bidirectional: true, note: 'Fjǫrgyn and Jǫrð are both Norse names for the earth goddess, mother of Þórr.' },
+  { sourceId: 'var', targetId: 'vor', relationship: 'Sister oath-goddesses', category: 'function', strength: 2, bidirectional: true, note: 'Vár and Vǫr are Æsir goddesses of oaths, vows, and the knowledge that witnesses them.' },
+  { sourceId: 'thrudr', targetId: 'thor', relationship: 'Daughter of thunder', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Þrúðr is the daughter of Þórr, a valkyrie and personification of strength.' },
+  { sourceId: 'gna', targetId: 'hermes', relationship: 'Divine messengers', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Gná Frigg\'s messenger and Hermês the herald of Olympus both carry words between worlds.' },
+  { sourceId: 'epimetheus', targetId: 'prometheus', relationship: 'Afterthought and forethought', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The Titan brothers of hindsight and foresight whose divided counsel shaped mortal destiny.' },
+  { sourceId: 'caishen', targetId: 'lakshmi', relationship: 'Wealth deities', category: 'function', strength: 3, bidirectional: true, note: 'The Chinese God of Wealth and the Hindu goddess of fortune both command prosperity and abundance.' },
 ];
 
 function validateGroups(groups) {

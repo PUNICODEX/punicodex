@@ -74,6 +74,7 @@ const INDUSTRY_GROUPS = [
       { id: 'ahuramazda', weight: 1, why: 'Wisdom and Light are his canonical domain; the sun and the sacred radiance are the visible signs of the Wise Lord.' },
       { id: 'hemera', weight: 1, why: 'Daylight is the industry\'s working capital, and the day is her entire person.' },
       { id: 'houyi', weight: 1, why: 'He shot down nine of the ten suns when they rose together — the sky\'s solar surplus answered by one archer.' },
+      { id: 'tonatiuh', weight: 2, why: 'The Nahuatl sun god whose name means "he who goes forth shining"; the Fifth Age is lit by his face.' },
     ],
   },
   {
@@ -142,6 +143,8 @@ const INDUSTRY_GROUPS = [
       { id: 'enlil', weight: 2, why: 'The seven destructive storms at his command; the weather front as a royal decree.' },
       { id: 'fujin', weight: 1, why: 'Typhoons and seasonal winds are still spoken of in his name; the gale is his dataset.' },
       { id: 'longwang', weight: 1, why: 'Rain decrees are his paperwork — the Journey to the West\'s Jìng River king was executed for falsifying one forecast.' },
+      { id: 'keraunos', weight: 2, why: 'The thunderbolt itself — the weapon whose Greek name names the lightning every storm model tries to predict.' },
+      { id: 'susanoo', weight: 2, why: 'The Shinto storm kami whose long vowel marks the canonical form; tempest and sea-churn are his signature.' },
     ],
   },
   {
@@ -173,6 +176,7 @@ const INDUSTRY_GROUPS = [
       { id: 'iason', weight: 1, why: 'The Argo\'s captain; the expedition as a maritime brand.' },
       { id: 'europe', weight: 1, why: 'The bull-crossing from Tyre to Crete; a continent named for a sea voyage.' },
       { id: 'longwang', weight: 2, why: 'The four seas are his family\'s jurisdiction; every hull in Chinese waters sailed under the Dragon Kings\' toll.' },
+      { id: 'susanoo', weight: 2, why: 'Impulsive ruler of sea and storm; the kami who churned the waters until the eight-forked serpent was slain.' },
     ],
   },
   {
@@ -278,6 +282,7 @@ const INDUSTRY_GROUPS = [
       { id: 'eros', weight: 1, why: '433 Eros was the first near-Earth asteroid discovered and the first a spacecraft ever touched.' },
       { id: 'change', weight: 2, why: 'China\'s lunar exploration program flies her name — the Chang\'e orbiters and sample-return landers are the moon goddess made mission architecture.' },
       { id: 'mani', weight: 2, why: 'The moon personified, driving its chariot across the night sky — the Norse moon made god, pursued nightly by Hati.' },
+      { id: 'tonatiuh', weight: 1, why: 'The sun at the center of the Aztec cosmos; every solar observation still tracks his daily birth from the east.' },
     ],
   },
   {
@@ -346,6 +351,8 @@ const INDUSTRY_GROUPS = [
       { id: "ullr", weight: 1, why: 'He is invoked in the duel and the oath — the single combatants patron.' },
       { id: "syn", weight: 1, why: 'Her name means refusal; she is the defensive No at the gate.' },
       { id: 'thrudr', weight: 1, why: 'Strength and power; the daughter of Þórr embodies the force behind every defensive line.' },
+      { id: 'kratos', weight: 2, why: 'Strength and sovereign power personified; the Greek word for force that brands muscle and military alike.' },
+      { id: 'narasimha', weight: 2, why: 'The man-lion avatāra who tears apart threats to cosmic order — protective violence as divine duty.' },
     ],
   },
   {
@@ -507,6 +514,7 @@ const INDUSTRY_GROUPS = [
       { id: 'buri', weight: 1, why: 'Licked from the salty rime-stones; the first god is a mineral find.' },
       { id: "reginn", weight: 1, why: 'The cursed hoard of Andvari drove his forge; underground wealth shapes the smiths plan.' },
       { id: 'fjorgyn', weight: 1, why: 'Earth and land; the mother of Þórr is the ground from which every ore and field is cut.' },
+      { id: 'jord', weight: 1, why: 'The Norse earth herself; every mine and quarry cuts into her body.' },
     ],
   },
   {
@@ -569,6 +577,8 @@ const INDUSTRY_GROUPS = [
       { id: 'anahita', weight: 1, why: 'Fertility of waters and fields; the Avestan goddess blesses the growth the harvest depends on.' },
       { id: 'audhumla', weight: 2, why: 'The primeval cow whose milk fed the first giant; dairy and nourishment at the dawn of the world.' },
       { id: 'fjorgyn', weight: 2, why: 'Earth herself and mother of Þórr; the soil that every farm works is her body.' },
+      { id: 'jord', weight: 2, why: 'Earth personified and mother of Þórr; the soil from which every harvest grows.' },
+      { id: 'tonatiuh', weight: 1, why: 'The sun whose warmth and calendar determine planting and harvest across Mesoamerican tradition.' },
     ],
   },
   {
@@ -641,6 +651,7 @@ const INDUSTRY_GROUPS = [
       { id: 'poseidon', weight: 1, why: 'Rising seas are his encroachment; the coast\'s oldest adversary in a warming century.' },
       { id: 'pontos', weight: 1, why: 'The sea as environment rather than deity; ocean conservation\'s primordial stakeholder.' },
       { id: "vanaheimr", weight: 1, why: 'The realm of natural cycles and growth — ecology as divine homeland.' },
+      { id: 'jord', weight: 1, why: 'The Norse earth whose renewed green world rises after Ragnarök; planetary resilience made personal.' },
     ],
   },
   {
@@ -704,6 +715,7 @@ const INDUSTRY_GROUPS = [
       { id: 'nikko', weight: 1, why: 'Tōshōgū is the baroque apex of Japanese shrine architecture; Yōmeimon its showpiece.' },
       { id: 'hephaistos', weight: 1, why: 'He built each god a house on Olympus with knowing skill; Olympus\' first architect.' },
       { id: "uppsala", weight: 1, why: 'The sacred grove and temple described by Adam of Bremen shaped northern sacred architecture.' },
+      { id: 'omphalos', weight: 1, why: 'The navel-stone of Delphi — the axis mundi that marks a place as the symbolic center of the world.' },
     ],
   },
   {
@@ -776,6 +788,8 @@ const INDUSTRY_GROUPS = [
       { id: 'alfheimr', weight: 1, why: 'The light elves are \'fairer than the sun to look upon\'; radiance is their defining attribute.' },
       { id: 'gauri', weight: 1, why: 'The Golden One; turmeric, her color, is still the bridal glow rite.' },
       { id: "sif", weight: 1, why: 'Her hair of gold is the original luxury mane — adornment as divine attribute.' },
+      { id: 'helene', weight: 2, why: 'The Greek archetype of beauty whose face launched a thousand ships and still names allure itself.' },
+      { id: 'psyche', weight: 1, why: 'Soul made visible; the Cupid-and-Psyche myth is a perennial brand for intimate beauty and interior life.' },
     ],
   },
   {
@@ -812,6 +826,7 @@ const INDUSTRY_GROUPS = [
       { id: 'yinyang', weight: 2, why: 'Diagnosis in traditional Chinese medicine begins by sorting yin from yang; the clinic\'s organizing axis.' },
       { id: 'hypnos', weight: 1, why: 'The sedative-hypnotic drug class carries his name through the pharmacopeia.' },
       { id: 'aither', weight: 1, why: 'Ether was surgery\'s first anesthetic; his name numbed the world for a century.' },
+      { id: 'bhaisajyaguru', weight: 2, why: 'The Medicine Buddha whose vow is to heal every ailment; the East Asian patron of physicians and pharmacists.' },
     ],
   },
   {
@@ -849,6 +864,9 @@ const INDUSTRY_GROUPS = [
       { id: "wyrd", weight: 1, why: 'Accepting wyrd is the northern discipline of meeting what cannot be changed.' },
       { id: 'epimetheus', weight: 1, why: 'Afterthought and hindsight; the brother of forethought whose name names the reflection that follows the act.' },
       { id: 'oneiros', weight: 1, why: 'Dreams are the mind\'s own therapy session; the Oneiroi are the oldest case notes of the unconscious.' },
+      { id: 'psyche', weight: 2, why: 'Soul and breath in Greek — the root of psychology and the emblem of the inner life clinicians tend.' },
+      { id: 'oidipous', weight: 2, why: 'The strict transliteration of Oedipus; the tragedy that gave psychoanalysis one of its founding complexes.' },
+      { id: 'avalokiteshvara', weight: 1, why: 'The bodhisattva of compassion; self-compassion practices in mental health borrow from his vow.' },
     ],
   },
   {
@@ -899,6 +917,10 @@ const INDUSTRY_GROUPS = [
       { id: 'xiwangmu', weight: 1, why: 'Her peaches ripen once in three thousand years and confer immortality — the original longevity retreat, waiting list included.' },
       { id: 'anahita', weight: 1, why: 'Waters of wholeness and fertility; the Avestan goddess of life-giving flow.' },
       { id: 'oneiros', weight: 1, why: 'Dreamwork and guided imagery; the Oneiroi are the mind\'s own nightly healing practice.' },
+      { id: 'avalokiteshvara', weight: 2, why: 'Compassion meditation, mettā, and the universal vow — wellness traditions across Asia invoke this name.' },
+      { id: 'bhaisajyaguru', weight: 2, why: 'Healing light and medicinal vows; the Buddha whose realm is the recovery of body and mind.' },
+      { id: 'shakti', weight: 1, why: 'The active power behind every deity; yoga and energy work are disciplines of shakti.' },
+      { id: 'narasimha', weight: 1, why: 'Fierce protective presence; devotional practice channels his energy for spiritual defense.' },
     ],
   },
   {
@@ -924,6 +946,7 @@ const INDUSTRY_GROUPS = [
       { id: 'thanatos', weight: 1, why: 'The longevity industry exists to postpone him; he is its unnamed competitor.' },
       { id: 'herakles', weight: 1, why: 'The mortal who earned immortality by labour; longevity\'s founding success story.' },
       { id: 'xiwangmu', weight: 2, why: 'She holds the elixir of immortality itself — the drug Hòuyì won and Cháng\'é carried to the moon; life extension\'s founding myth.' },
+      { id: 'bhaisajyaguru', weight: 1, why: 'The medicine-buddha ideal of complete healing maps onto longevity science\'s aspiration to extend healthy life.' },
     ],
   },
   {
@@ -965,6 +988,9 @@ const INDUSTRY_GROUPS = [
       { id: "skuld", weight: 1, why: 'The Norn of necessity rules rune readings and fate consultations across modern Heathen practice.' },
       { id: "taliesin", weight: 1, why: 'The shapeshifting bard who survives every form is a central figure in modern Druidic practice.' },
       { id: "wyrd", weight: 2, why: 'The Anglo-Saxon concept of fate — the word that named modern pagan wyrd spirituality.' },
+      { id: 'angrboda', weight: 2, why: 'She who offers sorrow and mothers monsters; the giantess whose name belongs to sorcery and shadow.' },
+      { id: 'ereshkigal', weight: 1, why: 'Queen of the Mesopotamian underworld; necromantic and chthonic traditions return to her court.' },
+      { id: 'pandora', weight: 1, why: 'The all-gifted first woman whose opened box released every hidden ill — the original sealed secret.' },
     ],
   },
   {
@@ -1038,6 +1064,15 @@ const INDUSTRY_GROUPS = [
       { id: 'xiwangmu', weight: 1, why: 'The Book of Han records her millenarian movement of 3 BCE; temples across the Chinese world still enthrone the Queen Mother.' },
       { id: "sigyn", weight: 1, why: 'Her vigil at Lokis side is one of the most read devotional images of Norse religion.' },
       { id: "uppsala", weight: 2, why: 'The great heathen temple at Gamla Uppsala — the pilgrimage center of the North.' },
+      { id: 'yuhuang', weight: 2, why: 'The Jade Emperor — supreme celestial sovereign of Chinese religion, heaven, and the Taoist pantheon.' },
+      { id: 'shangdi', weight: 2, why: 'The Highest Emperor of early Chinese religion; the supreme deity to whom the Shang and Zhou kings sacrificed.' },
+      { id: 'jagannatha', weight: 2, why: 'Lord of the universe at Puri; the Rath Yatra makes his chariot-temple one of the world\'s great public faiths.' },
+      { id: 'oduduwa', weight: 2, why: 'The primordial ancestor and earth-creator of the Yoruba; his shrine at Ilé-Ifẹ̀ is a living pilgrimage center.' },
+      { id: 'narasimha', weight: 2, why: 'The man-lion avatāra of Viṣṇu worshipped across South India; protective faith made ferocious form.' },
+      { id: 'avalokiteshvara', weight: 2, why: 'The most widely invoked bodhisattva in East Asian Buddhism — compassion as the heart of devotional practice.' },
+      { id: 'bhaisajyaguru', weight: 1, why: 'The Medicine Buddha is a focus of faith-healing and apotropaic devotion across Mahāyāna temples.' },
+      { id: 'shakti', weight: 1, why: 'Divine power personified; Śākta devotion is one of Hinduism\'s major living streams.' },
+      { id: 'ravana', weight: 2, why: 'The ten-headed sovereign of Laṅkā and the Rāmāyaṇa\'s great antagonist — a figure of power, learning, and penance in Hindu and Buddhist telling.' },
     ],
   },
   {
@@ -1077,6 +1112,10 @@ const INDUSTRY_GROUPS = [
       { id: 'fafnir', weight: 1, why: 'The Vǫlsunga saga and the Nibelungenlied are the heroic literature of the North — and he is their dragon.' },
       { id: 'sigurd', weight: 2, why: 'The Vǫlsunga saga and the Nibelungenlied made him the North\'s great hero; the dragon-slayer plot is his patent.' },
       { id: "taliesin", weight: 1, why: "The prophetic verses attributed to him are Wales oldest predictive text." },
+      { id: 'sunwukong', weight: 1, why: 'The Monkey King is one of the most adapted literary figures in world publishing, comics, and screen.' },
+      { id: 'ravana', weight: 1, why: 'The Rāmāyaṇa and its many retellings keep his ten-headed sovereignty in constant print and performance.' },
+      { id: 'oidipous', weight: 1, why: 'Sophocles\' tragedy is a foundational text of Western drama, endlessly translated, staged, and cited.' },
+      { id: 'pandora', weight: 2, why: 'The all-gifted first woman and her box is a story still retold in every medium; the name is a publishing archetype.' },
     ],
   },
   {
@@ -1116,6 +1155,9 @@ const INDUSTRY_GROUPS = [
       { id: "taliesin", weight: 2, why: "The chief of bards whose name means radiant brow — poetry as profession and identity." },
       { id: "suttungr", weight: 1, why: "The mead of poetry he guarded is the beverage industry of myth — inspiration fermented and stored." },
       { id: "uppsala", weight: 1, why: "The site of the great sacrifice and the Yule assembly — festival and destination in one." },
+      { id: 'sunwukong', weight: 1, why: 'Peking opera, shadow puppetry, and countless East Asian performances make the Monkey King a stage staple.' },
+      { id: 'ravana', weight: 2, why: 'The Rāvaṇa of the Rāmāyaṇa is a master of the vīṇā and a patron of music and the arts in South Asian tradition.' },
+      { id: 'pandora', weight: 1, why: 'The myth of all-gifted Pandora is a recurring theme in opera, ballet, and visual art.' },
     ],
   },
   {
@@ -1179,6 +1221,14 @@ const INDUSTRY_GROUPS = [
       { id: "suttungr", weight: 1, why: "The mead of poetry he guarded is the beverage industry of myth — inspiration fermented and stored." },
       { id: "taliesin", weight: 1, why: "The shapeshifting bard who survives every form is a central figure in modern Druidic practice." },
       { id: "uppsala", weight: 1, why: "The site of the great sacrifice and the Yule assembly — festival and destination in one." },
+      { id: 'sunwukong', weight: 2, why: 'The Monkey King stars in games across every platform, from MOBAs to action titles to mobile gacha.' },
+      { id: 'kratos', weight: 2, why: 'The God of War franchise made this Greek personification of power a household name in gaming.' },
+      { id: 'keraunos', weight: 1, why: 'The thunderbolt is one of gaming\'s favorite ultimate abilities; the Greek word names the bolt itself.' },
+      { id: 'susanoo', weight: 1, why: 'The storm kami appears in fighting games, RPGs, and MOBAs as a lightning-and-sea archetype.' },
+      { id: 'pandora', weight: 1, why: 'The box-of-evils trope is a staple of game design — rewards, curses, and lore sealed together.' },
+      { id: 'angrboda', weight: 1, why: 'Monster-mother and Ragnarök figure; Norse-themed games mine her saga for bosses and backstory.' },
+      { id: 'ereshkigal', weight: 1, why: 'Queen of the underworld is a recurring boss and realm-name in fantasy and gacha games.' },
+      { id: 'theseus', weight: 1, why: 'The labyrinth and the Minotaur are one of gaming\'s oldest level-design templates.' },
     ],
   },
   {
@@ -1223,6 +1273,8 @@ const INDUSTRY_GROUPS = [
       { id: 'houyi', weight: 2, why: 'The divine archer himself — nine suns, nine hits; the bow is his whole mythology.' },
       { id: 'skadi', weight: 1, why: 'The skalds call her ǫndurdís — the ski-lady; winter sports\' patron deity, bow in hand.' },
       { id: 'thrudr', weight: 2, why: 'Strength personified; the daughter of Þórr whose name is the Norse word for power and force.' },
+      { id: 'kratos', weight: 1, why: 'Strength and power — the Greek word names the force every strength sport seeks to express.' },
+      { id: 'theseus', weight: 1, why: 'The Athenian hero\'s labors and the labyrinth-run are archetypes of athletic trial and endurance.' },
     ],
   },
   {
@@ -1309,6 +1361,13 @@ const INDUSTRY_GROUPS = [
       { id: 'erebus', weight: 1, why: 'Ross named Antarctica\'s volcano for him in 1841; expedition ships still call at the dark mountain.' },
       { id: 'herakles', weight: 1, why: 'The Pillars of Hēraklēs still mark the strait at Gibraltar; a world-boundary turned place brand.' },
       { id: 'skadi', weight: 1, why: 'Norway\'s ski resorts and winter peaks trade on her legend; the failed mountain honeymoon of Njǫrðr\'s marriage is tourism\'s oldest complaint.' },
+      { id: 'omphalos', weight: 2, why: 'Delphi\'s navel-stone made the sanctuary the symbolic center of the Greek world — pilgrimage\'s original destination.' },
+      { id: 'theseus', weight: 2, why: 'Athens, the labyrinth at Knossos, and the road from Troizen are still on the myth-tourism map.' },
+      { id: 'sunwukong', weight: 1, why: 'Journey to the West is a pilgrimage narrative that has become a trans-Asian tourism brand.' },
+      { id: 'ravana', weight: 1, why: 'Laṅkā, Sigiriya, and Rāmāyaṇa heritage trails draw pilgrims and cultural tourists across South Asia.' },
+      { id: 'jagannatha', weight: 2, why: 'The Rath Yatra at Puri is one of the largest annual religious processions and a major pilgrimage event.' },
+      { id: 'tonatiuh', weight: 1, why: 'Aztec sun cults, the Stone of the Sun, and Tenochtitlan heritage anchor Mesoamerican cultural tourism.' },
+      { id: 'helene', weight: 1, why: 'Sparta and Troy still trade on her story; the face that launched a thousand ships is a heritage-tourism archetype.' },
     ],
   },
   {
@@ -1336,6 +1395,8 @@ const INDUSTRY_GROUPS = [
       { id: "ullr", weight: 2, why: "The ski-god and bowman of the winter waste — outdoor gear made deity." },
       { id: "vanaheimr", weight: 1, why: "The Vanir bring peace and plenty to every household; prosperity as domestic blessing." },
       { id: 'fjorgyn', weight: 1, why: 'The earth as home; the Norse earth-goddess is the ground beneath every hearth.' },
+      { id: 'jord', weight: 1, why: 'The Norse earth is the ground beneath every dwelling; the mother of Þórr is the land itself.' },
+      { id: 'oduduwa', weight: 1, why: 'Creator of the earth and first king of Ilé-Ifẹ̀; land, lineage, and homeland begin with him.' },
     ],
   },
   {
@@ -1389,6 +1450,7 @@ const INDUSTRY_GROUPS = [
       { id: 'dagan', weight: 1, why: 'The granary’s surplus was the ancient world’s first stored wealth; his name is the commodity.' },
       { id: 'ganesha', weight: 1, why: 'Remover of obstacles, invoked at every new venture; the first name in Indian commerce.' },
       { id: 'fafnir', weight: 1, why: 'The cursed hoard of Andvari is greed made plot — the gold that buys kingdoms and kills its owners; finance\'s oldest cautionary tale wears his coils.' },
+      { id: 'caishen', weight: 2, why: 'The Chinese god of wealth whose image appears in shops, homes, and businesses during the New Year.' },
     ],
   },
   {
@@ -1477,6 +1539,10 @@ const INDUSTRY_GROUPS = [
       { id: 'ares', weight: 1, why: 'The Areopagus — his hill — judged Athenian homicide for a millennium; myth makes its first defendant Árēs himself.' },
       { id: 'vor', weight: 2, why: 'The careful one; wisdom and oaths are the foundations of law and contractual trust.' },
       { id: 'var', weight: 2, why: 'Goddess of oaths and marriage agreements; every contract and vow is her jurisdiction.' },
+      { id: 'kratos', weight: 1, why: 'Power and sovereignty in Greek; every legal order rests on the legitimate exercise of kratos.' },
+      { id: 'yuhuang', weight: 1, why: 'The Jade Emperor presides over celestial law and the judgment of souls in Chinese religious cosmology.' },
+      { id: 'shangdi', weight: 1, why: 'The supreme deity from whom the mandate of heaven flows; cosmic justice in classical Chinese religion.' },
+      { id: 'oidipous', weight: 1, why: 'The tragedy turns on fate, guilt, and the discovery of truth — the law\'s oldest thematic triad.' },
     ],
   },
   {
@@ -1536,6 +1602,12 @@ const INDUSTRY_GROUPS = [
       { id: 'modi', weight: 1, why: 'The heir who takes up his father\'s hammer; succession as the thunder\'s doctrine.' },
       { id: 'vishnu', weight: 1, why: 'His avatāras set the template of dharmic rule; the ideal king and the divine counselor are both his descents.' },
       { id: 'kronos', weight: 1, why: 'The succession myth itself — the king who devours his heirs and is overthrown in turn; governance\'s oldest case study.' },
+      { id: 'yuhuang', weight: 1, why: 'Supreme sovereign of heaven; the celestial bureaucracy models ideal rulership.' },
+      { id: 'shangdi', weight: 1, why: 'The Highest Emperor — the apex of sacral kingship in early Chinese religion.' },
+      { id: 'kratos', weight: 1, why: 'Power and sovereign might; the word names the force behind every throne.' },
+      { id: 'oduduwa', weight: 1, why: 'First king of the Yoruba and progenitor of its royal lines; kingship begins with his descent.' },
+      { id: 'caishen', weight: 1, why: 'Prosperity follows good stewardship; his cult is invoked by merchants and household leaders alike.' },
+      { id: 'theseus', weight: 1, why: 'Founder-king of Athens and unifier of Attica; the hero who became a statesman.' },
     ],
   },
   {
@@ -1573,6 +1645,7 @@ const INDUSTRY_GROUPS = [
       { id: 'thoth', weight: 2, why: 'The divine scribe — writing itself was his gift; every record ever kept runs on his invention.' },
       { id: 'kongzi', weight: 1, why: 'The great compiler — he edited the classics and preserved the record of a civilization.' },
       { id: 'bragi', weight: 1, why: "The skald-god — deeds held in poetry, the North\'s own way of keeping the record." },
+      { id: 'omphalos', weight: 1, why: 'Delphi\'s navel-stone is one of the most studied sacred monuments of the ancient Mediterranean.' },
     ],
   },
   {
@@ -1700,6 +1773,7 @@ const INDUSTRY_GROUPS = [
       { id: 'pontos', weight: 1, why: 'Father of Nereus, Phorkys, and Keto; the sea\'s whole divine dynasty begins with him.' },
       { id: 'kronos', weight: 1, why: 'Father of six Olympians; the ruling dynasty\'s patriarch and cautionary progenitor.' },
       { id: 'audhumla', weight: 1, why: 'The primeval nourisher; from her milk the first giant grew and the gods were licked from the ice.' },
+      { id: 'oduduwa', weight: 2, why: 'The primordial ancestor of the Yoruba people; every royal lineage in Ilé-Ifẹ̀ traces descent from him.' },
     ],
   },
   {
@@ -1772,6 +1846,8 @@ const INDUSTRY_GROUPS = [
       { id: 'poseidon', weight: 1, why: 'Ennosigaios, the Earth-Shaker; earthquake and tsunami risk was his remit before it was an industry.' },
       { id: 'typhon', weight: 1, why: 'Whirlwind and volcano in one body; the composite catastrophe the resilience sector plans against.' },
       { id: 'houyi', weight: 1, why: 'When ten suns rose together and the world burned, he ended the catastrophe with a bow — cosmic correction as emergency response.' },
+      { id: 'keraunos', weight: 1, why: 'The thunderbolt is the original natural hazard; lightning protection is disaster resilience in its oldest form.' },
+      { id: 'angrboda', weight: 1, why: 'Mother of Fenrir, Jörmungandr, and Hel — the progenitor of the catastrophes that end the world.' },
     ],
   },
   {
@@ -1809,6 +1885,7 @@ const INDUSTRY_GROUPS = [
       { id: 'tartaros', weight: 1, why: 'Plato hurls the incurable soul into Tartarus; the deepest cell on the map of the dead.' },
       { id: 'hekate', weight: 1, why: 'Torch-bearer and keyholder who walks with souls between the realms; the underworld\'s escort.' },
       { id: 'erebus', weight: 1, why: 'The dead cross his darkness on the way down; the underworld\'s outer gate.' },
+      { id: 'ereshkigal', weight: 2, why: 'Lady of the Great Earth and queen of the Mesopotamian underworld — death\'s first named monarch.' },
     ],
   },
   {
@@ -1882,6 +1959,7 @@ const INDUSTRY_GROUPS = [
       { id: 'gauri', weight: 1, why: 'Her Tṛtīyā fasts are kept by millions of women; womanhood\'s ritual calendar is hers.' },
       { id: 'hera', weight: 1, why: 'Marriage and childbirth were her household; the whole arc of women\'s lives ran under her eye.' },
       { id: 'selene', weight: 1, why: 'Her cycle was anciently read against the rhythms of women\'s bodies; the sector tracks what she once governed.' },
+      { id: 'shakti', weight: 2, why: 'Divine feminine power personified; the active energy that creation, birth, and female-centered practice channel.' },
     ],
   },
   {
@@ -1915,6 +1993,7 @@ const INDUSTRY_GROUPS = [
       { id: 'prajapati', weight: 1, why: 'His mantras still accompany the rites of conception, pregnancy, and childbirth.' },
       { id: 'gauri', weight: 2, why: '“Gaurī kā vivāha” is everyday Hindi for the ideal marriage; her wedding to Śiva is the Purāṇic template.' },
       { id: 'var', weight: 2, why: 'Marriage agreements and sworn vows; the bond itself is her divine office.' },
+      { id: 'helene', weight: 1, why: 'The face that launched a thousand ships remains the archetype of the bride around whom dynasties turn.' },
     ],
   },
   {
@@ -1939,6 +2018,7 @@ const INDUSTRY_GROUPS = [
       { id: 'orpheus', weight: 1, why: 'The descent for Eurydikē is the West\'s founding love story — devotion that would not accept loss.' },
       { id: 'sati', weight: 1, why: 'She chose her husband against her father\'s house; devotion as the original partner choice.' },
       { id: 'yamuna', weight: 1, why: 'Kṛṣṇa\'s beloved, “co-wife of the Lord”; the rāsa-līlā romance plays out on her banks.' },
+      { id: 'psyche', weight: 1, why: 'The Cupid-and-Psyche myth is the canonical divine love story — trust, separation, and reunion made archetype.' },
     ],
   },
   {
@@ -1984,6 +2064,7 @@ const INDUSTRY_GROUPS = [
       { id: 'change', weight: 1, why: 'The mooncake is her festival\'s edible icon — an entire pastry economy rises with her moon each autumn.' },
       { id: 'xiwangmu', weight: 1, why: 'The Peach Banquet she hosts for the assembled immortals is the feast as institution — hospitality\'s most exclusive table.' },
       { id: 'audhumla', weight: 1, why: 'The primeval cow whose milk nourished creation; dairy and abundance at the first table.' },
+      { id: 'jagannatha', weight: 1, why: 'The temple at Puri is famous for mahāprasāda — sacred food prepared in vast kitchens and distributed to millions.' },
     ],
   },
   {
@@ -1997,6 +2078,7 @@ const INDUSTRY_GROUPS = [
       { id: 'tyche', weight: 1, why: 'Fortune in trade; the luck every merchant courts.' },
       { id: 'lakshmi', weight: 1, why: 'Prosperity arriving; the abundance every shop hopes to welcome through its doors.' },
       { id: 'ganesha', weight: 1, why: 'New ventures blessed — the first sale, the grand opening, the obstacle removed.' },
+      { id: 'caishen', weight: 2, why: 'The god of wealth is the patron of merchants; his image hangs in shops and market stalls across the Chinese diaspora.' },
     ],
   },
   {

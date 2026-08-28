@@ -20,12 +20,18 @@ const { all, get, insert, run, isPostgres } = require('../db/operational');
 const { runMigration } = require('../db/migrate-site-analytics');
 const { runMigration: runMigrationV2 } = require('../db/migrate-site-analytics-v2');
 const { runMigration: runMigrationV3 } = require('../db/migrate-site-analytics-v3');
+const { LEXICON } = require('../../type/js/lexicon.js');
 
 const KEY_PREFIX = 'punicodex:analytics:';
 const ROLLUP_TTL_SECONDS = 40 * 24 * 60 * 60; // 40 days
 const MAX_PATH_LENGTH = 200;
 const MAX_REFERRER_LENGTH = 300;
 const MAX_SESSION_ID_LENGTH = 64;
+
+// Valid temple ids from the canonical lexicon. Used to attribute canonical
+// /{id}/ paths (the public URL form) without mislabelling top-level pages
+// like /about/ or /contact/ as temples.
+const TEMPLE_IDS = new Set(LEXICON.map((entry) => entry.id));
 
 function sha256(value) {
   return crypto.createHash('sha256').update(value).digest('hex');
@@ -75,8 +81,14 @@ function sanitizeSessionId(value) {
 }
 
 function extractTempleId(path) {
-  const match = path.match(/^\/sites\/([a-z0-9-]{1,64})(\/|$)/);
-  return match ? match[1] : '';
+  // Internal /sites/{id}/ form (used by middleware rewrites and static files).
+  const sitesMatch = path.match(/^\/sites\/([a-z0-9-]{1,64})(\/|$)/);
+  if (sitesMatch) return sitesMatch[1];
+  // Canonical public /{id}/ form — validate against the lexicon so pages
+  // like /about/ are not misreported as the "about" temple.
+  const canonicalMatch = path.match(/^\/([a-z0-9-]{1,64})(\/|$)/);
+  if (canonicalMatch && TEMPLE_IDS.has(canonicalMatch[1])) return canonicalMatch[1];
+  return '';
 }
 
 function extractReferrerDomain(referrer) {
@@ -539,7 +551,12 @@ async function getRedisOverview({ days, templeId }) {
     // overview is temple-scoped, keep only that temple's path prefix.
     const pathCounts = await client.hgetall(`${KEY_PREFIX}pathviews:${day}`);
     for (const [p, count] of Object.entries(pathCounts || {})) {
-      if (templeId !== null && !p.startsWith(`/sites/${templeId}/`)) continue;
+      if (
+        templeId !== null &&
+        !p.startsWith(`/sites/${templeId}/`) &&
+        !p.startsWith(`/${templeId}/`)
+      )
+        continue;
       addToMap(pathMap, p, toCount(count));
     }
   }
@@ -673,12 +690,12 @@ async function getSqliteOverview({ days, templeId }) {
     `
       SELECT path, SUM(human_views) AS views
         FROM site_analytics_paths_daily
-       WHERE day >= $1 ${scoped ? 'AND path LIKE $2' : ''}
+       WHERE day >= $1 ${scoped ? 'AND (path LIKE $2 OR path LIKE $3)' : ''}
        GROUP BY path
        ORDER BY views DESC, path ASC
        LIMIT 20
     `,
-    scoped ? [dayList[0], `/sites/${templeId}/%`] : [dayList[0]]
+    scoped ? [dayList[0], `/sites/${templeId}/%`, `/${templeId}/%`] : [dayList[0]]
   );
   const topPaths = pathRows.map((row) => ({ path: row.path, views: toCount(row.views) }));
 

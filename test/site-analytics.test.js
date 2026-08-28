@@ -182,7 +182,12 @@ test('sanitizePath and extractTempleId', () => {
   assert.strictEqual(analytics.sanitizePath(42), null);
   assert.strictEqual(analytics.extractTempleId('/sites/zeus/'), 'zeus');
   assert.strictEqual(analytics.extractTempleId('/sites/zeus'), 'zeus');
+  // Canonical public paths (/{id}/) must attribute to the temple when the id
+  // is a valid lexicon entry; non-temple top-level pages stay unattributed.
+  assert.strictEqual(analytics.extractTempleId('/zeus/'), 'zeus');
+  assert.strictEqual(analytics.extractTempleId('/omphalos/'), 'omphalos');
   assert.strictEqual(analytics.extractTempleId('/about/'), '');
+  assert.strictEqual(analytics.extractTempleId('/contact'), '');
 });
 
 test('detectDevice buckets user agents', () => {
@@ -364,6 +369,33 @@ test('getTempleTraffic scopes the overview to one temple', async () => {
   assert.strictEqual(empty.totals.botViews, 0);
   assert.strictEqual(empty.totals.botPct, 0);
   assert.deepStrictEqual(empty.topTemples, []);
+});
+
+test('recordPageView attributes canonical /{id}/ paths to temples', async () => {
+  const result = await analytics.recordPageView({
+    path: '/omphalos/?ref=canonical-test',
+    sessionId: 'canon-sess',
+    ip: '203.0.113.99',
+    userAgent: CHROME_DESKTOP,
+    referrer: '',
+  });
+  assert.deepStrictEqual(result, {
+    recorded: true,
+    isBot: false,
+    category: 'human',
+    device: 'desktop',
+    templeId: 'omphalos',
+  });
+
+  // A non-temple top-level path is recorded but not attributed.
+  const nonTemple = await analytics.recordPageView({
+    path: '/about/',
+    sessionId: 'canon-sess',
+    ip: '203.0.113.99',
+    userAgent: CHROME_DESKTOP,
+    referrer: '',
+  });
+  assert.strictEqual(nonTemple.templeId, '');
 });
 
 // ─── 3. Collect handler ───
