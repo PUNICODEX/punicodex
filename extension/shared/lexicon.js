@@ -7783,6 +7783,7 @@ const LEXICON = [
   },
   {
     "id": "marduk",
+    hasAdSite: true,
     "ascii": "marduk",
     "unicode": "Marduk",
     "greek": "—",
@@ -23183,6 +23184,7 @@ const LEXICON = [
   },
   {
     "id": "dumuzid",
+    hasAdSite: true,
     "ascii": "dumuzid",
     "unicode": "Dumuzid",
     "greek": "—",
@@ -41353,6 +41355,7 @@ const LEXICON = [
   },
   {
     "id": "adad",
+    hasAdSite: true,
     "ascii": "adad",
     "unicode": "Adad",
     "greek": "—",

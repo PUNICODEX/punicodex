@@ -87,6 +87,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Wind farms, turbines, and atmospheric resource management.',
     note: 'Wind and air deities govern exactly the kinetic resource the turbine economy converts to power.',
     entries: [
+      { id: 'pazuzu', weight: 2, why: "Pazuzu is the demon of the west/southwest wind and king of the evil wind-demons; his canonical domain is the moving air that the turbine economy harvests." },
+
+      { id: 'ninlil', weight: 2, why: "Ninlil is literally the Sumerian 'Lady of the Wind' (𒀭𒊩𒌆𒆤); her domain is the moving air that turbines harvest." },
+
       { id: 'zephyros', weight: 2, why: 'The west wind himself — the gentlest Anemos, spring\'s own courier; the softest revenue stream in the sky.' },
       { id: 'fujin', weight: 2, why: 'The wind-bag on his shoulders holds every gale; when he opens it, forests tear and roofs scatter — Japan’s wind made kami.' },
       { id: 'shu', weight: 2, why: 'He holds the sky apart from the earth and fills the space between with moving air — Egypt’s wind and breath made god.' },
@@ -131,6 +135,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Forecasting, storm tracking, and climate analytics.',
     note: 'Storm gods command the phenomena the weather industry exists to predict; thunder is their signature dataset.',
     entries: [
+      { id: 'ninurta', weight: 1, why: "The thunder-storm and the hurricane winds are his weapons; his mythology is rooted in the meteorological violence of the Mesopotamian plain." },
+
+      { id: 'adad', weight: 2, why: "Adad is the Mesopotamian storm and thunder god; his temple naturally serves weather forecasting, storm tracking, and atmospheric-data platforms." },
+
       { id: "hati", weight: 1, why: "The eclipse-wolf of the skalds — the darkening of the moon given legs." },
       { id: 'zeus', weight: 2, why: 'The thunderbolt is his weapon and the sky his domain; every storm warning still reads his signature.' },
       { id: 'thor', weight: 2, why: 'His name is the Norse word for thunder itself; the sky’s hammer and the oak-splitting storm are his.' },
@@ -161,6 +169,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Shipping, ports, fishing, and ocean exploration.',
     note: 'Sea gods rule the medium of global trade; ocean serpents and drowned realms mark its risks and its romance.',
     entries: [
+      { id: 'lahamu', weight: 1, why: "The primordial waters that produce Lahamu are the cosmic ocean before sky and earth were separated; shipping and ocean industries still traverse the descendants of that first sea." },
+
       { id: 'neptunus', weight: 2, why: 'Rome’s lord of the sea, heir to Poseidṓn’s whole mythology; the trident every hull still answers to.' },
       { id: 'delos', weight: 1, why: 'The sacred harbour and the free port; the entrepôt of the Hellenistic sea.' },
       { id: 'poseidon', weight: 2, why: 'Lord of the waters that surround and threaten every Greek city; the sea itself, with a temper and a trident.' },
@@ -198,6 +208,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Water supply, irrigation, and watershed management.',
     note: 'Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.',
     entries: [
+      { id: 'telipinu', weight: 1, why: "When Telipinu vanishes, springs dry up and the land thirsts; his return restores freshwater and irrigation to the Anatolian plain." },
+
+      { id: 'lahamu', weight: 2, why: "Lahamu is born from the mingling of Apsû's freshwater abyss and Tiāmat's salt sea; she is the first personal form to arise from primordial water, making freshwater and hydrology her primary modern resonance." },
+
       { id: "niflheimr", weight: 2, why: "Hvergelmir and the Élivágar — the roaring kettle and the eleven rivers of the first waters." },
       { id: 'styx', weight: 1, why: 'The boundary stream; the underworlds own waterworks.' },
       { id: 'oba', weight: 2, why: 'A river worshipped as a person: the orixá of the sacred Ọbà waters, where freshwater supply is devotion’s first duty.' },
@@ -309,6 +323,16 @@ const INDUSTRY_GROUPS = [
     tagline: 'Defense contracting, security services, and strategic studies.',
     note: 'War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.',
     entries: [
+      { id: 'ninurta', weight: 2, why: "The slayer of Anzû and Asag, bearer of the speaking mace Sharur, and the warrior the great gods dispatch when cosmic order is stolen." },
+
+      { id: 'nergal', weight: 2, why: "Nergal is the Mesopotamian god of war and plague; the lion of Kutha embodies the raw, sanctioned force that defense and strategic studies still theorize." },
+
+      { id: 'marduk', weight: 1, why: "He leads the divine army against Tiamat's host, wields bow, mace, and the four winds as weapons, and is invoked as the divine protector of Babylon." },
+
+      { id: 'lahmu', weight: 2, why: "Lahmu is the archetypal threshold guardian — the hairy protective spirit posted at temple and palace gates to turn back hostile forces and pollution." },
+
+      { id: 'kingu', weight: 1, why: "As Tiāmat's appointed general, Kingu organizes chaos into war — a natural patron for strategic-command, deterrence, and military-simulation brands." },
+
       { id: "ogma", weight: 2, why: "The honey-tongued champion of the Tuatha Dé Danann — strength and speech in one arm." },
       { id: "medb", weight: 2, why: "The Táin Bó Cúailnge — the cattle-raid that is Ireland's Iliad, willed into being by her." },
       { id: "magni", weight: 2, why: "Three nights old and he shifts the leg all the Æsir could not — the Edda's only divine childhood." },
@@ -383,6 +407,12 @@ const INDUSTRY_GROUPS = [
     tagline: 'Threat defense, authentication, and digital trust.',
     note: 'Guardians, riddlers, and tricksters map the modern security stack: the monster at the gate, the riddle that admits, and the adversary who tests.',
     entries: [
+      { id: 'pazuzu', weight: 1, why: "His apotropaic function — turning a powerful demon against other demons — maps onto threat detection, perimeter defense, and benign wards against malicious forces." },
+
+      { id: 'namtar', weight: 1, why: "Namtar operates as an unseen agent who delivers a destructive payload once the decree is written — a useful metaphor for threat actors, zero-days, and incident response." },
+
+      { id: 'kingu', weight: 2, why: "Kingu commands Tiamat's army of monsters and briefly holds the Tablet of Destinies — an ideal emblem for threat-intel platforms, red teams, and adversarial-defense tooling that map hostile infrastructure and stolen authority." },
+
       { id: 'eris', weight: 2, why: 'One golden apple, one exploit, total systemic collapse — engineered discord is the oldest hack on record.' },
       { id: 'drakon', weight: 2, why: 'The unsleeping watcher at the perimeter; the guardian serpent of every firewall.' },
       { id: 'troia', weight: 2, why: 'The original Trojan horse; the field’s founding metaphor.' },
@@ -548,6 +578,16 @@ const INDUSTRY_GROUPS = [
     tagline: 'Farming, grain, food production, and agtech.',
     note: 'Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.',
     entries: [
+      { id: 'telipinu', weight: 2, why: "Telipinu is the Hittite god of grain and vegetation; the Telipinu Myth (CTH 324) explains agricultural fertility as his active presence and famine as his absence." },
+
+      { id: 'ninurta', weight: 2, why: "Ninurta is 'lord of the earth' and the divine ploughman; the long catalog of stones in Lugal-e assigns flint to the sickle and makes cultivation possible only after his victory." },
+
+      { id: 'ninlil', weight: 1, why: "Wind carries pollen across fields and ripples through grain; Ninlil's cult at Nippur sat at the heart of Mesopotamian agrarian society, and her son Enbilulu oversees canals and abundance." },
+
+      { id: 'dumuzid', weight: 2, why: "Dumuzid is the Sumerian shepherd-god of vegetation and the sheepfold; milk, wool, date palms, and seasonal fertility are his canonical domain, making agriculture the primary industry fit." },
+
+      { id: 'adad', weight: 1, why: "Adad's winter rains were the source of agricultural fertility in Mesopotamia; the name fits irrigation, crop-planning, and harvest-tech brands." },
+
       { id: "medb", weight: 1, why: "Cattle as kingdom — the Donn Cúailnge is the prize her sovereignty must possess." },
       { id: "kai", weight: 1, why: "The steward's fire — heat from his hands to cook for the whole company; seneschal as service." },
       { id: "hymir", weight: 1, why: "The mile-deep cauldron every god covets — the giant's brewing-kettle." },
@@ -618,6 +658,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Forestry, wildlife protection, and outdoor recreation.',
     note: 'Wilderness deities guard the forests the conservation economy exists to protect.',
     entries: [
+      { id: 'enkidu', weight: 2, why: "The Cedar Forest and the demon Humbaba are central to Enkidu's myth; his story is the oldest surviving meditation on timber, wilderness, and the cost of taking it." },
+
       { id: "myrddin", weight: 1, why: "The forest as sanctuary and sentence — the woods of Celyddon, his kingdom of madmen." },
       { id: 'cernunnos', weight: 2, why: 'The horned god of animals and wild places — the Gundestrup master of beasts.' },
       { id: 'pan', weight: 2, why: 'The mountain wilds made god — shepherds, flocks, and the forest\'s own dread; conservation is his daily domain.' },
@@ -652,6 +694,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Climate science, ecology, and sustainability consulting.',
     note: 'Earth personified is the sector’s founding insight — the Gaia hypothesis literally named planetary ecology after her.',
     entries: [
+      { id: 'ninlil', weight: 1, why: "As goddess of the air, Ninlil personifies the atmosphere and the breath that links sky, land, and living things." },
+
       { id: "niflheimr", weight: 2, why: "The primordial ice and mist — the north pole of creation, before anything lived." },
       { id: "logi", weight: 2, why: "Wildfire personified — the element seated at a bench, consuming food, bones, and trough." },
       { id: "ginnungagap", weight: 2, why: "Fire from the south, ice from the north, and the mild void between — the climate of the first day." },
@@ -709,6 +753,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Fabrication, industrial craft, and robotics.',
     note: 'Smith gods and divine architects built the first automata — Hephaistos forged mechanical servants, the mythic root of robotics.',
     entries: [
+      { id: 'ninurta', weight: 1, why: "In Lugal-e he names each defeated stone and assigns it to temple, forge, and tool — a charter myth for mineral extraction and craft." },
+
+      { id: 'lahmu', weight: 1, why: "Clay apotropaic figurines, bronze attachments, and glazed brick reliefs of Lahmu were manufactured as protective craft objects." },
+
       { id: "draupnir", weight: 1, why: "Forged by Brokkr and Sindri as one of the three masterworks — divine manufacture." },
       { id: "brokkr", weight: 2, why: "Three castings, three masterworks — the bellows-blower who beat the gods own suppliers in open competition." },
       { id: 'baugi', weight: 1, why: 'Nine thralls whetted to death and an auger through the mountain — brute-force process engineering.' },
@@ -744,6 +792,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Architecture, interior design, and spatial harmony.',
     note: 'Divine architects and harmony systems — from temple builders to feng shui — shape how humans design space.',
     entries: [
+      { id: 'marduk', weight: 1, why: "Marduk divides Tiamat's corpse to form heaven and earth, establishes the cosmic axes, and is worshipped at Esagila and Etemenanki — the architectural expressions of an ordered cosmos." },
+
+      { id: 'lahmu', weight: 1, why: "His cult image frames doorways, gates, and thresholds; the guarded entrance is a foundational unit of sacred and defensive architecture." },
+
       { id: 'okuninushi', weight: 2, why: 'The nation-builder of Izumo — he raised the land itself with Sukunabikona; the architect of a whole country.' },
       { id: 'seshat', weight: 1, why: 'Lady of Builders; the stretching of the cord that sets the temple’s axis.' },
       { id: 'dhatr', weight: 1, why: 'The establisher; foundations as sacred act.' },
@@ -851,6 +903,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Medicine, pharmaceuticals, and public health.',
     note: 'Healing deities and health personified; the bowl of Hygieia still stands on every pharmacy sign.',
     entries: [
+      { id: 'nergal', weight: 1, why: "As plague-bringer and the burning fever personified, Nergal names the ancient terror that public health and epidemiology exist to contain." },
+
+      { id: 'namtar', weight: 2, why: "The 'hand of Namtar' is the standard diagnosis in Akkadian medical texts for fever, paralysis, and unexplained illness. The name fits platforms that track disease, develop therapeutics, or manage clinical risk." },
+
       { id: "eir", weight: 2, why: "Læknir beztr — the best physician, the Edda says, in so many words." },
       { id: 'nuada', weight: 2, why: 'The silver arm of Dian Cécht and the flesh arm of Miach — medicine that rebuilds the king, at a price.' },
       { id: 'brigid', weight: 2, why: 'The physician of the triad — healing as her third named domain; her well and flame both curative.' },
@@ -890,6 +946,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Therapy, emotional wellbeing, and mindfulness.',
     note: 'The heart weighed in the balance is the conscience examined in therapy — and the field’s own history was once named for a goddess: "mental hygiene".',
     entries: [
+      { id: 'telipinu', weight: 1, why: "The myth is a ritual negotiation with divine anger and withdrawal — a Hittite model of restoring relationship, balance, and communal wellbeing after rupture." },
+
+      { id: 'enkidu', weight: 2, why: "Enkidu's arc is a study in transformation, grief, and mortality: the wild self civilized, the friend lost, and the survivor left to mourn — themes at the root of therapeutic narrative." },
+
       { id: "eir", weight: 1, why: "The name is the mercy-word — help and mercy as one sound." },
       { id: 'pan', weight: 1, why: 'Panikón deima — the sudden, groundless fear of lonely places is literally his; the psychology of panic carries his name.' },
       { id: 'hanuman', weight: 1, why: 'The name that ends fear; the most-appealed courage in India.' },
@@ -989,6 +1049,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Biotechnology, longevity research, and regenerative medicine.',
     note: 'Immortality is the industry’s stated goal; the symbols of life and the immortals who achieved it are its mythic prospectus.',
     entries: [
+      { id: 'kingu', weight: 1, why: "The Enuma Elish creates humankind from Kingu's blood; the figure is a proto-biotech origin myth, fitting synthetic-biology and regenerative-medicine narratives that transform biological material into new life." },
+
       { id: 'chimaira', weight: 2, why: 'Lion, goat, and serpent in one body — the ancients\' hybrid that became modern genetics\' word for a chimeric organism.' },
       { id: 'asklepios', weight: 2, why: 'He healed so well that Zeús destroyed him for emptying the underworld — the physician who pressed the boundary of death itself.' },
       { id: 'xolotl', weight: 1, why: 'His axolotl regenerates limbs and heart — the mascot of regenerative medicine.' },
@@ -1016,6 +1078,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Astrology apps, tarot, and spiritual guidance.',
     note: 'The esoteric economy is a real, venture-funded market; crossroads magic and divination systems are its product line.',
     entries: [
+      { id: 'pazuzu', weight: 1, why: "Bronze heads and engraved plaques made Pazuzu a talismanic fixture of protective magic and later esoteric iconography." },
+
+      { id: 'namtar', weight: 1, why: "As a chthonic minister of fate and plague, Namtar belongs to the underworld current in later magical and demonological traditions; the name carries weight in tarot, ritual, and esoteric publishing." },
+
       { id: "myrddin", weight: 2, why: "The wild prophet of the Caledonian forest — prophecy spoken from the trees." },
       { id: "ceridwen", weight: 1, why: "The witch of Llyn Tegid — prophecy pursued through every shape." },
       { id: "brynhildr", weight: 1, why: "Sigrdrífumál — the rune-wisdom she teaches Sigurðr: victory-runes, sea-runes, speech-runes." },
@@ -1161,6 +1227,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Books, journalism, and content platforms.',
     note: 'The ibis invented writing; speech became scripture; the media industry runs on what these figures created.',
     entries: [
+      { id: 'lahamu', weight: 1, why: "The standard Babylonian Enuma Elish is her only witness; Lahamu survives as a named figure through the scribal tradition that copied and transmitted the creation epic." },
+
+      { id: 'enkidu', weight: 1, why: "The Epic of Gilgamesh is the oldest known written epic; Enkidu is one of literature's first fully realized characters and remains a touchstone for retellings." },
+
       { id: "ogma", weight: 2, why: "The inventor of Ogham — the champion who gives Ireland her letters." },
       { id: "ceridwen", weight: 2, why: "The cauldron of awen — poetic inspiration itself, brewed for a year and a day." },
       { id: 'bragi', weight: 2, why: 'The god of poetry — bragr itself is said to descend from his name.' },
@@ -1258,6 +1328,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Video games, streaming franchises, and fantasy worlds.',
     note: 'The entertainment industry already licenses these realms and monsters — Ragnarök, Midgard, and Tiamat are shipped titles, not references.',
     entries: [
+      { id: 'kingu', weight: 1, why: "Dragon consort, usurper of fate, and raid-boss archetype: Kingu is ready-made for games, novels, and table-top settings that need a fallen champion of chaos." },
+
+      { id: 'enkidu', weight: 1, why: "The wild companion, the Cedar Forest quest, and the wrestling match are ready-made mechanics and character archetypes in fantasy and action games." },
+
       { id: 'loki', weight: 2, why: 'The trickster archetype entire — from sagas to Marvel, the most-adapted Norse figure in modern fantasy IP.' },
       { id: 'thaleia', weight: 1, why: 'Idyll and play — the comic register the entertainment economy performs nightly.' },
       { id: 'circe', weight: 2, why: 'The archetypal witch of Aiaia — the island boss encounter Homer wrote in the tenth century BCE.' },
@@ -1329,6 +1403,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Athletics, fitness brands, and competitive leagues.',
     note: 'Victory and strength are the industry’s entire product; one goddess’s name is on more shoes than any other word on earth.',
     entries: [
+      { id: 'enkidu', weight: 1, why: "His wrestling match with Gilgamesh is the epic's founding contest of strength; the bond between rivals is one of athletics' oldest stories." },
+
       { id: "midir", weight: 1, why: "Fidchell — the game that decides a marriage; pride and skill at their oldest Irish table." },
       { id: "magni", weight: 1, why: "The prodigious infant of the hero-pattern — strength as birthright, proven in the cradle." },
       { id: "macha", weight: 2, why: "The race against the king's horses — nine months pregnant, and she wins." },
@@ -1378,6 +1454,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Vineyards, craft beverage, and hospitality venues.',
     note: 'One god owns the vine outright, but brewing and hospitality are older than any single cult — grain, hearth, and guest-law all pour into it.',
     entries: [
+      { id: 'dumuzid', weight: 1, why: "Mesopotamian wedding and New Year liturgy involved beer and date-palm wine; Dumuzid's bridal songs belong to the feast and hospitality tradition." },
+
       { id: "hymir", weight: 2, why: "The host at heaven's end — three oxen slaughtered for a guest, hospitality tallied to the last beast." },
       { id: 'baugi', weight: 2, why: "The mead of poetry sits in his brother's hall — the door through which Óðinn drank it." },
       { id: 'annwn', weight: 1, why: 'The realm where no one lacks for food or drink — the feast that never fails.' },
@@ -1576,6 +1654,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Insurance, assurance, and risk protection.',
     note: 'Preservation and protection are the product; the preserver of the universe is the industry’s perfect patron.',
     entries: [
+      { id: 'namtar', weight: 1, why: "The Sumerian concept of nam-tar is literally 'decided destiny.' Risk underwriting, actuarial tables, and claims processing all deal in the quantification of what Namtar once personified." },
+
+      { id: 'adad', weight: 1, why: "The storm god's unpredictable power aligns with risk underwriting, weather-index insurance, and asset-protection products." },
+
       { id: 'sani', weight: 2, why: 'Sade Sati is the oldest risk-model in continuous use.' },
       { id: 'atropos', weight: 2, why: 'The measured span; actuarial science is her liturgy secularized.' },
       { id: 'tyche', weight: 2, why: 'Risk itself enthroned; underwriting is the pricing of her wheel.' },
@@ -1609,6 +1691,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Law, courts, and regulatory compliance.',
     note: 'Truth, oaths, and cosmic order; the law’s oldest symbols are divine persons.',
     entries: [
+      { id: 'marduk', weight: 2, why: "The Enuma Elish makes Marduk the one who 'decrees destinies' (parāsu), and Hammurabi's law code presents him as the source of the king's mandate to 'cause justice to prevail in the land.'" },
+
       { id: "nisien", weight: 2, why: "The peace-maker twin — his presence softens hosts; mediation as nature, not office." },
       { id: "math", weight: 1, why: "A virgin's lap for his feet — kingship conditioned on a law stranger than fiction, and honored." },
       { id: "manawydan", weight: 1, why: "He outwits the curse without breaking a rule — restoration achieved by law, not force." },
@@ -1671,6 +1755,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Government, executive leadership, and statecraft.',
     note: 'Kingship was invented here; supreme gods and model kings are the case studies of every leadership curriculum.',
     entries: [
+      { id: 'marduk', weight: 2, why: "Marduk is the paradigmatic sovereign of the Mesopotamian pantheon: the deity who receives kingship from the gods, exercises it through decree and combat, and serves as the divine model for Babylonian rulership." },
+
+      { id: 'alalu', weight: 2, why: "Alalu is the first holder of divine kingship in heaven; his nine-year reign and overthrow by Anu are the Hittite/Hurrian case study in sovereignty, succession, and the mandate of heaven." },
+
       { id: "pryderi", weight: 2, why: "Lord of Dyfed — the vanished child who returns to rule, and is struck down again in the Third Branch." },
       { id: "nisien", weight: 1, why: "His sword cuts clean where his brother's malice maims — the other model of kin." },
       { id: "medb", weight: 2, why: "Queen and commander of Connacht — she leads the Táin herself, choosing husbands as she chooses wars." },
@@ -1742,6 +1830,12 @@ const INDUSTRY_GROUPS = [
     tagline: 'Museums, archives, libraries, and the record-keeping professions.',
     note: 'Memory itself has patrons in every pantheon — the keepers of the record, from the Muse of History to the divine scribes.',
     entries: [
+      { id: 'ninlil', weight: 1, why: "The Sumerian poem Enlil and Ninlil (ETCSL 1.2.1) and temple hymns from Nippur make her a key figure in the reconstructed archive of Mesopotamian religion." },
+
+      { id: 'lahmu', weight: 1, why: "The figure survives only in cuneiform ritual texts, seal impressions, and glazed reliefs; reconstructing Lahmu is an exercise in Near Eastern philology and archaeology." },
+
+      { id: 'alalu', weight: 2, why: "The 'Kingship in Heaven' myth survives only in Hittite cuneiform tablets from Boğazköy-Hattusa (CTH 344), making Alalu a flagship patron of ancient Near Eastern archives and textual preservation." },
+
       { id: "pryderi", weight: 1, why: "The foal born the night he vanished — the Mabinogi's founding mystery, solved at the stable." },
       { id: "nisien", weight: 1, why: "The gentle half of the Second Branch's great contrast — the brother the story sets against the storm." },
       { id: "myrddin", weight: 2, why: "The Vita Merlini and the Black Book prophecies — the Welsh Merlin before the romances claimed him." },
@@ -1787,6 +1881,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Schools, universities, and research institutions.',
     note: 'Wisdom has patrons in every pantheon; knowledge work is the modern priesthood of these figures.',
     entries: [
+      { id: 'lahamu', weight: 1, why: "Her significance is almost entirely cosmogonical and textual; every study of the Enuma Elish and Mesopotamian religion must begin with Lahamu and Lahmu." },
+
+      { id: 'alalu', weight: 1, why: "His myth is a standard comparative example in courses on ancient Near Eastern religion, Indo-European succession mythology, and Hittite civilization." },
+
       { id: "ogma", weight: 1, why: "The Ogam tract itself — every scholar who teaches the alphabet stands in his line." },
       { id: "ginnungagap", weight: 1, why: "The cosmogony question itself — the gap every creation account must answer." },
       { id: "fionn", weight: 1, why: "The salmon of knowledge at the Boyne — wisdom by accident, kept by use." },
@@ -1888,6 +1986,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Genealogy, heritage research, and DNA ancestry.',
     note: 'Progenitors and patriarchs; the ancestry industry sells what these figures began.',
     entries: [
+      { id: 'lahamu', weight: 1, why: "Lahamu stands at the root of the Mesopotamian divine family tree as the first female principle, mother of Anshar and Kishar and ancestor of every great god." },
+
       { id: "don", weight: 2, why: "Plant Dôn — the Welsh divine house organized around a mothers name." },
       { id: 'bestla', weight: 2, why: 'The giant grandmother of the gods — the seam that makes the Æsir half-giant.' },
       { id: 'beli', weight: 2, why: 'The dynastic root — the Harleian genealogies hang the Welsh royal houses on his name.' },
@@ -1950,6 +2050,12 @@ const INDUSTRY_GROUPS = [
     tagline: 'Emergency management, recovery, and business continuity.',
     note: 'Surviving the flood and rising from the ash; resilience is the industry’s word for what these figures did.',
     entries: [
+      { id: 'pazuzu', weight: 1, why: "Pazuzu amulets were deployed against epidemic wind and child-killing demons; the figure is an ancient technology for mitigating invisible, airborne catastrophe." },
+
+      { id: 'nergal', weight: 1, why: "The Epic of Erra makes him the agent of war, fire, and epidemic catastrophe — the scenario the resilience sector plans against." },
+
+      { id: 'adad', weight: 1, why: "As the deity of flood and tempest, Adad maps onto flood alerts, catastrophe modeling, and emergency-response tooling." },
+
       { id: "garmr", weight: 2, why: "The fetter will snap and the wolf run free — the baying that opens Ragnarök." },
       { id: "efnysien", weight: 2, why: "One night in a stable and two kingdoms ruined — the small act with total consequence." },
       { id: "eachuisge", weight: 1, why: "The liver that floats ashore — the folklore record of drowning risk, told as monster." },
@@ -2003,6 +2109,12 @@ const INDUSTRY_GROUPS = [
     tagline: 'Funeral care, memorials, and legacy services.',
     note: 'The dead have lords and the living have duties; the underworld’s geography is the industry’s oldest map.',
     entries: [
+      { id: 'nergal', weight: 2, why: "By marriage to Ereshkigal, Nergal becomes king of the underworld — a ruler of the dead and the geography of grief." },
+
+      { id: 'namtar', weight: 2, why: "Namtar is the executive minister of the Mesopotamian underworld — the vizier who delivers the decree of death. Memorial services, estate planning, and end-of-life platforms can credibly anchor on the figure who personifies mortality as a formal process." },
+
+      { id: 'dumuzid', weight: 1, why: "His half-year sojourn in the underworld and the ancient laments for Tammuz map directly onto mourning, memorial rites, and the seasonal remembrance of loss." },
+
       { id: "nanna", weight: 2, why: "Her grief is laid beside him on Hringhorni — the death within the gods' funeral." },
       { id: 'hel', weight: 2, why: 'The goddess of the dead entire — ruler of Éljúðnir, keeper of all who die of age and sickness.' },
       { id: 'baldr', weight: 2, why: 'Hringhorni — the ship-funeral of the gods, the most famous burial in Norse myth, pyre lit on the deck of the greatest of ships.' },
@@ -2208,6 +2320,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Restaurants, food service, and the table as an institution.',
     note: 'Every restaurant is a hearth made public; grain, bread, and the feast have had patrons since the first harvest.',
     entries: [
+      { id: 'dumuzid', weight: 1, why: "The pastoral economy supplies milk, cheese, and meat; Dumuzid's sacred-marriage feast turns the products of the flock into the institutional table." },
+
       { id: 'hestia', weight: 2, why: 'The hearth — the original kitchen fire; every restaurant is her flame carried into public.' },
       { id: 'demeter', weight: 2, why: 'The grain-giver — bread itself, the foundation of every table.' },
       { id: 'ceres', weight: 1, why: 'The Roman grain mother; the cereal on every menu.' },
@@ -2246,6 +2360,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Scholarly Unicode restorations of mythic names for modern identity.',
     note: 'These entries are recent flagship restorations that recover original scripts, stress, and length in registrable Unicode domains.',
     entries: [
+      { id: 'alalu', weight: 2, why: "Alalu's name and story are obscure outside Assyriological and Hittite scholarship; restoring him is exactly the kind of mythic recovery PuniCodex exists to perform." },
+
       { id: 'omphalos', weight: 2, why: 'The navel-stone as a symbol of centered origin; a natural flagship for restoring the exact spelling of a classical name.' },
       { id: 'keraunos', weight: 2, why: 'Thunder and the lightning strike, captured in the restored Greek form.' },
       { id: 'sunwukong', weight: 2, why: 'The Monkey King as a globally recognized figure whose pinyin tones matter in transcription.' },
