@@ -1,0 +1,6 @@
+{
+  "canvasId": "inaras-canvas",
+  "label": "Steppe Wind",
+  "description": "Drifting grass-like lines and animal-shaped motes for the goddess of the wild steppe.",
+  "code": "const blades = [];\n  for (let i = 0; i < 50; i++) blades.push({ x: Math.random(), h: 20 + Math.random() * 40, sway: Math.random() });\n  const motes = [];\n  for (let i = 0; i < 30; i++) motes.push({ x: Math.random(), y: Math.random(), r: 1 + Math.random() * 2 });\n  let t = 0;\n  function draw() {\n    if (reduced) return;\n    ctx.clearRect(0, 0, width, height);\n    ctx.fillStyle = '#0a120d';\n    ctx.fillRect(0, 0, width, height);\n    ctx.strokeStyle = '#5A8A3A';\n    ctx.lineWidth = 1;\n    ctx.globalAlpha = 0.25;\n    for (const b of blades) {\n      const x = b.x * width;\n      const y = height * 0.6;\n      ctx.beginPath();\n      ctx.moveTo(x, y);\n      ctx.lineTo(x + Math.sin(t * 0.002 + b.sway) * 15, y - b.h);\n      ctx.stroke();\n    }\n    ctx.globalAlpha = 0.4;\n    ctx.fillStyle = '#2E4A1E';\n    for (const m of motes) {\n      const x = (m.x + t * 0.0002) % 1 * width;\n      const y = height * 0.3 + Math.sin(t * 0.001 + m.x * 10) * 30;\n      ctx.beginPath();\n      ctx.arc(x, y, m.r, 0, Math.PI * 2);\n      ctx.fill();\n    }\n    ctx.globalAlpha = 1;\n    t++;\n    requestAnimationFrame(draw);\n  }\n  draw();"
+}

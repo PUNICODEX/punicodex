@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The many faces of Perun | Perun Blog | PUNICODEX</title>
+    <meta name="description" content="From Slavic transcription to Unicode: why Perun is more than a domain name.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/perun/blog/">
+    <meta property="og:title" content="The many faces of Perun | Perun Blog | PUNICODEX">
+    <meta property="og:description" content="From Slavic transcription to Unicode: why Perun is more than a domain name.">
+    <meta property="og:url" content="https://punicodex.com/perun/blog/">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-28">
+    <meta property="article:section" content="Blog">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/perun.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/perun.jpg">
+    <meta name="twitter:title" content="The many faces of Perun | Perun Blog | PUNICODEX">
+    <meta name="twitter:description" content="From Slavic transcription to Unicode: why Perun is more than a domain name.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "The many faces of Perun",
+        "description": "From Slavic transcription to Unicode: why Perun is more than a domain name.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-28",
+        "dateModified": "2026-08-28",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/perun/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Perun", "perun", "slavic mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Slavic transcription restoration"],
+        "url": "https://punicodex.com/perun/blog/",
+        "image": "https://punicodex.com/assets/og/perun.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Perun",
+      "item": "https://punicodex.com/perun/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/perun/blog/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="perun-canvas" data-effect="storm" data-primary="#C0C0C0" data-secondary="#228B22" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/perun_logolockup.webp" type="image/webp"><img src="../assets/perun_logolockup.png" alt="Perun" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (Home → Pantheon → temple; the tab crumb lives in the JSON-LD trail) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/perun/">Perun</a></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Perun — Blog</p>
+                <p class="hero-title reveal-up">The many faces of Perun</p>
+                <p class="hero-subtitle reveal-up">Thunder, Lightning, Oak</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 2</span>
+                    <span class="meta-domain">Perun</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/perun_mascot.webp" type="image/webp"><img src="../assets/perun_mascot.webp" alt="Perun — Thunder, Lightning, Oak" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-28">2026-08-28</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>13 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#etymology-and-meaning">Etymology and Meaning</a></li>
+                <li><a href="#mythology-and-domain">Mythology and Domain</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#unicode-restoration-and-conclusion">Unicode Restoration and Conclusion</a></li>
+                <li><a href="#perun-and-the-warrior-ethos">Perun and the Warrior Ethos</a></li>
+                <li><a href="#sources-and-further-exploration">Sources and Further Exploration</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>The many faces of Perun</h1>
+<p>No important name has only one face. <strong>Perun</strong> appears as a figure of myth, a scholarly reconstruction, a piece of material culture, a memory carried across languages, and — most recently — a Unicode domain. He is the thunder god of the Slavs, the wielder of the axe or hammer, the lord of the oak tree, and the chief adversary of <a href="/veles/" class="crosslink" data-crosslink="veles">Veles</a>, the chthonic god of cattle and the underworld. His name echoes in the thunderstorm and in the sacred groves where his worshippers once gathered. This post examines each face in turn: the name and its roots, the reconstructed pronunciation, the mythological record, the symbols and sanctuaries, the cross-cultural afterlife, and the engineering that lets the restored spelling resolve in a browser. Taken together, those faces explain why <em>perun</em> was never going to be enough — and why the restored form is worth a domain of its own.</p>
+<p>Perun is in many ways the flagship of the Slavic pantheon. He is the god most easily compared to the great thunderers of other Indo-European traditions, the one whose name appears most prominently in medieval sources, and the figure around whom much of modern Slavic pagan revival has organized itself. To understand Perun is to understand a great deal about how the Slavs imagined the sacred.</p>
+<p>The name Perun carries an almost onomatopoeic force. It sounds like thunder, like a sudden strike from above. This sonic quality is part of what has made the name so durable and so easily recognizable across cultures. When the name appears in a browser or a book, it should carry that force with it.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Perun</li>
+  <li><strong>ASCII form:</strong> perun</li>
+  <li><strong>Meaning:</strong> "Thunderer, striker"</li>
+  <li><strong>Domain of influence:</strong> Thunder, Lightning, Oak</li>
+  <li><strong>Pantheon:</strong> Slavic</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Perun</strong> belongs to the Slavic tradition, where he is catalogued under the domains of thunder, lightning, and oak. He is widely regarded as the supreme god of the pagan Slavs, the celestial warrior who defends cosmic order against the forces of chaos. His weapons are the thunderbolt and the battle-axe; his tree is the oak; his adversary is Veles, the serpentine god of the underworld. In the medieval <em>Primary Chronicle</em>, Perun stands at the head of the official pantheon of Kievan Rus', where he was worshipped alongside Khors, <a href="/dazhbog/" class="crosslink" data-crosslink="dazhbog">Dazhbog</a>, <a href="/stribog/" class="crosslink" data-crosslink="stribog">Stribog</a>, <a href="/simargl/" class="crosslink" data-crosslink="simargl">Simargl</a>, and <a href="/mokosh/" class="crosslink" data-crosslink="mokosh">Mokosh</a>.</p>
+<p>The prominence of Perun in the Slavic pantheon reflects a deep Indo-European pattern. Every branch of the Indo-European family has its thundering sky-god: <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> among the Greeks, Jupiter among the Romans, <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a> among the Germans, <a href="/indra/" class="crosslink" data-crosslink="indra">Indra</a> among the Vedic Indians. Perun is the Slavic expression of this ancient type. He is the storm made divine, the weapon-bearing protector of warriors and rulers, the guarantor of oaths and justice.</p>
+<p>The PuniCodex restoration presents <strong>Perun</strong> in its standard scholarly form. The ASCII form <em>perun</em> is a DNS-friendly fallback, but the restored form preserves the name as a proper noun and a divine name. Because the name does not require diacritics or special characters, it is classified as Tier 2. This does not diminish his status as the leading figure of the Slavic pantheon.</p>
+<p>Perun's importance also reflects the social world of the early Slavs. He was a warrior's god, a ruler's god, a god of the elite who swore oaths in his name and dedicated weapons to his temples. At the same time, his power was felt by ordinary people in every thunderstorm. He was both remote and immediate, celestial and terrestrial.</p>
+<h2 id="etymology-and-meaning">Etymology and Meaning</h2>
+<p>The name Perun comes from a Proto-Indo-European root related to striking, hitting, and thundering. The reconstructed Proto-Slavic form is <em>Perunъ</em>, which developed into Old East Slavic Перунъ, Polish Piorun, Czech Perun, and other variants. The basic meaning is "Thunderer" or "Striker," a fitting name for a god whose presence is announced by lightning and thunder.</p>
+<p>The root has close cognates in other Indo-European languages. The Lithuanian <em><a href="/perkunas/" class="crosslink" data-crosslink="perkunas">Perkūnas</a></em> and Latvian <em>Pērkons</em> are Baltic thunder gods with names from the same root. The Vedic <em>Parjanya</em> is a rain and thunder deity. Farther afield, the name resonates with the Germanic <em>Fjargr</em> and even, more distantly, with the Greek <em>keraunos</em> (thunderbolt) through shared Indo-European heritage. These connections place Perun at the center of one of the oldest and most widespread divine types in Eurasia.</p>
+<p>The meaning "Thunderer, striker" captures both the natural phenomenon and the divine action. Perun does not merely make noise in the sky; he strikes. His lightning is a weapon aimed at enemies, oath-breakers, demons, and the forces of chaos. To be struck by lightning was, in traditional belief, to be singled out by Perun for punishment or, in some cases, for consecration. Oak trees struck by lightning were considered especially sacred, marked by the god's own hand.</p>
+<p>The pronunciation of Perun is relatively straightforward: "PEH-roon," with stress on the first syllable and a short final <em>-un</em>. The name does not require diacritics in its basic scholarly form, though some reconstructions use a final hard sign or other historical orthographic markers. For modern Unicode purposes, the simple form <strong>Perun</strong> is sufficient and authoritative.</p>
+<p>The semantic range of Perun's name also includes ideas of punishment and justice. To "strike" is not only to hit with a weapon but to punish, to enforce order, to bring consequences. Perun is thus a god of law as well as war, of oaths as well as battles. This dual role made him indispensable to rulers who needed divine sanction for their authority.</p>
+<h2 id="mythology-and-domain">Mythology and Domain</h2>
+<p>Perun's mythology centers on three great domains: thunder, lightning, and oak. These are not arbitrary associations but a tightly integrated symbolic complex. The oak is the tree most often struck by lightning, and thus the tree of Perun. Lightning is the visible weapon of the thunder god, and thunder is the sound of his voice or his chariot. Together they form the image of a celestial warrior whose power is both terrifying and protective.</p>
+<p>The central myth of Perun is his battle with Veles. In the standard reconstruction, Veles is a chthonic deity associated with cattle, commerce, magic, and the underworld. He steals Perun's cattle, descends to the underworld, and is pursued by the thunder god. Perun strikes Veles with his lightning, but Veles survives and returns, only to be defeated again. The cycle repeats each year, enacting the struggle between sky and earth, order and chaos, summer and winter.</p>
+<p>This combat myth is one of the most important narratives in Slavic religion. It explains the changing seasons, the origin of storms, and the perpetual tension between the forces that sustain life and the forces that threaten it. Perun's victory ensures the return of cattle, the fertility of the fields, and the safety of the community. But Veles is never permanently destroyed; he withdraws, transforms, and returns. The cosmos is not a static order but a dynamic balance maintained through repeated conflict.</p>
+<p>Perun's cult was supported by rulers as well as common people. In Kievan Rus', a statue of Perun stood on a hill overlooking the city, and the elite swore oaths in his name. He was the divine patron of the ruling dynasty, the guarantor of treaties, and the protector of warriors. His temples and sacred groves received sacrifices of horses, bulls, and — according to some sources — human captives in times of war.</p>
+<p>The oak was Perun's sacred tree, and groves of oak were his sanctuaries. These groves were places of assembly, judgment, and sacrifice. To swear an oath in a grove of Perun was to invoke the highest divine witness; to break such an oath was to invite the thunderbolt. The association of the oak with Perun persisted in folk belief long after Christianization, and oaks struck by lightning were treated with special reverence.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Perun's cultural afterlife is vast. After Christianization, his functions were partly absorbed by the cult of Saint Michael the Archangel, the heavenly warrior who defeats Satan. Churches dedicated to Saint Michael were often built on sites previously associated with Perun, and the thunder god's imagery was transferred to the Christian angel. This process, known as interpretatio christiana, allowed Perun to remain present in Slavic culture under a new name.</p>
+<p>In folk belief, Perun survived as the thunderer, the one who punishes liars, oath-breakers, and those who commit incest or other grave sins. Peasants would say that a person struck by lightning had been "touched by Perun" or "taken by the thunder." Oaks struck by lightning were treated with reverence, and it was taboo to cut them down. These beliefs kept the thunder god alive in rural communities long after official paganism had ended.</p>
+<p>The Romantic and nationalist movements of the nineteenth and twentieth centuries rediscovered Perun as a symbol of Slavic power and identity. He appeared in epic poetry, opera, and visual art as a mighty warrior defending the Slavic world. In the twentieth century, he became a central figure in Slavic Native Faith (Rodnovery) and related pagan revival movements. Practitioners today honor Perun as a god of justice, strength, and protection, often calling upon him in rituals involving fire, oak, and the bearing of weapons.</p>
+<p>Perun has also entered global popular culture through fantasy literature, video games, and film. He appears as a deity in role-playing games, as a character in novels, and as a symbolic figure in comics and animation. These representations vary widely in accuracy, but they keep the name in circulation and introduce it to audiences far beyond Slavic-speaking regions.</p>
+<p>The image of Perun as a bearded warrior wielding an axe or hammer has become one of the most recognizable icons of Slavic paganism. It draws on both ancient sources and modern imagination, blending scholarship with artistic license. Whether this image corresponds to how the ancient Slavs actually imagined their thunder god is less important than the fact that it has become a powerful symbol of cultural identity.</p>
+<h2 id="unicode-restoration-and-conclusion">Unicode Restoration and Conclusion</h2>
+<p>The PuniCodex restoration of <strong>Perun</strong> returns the name to its proper form. The ASCII form <em>perun</em> is a technical compromise that strips the name of its status as a divine name. The restored spelling, with its capital <em>P</em>, marks Perun as a figure of myth and religion, the Slavic thunder god rather than a common word.</p>
+<p>This restoration is particularly important because Perun is one of the few Slavic gods whose name has genuine international recognition. When people encounter the name in a browser, they should see it in its correct form. The Unicode domain makes that possible. It also aligns the digital name with the scholarly and religious traditions that have preserved it.</p>
+<p>The restoration also honors the Indo-European dimension of Perun's name. He is not merely a local Slavic deity but a member of one of the oldest and most widespread divine types in human history. The proper spelling connects him to his Baltic, Germanic, Greek, and Vedic cousins, making visible the deep historical relationships that the ASCII form obscures.</p>
+<p>The restoration of Perun also reminds us that some names carry a kind of sonic authority. The word <em>perun</em> sounds like what it means: a sharp, percussive name for a striking god. When rendered in lowercase ASCII, that authority is diminished. The capitalized restoration returns the name's visual weight, matching its mythological weight. In the address bar, as in the thunderstorm, Perun should appear in full force.</p>
+<p>In the end, Perun is more than a weather god. He is the symbol of cosmic order, the protector of the community, and the eternal adversary of chaos. His many faces — mythic, political, folkloric, artistic, and now digital — testify to the enduring power of the name. The restoration does not add to that power, but it does give it a proper address in the modern world.</p>
+<h2 id="perun-and-the-warrior-ethos">Perun and the Warrior Ethos</h2>
+<p>Perun's association with warriors and rulers gives him a special place in the social imagination of the early Slavs. He was not only a weather god but a divine patron of the military aristocracy, the one who sanctioned oaths, protected the battlefield, and punished treachery. This warrior dimension is essential to understanding his prominence in the Kievan pantheon and his enduring appeal as a symbol of strength and justice.</p>
+<p>For a warrior society, the thunderbolt was the perfect symbol of divine power. It strikes from above, it is irresistible, and it leaves no doubt about who has been singled out. Perun's weapon was therefore both a natural phenomenon and a moral instrument. To fight under Perun's protection was to claim the legitimacy of heaven; to break an oath sworn in his name was to invite celestial retribution. The god bound the community together through fear and trust alike.</p>
+<p>The oak sanctuary was the ritual center of Perun's warrior cult. Warriors would gather in sacred groves to swear loyalty, dedicate weapons, and receive blessings before battle. The oak, as the tree most often struck by lightning, was considered Perun's own tree, marked by his hand. Weapons and prisoners were sometimes sacrificed at these sites, though the evidence for human sacrifice is debated. What is clear is that Perun's cult was intimately tied to the exercise of political and military power.</p>
+<p>After Christianization, many of Perun's warrior functions were transferred to Saint Michael the Archangel. The heavenly warrior who defeats Satan was a natural Christian substitute for the thunder god who defeats chaos. Churches dedicated to Saint Michael were often built on or near former Perun sanctuaries, and the imagery of the archangel with sword and shield carried echoes of the old divine warrior. This transfer allowed Perun to remain present in Slavic culture under a new name and form.</p>
+<p>In modern Slavic Native Faith, Perun is often honored as a god of justice and protection rather than of aggressive warfare. Practitioners may call upon him to defend the weak, to punish wrongdoing, and to give strength in times of conflict. This reinterpretation reflects contemporary values while preserving the core association of Perun with righteous force. He remains a warrior, but his battles are understood in ethical as well as military terms.</p>
+<p>The image of Perun as a divine warrior has also influenced modern national and military symbolism in Slavic countries. His name and attributes appear in heraldry, insignia, and patriotic art, often as a way of invoking indigenous Slavic power against foreign domination. This political use of the god is controversial, as it can blend religious revival with nationalism. Scholars and practitioners alike must be careful to distinguish the historical Perun from modern ideological appropriations.</p>
+<p>The Unicode restoration of Perun contributes to this ongoing reinterpretation by providing a stable, authoritative form of the name. When Perun appears in his proper spelling, he is more easily recognized as a figure of myth and religion rather than a political slogan. The restoration cannot prevent misuse, but it can support accurate and thoughtful engagement with the god.</p>
+<p>In the end, Perun's warrior ethos reminds us that divine power is often imagined as protective rather than merely destructive. He strikes, but he strikes on behalf of order, oath, and community. The restoration preserves this complex figure in his proper name, ensuring that future generations can encounter the thunder god in all his ambivalent majesty.</p>
+<h2 id="sources-and-further-exploration">Sources and Further Exploration</h2>
+<p>Perun is one of the most studied figures in Slavic religion, and the scholarly literature is extensive. The <em>Primary Chronicle</em> remains the foundational textual source, while archaeological excavations of hillforts and sanctuaries have revealed material evidence of his cult. Comparative Indo-European studies place Perun alongside Baltic Perkūnas, Germanic Thor, and Vedic Indra. Linguistic studies trace the name from Proto-Indo-European roots related to striking and thundering.</p>
+<p>For modern practitioners, Perun is honored through fire rituals, oak gatherings, and oaths of justice and protection. His image appears widely in pagan art, jewelry, and tattoos. The PuniCodex temple for Perun collects scholarly and devotional resources under the restored name, serving both researchers and believers who wish to engage with the Slavic thunder god in his proper form.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/babayaga/">Baba Jagá</a> — Forest Witch, Death</li>
+  <li><a href="/chernobog/">Černobog</a> — Darkness, <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>, Evil</li>
+  <li><a href="/dazhbog/">Dažbog</a> — Sun, Wealth, Giving</li>
+  <li><a href="/domovoi/">Domovój</a> — Household Spirit</li>
+  <li><a href="/kikimora/">Kikimóra</a> — House Spirit, Swamp Hag</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+  <li>N. I. Tolstoi et al., <em>Slavic Antiquities: Ethnolinguistic Dictionary</em> (1995–2012).</li>
+  <li>Vyacheslav Ivanov &amp; Vladimir Toporov, comparative Slavic mythology studies.</li>
+  <li>L. Niderle, <em>The Slavic Antiquities</em> (1902–1924).</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">slavic</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Perun collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 385 in the series: <a href="./restoration/">The provenance file on Perun</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">Stress-testing Perun: do the industry seats hold?</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">Perun: canonical, contested, and the false forms on record</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">Perun</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">—</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/perun_logomark.webp" type="image/webp"><img src="../assets/perun_logomark.png" alt="Perun logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

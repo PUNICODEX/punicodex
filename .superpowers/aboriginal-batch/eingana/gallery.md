@@ -1,0 +1,1 @@
+honestZero: Aboriginal sacred designs are culturally restricted and rarely represented in Wikimedia Commons; authentic depictions of Eingana belong to initiated custodians and are not appropriately sourced from a general Commons search.

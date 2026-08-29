@@ -56,6 +56,7 @@ const SCRIPTLESS_PANTHEONS = new Set([
   'korean',
   'baltic',
   'aboriginal',
+  'mapuche',
 ]);
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -2787,6 +2788,27 @@ function getRichProvenance(entry) {
   };
 }
 
+// Curated Younger Futhark sign data so runic original scripts never produce
+// bare-dash sign cards in the Ink index.
+const RUNIC_SIGNS = {
+  'ᚠ': { name: 'fé', value: 'f', reading: '/f/', note: 'Younger Futhark fé, "wealth"; the domestic cow and mobile property.' },
+  'ᚢ': { name: 'úr', value: 'u', reading: '/u/', note: 'Younger Futhark úr, "aurochs" or "slag"; also used for /y/ and /ø/.' },
+  'ᚦ': { name: 'þurs', value: 'þ', reading: '/θ/ or /ð/', note: 'Younger Futhark þurs, "giant"; the voiceless or voiced dental fricative.' },
+  'ᚬ': { name: 'óss', value: 'ą / o', reading: '/ɑ̃/ or /o/', note: 'Younger Futhark óss, a nasal or rounded vowel; later often read as áss, "god".' },
+  'ᚱ': { name: 'reið', value: 'r', reading: '/r/', note: 'Younger Futhark reið, "ride" or "wagon"; the alveolar trill or tap.' },
+  'ᚴ': { name: 'kaun', value: 'k', reading: '/k/', note: 'Younger Futhark kaun, "ulcer" or "torch"; the voiceless velar stop.' },
+  'ᚼ': { name: 'hagall', value: 'h', reading: '/h/', note: 'Younger Futhark hagall, "hail"; the voiceless glottal fricative.' },
+  'ᚾ': { name: 'nauðr', value: 'n', reading: '/n/', note: 'Younger Futhark nauðr, "need" or "hardship"; the alveolar nasal.' },
+  'ᛁ': { name: 'ísa', value: 'i', reading: '/i/', note: 'Younger Futhark ísa, "ice"; the high front vowel, also used for /e/.' },
+  'ᛅ': { name: 'ár', value: 'a', reading: '/a/', note: 'Younger Futhark ár, "year" or "plenty"; the open front vowel.' },
+  'ᛋ': { name: 'sól', value: 's', reading: '/s/', note: 'Younger Futhark sól, "sun"; the voiceless alveolar sibilant.' },
+  'ᛏ': { name: 'týr', value: 't', reading: '/t/', note: 'Younger Futhark týr, "the god Týr"; the voiceless alveolar stop.' },
+  'ᛒ': { name: 'bjarkan', value: 'b', reading: '/b/', note: 'Younger Futhark bjarkan, "birch"; the voiced bilabial stop.' },
+  'ᛘ': { name: 'maðr', value: 'm', reading: '/m/', note: 'Younger Futhark maðr, "man"; the bilabial nasal.' },
+  'ᛚ': { name: 'lögr', value: 'l', reading: '/l/', note: 'Younger Futhark lögr, "water" or "lake"; the alveolar lateral approximant.' },
+  'ᛦ': { name: 'yr', value: 'r (ending)', reading: '/r/', note: 'Younger Futhark yr, used for the final -r of masculine nominative singulars.' },
+};
+
 function getSigns(entry) {
   const mapped = getMapped(entry);
   const provenance = mapped?.provenance;
@@ -2799,6 +2821,25 @@ function getSigns(entry) {
   // per-letter story — every "sign" would just be the English letter. Skip
   // synthesis so the Signs grid carries real scripts only.
   if (/^[ -~()]+$/.test(specimen)) return [];
+  // Younger Futhark runic specimens get curated per-sign data.
+  if (/(Younger Futhark|runic)/i.test(getScriptName(entry) || '')) {
+    return Array.from(specimen)
+      .map((sign) => {
+        const curated = RUNIC_SIGNS[sign];
+        if (curated) {
+          return { sign, function: 'letter', ...curated };
+        }
+        return {
+          sign,
+          name: 'rune',
+          value: '',
+          function: 'letter',
+          reading: '',
+          note: `Younger Futhark rune ${sign}; attested value assigned by normalized reading.`,
+        };
+      })
+      .filter(Boolean);
+  }
   // Fallback: one card per Unicode scalar. This is intentionally naive; curated
   // sign arrays should be provided for logographic/abjad scripts.
   return Array.from(specimen).map((sign) => ({

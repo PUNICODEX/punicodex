@@ -1,0 +1,6 @@
+{
+  "canvasId": "seonangshin-canvas",
+  "label": "Village Boundary",
+  "description": "A ring of fireflies guards a threshold marked by sacred rope and standing stones.",
+  "code": "if (reduced) return;\nctx.clearRect(0, 0, width, height);\nconst flies = []; for (let i = 0; i < 60; i++) flies.push({ x: Math.random(), y: Math.random(), r: 1 + Math.random() * 1.5, dx: (Math.random() - 0.5) * 0.3, dy: (Math.random() - 0.5) * 0.3, life: Math.random() });\nlet t = 0;\nfunction draw() {\n  if (reduced) return;\n  ctx.clearRect(0, 0, width, height);\n  ctx.globalAlpha = 0.8; ctx.fillStyle = '#d8e88a';\n  for (const f of flies) {\n    const x = (f.x + t * f.dx * 0.0003) % 1; const y = (f.y + t * f.dy * 0.0003) % 1;\n    const a = 0.3 + 0.7 * Math.sin(t * 0.05 + f.life * 10);\n    ctx.globalAlpha = a; ctx.beginPath(); ctx.arc(x * width, y * height, f.r, 0, Math.PI * 2); ctx.fill();\n  }\n  ctx.globalAlpha = 0.12; ctx.strokeStyle = '#a8c68a'; ctx.lineWidth = 2;\n  ctx.beginPath(); ctx.arc(width * 0.5, height * 0.5, Math.min(width, height) * 0.32 + Math.sin(t * 0.01) * 10, 0, Math.PI * 2); ctx.stroke();\n  ctx.globalAlpha = 1;\n  t++; requestAnimationFrame(draw);\n}\ndraw();"
+}

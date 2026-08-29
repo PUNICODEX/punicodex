@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Veles got its accent back | Veles Blog | PUNICODEX</title>
+    <meta name="description" content="Discover Veles: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/veles/blog/">
+    <meta property="og:title" content="How Veles got its accent back | Veles Blog | PUNICODEX">
+    <meta property="og:description" content="Discover Veles: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <meta property="og:url" content="https://punicodex.com/veles/blog/">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-28">
+    <meta property="article:section" content="Blog">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/veles.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/veles.jpg">
+    <meta name="twitter:title" content="How Veles got its accent back | Veles Blog | PUNICODEX">
+    <meta name="twitter:description" content="Discover Veles: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How Veles got its accent back",
+        "description": "Discover Veles: the story behind the Unicode domain, the original script, and the scholars preserving it.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-28",
+        "dateModified": "2026-08-28",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/veles/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Veles", "veles", "slavic mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Slavic transcription restoration"],
+        "url": "https://punicodex.com/veles/blog/",
+        "image": "https://punicodex.com/assets/og/veles.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Veles",
+      "item": "https://punicodex.com/veles/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/veles/blog/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="veles-canvas" data-effect="void" data-primary="#C0C0C0" data-secondary="#228B22" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/veles_logolockup.webp" type="image/webp"><img src="../assets/veles_logolockup.png" alt="Veles" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (Home → Pantheon → temple; the tab crumb lives in the JSON-LD trail) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/veles/">Veles</a></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Veles — Blog</p>
+                <p class="hero-title reveal-up">How Veles got its accent back</p>
+                <p class="hero-subtitle reveal-up">Cattle, Commerce, Underworld</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 2</span>
+                    <span class="meta-domain">Veles</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/veles_mascot.webp" type="image/webp"><img src="../assets/veles_mascot.webp" alt="Veles — Cattle, Commerce, Underworld" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-28">2026-08-28</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>13 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#etymology-and-meaning">Etymology and Meaning</a></li>
+                <li><a href="#mythology-and-domain">Mythology and Domain</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#unicode-restoration-and-conclusion">Unicode Restoration and Conclusion</a></li>
+                <li><a href="#veles-and-the-trickster-tradition">Veles and the Trickster Tradition</a></li>
+                <li><a href="#sources-and-further-exploration">Sources and Further Exploration</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>How Veles got its accent back</h1>
+<p>The ASCII form <em>veles</em> is missing something. <strong>Veles</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. Veles is one of the most complex and important figures in Slavic mythology: a god of cattle, commerce, and the underworld; the adversary of <a href="/perun/" class="crosslink" data-crosslink="perun">Perun</a>; the patron of poets, magicians, and herders; the chthonic power who guards the boundary between the living and the dead. His name carries echoes of ancient Indo-European beliefs about the underworld and the wealth of the earth. This post explains, with the full scholarly record behind it, what the restored name preserves: the etymology, the mythology, the cultural legacy, and the classification logic that separates a divine name from a mere string of letters.</p>
+<p>Veles is in many ways the dark complement to Perun. If Perun represents the bright, ordered, celestial world, Veles represents the hidden, fertile, dangerous world beneath. Their conflict is the central drama of Slavic mythology, and their reconciliation is the condition of cosmic balance. To understand Veles is to understand the Slavic vision of the underworld and the wealth that lies within it.</p>
+<p>For modern readers, Veles offers a compelling case study in the complexity of divine morality. He is not a simple villain but a necessary power, a god whose domains are essential to human flourishing even when they take us into dark places. The restoration of his name is an invitation to encounter that complexity directly.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Veles</li>
+  <li><strong>ASCII form:</strong> veles</li>
+  <li><strong>Meaning:</strong> "Cattle god, possibly wool"</li>
+  <li><strong>Domain of influence:</strong> Cattle, Commerce, Underworld</li>
+  <li><strong>Pantheon:</strong> Slavic</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Veles</strong> belongs to the Slavic tradition, where he is catalogued under the domains of cattle, commerce, and the underworld. He is the great rival of Perun, the thunder god, and their cosmic combat is one of the central narratives of Slavic mythology. While Perun rules the sky with lightning and oak, Veles rules the earth with cattle, magic, and the secrets of the dead. Their conflict is not simply good versus evil but a necessary tension between complementary powers.</p>
+<p>Veles is also a god of wealth and exchange. Cattle were the primary form of wealth in early Slavic society, and the god who protected cattle protected prosperity itself. But Veles's commerce extends beyond livestock. He is associated with trade, contracts, and the spoken word, including poetry and magic. In this respect, he resembles the Norse Odin and the Greek <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermes</a>, deities who move between worlds and master the arts of communication.</p>
+<p>The PuniCodex restoration presents <strong>Veles</strong> in its standard scholarly form. The ASCII form <em>veles</em> is a DNS fallback; the restored form returns the name to its status as a proper noun and divine name. Because the name does not require diacritics or special characters, it is classified as Tier 2. As a flagship entry, Veles receives the full scholarly and creative treatment.</p>
+<p>The complexity of Veles makes him one of the most rewarding figures in Slavic religion. He is not a simple villain or a simple benefactor; he is a god of multiple, overlapping domains whose nature includes both danger and generosity. This complexity has made him a favorite of scholars, artists, and modern pagans.</p>
+<h2 id="etymology-and-meaning">Etymology and Meaning</h2>
+<p>The etymology of Veles is connected to his domains in complex ways. The most widely accepted explanation derives the name from a Proto-Slavic root related to cattle, wool, or hair. The meaning "Cattle god, possibly wool" reflects this etymology, identifying Veles as the divine protector of livestock and the source of pastoral wealth. Cattle provided not only meat and milk but also hides, horns, and wool, making the cattle god a deity of fundamental economic importance.</p>
+<p>Another line of scholarship connects Veles to the underworld. The name has been compared to words for the dead, ghosts, or demons in various Slavic languages, suggesting that the cattle god and the underworld god were originally the same figure or closely related figures. This connection makes sense in a pastoral society: the earth that receives the dead is also the earth that nourishes the herds. The chthonic and the economic are not opposed but intertwined.</p>
+<p>A third possibility sees the name as related to words for hair, wool, or flax, reflecting the importance of textile production in early Slavic households. In this reading, Veles is the god of raw materials and the crafts that transform them. This interpretation connects him to the broader Indo-European figure of the master of animals and the guardian of natural wealth.</p>
+<p>The name also has striking parallels outside Slavic. The Lithuanian <em>Velnias</em>, the Latvian <em>Vels</em>, and possibly the Norse <em><a href="/valholl/" class="crosslink" data-crosslink="valholl">Valhǫll</a></em> and <em>Völundr</em> have been compared to Veles, though these connections are debated. If they are valid, they would place Veles in a deep Indo-European context as a deity of death, cattle, and craft. The exact relationships remain uncertain, but the parallels are suggestive.</p>
+<p>The pronunciation of Veles is approximately "VEH-les," with stress on the first syllable and a soft final <em>-s</em>. The standard scholarly form requires no diacritics, placing the name in Tier 2. The restoration thus preserves the simple but powerful spelling that has come down to us.</p>
+<h2 id="mythology-and-domain">Mythology and Domain</h2>
+<p>Veles's mythology is dominated by his conflict with Perun. In the standard reconstruction, Veles steals Perun's cattle or people and flees to the underworld. Perun pursues him, striking with lightning, and the two engage in a cosmic battle. Veles is defeated but not destroyed; he returns to challenge Perun again, and the cycle repeats. This myth explains the origin of thunderstorms, the changing seasons, and the perpetual struggle between sky and earth.</p>
+<p>The domain of cattle is the foundation of Veles's identity. As the protector of livestock, he ensures the fertility and safety of herds. Herders would pray to him for healthy animals, protection from wolves and disease, and abundant milk and wool. Cattle were wealth, and Veles was the divine source of that wealth. To lose his favor was to risk economic ruin.</p>
+<p>The domain of commerce extends from cattle to trade in general. In a society where wealth was measured in livestock and goods, the god of wealth naturally became the god of exchange. Veles oversaw contracts, markets, and fair dealing. He was also associated with the spoken word, particularly with oaths and agreements. A broken oath might bring down the punishment of Veles as well as Perun.</p>
+<p>The domain of the underworld places Veles among the chthonic deities. He rules the realm of the dead or guards its entrance, and he knows the secrets of those who have passed on. This connection gives him power over magic, divination, and communication with spirits. Poets and magicians might call upon Veles for inspiration or for access to hidden knowledge.</p>
+<p>Veles's association with snakes and dragons reflects his chthonic nature. He is sometimes depicted as a serpent or dragon, the creature that lives in the earth and challenges the sky god. This imagery connects him to the broader Indo-European motif of the dragon-slaying thunder god, but with a twist: in the Slavic version, the dragon is not simply a monster but a god in his own right, with legitimate domains and worshippers.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Veles's cultural legacy is enormous. In Christianized Slavic culture, his functions were partly absorbed by Saint Blaise, Saint Nicholas, and the Devil. Saint Blaise, like Veles, was associated with cattle and protection from wolves. Saint Nicholas, with his role as a gift-giver and guardian of travelers, took over some of Veles's commercial and protective functions. The Devil, with his serpentine form and underworld kingdom, absorbed Veles's darker chthonic associations. These Christian reinterpretations kept elements of Veles alive while transforming their meaning.</p>
+<p>In folk belief, Veles survived as the master of the forest, the guardian of livestock, and the trickster figure who could help or harm depending on how he was treated. Peasants would leave offerings for him at crossroads, in barns, or at the edge of the forest. They would also avoid offending him by observing taboos around cattle, trade, and speech. These practices kept the name and the figure present in rural communities for centuries.</p>
+<p>Contemporary Slavic Native Faith and related movements honor Veles as a major deity. Practitioners invoke him for prosperity, magic, poetry, and communication with ancestors. Rituals may include offerings of cattle products, dairy foods, honey, and crafted objects. He is also honored as a necessary counterpart to Perun, the dark to Perun's light, the earth to Perun's sky. This balanced view avoids the Christian temptation to demonize the chthonic god.</p>
+<p>Veles has also entered global popular culture through fantasy literature, games, and comics. He appears as a dragon, a dark god, a trickster, or a patron of magic in works that draw on Slavic mythology. These representations vary in accuracy, but they keep the name alive and introduce it to new audiences.</p>
+<p>The image of Veles as a horned, serpentine, or cattle-associated deity has become one of the most recognizable in Slavic paganism. It draws on both ancient sources and Christian diabolization, and it continues to evolve in modern artistic and religious practice. Whether depicted as a dragon, a herdsman, or a masked magician, Veles retains his aura of hidden power and wealth.</p>
+<h2 id="unicode-restoration-and-conclusion">Unicode Restoration and Conclusion</h2>
+<p>The PuniCodex restoration of <strong>Veles</strong> returns the name to its proper scholarly form. The ASCII form <em>veles</em> is a technical fallback that strips the name of its status as a proper noun and divine name. The restored form, with its capital <em>V</em>, marks Veles as a figure of myth and religion, the great chthonic deity of the Slavs.</p>
+<p>The restoration is especially important for a name that has so often been misunderstood or demonized. In Christian tradition, Veles was sometimes identified with the Devil, and his name was spoken with fear. The Unicode restoration allows the name to be presented in its own terms, as the name of a complex and powerful deity with legitimate domains and a rich mythology.</p>
+<p>The restoration also acknowledges the deep Indo-European roots of the name. Veles is not a local demon but a member of an ancient family of underworld, cattle, and craft deities. The proper spelling connects him to his Baltic and possibly Germanic cousins, making visible the historical relationships that the lowercase ASCII form obscures.</p>
+<p>The restoration of Veles also asks us to reconsider the boundaries we draw between good and evil in mythology. The Christian tradition often casts Veles as a devil figure, but his original Slavic role was more nuanced. He was a god of wealth, poetry, and the dead — domains that are necessary, not merely malevolent. The restored name resists the diabolical simplification and invites readers to encounter Veles in his full complexity, as a deity who challenges easy moral categories.</p>
+<p>In the end, Veles got his accent back not through a diacritic — the standard form needs none — but through the restoration of his name's proper shape and status. He is the cattle god, the merchant god, the underworld god, the adversary and partner of Perun. The restoration ensures that this multifaceted name continues to be spoken, typed, and understood in the form that scholars and believers have given it.</p>
+<h2 id="veles-and-the-trickster-tradition">Veles and the Trickster Tradition</h2>
+<p>Veles shares many features with the trickster figures found in mythologies around the world. Like the Norse <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>, the Greek Hermes, the West African <a href="/eshu/" class="crosslink" data-crosslink="eshu">Eshu</a>, and the Native American Coyote, Veles moves between worlds, masters language and magic, and challenges the established order. His conflict with Perun is not simply a battle between good and evil but a trickster's challenge to the sky god's authority. This trickster dimension is essential to understanding Veles's complexity.</p>
+<p>The trickster is often a figure of both creativity and disruption. He brings gifts to humanity — fire, language, technology, magic — but he also breaks rules, causes trouble, and upsets the social order. Veles fits this pattern in several ways. As a god of cattle and commerce, he brings wealth and prosperity. As a god of magic and poetry, he brings knowledge and art. But as an adversary of Perun, he also threatens cosmic stability and must be periodically defeated.</p>
+<p>The theft of Perun's cattle is a classic trickster motif. By stealing the thunder god's property and fleeing to the underworld, Veles challenges Perun's authority and disrupts the cosmic order. But the theft also sets in motion the annual cycle of conflict and renewal. Without Veles's challenge, Perun's power would stagnate. The trickster's disruption is thus necessary for the health of the cosmos.</p>
+<p>Veles's mastery of language connects him to poetry, magic, and commerce. Words are his tools, whether in the form of spells, songs, contracts, or riddles. In many cultures, the trickster is associated with eloquence and cunning, using words to achieve what force cannot. Veles's role as a patron of poets and magicians reflects this linguistic power. He is the god of those who work with signs and symbols.</p>
+<p>The boundary-crossing nature of the trickster is also central to Veles. He moves between the world of the living and the world of the dead, between human society and the wild, between the settled field and the forest. This liminality gives him access to knowledge and power denied to more stable figures, but it also makes him dangerous and unpredictable. Those who invoke Veles must be prepared for results that do not conform to expectations.</p>
+<p>In modern pagan practice, Veles's trickster aspect is often embraced as a source of creativity and transformation. Practitioners may call upon him to break through obstacles, to reveal hidden truths, or to bring unexpected opportunities. But they also respect his cunning, approaching him with offerings and careful wording. The trickster cannot be controlled, but he can be courted.</p>
+<p>The Unicode restoration of Veles honors this complex figure by giving his name a proper form. Too often, Veles has been reduced to a devil or a villain, losing the nuance that makes him a trickster rather than a monster. The restored spelling, with its capital <em>V</em>, marks him as a deity of full mythological stature, capable of both harm and blessing.</p>
+<p>In the end, Veles teaches us that the sacred includes the disruptive, the cunning, and the ambiguous. The trickster is not an aberration in the divine world but a necessary part of it. The restoration ensures that Veles's name continues to carry this rich and challenging legacy into the future.</p>
+<h2 id="sources-and-further-exploration">Sources and Further Exploration</h2>
+<p>Veles is richly attested in Slavic folklore, medieval chronicles, and comparative Indo-European studies. The Perun-Veles combat myth has been reconstructed from linguistic parallels, seasonal customs, and the remnants of oral tradition. The <em>Primary Chronicle</em> places him among the gods of Kievan Rus', while folk beliefs preserve his association with cattle, commerce, and the underworld. Comparative studies connect him to Baltic Velnias, Norse underworld figures, and broader Indo-European chthonic deities.</p>
+<p>Modern pagan communities honor Veles through offerings of dairy, honey, and crafted goods, as well as through rituals of divination and ancestral communication. The PuniCodex temple for Veles offers a central resource for studying and engaging with this multifaceted god under his properly restored name.</p>
+<p>The restoration of Veles ultimately challenges us to embrace complexity. He is not a devil to be feared nor a mascot to be trivialized, but a deity of cattle, commerce, poetry, and the dead. His many domains resist simple categorization, and that is precisely his value. The restored name invites us to sit with ambiguity, to honor the dark alongside the light, and to recognize that the sacred is never one-dimensional.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/babayaga/">Baba Jagá</a> — Forest Witch, Death</li>
+  <li><a href="/chernobog/">Černobog</a> — Darkness, <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>, Evil</li>
+  <li><a href="/dazhbog/">Dažbog</a> — Sun, Wealth, Giving</li>
+  <li><a href="/domovoi/">Domovój</a> — Household Spirit</li>
+  <li><a href="/kikimora/">Kikimóra</a> — House Spirit, Swamp Hag</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+  <li>N. I. Tolstoi et al., <em>Slavic Antiquities: Ethnolinguistic Dictionary</em> (1995–2012).</li>
+  <li>Vyacheslav Ivanov &amp; Vladimir Toporov, comparative Slavic mythology studies.</li>
+  <li>L. Niderle, <em>The Slavic Antiquities</em> (1902–1924).</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">slavic</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Veles collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 512 in the series: <a href="./restoration/">Why Veles is spelled that way — and what it costs to get it right</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">Veles, translated into industries: what the archetype actually does</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">Veles — the one true spelling, and the forms that fail it</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">Veles</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">—</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/veles_logomark.webp" type="image/webp"><img src="../assets/veles_logomark.png" alt="Veles logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

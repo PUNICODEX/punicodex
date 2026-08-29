@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Greek to Unicode:… | Patroklos Blog | PUNICODEX</title>
+    <meta name="description" content="From Greek to Unicode: why Patroklos is more than a domain name.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/patroclus/blog/">
+    <meta property="og:title" content="From Greek to Unicode: the journey of Patroklos | Patroklos Blog | PUNICODEX">
+    <meta property="og:description" content="From Greek to Unicode: why Patroklos is more than a domain name.">
+    <meta property="og:url" content="https://punicodex.com/patroclus/blog/">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-28">
+    <meta property="article:section" content="Blog">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/patroclus.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/patroclus.jpg">
+    <meta name="twitter:title" content="From Greek to Unicode: the journey of Patroklos | Patroklos Blog | PUNICODEX">
+    <meta name="twitter:description" content="From Greek to Unicode: why Patroklos is more than a domain name.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "From Greek to Unicode: the journey of Patroklos",
+        "description": "From Greek to Unicode: why Patroklos is more than a domain name.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-28",
+        "dateModified": "2026-08-28",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/patroclus/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Patroklos", "patroclus", "greek mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Greek restoration"],
+        "url": "https://punicodex.com/patroclus/blog/",
+        "image": "https://punicodex.com/assets/og/patroclus.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Patroklos",
+      "item": "https://punicodex.com/patroclus/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/patroclus/blog/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="patroclus-canvas" data-effect="particles" data-primary="#D4AF37" data-secondary="#4169E1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/patroclus_logolockup.webp" type="image/webp"><img src="../assets/patroclus_logolockup.png" alt="Patroklos" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (Home → Pantheon → temple; the tab crumb lives in the JSON-LD trail) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/patroclus/">Patroklos</a></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Patroklos — Blog</p>
+                <p class="hero-title reveal-up">From Greek to Unicode: the journey of Patroklos</p>
+                <p class="hero-subtitle reveal-up">Warrior, Companion of Achilles</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 2</span>
+                    <span class="meta-domain">Patroklos</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/patroclus_mascot.webp" type="image/webp"><img src="../assets/patroclus_mascot.webp" alt="Patroklos — Warrior, Companion of Achilles" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-28">2026-08-28</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>13 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name-and-its-meaning">The Name and Its Meaning</a></li>
+                <li><a href="#the-lineage-and-exile-of-patroklos">The Lineage and Exile of Patroklos</a></li>
+                <li><a href="#patroklos-in-the-iliad">Patroklos in the Iliad</a></li>
+                <li><a href="#the-death-of-patroklos">The Death of Patroklos</a></li>
+                <li><a href="#the-funeral-games-and-the-quarrel-over-the-armor">The Funeral Games and the Quarrel over the Armor</a></li>
+                <li><a href="#patroklos-in-later-reception">Patroklos in Later Reception</a></li>
+                <li><a href="#unicode-restoration">Unicode Restoration</a></li>
+                <li><a href="#the-ethics-of-friendship-in-the-iliad">The Ethics of Friendship in the Iliad</a></li>
+                <li><a href="#restoration-in-context">Restoration in Context</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>From Greek to Unicode: the journey of Patroklos</h1>
+<p>Long before it was a domain, this name traveled through scripts. <strong>Patroklos</strong> begins in Greek, passes through scholarly transliteration, and ends — for now — inside the punycode machinery of the global DNS. Each stage of that journey preserves some information and loses some, and the craft of restoration is knowing exactly which marks matter. This post follows the name stage by stage: the original script, the reconstructed pronunciation, the mythological record, the material evidence, and finally the Unicode form that carries all of it into the address bar. Think of it as a biography of a name, told through its spelling.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Patroklos</li>
+  <li><strong>ASCII form:</strong> patroclus</li>
+  <li><strong>Meaning:</strong> "Father's glory"</li>
+  <li><strong>Domain of influence:</strong> Warrior, Companion of Achilles</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> Πάτροκλος (Greek)</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Patroklos</strong> (<em>patroclus</em>) — Warrior, Companion of Achilles · Father's glory — belongs to the Greek tradition, where he is catalogued under the domain "Warrior, Companion of Achilles." His name is a transparent Greek compound: πατρός (<em>patros</em>, "of a father") + κλέος (<em>kleos</em>, "glory"), yielding "glory of the father" or "father's glory." The name announces his role before his story begins: he is the one whose fame is bound to family, friendship, and the memory of those who came before. He carries his father's honor in his very name.</p>
+<p>PuniCodex restores the name as <strong>Patroklos</strong> and serves its temple at <a href="https://punicodex.com/patroclus/">its temple</a>. The original preserves one prosodic feature — stress or vowel length — rather than both, which places the name in Tier 2. The plain ASCII form <em>patroclus</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name-and-its-meaning">The Name and Its Meaning</h2>
+<p>The name is attested in Greek as <strong>Πάτροκλος</strong>. Etymologically it means "Father's glory." The first element, πατρ- , is the stem of πατήρ (<em>patēr</em>), "father." The second element, -κλος, comes from κλέος (<em>kleos</em>), the Greek word for fame, glory, and the kind of remembrance that survives death. Names built from <em>kleos</em> are common in Greek: <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a>, Perikles, Damokles. Each announces a relationship to glory, but the relationship differs. Herakles wins glory through strength; Perikles through leadership; Patroklos through the love and loss that make him unforgettable.</p>
+<p>In Patroklos's case, the compound is poignant. His father, Menoitios, sends him to <a href="/peleus/" class="crosslink" data-crosslink="peleus">Peleus</a>'s household after Patroklos kills a playmate in anger. The boy who bears "father's glory" is exiled from his father's house and raised beside Achilles. His name thus becomes an open wound: the glory he is meant to bring to his father will be won not at home but on a foreign battlefield, and at the cost of his life. The name predicts the arc of the story before the story is told.</p>
+<p>The Greek form Πάτροκλος carries an acute accent on the first syllable, showing where the pitch rose in classical pronunciation. The transliteration <strong>Patroklos</strong> preserves the Greek kappa as "k" rather than the Latinized "c" of <em>Patroclus</em>. This is not a trivial choice. The "k" keeps the name closer to its Greek source and prevents the softening that the Latin alphabet imposed on many Greek names. The restoration thus undoes a small piece of Romanization.</p>
+<h2 id="the-lineage-and-exile-of-patroklos">The Lineage and Exile of Patroklos</h2>
+<p>Patroklos was the son of Menoitios, a king in Opus, and a descendant of the greater Aiolid line. His father gave him the name that expressed hope: the son would bring glory to the father. But the name's promise was complicated by an act of youthful violence. As a boy, Patroklos killed a companion in a quarrel, perhaps over dice or a game. The killing was not premeditated, but it was serious enough to require exile. In the heroic world, blood demanded blood, and the only escape was removal.</p>
+<p>Menoitios sent his son to Peleus, king of Phthia, to be raised alongside Achilles. The two boys became inseparable. Patroklos was older, and in some traditions he served as a kind of mentor or guardian to the younger Achilles. Their bond was forged in the Phthian court and tested in the Trojan War. When Achilles withdrew from battle, Patroklos was the only one who could move him. The friendship that began in childhood became the pivot of the war.</p>
+<p>The exile is essential to understanding Patroklos's character. He is not simply a loyal friend; he is a displaced person whose closest relationship is with someone else's family. His loyalty to Achilles is therefore also a replacement for the home he lost. The name "father's glory" takes on a double meaning: he seeks glory both for Menoitios and for the substitute father-figure Peleus. His fate is bound to two fathers and one friend.</p>
+<h2 id="patroklos-in-the-iliad">Patroklos in the Iliad</h2>
+<p>Patroklos is most famous as the companion of Achilles in Homer's <em>Iliad</em>. Their relationship is the emotional core of the poem. When <a href="/agamemnon/" class="crosslink" data-crosslink="agamemnon">Agamemnon</a> dishonors Achilles and the hero withdraws from battle, the Greeks begin to lose. Patroklos, unable to watch the destruction, begs Achilles to let him wear the hero's armor and lead the Myrmidons into combat. Achilles reluctantly agrees, and Patroklos drives the Trojans back with devastating success.</p>
+<p>His success is his doom. Exceeding Achilles' instructions, Patroklos pursues the Trojans to the walls of Troy and is killed by <a href="/hector/" class="crosslink" data-crosslink="hector">Hector</a> with Apollo's aid. The death of Patroklos transforms the <em>Iliad</em>. Achilles' wrath, which had been directed against Agamemnon, turns against Hector and, through him, against death itself. The poem that began with a quarrel becomes a meditation on grief, friendship, and the limits of human excellence. Without Patroklos's death, the <em>Iliad</em> would be a different poem entirely.</p>
+<p>Patroklos is more than a sidekick. He is the one person Achilles loves more than his own life, and his death reveals what Achilles' withdrawal has cost. In the funeral games that follow, Achilles honors Patroklos with competitions that affirm the values of the warrior society even as they expose its losses. The name "father's glory" takes on another meaning: Patroklos becomes the occasion for Achilles' greatest and most terrible fame. The father in question becomes, in a sense, Achilles himself.</p>
+<h2 id="the-death-of-patroklos">The Death of Patroklos</h2>
+<p>The death scene of Patroklos is among the most moving in Greek literature. Apollo strikes him from behind, Euphorbos wounds him, and Hector delivers the fatal blow. Even as he dies, Patroklos thinks of Achilles, warning Hector that Achilles will avenge him. The scene inverts the usual heroic death. Patroklos dies not because of his own <em>hubris</em> but because he forgot his limits while wearing another man's armor. His tragedy is the tragedy of identification pushed too far.</p>
+<p>The armor is crucial. Made by <a href="/hephaistos/" class="crosslink" data-crosslink="hephaistos">Hephaistos</a> for Achilles, it is too powerful for Patroklos. It transforms him into a semblance of Achilles, and that semblance both saves the Greeks and destroys him. The armor thus symbolizes the dangers of identification. Patroklos wants to be Achilles, and in becoming too like him, he loses his life. The divine armor is both gift and trap.</p>
+<p>After his death, Patroklos's ghost appears to Achilles in a dream, asking for burial and remembrance. The ghost is thirsty, pale, and insistent. It is one of the earliest fully realized ghost scenes in Western literature, and it establishes the connection between proper funeral rites and the peace of the dead. Patroklos cannot rest until he is honored. His ghost is both memory and demand.</p>
+<h2 id="the-funeral-games-and-the-quarrel-over-the-armor">The Funeral Games and the Quarrel over the Armor</h2>
+<p>The death of Patroklos sets in motion the final third of the <em>Iliad</em>. Achilles returns to battle, kills Hector, drags his body, and eventually returns it to Priam for proper burial. The armor that Patroklos wore — the divine armor made by Hephaistos for Achilles — becomes a source of further strife. After Achilles' own death, <a href="/odysseus/" class="crosslink" data-crosslink="odysseus">Odysseus</a> and Aias dispute possession of it, and Aias's defeat drives him to suicide. The armor that protected Patroklos thus becomes the instrument of another hero's ruin.</p>
+<p>Patroklos's ghost asks that their bones be buried together. This request is granted: after Achilles falls, their ashes are mingled in the same urn. The companions who could not be separated in life are not separated in death. The image of the shared tomb became one of the most enduring symbols of friendship in Western literature. It is the origin of countless later representations of devoted companions buried side by side.</p>
+<p>The funeral games for Patroklos also have lasting importance. They are the model for later athletic competitions, including the Panathenaic games and, by distant descent, the Olympic tradition. The games affirm that honor can be paid through contest as well as through lament. Patroklos's death thus generates not only grief but culture.</p>
+<h2 id="patroklos-in-later-reception">Patroklos in Later Reception</h2>
+<p>Patroklos has been reinterpreted in every age. Classical Athens saw him as the ideal friend. Hellenistic poets emphasized his tenderness. Roman writers used him as a model of loyalty. In the modern era, his relationship with Achilles has been read as one of the great friendships — and sometimes more — in literature. Artists from vase painters to contemporary filmmakers have returned to the scene of his death, finding in it an inexhaustible image of loss. The death of Patroklos is one of the scenes that every age repaints in its own style.</p>
+<p>The name Patroklos also lives in onomastics. The element <em>-kleos</em> continued to be used in Greek names for centuries, and the theme of paternal glory never lost its resonance. In a broader sense, Patroklos represents the person whose death defines a story not their own. He is the catalyst, the beloved, the one whose absence makes the hero understand what he values. This narrative role is so powerful that the name has become almost a type: the friend whose loss changes everything.</p>
+<h2 id="unicode-restoration">Unicode Restoration</h2>
+<p>The restoration of <strong>Patroklos</strong> is a case study in the damage that Latinization did to Greek names. The ASCII form <em>patroclus</em> uses the Latin "c" for Greek kappa and the Latin "u" for Greek upsilon, flattening the spelling into a form that obscures its etymology. The restoration <strong>Patroklos</strong> recovers the kappa and restores the name's Greek shape. It also returns the capital letter that a proper name requires.</p>
+<p>PuniCodex classifies Patroklos as Tier 2 because, while the original Greek preserves stress, the transliteration does not recover both stress and length in the way that a fully accented form would. The restoration is therefore partial but still meaningful. The temple at <a href="https://punicodex.com/patroclus/">punicodex.com/patroclus</a> keeps the name in its closer-to-Greek form, resisting the centuries of orthographic drift that turned Πάτροκλος into Patroclus. In the address bar, at least, the father's glory is spelled as it was meant to be.</p>
+<h2 id="the-ethics-of-friendship-in-the-iliad">The Ethics of Friendship in the Iliad</h2>
+<p>The friendship between Achilles and Patroklos is one of the most studied relationships in ancient literature. It raises questions about the nature of love, loyalty, and grief. The Greeks had several words for love, including <em>philia</em>, the love between friends, and <em>eros</em>, passionate desire. The relationship between Achilles and Patroklos seems to exceed ordinary friendship without being simply romantic in the modern sense. It is a bond so deep that the death of one destroys the world of the other.</p>
+<p>This friendship is also ethically instructive. Patroklos acts out of compassion for the suffering Greeks, even against Achilles' wishes. His decision to enter battle wearing Achilles' armor is motivated by love for his comrades as well as by loyalty to his friend. In this sense, he represents a broader ethic of care that contrasts with Achilles' narrower focus on honor. The <em>Iliad</em> does not simply celebrate heroic individualism; it also shows the cost of ignoring the claims of others.</p>
+<p>The death of Patroklos teaches Achilles that honor without friendship is hollow. Before Patroklos dies, Achilles is willing to let the Greeks suffer for the sake of his wounded pride. Afterward, he recognizes that his friend mattered more than any quarrel. This recognition is the moral turning point of the poem. It does not make Achilles less of a warrior, but it makes him more of a human being.</p>
+<p>Later philosophers, especially Aristotle, drew on Homeric friendship as a model for the highest form of <em>philia</em>. The friend who wishes the good of the other for the other's sake, who shares a life and suffers losses together, is the ideal companion. Patroklos and Achilles embody this ideal, even if their story ends in tragedy. The restoration of Patroklos's name is therefore also a restoration of this ethical ideal.</p>
+<h2 id="restoration-in-context">Restoration in Context</h2>
+<p>The story of Patroklos is the story of a name that became greater than its bearer expected. A boy exiled for a childhood killing grows into the friend whose death shapes the greatest poem in Western literature. The name "father's glory" is fulfilled, but not in the way the father planned. The restoration of Patroklos is therefore a way of honoring both the name and the unexpected path it took through history.</p>
+<p>The Latinized form <em>Patroclus</em> has dominated English for centuries. It is the form found in school textbooks, popular films, and casual references. But it is not the Greek form. The restoration <strong>Patroklos</strong> recovers the kappa and returns the name to a shape that Greek speakers would recognize. This is not pedantry. It is a way of respecting the original culture that produced the myth.</p>
+<p>The friendship of Achilles and Patroklos continues to resonate because it speaks to the experience of loving someone whose loss would change everything. Every culture has such relationships, and the Greek formulation remains one of the most powerful. By restoring Patroklos's name, the project keeps that formulation present in the digital space where new readers first encounter it.</p>
+<p>A name that means "father's glory" deserves to be spelled with care. The restoration may be modest, but it carries the weight of the entire <em>Iliad</em>. When a visitor types the restored form, they are not merely reaching a website. They are touching one of the foundational stories of the Western imagination.</p>
+<p>The persistence of the Patroklos story across millennia suggests that the name and the friendship it represents are not merely historical curiosities. They continue to shape how people think about loyalty, loss, and the bonds that define a life. The restoration of the name is therefore an act of cultural maintenance, keeping the vocabulary of ancient friendship available for modern use.</p>
+<p>The restored name also changes how we relate to the figure. A lowercase <em>patroclus</em> looks like any other string; a restored <strong>Patroklos</strong> announces itself as a proper name with a history. That capital letter and that hard "k" make a difference. They tell the reader that this is not a modern invention but a recovered form, a name that has traveled through Latinization and back again. The restoration is a small act of historical honesty.</p>
+<p>For readers encountering the <em>Iliad</em> for the first time, the restored spelling can be a small but meaningful signal that the poem comes from a specific place and time. It resists the tendency to treat classical literature as a single undifferentiated past. Patroklos is not merely "a Greek hero"; he is a Greek hero with a Greek name, and the name carries the sound of that world. Restoration makes the foreignness visible rather than smoothing it away.</p>
+<p>In this way, the domain becomes more than a pointer. It is a small pedagogical tool, a reminder that the classics are not dead artifacts but living names that still repay careful attention. Every restored spelling is an invitation to read more closely.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/apollon/">Apóllōn</a> — Light, Music, Prophecy</li>
+  <li><a href="/hekate/">Hekátē</a> — Magic, Crossroads, Moon</li>
+  <li><a href="/nike/">Níkē</a> — Victory</li>
+  <li><a href="/acheron/">Achérōn</a> — River of Woe</li>
+  <li><a href="/achilleus/">Achilleús</a> — War, Glory, Rage</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+  <li>Homer, <em>Iliad</em> and <em>Odyssey</em> (8th c. BCE).</li>
+  <li>Hesiod, <em>Theogony</em> (8th–7th c. BCE).</li>
+  <li>Henry George Liddell &amp; Robert Scott, <em>A Greek-English Lexicon</em> (1843; rev. Jones, 1940).</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Patroklos collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 378 in the series: <a href="./restoration/">How Patroklos was rebuilt, mark by mark</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">The appointments Patroklos made — and who is keeping them</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">Patroklos versus the internet</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">Patroklos</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">Πάτροκλος</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/patroclus_logomark.webp" type="image/webp"><img src="../assets/patroclus_logomark.png" alt="Patroklos logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

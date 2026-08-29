@@ -1,0 +1,6 @@
+{
+  "canvasId": "halmoni-canvas",
+  "label": "Earth Grandmother",
+  "description": "Gentle green particles rise like breath from a dark earth, forming slow grandmotherly forms.",
+  "code": "if (reduced) return;\nctx.clearRect(0, 0, width, height);\nconst particles = []; for (let i = 0; i < 80; i++) particles.push({ x: Math.random(), y: Math.random(), r: 1 + Math.random() * 2, speed: 0.1 + Math.random() * 0.3, life: Math.random() });\nlet t = 0;\nfunction draw() {\n  if (reduced) return;\n  ctx.clearRect(0, 0, width, height);\n  ctx.globalAlpha = 0.5; ctx.fillStyle = '#8fb080';\n  for (const p of particles) {\n    const y = (p.y - t * p.speed * 0.0003) % 1; if (y < 0) y += 1;\n    const x = p.x * width + Math.sin(t * 0.0005 + p.life * 10) * 20;\n    ctx.beginPath(); ctx.arc(x, y * height, p.r, 0, Math.PI * 2); ctx.fill();\n  }\n  ctx.globalAlpha = 1;\n  t++; requestAnimationFrame(draw);\n}\ndraw();"
+}

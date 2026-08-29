@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Inanna got its accent back | Inanna Blog | PUNICODEX</title>
+    <meta name="description" content="Discover Inanna: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/inanna/blog/">
+    <meta property="og:title" content="How Inanna got its accent back | Inanna Blog | PUNICODEX">
+    <meta property="og:description" content="Discover Inanna: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <meta property="og:url" content="https://punicodex.com/inanna/blog/">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-28">
+    <meta property="article:section" content="Blog">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/inanna.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/inanna.jpg">
+    <meta name="twitter:title" content="How Inanna got its accent back | Inanna Blog | PUNICODEX">
+    <meta name="twitter:description" content="Discover Inanna: the story behind the Unicode domain, the original script, and the scholars preserving it.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How Inanna got its accent back",
+        "description": "Discover Inanna: the story behind the Unicode domain, the original script, and the scholars preserving it.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-28",
+        "dateModified": "2026-08-28",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/inanna/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Inanna", "inanna", "mesopotamian mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Cuneiform restoration"],
+        "url": "https://punicodex.com/inanna/blog/",
+        "image": "https://punicodex.com/assets/og/inanna.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Inanna",
+      "item": "https://punicodex.com/inanna/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/inanna/blog/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="inanna-canvas" data-effect="light" data-primary="#CD7F32" data-secondary="#C2B280" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/inanna_logolockup.webp" type="image/webp"><img src="../assets/inanna_logolockup.png" alt="Inanna" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (Home → Pantheon → temple; the tab crumb lives in the JSON-LD trail) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/inanna/">Inanna</a></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Inanna — Blog</p>
+                <p class="hero-title reveal-up">How Inanna got its accent back</p>
+                <p class="hero-subtitle reveal-up">Love, War, Venus</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 2</span>
+                    <span class="meta-domain">Inanna</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/inanna_mascot.webp" type="image/webp"><img src="../assets/inanna_mascot.webp" alt="Inanna — Love, War, Venus" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-28">2026-08-28</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>15 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#the-name">The Name</a></li>
+                <li><a href="#the-original-script">The Original Script</a></li>
+                <li><a href="#pronunciation">Pronunciation</a></li>
+                <li><a href="#mythology">Mythology</a></li>
+                <li><a href="#symbols-iconography">Symbols &amp; Iconography</a></li>
+                <li><a href="#archaeology-evidence">Archaeology &amp; Evidence</a></li>
+                <li><a href="#realm-domain">Realm &amp; Domain</a></li>
+                <li><a href="#across-cultures">Across Cultures</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#the-scholarly-record">The Scholarly Record</a></li>
+                <li><a href="#a-meditation">A Meditation</a></li>
+                <li><a href="#the-unicode-restoration">The Unicode Restoration</a></li>
+                <li><a href="#character-by-character">Character by Character</a></li>
+                <li><a href="#the-mesopotamian-pantheon">The Mesopotamian Pantheon</a></li>
+                <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+                <li><a href="#typing-inanna">Typing Inanna</a></li>
+                <li><a href="#sister-temples">Sister Temples</a></li>
+                <li><a href="#why-this-restoration-matters">Why This Restoration Matters</a></li>
+                <li><a href="#explore-further">Explore Further</a></li>
+                <li><a href="#a-closer-look-at-the-marks">A Closer Look at the Marks</a></li>
+                <li><a href="#inanna-in-its-tradition">Inanna in Its Tradition</a></li>
+                <li><a href="#what-you-will-find-in-the-temple">What You Will Find in the Temple</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>How Inanna got its accent back</h1>
+<p>The ASCII form <em>inanna</em> is missing something. <strong>Inanna</strong> restores the marks the source language used to distinguish this name from a thousand others — and those marks change how the name is read, pronounced, and understood. This post explains, with the full scholarly record behind it, what each restored mark preserves: the Cuneiform evidence, the reconstructed sound, the myths the name carries, and the classification logic that separates Tier 1 restorations from Tier 2. By the end, the marks in Inanna will look less like ornaments and more like what they are — recovered evidence, pinned back in its proper place.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Inanna</li>
+  <li><strong>ASCII form:</strong> inanna</li>
+  <li><strong>Meaning:</strong> "Lady of heaven"</li>
+  <li><strong>Domain of influence:</strong> Love, War, <a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a></li>
+  <li><strong>Pantheon:</strong> Mesopotamian</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+  <li><strong>Original script:</strong> 𒀭𒈹 (Cuneiform)</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Inanna</strong> (<em>inanna</em>) — Love, War, Venus · Lady of heaven — belongs to the Mesopotamian tradition, where it is catalogued under the domain "Love, War, Venus". The name means "Lady of heaven".</p>
+<p><strong>Inanna</strong> is the Sumerian great goddess whose domain stretches across the heavens and the human heart. She is the planet Venus as both morning and evening star, the force of sexual desire and fertility, the frenzy of battle, and the sovereign power that legitimises kings. No other deity of ancient Mesopotamia so thoroughly refuses to be one thing: she is the lover and the warrior, the bride and the conqueror, the star that crosses from the eastern to the western horizon and back again.</p>
+<p>PuniCodex restores the name as <strong>Inanna</strong> and serves its temple at <a href="https://punicodex.com/inanna/">its temple</a>. The restoration needs no distinctive letters or diacritics its ASCII form would lose, which places the name in Tier 2. The plain ASCII form <em>inanna</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete.</p>
+<h2 id="the-name">The Name</h2>
+<p>The name is attested in Cuneiform as <strong>𒀭𒈹</strong>. Etymologically it means "Lady of heaven".</p>
+<p>The ASCII form <em>inanna</em> survives only because the early domain-name system could not carry diacritics; it is a technological compromise, not an ancient spelling. The Unicode restoration <strong>Inanna</strong> recovers the full diacritic detail of the scholarly transliteration directly in the address bar. The restoration needs no distinctive letters or diacritics its ASCII form would lose, which places the name in Tier 2.</p>
+<p>The letter-by-letter transformation runs:</p>
+<ul>
+  <li><strong>i</strong> → <strong>I</strong> — Same, capitalized</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+</ul>
+<h2 id="the-original-script">The Original Script</h2>
+<p>The name is preserved in Cuneiform as <strong>𒀭𒈹</strong> — Sumero-Akkadian cuneiform, attested Sumerian / Old Babylonian – Neo-Assyrian, c. 2600–600 BCE, in Mesopotamia. The script is written left-to-right / top-to-bottom.</p>
+<p>The scholarly transliteration is <em>Inanna</em> (Sumerian logogram + Akkadian scholarly), giving the normalized reading /iˈnan.na/.</p>
+<p>The rendering proceeds step by step:</p>
+<ul>
+  <li>The Inanna sign (𒈹) is a ligature used for the goddess of Uruk</li>
+  <li>Prefixed with divine determinative 𒀭</li>
+  <li>Akkadian <a href="/ishtar/" class="crosslink" data-crosslink="ishtar">Ištar</a> is a related but distinct theonym</li>
+</ul>
+<p>The name is written in Sumero-Akkadian cuneiform as <strong>𒀭𒈹</strong> — the divine determinative 𒀭 plus the reed-bundle sign 𒈹 read Inanna. The Unicode restoration <strong>Inanna</strong> is a scholarly transliteration rather than the original script; the cuneiform form is not registrable in the .com IDN table. Because the restoration adds only the conventional capital of a proper name, it is classed Tier 2.</p>
+<h2 id="pronunciation">Pronunciation</h2>
+<p>The reconstructed pronunciation of the name is <strong>/iˈnan.na/</strong> — Sumerian Reconstruction.</p>
+<p>Phoneme by phoneme:</p>
+<ul>
+  <li><strong>I-</strong> — Close front vowel [i], lightly stressed in the first syllable of the divine name.</li>
+  <li><strong>-nan-</strong> — Alveolar nasal [n] flanked by open vowels [a], giving the name its characteristic resonance.</li>
+  <li><strong>-na</strong> — Final open syllable with reduced stress; in Sumerian, the doubling of the nasal is orthographic rather than phonemic.</li>
+</ul>
+<p>For the modern speaker, the closest approximation is: 'ee-NAHN-nah' — stress the second syllable, keep the vowels bright, and let the double n sound like a held tongue against the ridge.</p>
+<p>Kindred and historical forms of the name:</p>
+<ul>
+  <li><strong>Sumerian</strong> — 𒀭𒈹 (Inanna), 'Lady of Heaven', written with the divine determinative and the reed-bundle sign</li>
+  <li><strong>Akkadian</strong> — Ištar, the East Semitic form that absorbed and continued Inanna's cult</li>
+  <li><strong>Eblaite and West Semitic</strong> — <a href="/astart/" class="crosslink" data-crosslink="astart">Aštart</a> / Astarte, the Venus goddess of the Levant</li>
+</ul>
+<p>The Sumerian name is written in cuneiform as 𒀭𒈹. The ASCII form inanna flattens the name to lowercase and removes the proper-noun marking; the restoration Inanna recovers the standard scholarly citation form. Because the restoration adds only the conventional capital of a proper name, the entry is placed in Tier 2.</p>
+<h2 id="mythology">Mythology</h2>
+<p>Inanna's myths are stories of extremity and transformation. She descends into the underworld, demands the impossible, and returns from death. She chooses a shepherd-king as her bridegroom and then sends him to the realm of the dead for half the year. Her narratives are not morality tales; they are meditations on sovereignty, desire, death, and the price of rebirth.</p>
+<h3 id="inanna-s-descent-to-the-netherworld-the-descent">Inanna's Descent to the Netherworld (The Descent)</h3>
+<p>In the Sumerian <em>Descent of Inanna</em>, the goddess abandons heaven and earth to descend to the netherworld ruled by her sister <a href="/ereshkigal/" class="crosslink" data-crosslink="ereshkigal">Ereškigal</a>. At each of the seven gates she is stripped of a garment or ornament until she stands naked before the throne of the dead. She is killed and hung on a hook. Her faithful servant Ninšubur persuades Enki to create two sexless beings who revive her with the food and water of life. The myth is a meditation on death, sovereignty, and the price of rebirth.</p>
+<h3 id="inanna-and-dumuzi-sacred-marriage">Inanna and Dumuzi (Sacred Marriage)</h3>
+<p>The sacred-marriage songs celebrate the union of Inanna and Dumuzi, the shepherd-king. Their love ensures the fertility of the land and the legitimacy of the king. In the <em>Descent</em>, however, Inanna chooses Dumuzi to take her place in the underworld for half the year, so that his sister Geštinanna may take the other half. The myth explains the cycle of the seasons and the alternating presence of life and death in the agricultural year.</p>
+<h3 id="the-huluppu-tree-cosmic-tree">The Huluppu Tree (Cosmic Tree)</h3>
+<p>In the myth of the Huluppu tree, Inanna plants a willow-like tree in her garden at Uruk, but it becomes infested with a snake, an Anzu-bird, and the dark maid Lilith. She appeals to Gilgameh, who slays the snake and drives off the bird and the maid; Inanna then fashions the trunk into a throne and bed. The story links the goddess to kingship, the civilising of wild nature, and the dangerous thresholds between order and chaos.</p>
+<h3 id="enmerkar-and-the-lord-of-aratta-royal-epic">Enmerkar and the Lord of Aratta (Royal Epic)</h3>
+<p>In the epic <em>Enmerkar and the Lord of Aratta</em>, Inanna favours the king of Uruk and supports his campaign to subdue the legendary city of Aratta. The tale dramatises her role as divine patron of kings and the strategic advantage conferred by her cult centre at Uruk.</p>
+<h2 id="symbols-iconography">Symbols &amp; Iconography</h2>
+<p>The iconography associated with Inanna concentrates in a small set of recurring attributes, each a compressed statement about the name:</p>
+<ul>
+  <li><strong>Eight-pointed star</strong> — The sign of Venus, her planet; the star disk crowns her tiara and writes her name in cuneiform.</li>
+  <li><strong>Lion</strong> — Her warlike aspect and royal mount; she stands upon lions as mistress of battle.</li>
+  <li><strong>Reed bundle</strong> — The cuneiform sign 𒈹 that writes her name, a stylised bundle of reeds linking her to the marshes of Sumer.</li>
+  <li><strong>Rosette</strong> — The fertility emblem attached to her cult from the Uruk-period cylinder seals onward.</li>
+</ul>
+<h2 id="archaeology-evidence">Archaeology &amp; Evidence</h2>
+<p>The Eanna precinct at Uruk — 'House of Heaven' — preserves the sequence of Inanna temples from the Uruk period onward, source of the archaic cylinder seals that first display her star, lion, and rosette. Thousands of personal names, royal inscriptions, and incantations attest her presence in daily religion from the third millennium to the last generations of cuneiform scribes.</p>
+<h2 id="realm-domain">Realm &amp; Domain</h2>
+<p><strong>Inanna</strong> is the Sumerian great goddess whose domain stretches across the heavens and the human heart. She is the planet Venus as both morning and evening star, the force of sexual desire and fertility, the frenzy of battle, and the sovereign power that legitimises kings. No other deity of ancient Mesopotamia so thoroughly refuses to be one thing: she is the lover and the warrior, the bride and the conqueror, the star that crosses from the eastern to the western horizon and back again.</p>
+<h3 id="the-morning-star">The Morning Star</h3>
+<p>Venus in the dawn sky; Inanna is the celestial sign whose rising marks time, royalty, and the renewal of desire.</p>
+<h3 id="love-and-fertility">Love and Fertility</h3>
+<p>Sacred marriage, reproductive power, and the life-giving force that turns desire into offspring and fields into harvest.</p>
+<h3 id="divine-warfare">Divine Warfare</h3>
+<p>She rides into battle with weapons at her shoulders; kings invoke her as patron of campaigns and conquest.</p>
+<h3 id="sovereignty">Sovereignty</h3>
+<p>The goddess who bestows and withdraws kingship; her favour is the divine charter of Sumerian rulers.</p>
+<h2 id="across-cultures">Across Cultures</h2>
+<p>Inanna was so thoroughly identified with the Akkadian Ištar from the Old Akkadian period onward that the two are now treated as a single deity across most of Mesopotamian history. Through Ištar she was equated with the West Semitic Astarte, the Hurrian Šauška, and the Egyptian Qudshu, and she contributed features to the Iranian goddess <a href="/anahita/" class="crosslink" data-crosslink="anahita">Anāhitā</a>. The Greeks identified her with <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodítē</a> in her eastern, armed form. In the Hebrew Bible, her star and cult shadow the 'Queen of Heaven' denounced by Jeremiah.</p>
+<p>Kindred figures in the PuniCodex cross-tradition index include <a href="/ishtar/">Ištar</a>, <a href="/aengus/">Aengus</a>, <a href="/aphrodite/">Aphrodítē</a>, <a href="/benzaiten/">Benzaiten</a>, <a href="/eros/">Érōs</a>, and <a href="/freyja/">Freyja</a>, each linked through love / beauty / desire.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Inanna's afterlife is inseparable from that of Ištar/Astarte. Her eight-pointed star persists in Near Eastern and occult symbolism, and her Descent has been read as a precursor to later underworld journeys from <a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a> to Christ. In modern scholarship she has become a central figure in feminist re-readings of ancient religion, admired for her autonomous sexuality and her refusal to accept the limits imposed by gods or mortals. Her sacred-marriage hymns, some of the earliest love poetry known, continue to be translated and performed.</p>
+<h2 id="the-scholarly-record">The Scholarly Record</h2>
+<p>The account of Inanna given in this edition rests on the witnesses and reference works listed below. Lexica and etymological dictionaries secure the form and meaning of the name; the literary and religious texts supply the narrative evidence.</p>
+<ul>
+  <li> Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998.</li>
+  <li> Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li>
+  <li> Jacobsen, The Treasures of Darkness: A History of Mesopotamian Religion.</li>
+  <li> Kramer, The Sumerians.</li>
+  <li> George, The Babylonian <a href="/gilgamesh/" class="crosslink" data-crosslink="gilgamesh">Gilgamesh</a> Epic: Introduction, Critical Edition and Cuneiform Texts.</li>
+  <li> Wolkstein &amp; Kramer, Inanna: Queen of Heaven and Earth.</li>
+</ul>
+<h2 id="a-meditation">A Meditation</h2>
+<p>Inanna asks us to hold opposites together. She is the morning star and the evening star, the bride and the warrior, the goddess who descends into death and returns clothed in her own power. In a world that likes its deities sorted by function, she is a reminder that the most ancient sacred forces were polymorphous: desire and violence, fertility and mourning, all braided into a single brilliant light.</p>
+<p>To restore the name Inanna is to refuse the flattening of the feminine divine into mere beauty or mere nurturing. She is the terror of the battlefield and the tenderness of the bridal chamber; the goddess who weeps for the flood's victims and sends the Bull of Heaven to avenge her pride. Her star still rises.</p>
+<h2 id="the-unicode-restoration">The Unicode Restoration</h2>
+<p>Inanna is classified as <strong>Tier 2</strong>: the restoration needs no distinctive letters or diacritics its ASCII form would lose. The ASCII fallback <em>inanna</em> still resolves everywhere, but it is the restored form that carries the name's full information. That is the whole thesis of this temple: the marks are the message.</p>
+<h2 id="character-by-character">Character by Character</h2>
+<p>The journey from <em>inanna</em> to <strong>Inanna</strong>, one character at a time:</p>
+<ul>
+  <li><strong>i</strong> → <strong>I</strong> — Same, capitalized</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>n</strong> → <strong>n</strong> — Same</li>
+  <li><strong>a</strong> → <strong>a</strong> — Same</li>
+</ul>
+<h2 id="the-mesopotamian-pantheon">The Mesopotamian Pantheon</h2>
+<p>Inanna is one of 30 entries the PuniCodex lexicon catalogues under the Mesopotamian pantheon. The <a href="/pantheon/">Pantheon page</a> gathers the tradition's major figures in one place, and the <a href="/lexicon/">Lexicon</a> lets you filter all 980 restorations by tradition, tier, or script — the fastest way to see where this name sits among its kin.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>What does Inanna mean?</strong> The traditional gloss is "Lady of heaven."</p>
+<p><strong>Which tradition does Inanna belong to?</strong> Inanna is catalogued in the Mesopotamian pantheon of the PuniCodex lexicon.</p>
+<p><strong>Why is Inanna classified as Tier 2?</strong> Because the restoration needs no distinctive letters or diacritics its ASCII form would lose — and the marks in the restored spelling preserve exactly that evidence.</p>
+<p><strong>Can I use Inanna in a normal browser?</strong> Yes. The DNS resolves the punycode form automatically, and the type tool on this site converts inanna to Inanna for copying and pasting.</p>
+<p><strong>Where does the scholarly information come from?</strong> The entry is built from lexica, inscriptional evidence, and reviewed scholarly sources listed in the Scholarly Edition. Every claim is traceable to a canonical source.</p>
+<h2 id="typing-inanna">Typing Inanna</h2>
+<p>You do not need a special keyboard to use this restoration. The <a href="/type/">PuniCodex Type Tool</a> converts the ASCII form <em>inanna</em> into <strong>Inanna</strong> as you type, and the browser extension offers the same conversion inside any text field. Copy the restored form, paste it into the address bar, and the DNS does the rest.</p>
+<h2 id="sister-temples">Sister Temples</h2>
+<p>Other temples in the Mesopotamian pantheon include <a href="/enlil/">Enlīl</a>, and <a href="/gilgamesh/">Gilgameš</a> — each with its own restoration story, its own scholarly record, and its own place in the lexicon.</p>
+<h2 id="why-this-restoration-matters">Why This Restoration Matters</h2>
+<p>The marks in <strong>Inanna</strong> were never lost; they were only waiting for a carrier that could hold them. Now that the carrier exists, the burden flips: every use of <em>inanna</em> is a choice to leave evidence on the table. The PuniCodex temple keeps the restored form in circulation — as a domain, a dataset entry, and a scholarly argument — so that the choice to use it stays easy. Accent by accent, macron by macron, that is how the original names come back: not with a single grand gesture, but with a spelling that finally works everywhere.</p>
+<h2 id="explore-further">Explore Further</h2>
+<p>This post is one doorway into the temple. The <a href="../">home page</a> carries the full character breakdown and the ambient canvas; the <a href="../lore/">lore page</a> tells the myths in long form; the <a href="../scholars/">Scholarly Edition</a> preserves the sources, pronunciation data, and revision history; and the <a href="../patron/">patron wall</a> supports the restoration directly. For the wider map, browse the <a href="/lexicon/">Lexicon</a>, explore the <a href="/pantheon/">Pantheon</a>, or return to the <a href="/blog/">PuniCodex blog</a>.</p>
+<h2 id="a-closer-look-at-the-marks">A Closer Look at the Marks</h2>
+<p>A restored name is a small map. In the case of <strong>Inanna</strong>, the map does not lead through diacritics or special letters, because the source tradition wrote the name in Cuneiform rather than in the Latin alphabet. The ASCII form <em>inanna</em> and the restored form share the same letters; the restoration is a decision about which conventional spelling should serve as the public reference.</p>
+<p>That decision is not cosmetic. The original script attestation carries semantic and phonetic information that no romanization can fully reproduce. By fixing one conventional spelling as the canonical domain form, the project prevents the drift that happens when a name is romanized differently in every article, map, and database. The breakdown still lists each character — <strong>i</strong>, <strong>n</strong>, <strong>a</strong>, <strong>n</strong>, <strong>n</strong>, <strong>a</strong> — so visitors can see exactly what is being carried forward and what is not. What looks like "no change" is, in fact, a deliberate choice to keep the name stable, searchable, and addressable.</p>
+<h2 id="inanna-in-its-tradition">Inanna in Its Tradition</h2>
+<p><strong>Inanna</strong> does not stand alone. It belongs to the Mesopotamian tradition, where it is counted among 30 names in the PuniCodex lexicon. Its sphere — Love, War, Venus — places it beside other figures who govern similar aspects of experience. The restored spelling is therefore not only a philological decision; it is a way of keeping the name in the company of its kin. When the address bar shows <strong>Inanna</strong>, it marks the boundary between a generic search term and a named entry in a living catalog of myth. That catalog is the point of the project. Every restored name is a vote for specificity: the web should know the difference between a figure and a keyword, between a tradition and a trend. <strong>Inanna</strong> is one such vote.</p>
+<h2 id="what-you-will-find-in-the-temple">What You Will Find in the Temple</h2>
+<p>The temple page for <strong>Inanna</strong> is more than a landing page. The home tab presents the character breakdown, the pronunciation guide, and the live domain status in a single view. The lore tab gathers the myths and narratives that give the name its depth. The Scholarly Edition tab publishes the sources, variant forms, and review history that justify the restoration. Industry patterns show where the name appears in modern commerce and culture, while the gallery and creatives tabs collect visual and sponsor material. The patron wall lets visitors support the restoration directly. Each tab is generated from the same canonical sources, so the domain, the blog, the scholars page, and the search index all agree. The result is a single source of truth about a name, delivered through several doors.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/dumuzid/">Dumuzid</a></li>
+  <li><a href="/ea/">Ēa</a></li>
+  <li><a href="/enkidu/">Enkidu</a></li>
+</ul>
+<h2 id="sources">Sources</h2>
+<p>The full scholarly apparatus — every citation, revision, and review — lives in the <a href="../scholars/">Scholarly Edition</a>. Key references for this post:</p>
+<ul>
+  <li>Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998.</li>
+  <li>Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</li>
+  <li>Jacobsen, The Treasures of Darkness: A History of Mesopotamian Religion.</li>
+  <li>CAD, Ištar.</li>
+  <li>Lexicon authorities for this entry: ETCSL, Black-Green.</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">mesopotamian</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Inanna collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 227 in the series: <a href="./restoration/">Why Inanna is spelled that way — and what it costs to get it right</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">Inanna, translated into industries: what the archetype actually does</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">Inanna — the one true spelling, and the forms that fail it</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">Inanna</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">𒀭𒈹</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/inanna_logomark.webp" type="image/webp"><img src="../assets/inanna_logomark.png" alt="Inanna logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

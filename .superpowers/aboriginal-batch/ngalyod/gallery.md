@@ -1,0 +1,1 @@
+honestZero: Aboriginal sacred designs are culturally restricted and rarely represented in Wikimedia Commons; Ngalyod imagery is clan-owned rock art and bark-painting subject to Indigenous cultural authority, not freely licensable stock photography.

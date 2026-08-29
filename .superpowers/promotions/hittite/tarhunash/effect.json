@@ -1,0 +1,6 @@
+{
+  "canvasId": "tarhunash-canvas",
+  "label": "Storm Rays",
+  "description": "Forked lightning flashes and rain streaks for the Hittite storm-god.",
+  "code": "let t = 0;\n  function draw() {\n    if (reduced) return;\n    ctx.clearRect(0, 0, width, height);\n    const g = ctx.createLinearGradient(0, 0, 0, height);\n    g.addColorStop(0, '#0a1018');\n    g.addColorStop(1, '#1a2040');\n    ctx.fillStyle = g;\n    ctx.fillRect(0, 0, width, height);\n    ctx.globalAlpha = 0.15;\n    ctx.strokeStyle = '#1A3A5A';\n    ctx.lineWidth = 1;\n    for (let i = 0; i < 40; i++) {\n      const x = Math.random() * width;\n      ctx.beginPath();\n      ctx.moveTo(x, 0);\n      ctx.lineTo(x + (Math.random() - 0.5) * 40, height);\n      ctx.stroke();\n    }\n    if (Math.random() > 0.94) {\n      ctx.globalAlpha = 0.8;\n      ctx.strokeStyle = '#3A6B9A';\n      ctx.lineWidth = 2;\n      let x = width * (0.3 + Math.random() * 0.4);\n      let y = 0;\n      ctx.beginPath();\n      ctx.moveTo(x, y);\n      while (y < height * 0.7) {\n        x += (Math.random() - 0.5) * 100;\n        y += 30 + Math.random() * 50;\n        ctx.lineTo(x, y);\n      }\n      ctx.stroke();\n    }\n    ctx.globalAlpha = 1;\n    t++;\n    requestAnimationFrame(draw);\n  }\n  draw();"
+}

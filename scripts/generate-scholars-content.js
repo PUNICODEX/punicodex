@@ -220,6 +220,7 @@ function pickSource(pool, index) {
 function createCiter() {
   const sources = [];
   const cite = (source) => {
+    if (!source || typeof source.citation !== 'string') return '';
     const existing = sources.findIndex((s) => s.citation === source.citation);
     if (existing !== -1) return `[^${existing + 1}]`;
     sources.push(source);
@@ -845,6 +846,27 @@ const SECTION_BUILDERS = {
   meditation: buildMeditation,
 };
 
+module.exports = {
+  buildContext,
+  buildSourcePool,
+  citationFor,
+  pickSource,
+  createCiter,
+  htmlToMarkdown,
+  lowerFirst,
+  joinList,
+  unicodeName,
+  crosslinkTargets,
+  traditionLabel,
+  tierSentence,
+  templeUrl,
+  GENERATED_SECTION_KEYS,
+  SECTION_BUILDERS,
+  CONTENT_VERSION,
+  PANTHEON_LABELS,
+  VARIANT_TYPE_LABELS,
+};
+
 // ─────────────────────────────────────────────────────────────
 // Content file assembly (fill-only-missing)
 // ─────────────────────────────────────────────────────────────
@@ -929,4 +951,6 @@ function main() {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}

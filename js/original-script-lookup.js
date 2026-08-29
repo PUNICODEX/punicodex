@@ -2028,6 +2028,26 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Avestan",
     "scriptLabel": "Original Script"
   },
+  "anima": {
+    "originalScript": "ANIMA",
+    "scriptName": "Latin epigraphic capitals",
+    "scriptLabel": "Original Script"
+  },
+  "animus": {
+    "originalScript": "ANIMUS",
+    "scriptName": "Latin epigraphic capitals",
+    "scriptLabel": "Original Script"
+  },
+  "gravitas": {
+    "originalScript": "GRAVITAS",
+    "scriptName": "Latin epigraphic capitals",
+    "scriptLabel": "Original Script"
+  },
+  "clementia": {
+    "originalScript": "CLEMENTIA",
+    "scriptName": "Latin epigraphic capitals",
+    "scriptLabel": "Original Script"
+  },
   "pyr": {
     "originalScript": "Πῦρ",
     "scriptName": "Greek",
@@ -3758,6 +3778,11 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Devanagari",
     "scriptLabel": "Original Script"
   },
+  "bifrost": {
+    "originalScript": "ᛒᛁᚠᚱᚬᛋᛏ",
+    "scriptName": "Younger Futhark runes",
+    "scriptLabel": "Original Script"
+  },
   "budai": {
     "originalScript": "布袋",
     "scriptName": "Chinese characters",
@@ -3803,6 +3828,11 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptName": "Devanagari",
     "scriptLabel": "Original Script"
   },
+  "mani": {
+    "originalScript": "ᛘᛅᚾᛁ",
+    "scriptName": "Younger Futhark runes",
+    "scriptLabel": "Original Script"
+  },
   "padmasambhava": {
     "originalScript": "पद्मसम्भव",
     "scriptName": "Devanagari",
@@ -3816,6 +3846,16 @@ const ORIGINAL_SCRIPT_LOOKUP = {
   "rahu": {
     "originalScript": "राहु",
     "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "sigurd": {
+    "originalScript": "ᛋᛁᚴᚢᚱᚦᛦ",
+    "scriptName": "Younger Futhark runes",
+    "scriptLabel": "Original Script"
+  },
+  "sleipnir": {
+    "originalScript": "ᛋᛚᛅᛁᛒᚾᛁᛦ",
+    "scriptName": "Younger Futhark runes",
     "scriptLabel": "Original Script"
   },
   "triton": {

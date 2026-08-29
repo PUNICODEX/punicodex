@@ -29,9 +29,9 @@ function test(name, fn) {
 
 // ── 1. Pack pools ──────────────────────────────────────────────────────────
 
-test('the card set really does contain pantheons with no flagship pool', () => {
-  // If this ever stops being true the guard is still correct, but this test
-  // documents the concrete condition that made the crash reachable.
+test('the card set contains no flagship-less pantheons', () => {
+  // Every pantheon represented in the card set must have at least one flagship
+  // edition so the pack picker can always build a non-empty pool.
   const all = new Set();
   const flagship = new Set();
   for (const c of SET.cards) {
@@ -40,8 +40,7 @@ test('the card set really does contain pantheons with no flagship pool', () => {
     if (c.flagship) flagship.add(c.pantheon);
   }
   const empty = [...all].filter((p) => !flagship.has(p));
-  assert.ok(all.size > flagship.size, 'expected at least one flagship-less pantheon');
-  assert.ok(empty.length > 0, `flagship-less pantheons: ${empty.join(', ')}`);
+  assert.strictEqual(empty.length, 0, `flagship-less pantheons: ${empty.join(', ')}`);
 });
 
 test('the pack picker offers only pantheons with a flagship pool', () => {

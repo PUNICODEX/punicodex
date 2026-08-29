@@ -1,0 +1,6 @@
+{
+  "canvasId": "yongwang-canvas",
+  "label": "Dragon King Waves",
+  "description": "Layered translucent waves undulate beneath rising bubbles and dragon-scaled light.",
+  "code": "if (reduced) return;\nctx.clearRect(0, 0, width, height);\nconst bubbles = []; for (let i = 0; i < 50; i++) bubbles.push({ x: Math.random(), y: Math.random(), r: 1 + Math.random() * 2, speed: 0.2 + Math.random() * 0.4 });\nlet t = 0;\nfunction draw() {\n  if (reduced) return;\n  ctx.clearRect(0, 0, width, height);\n  ctx.globalAlpha = 0.18; ctx.strokeStyle = '#5fbcd3'; ctx.lineWidth = 2;\n  for (let c = 0; c < 4; c++) {\n    ctx.beginPath();\n    for (let x = 0; x <= width; x += 12) {\n      const y = height * 0.55 + Math.sin((x + t * (0.6 + c * 0.15)) * 0.008) * height * 0.1 + (c - 2) * 14;\n      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);\n    }\n    ctx.stroke();\n  }\n  ctx.globalAlpha = 0.6; ctx.fillStyle = '#a8e0f0';\n  for (const b of bubbles) {\n    const y = (b.y - t * b.speed * 0.0005) % 1; if (y < 0) y += 1;\n    const x = b.x * width + Math.sin(t * 0.001 + b.y * 10) * 15;\n    ctx.beginPath(); ctx.arc(x, y * height, b.r, 0, Math.PI * 2); ctx.fill();\n  }\n  ctx.globalAlpha = 1;\n  t++; requestAnimationFrame(draw);\n}\ndraw();"
+}

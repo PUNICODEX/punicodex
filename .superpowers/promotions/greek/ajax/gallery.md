@@ -1,0 +1,1 @@
+curate via Commons: Archaic and Classical Greek vase paintings of Ajax (Aias) are well represented on Wikimedia Commons, including the famous Exekias amphora showing Ajax preparing for suicide and scenes of his duel with Hector.

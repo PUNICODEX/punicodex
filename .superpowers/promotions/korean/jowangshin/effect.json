@@ -1,0 +1,6 @@
+{
+  "canvasId": "jowangshin-canvas",
+  "label": "Hearth Embers",
+  "description": "Warm embers drift upward from a hidden hearth, with occasional flame tongues.",
+  "code": "if (reduced) return;\nctx.clearRect(0, 0, width, height);\nconst embers = []; for (let i = 0; i < 70; i++) embers.push({ x: Math.random(), y: Math.random(), r: 1 + Math.random() * 2, speed: 0.3 + Math.random() * 0.5, life: Math.random() });\nlet t = 0;\nfunction draw() {\n  if (reduced) return;\n  ctx.clearRect(0, 0, width, height);\n  ctx.globalAlpha = 0.7;\n  for (const e of embers) {\n    const y = (e.y - t * e.speed * 0.0005) % 1; if (y < 0) y += 1;\n    const x = e.x * width + Math.sin(t * 0.001 + e.life * 5) * 10;\n    const a = 0.4 + 0.6 * Math.sin(t * 0.05 + e.life * 10);\n    ctx.globalAlpha = a; ctx.fillStyle = '#ff9e5e';\n    ctx.beginPath(); ctx.arc(x, y * height, e.r, 0, Math.PI * 2); ctx.fill();\n  }\n  ctx.globalAlpha = 1;\n  t++; requestAnimationFrame(draw);\n}\ndraw();"
+}

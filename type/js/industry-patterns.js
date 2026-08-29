@@ -55,6 +55,38 @@ const INDUSTRY_GROUPS = [
     tagline: 'Photovoltaics, solar thermal, and the light economy.',
     note: 'Solar deities personify the energy source the renewable sector harvests; their names already brand panels, projects, and space missions.',
     entries: [
+      { id: 'viracocha', weight: 2, why: 'Primary seat: Wiraqucha embodies creator, sky, sea foam — the core of solar energy.' },
+
+      { id: 'svarog', weight: 2, why: 'Primary seat: Svarog embodies sky, fire, smithing — the core of solar energy.' },
+
+      { id: 'stribog', weight: 2, why: 'Primary seat: Stribog embodies winds, storms — the core of solar energy.' },
+
+      { id: 'ranginui', weight: 2, why: 'Primary seat: Ranginui embodies sky, fatherhood, creation — the core of solar energy.' },
+
+      { id: 'perun', weight: 2, why: 'Primary seat: Perun embodies thunder, lightning, oak — the core of solar energy.' },
+
+      { id: 'pele', weight: 2, why: 'Primary seat: Pele embodies volcanoes, fire, lightning, dance — the core of solar energy.' },
+
+      { id: 'metztli', weight: 2, why: 'Primary seat: Metztli embodies moon — the core of solar energy.' },
+
+      { id: 'mamaquilla', weight: 1, why: 'Resonant seat: Mama Quilla shares symbolic territory with solar energy.' },
+
+      { id: 'lono', weight: 1, why: 'Resonant seat: Lono shares symbolic territory with solar energy.' },
+
+      { id: 'iphigeneia', weight: 2, why: 'Primary seat: Iphigeneia embodies sacrifice, winds, aulis — the core of solar energy.' },
+
+      { id: 'inti', weight: 2, why: 'Primary seat: Inti embodies sun, empire, agriculture — the core of solar energy.' },
+
+      { id: 'illapa', weight: 1, why: 'Resonant seat: Illapa shares symbolic territory with solar energy.' },
+
+      { id: 'hwanung', weight: 2, why: 'Primary seat: Hwanung embodies son of heaven, descended — the core of solar energy.' },
+
+      { id: 'hananim', weight: 2, why: 'Primary seat: Hwanin embodies supreme god, heaven — the core of solar energy.' },
+
+      { id: 'chilsong', weight: 2, why: 'Primary seat: Chilsong embodies seven stars, ursa major — the core of solar energy.' },
+
+      { id: 'arinniti', weight: 2, why: 'Primary seat: Arinna embodies sun goddess, supreme — the core of solar energy.' },
+
       { id: 'hyperion', weight: 2, why: 'Father of the sun itself — Hēlios is his son; every panel on every roof harvests his household\'s daily journey.' },
       { id: 'helios', weight: 2, why: 'The sun itself, driven daily across the sky in his chariot — solar power’s oldest and most literal namesake.' },
       { id: 'ra', weight: 2, why: 'The sun ferried across the sky in his barque each day, creator and king of the gods — Egypt’s solar engine.' },
@@ -87,6 +119,32 @@ const INDUSTRY_GROUPS = [
     tagline: 'Wind farms, turbines, and atmospheric resource management.',
     note: 'Wind and air deities govern exactly the kinetic resource the turbine economy converts to power.',
     entries: [
+      { id: 'viracocha', weight: 1, why: 'Resonant seat: Wiraqucha shares symbolic territory with wind energy.' },
+
+      { id: 'svarog', weight: 1, why: 'Resonant seat: Svarog shares symbolic territory with wind energy.' },
+
+      { id: 'stribog', weight: 1, why: 'Resonant seat: Stribog shares symbolic territory with wind energy.' },
+
+      { id: 'ranginui', weight: 1, why: 'Resonant seat: Ranginui shares symbolic territory with wind energy.' },
+
+      { id: 'perun', weight: 1, why: 'Resonant seat: Perun shares symbolic territory with wind energy.' },
+
+      { id: 'pele', weight: 1, why: 'Resonant seat: Pele shares symbolic territory with wind energy.' },
+
+      { id: 'metztli', weight: 1, why: 'Resonant seat: Metztli shares symbolic territory with wind energy.' },
+
+      { id: 'iphigeneia', weight: 1, why: 'Resonant seat: Iphigeneia shares symbolic territory with wind energy.' },
+
+      { id: 'inti', weight: 1, why: 'Resonant seat: Inti shares symbolic territory with wind energy.' },
+
+      { id: 'hwanung', weight: 1, why: 'Resonant seat: Hwanung shares symbolic territory with wind energy.' },
+
+      { id: 'hananim', weight: 1, why: 'Resonant seat: Hwanin shares symbolic territory with wind energy.' },
+
+      { id: 'chilsong', weight: 1, why: 'Resonant seat: Chilsong shares symbolic territory with wind energy.' },
+
+      { id: 'arinniti', weight: 1, why: 'Resonant seat: Arinna shares symbolic territory with wind energy.' },
+
       { id: 'pazuzu', weight: 2, why: "Pazuzu is the demon of the west/southwest wind and king of the evil wind-demons; his canonical domain is the moving air that the turbine economy harvests." },
 
       { id: 'ninlil', weight: 2, why: "Ninlil is literally the Sumerian 'Lady of the Wind' (𒀭𒊩𒌆𒆤); her domain is the moving air that turbines harvest." },
@@ -135,6 +193,32 @@ const INDUSTRY_GROUPS = [
     tagline: 'Forecasting, storm tracking, and climate analytics.',
     note: 'Storm gods command the phenomena the weather industry exists to predict; thunder is their signature dataset.',
     entries: [
+      { id: 'viracocha', weight: 1, why: 'Resonant seat: Wiraqucha shares symbolic territory with storm forecasting.' },
+
+      { id: 'svarog', weight: 1, why: 'Resonant seat: Svarog shares symbolic territory with storm forecasting.' },
+
+      { id: 'stribog', weight: 1, why: 'Resonant seat: Stribog shares symbolic territory with storm forecasting.' },
+
+      { id: 'ranginui', weight: 1, why: 'Resonant seat: Ranginui shares symbolic territory with storm forecasting.' },
+
+      { id: 'perun', weight: 1, why: 'Resonant seat: Perun shares symbolic territory with storm forecasting.' },
+
+      { id: 'pele', weight: 1, why: 'Resonant seat: Pele shares symbolic territory with storm forecasting.' },
+
+      { id: 'metztli', weight: 1, why: 'Resonant seat: Metztli shares symbolic territory with storm forecasting.' },
+
+      { id: 'iphigeneia', weight: 1, why: 'Resonant seat: Iphigeneia shares symbolic territory with storm forecasting.' },
+
+      { id: 'inti', weight: 1, why: 'Resonant seat: Inti shares symbolic territory with storm forecasting.' },
+
+      { id: 'hwanung', weight: 1, why: 'Resonant seat: Hwanung shares symbolic territory with storm forecasting.' },
+
+      { id: 'hananim', weight: 1, why: 'Resonant seat: Hwanin shares symbolic territory with storm forecasting.' },
+
+      { id: 'chilsong', weight: 1, why: 'Resonant seat: Chilsong shares symbolic territory with storm forecasting.' },
+
+      { id: 'arinniti', weight: 1, why: 'Resonant seat: Arinna shares symbolic territory with storm forecasting.' },
+
       { id: 'ninurta', weight: 1, why: "The thunder-storm and the hurricane winds are his weapons; his mythology is rooted in the meteorological violence of the Mesopotamian plain." },
 
       { id: 'adad', weight: 2, why: "Adad is the Mesopotamian storm and thunder god; his temple naturally serves weather forecasting, storm tracking, and atmospheric-data platforms." },
@@ -169,6 +253,16 @@ const INDUSTRY_GROUPS = [
     tagline: 'Shipping, ports, fishing, and ocean exploration.',
     note: 'Sea gods rule the medium of global trade; ocean serpents and drowned realms mark its risks and its romance.',
     entries: [
+      { id: 'yongwang', weight: 1, why: 'Resonant seat: Yongwang shares symbolic territory with maritime.' },
+
+      { id: 'themis', weight: 2, why: 'Primary seat: Themis embodies divine law, order, custom — the core of maritime.' },
+
+      { id: 'tangaroa', weight: 2, why: 'Primary seat: Tangaroa embodies ocean, sea creatures, fishing — the core of maritime.' },
+
+      { id: 'tagaloa', weight: 2, why: 'Primary seat: Tagaloa embodies creator, ocean — the core of maritime.' },
+
+      { id: 'mamaqucha', weight: 2, why: 'Primary seat: Mamaqucha embodies sea, fishermen — the core of maritime.' },
+
       { id: 'lahamu', weight: 1, why: "The primordial waters that produce Lahamu are the cosmic ocean before sky and earth were separated; shipping and ocean industries still traverse the descendants of that first sea." },
 
       { id: 'neptunus', weight: 2, why: 'Rome’s lord of the sea, heir to Poseidṓn’s whole mythology; the trident every hull still answers to.' },
@@ -208,6 +302,14 @@ const INDUSTRY_GROUPS = [
     tagline: 'Water supply, irrigation, and watershed management.',
     note: 'Freshwater powers sustain cities and crops; rivers, abysses, and rain-bringers map directly onto the utility sector.',
     entries: [
+      { id: 'themis', weight: 1, why: 'Resonant seat: Themis shares symbolic territory with water utilities.' },
+
+      { id: 'tangaroa', weight: 1, why: 'Resonant seat: Tangaroa shares symbolic territory with water utilities.' },
+
+      { id: 'tagaloa', weight: 1, why: 'Resonant seat: Tagaloa shares symbolic territory with water utilities.' },
+
+      { id: 'mamaqucha', weight: 1, why: 'Resonant seat: Mamaqucha shares symbolic territory with water utilities.' },
+
       { id: 'telipinu', weight: 1, why: "When Telipinu vanishes, springs dry up and the land thirsts; his return restores freshwater and irrigation to the Anatolian plain." },
 
       { id: 'lahamu', weight: 2, why: "Lahamu is born from the mingling of Apsû's freshwater abyss and Tiāmat's salt sea; she is the first personal form to arise from primordial water, making freshwater and hydrology her primary modern resonance." },
@@ -247,6 +349,32 @@ const INDUSTRY_GROUPS = [
     tagline: 'Flight, aerospace engineering, and the sky economy.',
     note: 'Sky and air powers own the domain aircraft traverse; falcon-gods and heaven-personifications are its natural patrons.',
     entries: [
+      { id: 'viracocha', weight: 1, why: 'Resonant seat: Wiraqucha shares symbolic territory with aviation aerospace.' },
+
+      { id: 'svarog', weight: 1, why: 'Resonant seat: Svarog shares symbolic territory with aviation aerospace.' },
+
+      { id: 'stribog', weight: 1, why: 'Resonant seat: Stribog shares symbolic territory with aviation aerospace.' },
+
+      { id: 'ranginui', weight: 1, why: 'Resonant seat: Ranginui shares symbolic territory with aviation aerospace.' },
+
+      { id: 'perun', weight: 1, why: 'Resonant seat: Perun shares symbolic territory with aviation aerospace.' },
+
+      { id: 'pele', weight: 1, why: 'Resonant seat: Pele shares symbolic territory with aviation aerospace.' },
+
+      { id: 'metztli', weight: 1, why: 'Resonant seat: Metztli shares symbolic territory with aviation aerospace.' },
+
+      { id: 'iphigeneia', weight: 1, why: 'Resonant seat: Iphigeneia shares symbolic territory with aviation aerospace.' },
+
+      { id: 'inti', weight: 1, why: 'Resonant seat: Inti shares symbolic territory with aviation aerospace.' },
+
+      { id: 'hwanung', weight: 1, why: 'Resonant seat: Hwanung shares symbolic territory with aviation aerospace.' },
+
+      { id: 'hananim', weight: 1, why: 'Resonant seat: Hwanin shares symbolic territory with aviation aerospace.' },
+
+      { id: 'chilsong', weight: 1, why: 'Resonant seat: Chilsong shares symbolic territory with aviation aerospace.' },
+
+      { id: 'arinniti', weight: 1, why: 'Resonant seat: Arinna shares symbolic territory with aviation aerospace.' },
+
       { id: 'pegasos', weight: 2, why: 'The winged horse; flight’s oldest mascot from Corinth to Mobil’s red Pegasus.' },
       { id: 'aer', weight: 2, why: 'The lower air itself — the misty atmosphere between earth and the bright aithēr above; the medium every aircraft breathes.' },
       { id: 'aither', weight: 2, why: 'The upper air itself — the stratosphere and beyond.' },
@@ -274,6 +402,32 @@ const INDUSTRY_GROUPS = [
     tagline: 'Space agencies, astronomy, and the orbital economy.',
     note: 'The space industry already names its missions after these figures — Apollo, Artemis, and Selene are flown programs, not metaphors.',
     entries: [
+      { id: 'viracocha', weight: 1, why: 'Resonant seat: Wiraqucha shares symbolic territory with space astronomy.' },
+
+      { id: 'svarog', weight: 1, why: 'Resonant seat: Svarog shares symbolic territory with space astronomy.' },
+
+      { id: 'stribog', weight: 1, why: 'Resonant seat: Stribog shares symbolic territory with space astronomy.' },
+
+      { id: 'ranginui', weight: 1, why: 'Resonant seat: Ranginui shares symbolic territory with space astronomy.' },
+
+      { id: 'perun', weight: 1, why: 'Resonant seat: Perun shares symbolic territory with space astronomy.' },
+
+      { id: 'pele', weight: 1, why: 'Resonant seat: Pele shares symbolic territory with space astronomy.' },
+
+      { id: 'metztli', weight: 1, why: 'Resonant seat: Metztli shares symbolic territory with space astronomy.' },
+
+      { id: 'iphigeneia', weight: 1, why: 'Resonant seat: Iphigeneia shares symbolic territory with space astronomy.' },
+
+      { id: 'inti', weight: 1, why: 'Resonant seat: Inti shares symbolic territory with space astronomy.' },
+
+      { id: 'hwanung', weight: 1, why: 'Resonant seat: Hwanung shares symbolic territory with space astronomy.' },
+
+      { id: 'hananim', weight: 1, why: 'Resonant seat: Hwanin shares symbolic territory with space astronomy.' },
+
+      { id: 'chilsong', weight: 1, why: 'Resonant seat: Chilsong shares symbolic territory with space astronomy.' },
+
+      { id: 'arinniti', weight: 1, why: 'Resonant seat: Arinna shares symbolic territory with space astronomy.' },
+
       { id: "hati", weight: 2, why: "The moon-chaser — the wolf who runs before the bright bride of heaven and takes her at the end." },
       { id: 'frigg', weight: 1, why: 'The folk star-name “Frigg’s distaff” for Orion’s belt — later tradition, but the only constellation owned by a goddess of the North.' },
       { id: 'phoebe', weight: 1, why: '"The bright one" — the shining Titaness whose epithet the sun-god himself wears.' },
@@ -323,6 +477,24 @@ const INDUSTRY_GROUPS = [
     tagline: 'Defense contracting, security services, and strategic studies.',
     note: 'War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.',
     entries: [
+      { id: 'zmeygorynych', weight: 2, why: 'Primary seat: Zmey Gorynych embodies three-headed dragon — the core of defense.' },
+
+      { id: 'yongwang', weight: 2, why: 'Primary seat: Yongwang embodies dragon king, sea — the core of defense.' },
+
+      { id: 'perseus', weight: 2, why: 'Primary seat: Perseus embodies hero, slayer of medousa — the core of defense.' },
+
+      { id: 'patroclus', weight: 2, why: 'Primary seat: Patroklos embodies warrior, companion of achilles — the core of defense.' },
+
+      { id: 'nafanua', weight: 2, why: 'Primary seat: Nafanua embodies war, prophecy, salvation — the core of defense.' },
+
+      { id: 'inanna', weight: 2, why: 'Primary seat: Inanna embodies love, war, venus — the core of defense.' },
+
+      { id: 'illapa', weight: 2, why: 'Primary seat: Illapa embodies thunder, lightning, war — the core of defense.' },
+
+      { id: 'ekkeko', weight: 2, why: 'Primary seat: Ekkeko embodies luck, abundance — the core of defense.' },
+
+      { id: 'ajax', weight: 2, why: 'Primary seat: Aias embodies warrior, bulwark of achaeans — the core of defense.' },
+
       { id: 'ninurta', weight: 2, why: "The slayer of Anzû and Asag, bearer of the speaking mace Sharur, and the warrior the great gods dispatch when cosmic order is stolen." },
 
       { id: 'nergal', weight: 2, why: "Nergal is the Mesopotamian god of war and plague; the lion of Kutha embodies the raw, sanctioned force that defense and strategic studies still theorize." },
@@ -578,6 +750,36 @@ const INDUSTRY_GROUPS = [
     tagline: 'Farming, grain, food production, and agtech.',
     note: 'Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.',
     entries: [
+      { id: 'zmeygorynych', weight: 1, why: 'Resonant seat: Zmey Gorynych shares symbolic territory with agriculture food.' },
+
+      { id: 'xipe', weight: 2, why: 'Primary seat: Xipe embodies spring, agriculture, flayed — the core of agriculture food.' },
+
+      { id: 'wamani', weight: 2, why: 'Primary seat: Wamani embodies sacred mountain — the core of agriculture food.' },
+
+      { id: 'simargl', weight: 2, why: 'Primary seat: Simargl embodies winged guardian, plant life — the core of agriculture food.' },
+
+      { id: 'rongo', weight: 2, why: 'Primary seat: Rongo embodies agriculture, peace, cultivated foods — the core of agriculture food.' },
+
+      { id: 'pachamama', weight: 2, why: 'Primary seat: Pachamama embodies earth, harvest, mother — the core of agriculture food.' },
+
+      { id: 'nafanua', weight: 1, why: 'Resonant seat: Nafanua shares symbolic territory with agriculture food.' },
+
+      { id: 'mago', weight: 2, why: 'Primary seat: Mago embodies creator goddess, earth — the core of agriculture food.' },
+
+      { id: 'kamapuaa', weight: 1, why: 'Resonant seat: Kamapuaa shares symbolic territory with agriculture food.' },
+
+      { id: 'jowangshin', weight: 2, why: 'Primary seat: Jowangshin embodies kitchen, hearth — the core of agriculture food.' },
+
+      { id: 'haumiatiketike', weight: 2, why: 'Primary seat: Haumiatiketike embodies wild food, fernroot — the core of agriculture food.' },
+
+      { id: 'haoma', weight: 2, why: 'Primary seat: Haoma embodies sacred plant, immortality — the core of agriculture food.' },
+
+      { id: 'halmoni', weight: 2, why: 'Primary seat: Halmoni embodies grandmother spirit, earth — the core of agriculture food.' },
+
+      { id: 'baekdusan', weight: 2, why: 'Primary seat: Baekdusan embodies sacred mountain, origin — the core of agriculture food.' },
+
+      { id: 'ajax', weight: 1, why: 'Resonant seat: Aias shares symbolic territory with agriculture food.' },
+
       { id: 'telipinu', weight: 2, why: "Telipinu is the Hittite god of grain and vegetation; the Telipinu Myth (CTH 324) explains agricultural fertility as his active presence and famine as his absence." },
 
       { id: 'ninurta', weight: 2, why: "Ninurta is 'lord of the earth' and the divine ploughman; the long catalog of stones in Lugal-e assigns flint to the sickle and makes cultivation possible only after his victory." },
@@ -658,6 +860,34 @@ const INDUSTRY_GROUPS = [
     tagline: 'Forestry, wildlife protection, and outdoor recreation.',
     note: 'Wilderness deities guard the forests the conservation economy exists to protect.',
     entries: [
+      { id: 'xipe', weight: 1, why: 'Resonant seat: Xipe shares symbolic territory with forestry conservation.' },
+
+      { id: 'wamani', weight: 1, why: 'Resonant seat: Wamani shares symbolic territory with forestry conservation.' },
+
+      { id: 'simargl', weight: 1, why: 'Resonant seat: Simargl shares symbolic territory with forestry conservation.' },
+
+      { id: 'rongo', weight: 1, why: 'Resonant seat: Rongo shares symbolic territory with forestry conservation.' },
+
+      { id: 'radagast', weight: 2, why: 'Primary seat: Radagast embodies hospitality, animals — the core of forestry conservation.' },
+
+      { id: 'pachamama', weight: 1, why: 'Resonant seat: Pachamama shares symbolic territory with forestry conservation.' },
+
+      { id: 'mago', weight: 1, why: 'Resonant seat: Mago shares symbolic territory with forestry conservation.' },
+
+      { id: 'jowangshin', weight: 1, why: 'Resonant seat: Jowangshin shares symbolic territory with forestry conservation.' },
+
+      { id: 'hebe', weight: 2, why: 'Primary seat: Hebe embodies youth, cupbearer — the core of forestry conservation.' },
+
+      { id: 'haumiatiketike', weight: 1, why: 'Resonant seat: Haumiatiketike shares symbolic territory with forestry conservation.' },
+
+      { id: 'haoma', weight: 1, why: 'Resonant seat: Haoma shares symbolic territory with forestry conservation.' },
+
+      { id: 'halmoni', weight: 1, why: 'Resonant seat: Halmoni shares symbolic territory with forestry conservation.' },
+
+      { id: 'baekdusan', weight: 1, why: 'Resonant seat: Baekdusan shares symbolic territory with forestry conservation.' },
+
+      { id: 'inaras', weight: 2, why: 'Primary seat: Inaras embodies wild animals, hunt — the core of forestry conservation.' },
+
       { id: 'enkidu', weight: 2, why: "The Cedar Forest and the demon Humbaba are central to Enkidu's myth; his story is the oldest surviving meditation on timber, wilderness, and the cost of taking it." },
 
       { id: "myrddin", weight: 1, why: "The forest as sanctuary and sentence — the woods of Celyddon, his kingdom of madmen." },
@@ -694,6 +924,34 @@ const INDUSTRY_GROUPS = [
     tagline: 'Climate science, ecology, and sustainability consulting.',
     note: 'Earth personified is the sector’s founding insight — the Gaia hypothesis literally named planetary ecology after her.',
     entries: [
+      { id: 'xipe', weight: 1, why: 'Resonant seat: Xipe shares symbolic territory with environment climate.' },
+
+      { id: 'wamani', weight: 1, why: 'Resonant seat: Wamani shares symbolic territory with environment climate.' },
+
+      { id: 'simargl', weight: 1, why: 'Resonant seat: Simargl shares symbolic territory with environment climate.' },
+
+      { id: 'rongo', weight: 1, why: 'Resonant seat: Rongo shares symbolic territory with environment climate.' },
+
+      { id: 'radagast', weight: 1, why: 'Resonant seat: Radagast shares symbolic territory with environment climate.' },
+
+      { id: 'pachamama', weight: 1, why: 'Resonant seat: Pachamama shares symbolic territory with environment climate.' },
+
+      { id: 'mago', weight: 1, why: 'Resonant seat: Mago shares symbolic territory with environment climate.' },
+
+      { id: 'jowangshin', weight: 1, why: 'Resonant seat: Jowangshin shares symbolic territory with environment climate.' },
+
+      { id: 'hebe', weight: 1, why: 'Resonant seat: Hebe shares symbolic territory with environment climate.' },
+
+      { id: 'haumiatiketike', weight: 1, why: 'Resonant seat: Haumiatiketike shares symbolic territory with environment climate.' },
+
+      { id: 'haoma', weight: 1, why: 'Resonant seat: Haoma shares symbolic territory with environment climate.' },
+
+      { id: 'halmoni', weight: 1, why: 'Resonant seat: Halmoni shares symbolic territory with environment climate.' },
+
+      { id: 'baekdusan', weight: 1, why: 'Resonant seat: Baekdusan shares symbolic territory with environment climate.' },
+
+      { id: 'inaras', weight: 1, why: 'Resonant seat: Inaras shares symbolic territory with environment climate.' },
+
       { id: 'ninlil', weight: 1, why: "As goddess of the air, Ninlil personifies the atmosphere and the breath that links sky, land, and living things." },
 
       { id: "niflheimr", weight: 2, why: "The primordial ice and mist — the north pole of creation, before anything lived." },
@@ -753,6 +1011,12 @@ const INDUSTRY_GROUPS = [
     tagline: 'Fabrication, industrial craft, and robotics.',
     note: 'Smith gods and divine architects built the first automata — Hephaistos forged mechanical servants, the mythic root of robotics.',
     entries: [
+      { id: 'urcaguary', weight: 1, why: 'Resonant seat: Urcaguary shares symbolic territory with manufacturing craft.' },
+
+      { id: 'ratnasambhava', weight: 1, why: 'Resonant seat: Ratnasambhava shares symbolic territory with manufacturing craft.' },
+
+      { id: 'daedalus', weight: 2, why: 'Primary seat: Daidalos embodies craftsman, inventor, wings — the core of manufacturing craft.' },
+
       { id: 'ninurta', weight: 1, why: "In Lugal-e he names each defeated stone and assigns it to temple, forge, and tool — a charter myth for mineral extraction and craft." },
 
       { id: 'lahmu', weight: 1, why: "Clay apotropaic figurines, bronze attachments, and glazed brick reliefs of Lahmu were manufactured as protective craft objects." },
@@ -829,6 +1093,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Fabric, fashion textiles, and woven structure.',
     note: 'Weaving is the oldest high craft with a goddess on each side of the loom — patron and challenger — and its finest metaphor accidentally named the web.',
     entries: [
+      { id: 'daedalus', weight: 1, why: 'Resonant seat: Daidalos shares symbolic territory with textiles.' },
+
       { id: 'athena', weight: 2, why: 'Patroness of weaving and every skilled craft; the loom belongs to her civic cult.' },
       { id: 'arachne', weight: 2, why: 'The greatest weaver of myth; textiles are her contest, and the web her legacy.' },
       { id: 'asherah', weight: 1, why: 'The women of Judah wove hangings for Asherah (2 Kings 23:7); her cult ran through the loom.' },
@@ -847,6 +1113,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Diamonds, gemstones, and precious materials.',
     note: 'The word diamond descends from adámas — the unconquerable stone; obsidian and gold complete the material pantheon.',
     entries: [
+      { id: 'daedalus', weight: 1, why: 'Resonant seat: Daidalos shares symbolic territory with gems jewelry.' },
+
       { id: "fulla", weight: 1, why: "The finger-ring Nanna sends her from Hel — the jewel that crosses death and back." },
       { id: "draupnir", weight: 2, why: "Odins ring — the most famous jewel of the northern treasury." },
       { id: "brokkr", weight: 1, why: "Draupnir came out of his furnace — wealth itself, cast by hand." },
@@ -876,6 +1144,18 @@ const INDUSTRY_GROUPS = [
     tagline: 'Cosmetics, fashion, and personal care.',
     note: 'Love and beauty goddesses anchor the industry’s oldest brand story; an ointment jar names one of them.',
     entries: [
+      { id: 'mamaquilla', weight: 2, why: 'Primary seat: Mama Quilla embodies moon, marriage — the core of beauty fashion.' },
+
+      { id: 'makemake', weight: 2, why: 'Primary seat: Makemake embodies creator, fertility, bird-man — the core of beauty fashion.' },
+
+      { id: 'lono', weight: 2, why: 'Primary seat: Lono embodies agriculture, peace, rain — the core of beauty fashion.' },
+
+      { id: 'lada', weight: 2, why: 'Primary seat: Lada embodies love, beauty, spring — the core of beauty fashion.' },
+
+      { id: 'kamapuaa', weight: 2, why: 'Primary seat: Kamapuaa embodies pig god, agriculture — the core of beauty fashion.' },
+
+      { id: 'inanna', weight: 1, why: 'Resonant seat: Inanna shares symbolic territory with beauty fashion.' },
+
       { id: 'blodeuwedd', weight: 2, why: 'Flower-face — beauty manufactured from oak, broom, and meadowsweet.' },
       { id: 'baldr', weight: 2, why: 'The Snorri formula: the fairest of the Æsir, so bright that light streams from him — beauty as divine attribute.' },
       { id: 'aphrodite', weight: 2, why: 'Beauty and desire enthroned as a sovereign power, born of the sea foam — the face the entire industry chases.' },
@@ -903,6 +1183,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Medicine, pharmaceuticals, and public health.',
     note: 'Healing deities and health personified; the bowl of Hygieia still stands on every pharmacy sign.',
     entries: [
+      { id: 'hiiaka', weight: 2, why: 'Primary seat: Hiiaka embodies hula, magic, healing — the core of healthcare pharma.' },
+
+      { id: 'gula', weight: 2, why: 'Primary seat: Gula embodies healing, medicine — the core of healthcare pharma.' },
+
       { id: 'nergal', weight: 1, why: "As plague-bringer and the burning fever personified, Nergal names the ancient terror that public health and epidemiology exist to contain." },
 
       { id: 'namtar', weight: 2, why: "The 'hand of Namtar' is the standard diagnosis in Akkadian medical texts for fever, paralysis, and unexplained illness. The name fits platforms that track disease, develop therapeutics, or manage clinical risk." },
@@ -946,6 +1230,22 @@ const INDUSTRY_GROUPS = [
     tagline: 'Therapy, emotional wellbeing, and mindfulness.',
     note: 'The heart weighed in the balance is the conscience examined in therapy — and the field’s own history was once named for a goddess: "mental hygiene".',
     entries: [
+      { id: 'vasubandhu', weight: 1, why: 'Resonant seat: Vasubandhu shares symbolic territory with mental health.' },
+
+      { id: 'samantabhadra', weight: 1, why: 'Resonant seat: Samantabhadra shares symbolic territory with mental health.' },
+
+      { id: 'ratnasambhava', weight: 1, why: 'Resonant seat: Ratnasambhava shares symbolic territory with mental health.' },
+
+      { id: 'maitreya', weight: 1, why: 'Resonant seat: Maitreya shares symbolic territory with mental health.' },
+
+      { id: 'hiiaka', weight: 1, why: 'Resonant seat: Hiiaka shares symbolic territory with mental health.' },
+
+      { id: 'gula', weight: 1, why: 'Resonant seat: Gula shares symbolic territory with mental health.' },
+
+      { id: 'boddhisattva', weight: 1, why: 'Resonant seat: Bodhisattva shares symbolic territory with mental health.' },
+
+      { id: 'amoghasiddhi', weight: 1, why: 'Resonant seat: Amoghasiddhi shares symbolic territory with mental health.' },
+
       { id: 'telipinu', weight: 1, why: "The myth is a ritual negotiation with divine anger and withdrawal — a Hittite model of restoring relationship, balance, and communal wellbeing after rupture." },
 
       { id: 'enkidu', weight: 2, why: "Enkidu's arc is a study in transformation, grief, and mortality: the wild self civilized, the friend lost, and the survivor left to mourn — themes at the root of therapeutic narrative." },
@@ -1006,6 +1306,32 @@ const INDUSTRY_GROUPS = [
     tagline: 'Yoga, meditation, and mind-body practice.',
     note: 'The wellness industry runs on these symbols: the sacred syllable, the balance of opposites, and the first yogi himself.',
     entries: [
+      { id: 'vasubandhu', weight: 1, why: 'Resonant seat: Vasubandhu shares symbolic territory with wellness mind.' },
+
+      { id: 'samantabhadra', weight: 1, why: 'Resonant seat: Samantabhadra shares symbolic territory with wellness mind.' },
+
+      { id: 'ratnasambhava', weight: 1, why: 'Resonant seat: Ratnasambhava shares symbolic territory with wellness mind.' },
+
+      { id: 'mamaquilla', weight: 1, why: 'Resonant seat: Mama Quilla shares symbolic territory with wellness mind.' },
+
+      { id: 'makemake', weight: 1, why: 'Resonant seat: Makemake shares symbolic territory with wellness mind.' },
+
+      { id: 'maitreya', weight: 1, why: 'Resonant seat: Maitreya shares symbolic territory with wellness mind.' },
+
+      { id: 'lono', weight: 1, why: 'Resonant seat: Lono shares symbolic territory with wellness mind.' },
+
+      { id: 'lada', weight: 1, why: 'Resonant seat: Lada shares symbolic territory with wellness mind.' },
+
+      { id: 'kamapuaa', weight: 1, why: 'Resonant seat: Kamapuaa shares symbolic territory with wellness mind.' },
+
+      { id: 'hiiaka', weight: 1, why: 'Resonant seat: Hiiaka shares symbolic territory with wellness mind.' },
+
+      { id: 'gula', weight: 1, why: 'Resonant seat: Gula shares symbolic territory with wellness mind.' },
+
+      { id: 'boddhisattva', weight: 1, why: 'Resonant seat: Bodhisattva shares symbolic territory with wellness mind.' },
+
+      { id: 'amoghasiddhi', weight: 1, why: 'Resonant seat: Amoghasiddhi shares symbolic territory with wellness mind.' },
+
       { id: 'asklepios', weight: 1, why: 'Incubation sanctuaries were antiquity’s wellness retreats — sleep, dream, cure.' },
       { id: 'mengpo', weight: 1, why: 'Letting go as healing; the tea of release at the bridge.' },
       { id: 'om', weight: 2, why: 'The sacred syllable; the industry’s universal logo.' },
@@ -1049,6 +1375,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Biotechnology, longevity research, and regenerative medicine.',
     note: 'Immortality is the industry’s stated goal; the symbols of life and the immortals who achieved it are its mythic prospectus.',
     entries: [
+      { id: 'hiiaka', weight: 1, why: 'Resonant seat: Hiiaka shares symbolic territory with biotech longevity.' },
+
+      { id: 'gula', weight: 1, why: 'Resonant seat: Gula shares symbolic territory with biotech longevity.' },
+
       { id: 'kingu', weight: 1, why: "The Enuma Elish creates humankind from Kingu's blood; the figure is a proto-biotech origin myth, fitting synthetic-biology and regenerative-medicine narratives that transform biological material into new life." },
 
       { id: 'chimaira', weight: 2, why: 'Lion, goat, and serpent in one body — the ancients\' hybrid that became modern genetics\' word for a chimeric organism.' },
@@ -1078,6 +1408,20 @@ const INDUSTRY_GROUPS = [
     tagline: 'Astrology apps, tarot, and spiritual guidance.',
     note: 'The esoteric economy is a real, venture-funded market; crossroads magic and divination systems are its product line.',
     entries: [
+      { id: 'whiro', weight: 1, why: 'Resonant seat: Whiro shares symbolic territory with occult esoteric.' },
+
+      { id: 'veles', weight: 1, why: 'Resonant seat: Veles shares symbolic territory with occult esoteric.' },
+
+      { id: 'urcaguary', weight: 1, why: 'Resonant seat: Urcaguary shares symbolic territory with occult esoteric.' },
+
+      { id: 'supay', weight: 1, why: 'Resonant seat: Supay shares symbolic territory with occult esoteric.' },
+
+      { id: 'morana', weight: 1, why: 'Resonant seat: Morana shares symbolic territory with occult esoteric.' },
+
+      { id: 'marzanna', weight: 1, why: 'Resonant seat: Marzanna shares symbolic territory with occult esoteric.' },
+
+      { id: 'ahriman', weight: 1, why: 'Resonant seat: Ahriman shares symbolic territory with occult esoteric.' },
+
       { id: 'pazuzu', weight: 1, why: "Bronze heads and engraved plaques made Pazuzu a talismanic fixture of protective magic and later esoteric iconography." },
 
       { id: 'namtar', weight: 1, why: "As a chthonic minister of fate and plague, Namtar belongs to the underworld current in later magical and demonological traditions; the name carries weight in tarot, ritual, and esoteric publishing." },
@@ -1127,6 +1471,18 @@ const INDUSTRY_GROUPS = [
     tagline: 'Religious institutions, faith media, and devotional services.',
     note: 'These figures anchor living practice today — temples still fill, scriptures still sell, and founders still define traditions.',
     entries: [
+      { id: 'vasubandhu', weight: 2, why: 'Primary seat: Vasubandhu embodies abhidharma, yogacara — the core of faith.' },
+
+      { id: 'samantabhadra', weight: 2, why: 'Primary seat: Samantabhadra embodies universal good, practice — the core of faith.' },
+
+      { id: 'ratnasambhava', weight: 2, why: 'Primary seat: Ratnasambhava embodies jewel-born, south — the core of faith.' },
+
+      { id: 'maitreya', weight: 2, why: 'Primary seat: Maitreya embodies future buddha, loving-kindness — the core of faith.' },
+
+      { id: 'boddhisattva', weight: 2, why: 'Primary seat: Bodhisattva embodies enlightenment being, compassion — the core of faith.' },
+
+      { id: 'amoghasiddhi', weight: 2, why: 'Primary seat: Amoghasiddhi embodies infallible success, north — the core of faith.' },
+
       { id: "ratatoskr", weight: 1, why: "Travel-tooth — the small agent who keeps the cosmos' feud running on schedule." },
       { id: "pryderi", weight: 1, why: "Son of Rhiannon and Pwyll Pen Annwn — the heir of two worlds." },
       { id: "niflheimr", weight: 1, why: "The mist-world — the cold half of the void from which Ymir quickened." },
@@ -1227,6 +1583,40 @@ const INDUSTRY_GROUPS = [
     tagline: 'Books, journalism, and content platforms.',
     note: 'The ibis invented writing; speech became scripture; the media industry runs on what these figures created.',
     entries: [
+      { id: 'vohumanah', weight: 1, why: 'Resonant seat: VohuManah shares symbolic territory with publishing media.' },
+
+      { id: 'taaroa', weight: 1, why: 'Resonant seat: Taaroa shares symbolic territory with publishing media.' },
+
+      { id: 'sosin', weight: 1, why: 'Resonant seat: Sosin shares symbolic territory with publishing media.' },
+
+      { id: 'seonangshin', weight: 1, why: 'Resonant seat: Seonangshin shares symbolic territory with publishing media.' },
+
+      { id: 'sarnath', weight: 1, why: 'Resonant seat: Sarnath shares symbolic territory with publishing media.' },
+
+      { id: 'samshin', weight: 1, why: 'Resonant seat: Samshin shares symbolic territory with publishing media.' },
+
+      { id: 'poliahu', weight: 1, why: 'Resonant seat: Poliahu shares symbolic territory with publishing media.' },
+
+      { id: 'padmasambhava', weight: 1, why: 'Resonant seat: Padmasambhava shares symbolic territory with publishing media.' },
+
+      { id: 'moirai', weight: 1, why: 'Resonant seat: Moirai shares symbolic territory with publishing media.' },
+
+      { id: 'gravitas', weight: 1, why: 'Resonant seat: Gravitas shares symbolic territory with publishing media.' },
+
+      { id: 'dangun', weight: 1, why: 'Resonant seat: Dangun shares symbolic territory with publishing media.' },
+
+      { id: 'clementia', weight: 1, why: 'Resonant seat: Clementia shares symbolic territory with publishing media.' },
+
+      { id: 'asanga', weight: 1, why: 'Resonant seat: Asanga shares symbolic territory with publishing media.' },
+
+      { id: 'arhat', weight: 1, why: 'Resonant seat: Arhat shares symbolic territory with publishing media.' },
+
+      { id: 'arete', weight: 1, why: 'Resonant seat: Arete shares symbolic territory with publishing media.' },
+
+      { id: 'anima', weight: 1, why: 'Resonant seat: Anima shares symbolic territory with publishing media.' },
+
+      { id: 'animus', weight: 1, why: 'Resonant seat: Animus shares symbolic territory with publishing media.' },
+
       { id: 'lahamu', weight: 1, why: "The standard Babylonian Enuma Elish is her only witness; Lahamu survives as a named figure through the scribal tradition that copied and transmitted the creation epic." },
 
       { id: 'enkidu', weight: 1, why: "The Epic of Gilgamesh is the oldest known written epic; Enkidu is one of literature's first fully realized characters and remains a touchstone for retellings." },
@@ -1283,6 +1673,14 @@ const INDUSTRY_GROUPS = [
     tagline: 'Music, theatre, dance, and the performing arts.',
     note: 'The Muses’ lineage runs through these figures — song, dance, and theatre were invented as worship.',
     entries: [
+      { id: 'pachamama', weight: 1, why: 'Resonant seat: Pachamama shares symbolic territory with music arts.' },
+
+      { id: 'mago', weight: 1, why: 'Resonant seat: Mago shares symbolic territory with music arts.' },
+
+      { id: 'jowangshin', weight: 1, why: 'Resonant seat: Jowangshin shares symbolic territory with music arts.' },
+
+      { id: 'halmoni', weight: 1, why: 'Resonant seat: Halmoni shares symbolic territory with music arts.' },
+
       { id: 'bragi', weight: 2, why: 'Patron of skalds — the divine address for every court poet of the North.' },
       { id: 'aengus', weight: 1, why: "The kisses that become birds singing around lovers' heads — love as performance." },
       { id: 'dagda', weight: 2, why: 'Owner of the harp Uaithne — the three strains (grief, joy, sleep) are Irish music’s divine charter.' },
@@ -1328,6 +1726,38 @@ const INDUSTRY_GROUPS = [
     tagline: 'Video games, streaming franchises, and fantasy worlds.',
     note: 'The entertainment industry already licenses these realms and monsters — Ragnarök, Midgard, and Tiamat are shipped titles, not references.',
     entries: [
+      { id: 'zmeygorynych', weight: 1, why: 'Resonant seat: Zmey Gorynych shares symbolic territory with gaming entertainment.' },
+
+      { id: 'yongwang', weight: 1, why: 'Resonant seat: Yongwang shares symbolic territory with gaming entertainment.' },
+
+      { id: 'whiro', weight: 1, why: 'Resonant seat: Whiro shares symbolic territory with gaming entertainment.' },
+
+      { id: 'veles', weight: 1, why: 'Resonant seat: Veles shares symbolic territory with gaming entertainment.' },
+
+      { id: 'urcaguary', weight: 1, why: 'Resonant seat: Urcaguary shares symbolic territory with gaming entertainment.' },
+
+      { id: 'supay', weight: 1, why: 'Resonant seat: Supay shares symbolic territory with gaming entertainment.' },
+
+      { id: 'perseus', weight: 1, why: 'Resonant seat: Perseus shares symbolic territory with gaming entertainment.' },
+
+      { id: 'patroclus', weight: 1, why: 'Resonant seat: Patroklos shares symbolic territory with gaming entertainment.' },
+
+      { id: 'nafanua', weight: 1, why: 'Resonant seat: Nafanua shares symbolic territory with gaming entertainment.' },
+
+      { id: 'morana', weight: 1, why: 'Resonant seat: Morana shares symbolic territory with gaming entertainment.' },
+
+      { id: 'marzanna', weight: 1, why: 'Resonant seat: Marzanna shares symbolic territory with gaming entertainment.' },
+
+      { id: 'inanna', weight: 1, why: 'Resonant seat: Inanna shares symbolic territory with gaming entertainment.' },
+
+      { id: 'illapa', weight: 1, why: 'Resonant seat: Illapa shares symbolic territory with gaming entertainment.' },
+
+      { id: 'ekkeko', weight: 1, why: 'Resonant seat: Ekkeko shares symbolic territory with gaming entertainment.' },
+
+      { id: 'ahriman', weight: 1, why: 'Resonant seat: Ahriman shares symbolic territory with gaming entertainment.' },
+
+      { id: 'ajax', weight: 1, why: 'Resonant seat: Aias shares symbolic territory with gaming entertainment.' },
+
       { id: 'kingu', weight: 1, why: "Dragon consort, usurper of fate, and raid-boss archetype: Kingu is ready-made for games, novels, and table-top settings that need a fallen champion of chaos." },
 
       { id: 'enkidu', weight: 1, why: "The wild companion, the Cedar Forest quest, and the wrestling match are ready-made mechanics and character archetypes in fantasy and action games." },
@@ -1403,6 +1833,32 @@ const INDUSTRY_GROUPS = [
     tagline: 'Athletics, fitness brands, and competitive leagues.',
     note: 'Victory and strength are the industry’s entire product; one goddess’s name is on more shoes than any other word on earth.',
     entries: [
+      { id: 'zmeygorynych', weight: 1, why: 'Resonant seat: Zmey Gorynych shares symbolic territory with sports athletics.' },
+
+      { id: 'yongwang', weight: 1, why: 'Resonant seat: Yongwang shares symbolic territory with sports athletics.' },
+
+      { id: 'radagast', weight: 1, why: 'Resonant seat: Radagast shares symbolic territory with sports athletics.' },
+
+      { id: 'perseus', weight: 1, why: 'Resonant seat: Perseus shares symbolic territory with sports athletics.' },
+
+      { id: 'patroclus', weight: 1, why: 'Resonant seat: Patroklos shares symbolic territory with sports athletics.' },
+
+      { id: 'nafanua', weight: 1, why: 'Resonant seat: Nafanua shares symbolic territory with sports athletics.' },
+
+      { id: 'inanna', weight: 1, why: 'Resonant seat: Inanna shares symbolic territory with sports athletics.' },
+
+      { id: 'illapa', weight: 1, why: 'Resonant seat: Illapa shares symbolic territory with sports athletics.' },
+
+      { id: 'hebe', weight: 1, why: 'Resonant seat: Hebe shares symbolic territory with sports athletics.' },
+
+      { id: 'haumiatiketike', weight: 1, why: 'Resonant seat: Haumiatiketike shares symbolic territory with sports athletics.' },
+
+      { id: 'ekkeko', weight: 1, why: 'Resonant seat: Ekkeko shares symbolic territory with sports athletics.' },
+
+      { id: 'inaras', weight: 1, why: 'Resonant seat: Inaras shares symbolic territory with sports athletics.' },
+
+      { id: 'ajax', weight: 1, why: 'Resonant seat: Aias shares symbolic territory with sports athletics.' },
+
       { id: 'enkidu', weight: 1, why: "His wrestling match with Gilgamesh is the epic's founding contest of strength; the bond between rivals is one of athletics' oldest stories." },
 
       { id: "midir", weight: 1, why: "Fidchell — the game that decides a marriage; pride and skill at their oldest Irish table." },
@@ -1480,6 +1936,14 @@ const INDUSTRY_GROUPS = [
     tagline: 'Destinations, heritage tourism, and city branding.',
     note: 'Real cities, real ruins, and legendary destinations; the strongest place brands on earth are mythological names.',
     entries: [
+      { id: 'themis', weight: 1, why: 'Resonant seat: Themis shares symbolic territory with travel tourism.' },
+
+      { id: 'tangaroa', weight: 1, why: 'Resonant seat: Tangaroa shares symbolic territory with travel tourism.' },
+
+      { id: 'tagaloa', weight: 1, why: 'Resonant seat: Tagaloa shares symbolic territory with travel tourism.' },
+
+      { id: 'mamaqucha', weight: 1, why: 'Resonant seat: Mamaqucha shares symbolic territory with travel tourism.' },
+
       { id: "niamh", weight: 1, why: "The white horse over the western sea — the Otherworld journey at its most beautiful." },
       { id: "matholwch", weight: 1, why: "Bridegroom of Branwen — the marriage that joined and divided two islands." },
       { id: "deirdre", weight: 1, why: "The exile to Alba — the Scottish glens that keep her name as much as Ireland does." },
@@ -1568,6 +2032,28 @@ const INDUSTRY_GROUPS = [
     tagline: 'Property, home goods, and domestic services.',
     note: 'The hearth was the first address; home and family brands still invoke it.',
     entries: [
+      { id: 'xipe', weight: 1, why: 'Resonant seat: Xipe shares symbolic territory with real estate home.' },
+
+      { id: 'wamani', weight: 1, why: 'Resonant seat: Wamani shares symbolic territory with real estate home.' },
+
+      { id: 'simargl', weight: 1, why: 'Resonant seat: Simargl shares symbolic territory with real estate home.' },
+
+      { id: 'rongo', weight: 1, why: 'Resonant seat: Rongo shares symbolic territory with real estate home.' },
+
+      { id: 'pachamama', weight: 1, why: 'Resonant seat: Pachamama shares symbolic territory with real estate home.' },
+
+      { id: 'mago', weight: 1, why: 'Resonant seat: Mago shares symbolic territory with real estate home.' },
+
+      { id: 'jowangshin', weight: 1, why: 'Resonant seat: Jowangshin shares symbolic territory with real estate home.' },
+
+      { id: 'haumiatiketike', weight: 1, why: 'Resonant seat: Haumiatiketike shares symbolic territory with real estate home.' },
+
+      { id: 'haoma', weight: 1, why: 'Resonant seat: Haoma shares symbolic territory with real estate home.' },
+
+      { id: 'halmoni', weight: 1, why: 'Resonant seat: Halmoni shares symbolic territory with real estate home.' },
+
+      { id: 'baekdusan', weight: 1, why: 'Resonant seat: Baekdusan shares symbolic territory with real estate home.' },
+
       { id: 'hel', weight: 1, why: 'Benches strewn with arm-rings, mead brewed for the guest — her hall receives the dead as its permanent residents.' },
       { id: 'hestia', weight: 2, why: 'The hearth itself; the center of every home and city.' },
       { id: 'bastet', weight: 2, why: 'Home and domestic blessing; the household’s protector.' },
@@ -1597,6 +2083,12 @@ const INDUSTRY_GROUPS = [
     tagline: 'Pet products, veterinary care, and animal brands.',
     note: 'The cat goddess of the Nile anchors a hundred-billion-dollar industry, and the guardianship of animals is older than every kennel club.',
     entries: [
+      { id: 'radagast', weight: 1, why: 'Resonant seat: Radagast shares symbolic territory with petcare.' },
+
+      { id: 'hebe', weight: 1, why: 'Resonant seat: Hebe shares symbolic territory with petcare.' },
+
+      { id: 'inaras', weight: 1, why: 'Resonant seat: Inaras shares symbolic territory with petcare.' },
+
       { id: "ratatoskr", weight: 2, why: "The squirrel of Yggdrasill — the tree's own courier, up and down without rest." },
       { id: "hati", weight: 1, why: "Hróðvitnir's son — the pursuing wolf of the Ironwood brood." },
       { id: "garmr", weight: 2, why: "The best of hounds, Grímnismál says — the watchdog of Helheim itself." },
@@ -1623,6 +2115,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Banking, investment, and commercial enterprise.',
     note: 'Wealth deities and merchant patrons; fortune has a name in every tradition and a temple in every port.',
     entries: [
+      { id: 'veles', weight: 1, why: 'Resonant seat: Veles shares symbolic territory with finance commerce.' },
+
+      { id: 'belobog', weight: 2, why: 'Primary seat: Belobog embodies light, good, fortune — the core of finance commerce.' },
+
       { id: "draupnir", weight: 2, why: "The dripper of wealth — eight new rings every ninth night, increase by nature rather than conquest." },
       { id: 'pluto', weight: 1, why: 'Plutus the giver; wealth from the earth personified.' },
       { id: 'tyche', weight: 2, why: 'Fortune personified, enthroned with cornucopia, rudder, and wheel — the goddess of every market’s rise and turn.' },
@@ -1691,6 +2187,10 @@ const INDUSTRY_GROUPS = [
     tagline: 'Law, courts, and regulatory compliance.',
     note: 'Truth, oaths, and cosmic order; the law’s oldest symbols are divine persons.',
     entries: [
+      { id: 'themis', weight: 1, why: 'Resonant seat: Themis shares symbolic territory with legal justice.' },
+
+      { id: 'lada', weight: 1, why: 'Resonant seat: Lada shares symbolic territory with legal justice.' },
+
       { id: 'marduk', weight: 2, why: "The Enuma Elish makes Marduk the one who 'decrees destinies' (parāsu), and Hammurabi's law code presents him as the source of the king's mandate to 'cause justice to prevail in the land.'" },
 
       { id: "nisien", weight: 2, why: "The peace-maker twin — his presence softens hosts; mediation as nature, not office." },
@@ -1830,6 +2330,24 @@ const INDUSTRY_GROUPS = [
     tagline: 'Museums, archives, libraries, and the record-keeping professions.',
     note: 'Memory itself has patrons in every pantheon — the keepers of the record, from the Muse of History to the divine scribes.',
     entries: [
+      { id: 'zmeygorynych', weight: 1, why: 'Resonant seat: Zmey Gorynych shares symbolic territory with history archives.' },
+
+      { id: 'yongwang', weight: 1, why: 'Resonant seat: Yongwang shares symbolic territory with history archives.' },
+
+      { id: 'perseus', weight: 1, why: 'Resonant seat: Perseus shares symbolic territory with history archives.' },
+
+      { id: 'patroclus', weight: 1, why: 'Resonant seat: Patroklos shares symbolic territory with history archives.' },
+
+      { id: 'nafanua', weight: 1, why: 'Resonant seat: Nafanua shares symbolic territory with history archives.' },
+
+      { id: 'inanna', weight: 1, why: 'Resonant seat: Inanna shares symbolic territory with history archives.' },
+
+      { id: 'illapa', weight: 1, why: 'Resonant seat: Illapa shares symbolic territory with history archives.' },
+
+      { id: 'ekkeko', weight: 1, why: 'Resonant seat: Ekkeko shares symbolic territory with history archives.' },
+
+      { id: 'ajax', weight: 1, why: 'Resonant seat: Aias shares symbolic territory with history archives.' },
+
       { id: 'ninlil', weight: 1, why: "The Sumerian poem Enlil and Ninlil (ETCSL 1.2.1) and temple hymns from Nippur make her a key figure in the reconstructed archive of Mesopotamian religion." },
 
       { id: 'lahmu', weight: 1, why: "The figure survives only in cuneiform ritual texts, seal impressions, and glazed reliefs; reconstructing Lahmu is an exercise in Near Eastern philology and archaeology." },
@@ -1881,6 +2399,40 @@ const INDUSTRY_GROUPS = [
     tagline: 'Schools, universities, and research institutions.',
     note: 'Wisdom has patrons in every pantheon; knowledge work is the modern priesthood of these figures.',
     entries: [
+      { id: 'vohumanah', weight: 2, why: 'Primary seat: VohuManah embodies good mind, cattle — the core of education.' },
+
+      { id: 'taaroa', weight: 2, why: 'Primary seat: Taaroa embodies creator, supreme being — the core of education.' },
+
+      { id: 'sosin', weight: 2, why: 'Primary seat: Sosin embodies messenger, revealer — the core of education.' },
+
+      { id: 'seonangshin', weight: 2, why: 'Primary seat: Seonangshin embodies village guardian, boundary — the core of education.' },
+
+      { id: 'sarnath', weight: 2, why: 'Primary seat: Sarnath embodies first sermon, deer park — the core of education.' },
+
+      { id: 'samshin', weight: 2, why: 'Primary seat: Samshin embodies birth, triple spirits — the core of education.' },
+
+      { id: 'poliahu', weight: 2, why: 'Primary seat: Poliahu embodies snow, mauna kea — the core of education.' },
+
+      { id: 'padmasambhava', weight: 2, why: 'Primary seat: Padmasambhava embodies lotus-born, vajrayana, tibet — the core of education.' },
+
+      { id: 'moirai', weight: 2, why: 'Primary seat: Moirai embodies fate, destiny, thread — the core of education.' },
+
+      { id: 'gravitas', weight: 2, why: 'Primary seat: Gravitas embodies weight, seriousness, dignity — the core of education.' },
+
+      { id: 'dangun', weight: 2, why: 'Primary seat: Dangun embodies founder of korea, first king — the core of education.' },
+
+      { id: 'clementia', weight: 2, why: 'Primary seat: Clementia embodies mercy, forgiveness — the core of education.' },
+
+      { id: 'asanga', weight: 2, why: 'Primary seat: Asanga embodies yogacara, mind-only — the core of education.' },
+
+      { id: 'arhat', weight: 2, why: 'Primary seat: Arhat embodies worthy one, saint — the core of education.' },
+
+      { id: 'arete', weight: 2, why: 'Primary seat: Arete embodies excellence, virtue — the core of education.' },
+
+      { id: 'anima', weight: 2, why: 'Primary seat: Anima embodies soul, breath, life force — the core of education.' },
+
+      { id: 'animus', weight: 2, why: 'Primary seat: Animus embodies mind, spirit, courage — the core of education.' },
+
       { id: 'lahamu', weight: 1, why: "Her significance is almost entirely cosmogonical and textual; every study of the Enuma Elish and Mesopotamian religion must begin with Lahamu and Lahmu." },
 
       { id: 'alalu', weight: 1, why: "His myth is a standard comparative example in courses on ancient Near Eastern religion, Indo-European succession mythology, and Hittite civilization." },
@@ -1944,6 +2496,20 @@ const INDUSTRY_GROUPS = [
     tagline: 'Philosophy, ethics boards, and standards bodies.',
     note: 'First principles, necessity, and cosmic order; the concepts entire ethical frameworks are built from.',
     entries: [
+      { id: 'vasubandhu', weight: 1, why: 'Resonant seat: Vasubandhu shares symbolic territory with philosophy ethics.' },
+
+      { id: 'themis', weight: 1, why: 'Resonant seat: Themis shares symbolic territory with philosophy ethics.' },
+
+      { id: 'samantabhadra', weight: 1, why: 'Resonant seat: Samantabhadra shares symbolic territory with philosophy ethics.' },
+
+      { id: 'ratnasambhava', weight: 1, why: 'Resonant seat: Ratnasambhava shares symbolic territory with philosophy ethics.' },
+
+      { id: 'maitreya', weight: 1, why: 'Resonant seat: Maitreya shares symbolic territory with philosophy ethics.' },
+
+      { id: 'boddhisattva', weight: 1, why: 'Resonant seat: Bodhisattva shares symbolic territory with philosophy ethics.' },
+
+      { id: 'amoghasiddhi', weight: 1, why: 'Resonant seat: Amoghasiddhi shares symbolic territory with philosophy ethics.' },
+
       { id: 'ashavahista', weight: 2, why: 'Good thought, good word, good deed — the oldest ethics syllabus.' },
       { id: 'styx', weight: 1, why: 'The binding word; the philosophy of promises.' },
       { id: 'orpheus', weight: 1, why: 'The look back; arts oldest parable of limits.' },
@@ -2028,6 +2594,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Startups, incubators, and venture capital.',
     note: 'Beginnings have patrons; the remover of obstacles is invoked at more business launches than any logo.',
     entries: [
+      { id: 'belobog', weight: 1, why: 'Resonant seat: Belobog shares symbolic territory with startups venture.' },
+
       { id: 'monokeros', weight: 2, why: 'The unicorn: venture capital’s own word for the billion-dollar rarity.' },
       { id: 'pangu', weight: 2, why: 'Creation from chaos; the first founder pushing heaven and earth apart.' },
       { id: 'phanes', weight: 1, why: 'The first-shining draft; every first version before the real world begins.' },
@@ -2109,6 +2677,20 @@ const INDUSTRY_GROUPS = [
     tagline: 'Funeral care, memorials, and legacy services.',
     note: 'The dead have lords and the living have duties; the underworld’s geography is the industry’s oldest map.',
     entries: [
+      { id: 'whiro', weight: 2, why: 'Primary seat: Whiro embodies darkness, evil — the core of funerary memorial.' },
+
+      { id: 'veles', weight: 2, why: 'Primary seat: Veles embodies cattle, commerce, underworld — the core of funerary memorial.' },
+
+      { id: 'urcaguary', weight: 2, why: 'Primary seat: Urcaguary embodies underworld jewels — the core of funerary memorial.' },
+
+      { id: 'supay', weight: 2, why: 'Primary seat: Supay embodies underworld, death — the core of funerary memorial.' },
+
+      { id: 'morana', weight: 2, why: 'Primary seat: Morana embodies winter, death — the core of funerary memorial.' },
+
+      { id: 'marzanna', weight: 2, why: 'Primary seat: Marzanna embodies winter, death, rebirth — the core of funerary memorial.' },
+
+      { id: 'ahriman', weight: 2, why: 'Primary seat: Ahriman embodies evil, destruction, lies — the core of funerary memorial.' },
+
       { id: 'nergal', weight: 2, why: "By marriage to Ereshkigal, Nergal becomes king of the underworld — a ruler of the dead and the geography of grief." },
 
       { id: 'namtar', weight: 2, why: "Namtar is the executive minister of the Mesopotamian underworld — the vizier who delivers the decree of death. Memorial services, estate planning, and end-of-life platforms can credibly anchor on the figure who personifies mortality as a formal process." },
@@ -2229,6 +2811,16 @@ const INDUSTRY_GROUPS = [
     tagline: 'Weddings, childcare, and family services.',
     note: 'Marriage and childbirth have patronesses in every pantheon; the family economy is their household.',
     entries: [
+      { id: 'mamaquilla', weight: 1, why: 'Resonant seat: Mama Quilla shares symbolic territory with wedding family.' },
+
+      { id: 'makemake', weight: 1, why: 'Resonant seat: Makemake shares symbolic territory with wedding family.' },
+
+      { id: 'lono', weight: 1, why: 'Resonant seat: Lono shares symbolic territory with wedding family.' },
+
+      { id: 'lada', weight: 1, why: 'Resonant seat: Lada shares symbolic territory with wedding family.' },
+
+      { id: 'kamapuaa', weight: 1, why: 'Resonant seat: Kamapuaa shares symbolic territory with wedding family.' },
+
       { id: 'frigg', weight: 2, why: 'The divine mother of the northern pantheon — her grief in Fensalir is mythology’s most famous mourning.' },
       { id: 'okuninushi', weight: 1, why: 'The matchmaker of Izumo — marriage is among his gifts; the shrine that blesses unions bears his name.' },
       { id: 'sita', weight: 2, why: 'The Rāmāyaṇa’s devoted wife, whose fidelity survived fire — the Hindu ideal of the marriage bond personified.' },
@@ -2264,6 +2856,16 @@ const INDUSTRY_GROUPS = [
     tagline: 'Dating apps, relationship services, and romance.',
     note: 'Love and desire have names in every tradition; the industry sells what these figures cause.',
     entries: [
+      { id: 'mamaquilla', weight: 1, why: 'Resonant seat: Mama Quilla shares symbolic territory with dating relationships.' },
+
+      { id: 'makemake', weight: 1, why: 'Resonant seat: Makemake shares symbolic territory with dating relationships.' },
+
+      { id: 'lono', weight: 1, why: 'Resonant seat: Lono shares symbolic territory with dating relationships.' },
+
+      { id: 'lada', weight: 1, why: 'Resonant seat: Lada shares symbolic territory with dating relationships.' },
+
+      { id: 'kamapuaa', weight: 1, why: 'Resonant seat: Kamapuaa shares symbolic territory with dating relationships.' },
+
       { id: "niamh", weight: 2, why: "Niamh Chinn Óir — she carries Oisín to Tír na nÓg on the white horse Embarr; love across the sea." },
       { id: "nanna", weight: 2, why: "Wife of Baldr — she dies of grief on his pyre; devotion proven at the fire." },
       { id: "midir", weight: 2, why: "Tochmarc Étaíne — the Otherworld host who wins Étaín from a mortal king at the game board." },
@@ -2320,6 +2922,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Restaurants, food service, and the table as an institution.',
     note: 'Every restaurant is a hearth made public; grain, bread, and the feast have had patrons since the first harvest.',
     entries: [
+      { id: 'daedalus', weight: 1, why: 'Resonant seat: Daidalos shares symbolic territory with food hospitality.' },
+
       { id: 'dumuzid', weight: 1, why: "The pastoral economy supplies milk, cheese, and meat; Dumuzid's sacred-marriage feast turns the products of the flock into the institutional table." },
 
       { id: 'hestia', weight: 2, why: 'The hearth — the original kitchen fire; every restaurant is her flame carried into public.' },
@@ -2346,6 +2950,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Shops, marketplaces, and e-commerce — where goods meet buyers.',
     note: 'The agora was the first marketplace and it had a god; every storefront, digital or stone, still works his trade.',
     entries: [
+      { id: 'belobog', weight: 1, why: 'Resonant seat: Belobog shares symbolic territory with retail marketplaces.' },
+
       { id: 'hermes', weight: 2, why: 'God of the marketplace itself — commerce, exchange, and the deal well made.' },
       { id: 'tyche', weight: 1, why: 'Fortune in trade; the luck every merchant courts.' },
       { id: 'lakshmi', weight: 1, why: 'Prosperity arriving; the abundance every shop hopes to welcome through its doors.' },
@@ -2360,6 +2966,40 @@ const INDUSTRY_GROUPS = [
     tagline: 'Scholarly Unicode restorations of mythic names for modern identity.',
     note: 'These entries are recent flagship restorations that recover original scripts, stress, and length in registrable Unicode domains.',
     entries: [
+      { id: 'vohumanah', weight: 1, why: 'Resonant seat: VohuManah shares symbolic territory with mythic restoration.' },
+
+      { id: 'taaroa', weight: 1, why: 'Resonant seat: Taaroa shares symbolic territory with mythic restoration.' },
+
+      { id: 'sosin', weight: 1, why: 'Resonant seat: Sosin shares symbolic territory with mythic restoration.' },
+
+      { id: 'seonangshin', weight: 1, why: 'Resonant seat: Seonangshin shares symbolic territory with mythic restoration.' },
+
+      { id: 'sarnath', weight: 1, why: 'Resonant seat: Sarnath shares symbolic territory with mythic restoration.' },
+
+      { id: 'samshin', weight: 1, why: 'Resonant seat: Samshin shares symbolic territory with mythic restoration.' },
+
+      { id: 'poliahu', weight: 1, why: 'Resonant seat: Poliahu shares symbolic territory with mythic restoration.' },
+
+      { id: 'padmasambhava', weight: 1, why: 'Resonant seat: Padmasambhava shares symbolic territory with mythic restoration.' },
+
+      { id: 'moirai', weight: 1, why: 'Resonant seat: Moirai shares symbolic territory with mythic restoration.' },
+
+      { id: 'gravitas', weight: 1, why: 'Resonant seat: Gravitas shares symbolic territory with mythic restoration.' },
+
+      { id: 'dangun', weight: 1, why: 'Resonant seat: Dangun shares symbolic territory with mythic restoration.' },
+
+      { id: 'clementia', weight: 1, why: 'Resonant seat: Clementia shares symbolic territory with mythic restoration.' },
+
+      { id: 'asanga', weight: 1, why: 'Resonant seat: Asanga shares symbolic territory with mythic restoration.' },
+
+      { id: 'arhat', weight: 1, why: 'Resonant seat: Arhat shares symbolic territory with mythic restoration.' },
+
+      { id: 'arete', weight: 1, why: 'Resonant seat: Arete shares symbolic territory with mythic restoration.' },
+
+      { id: 'anima', weight: 1, why: 'Resonant seat: Anima shares symbolic territory with mythic restoration.' },
+
+      { id: 'animus', weight: 1, why: 'Resonant seat: Animus shares symbolic territory with mythic restoration.' },
+
       { id: 'alalu', weight: 2, why: "Alalu's name and story are obscure outside Assyriological and Hittite scholarship; restoring him is exactly the kind of mythic recovery PuniCodex exists to perform." },
 
       { id: 'omphalos', weight: 2, why: 'The navel-stone as a symbol of centered origin; a natural flagship for restoring the exact spelling of a classical name.' },

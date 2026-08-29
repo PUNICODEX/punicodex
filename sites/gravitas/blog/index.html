@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Greek to Unicode:… | Gravitas Blog | PUNICODEX</title>
+    <meta name="description" content="From Greek to Unicode: why Gravitas is more than a domain name.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/gravitas/blog/">
+    <meta property="og:title" content="From Greek to Unicode: the journey of Gravitas | Gravitas Blog | PUNICODEX">
+    <meta property="og:description" content="From Greek to Unicode: why Gravitas is more than a domain name.">
+    <meta property="og:url" content="https://punicodex.com/gravitas/blog/">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-28">
+    <meta property="article:section" content="Blog">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/gravitas.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/gravitas.jpg">
+    <meta name="twitter:title" content="From Greek to Unicode: the journey of Gravitas | Gravitas Blog | PUNICODEX">
+    <meta name="twitter:description" content="From Greek to Unicode: why Gravitas is more than a domain name.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "From Greek to Unicode: the journey of Gravitas",
+        "description": "From Greek to Unicode: why Gravitas is more than a domain name.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-28",
+        "dateModified": "2026-08-28",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/gravitas/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Gravitas", "gravitas", "greek mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Greek restoration"],
+        "url": "https://punicodex.com/gravitas/blog/",
+        "image": "https://punicodex.com/assets/og/gravitas.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Gravitas",
+      "item": "https://punicodex.com/gravitas/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/gravitas/blog/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="gravitas-canvas" data-effect="particles" data-primary="#D4AF37" data-secondary="#4169E1" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/gravitas_logolockup.webp" type="image/webp"><img src="../assets/gravitas_logolockup.png" alt="Gravitas" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (Home → Pantheon → temple; the tab crumb lives in the JSON-LD trail) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/gravitas/">Gravitas</a></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Gravitas — Blog</p>
+                <p class="hero-title reveal-up">From Greek to Unicode: the journey of Gravitas</p>
+                <p class="hero-subtitle reveal-up">Weight, Seriousness, Dignity</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 2</span>
+                    <span class="meta-domain">Gravitas</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/gravitas_mascot.webp" type="image/webp"><img src="../assets/gravitas_mascot.webp" alt="Gravitas — Weight, Seriousness, Dignity" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-28">2026-08-28</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>13 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#etymology-and-meaning">Etymology and Meaning</a></li>
+                <li><a href="#the-greek-background-of-a-roman-virtue">The Greek Background of a Roman Virtue</a></li>
+                <li><a href="#cicero-and-the-rhetorical-tradition">Cicero and the Rhetorical Tradition</a></li>
+                <li><a href="#gravitas-in-the-roman-empire">Gravitas in the Roman Empire</a></li>
+                <li><a href="#the-medieval-and-renaissance-afterlife">The Medieval and Renaissance Afterlife</a></li>
+                <li><a href="#the-modern-politics-of-seriousness">The Modern Politics of Seriousness</a></li>
+                <li><a href="#gravitas-in-modern-institutions">Gravitas in Modern Institutions</a></li>
+                <li><a href="#why-the-capital-matters">Why the Capital Matters</a></li>
+                <li><a href="#restoration-in-context">Restoration in Context</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>From Greek to Unicode: the journey of Gravitas</h1>
+<p>Some words travel so far that their original accent is forgotten by the time they reach the address bar. <strong>Gravitas</strong> is one of them. To most modern readers it is a Latin noun, a stylistic compliment, a quality claimed by institutions that wish to sound ancient. But a name is never only its modern use. Behind the flattened ASCII string <em>gravitas</em> lies a longer story: a Roman virtue that absorbed Greek philosophical weight, a term that shaped rhetoric, ethics, politics, and art, and finally a restoration that returns the capital and dignity the plain form has lost. This post is the biography of that word, told from its Roman origins through its medieval survival, its modern prestige, and its new life as a restored Unicode domain. The journey is not only linguistic. It is cultural, ethical, and technological all at once.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Gravitas</li>
+  <li><strong>ASCII form:</strong> gravitas</li>
+  <li><strong>Meaning:</strong> "Weight, importance"</li>
+  <li><strong>Domain of influence:</strong> Weight, Seriousness, Dignity</li>
+  <li><strong>Pantheon:</strong> Greek</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Gravitas</strong> (<em>gravitas</em>) — Weight, Seriousness, Dignity · Weight, importance — carries a Latin root that became one of the central moral terms of Roman public life. It belonged to the cluster of virtues — <em>gravitas</em>, <em>dignitas</em>, <em>pietas</em>, <em>virtus</em> — that defined how a Roman citizen, especially a statesman, was expected to comport himself. The word is built from <em>gravis</em>, "heavy," and its sense ranges from literal weight to metaphorical seriousness, authority, and moral substance. A person with <em>gravitas</em> was not merely solemn; they were grounded, reliable, possessed of the kind of weight that made their words and actions matter in the judgment of history.</p>
+<p>PuniCodex restores the name as <strong>Gravitas</strong> and serves its temple at <a href="https://punicodex.com/gravitas/">its temple</a>. Because the plain ASCII form preserves the letters but none of the typographic dignity of a proper name, the restoration is treated as Tier 2: the information is present in the spelling, but the original written form cannot be fully recovered through diacritics alone. The plain ASCII form <em>gravitas</em> survives as a modern convenience imposed by the early domain-name system; the restoration, not the fallback, is the form the project defends as philologically complete. The capital letter alone changes how the word meets the eye.</p>
+<h2 id="etymology-and-meaning">Etymology and Meaning</h2>
+<p>The Latin noun <em>gravitas</em> derives from the adjective <em>gravis</em>, meaning "heavy," "weighty," "serious," or "important." The root is Indo-European, related to Greek βαρύς (<em>barys</em>, "heavy") and English "grave." In its earliest Latin use, <em>gravis</em> described physical weight: a heavy stone, a heavy burden, a heavy sound. By extension it came to describe what presses on the mind or spirit: grief (<em>gravitas animi</em>), severity, or the weight of responsibility. The semantic movement from body to mind is one of the characteristic patterns of Latin abstract nouns, and <em>gravitas</em> is among the most successful examples.</p>
+<p>From this adjective, <em>gravitas</em> names the abstract quality of weightiness. Cicero treats it as one of the cardinal virtues of the orator and the statesman. In <em>De Oratore</em> he connects it to authority and restraint; in his philosophical works he links it to steadfastness and moral consistency. The word is not about pomposity. It is about the seriousness that comes from recognizing that one's words and deeds have consequences. A light or frivolous person lacks <em>gravitas</em>; so does someone whose solemnity is merely performative. True <em>gravitas</em> is earned through action, judgment, and endurance. It is the quality that makes a person worth listening to when the matter is serious.</p>
+<p>The semantic field of <em>gravitas</em> overlaps with <em>dignitas</em> but is not identical. <em><a href="/dignitas/" class="crosslink" data-crosslink="dignitas">Dignitas</a></em> emphasizes rank and worthiness of honor; <em>gravitas</em> emphasizes the inner weight that makes a person worthy of respect in the first place. A young magistrate might possess <em>dignitas</em> by office, but <em>gravitas</em> was expected to grow with age and experience. Roman culture therefore associated it particularly with the elder statesman, the general who had seen battle, the senator who had weathered political storms. The word carried an implicit narrative: the young man might have promise, but only time and trial could give him the weight that commands a room.</p>
+<h2 id="the-greek-background-of-a-roman-virtue">The Greek Background of a Roman Virtue</h2>
+<p>Although <em>gravitas</em> is a Latin word, the ideal it names was not purely Roman. Greek culture had its own vocabulary of seriousness, above all σεμνότης (<em>semnotēs</em>, "dignity, gravity") and αἰδώς (<em>aidōs</em>, "respect, restraint"). Roman writers were well aware of these Greek precedents. Cicero's discussions of <em>gravitas</em> are in dialogue with Greek rhetorical theory, especially the Peripatetic and Stoic traditions that treated emotional moderation and ethical consistency as central to the good life. The Roman virtue was therefore a translation as well as an invention.</p>
+<p>The synthesis worked because both cultures admired the person who could remain steady under pressure. The Greek <em>sōphrosynē</em> and the Roman <em>gravitas</em> share a family resemblance: both name the ability to judge rightly when passion or circumstance presses for a hasty decision. Roman thinkers were less interested than Greek philosophers in defining the virtue abstractly; they were more interested in displaying it through the conduct of exemplary men. The elder Cato, Scipio Africanus, and later Augustus were all evaluated by the standard of <em>gravitas</em>. The word thus became a tool of political biography.</p>
+<p>This Greco-Roman background is important for understanding why <em>gravitas</em> survived. It was not merely a Roman nationalist ideal. It was a point of contact between two cultures that together shaped the civilization of the Mediterranean. When later Europeans revived the term, they were reviving a bilingual concept, one that carried both philosophical depth and political application. The classical world spoke with one voice about the value of weightiness, even if it used different words.</p>
+<h2 id="cicero-and-the-rhetorical-tradition">Cicero and the Rhetorical Tradition</h2>
+<p>No Roman writer did more to establish <em>gravitas</em> as a central ideal than Cicero. In his rhetorical treatises, the word names the quality that makes an orator credible. Delivery, argument, and character all contribute to <em>gravitas</em>, but the most important element is the speaker's ethical standing. An audience will not trust a man whose life contradicts his words. <em>Gravitas</em> is therefore not a technique but the public manifestation of a life lived with seriousness.</p>
+<p>Cicero contrasted <em>gravitas</em> with several vices. It is not severity taken to excess, which becomes harshness; nor is it mere slowness of speech, which becomes boredom. The orator must be serious without being dull, weighty without being ponderous. This balancing act made <em>gravitas</em> a difficult virtue to acquire and an easy one to counterfeit. Rhetorical manuals from Cicero onward warned against the false gravity of the pompous speaker, whose slow delivery and elevated vocabulary substitute appearance for substance.</p>
+<p>The Ciceronian ideal influenced Roman education for centuries. Boys learning to speak in public were trained to modulate their voice, control their gestures, and choose words that conveyed authority. The goal was not to imitate Cicero's style alone but to internalize the balance he represented. <em>Gravitas</em> was thus both a personal quality and a curriculum. It was something you studied, practiced, and hoped eventually to embody.</p>
+<h2 id="gravitas-in-the-roman-empire">Gravitas in the Roman Empire</h2>
+<p>Under the Empire, <em>gravitas</em> took on new meanings. The emperor was expected to possess it, but so were his advisors and generals. Tacitus uses the word to evaluate the conduct of senators under the Julio-Claudians, often with irony. Those who displayed too much <em>gravitas</em> risked arousing suspicion; those who displayed too little risked contempt. The virtue became a dangerous performance in a court where every quality could be read as a threat.</p>
+<p>Imperial literature also explored the darker sides of weightiness. Seneca's tragedies show characters whose rigid gravity leads to cruelty. Stoic <em>gravitas</em> could become indifference to suffering, and the ideal of constancy could excuse inaction. The Roman genius for self-criticism meant that <em>gravitas</em> was questioned even as it was celebrated. The word remained central, but its users knew that it could be misused.</p>
+<p>Despite these tensions, <em>gravitas</em> retained its prestige. It was one of the qualities that distinguished the Roman ruling class from the peoples they governed. Barbarians might be brave, Greeks might be clever, but Romans were grave. The idea persisted long after the political structures that created it had disappeared, surviving in the languages and institutions that inherited Roman authority.</p>
+<h2 id="the-medieval-and-renaissance-afterlife">The Medieval and Renaissance Afterlife</h2>
+<p>After the fall of the Western Empire, <em>gravitas</em> entered Christian Latin as a quality of bishops, abbots, and teachers. The Church Fathers adapted the classical ideal, replacing the Roman statesman with the Christian pastor. A bishop's <em>gravitas</em> came from his spiritual office and his moral example rather than from his military or political achievements. The word thus survived the transformation of ancient culture into medieval Christianity.</p>
+<p>Renaissance humanists revived the classical sense of the term. Petrarch, Bruni, and later Erasmus used <em>gravitas</em> to describe the dignity of the learned man. The ideal influenced education, art, and political theory. The Renaissance courtier was expected to combine grace with gravity, lightness with weight. Castiglione's <em>Book of the Courtier</em> is in part a meditation on how to balance these qualities in a single person.</p>
+<p>By the early modern period, "gravity" had entered English with a range of meanings: physical weight, serious manner, and solemn dignity. "Gravitas" remained a learned borrowing, often used to signal classical education. Both words preserved the Roman association between weight and moral authority. When Milton or Dryden used "gravity," they were invoking a tradition that stretched back to Cicero and beyond.</p>
+<h2 id="the-modern-politics-of-seriousness">The Modern Politics of Seriousness</h2>
+<p>Today "gravitas" appears most often in journalism and political commentary. A candidate is said to have gravitas; a judge is praised for it; an actor projects it. The usage is looser than Cicero's, but the underlying idea is the same: the quality that makes a person seem authoritative and trustworthy. In democratic cultures, where authority cannot be taken for granted, gravitas becomes a valuable political resource.</p>
+<p>Critics have noted that gravitas is often a gendered and racialized concept. The same steady demeanor that earns one person praise for gravity may earn another criticism for coldness or arrogance. The ideal can be invoked to exclude those who do not fit a narrow image of seriousness. These critiques do not invalidate the concept, but they remind us that it is culturally constructed and unevenly applied. Like all classical virtues, gravitas must be examined as well as admired.</p>
+<p>Even so, the need for gravitas in public life remains. In a media environment that rewards speed and sensation, the person who speaks carefully and acts deliberately performs a valuable service. The Roman ideal, however imperfect, still names something worth cultivating. It is the counterweight to frivolity, the quality that keeps public discourse anchored in reality.</p>
+<h2 id="gravitas-in-modern-institutions">Gravitas in Modern Institutions</h2>
+<p>The word has also become a favorite of institutions. Universities, law firms, museums, and newspapers all claim gravitas, sometimes with justification and sometimes as branding. The claim is usually a promise: here, matters are taken seriously, standards are maintained, the long view is preserved. When the promise is kept, the institution earns the word. When it is hollow, the word becomes a target of mockery.</p>
+<p>This institutional use shows that <em>gravitas</em> has become a form of cultural capital. To possess it is to be taken seriously without having to demand respect. This is why the word appears so often in eulogies, endorsements, and job descriptions. It names the quality that cannot be reduced to credentials or achievements but that makes both credible.</p>
+<p>At the same time, the institutionalization of gravitas risks draining it of content. If every institution claims gravity, the word loses its discriminating power. The restoration of the name <strong>Gravitas</strong> as a distinct domain is therefore a small act of resistance against this dilution. It reminds us that the word once meant something specific and that it can mean something specific again.</p>
+<h2 id="why-the-capital-matters">Why the Capital Matters</h2>
+<p>The ASCII form <em>gravitas</em> is functionally useful but typographically thin. It loses the capital that marks a name, the historical dignity of the Latin noun, and the visual weight implied by the word itself. The restoration <strong>Gravitas</strong> returns the initial capital and treats the name as a proper entity rather than a common string. This is not a matter of decoration. A name that means "weight" should not be made to look weightless. Typography carries meaning, and the lowercase form subtly undermines the concept it represents.</p>
+<p>Punycode makes this restoration possible in the domain system. The Unicode form can be registered, routed, and displayed in modern browsers, restoring to the address bar a small piece of the classical tradition. The temple at <a href="https://punicodex.com/gravitas/">punicodex.com/gravitas</a> is therefore more than a page. It is an argument that the old virtues can still occupy space in the new infrastructure, spelled with the dignity they deserve. The domain is a tiny territory where the classical world has not been flattened.</p>
+<p>The classification Tier 2 reflects the limits of the restoration. Unlike Greek names that can recover acute accents or macrons, <em>Gravitas</em> does not rely on diacritics for its identity. Its restoration is chiefly one of capitalization and recognition. Yet even that modest recovery matters. It distinguishes the proper name from the common keyword, the temple from the search result, the cultural artifact from the string. In a world of flattened text, any return of weight is worth making. The journey from <em>gravitas</em> to <strong>Gravitas</strong> is short in characters but long in meaning.</p>
+<h2 id="restoration-in-context">Restoration in Context</h2>
+<p>The decision to restore a name like Gravitas is part of a larger effort to prevent the classical tradition from disappearing into the generic noise of the internet. Every day, millions of words are reduced to strings, indexed by algorithms, and displayed without history. In that environment, a name that once carried philosophical weight can easily become just another keyword. Restoration is a way of resisting that flattening, however partially.</p>
+<p>The PuniCodex project treats names as more than identifiers. Each flagship temple is an argument that the original form of a name deserves to be preserved, displayed, and used. For Greek names, that often means recovering accents and breathing marks. For Latin names like Gravitas, it means preserving the capital and the dignity of the proper noun. The principle is the same in both cases: a name is a cultural artifact, and artifacts should be handled with care.</p>
+<p>The restored form also has practical consequences. Search engines, AI models, and knowledge graphs all learn from the text they encounter. When the original form of a name is available, these systems can make better connections between ancient sources and modern references. The restoration therefore serves scholarship as well as symbolism. It makes the classical world easier to find, link, and understand.</p>
+<p>In the end, the value of restoring Gravitas lies in the reminder it offers. The word asks us to take things seriously, to speak with weight, to recognize that some matters deserve more than a casual response. A domain name is a small thing, but it is also a place. By restoring Gravitas, the project claims a small piece of the internet for the classical virtue of seriousness. That is worth doing, even if the restoration is modest. Weight, after all, begins with small things.</p>
+<p>Every restored name is a small vote for the idea that the past deserves a place in the present. Gravitas is a modest restoration by the standards of Greek diacritics, but its modesty is appropriate to the virtue it names. True weight does not announce itself loudly. It simply remains, steady and unavoidable, in the address bar of a browser that can finally hold it. The lowercase form may be convenient, but the restored form is the one that tells the truth.</p>
+<p>Every restored name is a small vote for the idea that the past deserves a place in the present. Gravitas is a modest restoration by the standards of Greek diacritics, but its modesty is appropriate to the virtue it names. True weight does not announce itself loudly. It simply remains, steady and unavoidable, in the address bar of a browser that can finally hold it. The lowercase form may be convenient, but the restored form is the one that tells the truth.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/apollon/">Apóllōn</a> — Light, Music, Prophecy</li>
+  <li><a href="/hekate/">Hekátē</a> — Magic, Crossroads, Moon</li>
+  <li><a href="/nike/">Níkē</a> — Victory</li>
+  <li><a href="/acheron/">Achérōn</a> — River of Woe</li>
+  <li><a href="/achilleus/">Achilleús</a> — War, Glory, Rage</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+  <li>Homer, <em>Iliad</em> and <em>Odyssey</em> (8th c. BCE).</li>
+  <li>Hesiod, <em>Theogony</em> (8th–7th c. BCE).</li>
+  <li>Henry George Liddell &amp; Robert Scott, <em>A Greek-English Lexicon</em> (1843; rev. Jones, 1940).</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">greek</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Gravitas collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 176 in the series: <a href="./restoration/">How Gravitas was rebuilt, mark by mark</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">The appointments Gravitas made — and who is keeping them</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">Gravitas: canonical, contested, and the false forms on record</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">Gravitas</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">GRAVITAS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/gravitas_logomark.webp" type="image/webp"><img src="../assets/gravitas_logomark.png" alt="Gravitas logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

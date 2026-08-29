@@ -1,0 +1,1 @@
+curate via Commons: Mesopotamian glyptic art, cylinder seals, and votive reliefs depicting Inanna/Ištar with lions, the eight-pointed star, and the reed-bundle symbol are available on Wikimedia Commons under open licenses.

@@ -1,0 +1,6 @@
+{
+  "canvasId": "hwanung-canvas",
+  "label": "Descent Through Mist",
+  "description": "Celestial mist, drifting clouds, and a slow beam from above.",
+  "code": "if (reduced) return;\nctx.clearRect(0, 0, width, height);\nconst clouds = []; for (let i = 0; i < 8; i++) clouds.push({ x: Math.random(), y: Math.random() * 0.6, s: 0.7 + Math.random() * 0.8 });\nlet t = 0;\nfunction draw() {\n  if (reduced) return;\n  ctx.clearRect(0, 0, width, height);\n  ctx.globalAlpha = 0.1;\n  ctx.fillStyle = '#9fb8d0';\n  for (const c of clouds) {\n    const x = ((c.x + t * 0.00002 * c.s) % 1.3 - 0.15) * width;\n    ctx.beginPath(); ctx.ellipse(x, c.y * height, 130 * c.s, 45 * c.s, 0, 0, Math.PI * 2); ctx.fill();\n  }\n  ctx.globalAlpha = 0.18;\n  const g = ctx.createLinearGradient(width * 0.5, 0, width * 0.5, height * 0.5);\n  g.addColorStop(0, '#e8ddaa'); g.addColorStop(1, 'transparent');\n  ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(width * 0.48, 0); ctx.lineTo(width * 0.52, 0); ctx.lineTo(width * 0.6, height * 0.5); ctx.lineTo(width * 0.4, height * 0.5); ctx.fill();\n  ctx.globalAlpha = 1;\n  t++; requestAnimationFrame(draw);\n}\ndraw();"
+}

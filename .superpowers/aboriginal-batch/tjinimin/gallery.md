@@ -1,0 +1,1 @@
+honestZero: Murrinh-Patha sacred narratives and associated imagery are culturally restricted and are not represented as open art-historical depictions in Wikimedia Commons. The figure of Tjinimin is maintained through initiation, ceremony, and oral transmission by Daly River custodians rather than through reproducible visual iconography. No suitable Commons images are known.

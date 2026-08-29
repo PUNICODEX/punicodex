@@ -1,0 +1,1 @@
+honestZero: Anima is an abstract Latin concept (breath, soul, life-force) rather than a mythological figure with a fixed iconographic tradition; personifications of the soul in Western art are usually labelled Psyche or Spiritus and do not correspond directly to this entry.

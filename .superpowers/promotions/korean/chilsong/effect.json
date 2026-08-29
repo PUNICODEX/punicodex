@@ -1,0 +1,6 @@
+{
+  "canvasId": "chilsong-canvas",
+  "label": "Seven Stars",
+  "description": "Seven bright stars connected by faint lines drift slowly across a dark sky.",
+  "code": "if (reduced) return;\nctx.clearRect(0, 0, width, height);\nconst stars = [{x:0.25,y:0.35},{x:0.30,y:0.34},{x:0.35,y:0.36},{x:0.40,y:0.38},{x:0.42,y:0.45},{x:0.44,y:0.52},{x:0.46,y:0.58}];\nlet t = 0;\nfunction draw() {\n  if (reduced) return;\n  ctx.clearRect(0, 0, width, height);\n  ctx.globalAlpha = 0.5; ctx.fillStyle = '#e8f0ff';\n  for (const s of stars) {\n    const x = s.x * width + Math.sin(t * 0.0005 + s.x * 10) * 4;\n    const y = s.y * height + Math.cos(t * 0.0005 + s.y * 10) * 4;\n    ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI * 2); ctx.fill();\n  }\n  ctx.globalAlpha = 0.2; ctx.strokeStyle = '#a8c0e8'; ctx.lineWidth = 1; ctx.beginPath();\n  for (let i = 0; i < stars.length; i++) { const s=stars[i]; const x=s.x*width; const y=s.y*height; if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.stroke();\n  ctx.globalAlpha = 1;\n  t++; requestAnimationFrame(draw);\n}\ndraw();"
+}

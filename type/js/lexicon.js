@@ -2766,7 +2766,8 @@ const LEXICON = [
       "protoGloss": "Law, right",
       "derivation": "Law, right (from τίθημι)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "hebe",
@@ -2808,7 +2809,8 @@ const LEXICON = [
         "type": "same",
         "note": "Short epsilon"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "pan",
@@ -2932,7 +2934,8 @@ const LEXICON = [
       "protoGloss": "Apportioners",
       "derivation": "Apportioners (from μείρομαι)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "olympos",
@@ -7779,7 +7782,7 @@ const LEXICON = [
   },
   {
     "id": "marduk",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "marduk",
     "unicode": "Marduk",
     "greek": "—",
@@ -8154,7 +8157,8 @@ const LEXICON = [
       "protoGloss": "Peace, news",
       "derivation": "Peace, news (from Proto-Polynesian *longo)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "tangaroa",
@@ -8225,7 +8229,8 @@ const LEXICON = [
       "protoGloss": "God of the sea",
       "derivation": "God of the sea (from Proto-Polynesian *Taŋaroa)",
       "certainty": "attested"
-    }
+    },
+    "hasAdSite": true
   },
   {
     "id": "pele",
@@ -8265,7 +8270,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tokyo",
@@ -9828,7 +9834,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "metztli",
@@ -9886,7 +9893,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "shango",
@@ -10517,7 +10525,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "perun",
@@ -10563,7 +10572,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "veles",
@@ -10609,7 +10619,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "radagast",
@@ -10673,7 +10684,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "peleus",
@@ -11327,7 +11339,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ajax",
@@ -11369,7 +11382,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nestor",
@@ -13433,7 +13447,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "inti",
@@ -13473,7 +13488,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "viracocha",
@@ -13543,7 +13559,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "pachamama",
@@ -13613,7 +13630,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "perseus",
@@ -13673,7 +13691,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "orpheus",
@@ -14562,7 +14581,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "eurydice",
@@ -19792,7 +19812,8 @@ const LEXICON = [
         "type": "same",
         "note": "e same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hubris",
@@ -22785,7 +22806,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ninhursag",
@@ -22909,7 +22931,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nergal",
@@ -22962,7 +22985,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ereshkigal",
@@ -23180,7 +23204,7 @@ const LEXICON = [
   },
   {
     "id": "dumuzid",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "dumuzid",
     "unicode": "Dumuzid",
     "greek": "—",
@@ -23361,7 +23385,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "pazuzu",
@@ -23414,7 +23439,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ninurta",
@@ -23473,7 +23499,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "humbaba",
@@ -27147,7 +27174,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ku",
@@ -27235,7 +27263,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kamapuaa",
@@ -27306,7 +27335,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "poliahu",
@@ -27365,7 +27395,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tawhirimatea",
@@ -27555,7 +27586,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ruaumoko",
@@ -27667,7 +27699,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "taaroa",
@@ -27720,7 +27753,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "tagaloa",
@@ -27779,7 +27813,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nafanua",
@@ -27838,7 +27873,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "makemake",
@@ -27903,7 +27939,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "svarog",
@@ -27956,7 +27993,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "stribog",
@@ -28015,7 +28053,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "simargl",
@@ -28074,7 +28113,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mokosh",
@@ -28168,7 +28208,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "marzanna",
@@ -28233,7 +28274,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "morana",
@@ -28286,7 +28328,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "matzemlya",
@@ -28806,7 +28849,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ometecuhtli",
@@ -31526,7 +31570,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "khshathravairya",
@@ -32115,7 +32160,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mamaqucha",
@@ -32186,7 +32232,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "illapa",
@@ -32239,7 +32286,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "pachacamac",
@@ -32363,7 +32411,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "urcaguary",
@@ -32434,7 +32483,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ekkeko",
@@ -32487,7 +32537,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "wamani",
@@ -32540,7 +32591,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "anima",
@@ -32587,7 +32639,8 @@ const LEXICON = [
         "type": "same",
         "note": "a same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "animus",
@@ -32640,7 +32693,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "numen",
@@ -32905,7 +32959,8 @@ const LEXICON = [
         "type": "same",
         "note": "s same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "dignitas",
@@ -33118,7 +33173,8 @@ const LEXICON = [
         "type": "same",
         "note": "a same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "pyr",
@@ -41141,7 +41197,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "lahmu",
@@ -41188,7 +41245,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "lahamu",
@@ -41241,7 +41299,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "anshar",
@@ -41351,7 +41410,7 @@ const LEXICON = [
   },
   {
     "id": "adad",
-    hasAdSite: true,
+    "hasAdSite": true,
     "ascii": "adad",
     "unicode": "Adad",
     "greek": "—",
@@ -42627,7 +42686,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "amoghasiddhi",
@@ -42722,7 +42782,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "maitreya",
@@ -42793,7 +42854,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "manjushri",
@@ -42966,7 +43028,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "ksitigarbha",
@@ -43441,7 +43504,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "vasubandhu",
@@ -43524,7 +43588,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "boddhisattva",
@@ -43619,7 +43684,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "arhat",
@@ -43672,7 +43738,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "nirvana",
@@ -44622,7 +44689,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "dangun",
@@ -44675,7 +44743,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hwanung",
@@ -44734,7 +44803,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "samshin",
@@ -44793,7 +44863,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "halmoni",
@@ -44852,7 +44923,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "jowangshin",
@@ -44929,7 +45001,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "seonangshin",
@@ -45012,7 +45085,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "yongwang",
@@ -45077,7 +45151,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mago",
@@ -45118,7 +45193,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "chilsong",
@@ -45183,7 +45259,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sosin",
@@ -45230,7 +45307,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "baekdusan",
@@ -45301,7 +45379,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "baal",
@@ -46049,7 +46128,8 @@ const LEXICON = [
         "type": "drop",
         "note": "Dropped"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "telipinu",
@@ -46114,7 +46194,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "inaras",
@@ -46167,7 +46248,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "hannahannas",
@@ -46427,7 +46509,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "mencius",
@@ -47909,7 +47992,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "lumbini",
@@ -50067,7 +50151,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "namtar",
@@ -50120,7 +50205,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "toci",
@@ -50273,7 +50359,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "verethragna",
@@ -57249,7 +57336,8 @@ const LEXICON = [
         "type": "same",
         "note": "Alpha"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "kalki",
@@ -57763,7 +57851,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "parashurama",
@@ -57991,7 +58080,8 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
-    ]
+    ],
+    "hasAdSite": true
   },
   {
     "id": "sigurd",

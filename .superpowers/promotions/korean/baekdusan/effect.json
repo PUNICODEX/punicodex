@@ -1,0 +1,6 @@
+{
+  "canvasId": "baekdusan-canvas",
+  "label": "Snow Peak",
+  "description": "Gentle snowfall over a dark volcanic silhouette with a luminous summit.",
+  "code": "if (reduced) return;\nctx.clearRect(0, 0, width, height);\nconst flakes = []; for (let i = 0; i < 100; i++) flakes.push({ x: Math.random(), y: Math.random(), r: 0.6 + Math.random() * 1.5, speed: 0.2 + Math.random() * 0.5 });\nlet t = 0;\nfunction draw() {\n  if (reduced) return;\n  ctx.clearRect(0, 0, width, height);\n  ctx.globalAlpha = 0.15; ctx.fillStyle = '#5a6a75';\n  ctx.beginPath(); ctx.moveTo(width * 0.2, height); ctx.lineTo(width * 0.5, height * 0.35); ctx.lineTo(width * 0.8, height); ctx.fill();\n  ctx.globalAlpha = 0.8; ctx.fillStyle = '#e8eef2';\n  for (const f of flakes) {\n    const y = (f.y + t * f.speed * 0.0005) % 1;\n    const x = (f.x + Math.sin(t * 0.001 + f.y * 5) * 0.02) % 1; if (x < 0) x += 1;\n    ctx.beginPath(); ctx.arc(x * width, y * height, f.r, 0, Math.PI * 2); ctx.fill();\n  }\n  ctx.globalAlpha = 0.3; ctx.fillStyle = '#d8e4ec';\n  ctx.beginPath(); ctx.moveTo(width * 0.35, height * 0.52); ctx.lineTo(width * 0.5, height * 0.28); ctx.lineTo(width * 0.65, height * 0.52); ctx.fill();\n  ctx.globalAlpha = 1;\n  t++; requestAnimationFrame(draw);\n}\ndraw();"
+}

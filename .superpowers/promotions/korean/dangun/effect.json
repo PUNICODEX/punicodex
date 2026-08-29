@@ -1,0 +1,6 @@
+{
+  "canvasId": "dangun-canvas",
+  "label": "Sandalwood and Mountain Mist",
+  "description": "Drifting mist around a sacred peak with falling sandalwood leaves.",
+  "code": "if (reduced) return;\nctx.clearRect(0, 0, width, height);\nconst leaves = []; for (let i = 0; i < 45; i++) leaves.push({ x: Math.random(), y: Math.random(), r: 2 + Math.random() * 3, dx: (Math.random() - 0.5) * 0.2, dy: 0.2 + Math.random() * 0.3 });\nconst mists = []; for (let i = 0; i < 6; i++) mists.push({ x: Math.random(), y: 0.5 + Math.random() * 0.3, s: 0.8 + Math.random() * 0.6 });\nlet t = 0;\nfunction draw() {\n  if (reduced) return;\n  ctx.clearRect(0, 0, width, height);\n  ctx.globalAlpha = 0.15;\n  ctx.fillStyle = '#8c9fa8';\n  for (const m of mists) {\n    const x = ((m.x + t * 0.00002) % 1.4 - 0.2) * width;\n    ctx.beginPath(); ctx.ellipse(x, m.y * height, 120 * m.s, 35 * m.s, 0, 0, Math.PI * 2); ctx.fill();\n  }\n  ctx.globalAlpha = 0.7;\n  ctx.fillStyle = '#c2a386';\n  for (const l of leaves) {\n    const x = (l.x + t * l.dx * 0.01) % 1 * width; const y = (l.y + t * l.dy * 0.01) % 1 * height;\n    ctx.beginPath(); ctx.ellipse(x, y, l.r * 1.5, l.r, Math.random(), 0, Math.PI * 2); ctx.fill();\n  }\n  ctx.globalAlpha = 1;\n  t++; requestAnimationFrame(draw);\n}\ndraw();"
+}

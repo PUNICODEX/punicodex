@@ -28,6 +28,8 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 const { LEXICON } = require('../type/js/lexicon.js');
+const { ARCHETYPES } = require('../js/archetypes-v2.js');
+const BUILT_IDS = new Set((ARCHETYPES || []).filter((a) => a.built).map((a) => a.id));
 
 let passed = 0;
 let failed = 0;
@@ -138,7 +140,11 @@ test('base temple related grids rotate (no first-6 bias, no identical grids)', (
     grids.get(entry.pantheon).set(entry.id, links.join(','));
     checked++;
   }
-  assert.ok(checked > 500, `only ${checked} base-temple grids found`);
+  const expectedBaseCount = LEXICON.length - BUILT_IDS.size;
+  assert.ok(
+    checked >= expectedBaseCount - 5,
+    `only ${checked} base-temple grids found (expected ~${expectedBaseCount})`
+  );
   let identicalPairs = 0;
   for (const perEntry of grids.values()) {
     const keys = [...perEntry.values()];
@@ -379,7 +385,11 @@ test('base temple /search/?q= links are rel="nofollow" (crawl budget)', () => {
     }
     if (searchLinks.length) checked++;
   }
-  assert.ok(checked > 500, `only ${checked} base temples with /search/?q= links found`);
+  const expectedBaseCount2 = LEXICON.length - BUILT_IDS.size;
+  assert.ok(
+    checked >= expectedBaseCount2 - 5,
+    `only ${checked} base temples with /search/?q= links found (expected ~${expectedBaseCount2})`
+  );
 });
 
 test('robots.txt: /api/ disallowed with a docs exception, /auth/ + search disallowed', () => {

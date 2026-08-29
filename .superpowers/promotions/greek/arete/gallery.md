@@ -1,0 +1,1 @@
+curate via Commons: Arete appears in Greek vase painting and sculpture, especially in scenes of the Judgment of Paris and allegories of virtue; personifications of Arete are well represented in Classical and Hellenistic art on Wikimedia Commons.

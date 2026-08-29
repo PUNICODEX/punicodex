@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-START -->
+<link rel="stylesheet" href="/css/university-collaborators.css?v=3" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/university-collaborators.css?v=3"></noscript>
+<script src="/js/university-collaborators.js?v=3" defer></script>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-HEAD-END -->
+
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The many faces of Belobog | Belobog Blog | PUNICODEX</title>
+    <meta name="description" content="From Slavic transcription to Unicode: why Belobog is more than a domain name.">
+    <link rel="preload" href="/assets/fonts/cinzel-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="canonical" href="https://punicodex.com/belobog/blog/">
+    <meta property="og:title" content="The many faces of Belobog | Belobog Blog | PUNICODEX">
+    <meta property="og:description" content="From Slavic transcription to Unicode: why Belobog is more than a domain name.">
+    <meta property="og:url" content="https://punicodex.com/belobog/blog/">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-08-28">
+    <meta property="article:section" content="Blog">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/og/belobog.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://punicodex.com/assets/og/belobog.jpg">
+    <meta name="twitter:title" content="The many faces of Belobog | Belobog Blog | PUNICODEX">
+    <meta name="twitter:description" content="From Slavic transcription to Unicode: why Belobog is more than a domain name.">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "The many faces of Belobog",
+        "description": "From Slavic transcription to Unicode: why Belobog is more than a domain name.",
+        "author": {
+            "@type": "Organization",
+            "name": "PuniCodex Team"
+        },
+        "datePublished": "2026-08-28",
+        "dateModified": "2026-08-28",
+        "publisher": {
+            "@type": "Organization",
+            "name": "PUNICODEX",
+            "url": "https://punicodex.com"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://punicodex.com/belobog/blog/"
+        },
+        "articleSection": "Blog",
+        "keywords": ["Belobog", "belobog", "slavic mythology", "Unicode domain", "original script", "PuniCodex", "IDN", "Slavic transcription restoration"],
+        "url": "https://punicodex.com/belobog/blog/",
+        "image": "https://punicodex.com/assets/og/belobog.jpg"
+    }
+    </script>
+    
+    <style>
+        .blog-article { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem; color: var(--white-dim, #e8e4dc); line-height: 1.8; font-size: 1.08rem; text-rendering: optimizeLegibility; }
+        .blog-article h1, .blog-article h2, .blog-article h3 { font-family: var(--font-display, Cinzel, serif); color: var(--white, #fff); line-height: 1.3; scroll-margin-top: 96px; }
+        .blog-article h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin: 0 0 1.5rem; }
+        .blog-article h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--primary, #d4af37); margin: 3rem 0 1.1rem; padding-top: 2rem; border-top: 1px solid rgba(212,175,55,0.18); }
+        .blog-article h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); margin: 2.2rem 0 0.9rem; color: var(--white, #fff); }
+        .blog-article p { margin-bottom: 1.25rem; }
+        .blog-body > h1 + p::first-letter { font-family: var(--font-display, Cinzel, serif); font-size: 3.4em; line-height: 0.9; float: left; padding: 0.08em 0.12em 0 0; color: var(--primary, #d4af37); }
+        .blog-article ul { margin: 0 0 1.25rem 1.5rem; padding: 0; }
+        .blog-article li { margin-bottom: 0.5rem; }
+        .blog-article li::marker { color: var(--primary, #d4af37); }
+        .blog-article a { color: var(--primary, #d4af37); text-decoration: underline; text-underline-offset: 3px; }
+        .blog-article a:hover { color: var(--primary-bright, #f0d878); }
+        .blog-article strong { color: var(--white, #fff); }
+        .blog-toc { margin: 0 0 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-toc-title { font-family: var(--font-display, Cinzel, serif); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary, #d4af37); margin: 0 0 0.9rem; }
+        .blog-toc-list { margin: 0; padding-left: 1.4rem; columns: 2; column-gap: 2rem; }
+        .blog-toc-list li { margin-bottom: 0.35rem; font-size: 0.92rem; break-inside: avoid; }
+        .blog-toc-list li::marker { color: var(--primary, #d4af37); }
+        .blog-toc-list a { color: var(--white-dim, #e8e4dc); text-decoration: none; border-bottom: 1px dotted rgba(212,175,55,0.35); }
+        .blog-toc-list a:hover { color: var(--primary-bright, #f0d878); border-bottom-color: var(--primary-bright, #f0d878); }
+        .blog-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--white-dim, #e8e4dc); }
+        .blog-meta-sep { opacity: 0.4; }
+        .blog-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
+        .blog-tag { display: inline-flex; align-items: center; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(212,175,55,0.25); color: var(--primary, #d4af37); font-size: 0.8rem; }
+        .blog-cta { margin-top: 3rem; padding: 1.75rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); background: rgba(255,255,255,0.03); }
+        .blog-cta-title { font-family: var(--font-display, Cinzel, serif); color: var(--primary, #d4af37); margin-bottom: 0.5rem; }
+        .blog-cta a { color: var(--primary-bright, #f0d878); }
+        @media (max-width: 640px) { .blog-article { padding: 2rem 1rem; } .blog-toc-list { columns: 1; } }
+        .temple-breadcrumb { position: relative; z-index: 5; max-width: var(--container-max, 1200px); margin: 0 auto; padding: calc(var(--global-strip-height, 54px) + var(--nav-height, 110px) + 0.75rem) 1.5rem 0; font-size: 0.78rem; letter-spacing: 0.04em; }
+        .temple-breadcrumb-list { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0; padding: 0; }
+        .temple-breadcrumb-list li { display: flex; align-items: center; gap: 0.4rem; color: var(--white-dim, #a0a0a0); }
+        .temple-breadcrumb-list li + li::before { content: '\203A'; color: var(--primary, #d4af37); opacity: 0.55; }
+        .temple-breadcrumb-list a { color: var(--white-dim, #a0a0a0); text-decoration: none; }
+        .temple-breadcrumb-list a:hover { color: var(--primary-bright, #f0d878); }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#0A0A0C">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://punicodex.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pantheon",
+      "item": "https://punicodex.com/pantheon/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Belobog",
+      "item": "https://punicodex.com/belobog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Blog",
+      "item": "https://punicodex.com/belobog/blog/"
+    }
+  ]
+}
+    </script>
+<!-- PUNICODEX-HERALD-BEACON-START -->
+<link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
+<script src="/js/herald-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-HERALD-BEACON-END -->
+<!-- PUNICODEX-COOKIE-CONSENT-START -->
+<link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/cookie-consent.css?v=1"></noscript>
+<script src="/js/cookie-consent.js?v=1" defer></script>
+<!-- PUNICODEX-COOKIE-CONSENT-END -->
+</head>
+<body>
+    <!-- Global Strip -->
+    <div class="global-strip">
+        <div class="global-strip-inner">
+            <a href="https://punicodex.com/" class="global-brand"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-gold-solid.png" alt="PuniCodex" width="560" height="58"></picture></a>
+            <div class="global-links">
+                <a href="https://punicodex.com/pantheon/">Pantheon</a>
+                <a href="https://punicodex.com/lexicon/">Lexicon</a>
+                <a href="https://punicodex.com/connections/">Connections</a>
+                <a href="https://punicodex.com/type/">Type</a>
+                <a href="https://punicodex.com/search/">Search</a>
+                <a href="https://punicodex.com/tiers/">Tiers</a>
+                <a href="https://punicodex.com/about/">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Canvas -->
+    <canvas id="belobog-canvas" data-effect="sun" data-primary="#C0C0C0" data-secondary="#228B22" aria-hidden="true"></canvas>
+
+    <!-- Tab Navigation -->
+    <nav class="main-nav tab-nav" id="tab-nav">
+        <div class="nav-inner">
+            <a href="../" class="nav-logo">
+                <picture><source srcset="../assets/belobog_logolockup.webp" type="image/webp"><img src="../assets/belobog_logolockup.png" alt="Belobog" class="nav-logo-img" width="1536" height="1024"></picture>
+            </a>
+            <div class="nav-links tab-nav-links">
+                <a href="../" class="nav-link">Home</a>
+                <a href="../lore/index.html" class="nav-link">Lore</a>
+                <a href="../gallery/index.html" class="nav-link">Gallery</a>
+                <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+                <a href="../patterns/index.html" class="nav-link">Patterns</a>
+                <a href="./" class="nav-link active">Blog</a>
+                <a href="../scholars/index.html" class="nav-link">Scholars</a>
+                <a href="../creatives/index.html" class="nav-link">Creatives</a>
+                <a href="../patron/index.html" class="nav-link">Patrons</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Visible breadcrumb (Home → Pantheon → temple; the tab crumb lives in the JSON-LD trail) -->
+    <nav class="temple-breadcrumb" aria-label="breadcrumb">
+        <ol class="temple-breadcrumb-list">
+            <li><a href="https://punicodex.com/">Home</a></li>
+            <li><a href="https://punicodex.com/pantheon/">Pantheon</a></li>
+            <li><a href="https://punicodex.com/belobog/">Belobog</a></li>
+        </ol>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
+        <a href="../" class="nav-link">Home</a>
+        <a href="../lore/index.html" class="nav-link">Lore</a>
+        <a href="../gallery/index.html" class="nav-link">Gallery</a>
+        <a href="../lore/extended/index.html" class="nav-link">Extended</a>
+        <a href="../patterns/index.html" class="nav-link">Patterns</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../scholars/index.html" class="nav-link">Scholars</a>
+        <a href="../creatives/index.html" class="nav-link">Creatives</a>
+        <a href="../patron/index.html" class="nav-link">Patrons</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-eyebrow reveal-up">Belobog — Blog</p>
+                <p class="hero-title reveal-up">The many faces of Belobog</p>
+                <p class="hero-subtitle reveal-up">Light, Good, Fortune</p>
+                <div class="hero-meta reveal-up">
+                    <span class="meta-badge">Tier 2</span>
+                    <span class="meta-domain">Belobog</span>
+                </div>
+            </div>
+            <div class="hero-mascot reveal-scale">
+                <picture><source srcset="../assets/belobog_mascot.webp" type="image/webp"><img src="../assets/belobog_mascot.webp" alt="Belobog — Light, Good, Fortune" class="mascot-img" width="1024" height="1536"></picture>
+                <div class="mascot-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <article class="blog-article">
+        <div class="blog-meta reveal-up">
+            <span>By PuniCodex Team</span>
+            <span class="blog-meta-sep">&middot;</span>
+            <time datetime="2026-08-28">2026-08-28</time>
+            <span class="blog-meta-sep">&middot;</span>
+            <span>13 min read</span>
+        </div>
+        <nav class="blog-toc reveal-up" aria-label="Table of contents">
+            <h2 class="blog-toc-title">In this article</h2>
+            <ol class="blog-toc-list">
+                <li><a href="#at-a-glance">At a Glance</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#etymology-and-meaning">Etymology and Meaning</a></li>
+                <li><a href="#mythology-and-domain">Mythology and Domain</a></li>
+                <li><a href="#cultural-legacy">Cultural Legacy</a></li>
+                <li><a href="#unicode-restoration-and-conclusion">Unicode Restoration and Conclusion</a></li>
+                <li><a href="#related-names">Related Names</a></li>
+                <li><a href="#sources">Sources</a></li>
+            </ol>
+        </nav>
+        <div class="blog-body reveal-up">
+            <h1>The many faces of Belobog</h1>
+<p>In the dimly lit world of reconstructed Slavic religion, where written records are sparse and the Christian overlay is thick, the figure of <strong>Belobog</strong> stands out as a rare point of consensus and intrigue. His name alone — usually rendered as "White God" — is enough to conjure an immediate image: a luminous deity, the antithesis of darkness and misfortune, a divine guarantor of good harvests, fair weather, and moral order. Yet the more one studies Belobog, the more complicated the picture becomes. He is at once one of the most famous and one of the most elusive gods in the Slavic pantheon, a figure whose very existence has been debated by scholars for more than a century. This post traces the many faces of Belobog: the name and its etymology, the sparse but suggestive mythological record, the cultural afterlife that has kept him alive in modern imagination, and the digital restoration that now lets the name live again as a Unicode domain.</p>
+<p>The story of Belobog is in many ways the story of how we know what we know about Slavic paganism. Unlike the Greeks or Romans, the pre-Christian Slavs left almost no written accounts of their own religion. What we have comes from Christian chroniclers, foreign travelers, linguistic reconstructions, and the scattered survivals of folk custom. In this fragmented landscape, a name like Belobog shines with a particular brightness because it seems to make sense immediately. But that very intelligibility is a warning sign. The gods we reconstruct most easily are sometimes the ones we reconstruct most wrongly. Belobog demands both imaginative sympathy and scholarly caution.</p>
+<p>For the modern visitor encountering Belobog through PuniCodex, the name offers an entry point into a world that is at once familiar and strange. The idea of a white god of goodness resonates across many cultures, yet the specifics of Slavic belief remain difficult to recover. The restoration does not pretend to solve these difficulties. Instead, it preserves the name as a site of inquiry, a place where scholars, practitioners, and the curious can gather around a single luminous word.</p>
+<h2 id="at-a-glance">At a Glance</h2>
+<ul>
+  <li><strong>Restored name:</strong> Belobog</li>
+  <li><strong>ASCII form:</strong> belobog</li>
+  <li><strong>Meaning:</strong> "White god"</li>
+  <li><strong>Domain of influence:</strong> Light, Good, Fortune</li>
+  <li><strong>Pantheon:</strong> Slavic</li>
+  <li><strong>Classification:</strong> Tier 2</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p><strong>Belobog</strong> belongs to the Slavic tradition, where he is catalogued under the domains of light, good, and fortune. His name is a transparent compound of Common Slavic <em>bel-</em> ("white, bright, light") and <em>bog</em> ("god"), giving the literal meaning "White God" or "Bright God." In the binary logic that medieval Slavic sources sometimes impose on the cosmos, Belobog is the luminous counterpart to <a href="/chernobog/" class="crosslink" data-crosslink="chernobog">Chernobog</a>, the "Black God" of darkness and calamity. This pairing has fascinated scholars, artists, and modern pagans alike, even though the direct evidence for Belobog worship is extremely limited.</p>
+<p>The fascination is understandable. Human beings seem predisposed to imagine cosmic order as a struggle between light and darkness, and Slavic religion offers a particularly stark version of that duality. Where other Indo-European traditions speak of sky-gods and chthonic adversaries, the Slavic pair Belobog and Chernobog appears to reduce the conflict to a moral polarity: white versus black, good versus evil, fortune versus misfortune. Whether this polarity reflects actual pre-Christian theology or later Christian reinterpretation is one of the central questions in Slavic religious studies. Some scholars argue that the binary is a medieval Christian imposition, a way of making sense of pagan gods in terms of angels and demons. Others maintain that the duality has deep roots in Indo-European cosmology, where solar and chthonic forces are perpetually in tension.</p>
+<p>What is not in doubt is the symbolic power of the name. <strong>Belobog</strong> is instantly comprehensible to any speaker of a Slavic language. Russian <em>belyy</em>, Polish <em>biały</em>, Czech <em>bílý</em>, Serbian <em>beli</em> — all descend from the same root and all evoke whiteness, brightness, and purity. The second element, <em>bog</em>, is equally universal: it is the Slavic word for "god," cognate with Sanskrit <em>bhaga-</em> ("dispenser, lord") and related to the Iranian <em>baga</em>. So Belobog is, quite literally, the "White God," a deity whose very name announces his nature.</p>
+<p>The idea of a white god is not unique to the Slavs. Many cultures have luminous deities associated with the sun, the sky, and moral goodness. The Egyptian Ra, the Greek Apollo, the Iranian Ahura Mazda, and the Norse <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> all share something of this luminous quality. Belobog can be understood as the Slavic contribution to this widespread type, though with his own local coloring. He is not necessarily a sun god in the strict sense; he is a god of the bright, the good, and the fortunate, a more general category of beneficence.</p>
+<p>In the Slavic folk imagination, whiteness carries a cluster of associations that go beyond color. White is the color of baptism, of weddings, of newborn lambs, of the first snow that promises the renewal of the earth. It is the color of purity and new beginnings. A "White God" would therefore be associated not only with light but with all the positive transitions of life: birth, marriage, harvest, and the turning of the year toward spring. This cluster of associations gives Belobog a warmth and humanity that the abstract binary of good and evil does not fully capture.</p>
+<h2 id="etymology-and-meaning">Etymology and Meaning</h2>
+<p>The etymology of Belobog is almost embarrassingly clear, which is one reason scholars have been suspicious of it. In a field where most divine names are opaque, contested, or borrowed from neighboring languages, a transparent compound like "White God" looks almost too good to be true. The suspicion is warranted. Many cultures have descriptive epithets for deities — the "Bright One," the "Thunderer," the "Lord of the Underworld" — but these epithets do not always become proper names. It is possible that <em>Belobog</em> was never a proper divine name at all, but rather a descriptive label used by Christians to refer to a pagan god of light, or even a generic term for any benevolent deity.</p>
+<p>The earliest attestation of the name comes from the writings of the sixteenth-century German monk and chronicler Helmold of Bosau, who described the Slavs as worshipping a good god and an evil god. Helmold did not give the Slavic names, but later writers supplied them: the good god was Belobog, the evil one Chernobog. This connection gave Belobog an appearance of antiquity, but it also tied him to a Christian framework. By the time the name appears in Slavic sources, it may already have been filtered through centuries of Christian commentary.</p>
+<p>Despite these uncertainties, the name carries genuine semantic weight. In Slavic folk belief, white is strongly associated with benevolent supernatural forces. White animals, white garments, and white foods appear in countless rituals of blessing and protection. A "white god" would naturally be understood as a source of good fortune, fertility, and moral order. The association with fortune is particularly important: in many Slavic dialects, the word <em>bel-</em> can also carry connotations of luck and prosperity. To invoke Belobog is to invoke the bright side of life.</p>
+<p>The reconstructed pronunciation is straightforward: approximately "BEH-loh-bog," with stress on the first syllable. The final <em>-g</em> is hard, as in English "dog." The name does not require any diacritics or special characters for its basic scholarly form, which places it in Tier 2 in the PuniCodex system. This is not a judgment on his importance — Belobog is a flagship entry — but a classification of how much information the ASCII form preserves. In this case, the ASCII form <em>belobog</em> loses only the capitalization that marks it as a proper name.</p>
+<p>Some scholars have proposed that Belobog was originally an epithet of a more widely worshipped solar or sky deity, perhaps <a href="/svarog/" class="crosslink" data-crosslink="svarog">Svarog</a> or <a href="/dazhbog/" class="crosslink" data-crosslink="dazhbog">Dazhbog</a>. In this view, "White God" was not a separate cultic figure but a way of describing the benevolent aspect of the high god. This theory helps explain why Belobog is so prominent in later tradition despite the lack of direct cultic evidence. He may be a theological abstraction rather than a temple god, a way of talking about the good side of divine power.</p>
+<p>The comparison with Chernobog is unavoidable but should be handled with care. Chernobog, the "Black God," is even more poorly attested than Belobog. The name appears in the same Christian sources and is subject to the same doubts. The two figures may be a pair invented by medieval writers to explain Slavic religion in Christian terms. If so, Belobog is not an ancient god but a medieval interpretation of one. Yet even as an interpretation, the name has power. It captures something essential about how later Slavic thinkers imagined the divine: as divided between the bright forces that sustain life and the dark forces that threaten it.</p>
+<h2 id="mythology-and-domain">Mythology and Domain</h2>
+<p>Direct myths about Belobog are hard to come by. Unlike <a href="/perun/" class="crosslink" data-crosslink="perun">Perun</a> or <a href="/veles/" class="crosslink" data-crosslink="veles">Veles</a>, he has no surviving epic cycle, no rich corpus of folk tales, no clear iconography. What we have are hints, echoes, and reconstructions. The most important hint is the pairing with Chernobog. In the medieval imagination, wherever there is a black god of evil, there must be a white god of good. The logic is Christian, but the names are Slavic, and the combination proved irresistible to later writers.</p>
+<p>If we set aside the Chernobog pairing and look at Slavic folk religion on its own terms, we find a number of figures who might be related to Belobog. There are the solar deities, the ancestors, the household spirits, and the various personifications of fate and fortune. None of these is explicitly called Belobog, but together they suggest a religious world in which light, fertility, and moral order were central concerns. Belobog can be understood as a focal point for these concerns, a name that gathers them into a single figure.</p>
+<p>The domain of light is the most obvious. In a farming society, sunlight is the source of life. It makes crops grow, warms the earth after winter, and drives away the darkness in which demons and misfortune thrive. A god of light would naturally be a god of agriculture, of spring, of the life-giving sun. Some scholars have connected Belobog to the broader Indo-European sky-father figure, whose name and functions survive in <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>, Jupiter, and the Germanic <em>Tiwaz</em>. This connection is speculative, but it points to the deep roots that the figure may have.</p>
+<p>The domain of good is more abstract. In a polytheistic world, "good" does not usually mean moral perfection in the Christian sense. It means beneficial, favorable, aligned with human flourishing. Belobog is the god who gives good harvests, healthy children, successful journeys, and protection from evil. He is the divine patron of the fortunate life, the one who tips the scales toward prosperity. This makes him a natural object of prayer in times of uncertainty.</p>
+<p>The domain of fortune is closely related. Slavic folklore is full of references to luck, both good and bad. There are lucky days and unlucky days, lucky actions and taboos, spirits who bring fortune and spirits who take it away. Belobog, as the "White God," would belong to the fortunate side of this cosmology. To be under his protection is to be blessed; to lose it is to fall under the shadow of Chernobog or one of the many lesser spirits of misfortune.</p>
+<p>The absence of detailed myths does not mean the absence of religious significance. Some of the most important divine figures in human history are known primarily through epithets, rituals, and theological reflections rather than through stories. Belobog may be one of these. His name encodes a whole religious attitude: trust in the bright side of existence, the hope that goodness and fortune will prevail. For many believers, this is enough. They do not need a full mythic biography to honor the White God.</p>
+<h2 id="cultural-legacy">Cultural Legacy</h2>
+<p>Belobog's cultural afterlife is far richer than his ancient documentation would suggest. In the nineteenth and twentieth centuries, as Romantic nationalism swept across Europe, Slavic intellectuals turned to the pre-Christian past in search of national identity. Belobog, with his luminous name and his pairing with Chernobog, became a powerful symbol. He appeared in poetry, painting, opera, and eventually in popular fantasy. To many, he represented the indigenous Slavic spirit, untainted by foreign influence.</p>
+<p>This Romantic revival had its dangers. It often projected modern values onto ancient figures and treated speculative reconstructions as established fact. Belobog became, in some accounts, a kind of Slavic Christ figure, a pure god of light opposed by a devilish black god. This Christianized version is still popular in some neo-pagan circles, but it is a long way from the historically attested material. Responsible scholarship tries to hold the two apart.</p>
+<p>In contemporary Slavic Native Faith, known as Rodnovery, Belobog holds an honored place. Practitioners invoke him as a god of light, goodness, and prosperity, often alongside Chernobog as a necessary balancing force. Rituals may include candles, white cloth, bread, and grain, all symbols of the light and abundance that Belobog represents. For these communities, the name is not merely an antiquarian curiosity but a living link to ancestral religion.</p>
+<p>Belobog has also entered global popular culture through fantasy literature and games. He appears as a deity, a creature, or a symbolic force in works that draw on Slavic mythology, sometimes faithfully, sometimes loosely. Each appearance keeps the name alive and introduces it to new audiences. The risk is that the pop-culture version replaces the scholarly one; the opportunity is that it creates curiosity about the original.</p>
+<p>The image of Belobog as a white-clad, radiant god has proven especially durable in visual art. Artists from the Romantic period to the present have depicted him as a bearded figure of light, often opposed by a dark Chernobog. This visual tradition has shaped popular understanding more than any ancient text could have. It is a reminder that mythology is not only what was believed in the past but also what is imagined and reimagined in the present.</p>
+<p>Belobog's legacy also lives in the broader Slavic cultural vocabulary. The root <em>bel-</em> appears in countless words connected to goodness, purity, and good fortune. To call something <em>belo</em> in some contexts is to bless it. This linguistic resonance keeps the spirit of Belobog active even when the god himself is not named. Language itself becomes a form of memory, carrying the white god forward in every positive invocation of his root.</p>
+<h2 id="unicode-restoration-and-conclusion">Unicode Restoration and Conclusion</h2>
+<p>The PuniCodex restoration of <strong>Belobog</strong> is a small act of recognition. The ASCII form <em>belobog</em> strips the name of its capitalization, making it look like an ordinary word or a user handle. The restored form returns the name to its proper dignity as a divine name. It also reconnects the name to its Slavic roots: the capital <em>B</em> marks it as a proper noun, and the unchanged spelling preserves the transparent etymology that makes the name so powerful.</p>
+<p>This restoration matters because names are not neutral. The way a name is written shapes how it is read, pronounced, and understood. When we type <em>belobog</em>, we are using a technical compromise born of the early domain-name system. When we type <strong>Belobog</strong>, we are using the name as scholars and believers have understood it. The Unicode domain makes that choice available in the address bar, where millions of daily decisions about what to call things are made.</p>
+<p>The restoration also has a symbolic dimension. Belobog is a god of light and good fortune; his name deserves to appear in a form that reflects those qualities. A lowercase string of ASCII characters is a poor vessel for a luminous deity. The restored spelling, by contrast, carries the visual and cultural weight of a proper name. It is a small but meaningful way of honoring the figure it names.</p>
+<p>The restoration of Belobog also invites reflection on how we handle divine names in an age of global communication. Every time a name is normalized to ASCII, a small piece of its identity is sacrificed. For most practical purposes, the sacrifice is invisible. But for those who care about language, history, and religion, the accumulation of such sacrifices represents a gradual flattening of human culture. Restoring Belobog is one small act of resistance against that flattening, a way of keeping the luminous particularity of the name alive in a medium that tends toward uniformity.</p>
+<p>In the end, Belobog remains a figure of light surrounded by shadow — not the cosmic shadow of Chernobog, but the historical shadow of lost sources and uncertain origins. We may never know exactly how he was worshipped, what temples honored him, or what hymns were sung in his name. But the name endures, and with it the idea of a bright god who watches over the fortunate. The restoration does not solve the scholarly debates. It simply makes sure the debates continue under the right name.</p>
+<h2 id="related-names">Related Names</h2>
+<ul>
+  <li><a href="/babayaga/">Baba Jagá</a> — Forest Witch, Death</li>
+  <li><a href="/chernobog/">Černobog</a> — Darkness, <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>, Evil</li>
+  <li><a href="/dazhbog/">Dažbog</a> — Sun, Wealth, Giving</li>
+  <li><a href="/domovoi/">Domovój</a> — Household Spirit</li>
+  <li><a href="/kikimora/">Kikimóra</a> — House Spirit, Swamp Hag</li>
+</ul>
+<h2 id="sources">Sources</h2>
+<ul>
+  <li>N. I. Tolstoi et al., <em>Slavic Antiquities: Ethnolinguistic Dictionary</em> (1995–2012).</li>
+  <li>Vyacheslav Ivanov &amp; Vladimir Toporov, comparative Slavic mythology studies.</li>
+  <li>L. Niderle, <em>The Slavic Antiquities</em> (1902–1924).</li>
+</ul>
+        </div>
+        <div class="blog-tags reveal-up" aria-label="Tags">
+            <span class="blog-tag">slavic</span><span class="blog-tag">Tier 2</span><span class="blog-tag">Unicode</span><span class="blog-tag">original script</span><span class="blog-tag">restoration</span>
+        </div>
+        <aside class="blog-cta reveal-up">
+            <h2 class="blog-cta-title">Go deeper</h2>
+            <p>The Scholarly Edition for Belobog collects the sources, pronunciation, and revision history behind this restoration. <a href="../scholars/">Read the Scholarly Edition</a>.</p>
+        </aside>
+        <aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Restoration Files</h2>
+            <p>A second dispatch from this temple, No. 82 in the series: <a href="./restoration/">The provenance file on Belobog</a> — the restoration, the temple, and the world it opens.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Resonance Files</h2>
+            <p>The third dispatch, where the myths meet the markets: <a href="./resonance/">Stress-testing Belobog: do the industry seats hold?</a> — the archetype at work in real industries.</p>
+        </aside>
+<aside class="blog-series-nav reveal-up">
+            <h2 class="blog-cta-title">The Canonical Register</h2>
+            <p>The authoritative reference for this name: <a href="./canonical/">The canonical register: Belobog</a> — the one true spelling, and every form that fails it.</p>
+        </aside>
+    </article>
+
+    
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-START -->
+<div id="university-collaborators-strip" role="complementary" aria-label="Academic Collaborators"></div>
+<!-- PUNICODEX-UNIVERSITY-COLLABORATORS-BODY-END -->
+<footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="https://punicodex.com/" class="footer-logo">PUNICODEX</a>
+                    <p class="footer-tagline">Authentic unicode domains.<br>Real words. Real orthography. Real internet.</p>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-block">
+                        <span class="footer-label">Owned Domains</span>
+                        <span class="footer-value">Belobog</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Classification</span>
+                        <span class="footer-value">Tier 2</span>
+                    </div>
+                    <div class="footer-block">
+                        <span class="footer-label">Original Script</span>
+                        <span class="footer-value">—</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-seal">
+                <picture><source srcset="../assets/belobog_logomark.webp" type="image/webp"><img src="../assets/belobog_logomark.png" alt="Belobog logomark" class="footer-logomark"></picture>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/flagship-canvas.js"></script>
+    <script src="/js/px-core.js?v=perf21"></script>
+    <script src="/js/temple-base.js?v=perf20"></script>
+    <script src="../script.js?v=perf20"></script>
+    <script src="/js/newsletter.js?v=1" defer></script>
+</body>
+</html>

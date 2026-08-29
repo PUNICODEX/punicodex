@@ -1,0 +1,1 @@
+curate via Commons: Clementia appears frequently on Roman imperial coinage and relief sculpture as a personified virtue; images of the empress or goddess extending clemency are well represented on Wikimedia Commons.

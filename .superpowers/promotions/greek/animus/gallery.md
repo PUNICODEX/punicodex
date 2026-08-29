@@ -1,0 +1,1 @@
+honestZero: Animus is an abstract Latin concept (mind, spirit, courage) without a fixed mythological iconography; Western allegorical images of courage or spirit are usually labelled Virtus, Fortitudo, or Spiritus and do not correspond directly to this entry.
