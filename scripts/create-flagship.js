@@ -1674,6 +1674,10 @@ function buildZeusFooter(entry, assetPrefix) {
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned &middot; The internet is merely the first temple</p>
+                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
+                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
+                    <span class="hekaweb-name">HEKAWEB</span>
+                </a>
             </div>
         </div>
     </footer>`;

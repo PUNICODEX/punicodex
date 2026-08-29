@@ -246,11 +246,11 @@ const html = `<!DOCTYPE html>
     </script>
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/temple-base.css?v=perf21">
+    <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
     <link rel="stylesheet" href="/css/strip-less-nav.css?v=1">
     <link rel="stylesheet" href="/css/nav-more.css?v=4">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
-    <link rel="stylesheet" href="/css/footer.css?v=1">
+    <link rel="stylesheet" href="/css/footer.css?v=2">
     <meta name="theme-color" content="#050505">
     <meta name="color-scheme" content="dark">
     <style>

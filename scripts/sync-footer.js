@@ -130,6 +130,10 @@ function footerHtml() {
             </div>
             <div class="footer-bottom">
                 <p>© 2026 PuniCodex. All rites reserved.</p>
+                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
+                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
+                    <span class="hekaweb-name">HEKAWEB</span>
+                </a>
             </div>
         </div>
     </footer>`;
@@ -178,7 +182,7 @@ function syncPage(rel) {
   }
 
   if (!html.includes('/css/main.css')) {
-    html = ensureCssLink(html, '/css/footer.css?v=1');
+    html = ensureCssLink(html, '/css/footer.css?v=2');
   }
 
   writeFileWithRetry(filePath, html, 'utf8');

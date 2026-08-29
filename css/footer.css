@@ -91,6 +91,54 @@
     letter-spacing: 0.04em;
 }
 
+.hekaweb-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text-dim, #6b6b6b);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.hekaweb-credit:hover {
+    color: var(--gold, #d4af37);
+    transform: translateY(-1px);
+}
+
+.hekaweb-by {
+    text-transform: uppercase;
+}
+
+.hekaweb-name {
+    font-weight: 700;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #bfa030, #f0d878, #bfa030);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: hekaweb-shimmer 3.5s linear infinite;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.25));
+}
+
+.hekaweb-credit:hover .hekaweb-name {
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.55));
+}
+
+@keyframes hekaweb-shimmer {
+    to { background-position: 200% center; }
+}
+
+@media (max-width: 640px) {
+    .hekaweb-credit {
+        flex-direction: column;
+        gap: 0.15rem;
+        text-align: center;
+    }
+}
+
 @media (max-width: 1024px) {
     .footer-grid {
         grid-template-columns: 1fr 1fr;

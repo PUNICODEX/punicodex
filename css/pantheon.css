@@ -512,7 +512,8 @@
     z-index: 2;
 }
 
-/* Filter pill collapse: extra pills hidden until expanded */
+/* Filter pill collapse: extra pills hidden until expanded on all viewports,
+   so the desktop strip stays a thin single line and the grid stays visible. */
 .filter-pill--extra {
     display: none;
 }
@@ -529,11 +530,6 @@
 }
 .filter-pills.expanded .filter-pill--more::after {
     content: ' ▴';
-}
-@media (min-width: 1200px) {
-    /* Desktop has room: show everything, hide the expander */
-    .filter-pill--extra { display: inline-flex; }
-    .filter-pill--more { display: none; }
 }
 
 /* ── Mobile: 3-column compact cards (fits 390px neatly) ── */

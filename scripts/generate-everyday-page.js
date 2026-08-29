@@ -155,7 +155,7 @@ function main() {
     <meta name="twitter:description" content="${total} ordinary words that descend from gods — with the stories and citations behind each.">
     <meta name="twitter:image" content="https://punicodex.com/assets/og/everyday.jpg">
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/main.css?v=perf23">
+    <link rel="stylesheet" href="/css/main.css?v=perf24">
     <link rel="stylesheet" href="/css/nav-more.css?v=4">
     <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
     <link rel="stylesheet" href="/css/footer.css?v=2">

@@ -1566,6 +1566,11 @@ a.source-badge {
 }
 
 .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
     text-align: center;
     padding-top: 2rem;
     border-top: 1px solid var(--white-faint);
@@ -1575,6 +1580,50 @@ a.source-badge {
     font-size: 0.8rem;
     color: var(--white-dim);
     letter-spacing: 0.1em;
+}
+
+.hekaweb-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--white-dim);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.hekaweb-credit:hover {
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.hekaweb-name {
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--primary), var(--primary-bright), var(--primary));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: hekaweb-shimmer 3.5s linear infinite;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.25));
+}
+
+.hekaweb-credit:hover .hekaweb-name {
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.55));
+}
+
+@keyframes hekaweb-shimmer {
+    to { background-position: 200% center; }
+}
+
+@media (min-width: 640px) {
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
 }
 
 /* ─── Scroll Reveal ─── */

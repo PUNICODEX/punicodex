@@ -94,6 +94,10 @@ const FOOTER_REPLACEMENT = `    <footer class="site-footer">
             </div>
             <div class="footer-bottom">
                 <p>© 2026 PuniCodex. All rites reserved.</p>
+                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
+                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
+                    <span class="hekaweb-name">HEKAWEB</span>
+                </a>
             </div>
         </div>
     </footer>
