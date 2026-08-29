@@ -87,8 +87,9 @@ function render() {
 .trend-rank{font-family:'Cinzel',serif;font-size:1.3rem;color:#d4af37;text-align:right;opacity:.85}
 .trend-row:nth-child(1) .trend-rank{font-size:1.8rem;opacity:1}
 .trend-mascot{width:3.4rem;height:3.4rem;border-radius:50%;object-fit:cover;border:1px solid rgba(212,175,55,.35);background:#0a0a0c}
-.trend-name{font-family:'Cinzel',serif;font-size:1.05rem;color:#e8e4dc}
+.trend-name{font-family:'Cinzel',serif;font-size:1.05rem;color:#e8e4dc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .trend-sub{font-size:.74rem;color:#8a8577;letter-spacing:.08em;text-transform:uppercase;margin-top:.15rem}
+.trend-meta{display:flex;flex-direction:column;min-width:0;justify-content:center}
 .trend-views{text-align:right}
 .trend-views b{display:block;font-size:1.1rem;color:#d4af37;font-weight:600}
 .trend-views span{font-size:.68rem;color:#8a8577;letter-spacing:.1em;text-transform:uppercase}

@@ -33,7 +33,7 @@ const domainCount = ownedDomains.length;
 const multiDomainCount = dualTierCount; // Big Three dual-tier names
 const investment = `$${(Math.round(domainCount * 23 / 100) * 100).toLocaleString('en-US')}`; // ~$23 per domain, rounded to nearest hundred
 
-const realmCount = 32; // Norse 7 + Greek 17 + Japanese 8 (sync with realms/index.html cards)
+const realmCount = 42; // Norse 12 + Greek 18 + Japanese 9 + Celtic 1 + Korean 1 + Buddhist 1 (sync with realms/index.html cards)
 
 const syncValues = {
   'entry-count': String(entryCount),

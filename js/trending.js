@@ -57,14 +57,14 @@
       rank +
       '</span>' +
       mascot +
-      '<span><span class="trend-name">' +
+      '<span class="trend-meta"><span class="trend-name">' +
       escapeHtml(meta.unicode) +
       '</span><span class="trend-sub">' +
       escapeHtml(meta.pantheon) +
       (meta.pantheon ? ' · ' : '') +
-      'temple</span>' +
+      'temple' +
       delta +
-      '</span>' +
+      '</span></span>' +
       '<span class="trend-views"><b>' +
       Number(item.views).toLocaleString('en-US') +
       '</b><span>views</span></span>' +

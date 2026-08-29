@@ -1,6 +1,6 @@
 /**
  * Accessibility structural sweep — zero-tolerance enforcement across every
- * public HTML page (3,400+ files, including all temples).
+ * public HTML page (15,000+ files, including all temples).
  *
  * Rules (WCAG-aligned, statically verifiable):
  *  1. <html lang> present
@@ -51,8 +51,17 @@ function test(name, fn) {
   }
 }
 
-function violationsFor(ruleFn) {
-  const out = [];
+function run() {
+  console.log(`\n▸ Accessibility Sweep (${files.length} pages)\n`);
+
+  const missingLang = [];
+  const emptyTitle = [];
+  const badH1 = [];
+  const altLessImage = [];
+  const unlabeledControl = [];
+  const unnamedButton = [];
+  const unhandledCanvas = [];
+
   for (const file of files) {
     let html;
     try {
@@ -61,49 +70,33 @@ function violationsFor(ruleFn) {
       continue;
     }
     const $ = cheerio.load(html);
-    if (ruleFn($)) out.push(file);
-  }
-  return out;
-}
 
-function run() {
-  console.log(`\n▸ Accessibility Sweep (${files.length} pages)\n`);
+    if (missingLang.length < 6 && !$('html').attr('lang')) {
+      missingLang.push(file);
+    }
 
-  test('every page declares <html lang>', () => {
-    const v = violationsFor(($) => !$('html').attr('lang'));
-    assert.deepStrictEqual(v.slice(0, 5), [], `${v.length} pages missing lang`);
-  });
+    if (emptyTitle.length < 6 && !$('title').first().text().trim()) {
+      emptyTitle.push(file);
+    }
 
-  test('every page has a non-empty <title>', () => {
-    const v = violationsFor(($) => !$('title').first().text().trim());
-    assert.deepStrictEqual(v.slice(0, 5), [], `${v.length} pages with empty title`);
-  });
-
-  test('every page has exactly one accessible <h1>', () => {
-    const v = violationsFor(($) => {
+    if (badH1.length < 6) {
       const h1s = $('h1').filter((_, el) => {
         const $el = $(el);
         if ($el.text().trim().length > 0) return true;
         return $el.find('img[alt], svg, [aria-label]').length > 0;
       });
-      return h1s.length !== 1;
-    });
-    assert.deepStrictEqual(v.slice(0, 5), [], `${v.length} pages with h1 count != 1`);
-  });
+      if (h1s.length !== 1) badH1.push(file);
+    }
 
-  test('every <img> carries an alt attribute', () => {
-    const v = violationsFor(($) => {
+    if (altLessImage.length < 6) {
       let bad = false;
       $('img').each((_, el) => {
         if ($(el).attr('alt') === undefined) bad = true;
       });
-      return bad;
-    });
-    assert.deepStrictEqual(v.slice(0, 5), [], `${v.length} pages with alt-less images`);
-  });
+      if (bad) altLessImage.push(file);
+    }
 
-  test('every visible form control has an accessible name', () => {
-    const v = violationsFor(($) => {
+    if (unlabeledControl.length < 6) {
       let bad = false;
       $('input, select, textarea').each((_, el) => {
         const $el = $(el);
@@ -121,13 +114,10 @@ function run() {
           bad = true;
         }
       });
-      return bad;
-    });
-    assert.deepStrictEqual(v.slice(0, 5), [], `${v.length} pages with unlabeled controls`);
-  });
+      if (bad) unlabeledControl.push(file);
+    }
 
-  test('every <button> has an accessible name', () => {
-    const v = violationsFor(($) => {
+    if (unnamedButton.length < 6) {
       let bad = false;
       $('button').each((_, el) => {
         const $el = $(el);
@@ -140,13 +130,10 @@ function run() {
           bad = true;
         }
       });
-      return bad;
-    });
-    assert.deepStrictEqual(v.slice(0, 5), [], `${v.length} pages with unnamed buttons`);
-  });
+      if (bad) unnamedButton.push(file);
+    }
 
-  test('decorative <canvas> elements are aria-hidden (or labelled)', () => {
-    const v = violationsFor(($) => {
+    if (unhandledCanvas.length < 6) {
       let bad = false;
       $('canvas').each((_, el) => {
         const $el = $(el);
@@ -154,9 +141,56 @@ function run() {
           bad = true;
         }
       });
-      return bad;
-    });
-    assert.deepStrictEqual(v.slice(0, 5), [], `${v.length} pages with unhandled canvases`);
+      if (bad) unhandledCanvas.push(file);
+    }
+  }
+
+  test('every page declares <html lang>', () => {
+    assert.deepStrictEqual(missingLang.slice(0, 5), [], `${missingLang.length} pages missing lang`);
+  });
+
+  test('every page has a non-empty <title>', () => {
+    assert.deepStrictEqual(
+      emptyTitle.slice(0, 5),
+      [],
+      `${emptyTitle.length} pages with empty title`
+    );
+  });
+
+  test('every page has exactly one accessible <h1>', () => {
+    assert.deepStrictEqual(badH1.slice(0, 5), [], `${badH1.length} pages with h1 count != 1`);
+  });
+
+  test('every <img> carries an alt attribute', () => {
+    assert.deepStrictEqual(
+      altLessImage.slice(0, 5),
+      [],
+      `${altLessImage.length} pages with alt-less images`
+    );
+  });
+
+  test('every visible form control has an accessible name', () => {
+    assert.deepStrictEqual(
+      unlabeledControl.slice(0, 5),
+      [],
+      `${unlabeledControl.length} pages with unlabeled controls`
+    );
+  });
+
+  test('every <button> has an accessible name', () => {
+    assert.deepStrictEqual(
+      unnamedButton.slice(0, 5),
+      [],
+      `${unnamedButton.length} pages with unnamed buttons`
+    );
+  });
+
+  test('decorative <canvas> elements are aria-hidden (or labelled)', () => {
+    assert.deepStrictEqual(
+      unhandledCanvas.slice(0, 5),
+      [],
+      `${unhandledCanvas.length} pages with unhandled canvases`
+    );
   });
 
   console.log(`\nAccessibility Sweep: ${passed} passed, ${failed} failed`);
