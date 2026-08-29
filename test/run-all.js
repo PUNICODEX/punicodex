@@ -493,6 +493,9 @@ const SERIAL_SUITES = new Set([
   // Same parallel-phase flake: reads every temple patron page; green alone,
   // intermittently torn reads under load.
   'Patron Page Tests',
+  // Reads every flagship temple page while generator suites rewrite them;
+  // torn reads cause false Extended-tab failures.
+  'Flagship Patterns Tests',
   // The two static-analysis gates scan the whole tree; running them in
   // parallel with tree-mutating suites makes them flag transient writes.
   'Format Check',
