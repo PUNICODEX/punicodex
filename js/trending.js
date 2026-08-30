@@ -63,7 +63,7 @@
       escapeHtml(meta.pantheon) +
       (meta.pantheon ? ' · ' : '') +
       'temple' +
-      delta +
+      (delta ? ' ' + delta : delta) +
       '</span></span>' +
       '<span class="trend-views"><b>' +
       Number(item.views).toLocaleString('en-US') +
