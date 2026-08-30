@@ -43,13 +43,25 @@ return LEXICON;
 );
 const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
 
-const { ORIGINAL_SCRIPTS } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
+const {
+  getOriginalScript,
+  getOriginalScriptLabel,
+  getScriptName,
+  getProvenance,
+} = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
 
 let LORE_CATALOG = {};
 try {
   LORE_CATALOG = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts', 'lore-catalog.json'), 'utf8'));
 } catch {
   // lore catalog is optional for the herald
+}
+
+let GALLERY_DATA = {};
+try {
+  GALLERY_DATA = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts', 'gallery-data.json'), 'utf8'));
+} catch {
+  // gallery data is optional for the herald
 }
 
 let INDUSTRY_PATTERNS = { byEntry: {} };
@@ -148,15 +160,16 @@ function wordmarkPath(id) {
   return `/sites/${id}/assets/${id}_logolockup.webp`;
 }
 
-function getOriginalScript(id) {
+function getOriginalScriptInfo(id) {
   const entry = LEXICON_BY_ID.get(id);
   if (!entry) return null;
-  const os = ORIGINAL_SCRIPTS[id];
-  if (os?.originalScript && os.originalScript !== '—') {
-    return { script: os.originalScript, name: os.scriptName || pantheonName(entry.pantheon), provenance: os.provenance };
-  }
-  if (entry.greek && entry.greek !== '—') {
-    return { script: entry.greek, name: pantheonName(entry.pantheon), provenance: null };
+  const script = getOriginalScript(entry);
+  if (script) {
+    return {
+      script,
+      name: getScriptName(entry),
+      provenance: getProvenance(entry),
+    };
   }
   return null;
 }
@@ -196,6 +209,9 @@ function getLoreLead(id) {
 function getPatterns(id) {
   const data = INDUSTRY_PATTERNS.byEntry?.[id];
   if (!data) return [];
+  if (Array.isArray(data)) {
+    return data.slice(0, 5).map((p) => p.name || p.industry || String(p));
+  }
   const primaries = (data.primary || []).slice(0, 3);
   const resonant = (data.resonant || []).slice(0, 3);
   return [...primaries, ...resonant].slice(0, 5);
@@ -204,6 +220,136 @@ function getPatterns(id) {
 function heroMotif(archetype, entry) {
   const theme = PANTHEON_THEMES[entry?.pantheon] || PANTHEON_THEMES.greek;
   return theme.motif;
+}
+
+function stripHtml(html) {
+  if (!html) return '';
+  return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function renderGallery(id, unicode) {
+  const data = GALLERY_DATA[id];
+  const images = data?.images?.slice(0, 3) || [];
+  if (images.length === 0) {
+    return (
+      `<div class="spread-gallery">` +
+      `<figure class="gallery-fallback"><img src="${mascotPath(id)}" alt="${unicode} mascot" loading="lazy" onerror="this.style.display='none'"><figcaption>Brand mascot</figcaption></figure>` +
+      `</div>`
+    );
+  }
+  let html = '<div class="spread-gallery">';
+  for (const img of images) {
+    const caption = stripHtml(img.caption || img.alt || '');
+    html += `<figure><img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.alt || unicode)}" loading="lazy"><figcaption>${escapeHtml(caption)}</figcaption></figure>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderNameVariations(id, unicode) {
+  const entry = LEXICON_BY_ID.get(id);
+  if (!entry) return '';
+  const items = [];
+  items.push(`<li><span class="variation-form">${unicode}</span> <span class="variation-role">Canonical</span></li>`);
+  if (entry.ascii && entry.ascii !== entry.unicode) {
+    items.push(`<li><span class="variation-form">${escapeHtml(entry.ascii)}</span> <span class="variation-role">ASCII</span></li>`);
+  }
+  if (Array.isArray(entry.variants)) {
+    for (const v of entry.variants) {
+      const role = v.type
+        ? v.type.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+        : 'Scholarly variant';
+      items.push(`<li><span class="variation-form">${escapeHtml(v.unicode)}</span> <span class="variation-role">${escapeHtml(role)}</span></li>`);
+    }
+  }
+  return `<div class="spread-name-variations"><span class="variations-label">Name variations</span><ul>${items.join('')}</ul></div>`;
+}
+
+function renderModernBridge(id) {
+  const entry = LEXICON_BY_ID.get(id);
+  const archetype = ARCHETYPE_BY_ID.get(id);
+  if (!entry || !archetype) return '';
+  const patterns = getPatterns(id);
+  const patternNames = patterns.slice(0, 3);
+  let text = `${entry.unicode || archetype.name}—${entry.domain || archetype.domain || ''}`;
+  if (patternNames.length) {
+    text += `—resonates today across ${patternNames.join(', ')}`;
+  }
+  const lore = getLoreLead(id);
+  const strippedLore = stripHtml(lore).replace(/^[^\w]+/, '');
+  const firstSentence = strippedLore.split(/[.!?]/, 1)[0];
+  if (firstSentence) {
+    text += patternNames.length ? `; ${firstSentence.toLowerCase()}.` : `. ${firstSentence}.`;
+  } else {
+    text += '.';
+  }
+  text += ` The restored Unicode form preserves distinctions flattened by the plain ASCII name.`;
+  return text;
+}
+
+function getRelatedTemples(id) {
+  const entry = LEXICON_BY_ID.get(id);
+  if (!entry) return [];
+  const built = ARCHETYPES.filter((a) => a.built && a.id !== id);
+  const samePantheon = built
+    .filter((a) => {
+      const e = LEXICON_BY_ID.get(a.id);
+      return e && e.pantheon === entry.pantheon;
+    })
+    .sort((a, b) => a.id.localeCompare(b.id));
+
+  function industriesFor(entryId) {
+    const data = INDUSTRY_PATTERNS.byEntry?.[entryId];
+    if (!data) return [];
+    if (Array.isArray(data)) return data.map((p) => p.industry);
+    return (data.primary || []).map((p) => p.industry);
+  }
+
+  const ownPatterns = new Set(industriesFor(id));
+  const patternMatches = built
+    .filter((a) => {
+      if (samePantheon.some((s) => s.id === a.id)) return false;
+      const e = LEXICON_BY_ID.get(a.id);
+      if (e && e.pantheon === entry.pantheon) return false;
+      return industriesFor(a.id).some((ind) => ownPatterns.has(ind));
+    })
+    .sort((a, b) => a.id.localeCompare(b.id));
+  const used = new Set([...samePantheon, ...patternMatches].map((a) => a.id));
+  const fallback = built
+    .filter((a) => !used.has(a.id))
+    .sort((a, b) => a.id.localeCompare(b.id));
+  return [...samePantheon, ...patternMatches, ...fallback].slice(0, 4).map((a) => a.id);
+}
+
+function renderRelatedTemples(relatedIds) {
+  if (!relatedIds.length) return '';
+  const items = relatedIds
+    .map((rid) => {
+      const entry = LEXICON_BY_ID.get(rid);
+      const archetype = ARCHETYPE_BY_ID.get(rid);
+      const unicode = escapeHtml(entry?.unicode || archetype?.name || rid);
+      return (
+        `<a class="related-item" href="#temple-${rid}">` +
+        `<img class="related-mascot" src="${mascotPath(rid)}" alt="${unicode}" loading="lazy" onerror="this.style.display='none'">` +
+        `<span class="related-name">${unicode}</span>` +
+        `</a>`
+      );
+    })
+    .join('');
+  return `<div class="spread-related-temples"><span class="related-label">Kindred temples</span><div class="related-grid">${items}</div></div>`;
+}
+
+function getPronunciationDetail(id) {
+  const lore = LORE_CATALOG[id];
+  const parts = [];
+  if (lore?.pronunciation?.phonemes?.length) {
+    parts.push(`${lore.pronunciation.phonemes.length} phonemes`);
+  }
+  if (lore?.pronunciation?.approximation) {
+    const syllableMatch = lore.pronunciation.approximation.match(/(\d+)\s+syllable/i);
+    if (syllableMatch) parts.push(`${syllableMatch[1]} syllables`);
+  }
+  return parts.join(' · ');
 }
 
 function renderTrendingTemple(item) {
@@ -296,11 +442,11 @@ function renderFlagshipSpread(id, index, edition) {
 
   const theme = PANTHEON_THEMES[entry.pantheon] || PANTHEON_THEMES.greek;
   const unicode = escapeHtml(entry.unicode || archetype.name);
-  const script = getOriginalScript(id);
+  const script = getOriginalScriptInfo(id);
   const pronunciation = getPronunciation(id);
   const loreLead = getLoreLead(id);
   const patterns = getPatterns(id);
-  const pageBase = 50; // chapters end around page 50
+  const pageBase = 50; // front matter ends around page 50
   const leftPage = pageBase + index * 2 + 1;
   const rightPage = leftPage + 1;
 
@@ -308,27 +454,34 @@ function renderFlagshipSpread(id, index, edition) {
     ? `<div class="spread-domain">${escapeHtml(entry.domain)}</div>`
     : `<div class="spread-domain">${escapeHtml(archetype.domain || '')}</div>`;
 
-  const scriptHtml = script
-    ? `<div class="spread-script"><span class="script-label">${escapeHtml(script.name)}</span><span class="script-value" title="${escapeHtml(script.provenance?.original || '')}">${escapeHtml(script.script)}</span></div>`
-    : `<div class="spread-script"><span class="script-label">Scholarly form</span><span class="script-value">${unicode}</span></div>`;
+  const scriptLabel = script ? getOriginalScriptLabel(entry) : 'Scholarly form';
+  const scriptValue = script ? escapeHtml(script.script) : unicode;
+  const scriptTitle = script && script.provenance?.original ? ` title="${escapeHtml(script.provenance.original)}"` : '';
 
+  const pronDetail = getPronunciationDetail(id);
   const pronunciationHtml = pronunciation
-    ? `<div class="spread-pronunciation"><span class="pron-label">${escapeHtml(pronunciation.label)}</span><span class="pron-ipa">${escapeHtml(pronunciation.ipa)}</span>${pronunciation.approximation ? `<span class="pron-approx">${escapeHtml(pronunciation.approximation)}</span>` : ''}</div>`
+    ? `<div class="spread-pronunciation"><span class="pron-label">${escapeHtml(pronunciation.label)}</span><span class="pron-ipa">${escapeHtml(pronunciation.ipa)}</span>${pronunciation.approximation ? `<span class="pron-approx">${escapeHtml(pronunciation.approximation)}</span>` : ''}${pronDetail ? `<span class="pron-detail">${escapeHtml(pronDetail)}</span>` : ''}</div>`
     : '';
 
   const patternsHtml = patterns.length
     ? `<div class="spread-patterns"><span class="patterns-label">Aligned industries</span><span class="patterns-list">${patterns.map(escapeHtml).join(' · ')}</span></div>`
     : '';
 
+  const galleryHtml = renderGallery(id, unicode);
+  const variationsHtml = renderNameVariations(id, unicode);
+  const modernBridgeHtml = renderModernBridge(id);
+  const relatedIds = getRelatedTemples(id);
+  const relatedHtml = renderRelatedTemples(relatedIds);
+
   const tierLabel = entry.tierLabel || (entry.tier === 'dual' ? 'Dual-Tier' : entry.tier === '1' ? 'Tier 1' : 'Tier 2');
 
   return (
     `<section class="herald-spread spread-${entry.pantheon}" id="temple-${id}" data-page-left="${leftPage}" data-page-right="${rightPage}">` +
-    `<div class="spread-page spread-left" style="--spread-accent:${theme.accent};--spread-ink:${theme.ink}">` +
-    `<div class="spread-running-header"><span class="spread-pantheon">${escapeHtml(pantheonName(entry.pantheon))}</span><span class="spread-page-num">${leftPage}</span></div>` +
+    `<section class="spread-page spread-left" style="--spread-accent:${theme.accent};--spread-ink:${theme.ink}">` +
+    `<header class="spread-running-header"><span class="spread-pantheon">${escapeHtml(pantheonName(entry.pantheon))}</span><span class="spread-page-num">${leftPage}</span></header>` +
     `<div class="spread-hero">` +
     `<h2 class="spread-name">${unicode}</h2>` +
-    scriptHtml +
+    `<div class="spread-script"><span class="script-label">${scriptLabel}</span><span class="script-value"${scriptTitle}>${scriptValue}</span></div>` +
     domainHtml +
     `<div class="spread-badges"><span class="spread-badge tier-${entry.tier}">${escapeHtml(tierLabel)}</span><span class="spread-badge">${escapeHtml(pantheonName(entry.pantheon))}</span></div>` +
     `</div>` +
@@ -339,19 +492,112 @@ function renderFlagshipSpread(id, index, edition) {
     `<img class="spread-wordmark" src="${wordmarkPath(id)}" alt="${unicode} wordmark" loading="lazy" onerror="this.style.display='none'">` +
     `</div>` +
     `</div>` +
+    galleryHtml +
     `<div class="spread-motif">Motif: ${escapeHtml(heroMotif(archetype, entry))}</div>` +
-    `</div>` +
-    `<div class="spread-page spread-right" style="--spread-accent:${theme.accent};--spread-ink:${theme.ink}">` +
-    `<div class="spread-running-header"><span class="spread-pantheon">${escapeHtml(pantheonName(entry.pantheon))}</span><span class="spread-page-num">${rightPage}</span></div>` +
-    `<div class="spread-tagline">${escapeHtml(archetype.tagline || '')}</div>` +
+    `<footer class="spread-running-footer"><span class="spread-page-num">${leftPage}</span></footer>` +
+    `</section>` +
+    `<section class="spread-page spread-right" style="--spread-accent:${theme.accent};--spread-ink:${theme.ink}">` +
+    `<header class="spread-running-header"><span class="spread-pantheon">${escapeHtml(pantheonName(entry.pantheon))}</span><span class="spread-page-num">${rightPage}</span></header>` +
+    `<p class="spread-tagline">${escapeHtml(archetype.tagline || '')}</p>` +
     `<div class="spread-lore">${loreLead}</div>` +
+    (modernBridgeHtml ? `<div class="spread-modern-bridge"><span class="modern-label">Modern resonance</span><p>${escapeHtml(modernBridgeHtml)}</p></div>` : '') +
+    variationsHtml +
     pronunciationHtml +
     patternsHtml +
     `<div class="spread-meaning"><span class="meaning-label">Meaning</span><span>${escapeHtml(entry.meaning || '')}</span></div>` +
+    relatedHtml +
     `<a class="spread-temple-link" href="/${id}/" target="_blank" rel="noopener">Visit the temple →</a>` +
-    `</div>` +
+    `<footer class="spread-running-footer"><span class="spread-page-num">${rightPage}</span></footer>` +
+    `</section>` +
     `</section>`
   );
+}
+
+function renderTimeline(edition) {
+  const newPantheons = edition.fleet?.newPantheons || [];
+  const milestones = [
+    {
+      date: edition.originDate || '2026-05-25',
+      title: 'Origin',
+      body: 'The first Unicode domain was registered and the PuniCodex fleet began.',
+    },
+  ];
+  const originTime = new Date(edition.originDate || '2026-05-25').getTime();
+  const publishTime = new Date(edition.publishedAt || '2026-09-01').getTime();
+  const span = Math.max(1, publishTime - originTime);
+  for (let i = 0; i < newPantheons.length; i++) {
+    const p = newPantheons[i];
+    const t = originTime + (span * (i + 1)) / (newPantheons.length + 1);
+    const d = new Date(t);
+    const iso = d.toISOString().split('T')[0];
+    milestones.push({
+      date: iso,
+      title: `${pantheonName(p)} pantheon launched`,
+      body: 'Added to the flagship fleet for this edition.',
+    });
+  }
+  milestones.push({
+    date: edition.publishedAt || '2026-09-01',
+    title: `${edition.quarter} release`,
+    body: `First edition of The Unicode Herald, ${fmtNumber(edition.fleet?.flagships || 0)} flagship temples.`,
+  });
+  milestones.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+  let html = '<section class="herald-book-timeline" id="timeline">';
+  html += '<header class="herald-book-chapter-header"><h2 class="herald-chapter-title">Timeline</h2><p class="herald-chapter-subtitle">From the first registration to this edition</p></header>';
+  html += '<div class="timeline">';
+  for (const m of milestones) {
+    html += `<div class="timeline-entry"><time datetime="${escapeHtml(m.date)}">${fmtDate(m.date)}</time><h3>${escapeHtml(m.title)}</h3><p>${escapeHtml(m.body)}</p></div>`;
+  }
+  html += '</div></section>';
+  return html;
+}
+
+function renderAtlas(flagships) {
+  const byPantheon = new Map();
+  for (const a of flagships) {
+    const entry = LEXICON_BY_ID.get(a.id);
+    const p = entry?.pantheon || a.pantheon || 'unknown';
+    if (!byPantheon.has(p)) byPantheon.set(p, []);
+    byPantheon.get(p).push(a);
+  }
+  const pantheonIds = Array.from(byPantheon.keys()).sort();
+
+  let html = '<section class="herald-book-atlas" id="pantheon-atlas">';
+  html += '<header class="herald-book-chapter-header"><h2 class="herald-chapter-title">Pantheon Atlas</h2><p class="herald-chapter-subtitle">A guide to the traditions represented in this edition</p></header>';
+  html += '<div class="atlas-grid">';
+  for (const p of pantheonIds) {
+    const list = byPantheon.get(p);
+    const rep = list[0];
+    const entry = LEXICON_BY_ID.get(rep.id);
+    const theme = PANTHEON_THEMES[entry?.pantheon || p] || PANTHEON_THEMES.greek;
+    const unicode = escapeHtml(entry?.unicode || rep.name || rep.id);
+    html += `<article class="atlas-card" style="--spread-accent:${theme.accent};--spread-ink:${theme.ink}"><h3>${escapeHtml(pantheonName(p))}</h3><span class="atlas-count">${fmtNumber(list.length)} temples</span><span class="atlas-rep">${unicode}</span></article>`;
+  }
+  html += '</div></section>';
+  return html;
+}
+
+function renderNameIndex(flagships) {
+  const sorted = flagships.slice().sort((a, b) => {
+    const ea = LEXICON_BY_ID.get(a.id);
+    const eb = LEXICON_BY_ID.get(b.id);
+    const ua = (ea?.unicode || a.name || a.id).toLowerCase();
+    const ub = (eb?.unicode || b.name || b.id).toLowerCase();
+    return ua.localeCompare(ub);
+  });
+
+  let html = '<section class="herald-book-index" id="name-index">';
+  html += '<header class="herald-book-chapter-header"><h2 class="herald-chapter-title">Name Index</h2><p class="herald-chapter-subtitle">Every flagship temple in this edition</p></header>';
+  html += '<ol class="index-list">';
+  for (const a of sorted) {
+    const entry = LEXICON_BY_ID.get(a.id);
+    const unicode = escapeHtml(entry?.unicode || a.name || a.id);
+    const ascii = escapeHtml(entry?.ascii || a.id);
+    html += `<li><a href="#temple-${a.id}"><span class="index-unicode">${unicode}</span> <span class="index-ascii">${ascii}</span></a></li>`;
+  }
+  html += '</ol></section>';
+  return html;
 }
 
 function renderFullBook(edition) {
@@ -405,8 +651,11 @@ function renderFullBook(edition) {
     TOC: toc,
     PAGE_COUNT: fmtNumber(pageCount),
     SPREAD_COUNT: fmtNumber(spreadCount),
+    TIMELINE_BODY: renderTimeline(edition),
+    ATLAS_BODY: renderAtlas(flagships),
     CHAPTER_BODY: chapterBodies,
     SPREAD_BODIES: spreadBodies,
+    NAME_INDEX_BODY: renderNameIndex(flagships),
     BACK_MATTER: renderBackMatter(edition),
   };
 

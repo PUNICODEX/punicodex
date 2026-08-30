@@ -1004,3 +1004,469 @@
   }
 }
 
+/* ═════════════════════════════════════════════════════════════════════════════
+   HERALD Q3 2026 EXPANSION — premium print-ready additions
+   Front/back matter, spread details, and print-book refinements.
+   ═════════════════════════════════════════════════════════════════════════════ */
+
+/* Screen-only wrapper (hidden in print) */
+.screen-only {
+  display: block;
+}
+
+/* ── Front / back matter pages ─────────────────────────────────────────────── */
+
+.herald-book-timeline,
+.herald-book-atlas,
+.herald-book-index {
+  max-width: var(--herald-chapter-width);
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  page-break-before: always;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 1.75rem;
+  border-left: 2px solid var(--herald-gold);
+  margin: 1.5rem 0;
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-entry::before {
+  content: '';
+  position: absolute;
+  left: -1.85rem;
+  top: 0.35rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--herald-gold);
+}
+
+.timeline-date,
+.timeline time {
+  font-family: var(--font-display);
+  color: var(--herald-gold);
+  font-size: 1.05rem;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.timeline-title,
+.timeline h3 {
+  font-weight: 600;
+  color: var(--herald-ink);
+  display: block;
+  margin: 0 0 0.15rem;
+  font-size: 1.05rem;
+}
+
+.timeline-note,
+.timeline p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Pantheon Atlas */
+.atlas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.atlas-card {
+  border: var(--herald-rule);
+  border-radius: 10px;
+  padding: 1.25rem;
+  background: var(--herald-paper);
+}
+
+.atlas-card h3 {
+  font-family: var(--font-display);
+  color: var(--herald-ink);
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.atlas-meta,
+.atlas-count {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.atlas-deity,
+.atlas-rep {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  display: block;
+}
+
+/* Name Index */
+.index-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  columns: 2;
+  column-gap: 2rem;
+}
+
+.index-list li {
+  break-inside: avoid;
+  margin-bottom: 0.5rem;
+}
+
+.index-list a {
+  color: var(--herald-ink);
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+}
+
+.index-list a:hover {
+  color: var(--herald-gold);
+}
+
+.index-unicode {
+  color: var(--herald-ink);
+}
+
+.index-ascii {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* ── Spread detail blocks ──────────────────────────────────────────────────── */
+
+/* Running footer (mirrors the existing running header) */
+.spread-running-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-top: var(--herald-rule);
+  padding-top: 0.75rem;
+  margin-top: auto;
+}
+
+/* Gallery thumbnails */
+.spread-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.spread-gallery figure,
+.spread-left > figure,
+.spread-page > figure.gallery-fallback {
+  margin: 0;
+  flex: 1 1 80px;
+  max-width: 120px;
+  text-align: center;
+}
+
+.spread-gallery img,
+.spread-left > figure img,
+.spread-page > figure.gallery-fallback img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.spread-gallery figcaption,
+.spread-left > figure figcaption,
+.spread-page > figure.gallery-fallback figcaption {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--text-dim);
+  margin-top: 0.35rem;
+  line-height: 1.25;
+}
+
+/* Name variations */
+.spread-name-variations {
+  border-top: var(--herald-rule);
+  padding: 0.75rem 0;
+}
+
+.spread-name-variations .variations-label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.4rem;
+}
+
+.spread-name-variations ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.spread-name-variations li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0.25rem 0.5rem;
+  border: var(--herald-rule);
+  border-radius: 6px;
+}
+
+.spread-name-variations .variation-role {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-right: 0.35rem;
+}
+
+/* Modern resonance bridge */
+.spread-modern-bridge {
+  border-left: 3px solid var(--spread-accent, var(--herald-gold));
+  padding: 0.75rem 1rem;
+  background: var(--herald-paper);
+  border-radius: 0 8px 8px 0;
+}
+
+.spread-modern-bridge .modern-label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.35rem;
+}
+
+.spread-modern-bridge p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Related temples grid */
+.spread-related-temples {
+  border-top: var(--herald-rule);
+  padding: 0.75rem 0;
+}
+
+.spread-related-temples .related-label {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 0.75rem;
+}
+
+.related-grid .related-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  border: var(--herald-rule);
+  border-radius: 8px;
+  background: var(--herald-paper);
+  text-decoration: none;
+  color: var(--herald-ink);
+}
+
+.related-grid .related-item:hover {
+  border-color: var(--spread-accent, var(--herald-gold));
+}
+
+.related-grid .related-mascot {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.related-grid .related-name {
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+/* Drop caps */
+.spread-lore > p:first-of-type::first-letter,
+.spread-modern-bridge > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  line-height: 0.85;
+  padding-right: 0.5rem;
+  color: var(--spread-accent, var(--herald-gold));
+}
+
+/* ── Premium print overrides ───────────────────────────────────────────────── */
+
+@media print {
+  .screen-only,
+  .main-nav,
+  .mobile-menu,
+  .footer,
+  .herald-book-nav {
+    display: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  @page :left {
+    margin-left: 10mm;
+    margin-right: 16mm;
+
+    @bottom-left {
+      content: counter(page);
+      font-family: var(--font-display);
+      font-size: 9pt;
+      color: #000;
+    }
+  }
+
+  @page :right {
+    margin-left: 16mm;
+    margin-right: 10mm;
+
+    @bottom-right {
+      content: counter(page);
+      font-family: var(--font-display);
+      font-size: 9pt;
+      color: #000;
+    }
+  }
+
+  .herald-book-cover,
+  .herald-book-imprint,
+  .herald-book-toc-page,
+  .herald-book-chapter,
+  .herald-book-section-divider,
+  .herald-book-timeline,
+  .herald-book-atlas,
+  .herald-book-index,
+  .herald-spread {
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .herald-spread {
+    display: block;
+    width: auto;
+    min-height: auto;
+    page-break-before: always;
+    page-break-inside: avoid;
+  }
+
+  .spread-page {
+    position: relative;
+    width: 210mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    page-break-after: always;
+    page-break-inside: avoid;
+    box-sizing: border-box;
+    padding: 16mm 12mm;
+    overflow: hidden;
+    background: #fff;
+    border-color: #ddd;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Asymmetric gutter padding: inner margin is wider than outer margin */
+  .spread-left {
+    padding-right: 20mm;
+  }
+
+  .spread-right {
+    padding-left: 20mm;
+  }
+
+  .spread-running-header {
+    color: #333;
+    border-color: #ccc;
+  }
+
+  .spread-running-footer {
+    margin-top: auto;
+    color: #333;
+    border-color: #ccc;
+  }
+
+  .spread-name,
+  .spread-tagline,
+  .cover-title,
+  .toc-title,
+  .herald-chapter-title {
+    color: #000;
+  }
+
+  .spread-script .script-value,
+  .spread-page-num,
+  .cover-label,
+  .cover-stats {
+    color: #222;
+  }
+
+  .spread-domain,
+  .spread-lore,
+  .spread-lore p,
+  .spread-modern-bridge p,
+  .spread-meaning span:last-child,
+  .spread-patterns .patterns-list,
+  .spread-pronunciation .pron-approx,
+  .spread-name-variations li,
+  .spread-gallery figcaption,
+  .related-grid .related-name,
+  .herald-book-imprint,
+  .cover-dek {
+    color: #333;
+  }
+
+  .spread-badge {
+    border-color: #999;
+    color: #333;
+  }
+
+  .spread-badge.tier-dual {
+    background: #f5f5f5;
+    color: #000;
+    border-color: #000;
+  }
+}
+
