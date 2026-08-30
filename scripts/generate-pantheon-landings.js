@@ -120,8 +120,8 @@ function scriptLabelHtml(archetype) {
 
 function templeCardHtml(archetype) {
   const url = archetype.hasAdSite ? `/${archetype.id}/lore/` : `/${archetype.id}/`;
-  const thumbPath = `/assets/images/mascots/thumbs/small/${archetype.id}_thumb.webp?v=78`;
-  const fallback = archetype.mascotFallback || archetype.mascotPath || '';
+  const thumbPath = `${archetype.mascotPath}?v=78`;
+  const fallback = archetype.mascotFallback || '';
   return `<a class="archetype-card" href="${url}">
                 <div class="card-portrait">
                     <img src="${thumbPath}" alt="${escapeHtml(archetype.name)} — ${escapeHtml(archetype.domain)}" data-fallback="${escapeHtml(fallback)}" width="120" height="120" loading="lazy" decoding="async" class="card-portrait-img">
