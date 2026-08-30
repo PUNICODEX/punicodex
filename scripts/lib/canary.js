@@ -64,14 +64,16 @@ function byteBits(n) {
 function applyCanaryWatermark(text, key = null) {
   if (!text || typeof text !== 'string') return text;
   const k = (key || getKey()).normalize('NFC');
-  // Idempotent: do not re-watermark text that already carries the same key.
-  if (extractCanaryWatermark(text) === k) return text;
+  // Deterministic: strip any existing watermark bits before re-applying.
+  // This keeps the flywheel divergence gate stable even if a previous run
+  // left a partial or corrupted signature.
+  const stripped = text.replace(new RegExp(`[${BITS.join('')}]`, 'g'), '');
 
   const payload = keyBits(k);
   const lengthBits = byteBits(payload.length / 8);
   const bits = [...FRAMING, ...lengthBits, ...payload, ...FRAMING];
 
-  const words = text.split(/(\s+)/);
+  const words = stripped.split(/(\s+)/);
   const boundaries = words.filter((w) => /^\s+$/.test(w)).length;
   // Allow up to 4 bits per whitespace boundary; otherwise the watermark is
   // too dense to be subtle.
