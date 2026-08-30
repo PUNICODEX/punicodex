@@ -9,7 +9,7 @@
 
 'use strict';
 
-const punycode = require('punycode');
+const { domainToASCII } = require('node:url');
 const {
   getRichProvenance,
   getOriginalScript,
@@ -43,7 +43,7 @@ function safe(value) {
 function computePunycode(entry) {
   if (entry.domainPunycode) return entry.domainPunycode;
   try {
-    return punycode.toASCII((entry.unicode || entry.ascii || '') + '.com');
+    return domainToASCII((entry.unicode || entry.ascii || '') + '.com');
   } catch {
     return '';
   }

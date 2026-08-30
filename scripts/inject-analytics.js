@@ -17,6 +17,10 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
+const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
+const SCREEN_INDEX = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'data', 'screen-index.json'), 'utf8')
+);
 const GA_ID = process.env.GA_MEASUREMENT_ID;
 const GSC = process.env.GSC_VERIFICATION;
 
@@ -115,6 +119,18 @@ const rootPages = [
   path.join('ink', 'index.html'),
   path.join('search-v2', 'index.html'),
 ];
+
+// Per-pantheon landing pages (/greek/, /norse/, etc.).
+for (const id of Object.keys(PANTHEON_META).sort((a, b) => a.localeCompare(b))) {
+  rootPages.push(path.join(id, 'index.html'));
+}
+
+// Screen Guide (/screen/ and /screen/{id}/).
+rootPages.push(path.join('screen', 'index.html'));
+for (const production of SCREEN_INDEX.productions) {
+  rootPages.push(path.join('screen', production.id, 'index.html'));
+}
+
 for (const p of rootPages) {
   const full = path.join(ROOT, p);
   if (fs.existsSync(full)) targets.push(full);

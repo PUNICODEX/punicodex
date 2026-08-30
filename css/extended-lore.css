@@ -685,6 +685,89 @@
   }
 }
 
+/* ─── Screen Appearances ─── */
+.section#screen-appearances .section-header { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+
+.screen-appearances-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.screen-appearance-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(20,20,20,0.9), rgba(8,8,8,0.95));
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
+  border-radius: 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.4s var(--ease-out-expo);
+  overflow: hidden;
+}
+
+.screen-appearance-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-bright), var(--primary));
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.screen-appearance-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45), 0 0 40px color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+.screen-appearance-card:hover::before { opacity: 1; }
+
+.screen-appearance-year {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.35rem 0.7rem;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, transparent);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+}
+
+.screen-appearance-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  color: var(--white);
+  margin: 0.25rem 0 0;
+}
+
+.screen-appearance-type {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+
+.screen-appearance-studio {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--white-dim);
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .section#quick-facts .facts-list { grid-template-columns: 1fr; }
   .cultural-grid { grid-template-columns: 1fr; }
@@ -695,4 +778,5 @@
   .pantheon-content { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
   .pantheon-mascot { order: -1; }
   .pantheon-mascot-img { max-width: 200px; }
+  .screen-appearances-grid { grid-template-columns: 1fr; }
 }

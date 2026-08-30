@@ -19,6 +19,7 @@ const path = require('node:path');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
+const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
 
 const EXPLORE = [
   ['/pantheon/', 'Pantheon'],
@@ -40,6 +41,7 @@ const RESOURCES = [
   ['/blog/', 'Blog'],
   ['/texts/', 'Texts'],
   ['/cards/', 'Cards'],
+  ['/screen/', 'Screen'],
   ['/creatives/', 'Creatives'],
   ['/scholars/', 'Scholars'],
   ['/api/v1/docs/', 'API'],
@@ -106,7 +108,13 @@ const TARGETS = [
   path.join('pronunciation', 'index.html'),
   path.join('everyday', 'index.html'),
   path.join('ink', 'index.html'),
+  path.join('screen', 'index.html'),
 ];
+
+// Per-pantheon landing pages receive the canonical footer.
+for (const id of Object.keys(PANTHEON_META).sort((a, b) => a.localeCompare(b))) {
+  TARGETS.push(path.join(id, 'index.html'));
+}
 
 function columnHtml(title, links) {
   const items = links.map(([href, label]) => `<a href="${href}">${label}</a>`).join('\n                    ');

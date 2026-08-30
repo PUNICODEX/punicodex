@@ -43,6 +43,9 @@ function isGeneratedArtifact(file) {
   return false;
 }
 
+console.log('Refreshing git index after regeneration...');
+run('git update-index --refresh --really-refresh || true');
+
 console.log('Checking for uncommitted generated changes...');
 const lines = run('git status --porcelain=v1').split('\n').filter(Boolean);
 const dirtyGenerated = [];

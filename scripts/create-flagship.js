@@ -34,6 +34,9 @@ const { buildRichProvenanceSection } = require(path.join(__dirname, 'build-prove
 
 const LORE_STUBS = require(path.join(__dirname, 'lore-stubs.js'));
 const GALLERY_DATA = require(path.join(__dirname, 'gallery-data.json'));
+const SCREEN_INDEX = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'data', 'screen-index.json'), 'utf8')
+);
 const { generateScholarsPage } = require(path.join(__dirname, 'generate-scholars.js'));
 
 const BESPOKE_EFFECTS = (() => {
@@ -2349,6 +2352,43 @@ function buildSourcesSection(entry, catalogEntry) {
 </section>`;
 }
 
+function buildScreenAppearancesSection(entry) {
+  const productions = (SCREEN_INDEX.productions || []).filter((p) => p.entries.includes(entry.id));
+  if (productions.length === 0) return '';
+
+  const typeLabel = (type) => {
+    if (type === 'film') return 'Film';
+    if (type === 'series') return 'Series';
+    if (type === 'animation') return 'Animation';
+    if (type === 'game') return 'Game';
+    return type;
+  };
+
+  const cards = productions
+    .sort((a, b) => a.year - b.year)
+    .map(
+      (p) => `<a class="screen-appearance-card reveal-up" href="/screen/${p.id}/">
+                <span class="screen-appearance-year">${p.year}</span>
+                <h3 class="screen-appearance-title">${escapeHtml(p.title)}</h3>
+                <span class="screen-appearance-type">${typeLabel(p.type)}</span>
+                <p class="screen-appearance-studio">${escapeHtml(p.studio || '')}</p>
+            </a>`
+    )
+    .join('');
+
+  return `<section class="section section-name" id="screen-appearances">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Screen Appearances</h2>
+            <p class="section-subtitle">Films, series, animations, and games featuring ${escapeHtml(entry.unicode)}</p>
+        </div>
+        <div class="screen-appearances-grid">${cards}</div>
+    </div>
+</section>`;
+}
+
 function cleanSectionContent(html) {
   if (!html) return '';
   const $ = cheerio.load(html);
@@ -3459,6 +3499,7 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     ETYMOLOGY: buildEtymologySection(entry, catalogEntry),
     UNICODE_BREAKDOWN: buildUnicodeBreakdownSection(entry),
     CULTURAL_SIGNIFICANCE: buildCulturalSignificanceSection(entry, catalogEntry),
+    SCREEN_APPEARANCES: buildScreenAppearancesSection(entry),
     FAQ: buildFaqSection(entry, catalogEntry),
     SOURCES: buildSourcesSection(entry, catalogEntry),
     FOOTER: buildZeusFooter(entry, '../../'),

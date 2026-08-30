@@ -112,6 +112,25 @@ function run() {
     }
   });
 
+  test('every pantheon meta entry has landing-page fields and array collections', () => {
+    const required = ['era', 'region', 'summary', 'story', 'themes', 'texts', 'featured'];
+    const missing = [];
+    for (const id of PANTHEON_IDS) {
+      const m = PANTHEON_META[id];
+      for (const field of required) {
+        if (m[field] === undefined || m[field] === null || m[field] === '') {
+          missing.push(`${id}.${field}`);
+        }
+      }
+      for (const arrField of ['themes', 'texts', 'featured']) {
+        if (!Array.isArray(m[arrField])) {
+          missing.push(`${id}.${arrField} (not an array)`);
+        }
+      }
+    }
+    assert.deepStrictEqual(missing, [], 'pantheons missing landing-page fields');
+  });
+
   console.log(`\nPantheon Meta: ${passed} passed, ${failed} failed`);
   process.exit(failed > 0 ? 1 : 0);
 }

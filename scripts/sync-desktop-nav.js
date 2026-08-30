@@ -27,6 +27,7 @@ const path = require('node:path');
 const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
+const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
 
 const PRIMARY = [
   ['/pantheon/', 'Pantheon'],
@@ -39,8 +40,6 @@ const PRIMARY = [
 const MORE = [
   ['/patterns/', 'Patterns'],
   ['/tiers/', 'Tier System'],
-  ['/rulebook/', 'Rulebook'],
-  ['/pronunciation/', 'Pronunciation'],
   ['/everyday/', 'Words'],
   ['/ink/', 'Ink'],
   ['/cards/', 'Cards'],
@@ -116,7 +115,14 @@ const TARGETS = [
   { page: path.join('tiers', 'index.html'), active: '/tiers/' },
   { page: path.join('type', 'index.html'), active: '/type/' },
   { page: path.join('university-sponsorship', 'index.html'), active: null },
+  { page: path.join('screen', 'index.html'), active: null },
 ];
+
+// Per-pantheon landing pages are not in the top nav, but the Pantheon item is
+// marked active so visitors know where they are.
+for (const id of Object.keys(PANTHEON_META).sort((a, b) => a.localeCompare(b))) {
+  TARGETS.push({ page: path.join(id, 'index.html'), active: '/pantheon/' });
+}
 
 // Wordmark dims are the TRUE intrinsic size of punicodex-wordmark-ivory.png
 // (3600x374). They must match reality: with CSS `height:24px;width:auto` the

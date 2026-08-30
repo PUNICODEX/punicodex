@@ -106,6 +106,16 @@ const SUITES = [
   { name: 'Tier Consistency Tests', cmd: 'node test/tier-consistency.test.js', timeout: 60000 },
   { name: 'Crosslink Tests', cmd: 'node test/crosslink.test.js', timeout: 120000 },
   { name: 'Pantheon Meta Contract', cmd: 'node test/pantheon-meta.test.js', timeout: 60000 },
+  {
+    name: 'Pantheon Landing Page Tests',
+    cmd: 'node test/pantheon-landings.test.js',
+    timeout: 60000,
+  },
+  {
+    name: 'Screen Guide Tests',
+    cmd: 'node test/screen-guide.test.js',
+    timeout: 60000,
+  },
   { name: 'Lexicon Dedup Contract', cmd: 'node test/lexicon-dedup.test.js', timeout: 60000 },
   { name: 'Agents Tests', cmd: 'node test/agents.test.js' },
   { name: 'Multimodal Tests', cmd: 'node test/multimodal.test.js' },

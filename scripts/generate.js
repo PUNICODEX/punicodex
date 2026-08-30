@@ -70,6 +70,13 @@ const scripts = [
   // Sacred Texts (/texts/): registry-driven library + reading pages. Must run
   // before the injectors so its fresh pages keep their beacon/consent blocks.
   'scripts/generate-text-pages.js',
+  // Per-pantheon landing pages (/greek/, /norse/, etc.). Runs after texts so
+  // the Sacred Texts registry is already on disk, and before the injectors so
+  // the new pages receive analytics / beacon / consent blocks.
+  'scripts/generate-pantheon-landings.js',
+  // Movie / Screen Guide (/screen/): reads data/screen-index.json; before the
+  // injectors so the new pages receive analytics / beacon / consent blocks.
+  'scripts/generate-screen-guide.js',
   'scripts/generate-trending-page.js',
   'scripts/generate-trending-temple-page.js',
   // ItemList JSON-LD on /lexicon/ + /pantheon/ (SEO structured data).

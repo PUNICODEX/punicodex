@@ -15,6 +15,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
+const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
 
 function withRetry(fn, attempts = 5, delayMs = 100) {
   let lastErr;
@@ -51,8 +52,6 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/type/">Type</a>
                 <a href="/search/">Search</a>
                 <a href="/tiers/">Tier System</a>
-                <a href="/rulebook/">Rulebook</a>
-                <a href="/pronunciation/">Pronunciation</a>
                 <a href="/everyday/">Words</a>
                 <a href="/ink/">Ink</a>
                 <a href="/cards/">Cards</a>
@@ -130,7 +129,13 @@ const TARGETS = [
   { page: path.join('cards', 'index.html'), active: '/cards/' },
   { page: path.join('tiers', 'index.html'), active: '/tiers/' },
   { page: path.join('type', 'index.html'), active: '/type/' },
+  { page: path.join('screen', 'index.html'), active: null },
 ];
+
+// Per-pantheon landing pages mark the Pantheon section active in the mobile menu.
+for (const id of Object.keys(PANTHEON_META).sort((a, b) => a.localeCompare(b))) {
+  TARGETS.push({ page: path.join(id, 'index.html'), active: '/pantheon/' });
+}
 
 /**
  * The canonical menu for one page, with the page's own link marked active.

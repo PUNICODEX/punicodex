@@ -33,6 +33,10 @@ function writeFileWithRetry(filePath, data, encoding = 'utf8', retries = 5, dela
   }
 }
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
+const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
+const SCREEN_INDEX = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'data', 'screen-index.json'), 'utf8')
+);
 
 const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
 const ARCHETYPES = vm.runInNewContext(
@@ -102,6 +106,17 @@ const mainPages = [
   { loc: '/rulebook/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/pronunciation/', priority: '0.6', changefreq: 'monthly' },
 ];
+
+// Per-pantheon landing pages (/greek/, /norse/, etc.).
+for (const id of Object.keys(PANTHEON_META).sort((a, b) => a.localeCompare(b))) {
+  mainPages.push({ loc: `/${id}/`, priority: '0.8', changefreq: 'monthly' });
+}
+
+// Screen Guide (/screen/ and /screen/{id}/).
+mainPages.push({ loc: '/screen/', priority: '0.7', changefreq: 'weekly' });
+for (const production of SCREEN_INDEX.productions) {
+  mainPages.push({ loc: `/screen/${production.id}/`, priority: '0.6', changefreq: 'monthly' });
+}
 
 function escapeXml(str) {
   return str
