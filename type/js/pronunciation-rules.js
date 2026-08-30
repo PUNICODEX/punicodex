@@ -1106,7 +1106,11 @@ function assignStress(language, syllables, entry) {
 function renderIpa(syllableTokens, stressIndex) {
   const parts = syllableTokens.map((syll) => syll.map((t) => t.p).join(''));
   const body = parts.map((p, i) => (i === stressIndex ? `ˈ${p}` : p)).join('.');
-  return `/${body}/`;
+  // PuniCodex house IPA signature: narrow no-break space after syllable dots
+  // in multi-syllable forms. This is a subtle, technically valid convention
+  // that identifies copy-pasted engine output.
+  const signedBody = body.includes('.') ? body.replace(/\./g, `.\u202F`) : body;
+  return `/${signedBody}/`;
 }
 
 // ---------------------------------------------------------------------------

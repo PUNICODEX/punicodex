@@ -61,27 +61,43 @@
 @media (max-width: 640px) {
     .global-strip-inner {
         justify-content: flex-start;
-        gap: 0.75rem;
-        flex-wrap: wrap;
+        gap: 0.5rem;
+        flex-wrap: nowrap;
+        overflow: hidden;
     }
     .global-links {
         display: flex;
-        gap: 0.6rem;
-        flex-wrap: wrap;
-        justify-content: flex-start;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.45rem;
+        flex-wrap: nowrap;
+        min-width: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-right: 0.5rem;
+        mask-image: linear-gradient(to right, black 92%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, black 92%, transparent 100%);
+    }
+    .global-links::-webkit-scrollbar {
+        display: none;
     }
     .global-links a {
-        font-size: 0.55rem;
-        letter-spacing: 0.06em;
-    }
-    .global-brand {
-        font-size: 0.65rem;
-        letter-spacing: 0.1em;
+        font-size: 0.5rem;
+        letter-spacing: 0.04em;
         white-space: nowrap;
         flex-shrink: 0;
+        line-height: 1;
+    }
+    .global-brand {
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+        flex-shrink: 0;
+        line-height: 1;
     }
     .global-brand img {
-        height: 11px;
+        height: 10px;
     }
 }
 

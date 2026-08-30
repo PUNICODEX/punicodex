@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{DESCRIPTION}}">
+    <link rel="canonical" href="https://punicodex.com/herald/{{EDITION_ID}}/book/">
+    <meta property="og:title" content="{{OG_TITLE}}">
+    <meta property="og:description" content="{{OG_DESCRIPTION}}">
+    <meta property="og:url" content="https://punicodex.com/herald/{{EDITION_ID}}/book/">
+    <meta property="og:type" content="book">
+    <meta property="og:site_name" content="PUNICODEX">
+    <meta property="og:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+    <meta property="book:release_date" content="{{PUBLISHED_AT}}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{OG_TITLE}}">
+    <meta name="twitter:description" content="{{OG_DESCRIPTION}}">
+    <meta name="twitter:image" content="https://punicodex.com/assets/brand/05-social/punicodex-og-image-1200x630.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": {{JSON_TITLE}},
+      "description": {{JSON_DESCRIPTION}},
+      "url": "https://punicodex.com/herald/{{EDITION_ID}}/book/",
+      "datePublished": "{{PUBLISHED_AT}}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "PuniCodex",
+        "url": "https://punicodex.com/"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/main.css?v=perf24">
+    <link rel="stylesheet" href="/css/nav-more.css?v=4">
+    <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
+    <link rel="stylesheet" href="/css/footer.css?v=2">
+    <link rel="stylesheet" href="/css/herald-book.css?v=2">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <meta name="theme-color" content="#050505">
+    <meta name="color-scheme" content="dark">
+</head>
+<body class="herald-book-body">
+    <nav class="main-nav screen-only">
+        <a href="/" class="nav-logo">
+            <img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex" class="nav-logo-img" width="160" height="40">
+        </a>
+        <div class="nav-links">
+            <a href="/pantheon/" class="nav-link">Pantheon</a>
+            <a href="/lexicon/" class="nav-link">Lexicon</a>
+            <a href="/realms/" class="nav-link">Realms</a>
+            <a href="/herald/" class="nav-link">Herald</a>
+        </div>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu screen-only" id="mobile-menu" aria-hidden="true" inert>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Herald</span>
+            <div class="mobile-menu-group">
+                <a href="/herald/">Publication Home</a>
+                <a href="/herald/{{EDITION_ID}}/">Edition Cover</a>
+                <a href="/herald/{{EDITION_ID}}/book/">Complete First Edition</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="herald-book-main">
+        <!-- Front cover -->
+        <section class="herald-book-cover">
+            <div class="cover-badge">Vol. {{VOLUME}} · No. {{NUMBER}} · {{QUARTER}}</div>
+            <h1 class="cover-title">{{MASTHEAD_TITLE}}</h1>
+            <p class="cover-subtitle">{{MASTHEAD_SUBTITLE}}</p>
+            <p class="cover-label">{{LABEL}}</p>
+            <p class="cover-date">{{PUBLISHED_AT_DISPLAY}}</p>
+            <p class="cover-dek">{{COVER_DEK}}</p>
+            <div class="cover-stats">
+                <span>{{PAGE_COUNT}} pages</span>
+                <span>{{SPREAD_COUNT}} flagship temples</span>
+                <span>25 pantheons</span>
+            </div>
+        </section>
+
+        <!-- Inside cover / imprint -->
+        <section class="herald-book-imprint">
+            <p><em>The Unicode Herald</em> is published quarterly by PuniCodex.</p>
+            <p>First Edition, {{QUARTER}} · Released {{PUBLISHED_AT_DISPLAY}} · Origin date {{ORIGIN_DATE_DISPLAY}}</p>
+            <p>All temple data is drawn from the PuniCodex Scholarly Edition and generated by the project flywheel.</p>
+            <p class="imprint-canary">This edition contains intentional typographical and phonological canary markers to detect unauthorized copying. See the <a href="/terms/data-use/">Data Use Policy</a>.</p>
+        </section>
+
+        <!-- Table of contents -->
+        <section class="herald-book-toc-page" id="toc">
+            <h2 class="toc-title">Contents</h2>
+            {{TOC}}
+        </section>
+
+        <!-- Editor's note -->
+        <section class="herald-book-chapter" id="editors-note">
+            <header class="herald-book-chapter-header">
+                <h2 class="herald-chapter-title">Editor's Note</h2>
+                <p class="herald-chapter-subtitle">Why the first edition is different</p>
+            </header>
+            <div class="herald-chapter-body">
+                <p class="lead-text">Future issues of <em>The Unicode Herald</em> will be shaped by the sponsors and patrons who appear inside individual temples — short modern stories that connect a brand's work to a deity's lore, industry patterns that show where ancient names still resonate, and creative commissions produced by university collaborators. This first edition is different because those pages are still blank.</p>
+                <p>What you hold instead is a record of construction: the three months between the first domain registration on 25 May 2026 and the release of this issue on 1 September 2026. It traces the growth of the pantheon from just over 200 flagship temples to {{SPREAD_COUNT}}, the addition of Aboriginal, Baltic, Hittite, Korean, Mapuche, and Slavic flagships alongside the older traditions, and the design decisions that keep the lore free of intrusive advertising.</p>
+                <p>The gazetteer that follows devotes two pages to every built flagship. Each spread carries the restored Unicode name, original script or scholarly transliteration, mascot, logomark, wordmark, pronunciation, meaning, and a short scholarly note. It is the first printed map of the entire fleet.</p>
+            </div>
+        </section>
+
+        <!-- Chapters -->
+        {{CHAPTER_BODY}}
+
+        <!-- Temple gazetteer divider -->
+        <section class="herald-book-section-divider" id="temple-gazetteer">
+            <div class="divider-content">
+                <span class="divider-kicker">Part II</span>
+                <h2 class="divider-title">Temple Gazetteer</h2>
+                <p class="divider-dek">A two-page spread for every flagship temple in the Unicode Pantheon.</p>
+            </div>
+        </section>
+
+        <!-- Flagship spreads -->
+        {{SPREAD_BODIES}}
+
+        <!-- Back matter -->
+        {{BACK_MATTER}}
+    </main>
+
+    <footer class="footer screen-only">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 PuniCodex. All rites reserved.</p>
+                <a href="https://hekaweb.com" target="_blank" rel="noopener" class="hekaweb-credit" aria-label="Proudly built and maintained by HEKAWEB">
+                    <span class="hekaweb-by">Proudly built &amp; maintained by</span>
+                    <span class="hekaweb-name">HEKAWEB</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/px-core.js?v=perf9" defer></script>
+</body>
+</html>

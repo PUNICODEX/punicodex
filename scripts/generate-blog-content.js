@@ -33,6 +33,7 @@ const {
   getOriginalScript,
   getScriptName,
 } = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
+const { applyCanaryWatermark, shouldWatermark } = require('./lib/canary.js');
 
 const archetypeSrc = fs.readFileSync(path.join(ROOT, 'js', 'archetypes-v2.js'), 'utf8');
 const ARCHETYPES = vm.runInNewContext(
@@ -911,7 +912,7 @@ for (const id of BUILT_IDS) {
     tags: makeTags(data),
     author: 'PuniCodex Team',
     publishedAt: PUBLISHED_AT,
-    body,
+    body: shouldWatermark(body) ? applyCanaryWatermark(body) : body,
     readingTime: `${Math.max(4, Math.round(wc / 200))} min read`,
   };
 

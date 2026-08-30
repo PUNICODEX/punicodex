@@ -118,6 +118,26 @@ for (const production of SCREEN_INDEX.productions) {
   mainPages.push({ loc: `/screen/${production.id}/`, priority: '0.6', changefreq: 'monthly' });
 }
 
+// Unicode Herald (/herald/ and book chapters).
+const HERALD_EDITIONS = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'data', 'herald-editions.json'), 'utf8')
+);
+for (const heraldEdition of HERALD_EDITIONS.editions) {
+  mainPages.push({ loc: `/herald/${heraldEdition.id}/`, priority: '0.7', changefreq: 'monthly' });
+  mainPages.push({
+    loc: `/herald/${heraldEdition.id}/book/`,
+    priority: '0.8',
+    changefreq: 'monthly',
+  });
+  for (const chapter of heraldEdition.chapters) {
+    mainPages.push({
+      loc: `/herald/${heraldEdition.id}/${chapter.slug}/`,
+      priority: '0.6',
+      changefreq: 'monthly',
+    });
+  }
+}
+
 function escapeXml(str) {
   return str
     .replace(/&/g, '&amp;')

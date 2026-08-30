@@ -41,6 +41,7 @@ const {
   getRichProvenance,
   getScriptName,
 } = require('../type/js/original-scripts.js');
+const { applyCanaryWatermark, shouldWatermark } = require('./lib/canary.js');
 
 const CONTENT_VERSION = 1;
 
@@ -902,6 +903,9 @@ function buildContentFile(archetype, stats) {
   }
 
   for (const [key, section] of Object.entries(sections)) {
+    if (shouldWatermark(section.body)) {
+      section.body = applyCanaryWatermark(section.body);
+    }
     const len = section.body.length;
     const agg = stats.sectionLengths[key] || { min: Infinity, total: 0, count: 0 };
     agg.min = Math.min(agg.min, len);

@@ -116,6 +116,11 @@ const SUITES = [
     cmd: 'node test/screen-guide.test.js',
     timeout: 60000,
   },
+  {
+    name: 'Herald Page Tests',
+    cmd: 'node --test test/herald-page.test.js',
+    timeout: 60000,
+  },
   { name: 'Lexicon Dedup Contract', cmd: 'node test/lexicon-dedup.test.js', timeout: 60000 },
   { name: 'Agents Tests', cmd: 'node test/agents.test.js' },
   { name: 'Multimodal Tests', cmd: 'node test/multimodal.test.js' },

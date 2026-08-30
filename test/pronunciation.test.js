@@ -170,7 +170,7 @@ test('engine: nezha derives mandarin syllables with tone contours', () => {
   assert.strictEqual(d.conventional, false);
   assert.strictEqual(d.stressIndex, null); // lexical tone, no stress
   assert.deepStrictEqual(d.syllables, ['nɤ˧˥', 'ʈʂa˥']);
-  assert.strictEqual(d.ipa, '/nɤ˧˥.ʈʂa˥/');
+  assert.strictEqual(d.ipa, '/nɤ˧˥.\u202Fʈʂa˥/');
   assert.ok(d.timing, 'timing present');
   assert.deepStrictEqual(d.timing.morae, [1, 1]);
   assert.deepStrictEqual(
@@ -186,7 +186,7 @@ test('engine: nezha derives mandarin syllables with tone contours', () => {
 test('engine: change apostrophe splits cháng + é', () => {
   const d = derivePronunciation(byId.get('change'));
   assert.deepStrictEqual(d.syllables, ['ʈʂʰa˧˥ŋ', 'ɤ˧˥']);
-  assert.strictEqual(d.ipa, '/ʈʂʰa˧˥ŋ.ɤ˧˥/');
+  assert.strictEqual(d.ipa, '/ʈʂʰa˧˥ŋ.\u202Fɤ˧˥/');
   assert.deepStrictEqual(
     d.timing.perSyllable.map((s) => s.contour),
     ['rise', 'rise']

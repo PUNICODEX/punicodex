@@ -77,6 +77,9 @@ const scripts = [
   // Movie / Screen Guide (/screen/): reads data/screen-index.json; before the
   // injectors so the new pages receive analytics / beacon / consent blocks.
   'scripts/generate-screen-guide.js',
+  // Quarterly Unicode Herald (/herald/): reads data/herald-editions.json;
+  // before the injectors so the page receives analytics / beacon / consent.
+  'scripts/generate-herald.js',
   'scripts/generate-trending-page.js',
   'scripts/generate-trending-temple-page.js',
   // ItemList JSON-LD on /lexicon/ + /pantheon/ (SEO structured data).
