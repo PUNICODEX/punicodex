@@ -40,6 +40,7 @@ let skipped = 0;
 let compressed = 0;
 
 async function main() {
+  let missing = 0;
   for (const id of fs.readdirSync(SITES_ROOT)) {
     const assetsDir = path.join(SITES_ROOT, id, 'assets');
     if (!fs.existsSync(assetsDir)) continue;
@@ -48,6 +49,17 @@ async function main() {
       if (!shouldCopy(name)) continue;
       const src = path.join(assetsDir, name);
       const dst = path.join(MASTERS_ROOT, name);
+
+      if (!fs.existsSync(src)) {
+        // Composite masters are gitignored and must be produced by
+        // generate-merch-composites.js. In a fresh checkout that step may
+        // not have created every file; warn instead of crashing so the
+        // generation flywheel can complete. Local/source-of-truth builds
+        // that include .masters keep the real assets.
+        console.warn(`  ! missing source composite, skipping: ${src}`);
+        missing++;
+        continue;
+      }
 
       let needsCopy = false;
       if (!fs.existsSync(dst)) {
@@ -80,6 +92,7 @@ async function main() {
   console.log(`  updated:    ${updated}`);
   console.log(`  compressed: ${compressed}`);
   console.log(`  skipped:    ${skipped}`);
+  console.log(`  missing:    ${missing}`);
 }
 
 main().catch((err) => {
