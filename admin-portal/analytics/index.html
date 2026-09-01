@@ -546,6 +546,113 @@
                 </div>
             </section>
         </div>
+
+        <section class="panel an-panel" id="an-funnel-panel" aria-label="Funnel conversion" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Funnel Conversion</h2>
+                    <p class="panel-sub">Session-level step progression and drop-off.</p>
+                </div>
+                <div class="pz-panel-actions">
+                    <div class="field">
+                        <label for="an-funnel-picker">Funnel</label>
+                        <select id="an-funnel-picker">
+                            <option value="temple_to_sponsor">Temple → Sponsor</option>
+                            <option value="temple_to_patron">Temple → Patron</option>
+                            <option value="search_to_visit">Search → Visit</option>
+                            <option value="store_purchase">Store Purchase</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="an-funnel-table-wrap">
+                <div class="state-block">Select a funnel to view.</div>
+            </div>
+        </section>
+
+        <section class="panel an-panel" id="an-cohort-panel" aria-label="Cohort retention" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Cohort Retention</h2>
+                    <p class="panel-sub">Acquisition cohorts by first-seen date.</p>
+                </div>
+                <div class="pz-panel-actions">
+                    <div class="field">
+                        <label for="an-cohort-granularity">Granularity</label>
+                        <select id="an-cohort-granularity">
+                            <option value="day">Day</option>
+                            <option value="week">Week</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="an-cohort-summary"></div>
+            <div id="an-cohort-table-wrap" style="margin-top:1rem;">
+                <div class="state-block">Loading cohorts…</div>
+            </div>
+        </section>
+
+        <section class="panel an-panel" id="an-ltv-panel" aria-label="Lifetime value" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Lifetime Value / Revenue</h2>
+                    <p class="panel-sub">Revenue, ARPU, ARPPU, and product-line breakdown.</p>
+                </div>
+                <div class="pz-panel-actions">
+                    <label class="an-checkbox" for="an-ltv-cohort">
+                        <input type="checkbox" id="an-ltv-cohort">
+                        <span>Group by cohort</span>
+                    </label>
+                </div>
+            </div>
+            <div class="stat-grid" id="an-ltv-stats"></div>
+            <div id="an-ltv-table-wrap" style="margin-top:1rem;">
+                <div class="state-block">Loading LTV…</div>
+            </div>
+        </section>
+
+        <section class="panel an-panel" id="an-realtime-panel" aria-label="Real-time pulse" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Real-Time Pulse</h2>
+                    <p class="panel-sub">Live activity for the selected window.</p>
+                </div>
+                <div class="pz-panel-actions">
+                    <div class="field">
+                        <label for="an-realtime-minutes">Window</label>
+                        <select id="an-realtime-minutes">
+                            <option value="15">15 min</option>
+                            <option value="30">30 min</option>
+                            <option value="60" selected>60 min</option>
+                            <option value="120">120 min</option>
+                        </select>
+                    </div>
+                    <label class="an-checkbox" for="an-realtime-auto">
+                        <input type="checkbox" id="an-realtime-auto" checked>
+                        <span>Auto-refresh</span>
+                    </label>
+                </div>
+            </div>
+            <div class="stat-grid" id="an-realtime-stats"></div>
+            <div class="panel-grid-2" id="an-realtime-grid" style="margin-top:1.5rem;">
+                <section class="panel" aria-label="Top temples">
+                    <div class="panel-head">
+                        <h3 class="panel-title">Top Temples</h3>
+                    </div>
+                    <div id="an-realtime-temples">
+                        <div class="state-block">Loading…</div>
+                    </div>
+                </section>
+                <section class="panel" aria-label="Timeline">
+                    <div class="panel-head">
+                        <h3 class="panel-title">Timeline</h3>
+                    </div>
+                    <div class="chart-wrap">
+                        <canvas id="realtime-chart" class="traffic-chart" role="img" aria-label="Real-time events timeline"></canvas>
+                    </div>
+                </section>
+            </div>
+        </section>
     </main>
 
     <script src="../portal.js"></script>
@@ -562,6 +669,12 @@
             loading: false,
             resizeTimer: null,
             chart: { showHuman: true, showBot: true, cumulative: false },
+            funnelId: 'temple_to_sponsor',
+            cohortGranularity: 'day',
+            ltvByCohort: false,
+            realtimeMinutes: 60,
+            realtimeAuto: true,
+            realtimeTimer: null,
         };
 
         var TEMPLE_RE = /^[a-z0-9-]{1,64}$/;
@@ -683,6 +796,19 @@
             crossOpt.value = 'cross';
             crossOpt.textContent = 'Cross-temple flows';
             select.appendChild(crossOpt);
+
+            var advancedOpts = [
+                { value: 'funnel', label: 'Funnels' },
+                { value: 'cohort', label: 'Cohorts' },
+                { value: 'ltv', label: 'LTV / Revenue' },
+                { value: 'realtime', label: 'Real-time' },
+            ];
+            for (var a = 0; a < advancedOpts.length; a++) {
+                var advOpt = document.createElement('option');
+                advOpt.value = advancedOpts[a].value;
+                advOpt.textContent = advancedOpts[a].label;
+                select.appendChild(advOpt);
+            }
         }
 
         // ── Stat cards ────────────────────────────────────────
@@ -700,6 +826,11 @@
                 cards += statCard(Portal.fmtNumber((cross.exitTemples || []).length), 'Exit Temples', 'where scoped sessions end');
                 cards += statCard(Portal.fmtNumber((cross.coViewClusters || []).length), 'Co-view Clusters', 'temple pairs in same session');
                 document.getElementById('an-stats').innerHTML = cards;
+                return;
+            }
+
+            if (state.mode === 'funnel' || state.mode === 'cohort' || state.mode === 'ltv' || state.mode === 'realtime') {
+                document.getElementById('an-stats').innerHTML = '';
                 return;
             }
 
@@ -1423,25 +1554,309 @@
             }
         }
 
+        // ── Advanced analytics panels ─────────────────────────
+
+        function fmtDollarsAmount(n) {
+            var v = Number(n);
+            if (!Number.isFinite(v)) return '$0.00';
+            return '$' + v.toFixed(2);
+        }
+
+        function renderFunnelPanel(funnel) {
+            var wrap = document.getElementById('an-funnel-table-wrap');
+            if (!funnel || !funnel.steps || !funnel.steps.length) {
+                wrap.innerHTML = emptyState('No funnel data for this period.');
+                return;
+            }
+            var body = funnel.steps
+                .map(function (s) {
+                    return (
+                        '<tr>' +
+                        '<td>' + Portal.escapeHtml(s.name) + '</td>' +
+                        '<td class="num">' + Portal.fmtNumber(s.count) + '</td>' +
+                        '<td class="num">' + fmtPct(s.conversionPct) + '</td>' +
+                        '<td class="num">' + fmtPct(s.dropOffPct) + '</td>' +
+                        '<td class="num">' + (s.medianSecondsFromFirst != null ? Portal.escapeHtml(fmtDuration(s.medianSecondsFromFirst * 1000)) : '—') + '</td>' +
+                        '</tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th>Step</th><th class="num">Count</th><th class="num">Conversion</th><th class="num">Drop-off</th><th class="num">Median Time</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+            attachSortable(wrap);
+        }
+
+        function renderCohortPanel(cohort) {
+            var summary = document.getElementById('an-cohort-summary');
+            var wrap = document.getElementById('an-cohort-table-wrap');
+            if (!cohort || !cohort.cohorts || !cohort.cohorts.length) {
+                summary.innerHTML = '';
+                wrap.innerHTML = emptyState('No cohort data for this period.');
+                return;
+            }
+            var s = cohort.summary || {};
+            summary.innerHTML =
+                '<div class="stat-grid">' +
+                statCard(Portal.fmtNumber(s.totalSessions || 0), 'Total Sessions', 'across cohorts') +
+                statCard(s.avgSize != null ? s.avgSize.toFixed(1) : '—', 'Avg. Cohort Size', '') +
+                statCard(fmtPct(s.avgD1), 'Avg. D1', '') +
+                statCard(fmtPct(s.avgD7), 'Avg. D7', '') +
+                statCard(fmtPct(s.avgD30), 'Avg. D30', '') +
+                '</div>';
+            var dayIndexes = [0, 7, 14, 21, 30];
+            var body = cohort.cohorts
+                .map(function (c) {
+                    var cells = dayIndexes
+                        .map(function (d) {
+                            var r = c.retention[d] || { count: d === 0 ? c.size : 0, pct: d === 0 ? 100 : 0 };
+                            return '<td class="num">' + Portal.fmtNumber(r.count) + '<br><span class="cell-sub">' + fmtPct(r.pct) + '</span></td>';
+                        })
+                        .join('');
+                    return '<tr><td>' + Portal.escapeHtml(c.date) + '</td>' + cells + '</tr>';
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th>Cohort</th><th class="num">D0</th><th class="num">D7</th><th class="num">D14</th><th class="num">D21</th><th class="num">D30</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+            attachSortable(wrap);
+        }
+
+        function renderLtvPanel(ltv, byCohort) {
+            var stats = document.getElementById('an-ltv-stats');
+            var wrap = document.getElementById('an-ltv-table-wrap');
+            if (!ltv) {
+                stats.innerHTML = '';
+                wrap.innerHTML = emptyState('No revenue data for this period.');
+                return;
+            }
+            if (byCohort) {
+                var cohorts = ltv.cohorts || [];
+                var totalRevenue = 0;
+                var totalTransactions = 0;
+                var totalSessions = 0;
+                var totalPayingSessions = 0;
+                for (var ci = 0; ci < cohorts.length; ci++) {
+                    totalRevenue += cohorts[ci].revenue || 0;
+                    totalTransactions += cohorts[ci].transactions || 0;
+                    totalSessions += cohorts[ci].uniqueSessions || 0;
+                    totalPayingSessions += cohorts[ci].uniquePayingSessions || 0;
+                }
+                var arpu = totalSessions > 0 ? totalRevenue / totalSessions : 0;
+                var arppu = totalPayingSessions > 0 ? totalRevenue / totalPayingSessions : 0;
+                stats.innerHTML =
+                    '<div class="stat-grid">' +
+                    statCard(fmtDollarsAmount(totalRevenue), 'Total Revenue', 'in period') +
+                    statCard(Portal.fmtNumber(totalTransactions), 'Transactions', '') +
+                    statCard(fmtDollarsAmount(arpu), 'ARPU', 'per unique session') +
+                    statCard(fmtDollarsAmount(arppu), 'ARPPU', 'per paying session') +
+                    statCard(fmtDollarsAmount(ltv.projected90Day || 0), 'Projected 90-Day', 'at current run rate') +
+                    '</div>';
+                if (!cohorts.length) {
+                    wrap.innerHTML = emptyState('No cohort revenue data.');
+                    return;
+                }
+                var body = cohorts
+                    .map(function (c) {
+                        var cArppu = c.uniquePayingSessions > 0 ? c.revenue / c.uniquePayingSessions : 0;
+                        return (
+                            '<tr>' +
+                            '<td>' + Portal.escapeHtml(c.date) + '</td>' +
+                            '<td class="num">' + fmtDollarsAmount(c.revenue) + '</td>' +
+                            '<td class="num">' + Portal.fmtNumber(c.transactions) + '</td>' +
+                            '<td class="num">' + Portal.fmtNumber(c.uniqueSessions) + '</td>' +
+                            '<td class="num">' + fmtDollarsAmount(c.arpu) + '</td>' +
+                            '<td class="num">' + fmtDollarsAmount(cArppu) + '</td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                    '<th>Cohort</th><th class="num">Revenue</th><th class="num">Transactions</th><th class="num">Sessions</th><th class="num">ARPU</th><th class="num">ARPPU</th>' +
+                    '</tr></thead><tbody>' + body + '</tbody></table></div>';
+                attachSortable(wrap);
+                return;
+            }
+            stats.innerHTML =
+                '<div class="stat-grid">' +
+                statCard(fmtDollarsAmount(ltv.totalRevenue), 'Total Revenue', 'in period') +
+                statCard(Portal.fmtNumber(ltv.transactions), 'Transactions', '') +
+                statCard(fmtDollarsAmount(ltv.arpu), 'ARPU', 'per unique session') +
+                statCard(fmtDollarsAmount(ltv.arppu), 'ARPPU', 'per paying session') +
+                statCard(fmtDollarsAmount(ltv.projected90Day), 'Projected 90-Day', 'at current run rate') +
+                '</div>';
+            var lines = ltv.byProductLine || {};
+            var plBody = ['sponsor', 'patron', 'store']
+                .map(function (key) {
+                    var pl = lines[key] || { revenue: 0, transactions: 0 };
+                    return (
+                        '<tr>' +
+                        '<td>' + Portal.escapeHtml(key.charAt(0).toUpperCase() + key.slice(1)) + '</td>' +
+                        '<td class="num">' + fmtDollarsAmount(pl.revenue) + '</td>' +
+                        '<td class="num">' + Portal.fmtNumber(pl.transactions) + '</td>' +
+                        '</tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th>Product Line</th><th class="num">Revenue</th><th class="num">Transactions</th>' +
+                '</tr></thead><tbody>' + plBody + '</tbody></table></div>';
+        }
+
+        function renderRealtimePanel(pulse) {
+            var stats = document.getElementById('an-realtime-stats');
+            var templesWrap = document.getElementById('an-realtime-temples');
+            if (!pulse) {
+                stats.innerHTML = '';
+                templesWrap.innerHTML = emptyState('No real-time data.');
+                return;
+            }
+            var c = pulse.current || {};
+            var v = pulse.velocity || {};
+            stats.innerHTML =
+                '<div class="stat-grid">' +
+                statCard(Portal.fmtNumber(c.uniqueSessions), 'Unique Sessions', 'current window', fmtTrend(v.uniqueSessionsPct)) +
+                statCard(Portal.fmtNumber(c.pageViews), 'Page Views', 'current window', fmtTrend(v.pageViewsPct)) +
+                statCard(Portal.fmtNumber(c.events), 'Events', 'current window', fmtTrend(v.eventsPct)) +
+                statCard(Portal.fmtNumber((pulse.last5Minutes || {}).events), 'Last 5 Min', 'events') +
+                '</div>';
+            var temples = pulse.topTemples || [];
+            if (!temples.length) {
+                templesWrap.innerHTML = emptyState('No temple activity in this window.');
+            } else {
+                var body = temples
+                    .map(function (t, i) {
+                        return (
+                            '<tr>' +
+                            '<td class="num">' + (i + 1) + '</td>' +
+                            '<td>' + Portal.escapeHtml(prettyTemple(t.name)) + '</td>' +
+                            '<td class="num">' + Portal.fmtNumber(t.uniqueSessions) + '</td>' +
+                            '<td class="num">' + Portal.fmtNumber(t.events) + '</td>' +
+                            '</tr>'
+                        );
+                    })
+                    .join('');
+                templesWrap.innerHTML =
+                    '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                    '<th class="num">#</th><th>Temple</th><th class="num">Sessions</th><th class="num">Events</th>' +
+                    '</tr></thead><tbody>' + body + '</tbody></table></div>';
+                attachSortable(templesWrap);
+            }
+            drawRealtimeChart(pulse.timeline || []);
+        }
+
+        var RT_CHART_PAD = { left: 44, right: 12, top: 12, bottom: 24 };
+
+        function drawRealtimeChart(timeline) {
+            var canvas = document.getElementById('realtime-chart');
+            if (!canvas) return;
+            var dpr = window.devicePixelRatio || 1;
+            var w = canvas.clientWidth;
+            var h = canvas.clientHeight;
+            if (!w || !h) return;
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            var ctx = canvas.getContext('2d');
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, w, h);
+            if (!timeline.length) {
+                ctx.fillStyle = '#7a8a9e';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('No real-time data', w / 2, h / 2);
+                return;
+            }
+            var plotW = Math.max(1, w - RT_CHART_PAD.left - RT_CHART_PAD.right);
+            var plotH = Math.max(1, h - RT_CHART_PAD.top - RT_CHART_PAD.bottom);
+            var maxV = 1;
+            for (var i = 0; i < timeline.length; i++) maxV = Math.max(maxV, timeline[i].events || 0);
+            var yMax = niceMax(maxV);
+
+            ctx.font = '10px Montserrat, sans-serif';
+            var step = niceStep(yMax);
+            for (var v = 0; v <= yMax; v += step) {
+                var y = RT_CHART_PAD.top + plotH - (v / yMax) * plotH;
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.beginPath();
+                ctx.moveTo(RT_CHART_PAD.left, y);
+                ctx.lineTo(w - RT_CHART_PAD.right, y);
+                ctx.stroke();
+                ctx.fillStyle = '#7a8a9e';
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(Portal.fmtNumber(v), RT_CHART_PAD.left - 6, y);
+            }
+
+            var barGap = Math.min(4, plotW / (timeline.length * 3));
+            var barW = (plotW - barGap * (timeline.length + 1)) / Math.max(timeline.length, 1);
+            for (var j = 0; j < timeline.length; j++) {
+                var val = timeline[j].events || 0;
+                var bh = (val / yMax) * plotH;
+                var bx = RT_CHART_PAD.left + barGap + j * (barW + barGap);
+                var by = RT_CHART_PAD.top + plotH - bh;
+                ctx.fillStyle = j === timeline.length - 1 ? '#d4af37' : 'rgba(212,175,55,0.55)';
+                ctx.fillRect(bx, by, barW, bh);
+            }
+
+            var labelEvery = Math.max(1, Math.ceil(timeline.length / 6));
+            ctx.fillStyle = '#7a8a9e';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'alphabetic';
+            for (var k = 0; k < timeline.length; k += labelEvery) {
+                var t = new Date(timeline[k].bucket);
+                var label = (t.getHours() < 10 ? '0' : '') + t.getHours() + ':' + (t.getMinutes() < 10 ? '0' : '') + t.getMinutes();
+                ctx.fillText(label, RT_CHART_PAD.left + barGap + k * (barW + barGap) + barW / 2, h - 6);
+            }
+        }
+
+        function startRealtimeTimer() {
+            stopRealtimeTimer();
+            if (!state.realtimeAuto || state.mode !== 'realtime') return;
+            state.realtimeTimer = setInterval(function () {
+                if (document.hidden) return;
+                loadAnalytics();
+            }, 30000);
+        }
+
+        function stopRealtimeTimer() {
+            if (state.realtimeTimer) {
+                clearInterval(state.realtimeTimer);
+                state.realtimeTimer = null;
+            }
+        }
+
         // ── Visibility & orchestration ────────────────────────
 
         function setPanelVisibility() {
             var isRolling = state.mode === 'rolling';
             var isQuarter = state.mode === 'quarter';
             var isCross = state.mode === 'cross';
+            var isFunnel = state.mode === 'funnel';
+            var isCohort = state.mode === 'cohort';
+            var isLtv = state.mode === 'ltv';
+            var isRealtime = state.mode === 'realtime';
+            var isAdvanced = isFunnel || isCohort || isLtv || isRealtime;
 
             document.getElementById('an-traffic-panel').hidden = !isRolling;
             document.getElementById('an-quarter-panel').hidden = !isQuarter;
             document.getElementById('an-cross-panel').hidden = !isCross;
             document.getElementById('an-engagement-panel').hidden = !isRolling;
-            document.getElementById('an-temples-panel').hidden = isCross;
-            document.getElementById('an-devices-referrers-grid').hidden = isCross;
-            document.getElementById('an-pages-bots-grid').hidden = isCross || isQuarter;
+            document.getElementById('an-temples-panel').hidden = isCross || isAdvanced;
+            document.getElementById('an-devices-referrers-grid').hidden = isCross || isAdvanced;
+            document.getElementById('an-pages-bots-grid').hidden = isCross || isQuarter || isAdvanced;
             document.getElementById('an-movers-panel').hidden = true;
+            document.getElementById('an-funnel-panel').hidden = !isFunnel;
+            document.getElementById('an-cohort-panel').hidden = !isCohort;
+            document.getElementById('an-ltv-panel').hidden = !isLtv;
+            document.getElementById('an-realtime-panel').hidden = !isRealtime;
 
             var compareField = document.querySelector('.an-compare-field');
-            if (compareField) compareField.style.opacity = isCross ? '0.45' : '1';
-            document.getElementById('an-compare').disabled = isCross;
+            if (compareField) compareField.style.opacity = isCross || isAdvanced ? '0.45' : '1';
+            document.getElementById('an-compare').disabled = isCross || isAdvanced;
         }
 
         function renderAll(data) {
@@ -1453,6 +1868,23 @@
 
             if (state.mode === 'cross') {
                 renderCrossPanel(data.crossTemple);
+                return;
+            }
+            if (state.mode === 'funnel') {
+                renderFunnelPanel(data.funnel);
+                return;
+            }
+            if (state.mode === 'cohort') {
+                renderCohortPanel(data.cohort);
+                return;
+            }
+            if (state.mode === 'ltv') {
+                renderLtvPanel(data.ltv, data.byCohort);
+                return;
+            }
+            if (state.mode === 'realtime') {
+                renderRealtimePanel(data.pulse);
+                startRealtimeTimer();
                 return;
             }
 
@@ -1483,7 +1915,17 @@
             for (var i = 0; i < buttons.length; i++) buttons[i].disabled = loading;
             document.getElementById('an-export').disabled = loading;
             document.getElementById('an-quarter-picker').disabled = loading;
-            document.getElementById('an-compare').disabled = loading || state.mode === 'cross';
+            document.getElementById('an-compare').disabled = loading || state.mode === 'cross' || state.mode === 'funnel' || state.mode === 'cohort' || state.mode === 'ltv' || state.mode === 'realtime';
+            var funnelPicker = document.getElementById('an-funnel-picker');
+            if (funnelPicker) funnelPicker.disabled = loading;
+            var cohortGranularity = document.getElementById('an-cohort-granularity');
+            if (cohortGranularity) cohortGranularity.disabled = loading;
+            var ltvCohort = document.getElementById('an-ltv-cohort');
+            if (ltvCohort) ltvCohort.disabled = loading;
+            var realtimeMinutes = document.getElementById('an-realtime-minutes');
+            if (realtimeMinutes) realtimeMinutes.disabled = loading;
+            var realtimeAuto = document.getElementById('an-realtime-auto');
+            if (realtimeAuto) realtimeAuto.disabled = loading;
         }
 
         function buildQuery() {
@@ -1496,6 +1938,21 @@
             } else if (state.mode === 'cross') {
                 params.push('mode=cross');
                 params.push('days=' + state.days);
+            } else if (state.mode === 'funnel') {
+                params.push('mode=funnel');
+                params.push('funnel=' + encodeURIComponent(state.funnelId));
+                params.push('days=' + state.days);
+            } else if (state.mode === 'cohort') {
+                params.push('mode=cohort');
+                params.push('days=' + state.days);
+                params.push('granularity=' + encodeURIComponent(state.cohortGranularity));
+            } else if (state.mode === 'ltv') {
+                params.push('mode=ltv');
+                params.push('days=' + state.days);
+                if (state.ltvByCohort) params.push('cohort=1');
+            } else if (state.mode === 'realtime') {
+                params.push('mode=realtime');
+                params.push('minutes=' + state.realtimeMinutes);
             } else {
                 params.push('mode=rolling');
                 params.push('days=' + state.days);
@@ -1545,6 +2002,7 @@
 
         async function loadAnalytics() {
             setLoading(true);
+            stopRealtimeTimer();
             state.hoverIndex = -1;
             hideTooltip();
             try {
@@ -1621,7 +2079,9 @@
 
         function syncViewFromState() {
             var select = document.getElementById('an-quarter-picker');
-            var resolved = state.mode === 'quarter' ? state.quarter : '';
+            var resolved = '';
+            if (state.mode === 'quarter') resolved = state.quarter;
+            else if (state.mode !== 'rolling') resolved = state.mode;
             var found = false;
             for (var i = 0; i < select.options.length; i++) {
                 if (select.options[i].value === resolved) {
@@ -1633,16 +2093,40 @@
             if (!found) select.selectedIndex = 0;
             document.getElementById('an-compare').checked = state.compare;
             updatePeriodButtons();
+
+            var funnelPicker = document.getElementById('an-funnel-picker');
+            if (funnelPicker) funnelPicker.value = state.funnelId;
+            var cohortGranularity = document.getElementById('an-cohort-granularity');
+            if (cohortGranularity) cohortGranularity.value = state.cohortGranularity;
+            var ltvCohort = document.getElementById('an-ltv-cohort');
+            if (ltvCohort) ltvCohort.checked = state.ltvByCohort;
+            var realtimeMinutes = document.getElementById('an-realtime-minutes');
+            if (realtimeMinutes) realtimeMinutes.value = String(state.realtimeMinutes);
+            var realtimeAuto = document.getElementById('an-realtime-auto');
+            if (realtimeAuto) realtimeAuto.checked = state.realtimeAuto;
         }
 
         function onViewChange() {
             var select = document.getElementById('an-quarter-picker');
             var value = select.value;
+            stopRealtimeTimer();
             if (!value || value === 'rolling') {
                 state.mode = 'rolling';
                 state.quarter = '';
             } else if (value === 'cross') {
                 state.mode = 'cross';
+                state.quarter = '';
+            } else if (value === 'funnel') {
+                state.mode = 'funnel';
+                state.quarter = '';
+            } else if (value === 'cohort') {
+                state.mode = 'cohort';
+                state.quarter = '';
+            } else if (value === 'ltv') {
+                state.mode = 'ltv';
+                state.quarter = '';
+            } else if (value === 'realtime') {
+                state.mode = 'realtime';
                 state.quarter = '';
             } else {
                 state.mode = 'quarter';
@@ -1710,6 +2194,40 @@
                 drawTrafficChart();
             });
 
+            document.getElementById('an-funnel-picker').addEventListener('change', function () {
+                state.funnelId = this.value;
+                loadAnalytics();
+            });
+            document.getElementById('an-cohort-granularity').addEventListener('change', function () {
+                state.cohortGranularity = this.value;
+                loadAnalytics();
+            });
+            document.getElementById('an-ltv-cohort').addEventListener('change', function () {
+                state.ltvByCohort = this.checked;
+                loadAnalytics();
+            });
+            document.getElementById('an-realtime-minutes').addEventListener('change', function () {
+                state.realtimeMinutes = parseInt(this.value, 10) || 60;
+                loadAnalytics();
+            });
+            document.getElementById('an-realtime-auto').addEventListener('change', function () {
+                state.realtimeAuto = this.checked;
+                if (state.mode === 'realtime') {
+                    if (state.realtimeAuto) startRealtimeTimer();
+                    else stopRealtimeTimer();
+                }
+            });
+
+            document.addEventListener('visibilitychange', function () {
+                if (state.mode !== 'realtime') return;
+                if (document.hidden) {
+                    stopRealtimeTimer();
+                } else if (state.realtimeAuto) {
+                    loadAnalytics();
+                    startRealtimeTimer();
+                }
+            });
+
             window.addEventListener('resize', function () {
                 clearTimeout(state.resizeTimer);
                 state.resizeTimer = setTimeout(function () {
@@ -1717,6 +2235,7 @@
                     hideTooltip();
                     drawTrafficChart();
                     if (state.mode === 'quarter') drawQuarterChart((state.data && state.data.quarterRows) || []);
+                    if (state.mode === 'realtime') drawRealtimeChart((state.data && state.data.pulse && state.data.pulse.timeline) || []);
                 }, 150);
             });
 
