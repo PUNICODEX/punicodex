@@ -143,8 +143,14 @@ async function runStaticTests() {
       );
       assert.ok(src.includes(`data-page="${pageId}"`), `${rel}: expected data-page="${pageId}"`);
       assert.ok(src.includes('data-depth="1"'), `${rel}: expected data-depth="1"`);
-      assert.ok(/href="\.\.\/portal\.css"/.test(src), `${rel}: expected ../portal.css link`);
-      assert.ok(/src="\.\.\/portal\.js"/.test(src), `${rel}: expected ../portal.js script`);
+      assert.ok(
+        /href="\.\.\/portal\.css(?:\?v=[^"]*)?"/.test(src),
+        `${rel}: expected ../portal.css link`
+      );
+      assert.ok(
+        /src="\.\.\/portal\.js(?:\?v=[^"]*)?"/.test(src),
+        `${rel}: expected ../portal.js script`
+      );
       assert.ok(src.includes('Portal.initShell('), `${rel}: expected Portal.initShell wiring`);
       // Shell building blocks the pages must render with. The legacy
       // directory is a static page — no loading states or stat cards there.

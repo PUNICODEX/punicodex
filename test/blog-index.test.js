@@ -21,9 +21,10 @@ const { execFileSync } = require('node:child_process');
 
 const ROOT = path.join(__dirname, '..');
 const INDEX_PATH = path.join(ROOT, 'blog', 'index.html');
+const GENERATOR_PATH = path.join(ROOT, 'scripts', 'generate-blog-index.js');
+const STAMPER_PATH = path.join(ROOT, 'scripts', 'stamp-asset-versions.js');
 const SITES_DIR = path.join(ROOT, 'sites');
 const BLOG_DIR = path.join(ROOT, 'platform', 'blog', 'content');
-const GENERATOR_PATH = path.join(ROOT, 'scripts', 'generate-blog-index.js');
 
 const { LEXICON } = require(path.join(ROOT, 'type', 'js', 'lexicon.js'));
 const LEXICON_BY_ID = new Map(LEXICON.map((e) => [e.id, e]));
@@ -126,7 +127,7 @@ test('analytics markers are present', () => {
   assert.match(html, /<!-- PUNICODEX-ANALYTICS-END -->/, 'missing analytics end marker');
   assert.match(
     html,
-    /<script src="\/js\/analytics-beacon\.js\?v=\d+" defer><\/script>/,
+    /<script src="\/js\/analytics-beacon\.js\?v=[a-f0-9]+" defer><\/script>/,
     'missing versioned beacon script'
   );
 });
@@ -267,17 +268,21 @@ test('generator is idempotent (byte-identical output across runs)', () => {
     crypto.createHash('sha256').update(fs.readFileSync(INDEX_PATH)).digest('hex');
   const runGenerator = () =>
     execFileSync(process.execPath, [GENERATOR_PATH], { cwd: ROOT, stdio: 'pipe' });
+  const runStamper = () =>
+    execFileSync(process.execPath, [STAMPER_PATH], { cwd: ROOT, stdio: 'pipe' });
 
   const committed = hashFile();
   runGenerator();
+  runStamper();
   const first = hashFile();
   runGenerator();
+  runStamper();
   const second = hashFile();
 
   assert.equal(
     first,
     committed,
-    'committed blog/index.html is stale — rerun node scripts/generate-blog-index.js'
+    'committed blog/index.html is stale — rerun node scripts/generate-blog-index.js then node scripts/stamp-asset-versions.js'
   );
   assert.equal(second, first, 'generator output differs between consecutive runs');
 });

@@ -72,6 +72,7 @@ walk(path.join(ROOT, 'platform', 'public'), (p) => targets.push(p));
 
 const rootPages = [
   'index.html',
+  'interstitial.html',
   path.join('search', 'index.html'),
   path.join('oracle', 'index.html'),
   path.join('about', 'index.html'),

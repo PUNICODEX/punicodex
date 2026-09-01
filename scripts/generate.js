@@ -102,8 +102,6 @@ const scripts = [
   // index; skips existing bakes (platform fonts — committed artifacts).
   'scripts/generate-ink-downloads.js',
   'scripts/sync-scholars-portal.js',
-  // Content-addressed ?v= pins for data-driven JS (self-busting cache).
-  'scripts/stamp-asset-versions.js',
   // Home-page fleet stats from canonical sources (never hand-maintained).
   'scripts/sync-hero-stats.js',
   // Stale counter sweep for hand-edited marketing/pitch pages.
@@ -132,6 +130,9 @@ const scripts = [
   'scripts/inject-university-collaborators.js',
   'scripts/inject-herald-beacon.js',
   'scripts/inject-cookie-consent.js',
+  // Content-addressed ?v= pins for data-driven JS (self-busting cache).
+  // Runs after all HTML injectors so placeholder pins are replaced with hashes.
+  'scripts/stamp-asset-versions.js',
   'scripts/update-data-version.js',
   // Writes data/corpus/entries.jsonl + manifest.json. MUST run before the
   // corpus generators below, several of which read entries.jsonl — running it

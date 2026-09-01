@@ -212,7 +212,9 @@ test('representative pages link /assets/fonts/fonts.css and have no Google preco
   for (const rel of pagesWithWebfonts) {
     const html = read(rel);
     assert.ok(
-      html.includes('<link rel="stylesheet" href="/assets/fonts/fonts.css">'),
+      /<link\s+rel=["']stylesheet["']\s+href=["']\/assets\/fonts\/fonts\.css(?:\?v=[^"']*)?["']/.test(
+        html
+      ),
       `${rel} does not link /assets/fonts/fonts.css`
     );
     assert.ok(!GOOGLE_FONT_RE.test(html), `${rel} still references Google Fonts`);

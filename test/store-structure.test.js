@@ -283,16 +283,28 @@ test('store pages carry the responsive breakpoint and canonical site nav', () =>
   }
 });
 
-test('generator is idempotent (second run writes zero files)', () => {
-  const out = execFileSync(
-    process.execPath,
-    [path.join(ROOT, 'scripts', 'generate-store-pages.js')],
-    {
+test('generator + stamper are idempotent (second run writes zero files)', () => {
+  const runGenerator = () =>
+    execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'generate-store-pages.js')], {
       cwd: ROOT,
       encoding: 'utf8',
-    }
+    });
+  const runStamper = () =>
+    execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'stamp-asset-versions.js')], {
+      cwd: ROOT,
+      encoding: 'utf8',
+    });
+  runGenerator();
+  runStamper();
+  const first = runGenerator();
+  assert.match(
+    first,
+    /Store pages: 0 written/,
+    'first generator pass wrote pages after stamper — committed store pages may be stale'
   );
-  assert.match(out, /Store pages: 0 written/, `generator not idempotent: ${out.trim()}`);
+  runStamper();
+  const second = runGenerator();
+  assert.match(second, /Store pages: 0 written/, 'generator not idempotent after stamper');
 });
 
 async function run() {

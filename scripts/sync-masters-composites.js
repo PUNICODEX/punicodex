@@ -71,7 +71,7 @@ async function main() {
       } else {
         const srcStat = fs.statSync(src);
         const dstStat = fs.statSync(dst);
-        if (srcStat.mtime > dstStat.mtime || srcStat.size !== dstStat.size) {
+        if (srcStat.mtime > dstStat.mtime) {
           needsCopy = true;
         }
       }

@@ -35,6 +35,7 @@ function test(name, fn) {
 
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 const GENERATOR = path.join(root, 'scripts', 'generate-patterns-page.js');
+const STAMPER = path.join(root, 'scripts', 'stamp-asset-versions.js');
 const ATLAS_PAGE = path.join(root, 'patterns', 'index.html');
 const METHOD_PAGE = path.join(root, 'patterns', 'methodology', 'index.html');
 
@@ -74,14 +75,17 @@ test('alias layer schema: real industries, no dup terms, >=6 lowercase aliases e
 
 test('page generator is idempotent (byte-identical output across runs)', () => {
   const hash = (p) => crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  const runStamper = () => execFileSync(process.execPath, [STAMPER], { cwd: root, stdio: 'pipe' });
   const committed = [hash(ATLAS_PAGE), hash(METHOD_PAGE)];
   execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+  runStamper();
   assert.deepStrictEqual(
     [hash(ATLAS_PAGE), hash(METHOD_PAGE)],
     committed,
-    'first regeneration changed a page'
+    'first regeneration changed a page — rerun node scripts/generate-patterns-page.js then node scripts/stamp-asset-versions.js'
   );
   execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+  runStamper();
   assert.deepStrictEqual(
     [hash(ATLAS_PAGE), hash(METHOD_PAGE)],
     committed,

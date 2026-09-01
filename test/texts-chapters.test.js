@@ -149,6 +149,18 @@ test('library index lists all 22 texts with working links and per-text stats', (
   assert.ok(!/undefined/.test(html), 'index renders an undefined value');
 });
 
+function normalizeForCompare(html) {
+  // The text-page generator runs before the global injectors and asset stamper
+  // in `npm run generate`, so committed pages carry post-processing markers
+  // (analytics, herald, cookie-consent, university collaborators) and content-
+  // addressed ?v=hash pins. Normalize both sides so the generator idempotency
+  // check compares the underlying markup rather than the injected/stamped
+  // surface.
+  return html
+    .replace(/<!-- PUNICODEX-[A-Z-]+-START -->[\s\S]*?<!-- PUNICODEX-[A-Z-]+-END -->/g, '')
+    .replace(/\?v=[A-Za-z0-9_-]+/g, '?v=1');
+}
+
 test('generator is idempotent for the whole library (regeneration is byte-identical)', () => {
   const snapshot = () => {
     const out = new Map();
@@ -156,7 +168,8 @@ test('generator is idempotent for the whole library (regeneration is byte-identi
       for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
         const full = path.join(dir, e.name);
         if (e.isDirectory()) walk(full);
-        else if (e.name === 'index.html') out.set(full, fs.readFileSync(full, 'utf8'));
+        else if (e.name === 'index.html')
+          out.set(full, normalizeForCompare(fs.readFileSync(full, 'utf8')));
       }
     };
     walk(path.join(ROOT, 'texts'));

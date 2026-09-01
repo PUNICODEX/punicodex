@@ -278,7 +278,7 @@ a:hover{color:var(--gold-bright)}
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: PRODUCT_ID, variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({ productId: "pontos-hoodie", variantLabel: currentLabel(), quantity: qty })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));

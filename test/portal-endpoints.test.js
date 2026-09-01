@@ -554,13 +554,13 @@ async function runTests() {
     }
   });
 
-  await test('analytics: days is clamped to the 1–90 window', async () => {
+  await test('analytics: days is clamped to the 1–120 window', async () => {
     const high = await invoke(analyticsHandler, 'GET', '/api/admin/portal/analytics/?days=500', {
       headers: adminHeader(roleTokens.viewer),
     });
     assert.strictEqual(high.status, 200);
-    assert.strictEqual(high.body.overview.periodDays, 90);
-    assert.strictEqual(high.body.overview.byDay.length, 90);
+    assert.strictEqual(high.body.overview.periodDays, 120);
+    assert.strictEqual(high.body.overview.byDay.length, 120);
 
     const garbage = await invoke(analyticsHandler, 'GET', '/api/admin/portal/analytics/?days=abc', {
       headers: adminHeader(roleTokens.viewer),

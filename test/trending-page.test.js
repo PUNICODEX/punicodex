@@ -29,6 +29,7 @@ function test(name, fn) {
 
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
 const GENERATOR = path.join(root, 'scripts', 'generate-trending-page.js');
+const STAMPER = path.join(root, 'scripts', 'stamp-asset-versions.js');
 const PAGE = path.join(root, 'trending', 'index.html');
 
 function registryFrom(html) {
@@ -40,10 +41,17 @@ function registryFrom(html) {
 test('generator is idempotent (byte-identical output across runs)', () => {
   const hash = () =>
     require('node:crypto').createHash('sha256').update(fs.readFileSync(PAGE)).digest('hex');
+  const runStamper = () => execFileSync(process.execPath, [STAMPER], { cwd: root, stdio: 'pipe' });
   const committed = hash();
   execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
-  assert.strictEqual(hash(), committed, 'first regeneration changed the page');
+  runStamper();
+  assert.strictEqual(
+    hash(),
+    committed,
+    'first regeneration changed the page — rerun node scripts/generate-trending-page.js then node scripts/stamp-asset-versions.js'
+  );
   execFileSync(process.execPath, [GENERATOR], { cwd: root, stdio: 'pipe' });
+  runStamper();
   assert.strictEqual(hash(), committed, 'second regeneration changed the page');
 });
 

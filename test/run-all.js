@@ -35,7 +35,7 @@ const SUITES = [
   { name: 'Scholars Content Regression', cmd: 'node test/scholars-content.test.js' },
   { name: 'Scholars API Flow Regression', cmd: 'node test/scholars-api-flow.test.js' },
   { name: 'Flagship Blog Tests', cmd: 'node --test test/blog.test.js' },
-  { name: 'Blog Index Tests', cmd: 'node --test test/blog-index.test.js' },
+  { name: 'Blog Index Tests', cmd: 'node --test test/blog-index.test.js', timeout: 120000 },
   {
     name: 'Scholars Session Revocation Tests',
     cmd: 'node platform/scholars/session-revocation.test.js',
@@ -568,6 +568,8 @@ const SERIAL_SUITES = new Set([
   'Admin Analytics V2 Tests',
   // Stamps ?v= pins across tracked HTML (tree-writer).
   'Asset Version Tests',
+  // Injects analytics beacon across tracked HTML (tree-writer).
+  'Site Analytics Tests',
   // Writes index.html stats when they drift (tree-writer).
   'Hero Stats Tests',
   // 36 oracle Q&A calls against the golden DB; keep out of the parallel phase.

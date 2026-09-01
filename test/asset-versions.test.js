@@ -56,12 +56,12 @@ test('every reference to a content-addressed asset carries its current hash pin'
     .filter((f) => !SKIP.test(f));
   const stale = [];
   function checkRef(text, file, ref, asset) {
-    const want = ref + '?v=' + hashOf(asset);
+    const want = `${ref}?v=${hashOf(asset)}`;
     const escaped = ref.replace(/[./]/g, '\\$&');
-    const anyRef = new RegExp(escaped + '(?:\\?v=([A-Za-z0-9_-]+))?', 'g');
+    const anyRef = new RegExp(`${escaped}(?:\\?v=([A-Za-z0-9_-]+))?`, 'g');
     for (const m of text.matchAll(anyRef)) {
       if (m[0] !== want) {
-        stale.push(file + ': ' + m[0] + ' (want ?v=' + hashOf(asset) + ')');
+        stale.push(`${file}: ${m[0]} (want ?v=${hashOf(asset)})`);
       }
     }
   }

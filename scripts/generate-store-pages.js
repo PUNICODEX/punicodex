@@ -340,7 +340,7 @@ ${
 <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
 <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
-<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=1">
 <link rel="preload" href="/assets/fonts/cormorant-garamond-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/main.css?v=perf24">
@@ -819,7 +819,7 @@ ${breadcrumbScript([
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: PRODUCT_ID, variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({ productId: ${JSON.stringify(product.id)}, variantLabel: currentLabel(), quantity: qty })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));
@@ -836,8 +836,15 @@ ${breadcrumbScript([
 `;
 }
 
+function normalizePins(html) {
+  // The generator emits ?v=1 placeholders for content-addressed assets.
+  // The stamp script replaces them with short hashes. Ignore those pins when
+  // deciding whether a page needs rewriting so generator + stamper are stable.
+  return html.replace(/\?v=[A-Za-z0-9_-]+/g, '?v=1');
+}
+
 function writeIfChanged(file, content) {
-  if (fs.existsSync(file) && fs.readFileSync(file, 'utf8') === content) return false;
+  if (fs.existsSync(file) && normalizePins(fs.readFileSync(file, 'utf8')) === normalizePins(content)) return false;
   fs.mkdirSync(path.dirname(file), { recursive: true });
   writeFileWithRetry(file, content);
   return true;

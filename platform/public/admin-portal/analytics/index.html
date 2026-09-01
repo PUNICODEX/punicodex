@@ -2196,7 +2196,7 @@
             status.textContent = 'Running…';
             var token = Portal.getToken();
             try {
-                var res = await fetch('/api/admin/analytics/rollup', {
+                var res = await fetch('/api/admin/analytics/rollup/', {
                     method: 'POST',
                     headers: token ? { 'x-admin-token': token, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ days: days }),
@@ -2230,7 +2230,7 @@
             status.textContent = 'Pruning…';
             var token = Portal.getToken();
             try {
-                var res = await fetch('/api/admin/analytics/retention', {
+                var res = await fetch('/api/admin/analytics/retention/', {
                     method: 'POST',
                     headers: token ? { 'x-admin-token': token, 'Content-Type': 'application/json' } : { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ events_days: eventsDays, sessions_days: sessionsDays, rollups_days: rollupsDays }),

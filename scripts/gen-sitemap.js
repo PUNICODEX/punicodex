@@ -65,6 +65,7 @@ const mainPages = [
   { loc: '/appraise/', priority: '0.8', changefreq: 'weekly' },
   { loc: '/terms/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/terms/advertising/', priority: '0.4', changefreq: 'yearly' },
+  { loc: '/terms/analytics/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/privacy/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/herald/', priority: '0.7', changefreq: 'weekly' },
   { loc: '/authenticity/', priority: '0.8', changefreq: 'weekly' },

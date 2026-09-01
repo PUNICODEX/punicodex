@@ -81,7 +81,7 @@ for (const id of BUILT_IDS) {
     assert.match(html, /<!-- PUNICODEX-ANALYTICS-END -->/, 'missing analytics end marker');
     assert.match(
       html,
-      /<script src="\/js\/analytics-beacon\.js\?v=\d+" defer><\/script>/,
+      /<script src="\/js\/analytics-beacon\.js\?v=[a-f0-9]+" defer><\/script>/,
       'missing versioned beacon script'
     );
 

@@ -16,13 +16,13 @@
 <meta property="og:url" content="https://punicodex.com/store/oduduwa/tee/">
 <meta property="og:type" content="product">
 <meta property="og:site_name" content="PUNICODEX">
-<meta property="og:image" content="https://punicodex.com/sites/oduduwa/assets/oduduwa_mascot.webp">
-<meta property="og:image:width" content="1024">
-<meta property="og:image:height" content="1536">
+<meta property="og:image" content="https://punycodex-masters.vercel.app/mockups/oduduwa-tee.jpg">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="1000">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Odùduwà Temple Tee | PUNICODEX Reliquary">
 <meta name="twitter:description" content="Odùduwà across the chest, the Odùduwà lockup riding the shoulders. Heavyweight organic cotton. — Odùduwà Temple Tee, printed on demand. $38.00 USD.">
-<meta name="twitter:image" content="https://punicodex.com/sites/oduduwa/assets/oduduwa_mascot.webp">
+<meta name="twitter:image" content="https://punycodex-masters.vercel.app/mockups/oduduwa-tee.jpg">
 <link rel="preconnect" href="https://punycodex-masters.vercel.app">
 <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
 <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
@@ -99,7 +99,7 @@ a:hover{color:var(--gold-bright)}
   .pdp{grid-template-columns:1fr;gap:1.5rem}
   .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 }
-.pdp .stage{aspect-ratio:1024 / 1536}</style>
+.pdp .stage{aspect-ratio:1000 / 1000}</style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -204,7 +204,7 @@ a:hover{color:var(--gold-bright)}
     <script src="/js/main.js?v=perf12" defer></script>
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/oduduwa/">Odùduwà</a> · <span style="color:var(--gold)">Temple Tee</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="/sites/oduduwa/assets/oduduwa_mascot.webp" alt="Odùduwà Temple Tee" width="1024" height="1536" fetchpriority="high" decoding="async"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/oduduwa-tee.jpg" alt="Odùduwà Temple Tee" width="1000" height="1000" fetchpriority="high" decoding="async"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Temple Tee</span> <span class="pill">Odùduwà</span>
     <h1>Odùduwà Temple Tee</h1>
@@ -227,7 +227,7 @@ a:hover{color:var(--gold-bright)}
     </div>
   </div>
 </div>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Odùduwà Temple Tee","image":"https://punicodex.com/sites/oduduwa/assets/oduduwa_mascot.webp","description":"Odùduwà across the chest, the Odùduwà lockup riding the shoulders. Heavyweight organic cotton.","url":"https://punicodex.com/store/oduduwa/tee/","sku":"459842353","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","url":"https://punicodex.com/store/oduduwa/tee/","price":"38.00","priceCurrency":"USD","priceValidUntil":"2027-12-31","itemCondition":"https://schema.org/NewCondition","availability":"https://schema.org/InStock"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Odùduwà Temple Tee","image":"https://punycodex-masters.vercel.app/mockups/oduduwa-tee.jpg","description":"Odùduwà across the chest, the Odùduwà lockup riding the shoulders. Heavyweight organic cotton.","url":"https://punicodex.com/store/oduduwa/tee/","sku":"459842353","brand":{"@type":"Brand","name":"PuniCodex"},"offers":{"@type":"Offer","url":"https://punicodex.com/store/oduduwa/tee/","price":"38.00","priceCurrency":"USD","priceValidUntil":"2027-12-31","itemCondition":"https://schema.org/NewCondition","availability":"https://schema.org/InStock"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"The Reliquary","item":"https://punicodex.com/store/"},{"@type":"ListItem","position":3,"name":"Odùduwà","item":"https://punicodex.com/store/oduduwa/"},{"@type":"ListItem","position":4,"name":"Odùduwà Temple Tee","item":"https://punicodex.com/store/oduduwa/tee/"}]}</script>
 <script>
 (function(){
@@ -278,7 +278,7 @@ a:hover{color:var(--gold-bright)}
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: PRODUCT_ID, variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({ productId: "oduduwa-tee", variantLabel: currentLabel(), quantity: qty })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));

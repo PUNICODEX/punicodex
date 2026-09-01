@@ -53,6 +53,8 @@ const API_ROUTES = [
   '/api/admin/portal/me/password/',
   '/api/admin/portal/dashboard/',
   '/api/admin/portal/analytics/',
+  '/api/admin/analytics/rollup/',
+  '/api/admin/analytics/retention/',
   '/api/admin/portal/users/',
   '/api/admin/portal/users/:id/',
   '/api/admin/portal/users/:id/disable/',
@@ -229,7 +231,7 @@ test('every portal page loads the shared stylesheet and protected pages load por
   for (const rel of PAGES) {
     const $ = cheerio.load(readCanonical(rel));
     const styles = $('link[rel="stylesheet"]')
-      .map((_, el) => $(el).attr('href'))
+      .map((_, el) => $(el).attr('href').split('?')[0])
       .get();
     assert.ok(
       styles.some((h) => h.endsWith('portal.css')),
@@ -237,7 +239,7 @@ test('every portal page loads the shared stylesheet and protected pages load por
     );
     if (rel !== 'login/index.html') {
       const scripts = $('script[src]')
-        .map((_, el) => $(el).attr('src'))
+        .map((_, el) => $(el).attr('src').split('?')[0])
         .get();
       assert.ok(
         scripts.some((s) => s.endsWith('portal.js')),

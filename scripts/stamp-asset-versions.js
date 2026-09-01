@@ -21,6 +21,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
+const { writeFileWithRetry } = require('./write-file-retry.js');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -113,7 +114,7 @@ function main() {
       }
     }
     if (out !== text) {
-      fs.writeFileSync(abs, out);
+      writeFileWithRetry(abs, out, 'utf8');
       written++;
     }
   }

@@ -511,9 +511,9 @@ test('beacon script exists, is small, and honors Do Not Track', () => {
   const beaconPath = path.join(ROOT, 'js', 'analytics-beacon.js');
   assert.ok(fs.existsSync(beaconPath));
   const src = fs.readFileSync(beaconPath, 'utf8');
-  // v2 (consent gating + engagement pings) raised the budget from 2KB to 8KB —
+  // v3 (Phase 7 cross-product instrumentation) raised the budget past 8KB —
   // still a tiny deferred, cache-busted script.
-  assert.ok(fs.statSync(beaconPath).size < 8192, 'beacon must stay under 8KB');
+  assert.ok(fs.statSync(beaconPath).size < 10240, 'beacon must stay under 10KB');
   assert.ok(src.includes("navigator.doNotTrack === '1'"), 'beacon must honor DNT');
   assert.ok(
     src.indexOf('doNotTrack') < src.indexOf('sendBeacon'),
@@ -535,6 +535,8 @@ test('inject-analytics.js is idempotent and injects the beacon exactly once', ()
   for (let i = 0; i < 2; i++) {
     execSync('node scripts/inject-analytics.js', { cwd: ROOT, env, timeout: 300000 });
   }
+  // Restore content-addressed pins so later suites see stamped committed files.
+  execSync('node scripts/stamp-asset-versions.js', { cwd: ROOT, timeout: 300000 });
 
   const targets = [];
   const walk = (dir) => {
