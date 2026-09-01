@@ -36,7 +36,17 @@ const ASSETS = [
   '/js/herald-beacon.js',
   '/js/newsletter.js',
   '/js/temple-base.js',
+  '/assets/fonts/fonts.css',
+  '/admin-portal/portal.css',
+  '/admin-portal/portal.js',
 ];
+
+// Some assets are referenced with relative paths inside the admin portal.
+// Map the canonical asset path to the relative forms that must also be stamped.
+const RELATIVE_ALIASES = new Map([
+  ['/admin-portal/portal.css', ['portal.css', '../portal.css']],
+  ['/admin-portal/portal.js', ['portal.js', '../portal.js']],
+]);
 
 // Historical reports are snapshots, not pages — never rewrite them.
 const SKIP = /^(docs\/lighthouse\/|Marketing\/|New material)/;
@@ -59,6 +69,30 @@ function main() {
     .filter(Boolean)
     .filter((f) => !SKIP.test(f));
 
+  function escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function stampAbsolute(out, asset, hash) {
+    const escaped = escapeRegex(asset);
+    const withPin = new RegExp(`${escaped}\\?v=[A-Za-z0-9_-]+`, 'g');
+    out = out.replace(withPin, `${asset}?v=${hash}`);
+    const bare = new RegExp(`${escaped}(?!\\?v=)`, 'g');
+    out = out.replace(bare, `${asset}?v=${hash}`);
+    return out;
+  }
+
+  function stampRelative(out, alias, hash) {
+    const escaped = escapeRegex(alias);
+    const withPin = new RegExp(`${escaped}\\?v=[A-Za-z0-9_-]+`, 'g');
+    out = out.replace(withPin, `${alias}?v=${hash}`);
+    // Only replace bare references inside href= or src= attributes to avoid
+    // accidental matches elsewhere.
+    const bare = new RegExp(`(href=\"|href='|src=\"|src=')${escaped}(?!\\?v=)`, 'g');
+    out = out.replace(bare, `$1${alias}?v=${hash}`);
+    return out;
+  }
+
   let written = 0;
   for (const file of files) {
     const abs = path.join(ROOT, file);
@@ -70,14 +104,13 @@ function main() {
     }
     let out = text;
     for (const [asset, hash] of pins) {
-      // Match the asset reference with an existing ?v= pin, or none at all.
-      const withPin = new RegExp(
-        `${asset.replace(/[./]/g, '\\$&')}\\?v=[A-Za-z0-9_-]+`,
-        'g'
-      );
-      out = out.replace(withPin, `${asset}?v=${hash}`);
-      const bare = new RegExp(`${asset.replace(/[./]/g, '\\$&')}(?!\\?v=)`, 'g');
-      out = out.replace(bare, `${asset}?v=${hash}`);
+      out = stampAbsolute(out, asset, hash);
+      const aliases = RELATIVE_ALIASES.get(asset);
+      if (aliases) {
+        for (const alias of aliases) {
+          out = stampRelative(out, alias, hash);
+        }
+      }
     }
     if (out !== text) {
       fs.writeFileSync(abs, out);

@@ -25,7 +25,17 @@ const ASSETS = [
   '/js/herald-beacon.js',
   '/js/newsletter.js',
   '/js/temple-base.js',
+  '/assets/fonts/fonts.css',
+  '/admin-portal/portal.css',
+  '/admin-portal/portal.js',
 ];
+
+// Relative forms used inside the admin portal.
+const RELATIVE_ALIASES = new Map([
+  ['/admin-portal/portal.css', ['portal.css', '../portal.css']],
+  ['/admin-portal/portal.js', ['portal.js', '../portal.js']],
+]);
+
 const SKIP = /^(docs\/lighthouse\/|Marketing\/|New material)/;
 
 function hashOf(rel) {
@@ -45,14 +55,25 @@ test('every reference to a content-addressed asset carries its current hash pin'
     .filter(Boolean)
     .filter((f) => !SKIP.test(f));
   const stale = [];
+  function checkRef(text, file, ref, asset) {
+    const want = ref + '?v=' + hashOf(asset);
+    const escaped = ref.replace(/[./]/g, '\\$&');
+    const anyRef = new RegExp(escaped + '(?:\\?v=([A-Za-z0-9_-]+))?', 'g');
+    for (const m of text.matchAll(anyRef)) {
+      if (m[0] !== want) {
+        stale.push(file + ': ' + m[0] + ' (want ?v=' + hashOf(asset) + ')');
+      }
+    }
+  }
+
   for (const file of files) {
     const text = fs.readFileSync(path.join(ROOT, file), 'utf8');
     for (const asset of ASSETS) {
-      const want = `${asset}?v=${hashOf(asset)}`;
-      const anyRef = new RegExp(`${asset.replace(/[./]/g, '\\$&')}(\\?v=([A-Za-z0-9_-]+))?`, 'g');
-      for (const m of text.matchAll(anyRef)) {
-        if (m[0] !== want) {
-          stale.push(`${file}: ${m[0]} (want ?v=${hashOf(asset)})`);
+      checkRef(text, file, asset, asset);
+      const aliases = RELATIVE_ALIASES.get(asset);
+      if (aliases) {
+        for (const alias of aliases) {
+          checkRef(text, file, alias, asset);
         }
       }
     }
@@ -65,19 +86,15 @@ test('every reference to a content-addressed asset carries its current hash pin'
 });
 
 test('the stamp script is part of npm run generate', () => {
-  const gen = fs.readFileSync(path.join(ROOT, 'scripts', 'generate.js'), 'utf8');
+  const gen = fs.readFileSync(path.join(ROOT, 'scripts/generate.js'), 'utf8');
   assert.ok(gen.includes('stamp-asset-versions.js'), 'stamper not registered in generate.js');
 });
 
 test('stamp is idempotent (second run writes zero files)', () => {
-  const out = execFileSync(
-    process.execPath,
-    [path.join(ROOT, 'scripts', 'stamp-asset-versions.js')],
-    {
-      cwd: ROOT,
-      encoding: 'utf8',
-    }
-  );
+  const out = execFileSync(process.execPath, [path.join(ROOT, 'scripts/stamp-asset-versions.js')], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
   assert.match(out, /0 file\(s\) stamped/, `stamper not idempotent: ${out.trim()}`);
 });
 
