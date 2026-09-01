@@ -115,6 +115,22 @@ const SITE_ANALYTICS_V5_SCHEMA = `
     ON site_analytics_funnels(funnel_id, day);
   CREATE INDEX IF NOT EXISTS idx_funnels_temple_day
     ON site_analytics_funnels(temple_id, day);
+
+  -- Cohort retention rollups
+  CREATE TABLE IF NOT EXISTS site_analytics_cohorts (
+    cohort_date TEXT NOT NULL,
+    day_index INTEGER NOT NULL,
+    temple_id TEXT,
+    size INTEGER DEFAULT 0,
+    count INTEGER DEFAULT 0,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (cohort_date, day_index, temple_id)
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_cohorts_date_temple
+    ON site_analytics_cohorts(cohort_date, temple_id);
+  CREATE INDEX IF NOT EXISTS idx_cohorts_day_index
+    ON site_analytics_cohorts(day_index);
 `;
 
 const TEMPLE_IDS = (() => {

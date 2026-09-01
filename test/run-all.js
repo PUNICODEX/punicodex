@@ -219,6 +219,9 @@ const SUITES = [
   { name: 'Analytics Anomaly Tests', cmd: 'node --test test/analytics-anomaly.test.js' },
   { name: 'Analytics Quality Tests', cmd: 'node --test test/analytics-quality.test.js' },
   { name: 'Analytics Funnels Tests', cmd: 'node --test test/analytics-funnels.test.js' },
+  { name: 'Analytics Cohorts Tests', cmd: 'node --test test/analytics-cohorts.test.js' },
+  { name: 'Analytics LTV Tests', cmd: 'node --test test/analytics-ltv.test.js' },
+  { name: 'Admin Analytics V2 Tests', cmd: 'node --test test/admin-analytics-v2.test.js' },
   { name: 'Trending Page Tests', cmd: 'node test/trending-page.test.js' },
   { name: 'Search Page Tests', cmd: 'node test/search-page.test.js' },
   { name: 'Brand Tests', cmd: 'node test/brand.test.js' },
@@ -548,6 +551,9 @@ const SERIAL_SUITES = new Set([
   'Analytics Anomaly Tests',
   'Analytics Quality Tests',
   'Analytics Funnels Tests',
+  'Analytics Cohorts Tests',
+  'Analytics LTV Tests',
+  'Admin Analytics V2 Tests',
   // Stamps ?v= pins across tracked HTML (tree-writer).
   'Asset Version Tests',
   // Writes index.html stats when they drift (tree-writer).

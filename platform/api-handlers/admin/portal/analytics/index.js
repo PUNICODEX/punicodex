@@ -14,25 +14,29 @@ const {
   exportAnalyticsCsv,
 } = require('../../../../api/site-analytics.js');
 const { getFunnel } = require('../../../../api/analytics-funnels.js');
+const { getCohort } = require('../../../../api/analytics-cohorts.js');
+const { getLtv, getLtvByCohort } = require('../../../../api/analytics-ltv.js');
 
 /**
- * GET /api/admin/portal/analytics/?mode=rolling|quarter|cross|export|funnel&...
+ * GET /api/admin/portal/analytics/?mode=rolling|quarter|cross|export|funnel|cohort|ltv&...
  *
  * Portal-native deep analytics: traffic overview (human/bot/uniques, by-day,
  * top temples, referrers, devices), engagement (visible time, scroll depth,
  * per-temple attention leaders), session depth (pages/session, bounce),
  * quarterly roll-ups with quarter-over-quarter comparison, trend/momentum
- * metrics, cross-temple navigation flows, and business funnel conversion.
+ * metrics, cross-temple navigation flows, business funnel conversion, cohort
+ * retention matrices, and lifetime-value (LTV) revenue analysis.
  *
  * Query parameters:
- *   mode=rolling|quarter|cross|export|funnel  (default: rolling)
- *   days=7|30|90|120                          rolling/cross/export/funnel window (default: 30)
- *   temple=<id>                               scope to a single temple
- *   quarter=2026-Q3                           quarter mode target
- *   compare=1                                 include previous period / previous quarter
- *   format=csv                                export format (only csv supported)
+ *   mode=rolling|quarter|cross|export|funnel|cohort|ltv  (default: rolling)
+ *   days=7|30|90|120                                     rolling/cross/export/funnel/cohort/ltv window (default: 30)
+ *   temple=<id>                                          scope to a single temple
+ *   quarter=2026-Q3                                      quarter mode target
+ *   compare=1                                            include previous period / previous quarter
+ *   format=csv                                           export format (only csv supported)
  *   type=overview|daily|temples|referrers|flows|quarterly  export slice
- *   funnel=<id>                               funnel identifier (mode=funnel)
+ *   funnel=<id>                                          funnel identifier (mode=funnel)
+ *   granularity=day|week                                 cohort bucketing (mode=cohort, default: day)
  *
  * All data comes from the first-party beacon pipeline — aggregated, hashed,
  * and consent-gated at collection time. Permission: read.
@@ -48,6 +52,11 @@ function parseQuarter(value) {
   if (typeof value !== 'string' || !value) return null;
   const m = value.match(/^(\d{4})-Q([1-4])$/);
   return m ? value : null;
+}
+
+function parseGranularity(value) {
+  if (value === 'week') return 'week';
+  return 'day';
 }
 
 module.exports = async (req, res) => {
@@ -131,6 +140,30 @@ module.exports = async (req, res) => {
       return res.json({
         mode: 'funnel',
         funnel,
+        generatedAt: new Date().toISOString(),
+      });
+    }
+
+    if (mode === 'cohort') {
+      const granularity = parseGranularity(req.query.granularity);
+      const cohort = await getCohort({ days, templeId: temple, granularity });
+      return res.json({
+        mode: 'cohort',
+        granularity,
+        cohort,
+        generatedAt: new Date().toISOString(),
+      });
+    }
+
+    if (mode === 'ltv') {
+      const byCohort = req.query.cohort === '1' || req.query.cohort === 'true';
+      const ltv = byCohort
+        ? await getLtvByCohort({ days, templeId: temple })
+        : await getLtv({ days, templeId: temple });
+      return res.json({
+        mode: 'ltv',
+        byCohort,
+        ltv,
         generatedAt: new Date().toISOString(),
       });
     }
