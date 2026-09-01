@@ -116,7 +116,12 @@ async function run() {
   const base = `http://127.0.0.1:${port}`;
   let browser;
   try {
-    browser = await chromium.launch({ executablePath: exe, headless: true });
+    browser = await chromium.launch({
+      executablePath: exe,
+      headless: true,
+      timeout: 60000,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+    });
 
     let ctx = null;
     let page = null;
