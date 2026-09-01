@@ -13,24 +13,26 @@ const {
   getCrossTempleFlows,
   exportAnalyticsCsv,
 } = require('../../../../api/site-analytics.js');
+const { getFunnel } = require('../../../../api/analytics-funnels.js');
 
 /**
- * GET /api/admin/portal/analytics/?mode=rolling|quarter|cross|export&...
+ * GET /api/admin/portal/analytics/?mode=rolling|quarter|cross|export|funnel&...
  *
  * Portal-native deep analytics: traffic overview (human/bot/uniques, by-day,
  * top temples, referrers, devices), engagement (visible time, scroll depth,
  * per-temple attention leaders), session depth (pages/session, bounce),
  * quarterly roll-ups with quarter-over-quarter comparison, trend/momentum
- * metrics, and cross-temple navigation flows.
+ * metrics, cross-temple navigation flows, and business funnel conversion.
  *
  * Query parameters:
- *   mode=rolling|quarter|cross|export   (default: rolling)
- *   days=7|30|90|120                    rolling/cross/export window (default: 30)
- *   temple=<id>                         scope to a single temple
- *   quarter=2026-Q3                     quarter mode target
- *   compare=1                           include previous period / previous quarter
- *   format=csv                          export format (only csv supported)
+ *   mode=rolling|quarter|cross|export|funnel  (default: rolling)
+ *   days=7|30|90|120                          rolling/cross/export/funnel window (default: 30)
+ *   temple=<id>                               scope to a single temple
+ *   quarter=2026-Q3                           quarter mode target
+ *   compare=1                                 include previous period / previous quarter
+ *   format=csv                                export format (only csv supported)
  *   type=overview|daily|temples|referrers|flows|quarterly  export slice
+ *   funnel=<id>                               funnel identifier (mode=funnel)
  *
  * All data comes from the first-party beacon pipeline — aggregated, hashed,
  * and consent-gated at collection time. Permission: read.
@@ -115,6 +117,20 @@ module.exports = async (req, res) => {
         mode: 'cross',
         days,
         crossTemple,
+        generatedAt: new Date().toISOString(),
+      });
+    }
+
+    if (mode === 'funnel') {
+      const funnelId =
+        typeof req.query.funnel === 'string' && req.query.funnel ? req.query.funnel : null;
+      if (!funnelId) {
+        return res.status(400).json({ error: 'Missing funnel parameter' });
+      }
+      const funnel = await getFunnel({ funnelId, days, templeId: temple });
+      return res.json({
+        mode: 'funnel',
+        funnel,
         generatedAt: new Date().toISOString(),
       });
     }
