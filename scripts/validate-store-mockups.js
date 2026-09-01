@@ -42,6 +42,10 @@ function localChecks(products) {
     if (!p.mockupImage.startsWith(`${MASTERS_BASE}/mockups/`)) {
       errors.push(`${p.id}: mockupImage not on masters mockups host: ${p.mockupImage}`);
     }
+    const basename = path.basename(p.mockupImage, '.jpg');
+    if (basename !== p.id) {
+      errors.push(`${p.id}: mockupImage basename "${basename}" does not match product id "${p.id}"`);
+    }
     if (!localIds.has(p.id)) {
       errors.push(`${p.id}: mockupImage in catalog but .masters/mockups/${p.id}.jpg is missing`);
     }
@@ -61,27 +65,45 @@ function localChecks(products) {
   return errors;
 }
 
+async function checkOneRemote(p, attempt = 1) {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    let res = await fetch(p.mockupImage, { method: 'HEAD', signal: controller.signal });
+    clearTimeout(timeout);
+    if (res.status === 405) {
+      const controller2 = new AbortController();
+      const timeout2 = setTimeout(() => controller2.abort(), 15000);
+      res = await fetch(p.mockupImage, { method: 'GET', signal: controller2.signal() });
+      clearTimeout(timeout2);
+    }
+    if (!res.ok) {
+      return `${p.id}: ${p.mockupImage} → HTTP ${res.status}`;
+    }
+    return null;
+  } catch (err) {
+    if (attempt < 3) {
+      await new Promise((r) => setTimeout(r, 500 * attempt));
+      return checkOneRemote(p, attempt + 1);
+    }
+    return `${p.id}: ${p.mockupImage} → ${err.message}`;
+  }
+}
+
 async function remoteChecks(products) {
   const errors = [];
   const withMockup = products.filter((p) => p.mockupImage);
+  const batchSize = 50;
   let checked = 0;
 
-  for (const p of withMockup) {
-    try {
-      let res = await fetch(p.mockupImage, { method: 'HEAD' });
-      if (res.status === 405) {
-        res = await fetch(p.mockupImage, { method: 'GET' });
-      }
-      if (!res.ok) {
-        errors.push(`${p.id}: ${p.mockupImage} → HTTP ${res.status}`);
-      }
-    } catch (err) {
-      errors.push(`${p.id}: ${p.mockupImage} → ${err.message}`);
+  for (let i = 0; i < withMockup.length; i += batchSize) {
+    const batch = withMockup.slice(i, i + batchSize);
+    const results = await Promise.all(batch.map((p) => checkOneRemote(p)));
+    for (const err of results) {
+      if (err) errors.push(err);
     }
-    checked++;
-    if (checked % 100 === 0) {
-      process.stdout.write(`\r  checked ${checked}/${withMockup.length} mockups`);
-    }
+    checked += batch.length;
+    process.stdout.write(`\r  checked ${checked}/${withMockup.length} mockups (${errors.length} issues)`);
   }
   if (withMockup.length > 0) process.stdout.write('\r');
   return errors;
