@@ -156,9 +156,14 @@ function normalizeForCompare(html) {
   // addressed ?v=hash pins. Normalize both sides so the generator idempotency
   // check compares the underlying markup rather than the injected/stamped
   // surface.
+  //
+  // The generator emits /assets/fonts/fonts.css without a ?v= pin (the asset
+  // stamper adds it later), so strip any ?v= from that one URL to keep before
+  // and after aligned.
   return html
     .replace(/<!-- PUNICODEX-[A-Z-]+-START -->[\s\S]*?<!-- PUNICODEX-[A-Z-]+-END -->/g, '')
-    .replace(/\?v=[A-Za-z0-9_-]+/g, '?v=1');
+    .replace(/\?v=[A-Za-z0-9_-]+/g, '?v=1')
+    .replace(/(\/assets\/fonts\/fonts\.css)\?v=1/g, '$1');
 }
 
 test('generator is idempotent for the whole library (regeneration is byte-identical)', () => {
