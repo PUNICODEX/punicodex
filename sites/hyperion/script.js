@@ -1353,7 +1353,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'hyperion';
-  const siteName = 'Hyperiōn';
+  const siteName = 'Hyperíōn';
   let selectedCents = 700;
 
   const els = {

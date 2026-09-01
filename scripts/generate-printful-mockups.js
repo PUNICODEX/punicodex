@@ -67,6 +67,31 @@ function assetUrlFor(product, assetKey) {
   return `https://punicodex.com${png}`;
 }
 
+/**
+ * The mockup generator needs a publicly reachable URL for every design file.
+ * For `/sites/` assets we serve them from .masters/ root, so make sure the
+ * corresponding PNG actually exists there. If it is missing, copy it from the
+ * canonical source in sites/{id}/assets/ so that a subsequent .masters deploy
+ * will include it. Returns false when the asset cannot be resolved locally.
+ */
+function ensureMastersAsset(url) {
+  if (!url || !url.startsWith(MASTERS_BASE)) return true;
+  const file = path.basename(url);
+  const mastersPath = path.join(OUT_DIR, '..', file);
+  if (fs.existsSync(mastersPath)) return true;
+
+  // Find the source PNG in sites/*/assets/.
+  const sitesDirs = fs.readdirSync(path.join(ROOT, 'sites'));
+  for (const id of sitesDirs) {
+    const src = path.join(ROOT, 'sites', id, 'assets', file);
+    if (fs.existsSync(src)) {
+      fs.copyFileSync(src, mastersPath);
+      return true;
+    }
+  }
+  return false;
+}
+
 // Mockup-generator placement ids vary by product family (unlike the sync
 // API's uniform default/back). Verified against GET /products/{id} `files`
 // for every catalog; `back: null` means the product is single-faced and the
@@ -134,28 +159,44 @@ function assetDims(assetKey) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function api(method, endpoint, body, attempt = 0) {
-  const res = await fetch(`${API}${endpoint}`, {
-    method,
-    headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  if (res.status === 429 && attempt < 8) {
-    const wait = Number(res.headers.get('retry-after') || 2 ** attempt * 3);
-    await sleep(wait * 1000);
-    return api(method, endpoint, body, attempt + 1);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 60000);
+  try {
+    const res = await fetch(`${API}${endpoint}`, {
+      method,
+      headers: { Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : undefined,
+      signal: controller.signal,
+    });
+    clearTimeout(timer);
+    if (res.status === 429 && attempt < 8) {
+      const wait = Number(res.headers.get('retry-after') || 2 ** attempt * 3);
+      await sleep(wait * 1000);
+      return api(method, endpoint, body, attempt + 1);
+    }
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(`${method} ${endpoint} → ${res.status}: ${JSON.stringify(json).slice(0, 200)}`);
+    }
+    return json.result;
+  } catch (err) {
+    clearTimeout(timer);
+    if (err.name === 'AbortError') {
+      throw new Error(`${method} ${endpoint} timed out after 60s`);
+    }
+    throw err;
   }
-  const json = await res.json().catch(() => ({}));
-  if (!res.ok) {
-    throw new Error(`${method} ${endpoint} → ${res.status}: ${JSON.stringify(json).slice(0, 200)}`);
-  }
-  return json.result;
 }
+
+const MAX_RETRIES = 3;
 
 function loadState() {
   try {
-    return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+    const s = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+    if (!s.retries) s.retries = {};
+    return s;
   } catch {
-    return { done: {}, variants: {}, templates: {} };
+    return { done: {}, variants: {}, templates: {}, retries: {} };
   }
 }
 
@@ -224,10 +265,21 @@ async function pollTask(taskKey, attempts = 30) {
 }
 
 async function downloadMockup(url, outPath) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`download ${url} → ${res.status}`);
-  const buf = Buffer.from(await res.arrayBuffer());
-  fs.writeFileSync(outPath, buf);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 60000);
+  try {
+    const res = await fetch(url, { signal: controller.signal });
+    clearTimeout(timer);
+    if (!res.ok) throw new Error(`download ${url} → ${res.status}`);
+    const buf = Buffer.from(await res.arrayBuffer());
+    fs.writeFileSync(outPath, buf);
+  } catch (err) {
+    clearTimeout(timer);
+    if (err.name === 'AbortError') {
+      throw new Error(`download ${url} timed out after 60s`);
+    }
+    throw err;
+  }
 }
 
 async function main() {
@@ -235,29 +287,58 @@ async function main() {
   const state = loadState();
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
-  // Reconcile: mockups already downloaded but not yet written back (batch
-  // interruption) — attach them without re-rendering.
+  // Reconcile: any mockup file already on disk should be attached to its
+  // product, even if the previous run never marked it done (interruption,
+  // rename, or a file placed by another process). Mark done so re-runs stay
+  // idempotent and do not re-render attachments that already exist.
   let reconciled = 0;
   for (const p of catalog.products) {
-    if (!p.mockupImage && state.done[p.id] === true) {
-      const jpg = path.join(OUT_DIR, `${p.id}.jpg`);
-      if (fs.existsSync(jpg)) {
+    const jpg = path.join(OUT_DIR, `${p.id}.jpg`);
+    if (fs.existsSync(jpg)) {
+      if (!p.mockupImage) {
         p.mockupImage = `${MASTERS_BASE}/mockups/${p.id}.jpg`;
         reconciled++;
+      }
+      if (state.done[p.id] !== true) {
+        state.done[p.id] = true;
       }
     }
   }
   if (reconciled) {
     flushCatalog(catalog);
+    saveState(state);
     console.log(`Reconciled ${reconciled} existing mockups into the catalog.`);
   }
 
-  let pending = catalog.products.filter(
-    (p) => p.printfulProductId && !state.done[p.id] && !p.mockupImage
-  );
+  let pending = catalog.products.filter((p) => {
+    if (!p.printfulProductId || p.mockupImage) return false;
+    if (!state.done[p.id]) return true;
+    // Retry transient failures up to MAX_RETRIES.
+    if (typeof state.done[p.id] === 'string' && state.done[p.id].startsWith('error')) {
+      return (state.retries[p.id] || 0) < MAX_RETRIES;
+    }
+    return false;
+  });
   if (ONLY) pending = pending.filter((p) => (p.temple || 'punicodex') === ONLY);
   if (KINDS) pending = pending.filter((p) => KINDS.includes(p.id.split('-').pop()));
   if (LIMIT) pending = pending.slice(0, LIMIT);
+
+  // Fail fast if any required asset is not available locally. This prevents
+  // sending Printful URLs that will 404 after deployment.
+  const missingAssets = [];
+  for (const p of pending) {
+    for (const f of designFiles(p)) {
+      if (!ensureMastersAsset(f.url)) {
+        missingAssets.push(`${p.id} → ${f.url}`);
+        state.done[p.id] = `error: missing asset ${path.basename(f.url)}`;
+      }
+    }
+  }
+  if (missingAssets.length) {
+    saveState(state);
+    pending = pending.filter((p) => !state.done[p.id]?.startsWith('error: missing asset'));
+    console.warn(`  ! ${missingAssets.length} product(s) skipped due to missing local assets.`);
+  }
 
   console.log(`Mockup pipeline: ${pending.length} product(s) pending.`);
   if (DRY_RUN) return;
@@ -278,21 +359,41 @@ async function main() {
     try {
       const files = designFiles(product);
       const task = await createTask(state, product, files);
+      if (!task || !task.task_key) {
+        throw new Error(`create-task response missing task_key: ${JSON.stringify(task).slice(0, 120)}`);
+      }
       inFlight.push({ product, taskKey: task.task_key, attempts: 0 });
-      console.log(`  ▸ task for ${product.id}`);
+      console.log(`  ▸ task for ${product.id} (${task.task_key})`);
       return true;
     } catch (err) {
-      console.error(`  ✗ ${product.id}: ${err.message.slice(0, 140)}`);
-      state.done[product.id] = `error: ${err.message.slice(0, 120)}`;
-      saveState(state);
-      done++;
+      const retries = (state.retries[product.id] || 0) + 1;
+      state.retries[product.id] = retries;
+      if (retries >= MAX_RETRIES) {
+        console.error(`  ✗ ${product.id}: ${err.message.slice(0, 140)}`);
+        state.done[product.id] = `error: ${err.message.slice(0, 120)}`;
+        saveState(state);
+        done++;
+      } else {
+        console.log(`  ↻ ${product.id}: retry ${retries}/${MAX_RETRIES} — ${err.message.slice(0, 100)}`);
+        saveState(state);
+      }
       return true;
     }
   };
 
   const completeOne = async (item) => {
+    item.attempts++;
     const poll = await api('GET', `/mockup-generator/task?task_key=${item.taskKey}`);
-    if (poll.status !== 'completed') return false;
+    if (poll.status === 'failed') {
+      const errMsg = poll.error || JSON.stringify(poll).slice(0, 200);
+      throw new Error(`Printful task failed: ${errMsg}`);
+    }
+    if (poll.status !== 'completed') {
+      if (item.attempts % 6 === 0) {
+        console.log(`  ⏳ ${item.product.id} still ${poll.status || 'pending'} (${item.attempts} polls)`);
+      }
+      return false;
+    }
     const mockups = poll.mockups || [];
     const front = mockups.find((m) => /front/i.test(m.mockup_url || '')) || mockups[0];
     if (!front || !front.mockup_url) throw new Error('no mockup URL in completed task');
@@ -321,17 +422,26 @@ async function main() {
           progressed = true;
         }
       } catch (err) {
-        item.attempts++;
-        if (item.attempts > 6) {
+        const retries = (state.retries[item.product.id] || 0) + 1;
+        state.retries[item.product.id] = retries;
+        if (retries >= MAX_RETRIES) {
           console.error(`  ✗ ${item.product.id}: ${err.message.slice(0, 140)}`);
           state.done[item.product.id] = `error: ${err.message.slice(0, 120)}`;
           saveState(state);
           done++;
           inFlight.splice(i, 1);
+        } else {
+          console.log(`  ↻ ${item.product.id}: retry ${retries}/${MAX_RETRIES} — ${err.message.slice(0, 100)}`);
+          saveState(state);
+          // Create a fresh task on the next cycle instead of polling the failed one.
+          inFlight.splice(i, 1);
         }
       }
     }
-    if (!progressed) await sleep(10000);
+    if (!progressed) {
+      console.log(`  ⏳ waiting on ${inFlight.length} mockup task(s) (${done}/${pending.length} done)`);
+      await sleep(10000);
+    }
   }
   flushCatalog(catalog);
   console.log(`Mockups complete: ${done} product(s).`);
@@ -343,7 +453,19 @@ function flushCatalog(catalog) {
   fs.renameSync(tmp, CATALOG_FILE);
 }
 
-main().catch((err) => {
-  console.error(`Mockup pipeline stopped: ${err.message}`);
-  process.exit(1);
-});
+module.exports = {
+  assetUrlFor,
+  ensureMastersAsset,
+  designFiles,
+  KIND_CATALOG,
+  KIND_PLACEMENTS,
+  assetDims,
+  fit,
+};
+
+if (require.main === module) {
+  main().catch((err) => {
+    console.error(`Mockup pipeline stopped: ${err.message}`);
+    process.exit(1);
+  });
+}

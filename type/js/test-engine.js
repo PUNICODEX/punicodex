@@ -499,24 +499,32 @@ test('Athena derives nothing — Ἀθηνᾶ bears its circumflex on alpha, whi
   assert.strictEqual(deriveStackedForm(entryById('athena')), null);
 });
 
-test('Hera derives Hḗra from Ἥρα (stress restored onto the long eta)', () => {
-  assert.strictEqual(deriveStackedForm(entryById('hera')), 'Hḗra');
+test('Hera derives nothing — Hḗra is already listed as a scholarly variant', () => {
+  assert.strictEqual(deriveStackedForm(entryById('hera')), null);
 });
 
-test('Leto derives Lētṓ from Λητώ (acute on long omega)', () => {
-  assert.strictEqual(deriveStackedForm(entryById('leto')), 'Lētṓ');
+test('Leto derives nothing — Lētṓ is already listed as a scholarly variant', () => {
+  assert.strictEqual(deriveStackedForm(entryById('leto')), null);
 });
 
 test('Epeiros derives Ḗpeiros (precomposed capital stack)', () => {
   assert.strictEqual(deriveStackedForm(entryById('epeiros')), 'Ḗpeiros');
 });
 
+test('Sikyon derives Sikyṓn (precomposed lower stack)', () => {
+  assert.strictEqual(deriveStackedForm(entryById('sikyon')), 'Sikyṓn');
+});
+
 test('Derived stacks are single precomposed NFC codepoints', () => {
-  const hera = deriveStackedForm(entryById('hera'));
+  // Real entries now list their stacked forms as variants, so deriveStackedForm
+  // dedupes to null. Use synthetic entries to verify the output shape.
+  const hera = deriveStackedForm({ id: 'test-hera', greek: 'Ἥρα', unicode: 'Hēra', variants: [] });
+  assert.strictEqual(hera, 'Hḗra');
   assert.strictEqual(hera, hera.normalize('NFC'));
   assert.ok(hera.includes('ḗ'), `expected precomposed ḗ U+1E17 in ${hera}`);
   assert.ok(!hera.includes('̄'), `loose combining macron in ${hera}`);
-  const leto = deriveStackedForm(entryById('leto'));
+  const leto = deriveStackedForm({ id: 'test-leto', greek: 'Λητώ', unicode: 'Lētō', variants: [] });
+  assert.strictEqual(leto, 'Lētṓ');
   assert.strictEqual(leto, leto.normalize('NFC'));
   assert.ok(leto.includes('ṓ'), `expected precomposed ṓ U+1E53 in ${leto}`);
 });
@@ -595,7 +603,7 @@ test('Every derived form is NFC and contains a stacked vowel (whole lexicon)', (
     }
     assert.ok(hasStack, `${entry.id}: no stacked vowel in ${form}`);
   });
-  assert.ok(count >= 20, `expected at least 20 derivable stacked forms, got ${count}`);
+  assert.ok(count >= 2, `expected at least 2 derivable stacked forms, got ${count}`);
 });
 
 test('Type tool wires stacked chips into the copyable variant list (source-level)', () => {

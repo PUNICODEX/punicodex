@@ -283,7 +283,7 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
     // when the files change), then ensure they're linked.
     html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=4');
     html = ensureCssLink(html, '/css/nav-more.css?v=4');
-    if (html.includes('class="mobile-menu"')) html = ensureCssLink(html, '/css/mobile-menu.css?v=1');
+    if (html.includes('class="mobile-menu"')) html = ensureCssLink(html, '/css/mobile-menu.css?v=3');
   }
   if (!html.includes('/js/px-core.js')) {
     html = ensureScript(html, '/js/px-core.js?v=perf9');

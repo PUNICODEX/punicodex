@@ -637,7 +637,18 @@ const LEXICON = [
       "Pape-Benseler",
       "Beekes"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "unicode": "Dēmḗtēr",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Δημήτηρ; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ],
     "breakdown": [
       {
         "char": "d",
@@ -707,7 +718,18 @@ const LEXICON = [
       "Pape-Benseler",
       "Beekes"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "unicode": "Hḗra",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Ἥρα; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ],
     "breakdown": [
       {
         "char": "h",
@@ -837,7 +859,18 @@ const LEXICON = [
       "Pape-Benseler",
       "Beekes"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "unicode": "Hḗphaistos",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Ἥφαιστος; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ],
     "breakdown": [
       {
         "char": "h",
@@ -1079,7 +1112,18 @@ const LEXICON = [
       "Pape-Benseler",
       "Beekes"
     ],
-    "variants": [],
+    "variants": [
+      {
+        "unicode": "Persephónē",
+        "type": "ideal",
+        "note": "Acute on the stressed short vowel, matching Greek Περσεφόνη; preserves stress where the canonical macron-only form records length only.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ],
     "breakdown": [
       {
         "char": "p",
@@ -1499,7 +1543,7 @@ const LEXICON = [
   {
     "id": "tethys",
     "ascii": "tethys",
-    "unicode": "Tēthys",
+    "unicode": "Tēthýs",
     "greek": "Τηθύς",
     "pantheon": "greek",
     "tier": "1",
@@ -1538,8 +1582,8 @@ const LEXICON = [
       },
       {
         "char": "y",
-        "to": "y",
-        "type": "same",
+        "to": "ý",
+        "type": "stress",
         "note": "Upsilon"
       },
       {
@@ -1560,7 +1604,7 @@ const LEXICON = [
     "id": "hyperion",
     "hasAdSite": true,
     "ascii": "hyperion",
-    "unicode": "Hyperiōn",
+    "unicode": "Hyperíōn",
     "greek": "Ὑπερίων",
     "pantheon": "greek",
     "tier": "1",
@@ -1605,8 +1649,8 @@ const LEXICON = [
       },
       {
         "char": "i",
-        "to": "i",
-        "type": "same",
+        "to": "í",
+        "type": "stress",
         "note": "Short iota"
       },
       {
@@ -1622,13 +1666,7 @@ const LEXICON = [
         "note": "Nu"
       }
     ],
-    "variants": [
-      {
-        "unicode": "Hyperíōn",
-        "type": "owned",
-        "note": "Owned domain form — the Greek accent of Ὑπερίων itself (acute on í plus macron on ō)"
-      }
-    ]
+    "variants": []
   },
   {
     "id": "leto",
@@ -1637,6 +1675,16 @@ const LEXICON = [
         "unicode": "Leto",
         "type": "ascii",
         "note": "Plain ASCII form"
+      },
+      {
+        "unicode": "Lētṓ",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Λητώ; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
       }
     ],
     "hasAdSite": true,
@@ -1958,7 +2006,19 @@ const LEXICON = [
           "note": "Vedic sun god"
         }
       ]
-    }
+    },
+    "variants": [
+      {
+        "unicode": "Hḗlios",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Ἥλιος; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "selene",
@@ -2021,7 +2081,19 @@ const LEXICON = [
       "derivation": "From σελήνη \"moon\", from σέλας \"light, brightness\". The moon goddess.",
       "certainty": "attested",
       "cognates": []
-    }
+    },
+    "variants": [
+      {
+        "unicode": "Selḗnē",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Σελήνη; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "eos",
@@ -2057,6 +2129,18 @@ const LEXICON = [
         "to": "s",
         "type": "same",
         "note": "Sigma"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Ēṓs",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Ἠώς; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
       }
     ]
   },
@@ -2210,7 +2294,19 @@ const LEXICON = [
       "derivation": "Greek Θησεύς, popularly derived from τίθημι 'to set, to place'; the Athenian hero who slew the Minotaur and unified Attica.",
       "certainty": "attested"
     },
-    "hasAdSite": true
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Thēseús",
+        "type": "ideal",
+        "note": "Acute on the stressed short vowel, matching Greek Θησεύς; preserves stress where the canonical macron-only form records length only.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "mnemosyne",
@@ -2705,7 +2801,7 @@ const LEXICON = [
   {
     "id": "themis",
     "ascii": "themis",
-    "unicode": "Themis",
+    "unicode": "Thémis",
     "greek": "Θέμις",
     "pantheon": "greek",
     "tier": "2",
@@ -2738,8 +2834,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "Short epsilon"
       },
       {
@@ -2810,7 +2906,19 @@ const LEXICON = [
         "note": "Short epsilon"
       }
     ],
-    "hasAdSite": true
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Hḗbe",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Ἥβη; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "pan",
@@ -2833,6 +2941,16 @@ const LEXICON = [
         "unicode": "Pán",
         "type": "ideal",
         "note": "Stress-preserved ideal form; currently registered/unavailable"
+      },
+      {
+        "unicode": "Pā́n",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Πάν; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
       }
     ],
     "etymology": {
@@ -10690,7 +10808,7 @@ const LEXICON = [
   {
     "id": "peleus",
     "ascii": "peleus",
-    "unicode": "Pēleus",
+    "unicode": "Pēleús",
     "greek": "Πηλεύς",
     "pantheon": "greek",
     "tier": "1",
@@ -10729,8 +10847,8 @@ const LEXICON = [
       },
       {
         "char": "u",
-        "to": "u",
-        "type": "same",
+        "to": "ú",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -10799,12 +10917,24 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
+    ],
+    "variants": [
+      {
+        "unicode": "Telamṓn",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Τελαμών; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
     ]
   },
   {
     "id": "oileus",
     "ascii": "oileus",
-    "unicode": "Oïleus",
+    "unicode": "Oïleús",
     "greek": "Οἰλεύς",
     "pantheon": "greek",
     "tier": "1",
@@ -10826,7 +10956,7 @@ const LEXICON = [
       {
         "char": "i",
         "to": "ï",
-        "type": "special",
+        "type": "same",
         "note": "Diaeresis on iota"
       },
       {
@@ -10843,8 +10973,8 @@ const LEXICON = [
       },
       {
         "char": "u",
-        "to": "u",
-        "type": "same",
+        "to": "ú",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -10918,6 +11048,18 @@ const LEXICON = [
         "to": "s",
         "type": "same",
         "note": "Same"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Diomḗdēs",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Διομήδης; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
       }
     ]
   },
@@ -11003,12 +11145,24 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
+    ],
+    "variants": [
+      {
+        "unicode": "Philoktḗtēs",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Φιλοκτήτης; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
     ]
   },
   {
     "id": "elektra",
     "ascii": "elektra",
-    "unicode": "Ēlektra",
+    "unicode": "Ēléktra",
     "greek": "Ἠλέκτρα",
     "pantheon": "greek",
     "tier": "1",
@@ -11035,8 +11189,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -11068,7 +11222,7 @@ const LEXICON = [
   {
     "id": "orestes",
     "ascii": "orestes",
-    "unicode": "Orestēs",
+    "unicode": "Oréstēs",
     "greek": "Ὀρέστης",
     "pantheon": "greek",
     "tier": "1",
@@ -11095,8 +11249,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -11128,7 +11282,7 @@ const LEXICON = [
   {
     "id": "agamemnon",
     "ascii": "agamemnon",
-    "unicode": "Agamemnōn",
+    "unicode": "Agamémnōn",
     "greek": "Ἀγαμέμνων",
     "pantheon": "greek",
     "tier": "1",
@@ -11167,8 +11321,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -11200,7 +11354,7 @@ const LEXICON = [
   {
     "id": "thersites",
     "ascii": "thersites",
-    "unicode": "Thersitēs",
+    "unicode": "Thersítēs",
     "greek": "Θερσίτης",
     "pantheon": "greek",
     "tier": "1",
@@ -11245,8 +11399,8 @@ const LEXICON = [
       },
       {
         "char": "i",
-        "to": "i",
-        "type": "same",
+        "to": "í",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -11272,7 +11426,7 @@ const LEXICON = [
   {
     "id": "patroclus",
     "ascii": "patroclus",
-    "unicode": "Patroklos",
+    "unicode": "Pátroklos",
     "greek": "Πάτροκλος",
     "pantheon": "greek",
     "tier": "2",
@@ -11293,8 +11447,8 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
+        "to": "á",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -11345,7 +11499,7 @@ const LEXICON = [
   {
     "id": "ajax",
     "ascii": "ajax",
-    "unicode": "Aias",
+    "unicode": "Aías",
     "greek": "Αἴας",
     "pantheon": "greek",
     "tier": "1",
@@ -11366,8 +11520,8 @@ const LEXICON = [
       },
       {
         "char": "j",
-        "to": "i",
-        "type": "same",
+        "to": "í",
+        "type": "stress",
         "note": "Iota"
       },
       {
@@ -11388,7 +11542,7 @@ const LEXICON = [
   {
     "id": "nestor",
     "ascii": "nestor",
-    "unicode": "Nestōr",
+    "unicode": "Néstōr",
     "greek": "Νέστωρ",
     "pantheon": "greek",
     "tier": "1",
@@ -11409,8 +11563,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "Short epsilon"
       },
       {
@@ -13636,7 +13790,7 @@ const LEXICON = [
   {
     "id": "perseus",
     "ascii": "perseus",
-    "unicode": "Perseus",
+    "unicode": "Perseús",
     "greek": "Περσεύς",
     "pantheon": "greek",
     "tier": "1",
@@ -13681,8 +13835,8 @@ const LEXICON = [
       },
       {
         "char": "u",
-        "to": "u",
-        "type": "same",
+        "to": "ú",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -13758,7 +13912,7 @@ const LEXICON = [
   {
     "id": "atalanta",
     "ascii": "atalanta",
-    "unicode": "Atalantē",
+    "unicode": "Atalántē",
     "greek": "Ἀταλάντη",
     "pantheon": "greek",
     "tier": "1",
@@ -13797,8 +13951,8 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
+        "to": "á",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -13824,7 +13978,7 @@ const LEXICON = [
   {
     "id": "castor",
     "ascii": "castor",
-    "unicode": "Kastōr",
+    "unicode": "Kástōr",
     "greek": "Κάστωρ",
     "pantheon": "greek",
     "tier": "1",
@@ -13845,8 +13999,8 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
+        "to": "á",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -13878,7 +14032,7 @@ const LEXICON = [
   {
     "id": "polydeuces",
     "ascii": "polydeuces",
-    "unicode": "Polydeukēs",
+    "unicode": "Polydeúkēs",
     "greek": "Πολυδεύκης",
     "pantheon": "greek",
     "tier": "1",
@@ -13929,8 +14083,8 @@ const LEXICON = [
       },
       {
         "char": "u",
-        "to": "u",
-        "type": "same",
+        "to": "ú",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -13956,7 +14110,7 @@ const LEXICON = [
   {
     "id": "hector",
     "ascii": "hector",
-    "unicode": "Hektōr",
+    "unicode": "Héktōr",
     "greek": "Ἕκτωρ",
     "pantheon": "greek",
     "tier": "1",
@@ -13977,8 +14131,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -14148,7 +14302,7 @@ const LEXICON = [
   {
     "id": "penelope",
     "ascii": "penelope",
-    "unicode": "Pēnelopē",
+    "unicode": "Pēnelópē",
     "greek": "Πηνελόπη",
     "pantheon": "greek",
     "tier": "1",
@@ -14193,8 +14347,8 @@ const LEXICON = [
       },
       {
         "char": "o",
-        "to": "o",
-        "type": "same",
+        "to": "ó",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -14214,7 +14368,7 @@ const LEXICON = [
   {
     "id": "telemachus",
     "ascii": "telemachus",
-    "unicode": "Tēlemachos",
+    "unicode": "Tēlémachos",
     "greek": "Τηλέμαχος",
     "pantheon": "greek",
     "tier": "1",
@@ -14247,8 +14401,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -14401,12 +14555,24 @@ const LEXICON = [
         "type": "length",
         "note": "Macron: long eta"
       }
+    ],
+    "variants": [
+      {
+        "unicode": "Alkmḗnē",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Ἀλκμήνη; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
     ]
   },
   {
     "id": "admetus",
     "ascii": "admetus",
-    "unicode": "Admētos",
+    "unicode": "Ádmētos",
     "greek": "Ἄδμητος",
     "pantheon": "greek",
     "tier": "1",
@@ -14421,8 +14587,8 @@ const LEXICON = [
     "breakdown": [
       {
         "char": "a",
-        "to": "A",
-        "type": "same",
+        "to": "Á",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -14520,7 +14686,7 @@ const LEXICON = [
   {
     "id": "daedalus",
     "ascii": "daedalus",
-    "unicode": "Daidalos",
+    "unicode": "Daídalos",
     "greek": "Δαίδαλος",
     "pantheon": "greek",
     "tier": "1",
@@ -14547,8 +14713,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "i",
-        "type": "same",
+        "to": "í",
+        "type": "stress",
         "note": "Iota"
       },
       {
@@ -14587,7 +14753,7 @@ const LEXICON = [
   {
     "id": "eurydice",
     "ascii": "eurydice",
-    "unicode": "Eurydikē",
+    "unicode": "Eurydíkē",
     "greek": "Εὐρυδίκη",
     "pantheon": "greek",
     "tier": "1",
@@ -14632,8 +14798,8 @@ const LEXICON = [
       },
       {
         "char": "i",
-        "to": "i",
-        "type": "same",
+        "to": "í",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -14855,6 +15021,18 @@ const LEXICON = [
         "to": "ō",
         "type": "length",
         "note": "Macron: long omega"
+      }
+    ],
+    "variants": [
+      {
+        "unicode": "Kalypsṓ",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Καλυψώ; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
       }
     ]
   },
@@ -15090,7 +15268,7 @@ const LEXICON = [
   {
     "id": "ariadne",
     "ascii": "ariadne",
-    "unicode": "Ariadnē",
+    "unicode": "Ariádnē",
     "greek": "Ἀριάδνη",
     "pantheon": "greek",
     "tier": "1",
@@ -15129,8 +15307,8 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
+        "to": "á",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -15223,6 +15401,18 @@ const LEXICON = [
         "type": "special",
         "note": "Macron + final sigma"
       }
+    ],
+    "variants": [
+      {
+        "unicode": "Ganymḗdēs",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Γανυμήδης; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
     ]
   },
   {
@@ -15290,7 +15480,19 @@ const LEXICON = [
         "note": "Macron: long eta"
       }
     ],
-    "hasAdSite": true
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Aráchnē",
+        "type": "ideal",
+        "note": "Acute on the stressed short vowel, matching Greek Ἀράχνη; preserves stress where the canonical macron-only form records length only.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "narcissus",
@@ -15430,7 +15632,19 @@ const LEXICON = [
       "derivation": "Greek Πανδώρα 'all-gifted', from πᾶν 'all' and δῶρον 'gift'; the first woman in Hesiod's Theogony.",
       "certainty": "attested"
     },
-    "hasAdSite": true
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Pandṓra",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Πανδώρα; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "sisyphus",
@@ -15676,12 +15890,24 @@ const LEXICON = [
         "type": "same",
         "note": "Same"
       }
+    ],
+    "variants": [
+      {
+        "unicode": "Sarpēdṓn",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Σαρπηδών; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
     ]
   },
   {
     "id": "protesilaus",
     "ascii": "protesilaus",
-    "unicode": "Prōtesilaos",
+    "unicode": "Prōtesílaos",
     "greek": "Πρωτεσίλαος",
     "pantheon": "greek",
     "tier": "1",
@@ -15732,8 +15958,8 @@ const LEXICON = [
       },
       {
         "char": "i",
-        "to": "i",
-        "type": "same",
+        "to": "í",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -15825,7 +16051,7 @@ const LEXICON = [
   {
     "id": "danae",
     "ascii": "danae",
-    "unicode": "Danaē",
+    "unicode": "Danáē",
     "greek": "Δανάη",
     "pantheon": "greek",
     "tier": "1",
@@ -15858,8 +16084,8 @@ const LEXICON = [
       },
       {
         "char": "a",
-        "to": "a",
-        "type": "same",
+        "to": "á",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -15941,7 +16167,19 @@ const LEXICON = [
         "note": "Macron: long eta"
       }
     ],
-    "hasAdSite": true
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Andromédē",
+        "type": "ideal",
+        "note": "Acute on the stressed short vowel, matching Greek Ἀνδρομέδη; preserves stress where the canonical macron-only form records length only.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "cassiopeia",
@@ -16024,7 +16262,7 @@ const LEXICON = [
   {
     "id": "cepheus",
     "ascii": "cepheus",
-    "unicode": "Kēpheus",
+    "unicode": "Kēpheús",
     "greek": "Κηφεύς",
     "pantheon": "greek",
     "tier": "1",
@@ -16069,8 +16307,8 @@ const LEXICON = [
       },
       {
         "char": "u",
-        "to": "u",
-        "type": "same",
+        "to": "ú",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -16122,7 +16360,19 @@ const LEXICON = [
       "protoGloss": "Doom, violent death",
       "derivation": "Doom, violent death (from κήρ)",
       "certainty": "attested"
-    }
+    },
+    "variants": [
+      {
+        "unicode": "Kḗr",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Κήρ; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "coeus",
@@ -17549,7 +17799,7 @@ const LEXICON = [
   {
     "id": "calliope",
     "ascii": "calliope",
-    "unicode": "Kalliopē",
+    "unicode": "Kalliópē",
     "greek": "Καλλιόπη",
     "pantheon": "greek",
     "tier": "1",
@@ -17564,7 +17814,7 @@ const LEXICON = [
       {
         "char": "c",
         "to": "K",
-        "type": "special",
+        "type": "same",
         "note": "Special character"
       },
       {
@@ -17593,8 +17843,8 @@ const LEXICON = [
       },
       {
         "char": "o",
-        "to": "o",
-        "type": "same",
+        "to": "ó",
+        "type": "stress",
         "note": "o same"
       },
       {
@@ -19813,7 +20063,19 @@ const LEXICON = [
         "note": "e same"
       }
     ],
-    "hasAdSite": true
+    "hasAdSite": true,
+    "variants": [
+      {
+        "unicode": "Aretḗ",
+        "type": "ideal",
+        "note": "Stacked macron+acute on the stressed long vowel, matching Greek Ἀρετή; philologically ideal but often untypeable on phones.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "hubris",
@@ -35183,7 +35445,7 @@ const LEXICON = [
   {
     "id": "hymenaeus",
     "ascii": "hymenaeus",
-    "unicode": "Hymenaîos",
+    "unicode": "Hyménaîos",
     "greek": "Ὑμέναιος",
     "pantheon": "greek",
     "tier": "1",
@@ -35215,8 +35477,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "e same"
       },
       {
@@ -35234,13 +35496,13 @@ const LEXICON = [
       {
         "char": "e",
         "to": "î",
-        "type": "special",
+        "type": "stress",
         "note": "Special character"
       },
       {
         "char": "u",
         "to": "o",
-        "type": "special",
+        "type": "same",
         "note": "Special character"
       },
       {
@@ -50795,7 +51057,19 @@ const LEXICON = [
       "derivation": "From Greek Λιβύη, name for North Africa west of Egypt.",
       "certainty": "attested",
       "cognates": []
-    }
+    },
+    "variants": [
+      {
+        "unicode": "Libýē",
+        "type": "ideal",
+        "note": "Acute on the stressed short vowel, matching Greek Λιβύη; preserves stress where the canonical macron-only form records length only.",
+        "sources": [
+          "LSJ",
+          "Smyth",
+          "Beekes"
+        ]
+      }
+    ]
   },
   {
     "id": "aigyptos",
@@ -53358,7 +53632,7 @@ const LEXICON = [
   {
     "id": "phaethon",
     "ascii": "phaethon",
-    "unicode": "Phaethōn",
+    "unicode": "Phaéthōn",
     "greek": "Φαέθων",
     "pantheon": "greek",
     "tier": "1",
@@ -53391,8 +53665,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "Same"
       },
       {
@@ -56441,7 +56715,7 @@ const LEXICON = [
   {
     "id": "adonis",
     "ascii": "adonis",
-    "unicode": "Adōnis",
+    "unicode": "Ádōnis",
     "greek": "Ἄδωνις",
     "pantheon": "greek",
     "tier": "1",
@@ -56458,8 +56732,8 @@ const LEXICON = [
     "breakdown": [
       {
         "char": "a",
-        "to": "A",
-        "type": "same",
+        "to": "Á",
+        "type": "stress",
         "note": "Alpha"
       },
       {
@@ -57262,7 +57536,7 @@ const LEXICON = [
   {
     "id": "iphigeneia",
     "ascii": "iphigeneia",
-    "unicode": "Iphigeneia",
+    "unicode": "Iphigéneia",
     "greek": "Ἰφιγένεια",
     "pantheon": "greek",
     "tier": "2",
@@ -57308,8 +57582,8 @@ const LEXICON = [
       },
       {
         "char": "e",
-        "to": "e",
-        "type": "same",
+        "to": "é",
+        "type": "stress",
         "note": "Epsilon"
       },
       {
@@ -58245,7 +58519,7 @@ const LEXICON = [
   {
     "id": "triton",
     "ascii": "triton",
-    "unicode": "Tritōn",
+    "unicode": "Trítōn",
     "greek": "Τρίτων",
     "pantheon": "greek",
     "tier": "1",
@@ -58274,8 +58548,8 @@ const LEXICON = [
       },
       {
         "char": "i",
-        "to": "i",
-        "type": "same",
+        "to": "í",
+        "type": "stress",
         "note": "Iota"
       },
       {
@@ -60139,7 +60413,7 @@ const LEXICON = [
     },
     "hasAdSite": true
   }
-];
+]
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { LEXICON };
 }

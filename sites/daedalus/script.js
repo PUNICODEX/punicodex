@@ -1238,7 +1238,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'daedalus';
-  const siteName = 'Daidalos';
+  const siteName = 'Daídalos';
   let selectedCents = 700;
 
   const els = {

@@ -110,9 +110,18 @@ async function main() {
   }
   await Promise.all(Array.from({ length: CONCURRENCY }, worker));
 
-  // Keep entries where at least the canonical form is available.
-  const free = rows.filter((r) => r.forms[0] && r.forms[0].status === 'available');
-  const taken = rows.filter((r) => !free.includes(r));
+  // Classify by the first registrable form. If the canonical Unicode form is
+  // unregistrable (e.g. contains a space or apostrophe), fall back to the next
+  // registrable candidate so multi-word names are not misreported as "registered".
+  const leadForm = (r) => r.forms.find((f) => f.status !== 'unregistrable');
+  const free = rows.filter((r) => {
+    const f = leadForm(r);
+    return f && f.status === 'available';
+  });
+  const taken = rows.filter((r) => {
+    const f = leadForm(r);
+    return f && f.status !== 'available';
+  });
 
   const tierRank = { dual: 0, 1: 1, 2: 2 };
   free.sort(
@@ -127,18 +136,19 @@ async function main() {
   lines.push('| Entry | Unicode | Pantheon | Tier | Domain | Punycode |');
   lines.push('|-------|---------|----------|------|--------|----------|');
   for (const r of free) {
-    const f = r.forms[0];
+    const f = leadForm(r);
     lines.push(`| ${r.id} | ${r.unicode} | ${r.pantheon} | ${r.tier} | ${f.domain} | ${f.puny} |`);
   }
   lines.push('', '## Registered (canonical form taken)', '');
   lines.push('| Entry | Unicode | Pantheon | Domain | Registered | Fallback availability |');
   lines.push('|-------|---------|----------|--------|------------|----------------------|');
   for (const r of taken) {
-    const fallbacks = r.forms
-      .slice(1)
+    const lead = leadForm(r);
+    const others = r.forms.filter((f) => f !== lead);
+    const fallbacks = others
       .map((f) => `${f.domain}: ${f.status}${f.since ? ` (${f.since})` : ''}`)
       .join('; ');
-    lines.push(`| ${r.id} | ${r.unicode} | ${r.pantheon} | ${r.forms[0].domain} | ${r.forms[0].since || '—'} | ${fallbacks} |`);
+    lines.push(`| ${r.id} | ${r.unicode} | ${r.pantheon} | ${lead.domain} | ${lead.since || '—'} | ${fallbacks} |`);
   }
 
   const out = path.join(ROOT, '.superpowers', 'domain-watchlist.md');

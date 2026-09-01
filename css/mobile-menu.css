@@ -3,6 +3,12 @@
    css/main.css). Required on pages that carry the canonical
    .mobile-menu overlay but do not load main.css (temple-base
    pages). Keep in sync with css/main.css.
+
+   The font stack is hard-coded here instead of using --font-display
+   because some pages (realms, lexicon, temple-base) override that
+   variable with a heavier display face (Cinzel). The overlay must
+   stay visually identical everywhere, so it always uses the same
+   Cormorant Garamond / Montserrat pair.
    ═══════════════════════════════════════════════════════════ */
 
 .mobile-menu {
@@ -34,8 +40,41 @@ body.menu-open {
     overflow: hidden;
 }
 
+/* Reset any legacy temple-base mobile-menu decoration (counters,
+   uppercase transforms, bottom borders, opacity transforms) before
+   applying canonical styles. This keeps lexicon / temple-base-wrapped
+   pages identical to main.css pages. */
+.mobile-menu a,
+.mobile-menu a::before {
+    text-transform: none;
+    border-bottom: none;
+    content: none;
+}
+
+/* Higher-specificity guard for pages that still load temple-base.css
+   (lexicon, realms, texts, etc.). It overrides the temple-base overlay
+   geometry and link entrance animations without touching font sizing. */
+.mobile-menu#mobile-menu {
+    counter-reset: none;
+    top: var(--nav-height, 64px);
+    height: calc(100vh - var(--nav-height, 64px));
+    border-top: none;
+    box-shadow: none;
+}
+
+.mobile-menu#mobile-menu a,
+.mobile-menu#mobile-menu a::before {
+    opacity: 1;
+    transform: none;
+    transition: color 0.2s ease;
+    animation: none;
+    border-bottom: none;
+    content: none;
+    counter-increment: none;
+}
+
 .mobile-menu > a {
-    font-family: var(--font-display, 'Cinzel', serif);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: clamp(24px, 6vw, 32px);
     color: var(--text-primary, #f4efe4);
     transition: color 0.2s ease;
@@ -48,6 +87,7 @@ body.menu-open {
     color: var(--gold, #d4af37);
 }
 
+/* Grouped mobile menu */
 .mobile-menu-section {
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     padding-bottom: var(--space-3, 12px);
@@ -59,7 +99,7 @@ body.menu-open {
 
 .mobile-menu-title {
     display: block;
-    font-family: var(--font-body, 'Lato', sans-serif);
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.18em;
@@ -75,7 +115,7 @@ body.menu-open {
 }
 
 .mobile-menu-group a {
-    font-family: var(--font-display, 'Cinzel', serif);
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: clamp(18px, 4.5vw, 24px);
     color: var(--text-primary, #f4efe4);
     transition: color 0.2s ease;

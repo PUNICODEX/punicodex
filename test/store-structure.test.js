@@ -27,6 +27,19 @@ function exists(file) {
   return fs.existsSync(path.join(ROOT, file));
 }
 
+function mockupsDir() {
+  return path.join(ROOT, '.masters', 'mockups');
+}
+
+function listMockupFiles() {
+  const dir = mockupsDir();
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith('.jpg'))
+    .map((f) => f.replace(/\.jpg$/, ''));
+}
+
 function* walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
@@ -187,6 +200,76 @@ test('card imagery is either a mockup on the masters host or a deployed local as
       );
     }
   }
+});
+
+test('mockup files are bidirectionally consistent with products', () => {
+  if (!fs.existsSync(mockupsDir())) return;
+  const mockupIds = new Set(listMockupFiles());
+  const productIds = new Set(CATALOG.products.map((p) => p.id));
+  const withMockup = CATALOG.products.filter((p) => p.mockupImage);
+
+  for (const p of withMockup) {
+    assert.ok(
+      mockupIds.has(p.id),
+      `${p.id}: mockupImage in catalog but no .masters/mockups/${p.id}.jpg`
+    );
+  }
+
+  for (const id of mockupIds) {
+    assert.ok(productIds.has(id), `${id}.jpg: orphan mockup file (no matching product id)`);
+    const p = CATALOG.products.find((x) => x.id === id);
+    assert.ok(p?.mockupImage, `${id}.jpg: mockup file exists but product has no mockupImage`);
+  }
+});
+
+test('every mockupImage URL is on the masters mockups host', () => {
+  for (const p of CATALOG.products) {
+    if (!p.mockupImage) continue;
+    assert.ok(
+      p.mockupImage.startsWith('https://punycodex-masters.vercel.app/mockups/'),
+      `${p.id}: mockupImage not on masters mockups host: ${p.mockupImage}`
+    );
+  }
+});
+
+test('no orphan mockup files exist outside the product catalog', () => {
+  if (!fs.existsSync(mockupsDir())) return;
+  const productIds = new Set(CATALOG.products.map((p) => p.id));
+  const orphans = listMockupFiles().filter((id) => !productIds.has(id));
+  assert.deepStrictEqual(
+    orphans.slice(0, 20),
+    [],
+    `${orphans.length} orphan mockup file(s): ${orphans.slice(0, 20).join(', ')}`
+  );
+});
+
+test('POD product generator preserves mockupImage and variantPricing', () => {
+  const before = new Map(
+    CATALOG.products.map((p) => [
+      p.id,
+      { mockupImage: p.mockupImage || null, variantPricing: p.variantPricing || null },
+    ])
+  );
+
+  execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'generate-pod-products.js')], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+
+  const after = require('../store/products.json');
+  const dropped = [];
+  for (const p of after.products) {
+    const prev = before.get(p.id);
+    if (!prev) continue;
+    if (prev.mockupImage && !p.mockupImage) {
+      dropped.push(`${p.id}: mockupImage dropped`);
+    }
+    if (prev.variantPricing && !p.variantPricing) {
+      dropped.push(`${p.id}: variantPricing dropped`);
+    }
+  }
+  assert.deepStrictEqual(dropped.slice(0, 20), [], dropped.join('\n'));
+  assert.strictEqual(dropped.length, 0, `${dropped.length} field(s) dropped`);
 });
 
 test('store pages carry the responsive breakpoint and canonical site nav', () => {

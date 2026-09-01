@@ -4,7 +4,7 @@ const crypto = require('crypto');
 
 const SOURCE_ROOT = path.resolve(__dirname, '..', 'sites');
 const TARGET_ROOT = path.resolve(__dirname, '..', '.masters', 'sites');
-const PATTERN = /_(mascot|logomark)\.[^.]+$/;
+const PATTERN = /_(mascot|logomark|logolockup)\.webp$/;
 
 async function walk(dir, callback) {
   const entries = await fs.readdir(dir, { withFileTypes: true });

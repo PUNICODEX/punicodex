@@ -157,7 +157,7 @@ function main() {
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
     <link rel="stylesheet" href="/css/main.css?v=perf24">
     <link rel="stylesheet" href="/css/nav-more.css?v=4">
-    <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
+    <link rel="stylesheet" href="/css/mobile-menu.css?v=3">
     <link rel="stylesheet" href="/css/footer.css?v=2">
     <script type="application/ld+json">${JSON.stringify(itemList)}</script>
     <script src="/js/px-core.js?v=perf21" defer></script>

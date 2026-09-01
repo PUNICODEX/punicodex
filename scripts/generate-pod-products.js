@@ -117,6 +117,19 @@ function cardImage(assets, design) {
   return primary;
 }
 
+// The mockup batch (scripts/generate-printful-mockups.js) writes to
+// .masters/mockups/{productId}.jpg and hosts the files on the masters origin.
+// If a local mockup exists but products.json has no mockupImage, restore the
+// URL here so store cards never fall back to a plain mascot after a clean
+// regeneration.
+function inferredMockupImage(id) {
+  const mockupFile = path.join(ROOT, '.masters', 'mockups', `${id}.jpg`);
+  if (fs.existsSync(mockupFile)) {
+    return `${MASTERS_BASE}/mockups/${id}.jpg`;
+  }
+  return undefined;
+}
+
 // design.placements describes which material prints where — the sync worker
 // maps `area` onto Printful placements (front/back/label).
 const LINES = [
@@ -404,6 +417,7 @@ function main() {
         // Phase 1: no live checkout yet — the Printful storefront is wired in
         // phase 2 (see docs/pod-integration.md). Keep the field for the API.
         printfulProductId: null,
+        mockupImage: inferredMockupImage(id),
         ...preserved.get(id),
       };
       applyFallbackVariants(product);
@@ -424,6 +438,7 @@ function main() {
       templeUrl: null,
       design: line.design,
       printfulProductId: null,
+      mockupImage: inferredMockupImage(id),
       ...preserved.get(id),
     };
     applyFallbackVariants(product);
@@ -438,12 +453,22 @@ function main() {
     products,
   };
   // Idempotency: when the product set is unchanged, keep the previous file
+  // Compare with sorted keys so field-order drift from phase-2 scripts does
+  // not trigger a rewrite.
+  function sortedJson(obj) {
+    return JSON.stringify(obj, (key, value) =>
+      value && typeof value === 'object' && !Array.isArray(value)
+        ? Object.fromEntries(Object.entries(value).sort(([a], [b]) => a.localeCompare(b)))
+        : value
+    );
+  }
+
   // (and its generatedAt) byte-identical so `npm run generate` stays clean.
   try {
     const prev = JSON.parse(fs.readFileSync(file, 'utf8'));
     const { generatedAt: _prevTs, ...prevRest } = prev;
     const { generatedAt: _nextTs, ...nextRest } = out;
-    if (JSON.stringify(prevRest) === JSON.stringify(nextRest)) {
+    if (sortedJson(prevRest) === sortedJson(nextRest)) {
       console.log(`POD products unchanged (${products.length}) — store/products.json left as-is`);
       return;
     }

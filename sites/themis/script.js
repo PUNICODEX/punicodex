@@ -1233,7 +1233,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'themis';
-  const siteName = 'Themis';
+  const siteName = 'Thémis';
   let selectedCents = 700;
 
   const els = {

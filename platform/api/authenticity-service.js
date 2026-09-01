@@ -376,9 +376,12 @@ function applySpoofOverrides(
 
   // Normalization-based homographs (fullwidth, math alphanumeric, combining
   // diacritic stacks, NFD decomposition, etc.) that target a protected identity.
+  // Genuine canonical forms and listed scholarly variants are never spoofs.
   if (
     hasProtectedMatch &&
     !isDomain &&
+    !exact &&
+    !variantMatch &&
     (looksLikeNormalizationSpoof(raw) ||
       (/[\u0300-\u036f]/.test(raw) && raw.normalize('NFC') !== raw) ||
       hasCombiningDiacriticStack(raw))

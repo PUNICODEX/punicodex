@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/css/main.css?v=perf24">
   <link rel="stylesheet" href="/css/nav-more.css?v=4">
-  <link rel="stylesheet" href="/css/mobile-menu.css?v=1">
+  <link rel="stylesheet" href="/css/mobile-menu.css?v=3">
   <link rel="stylesheet" href="/css/footer.css?v=2">
   <style>
     :root { --gold: #D4AF37; --gold-bright: #F0D878; --ink: #E8E4DC; --dim: #9a948a; --line: rgba(212,175,55,.18); --card: #121216; }
@@ -85,7 +85,7 @@
             "name": "What happens when the ideal Unicode form cannot be registered as a domain?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "The rulebook descends a fixed fallback hierarchy, each step still philologically defensible: the full restoration first, then a circumflex form when the Greek carries one, then the macron-only academic standard (the LSJ convention), then an attested variant, and only as a last resort the plain ASCII form. A wrong accent position is treated as worse than no accent at all."
+                "text": "The rulebook descends a fixed fallback hierarchy, each step still philologically defensible: the full restoration first (macron + acute when Greek has an acute on a long vowel, e.g. Pandṓra), then a circumflex form when the Greek carries one (e.g. Hermês), then the macron-only academic standard (the LSJ convention, e.g. Hēra), then an attested variant, and only as a last resort the plain ASCII form. A wrong accent position is treated as worse than no accent at all."
             }
         },
         {
@@ -219,7 +219,7 @@
             <p class="rb-eyebrow">The Restoration Rulebook</p>
             <h1>Why the Names Are Spelled This Way</h1>
             <p class="lede">Every name in the Pantheon is a <strong>scholarly restoration</strong>, not an invention and never a brand. The marks above the letters are not decoration: they are the original sound of the name — its stress and its long vowels — recovered from the sources and carried into the digital realm. This page is the rulebook every restoration follows.</p>
-            <p class="rb-updated" style="margin-top:1rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-dim,#b8963e)">Doctrine, published and dated: last updated <time datetime="2026-08-01">1 August 2026</time></p>
+            <p class="rb-updated" style="margin-top:1rem;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-dim,#b8963e)">Doctrine, published and dated: last updated <time datetime="2026-08-31">31 August 2026</time></p>
         </div>
 
         <div class="rb-section">
@@ -255,14 +255,16 @@
             <table class="rb-table">
                 <thead><tr><th>Priority</th><th>Form</th><th>Example</th><th>When</th></tr></thead>
                 <tbody>
-                    <tr><td>1</td><td>Full restoration</td><td><strong>Aphrodítē</strong></td><td>Ideal — used whenever the domain is available</td></tr>
-                    <tr><td>2</td><td>Circumflex</td><td><strong>Hermês</strong>, <strong>Poseidôn</strong></td><td>Greek has a circumflex and the domain exists — stress and length in one typeable letter</td></tr>
-                    <tr><td>3</td><td>Macron-only</td><td><strong>Hēra</strong>, <strong>Persephonē</strong></td><td>The standard LSJ convention — always defensible</td></tr>
+                    <tr><td>1</td><td>Full restoration</td><td><strong>Aphrodítē</strong>, <strong>Hḗra</strong>, <strong>Pandṓra</strong></td><td>Stress and length both preserved; macron + acute when Greek has an acute on a long vowel</td></tr>
+                    <tr><td>2</td><td>Circumflex</td><td><strong>Hermês</strong>, <strong>Poseidôn</strong>, <strong>Athēnâ</strong></td><td>Greek has a circumflex — stress and length in one typeable letter</td></tr>
+                    <tr><td>3</td><td>Macron-only</td><td><strong>Hēra</strong>, <strong>Persephonē</strong>, <strong>Pandōra</strong></td><td>The standard LSJ convention; used as the registrable, typeable fallback when the ideal stacked form is impractical</td></tr>
                     <tr><td>4</td><td>Attested variant</td><td><strong>Athēnā</strong> (Ἀθηνᾶ)</td><td>The canonical form would hurt recognizability; the variant is attested</td></tr>
                     <tr><td>5</td><td>Plain ASCII</td><td><strong>Hera</strong></td><td>Last resort, never the primary form</td></tr>
                 </tbody>
             </table>
+            <div class="rb-note"><strong>Acute on a long vowel is not a circumflex.</strong> Greek Πανδώρα has an acute, not a circumflex, so the fullest form is <strong>Pandṓra</strong> (macron + acute), never <strong>Pandôra</strong>. Where the ideal stacked form is hard to type or render, the project falls back to the macron-only LSJ convention — but the ideal variant is always preserved in the lexicon.</div>
             <div class="rb-note"><strong>A wrong accent is worse than no accent.</strong> The form <em>ápollōn</em> was scrapped in favour of plain <em>apollōn</em> — a misplaced mark misreads the name's sound, which is the one thing a restoration must never do.</div>
+            <div class="rb-note"><strong>The historical circumflex transliteration.</strong> You may occasionally see older European philology write <strong>Athênê</strong>, <strong>Hêraklês</strong>, or <strong>Nikê</strong> — using a circumflex (ê, ô) to mark a long stressed vowel. This convention was common in 19th–early 20th century French and German scholarship, and it remains academically intelligible, but it is <em>not</em> the modern standard. Today's critical editions, LSJ, the Oxford Classical Dictionary, Cambridge Greek, and Unicode transliteration standards separate length (macron: ē, ō) from stress (acute: é, ṓ) rather than folding both into a circumflex. PuniCodex follows the modern standard; the older circumflex forms are noted as historical variants, not canonical restorations.</div>
         </div>
 
         <div class="rb-section">

@@ -1,7 +1,7 @@
 # PuniCodex AI Training Corpus — Data Card
 
-**Data version:** 2.0.145  
-**Generated:** 2026-08-29T01:57:11.160Z  
+**Data version:** 2.0.148  
+**Generated:** 2026-08-31T20:50:00.396Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
@@ -12,28 +12,28 @@ This corpus is the foundational training and evaluation data for a specialized A
 
 | File | Examples | Size | Description |
 |------|----------|------|-------------|
-| entries.jsonl | 980 | 6.71 MB | Rich structured record for every lexicon entry. |
-| instructions.jsonl | 9,389 | 4.77 MB | Scholarly question/answer pairs (Phase 1). |
-| instructions-train.jsonl | 43,442 | 26.51 MB | Training split (80%) of scholarly + safety examples. |
-| eval.jsonl | 10,859 | 6.64 MB | Held-out evaluation split (20%) of scholarly + safety examples. |
+| entries.jsonl | 980 | 6.72 MB | Rich structured record for every lexicon entry. |
+| instructions.jsonl | 9,410 | 4.78 MB | Scholarly question/answer pairs (Phase 1). |
+| instructions-train.jsonl | 43,458 | 26.52 MB | Training split (80%) of scholarly + safety examples. |
+| eval.jsonl | 10,864 | 6.64 MB | Held-out evaluation split (20%) of scholarly + safety examples. |
 | safety-examples.jsonl | 44,912 | 28.38 MB | Adversarial safety examples (Phase 2). |
-| dialogue-examples.jsonl | 3,700 | 2.78 MB | Multi-turn conversation examples (Phase 3). |
+| dialogue-examples.jsonl | 3,721 | 2.79 MB | Multi-turn conversation examples (Phase 3). |
 | tool-use-examples.jsonl | 4,878 | 10.39 MB | Function-calling / tool-use examples (Phase 4). |
 | multimodal-examples.jsonl | 2,657 | 1.23 MB | Vision-language pairs for mascots, logomarks, scripts (Phase 5). |
-| preference-examples.jsonl | 3,984 | 2.19 MB | Chosen/rejected pairs for RLHF (Phase 6). |
+| preference-examples.jsonl | 4,005 | 2.20 MB | Chosen/rejected pairs for RLHF (Phase 6). |
 | reasoning-examples.jsonl | 3,883 | 2.20 MB | Chain-of-thought reasoning traces (Phase 7). |
 | benchmark.jsonl | 6,670 | 2.24 MB | Held-out evaluation benchmark with known answers (Phase 8). |
 | mythology-synthesis.jsonl | 404 | 265.8 KB | Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10). |
 | oracle-examples.jsonl | 1,977 | 2.25 MB | Conversational Oracle training examples with system/user/assistant turns (Phase 11). |
-| symbolic-correspondences.jsonl | 1,236 | 750.6 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
+| symbolic-correspondences.jsonl | 1,236 | 750.7 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
 | scientific-analogies.jsonl | 1,500 | 1.03 MB | Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13). |
-| chat-train.jsonl | 62,925 | 85.65 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
-| chat-eval.jsonl | 15,595 | 21.24 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
+| chat-train.jsonl | 62,975 | 85.71 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
+| chat-eval.jsonl | 15,608 | 21.26 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
 | MODEL_CARD.md | 78 | 4.4 KB | Model card with training recipe, evaluation plan, and hardware guidance (Phases 14-15). |
 | pretrain.jsonl | 5,995 | 5.84 MB | Raw-text continual pretraining corpus, 95% split (Phase 15). |
-| pretrain-validation.jsonl | 312 | 308.1 KB | Held-out raw-text validation split, 5% (Phase 15). |
+| pretrain-validation.jsonl | 312 | 308.2 KB | Held-out raw-text validation split, 5% (Phase 15). |
 | huggingface/train.jsonl | 5,995 | 5.04 MB | HuggingFace-compatible continual pretraining split (Phase 15). |
-| huggingface/validation.jsonl | 312 | 265.9 KB | HuggingFace-compatible validation split (Phase 15). |
+| huggingface/validation.jsonl | 312 | 266.0 KB | HuggingFace-compatible validation split (Phase 15). |
 | manifest.json | 319 | 10.0 KB | Machine-readable corpus manifest. |
 
 ## Phase Summary

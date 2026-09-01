@@ -1223,7 +1223,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'perseus';
-  const siteName = 'Perseus';
+  const siteName = 'Perseús';
   let selectedCents = 700;
 
   const els = {

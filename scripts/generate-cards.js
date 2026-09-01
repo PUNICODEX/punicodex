@@ -333,6 +333,54 @@ const ABILITY_OVERRIDES = {
     trigger: 'on_play',
     effect: { kind: 'damage', target: 'all-enemy-minions', amount: 4, healHeroPerKill: 3 },
   },
+  nezha: {
+    name: 'Wind-Fire Wheels',
+    description: 'Deal 6 damage to an enemy card and gain Charge.',
+    trigger: 'on_play',
+    effect: {
+      kind: 'all',
+      effects: [
+        { kind: 'damage', target: 'enemy-minion', amount: 6 },
+        { kind: 'charge' },
+      ],
+    },
+  },
+  change: {
+    name: 'Elixir of Immortality',
+    description: 'Restore 4 health to your hero at the start of each of your turns.',
+    trigger: 'passive',
+    effect: { kind: 'heal-hero-turn', amount: 4 },
+  },
+  houyi: {
+    name: 'Nine Suns Shot',
+    description: 'Deal 10 damage to the strongest enemy card. Deals double damage to Celestial or Sun domain foes.',
+    trigger: 'on_play',
+    effect: { kind: 'damage', target: 'strongest-enemy-minion', amount: 10, bonusVsDomains: ['celestial', 'sun'] },
+  },
+  longwang: {
+    name: 'Tidal Rain',
+    description: 'Deal 3 damage to all enemy cards and give your allies a 2 shield.',
+    trigger: 'on_play',
+    effect: {
+      kind: 'all',
+      effects: [
+        { kind: 'damage', target: 'all-enemy-minions', amount: 3 },
+        { kind: 'shield-allies', amount: 2 },
+      ],
+    },
+  },
+  xiwangmu: {
+    name: 'Peaches of Immortality',
+    description: 'Restore 6 health to your hero and grant your allies +1/+1.',
+    trigger: 'on_play',
+    effect: {
+      kind: 'all',
+      effects: [
+        { kind: 'heal-hero', amount: 6 },
+        { kind: 'buff-allies', power: 1, health: 1 },
+      ],
+    },
+  },
 };
 
 // ── The bespoke ability engine ──────────────────────────────────────────────
@@ -796,4 +844,5 @@ module.exports = {
   deriveFlavor,
   RARITY_ORDER,
   SET,
+  ABILITY_OVERRIDES,
 };

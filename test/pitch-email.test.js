@@ -138,7 +138,7 @@ async function run() {
     const bullets = buildResonanceBullets('tethys', 'Acme Corp');
     assert.strictEqual(bullets.length, 1);
     assert.strictEqual(bullets[0].lead, 'The archetype itself.');
-    assert.ok(bullets[0].why.includes('Tēthys'), 'fallback carries the Unicode name');
+    assert.ok(bullets[0].why.includes('Tēthýs'), 'fallback carries the Unicode name');
     assert.ok(bullets[0].why.includes('Grandmother'), 'fallback carries the lexicon meaning');
     assert.ok(bullets[0].why.includes('Acme Corp'), 'fallback carries the business name');
     assert.ok(bullets[0].why.length <= 500, `why over 500 chars (${bullets[0].why.length})`);

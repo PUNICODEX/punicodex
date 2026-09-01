@@ -54,6 +54,12 @@ const scripts = [
   // Must run AFTER create-flagship: flagship regeneration rewrites pages with
   // bare <img> markup, so the WebP/dimension enrichment only survives if applied last.
   'scripts/convert-images-to-webp.js',
+  // Merch composites are the print-ready PNG sheets used by Printful and the
+  // cards full-art renderer. generate-merch-composites builds them from the
+  // temple assets; sync-masters-composites copies them to .masters/ root so
+  // punycodex-masters.vercel.app can serve them and mockups never 404 again.
+  'scripts/generate-merch-composites.js',
+  'scripts/sync-masters-composites.js',
   'scripts/generate-scholars-taxonomy.js',
   'scripts/generate-scholars-content.js',
   'scripts/backfill-scholars-content.js',

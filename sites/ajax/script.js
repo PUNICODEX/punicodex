@@ -1241,7 +1241,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'ajax';
-  const siteName = 'Aias';
+  const siteName = 'Aías';
   let selectedCents = 700;
 
   const els = {

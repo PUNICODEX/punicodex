@@ -296,6 +296,30 @@
     var card = state.cards.find(function (c) { return c.id === el.dataset.cardId; });
     if (card) openModal(card);
   });
+  // Graceful fallback for mascot/full-art images that fail to load from the
+  // masters CDN. If a full-art/secret composite is missing, fall back to the
+  // mascot; if the mascot also fails (or the card has no art), render the
+  // pantheon sigil so the grid never shows a broken-image frame.
+  grid.addEventListener('error', function (e) {
+    var img = e.target;
+    if (img.tagName !== 'IMG' || !img.closest('.mcard-art')) return;
+    var card = state.cards.find(function (c) { return c.id === img.closest('.mcard').dataset.cardId; });
+    if (!card || !card.art) return;
+    if (img.classList.contains('mcard-art--full') && card.art.mascot) {
+      img.classList.remove('mcard-art--full');
+      img.src = card.art.mascot;
+      img.alt = card.name + ' mascot';
+      return;
+    }
+    img.style.display = 'none';
+    var sigil = document.createElement('span');
+    sigil.className = 'mcard-sigil-fallback';
+    sigil.setAttribute('aria-hidden', 'true');
+    sigil.style.cssText = 'font-size:3rem;color:var(--gold,#D4AF37);text-shadow:0 0 22px rgba(212,175,55,.35)';
+    sigil.textContent = card.categoryIcon || '✦';
+    img.parentElement.appendChild(sigil);
+  }, true);
+
   document.getElementById('card-modal-close').addEventListener('click', closeModal);
   document.getElementById('card-modal-backdrop').addEventListener('click', closeModal);
   document.addEventListener('keydown', function (e) {

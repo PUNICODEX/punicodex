@@ -1234,7 +1234,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'iphigeneia';
-  const siteName = 'Iphigeneia';
+  const siteName = 'Iphigéneia';
   let selectedCents = 700;
 
   const els = {

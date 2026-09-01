@@ -162,4 +162,58 @@ test('realms defers mobile toggling to px-core (no duplicate handler)', () => {
   assert.ok(script.includes('px-core'), 'realms script documents the px-core handoff');
 });
 
+test('mobile-menu.css uses a fixed canonical font stack, not --font-display', () => {
+  const css = readPage(path.join('css', 'mobile-menu.css'));
+  assert.ok(
+    css.includes("font-family: 'Cormorant Garamond', Georgia, serif"),
+    'mobile menu links use Cormorant Garamond'
+  );
+  assert.ok(
+    css.includes("font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif"),
+    'mobile menu titles use Montserrat'
+  );
+  assert.ok(!css.includes('var(--font-display)'), 'mobile menu must not inherit --font-display');
+});
+
+test('mobile-menu.css resets legacy temple-base counters and uppercase transforms', () => {
+  const css = readPage(path.join('css', 'mobile-menu.css'));
+  const resetsTransform =
+    /\.mobile-menu\s+a\s*,\s*\.mobile-menu\s+a::before\s*\{[^}]*text-transform:\s*none/.test(css);
+  assert.ok(resetsTransform, 'mobile menu resets text-transform');
+  assert.ok(
+    /\.mobile-menu\s+a::before\s*\{[^}]*content:\s*none/.test(css),
+    'mobile menu removes legacy counter pseudo-elements'
+  );
+});
+
+test('realms and lexicon load the cache-busted mobile-menu.css', () => {
+  for (const rel of [path.join('realms', 'index.html'), path.join('lexicon', 'index.html')]) {
+    const html = readPage(rel);
+    assert.ok(html.includes('/css/mobile-menu.css?v=3'), `${rel} loads mobile-menu.css?v=3`);
+    assert.ok(
+      !html.includes('/css/mobile-menu.css?v=1'),
+      `${rel} does not load the stale v=1 mobile-menu.css`
+    );
+    assert.ok(
+      !html.includes('/css/mobile-menu.css?v=2'),
+      `${rel} does not load the stale v=2 mobile-menu.css`
+    );
+  }
+});
+
+test('no navigation page loads a stale mobile-menu.css version', () => {
+  for (const target of TARGETS) {
+    const html = readPageSafe(target.page);
+    if (!html?.includes('/css/mobile-menu.css')) continue;
+    assert.ok(
+      !html.includes('/css/mobile-menu.css?v=1'),
+      `${target.page} must not load mobile-menu.css?v=1`
+    );
+    assert.ok(
+      !html.includes('/css/mobile-menu.css?v=2'),
+      `${target.page} must not load mobile-menu.css?v=2`
+    );
+  }
+});
+
 console.log('Mobile menu consistency test module loaded.');

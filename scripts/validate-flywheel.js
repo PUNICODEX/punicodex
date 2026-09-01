@@ -171,6 +171,15 @@ const ownedDomains = loadOwnedDomains();
 const middleware = parseMiddleware();
 const lexiconById = new Map(lexicon.map(e => [e.id, e]));
 const archetypeById = new Map(archetypes.map(a => [a.id, a]));
+
+const lexiconByDomain = new Map();
+for (const e of lexicon) {
+  if (!e.unicode) continue;
+  const key = normalizeDomain(`${e.unicode}.com`);
+  if (key) lexiconByDomain.set(key, e.id);
+  const p = punycode(key);
+  if (p && p !== key) lexiconByDomain.set(p, e.id);
+}
 const archetypeIds = new Set(archetypes.map(a => a.id));
 const flagshipIds = new Set(archetypes.filter(a => a.built).map(a => a.id));
 
@@ -260,7 +269,8 @@ for (const a of archetypes) {
   }
 }
 
-// Every DOMAIN_MAP entry should point to a real archetype
+// Every DOMAIN_MAP entry should point to a real archetype or a base temple.
+const baseTempleIds = new Set(lexicon.map(e => e.id).filter(id => fs.existsSync(path.join(ROOT, 'sites', id))));
 for (const [domain, target] of middleware.domainMap) {
   const m = target.match(/^\/sites\/(.+)$/);
   if (!m) {
@@ -269,15 +279,16 @@ for (const [domain, target] of middleware.domainMap) {
     continue;
   }
   const id = m[1];
-  if (!archetypeIds.has(id)) {
-    fail(`DOMAIN_MAP routes ${domain} to unknown archetype id "${id}"`);
+  if (!archetypeIds.has(id) && !baseTempleIds.has(id)) {
+    fail(`DOMAIN_MAP routes ${domain} to unknown id "${id}"`);
     archetypeIdMismatch++;
   }
 }
 
 // ARCHETYPE_IDS set should match the archetypes that carry domains exactly —
 // domain-less flagships have no DOMAIN_MAP entry by design (nothing to route).
-const middlewareIds = [...middleware.archetypeIds].sort();
+// Base-temple owned domains may also appear in DOMAIN_MAP and are excluded here.
+const middlewareIds = [...middleware.archetypeIds].filter(id => archetypeIds.has(id)).sort();
 const domainlessIds = new Set(archetypes.filter(a => a.domainless).map(a => a.id));
 const expectedIds = [...archetypeIds].filter(id => !domainlessIds.has(id)).sort();
 if (jsonEqual(middlewareIds, expectedIds)) {
@@ -291,7 +302,7 @@ if (jsonEqual(middlewareIds, expectedIds)) {
 
 if (missingDomainKeys === 0) pass('All archetype domains are present in DOMAIN_MAP');
 if (unexpectedTargets === 0) pass('All DOMAIN_MAP targets are /sites/{id} paths');
-if (archetypeIdMismatch === 0) pass('All DOMAIN_MAP ids are valid archetypes');
+if (archetypeIdMismatch === 0) pass('All DOMAIN_MAP ids are valid archetypes or base temples');
 
 // ── 2b. Database flagship IDs ───────────────────────────────────────────────
 console.log('\n▸ Database Flagship IDs');
@@ -325,9 +336,19 @@ for (const a of archetypes) {
 
 for (const d of ownedDomains) {
   const keys = expectedMiddlewareKeys(d);
-  const target = keys.map(k => domainKeyToTarget.get(k)).find(Boolean);
+  let target = keys.map(k => domainKeyToTarget.get(k)).find(Boolean);
+
+  // Not covered by a flagship archetype — allow base-temple owned domains that
+  // match a lexicon entry's canonical Unicode form and have a generated temple.
   if (!target) {
-    fail(`Owned domain "${d}" is not covered by any archetype domain set`);
+    const id = lexiconByDomain.get(normalizeDomain(d)) || lexiconByDomain.get(punycode(normalizeDomain(d)));
+    if (id && fs.existsSync(path.join(ROOT, 'sites', id))) {
+      target = `/sites/${id}`;
+    }
+  }
+
+  if (!target) {
+    fail(`Owned domain "${d}" is not covered by any archetype domain set or lexicon base temple`);
     ownedUnmatched++;
     continue;
   }
@@ -340,7 +361,7 @@ for (const d of ownedDomains) {
   }
 }
 
-if (ownedUnmatched === 0) pass('Every owned domain is covered by an archetype domain set');
+if (ownedUnmatched === 0) pass('Every owned domain is covered by an archetype domain set or base temple');
 if (ownedMissingRoute === 0) pass('All owned domains are routed in middleware');
 
 // ── 4. Generated lexicon copies ────────────────────────────────────────────

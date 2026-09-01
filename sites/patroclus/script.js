@@ -1231,7 +1231,7 @@ handleReturnFromStripe();
   if (!modal || !grid) return;
 
   const templeId = 'patroclus';
-  const siteName = 'Patroklos';
+  const siteName = 'Pátroklos';
   let selectedCents = 700;
 
   const els = {

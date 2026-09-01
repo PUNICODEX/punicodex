@@ -26,7 +26,7 @@ function run(cmd, opts = {}) {
 }
 
 console.log('Regenerating derived artifacts...');
-run('npm run generate', { timeout: 1200000 });
+run('npm run generate', { timeout: 3600000 });
 
 function isGeneratedArtifact(file) {
   if (file === 'middleware.js') return true;

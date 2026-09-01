@@ -183,6 +183,13 @@ function main() {
   html = html.replace(/(<span class="cards-stat-value" id="stat-secret">)[^<]*/, `$1${secrets}`);
   html = html.replace(/(<span class="cards-stat-value" id="stat-pantheons">)[^<]*/, `$1${pantheons.size}`);
 
+  // Keep meta/OG descriptions and JSON-LD in sync with the real set size.
+  const countFormatted = total.toLocaleString('en-US');
+  html = html.replace(/(<meta name="description" content="[^"]*?)\b[\d,]+\b(?= trading cards)/, `$1${countFormatted}`);
+  html = html.replace(/(<meta property="og:description" content="[^"]*?)\b[\d,]+\b(?= trading cards)/, `$1${countFormatted}`);
+  html = html.replace(/(<script type="application\/ld\+json">[\s\S]*?"description": "[^"]*?)\b[\d,]+\b(?= trading cards)/, `$1${countFormatted}`);
+  html = html.replace(/"numberOfItems": \d+/g, `"numberOfItems": ${total}`);
+
   writeFileWithRetry(PAGE_PATH, html);
   console.log(`Cards gallery: ${total} static frames baked (${fullArts} full-arts, ${secrets} secret rares, ${pantheons.size} pantheons)`);
 }
