@@ -321,3 +321,33 @@ test('handler ltv mode scopes revenue to a temple', async () => {
   assert.strictEqual(res.body.ltv.templeId, 'athena');
   assert.strictEqual(res.body.ltv.totalRevenue, 50);
 });
+
+test('handler realtime mode returns a live pulse with current and previous windows', async () => {
+  // Insert a recent event far enough in the past that it is stable inside the
+  // 60-minute window even if the handler call is queued behind other tests.
+  const recentAt = new Date(Date.now() - 5 * 60 * 1000).toISOString();
+  await run(
+    `
+      INSERT INTO site_analytics_events_v2
+        (event_name, session_hash, temple_id, page_type, device,
+         referrer_domain, quality_score, created_at)
+      VALUES ('page_view', 'rt-admin', 'zeus', 'temple', 'desktop', 'google.com', 1.0, $1)
+    `,
+    [recentAt]
+  );
+
+  const res = await invoke(
+    analyticsHandler,
+    'GET',
+    '/api/admin/portal/analytics/?mode=realtime&minutes=60',
+    { headers: adminHeader(adminToken) }
+  );
+
+  assert.strictEqual(res.status, 200, JSON.stringify(res.body).slice(0, 200));
+  assert.strictEqual(res.body.mode, 'realtime');
+  assert.strictEqual(res.body.minutes, 60);
+  assert.ok(res.body.pulse);
+  assert.ok(res.body.pulse.current.events >= 1);
+  assert.ok(res.body.pulse.topTemples.some((t) => t.name === 'zeus'));
+  assert.ok(Array.isArray(res.body.pulse.timeline));
+});
