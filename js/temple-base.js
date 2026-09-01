@@ -394,3 +394,44 @@
             return div.innerHTML;
         }
     })();
+
+    // ============================
+    // Analytics: tab + outbound clicks
+    // ============================
+    (function trackTempleInteractions() {
+        function pxTrack(name, props) {
+            if (window.px && window.px.track) window.px.track(name, props || {});
+        }
+
+        function tabNameFromHref(href) {
+            if (!href || href.startsWith('#')) return '';
+            try {
+                const url = new URL(href, window.location.href);
+                const parts = url.pathname.split('/').filter(Boolean);
+                const last = parts[parts.length - 1];
+                if (last === 'index.html') parts.pop();
+                return parts[parts.length - 1] || '';
+            } catch (e) {
+                return '';
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('.tab-nav-links .nav-link, .temple-mobile-menu .nav-link');
+            if (!link) return;
+            const tab = tabNameFromHref(link.getAttribute('href'));
+            if (tab && tab !== 'index.html') pxTrack('tab_switch', { tab_name: tab });
+        });
+
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[href^="http"]');
+            if (!link) return;
+            try {
+                if (link.hostname && link.hostname !== window.location.hostname) {
+                    pxTrack('outbound_click', { url: link.href });
+                }
+            } catch (e) {
+                // ignore
+            }
+        });
+    })();

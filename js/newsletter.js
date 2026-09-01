@@ -79,6 +79,9 @@
           err.hidden = true;
           ok.hidden = false;
           if (data.alreadySubscribed) ok.textContent = 'You are already on the list — see you next quarter.';
+          if (window.px && window.px.track) {
+            window.px.track('newsletter_subscribe', { source: source || 'site' });
+          }
         }
       } catch (e2) {
         err.textContent = 'The network is down — try again soon.';

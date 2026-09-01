@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js?v=1" defer></script>
+<script src="/js/analytics-beacon.js?v=0a4a40259b" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
 <meta charset="UTF-8">
@@ -103,7 +103,7 @@ a:hover{color:var(--gold-bright)}
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
-<script src="/js/herald-beacon.js?v=1" defer></script>
+<script src="/js/herald-beacon.js?v=31810b90ac" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
 <link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
@@ -138,6 +138,7 @@ a:hover{color:var(--gold-bright)}
                         <a href="/scholars/" class="nav-link">Scholars</a>
                         <a href="/api/v1/docs/" class="nav-link">API</a>
                         <a href="/appraise/" class="nav-link">Appraise</a>
+                        <a href="/herald/" class="nav-link">Herald</a>
                         <a href="/store/" class="nav-link active" aria-current="page">Store</a>
                         <a href="/about/" class="nav-link">About</a>
                         <a href="/contact/" class="nav-link">Contact</a>
@@ -186,6 +187,7 @@ a:hover{color:var(--gold-bright)}
                 <a href="/scholars/">Scholars</a>
                 <a href="/api/v1/docs/">API</a>
                 <a href="/appraise/">Appraise</a>
+                <a href="/herald/">Herald</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -214,7 +216,7 @@ a:hover{color:var(--gold-bright)}
       <div class="lbl">Quantity</div>
       <div class="qty"><button type="button" id="q-down" aria-label="Decrease quantity">−</button><span id="q-val">1</span><button type="button" id="q-up" aria-label="Increase quantity">+</button></div>
     </div>
-    <button class="buy" id="buy">Buy — printed for you</button>
+    <button class="buy" id="buy" data-product-id="radagast-crewneck">Buy — printed for you</button>
     <div class="story">
       <h3>The Design</h3>
       <ul>
@@ -228,10 +230,12 @@ a:hover{color:var(--gold-bright)}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://punicodex.com/"},{"@type":"ListItem","position":2,"name":"The Reliquary","item":"https://punicodex.com/store/"},{"@type":"ListItem","position":3,"name":"Radagast","item":"https://punicodex.com/store/radagast/"},{"@type":"ListItem","position":4,"name":"Radagast Temple Crewneck","item":"https://punicodex.com/store/radagast/crewneck/"}]}</script>
 <script>
 (function(){
+  function pxTrack(n,p){if(window.px&&window.px.track)window.px.track(n,p||{})}
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
   var sizes = Array.prototype.slice.call(document.querySelectorAll('#opts-size .opt'));
   var qtyEl = document.getElementById('q-val');
   var qty = 1;
+  var PRODUCT_ID = "radagast-crewneck";
   function pick(list, el){ list.forEach(function(x){ x.classList.remove('active'); }); el.classList.add('active'); }
   colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); updatePrice(); }); });
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
@@ -256,15 +260,24 @@ a:hover{color:var(--gold-bright)}
     var cents = PRICES[currentLabel()];
     el.textContent = cents ? '$' + (cents / 100).toFixed(2) : FLAT_PRICE;
   }
+  function currentPriceDollars(){
+    if (PRICES && PRICES[currentLabel()]) return PRICES[currentLabel()] / 100;
+    var m = FLAT_PRICE.match(/[d.]+/);
+    return m ? parseFloat(m[0]) : 0;
+  }
+  pxTrack('store_product_view', { product_id: PRODUCT_ID });
   var buy = document.getElementById('buy');
   buy.addEventListener('click', async function(){
+    var amount = currentPriceDollars() * qty;
+    pxTrack('store_cart_add', { product_id: PRODUCT_ID, quantity: qty });
+    pxTrack('store_checkout_init', { amount: amount, currency: 'USD' });
     buy.disabled = true;
     buy.textContent = 'Opening checkout…';
     try {
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: "radagast-crewneck", variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({ productId: PRODUCT_ID, variantLabel: currentLabel(), quantity: qty })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));
@@ -314,6 +327,7 @@ a:hover{color:var(--gold-bright)}
                     <a href="/authenticity/">Authenticity</a>
                     <a href="/pronunciation/">Pronunciation</a>
                     <a href="/innovation/">Innovation</a>
+                    <a href="/herald/">Herald</a>
                     <a href="/arbitrage/">Arbitrage</a>
                 </div>
                 <div class="footer-column">

@@ -370,7 +370,7 @@ function renderStoreIndex(colls) {
       const meta = templeMeta(id);
       const sorted = products.slice().sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
       const img = cardImage(sorted[0], meta);
-      return `<a class="card" href="/store/${id}/" data-pantheon="${esc(meta.pantheon)}" data-name="${esc(meta.name.toLowerCase())}">
+      return `<a class="card" href="/store/${id}/" data-product-id="${esc(id)}" data-pantheon="${esc(meta.pantheon)}" data-name="${esc(meta.name.toLowerCase())}">
   <div class="imgbox">${imgTag(img, `${meta.name} Reliquary collection — restored ${meta.pantheon} merchandise`)}</div>
   <div class="body">
     <div class="sub">${esc(meta.pantheon)}${meta.rentalTier ? ` · Tier ${meta.rentalTier}` : ''}</div>
@@ -429,6 +429,7 @@ ${cards}
 <script src="/js/pc-fx-brilliant.js?v=1" defer></script>
 <script>
 (function(){
+  function pxTrack(n,p){if(window.px&&window.px.track)window.px.track(n,p||{})}
   var q = document.getElementById('q');
   var pills = Array.prototype.slice.call(document.querySelectorAll('.fpill'));
   var cards = Array.prototype.slice.call(document.querySelectorAll('#grid .card'));
@@ -448,6 +449,49 @@ ${cards}
     apply();
   }); });
   q.addEventListener('input', apply);
+
+  document.getElementById('grid').addEventListener('click', function(e){
+    var card = e.target.closest('.card');
+    if (!card) return;
+    var pid = card.getAttribute('data-product-id');
+    if (pid) pxTrack('store_product_view', { product_id: pid });
+  });
+
+  (function orderBanner(){
+    var params = new URLSearchParams(window.location.search);
+    var orderRef = params.get('order');
+    if (!orderRef) return;
+    var filters = document.getElementById('filters');
+    var banner = document.createElement('div');
+    banner.setAttribute('role','status');
+    banner.style.cssText = 'max-width:720px;margin:0 auto 1.5rem;padding:1rem 1.25rem;border:1px solid rgba(212,175,55,0.4);border-radius:10px;background:rgba(212,175,55,0.08);color:var(--ink);text-align:center;font-size:0.95rem;';
+    if (params.get('canceled')) {
+      banner.textContent = 'Order ' + orderRef + ' was canceled — nothing was charged.';
+      filters.parentNode.insertBefore(banner, filters);
+      return;
+    }
+    banner.textContent = 'Confirming order ' + orderRef + '…';
+    filters.parentNode.insertBefore(banner, filters);
+    fetch('/api/store/orders/?ref=' + encodeURIComponent(orderRef) + '&session_id=' + encodeURIComponent(params.get('session_id') || ''))
+      .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, json:j}; }); })
+      .then(function(r){
+        if (!r.ok) throw new Error('not found');
+        var lines = {
+          paid: 'Payment received — your piece is being prepared for the print house.',
+          fulfillment_queued: 'Payment received — our studio is preparing this handcrafted piece.',
+          sent_to_fulfillment: 'Confirmed and at the print house. We email you the moment it ships.',
+          shipped: 'Shipped' + (r.json.carrier ? ' via ' + r.json.carrier : '') + '.',
+          delivered: 'Delivered — may it carry the temple’s presence into your home.'
+        };
+        banner.innerHTML = '<strong>' + (r.json.productName || 'Your order') + '</strong> (' + r.json.orderRef + ')<br>' + (lines[r.json.status] || 'Order received — we will keep you posted.');
+        if ((params.get('paid') || r.json.status !== 'pending_payment') && r.json.grossCents) {
+          pxTrack('store_checkout_complete', { amount: r.json.grossCents / 100, currency: 'USD' });
+        }
+      })
+      .catch(function(){
+        banner.textContent = 'Order ' + orderRef + ' received — confirmation is on its way to your email.';
+      });
+  })();
 })();
 </script>
     
@@ -477,7 +521,7 @@ function renderCollection(id, products) {
     .sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
   const cardHtml = (p) => {
     const kind = p.id.split('-').pop();
-    return `<a class="card" href="/store/${id}/${kind}/">
+    return `<a class="card" href="/store/${id}/${kind}/" data-product-id="${esc(p.id)}">
   <div class="imgbox">${imgTag(cardImage(p, meta), p.name)}</div>
   <div class="body">
     <div class="sub">${esc(kindLabel(kind))}</div>
@@ -577,6 +621,16 @@ ${groupsHtml}
         '<div class="price">$' + Number(p.price).toFixed(2).replace(/\\.00$/, '') + '</div></div></a>';
     }).join('') + '</div>';
   }).catch(function(){ /* the honest empty state stays */ });
+})();
+</script>
+<script>
+(function(){
+  function pxTrack(n,p){if(window.px&&window.px.track)window.px.track(n,p||{})}
+  document.addEventListener('click', function(e){
+    var card = e.target.closest('.card[data-product-id]');
+    if (!card) return;
+    pxTrack('store_product_view', { product_id: card.getAttribute('data-product-id') });
+  });
 })();
 </script>
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
@@ -699,7 +753,7 @@ function renderProduct(id, kind, product) {
       <div class="lbl">Quantity</div>
       <div class="qty"><button type="button" id="q-down" aria-label="Decrease quantity">−</button><span id="q-val">1</span><button type="button" id="q-up" aria-label="Increase quantity">+</button></div>
     </div>
-    <button class="buy" id="buy">Buy — printed for you</button>
+    <button class="buy" id="buy" data-product-id="${esc(product.id)}">Buy — printed for you</button>
     <div class="story">
       <h3>The Design</h3>
       <ul>
@@ -718,10 +772,12 @@ ${breadcrumbScript([
 ])}
 <script>
 (function(){
+  function pxTrack(n,p){if(window.px&&window.px.track)window.px.track(n,p||{})}
   var colors = Array.prototype.slice.call(document.querySelectorAll('#opts-color .opt'));
   var sizes = Array.prototype.slice.call(document.querySelectorAll('#opts-size .opt'));
   var qtyEl = document.getElementById('q-val');
   var qty = 1;
+  var PRODUCT_ID = ${JSON.stringify(product.id)};
   function pick(list, el){ list.forEach(function(x){ x.classList.remove('active'); }); el.classList.add('active'); }
   colors.forEach(function(b){ b.addEventListener('click', function(){ pick(colors, b); updatePrice(); }); });
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
@@ -746,15 +802,24 @@ ${breadcrumbScript([
     var cents = PRICES[currentLabel()];
     el.textContent = cents ? '$' + (cents / 100).toFixed(2) : FLAT_PRICE;
   }
+  function currentPriceDollars(){
+    if (PRICES && PRICES[currentLabel()]) return PRICES[currentLabel()] / 100;
+    var m = FLAT_PRICE.match(/[\d.]+/);
+    return m ? parseFloat(m[0]) : 0;
+  }
+  pxTrack('store_product_view', { product_id: PRODUCT_ID });
   var buy = document.getElementById('buy');
   buy.addEventListener('click', async function(){
+    var amount = currentPriceDollars() * qty;
+    pxTrack('store_cart_add', { product_id: PRODUCT_ID, quantity: qty });
+    pxTrack('store_checkout_init', { amount: amount, currency: 'USD' });
     buy.disabled = true;
     buy.textContent = 'Opening checkout…';
     try {
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: ${JSON.stringify(product.id)}, variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({ productId: PRODUCT_ID, variantLabel: currentLabel(), quantity: qty })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));

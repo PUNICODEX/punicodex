@@ -300,6 +300,14 @@ const ROUTES = [
     load: () => require('../../platform/api-handlers/admin/revenue/index.js'),
   },
   {
+    segments: ['analytics', 'rollup'],
+    load: () => require('../../platform/api-handlers/admin/analytics/rollup.js'),
+  },
+  {
+    segments: ['analytics', 'retention'],
+    load: () => require('../../platform/api-handlers/admin/analytics/retention.js'),
+  },
+  {
     segments: ['trial-reminders'],
     load: () => require('../../platform/api-handlers/admin/trial-reminders/index.js'),
   },

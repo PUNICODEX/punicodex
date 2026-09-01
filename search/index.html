@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js?v=1" defer></script>
+<script src="/js/analytics-beacon.js?v=0a4a40259b" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
   <meta charset="UTF-8">
@@ -37,7 +37,7 @@
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
-<script src="/js/herald-beacon.js?v=1" defer></script>
+<script src="/js/herald-beacon.js?v=31810b90ac" defer></script>
 <!-- PUNICODEX-HERALD-BEACON-END -->
 <!-- PUNICODEX-COOKIE-CONSENT-START -->
 <link rel="stylesheet" href="/css/cookie-consent.css?v=1" media="print" onload="this.media='all'">
@@ -690,6 +690,7 @@
     }
 
     function trackClick(query, siteId, position) {
+      pxTrack('search_result_click', { query, result_id: String(siteId), position });
       if (pendingClickTimer) clearTimeout(pendingClickTimer);
       pendingClick = { query, siteId, position, clickTime: Date.now() };
       pendingClickTimer = setTimeout(() => {
@@ -712,6 +713,14 @@
         if (pendingClickTimer) clearTimeout(pendingClickTimer);
       }
     });
+
+    function pxTrack(name, props) {
+      if (window.px && window.px.track) window.px.track(name, props || {});
+    }
+
+    function emitSearchQuery(q, count) {
+      pxTrack('search_query', { query: q, result_count: count });
+    }
 
     function escapeHtmlKeepMarks(str) {
       if (!str) return '';
@@ -1070,6 +1079,7 @@
       }
 
       if (data.results.length === 0) {
+        emitSearchQuery(data.query, 0);
         let html = `
           <div class="empty">
             <div class="empty-icon">🔍</div>
@@ -1164,6 +1174,7 @@
 
       resultsEl.innerHTML = html;
       focusedIndex = -1;
+      emitSearchQuery(data.query, data.total || data.results.length || 0);
       if (window.PuniCodexEffects) {
         window.PuniCodexEffects.initSpotlight('.serp-result');
       }
@@ -1366,6 +1377,7 @@
       });
 
       resultsEl.innerHTML = html;
+      emitSearchQuery(data.query || searchInput.value.trim(), data.total || data.entries.length || 0);
       if (window.PuniCodexEffects) {
         window.PuniCodexEffects.initSpotlight('.entry-card');
       }

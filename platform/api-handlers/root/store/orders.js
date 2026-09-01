@@ -43,6 +43,7 @@ module.exports = async (req, res) => {
       productName: order.product_name,
       variantLabel: order.variant_label,
       quantity: order.quantity,
+      grossCents: order.gross_cents,
       trackingUrl: order.tracking_url,
       carrier: order.carrier,
       createdAt: order.created_at,

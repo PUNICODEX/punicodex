@@ -131,6 +131,33 @@ const SITE_ANALYTICS_V5_SCHEMA = `
     ON site_analytics_cohorts(cohort_date, temple_id);
   CREATE INDEX IF NOT EXISTS idx_cohorts_day_index
     ON site_analytics_cohorts(day_index);
+
+  -- LTV daily rollups
+  CREATE TABLE IF NOT EXISTS site_analytics_ltv_rollups (
+    id INTEGER PRIMARY KEY,
+    day TEXT NOT NULL UNIQUE,
+    total_revenue REAL DEFAULT 0,
+    transactions INTEGER DEFAULT 0,
+    unique_paying_sessions INTEGER DEFAULT 0,
+    unique_sessions INTEGER DEFAULT 0,
+    arpu REAL DEFAULT 0,
+    arppu REAL DEFAULT 0,
+    by_product_line TEXT,
+    by_cohort TEXT,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_ltv_rollups_day
+    ON site_analytics_ltv_rollups(day);
+
+  -- Retention policy configuration for analytics pruning
+  CREATE TABLE IF NOT EXISTS analytics_retention_config (
+    id INTEGER PRIMARY KEY,
+    events_days INTEGER DEFAULT 120,
+    sessions_days INTEGER DEFAULT 365,
+    rollups_days INTEGER DEFAULT 90,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
 `;
 
 const TEMPLE_IDS = (() => {

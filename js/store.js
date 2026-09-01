@@ -4,6 +4,10 @@
 (function () {
   'use strict';
 
+  function pxTrack(name, props) {
+    if (window.px && window.px.track) window.px.track(name, props || {});
+  }
+
   const grid = document.getElementById('product-grid');
   const tabs = document.querySelectorAll('.store-tab');
   let products = [];
@@ -56,7 +60,7 @@
     }
 
     return `
-    <div class="product-card" data-category="${escapeHtml(p.category)}">
+    <div class="product-card" data-category="${escapeHtml(p.category)}" data-product-id="${escapeHtml(p.id)}">
       <div class="product-image">
         ${imageTag}
         <div class="product-overlay">Print on demand</div>
@@ -83,6 +87,9 @@
     const productId = btn.getAttribute('data-buy');
     const select = grid.querySelector(`[data-variant-for="${CSS.escape(productId)}"]`);
     const variantLabel = select ? select.value : 'One size';
+    const product = products.find((p) => p.id === productId);
+    pxTrack('store_cart_add', { product_id: productId, quantity: 1 });
+    pxTrack('store_checkout_init', { amount: product ? Number(product.price) : 0, currency: 'USD' });
     btn.disabled = true;
     btn.textContent = 'Opening checkout…';
     try {
@@ -99,6 +106,13 @@
       btn.disabled = false;
       btn.textContent = 'Buy — printed for you';
     }
+  });
+
+  grid.addEventListener('click', (e) => {
+    const card = e.target.closest('.product-card');
+    if (!card || e.target.closest('[data-buy]')) return;
+    const productId = card.getAttribute('data-product-id');
+    if (productId) pxTrack('store_product_view', { product_id: productId });
   });
 
   // ── Order-status banner (return from Stripe) ──
@@ -184,6 +198,9 @@
         });
         if (!res.ok) throw new Error(String(res.status));
         toast('You are on the list — the Reliquary will write to you first.');
+        if (window.px && window.px.track) {
+          window.px.track('newsletter_subscribe', { source: 'store-notify' });
+        }
         form.reset();
       } catch (err) {
         toast('Subscription is momentarily unavailable — try again soon.');

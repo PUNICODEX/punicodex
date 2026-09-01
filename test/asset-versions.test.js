@@ -17,7 +17,15 @@ const { execFileSync } = require('node:child_process');
 
 const ROOT = path.join(__dirname, '..');
 
-const ASSETS = ['/js/archetypes-v2.js', '/js/original-script-lookup.js', '/js/owned-entries.js'];
+const ASSETS = [
+  '/js/archetypes-v2.js',
+  '/js/original-script-lookup.js',
+  '/js/owned-entries.js',
+  '/js/analytics-beacon.js',
+  '/js/herald-beacon.js',
+  '/js/newsletter.js',
+  '/js/temple-base.js',
+];
 const SKIP = /^(docs\/lighthouse\/|Marketing\/|New material)/;
 
 function hashOf(rel) {

@@ -86,6 +86,21 @@
       country: 1,
       properties: 1,
       created_at: 1,
+      // Phase 7 cross-product instrumentation fields (passed through to the
+      // ingest layer so they are available to funnel/cohort/LTV dashboards).
+      slot_id: 1,
+      amount: 1,
+      currency: 1,
+      product_id: 1,
+      quantity: 1,
+      query: 1,
+      result_id: 1,
+      position: 1,
+      result_count: 1,
+      tab_name: 1,
+      url: 1,
+      tier_id: 1,
+      source: 1,
     };
 
     function getParam(name) {

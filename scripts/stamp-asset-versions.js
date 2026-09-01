@@ -32,6 +32,10 @@ const ASSETS = [
   '/js/original-script-lookup.js',
   '/js/owned-entries.js',
   '/js/oracle.js',
+  '/js/analytics-beacon.js',
+  '/js/herald-beacon.js',
+  '/js/newsletter.js',
+  '/js/temple-base.js',
 ];
 
 // Historical reports are snapshots, not pages — never rewrite them.

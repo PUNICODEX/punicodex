@@ -2,6 +2,10 @@
   const API_BASE = window.PUNICODEX_API_BASE || '';
   const templeId = window.location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || '';
 
+  function pxTrack(name, props) {
+    if (window.px && window.px.track) window.px.track(name, props || {});
+  }
+
   const els = {
     navLogo: document.getElementById('nav-logo'),
     eyebrow: document.getElementById('patron-eyebrow'),
@@ -438,6 +442,12 @@
       socialUrl: socialUrl || null,
     };
 
+    pxTrack('patron_checkout_init', {
+      amount: selectedCents / 100,
+      tier_id: String(selectedCents),
+      currency: 'USD',
+    });
+
     if (els.submit) {
       els.submit.disabled = true;
       els.submit.innerHTML = '<span>Redirecting to Stripe…</span>';
@@ -466,6 +476,11 @@
   function handleReturnFromStripe() {
     const params = new URLSearchParams(window.location.search);
     if (params.get('patron') === 'success') {
+      pxTrack('patron_checkout_complete', {
+        amount: selectedCents / 100,
+        tier_id: String(selectedCents),
+        currency: 'USD',
+      });
       const url = new URL(window.location.href);
       url.searchParams.delete('patron');
       url.searchParams.delete('session_id');
@@ -498,6 +513,7 @@
 
   function init() {
     if (!templeId) return;
+    pxTrack('patron_view', { tier_id: '500' });
     setLogo();
     setPageTitle();
     bindSocialTabs();

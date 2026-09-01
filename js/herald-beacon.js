@@ -159,6 +159,9 @@
       '<p class="herald-beacon__snippet">' + snippet + '</p>' +
       '</div>';
     remember('subscribed');
+    if (window.px && window.px.track) {
+      window.px.track('newsletter_subscribe', { source: 'herald-beacon' });
+    }
     window.setTimeout(function () {
       closeCard(false);
     }, 5200);

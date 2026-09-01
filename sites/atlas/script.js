@@ -501,6 +501,10 @@ const canvas = document.getElementById('celestial-canvas');
 // ========== BOOKING SYSTEM ==========
 const API_BASE = window.PUNICODEX_API_BASE || ''; // Set window.PUNICODEX_API_BASE in HTML if needed
 
+function pxTrack(name, props) {
+  if (window.px && window.px.track) window.px.track(name, props || {});
+}
+
 // Only initialize on pages with the booking modal
 if (!document.getElementById('booking-modal')) {
   // Skip booking system on pages without modal (lore, gallery, etc.)
@@ -926,6 +930,8 @@ function openModal(slotOrId) {
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 
+    pxTrack('sponsor_modal_open', { slot_id: String(slotId || '') });
+
   } catch (err) {
     console.error('[PUNICODEX] openModal failed:', err);
   }
@@ -1189,6 +1195,7 @@ els.resendCode.addEventListener('click', sendVerificationCode);
 // Step 1b: Verify code & proceed to Stripe
 els.submitApplication.addEventListener('click', async () => {
   const note = els.applicationNote ? els.applicationNote.value.trim() : '';
+  pxTrack('sponsor_apply_submit', { slot_id: String(currentSlotId || '') });
   showStep('loading');
   try {
     const res = await fetch(`${API_BASE}/api/bookings/apply/`, {
@@ -1334,12 +1341,22 @@ async function handleReturnFromStripe() {
     const slot = slotsData.find(s => s.id === booking.slot_id);
     currentSlotId = booking.slot_id;
 
+    function trackSponsorPayment() {
+      const amountCents = booking && (booking.amount_paid_cents || booking.total_price_cents || booking.price_cents);
+      pxTrack('sponsor_payment_complete', {
+        slot_id: String(booking.slot_id || currentSlotId || ''),
+        amount: amountCents ? amountCents / 100 : 0,
+        currency: 'USD',
+      });
+    }
+
     if (canceled) {
       showBookingError('Payment was canceled. You can try again anytime.');
       return;
     }
 
     if (renewed && booking.status === 'live') {
+      trackSponsorPayment();
       openModal(slot);
       showStep('3');
       const titleEl = document.querySelector('#booking-step-3 .booking-modal-title');
@@ -1352,6 +1369,7 @@ async function handleReturnFromStripe() {
     }
 
     if (paid && (booking.status === 'pending_upload' || booking.status === 'live')) {
+      trackSponsorPayment();
       openModal(slot);
       if (booking.status === 'pending_upload') {
         setupUploadStep(slot);
@@ -1640,6 +1658,7 @@ handleReturnFromStripe();
     document.body.style.overflow = 'hidden';
     showStep('form');
     clearError();
+    pxTrack('patron_view', { tier_id: String(selectedCents) });
   }
 
   function closeModal() {
@@ -1673,6 +1692,17 @@ handleReturnFromStripe();
 
       if (!displayName) return showError('Please enter the name or title to display.');
       if (!email || !email.includes('@')) return showError('Please enter a valid email address.');
+
+      pxTrack('patron_checkout_init', {
+        amount: selectedCents / 100,
+        tier_id: String(selectedCents),
+        currency: 'USD',
+      });
+      try {
+        sessionStorage.setItem('px_patron_tier', String(selectedCents));
+      } catch (e) {
+        // ignore
+      }
 
       showStep('loading');
       try {
@@ -1746,6 +1776,17 @@ handleReturnFromStripe();
       openModal();
       showStep('success');
       loadPatrons();
+      let tierId = String(selectedCents);
+      try {
+        tierId = sessionStorage.getItem('px_patron_tier') || tierId;
+      } catch (e) {
+        // ignore
+      }
+      pxTrack('patron_checkout_complete', {
+        amount: Number(tierId) / 100 || selectedCents / 100,
+        tier_id: tierId,
+        currency: 'USD',
+      });
       // Clean URL without reload
       const url = new URL(window.location.href);
       url.searchParams.delete('patron');
