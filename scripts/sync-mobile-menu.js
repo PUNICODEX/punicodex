@@ -44,6 +44,7 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/connections/">Connections</a>
                 <a href="/patterns/">Patterns</a>
                 <a href="/trending/">Trending</a>
+                <a href="/store/">Store</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -51,13 +52,10 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
             <div class="mobile-menu-group">
                 <a href="/type/">Type</a>
                 <a href="/search/">Search</a>
-                <a href="/tiers/">Tier System</a>
                 <a href="/everyday/">Words</a>
                 <a href="/ink/">Ink</a>
                 <a href="/cards/">Cards</a>
-                <a href="/oracle/">Oracle</a>
-                <a href="/extension/">Extension</a>
-                <a href="/app/">App</a>
+                <a href="/innovation/">Innovation</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -70,7 +68,6 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/scholars/">Scholars</a>
                 <a href="/api/v1/docs/">API</a>
                 <a href="/appraise/">Appraise</a>
-                <a href="/store/">Store</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -116,8 +113,9 @@ const TARGETS = [
   { page: path.join('terms', 'api', 'index.html'), active: null },
   { page: path.join('terms', 'authenticity', 'index.html'), active: null },
   { page: path.join('terms', 'oracle', 'index.html'), active: null },
-  { page: path.join('extension', 'index.html'), active: '/extension/' },
-  { page: path.join('app', 'index.html'), active: '/app/' },
+  { page: path.join('extension', 'index.html'), active: '/innovation/' },
+  { page: path.join('app', 'index.html'), active: '/innovation/' },
+  { page: path.join('innovation', 'index.html'), active: '/innovation/' },
   { page: path.join('lexicon', 'index.html'), active: '/lexicon/' },
   { page: path.join('lexicon', 'cognates.html'), active: '/lexicon/' },
   { page: path.join('pantheon', 'index.html'), active: '/pantheon/' },

@@ -35,6 +35,7 @@ const EXPLORE = [
   ['/type/', 'Type'],
   ['/game/', 'Game'],
   ['/search/', 'Search'],
+  ['/store/', 'Store'],
 ];
 const RESOURCES = [
   ['/codex/', 'Codex'],
@@ -48,8 +49,7 @@ const RESOURCES = [
   ['/appraise/', 'Appraise'],
   ['/authenticity/', 'Authenticity'],
   ['/pronunciation/', 'Pronunciation'],
-  ['/store/', 'Store'],
-  ['/oracle/', 'Oracle'],
+  ['/innovation/', 'Innovation'],
   ['/arbitrage/', 'Arbitrage'],
 ];
 const CONNECT = [
@@ -98,6 +98,7 @@ const TARGETS = [
   path.join('privacy', 'index.html'),
   path.join('realms', 'index.html'),
   path.join('store', 'index.html'),
+  path.join('innovation', 'index.html'),
   path.join('terms', 'index.html'),
   path.join('terms', 'data-use', 'index.html'),
   path.join('terms', 'advertising', 'index.html'),

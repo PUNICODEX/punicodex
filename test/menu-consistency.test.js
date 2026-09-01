@@ -2,7 +2,7 @@
  * PuniCodex — Menu Consistency Tests
  *
  * Guards the canonical navigation system: every non-temple page must carry
- * the same desktop nav (6 primary links + 21-item More dropdown + Enter CTA)
+ * the same desktop nav (6 primary links + 16-item More dropdown + Enter CTA)
  * and the canonical sectioned mobile menu, with the page's own item marked
  * aria-current. Prevents the hand-maintained drift this audit found
  * (7 different desktop menus across 26 pages).
@@ -40,7 +40,7 @@ test('sync-desktop-nav covers every root navigation page (53+ targets)', () => {
   // Base target list is 53; per-pantheon landing pages are appended at runtime.
   assert.ok(TARGETS.length >= 53, `expected at least 53 targets, got ${TARGETS.length}`);
   assert.strictEqual(PRIMARY.length, 6);
-  assert.strictEqual(MORE.length, 19);
+  assert.strictEqual(MORE.length, 16);
 });
 
 test('Rulebook and Pronunciation are footer-only (not in desktop nav menus)', () => {
@@ -192,7 +192,7 @@ test('no target page still carries retired variant link sets', () => {
       console.warn(`    ⚠ ${page} missing, skipping retired variant check`);
       continue;
     }
-    for (const href of ['/connections/', '/oracle/', '/appraise/']) {
+    for (const href of ['/connections/', '/innovation/', '/appraise/']) {
       assert.ok(html.includes(`<a href="${href}" class="nav-link`), `${page}: missing ${href}`);
     }
   }

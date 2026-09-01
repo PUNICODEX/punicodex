@@ -40,6 +40,10 @@ let skipped = 0;
 let compressed = 0;
 
 async function main() {
+  if (!fs.existsSync(MASTERS_ROOT)) {
+    fs.mkdirSync(MASTERS_ROOT, { recursive: true });
+  }
+
   let missing = 0;
   for (const id of fs.readdirSync(SITES_ROOT)) {
     const assetsDir = path.join(SITES_ROOT, id, 'assets');

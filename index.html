@@ -60,7 +60,7 @@
     <!-- Preload critical CSS -->
     <link rel="preload" href="/css/home-critical.css?v=1" as="style">
     <link rel="preload" href="/css/main.css?v=perf24" as="style">
-    <link rel="preload" href="/css/home-v2.css?v=perf24" as="style">
+    <link rel="preload" href="/css/home-v2.css?v=perf25" as="style">
 
     <!-- Fonts (deferred — the two hero faces are declared in home-critical.css
          and their latin woff2 preloaded below) -->
@@ -75,8 +75,8 @@
     <!-- Full stylesheets, deferred — original cascade order preserved -->
     <link rel="stylesheet" href="/css/main.css?v=perf24" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/css/main.css?v=perf24"></noscript>
-    <link rel="stylesheet" href="/css/home-v2.css?v=perf24" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="/css/home-v2.css?v=perf24"></noscript>
+    <link rel="stylesheet" href="/css/home-v2.css?v=perf25" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/css/home-v2.css?v=perf25"></noscript>
     <link rel="stylesheet" href="/css/punicodex-tokens.css?v=1" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/css/punicodex-tokens.css?v=1"></noscript>
     <link rel="stylesheet" href="/css/punicodex-motion.css?v=1" media="print" onload="this.media='all'">
@@ -134,13 +134,10 @@
                     <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
                     <div class="nav-more-menu">
                         <a href="/patterns/" class="nav-link">Patterns</a>
-                        <a href="/tiers/" class="nav-link">Tier System</a>
                         <a href="/everyday/" class="nav-link">Words</a>
                         <a href="/ink/" class="nav-link">Ink</a>
                         <a href="/cards/" class="nav-link">Cards</a>
-                        <a href="/oracle/" class="nav-link">Oracle</a>
-                        <a href="/extension/" class="nav-link">Extension</a>
-                        <a href="/app/" class="nav-link">App</a>
+                        <a href="/innovation/" class="nav-link">Innovation</a>
                         <a href="/texts/" class="nav-link">Texts</a>
                         <a href="/trending/" class="nav-link">Trending</a>
                         <a href="/codex/" class="nav-link">Codex</a>
@@ -175,6 +172,7 @@
                 <a href="/connections/">Connections</a>
                 <a href="/patterns/">Patterns</a>
                 <a href="/trending/">Trending</a>
+                <a href="/store/">Store</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -182,13 +180,10 @@
             <div class="mobile-menu-group">
                 <a href="/type/">Type</a>
                 <a href="/search/">Search</a>
-                <a href="/tiers/">Tier System</a>
                 <a href="/everyday/">Words</a>
                 <a href="/ink/">Ink</a>
                 <a href="/cards/">Cards</a>
-                <a href="/oracle/">Oracle</a>
-                <a href="/extension/">Extension</a>
-                <a href="/app/">App</a>
+                <a href="/innovation/">Innovation</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -201,7 +196,6 @@
                 <a href="/scholars/">Scholars</a>
                 <a href="/api/v1/docs/">API</a>
                 <a href="/appraise/">Appraise</a>
-                <a href="/store/">Store</a>
             </div>
         </div>
         <div class="mobile-menu-section">
@@ -300,7 +294,7 @@
                         <span class="tier-example">Threat interstitial</span>
                         <span class="tier-example">Policy engine</span>
                     </div>
-                    <a href="/extension/" class="wa-link">See the full teaser →</a>
+                    <a href="/innovation/" class="wa-link">Explore the Innovation Lab →</a>
                 </div>
                 <div class="wa-card reveal-up">
                     <div class="browser-frame">
@@ -325,7 +319,7 @@
                         <span class="tier-example">Shield verdicts</span>
                         <span class="tier-example">AR lens</span>
                     </div>
-                    <a href="/app/" class="wa-link">See the full teaser →</a>
+                    <a href="/innovation/" class="wa-link">Explore the Innovation Lab →</a>
                 </div>
                 <div class="wa-card reveal-up">
                     <div class="browser-frame">
@@ -349,22 +343,45 @@
                         <span class="tier-example">Transliteration</span>
                         <span class="tier-example">Pattern recognition</span>
                     </div>
-                    <a href="/oracle/" class="wa-link">Meet the Oracle →</a>
+                    <a href="/innovation/" class="wa-link">Explore the Innovation Lab →</a>
                 </div>
             </div>
-                <div class="tier-card tier-source-card reveal-up">
-                    <div class="tier-icon">&#x0391;</div>
-                    <h3 class="tier-name">The Foundation</h3>
-                    <p class="tier-label">Already Consecrated</p>
-                    <p class="tier-desc body-md">
-                        Beneath all three instruments stands the finished work: 542 digital temples restored
-                        across 25 pantheons, a Scholarly Edition edited by universities, and the Reliquary —
-                        where the temples become things you can hold.
+        </div>
+    </section>
+
+    <div class="section-divider pc-divider-strip"></div>
+
+    <!-- --- THE FOUNDATION --- -->
+    <section class="section-origin" id="foundation">
+        <div class="container">
+            <div class="origin-grid">
+                <div class="origin-text reveal-up">
+                    <p class="section-eyebrow">Already Consecrated</p>
+                    <h2 class="display-md mb-4">THE FOUNDATION</h2>
+                    <p class="body-lg mb-3">
+                        Beneath every instrument stands the finished work: <strong>542 digital temples</strong> restored across <strong>25 pantheons</strong>.
                     </p>
-                    <div class="tier-examples">
-                        <span class="tier-example">542 temples</span>
-                        <span class="tier-example">Scholarly Edition</span>
-                        <span class="tier-example">Reliquary</span>
+                    <p class="body-md mb-3">
+                        Each temple carries a Scholarly Edition edited by universities, a curated gallery, original-script provenance, pronunciation, industry patterns, and the Reliquary — where the sacred becomes tangible.
+                    </p>
+                    <a href="/pantheon/" class="btn btn-outline"><span>Enter the Pantheon &rarr;</span></a>
+                </div>
+                <div class="origin-stats reveal-up">
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="542">0</span>
+                        <span class="stat-label">Digital Temples Restored</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="25">0</span>
+                        <span class="stat-label">Pantheons</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="980">0</span>
+                        <span class="stat-label">Scholarly Entries</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="13">0</span>
+                        <span class="stat-label">Product Types in the Reliquary</span>
                     </div>
                 </div>
             </div>
@@ -413,31 +430,27 @@
                         It started with a single question: <em>Why do the gods live in ASCII?</em>
                     </p>
                     <p class="body-md mb-3">
-                        Zeús became "Zeus." Apóllōn became "Apollo." The pitch accents vanished. The long vowels collapsed. 
+                        Zeús became "Zeus." Apóllōn became "Apollo." The pitch accents vanished. The long vowels collapsed.
                         Centuries of philological precision erased by a keyboard layout designed for English teleprinters.
                     </p>
                     <p class="body-md mb-4">
-                        PUNICODEX was born from a <strong>significant investment</strong> and an obsession with correctness.
-                        542 digital temples restored — one Unicode character at a time.
+                        PUNICODEX was built to reverse that erasure. Every temple is a restoration of original spelling,
+                        attested sources, and the rightful Unicode form — <strong>one character at a time</strong>.
                     </p>
                     <a href="/about/" class="btn btn-outline"><span>Read the Full Origin &rarr;</span></a>
                 </div>
                 <div class="origin-stats reveal-up">
-                    <div class="stat-card">
-                        <span class="stat-number" data-count="542">0</span>
-                        <span class="stat-label">Digital Temples Restored</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" data-count="25">0</span>
-                        <span class="stat-label">Pantheons</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" data-count="353">0</span>
-                        <span class="stat-label">Domains Owned</span>
+                    <div class="stat-card stat-card--wide">
+                        <span class="stat-number stat-number--lg" data-count="353">0</span>
+                        <span class="stat-label">Unicode Domains Owned</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-number" data-count="980">0</span>
-                        <span class="stat-label">Scholarly Entries</span>
+                        <span class="stat-label">Lexicon Entries</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-count="25">0</span>
+                        <span class="stat-label">Pantheon Traditions</span>
                     </div>
                 </div>
             </div>
@@ -541,6 +554,27 @@
             <p class="body-lg text-center reveal-up">
                 Query the pantheon programmatically. Names, variants, breakdowns, original scripts, etymology, availability, and punycode conversion — all through a single REST API.
             </p>
+            <div class="dev-showcase reveal-up">
+                <div class="codeblock">
+                    <div class="cb-label">REST</div>
+                    <pre>GET /api/v1/names/apollon/pronunciation
+
+{
+  <span class="k">"name"</span>: <span class="s">"Apóllōn"</span>,
+  <span class="k">"ipa"</span>: <span class="s">"/a.pól.lɔːn/"</span>,
+  <span class="k">"script"</span>: <span class="s">"Ἀπόλλων"</span>,
+  <span class="k">"domain"</span>: <span class="s">"apóllōn.com"</span>
+}</pre>
+                </div>
+                <div class="dev-features">
+                    <span class="dev-feature">Names &amp; variants</span>
+                    <span class="dev-feature">Original scripts</span>
+                    <span class="dev-feature">Pronunciation</span>
+                    <span class="dev-feature">Availability</span>
+                    <span class="dev-feature">Punycode convert</span>
+                    <span class="dev-feature">Authenticity check</span>
+                </div>
+            </div>
             <div class="text-center mt-5 reveal-up">
                 <a href="/api/v1/docs/" class="btn btn-outline btn-lg"><span>Browse API Documentation &rarr;</span></a>
             </div>
@@ -618,6 +652,7 @@
                     <a href="/type/">Type</a>
                     <a href="/game/">Game</a>
                     <a href="/search/">Search</a>
+                    <a href="/store/">Store</a>
                 </div>
                 <div class="footer-column">
                     <h2 class="footer-heading">Resources</h2>
@@ -632,8 +667,7 @@
                     <a href="/appraise/">Appraise</a>
                     <a href="/authenticity/">Authenticity</a>
                     <a href="/pronunciation/">Pronunciation</a>
-                    <a href="/store/">Store</a>
-                    <a href="/oracle/">Oracle</a>
+                    <a href="/innovation/">Innovation</a>
                     <a href="/arbitrage/">Arbitrage</a>
                 </div>
                 <div class="footer-column">
