@@ -112,4 +112,119 @@ function classifyUserAgent(userAgent) {
   return { isBot: false, category: 'human', reason: null };
 }
 
-module.exports = { isBotBasic, classifyUserAgent, BOT_PATTERNS };
+// Headless browser / automation framework patterns in the UA string itself.
+const HEADLESS_UA_PATTERNS = [
+  { reason: 'headless-chrome', re: /headlesschrome/i },
+  { reason: 'phantomjs', re: /phantomjs/i },
+  { reason: 'puppeteer', re: /puppeteer/i },
+  { reason: 'playwright', re: /playwright/i },
+  { reason: 'selenium', re: /selenium/i },
+  { reason: 'cypress', re: /cypress/i },
+  { reason: 'webdriver', re: /webdriver/i },
+  { reason: 'electron', re: /electron/i },
+];
+
+// Navigator signals that look like a headless or automated browser.
+const HEADLESS_SIGNAL_PATTERNS = [
+  {
+    reason: 'missing-languages',
+    test: (s) => s && 'languages' in s && (!Array.isArray(s.languages) || s.languages.length === 0),
+  },
+  {
+    reason: 'missing-plugins',
+    test: (s) => s && 'plugins' in s && (!Array.isArray(s.plugins) || s.plugins.length === 0),
+  },
+  {
+    reason: 'missing-platform',
+    test: (s) => s && 'platform' in s && (!s.platform || s.platform === ''),
+  },
+  {
+    reason: 'missing-hardware-concurrency',
+    test: (s) =>
+      s &&
+      'hardwareConcurrency' in s &&
+      (!Number.isFinite(s.hardwareConcurrency) || s.hardwareConcurrency === 0),
+  },
+  {
+    reason: 'missing-device-memory',
+    test: (s) =>
+      s && 'deviceMemory' in s && (!Number.isFinite(s.deviceMemory) || s.deviceMemory === 0),
+  },
+];
+
+/**
+ * Detect headless / automated browsers from a UA string plus optional
+ * navigator hints (languages, plugins, platform, hardwareConcurrency,
+ * deviceMemory). Returns { isHeadless, reasons }.
+ */
+function detectHeadless(userAgent, signals) {
+  const ua = typeof userAgent === 'string' ? userAgent : '';
+  const reasons = [];
+
+  for (const rule of HEADLESS_UA_PATTERNS) {
+    if (rule.re.test(ua)) {
+      reasons.push(rule.reason);
+    }
+  }
+
+  if (signals && typeof signals === 'object') {
+    for (const rule of HEADLESS_SIGNAL_PATTERNS) {
+      if (rule.test(signals)) {
+        reasons.push(rule.reason);
+      }
+    }
+  }
+
+  return { isHeadless: reasons.length > 0, reasons };
+}
+
+/**
+ * Score automation risk on a 0.0-1.0 scale.
+ *
+ * Combines:
+ *   - known headless/automation UA patterns (strong signal)
+ *   - known bot/scraper/tool patterns from classifyUserAgent (strong signal)
+ *   - missing plausible navigator properties (weaker, additive signal)
+ *
+ * A normal real browser with no suspicious signals scores 0.0.
+ */
+function hasHeadlessUaPattern(userAgent) {
+  const ua = typeof userAgent === 'string' ? userAgent : '';
+  return HEADLESS_UA_PATTERNS.some((rule) => rule.re.test(ua));
+}
+
+function scoreAutomationRisk(userAgent, signals) {
+  const ua = typeof userAgent === 'string' ? userAgent : '';
+  let score = 0.0;
+
+  // Explicit headless/automation UA tokens are the strongest signal.
+  if (hasHeadlessUaPattern(ua)) {
+    score += 0.7;
+  }
+
+  const classified = classifyUserAgent(ua);
+  if (classified.isBot) {
+    score += 0.25;
+  }
+
+  // Missing-plausible-properties heuristics. Real browsers virtually always
+  // expose languages, plugins, platform, and hardware concurrency.
+  if (signals && typeof signals === 'object') {
+    let missingSignals = 0;
+    for (const rule of HEADLESS_SIGNAL_PATTERNS) {
+      if (rule.test(signals)) missingSignals += 1;
+    }
+    // Each missing signal adds up to 0.06, capped at a moderate bump.
+    score += Math.min(missingSignals * 0.06, 0.18);
+  }
+
+  return Math.min(1.0, Math.max(0.0, score));
+}
+
+module.exports = {
+  isBotBasic,
+  classifyUserAgent,
+  BOT_PATTERNS,
+  detectHeadless,
+  scoreAutomationRisk,
+};

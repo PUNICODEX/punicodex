@@ -40,6 +40,7 @@ const SITE_ANALYTICS_V5_SCHEMA = `
     properties TEXT,
     is_bot INTEGER DEFAULT 0,
     quality_score REAL,
+    quality_flags TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 
@@ -71,7 +72,8 @@ const SITE_ANALYTICS_V5_SCHEMA = `
     utm_campaign TEXT,
     event_count INTEGER DEFAULT 0,
     is_bot INTEGER DEFAULT 0,
-    quality_score REAL
+    quality_score REAL,
+    quality_flags TEXT
   );
 
   CREATE INDEX IF NOT EXISTS idx_sessions_first_seen
@@ -184,8 +186,8 @@ function backfillEventsV2(db) {
       INSERT INTO site_analytics_events_v2
         (event_name, event_version, path, page_type, temple_id, session_hash, ip_hash,
          ua_hash, ua_class, device, referrer, referrer_domain, country, properties,
-         is_bot, quality_score, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         is_bot, quality_score, quality_flags, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `
   );
 
@@ -229,6 +231,7 @@ function backfillEventsV2(db) {
         null,
         e.is_bot ? 1 : 0,
         e.is_bot ? 0.0 : 1.0,
+        null,
         e.created_at,
       ]);
     }
@@ -262,6 +265,7 @@ function backfillEventsV2(db) {
         JSON.stringify({ visible_ms: e.visible_ms || 0, scroll_pct: e.scroll_pct || 0 }),
         0,
         1.0,
+        null,
         e.created_at,
       ]);
     }
@@ -312,14 +316,15 @@ function backfillSessions(db) {
       INSERT INTO site_analytics_sessions
         (session_hash, first_seen_at, last_seen_at, entry_path, entry_temple_id, device,
          country, referrer_domain, utm_source, utm_medium, utm_campaign, event_count,
-         is_bot, quality_score)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         is_bot, quality_score, quality_flags)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(session_hash) DO UPDATE SET
         first_seen_at = excluded.first_seen_at,
         last_seen_at = excluded.last_seen_at,
         event_count = excluded.event_count,
         is_bot = excluded.is_bot,
-        quality_score = excluded.quality_score
+        quality_score = excluded.quality_score,
+        quality_flags = excluded.quality_flags
     `
   );
 
@@ -339,7 +344,8 @@ function backfillSessions(db) {
         e.utm_campaign,
         e.event_count || 0,
         e.is_bot ? 1 : 0,
-        e.quality_score
+        e.quality_score,
+        null
       );
     }
   });
@@ -400,8 +406,22 @@ function backfillHourly(db) {
   insertMany(rows);
 }
 
+function ensureColumn(db, table, column, definition) {
+  const columns = db
+    .prepare(`PRAGMA table_info(${table})`)
+    .all()
+    .map((c) => c.name);
+  if (!columns.includes(column)) {
+    db.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`);
+  }
+}
+
 function migrate(db) {
   db.exec(SITE_ANALYTICS_V5_SCHEMA);
+  // Idempotent column additions for databases created before these fields
+  // were added to the v5 schema.
+  ensureColumn(db, 'site_analytics_events_v2', 'quality_flags', 'TEXT');
+  ensureColumn(db, 'site_analytics_sessions', 'quality_flags', 'TEXT');
   backfillEventsV2(db);
   backfillSessions(db);
   backfillHourly(db);

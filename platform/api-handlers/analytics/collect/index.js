@@ -6,8 +6,9 @@ const { classifyUserAgent } = require('../../../api/bot-detection');
 const { setCors } = require('../../../../api/_utils');
 const { checkPublicRateLimitByReq } = require('../../../api/public-rate-limiter');
 const { getClientIp } = require('../../../api/client-ip');
-const { run } = require('../../../db/operational');
+const { run, all, get } = require('../../../db/operational');
 const { runMigration: runMigrationV5 } = require('../../../db/migrate-site-analytics-v5');
+const { scoreEventQuality } = require('../../../api/analytics-quality');
 
 const MAX_BODY_LENGTH = 32768;
 const KEY_PREFIX = 'punicodex:analytics:';
@@ -134,20 +135,42 @@ function legacyToV2(item) {
 
 async function writeEventV2(event, ctx) {
   const ua = ctx.userAgent;
-  const { isBot, category } = classifyUserAgent(ua);
+  const { category } = classifyUserAgent(ua);
   const device = event.device || ctx.device;
   const now = new Date();
   const day = dayString(now);
   const hour = hourString(now);
-  const referrerDomain = isBot ? '' : extractReferrerDomain(event.referrer) || '(direct)';
   const sessionHash = event.session_hash || sha256(`anonymous:${day}`).substring(0, 24);
   const ipHash = sha256(ctx.ip).substring(0, 16);
   const uaHash = sha256(ua).substring(0, 16);
-  const qualityScore = isBot ? 0.0 : 1.0;
   const country = typeof event.country === 'string' ? event.country : null;
   const pageType = event.page_type || getPageType(event.path);
   const templeId =
     event.temple_id !== undefined ? event.temple_id : extractTempleId(event.path || '');
+
+  event.session_hash = sessionHash;
+
+  const recentSessionCutoff = new Date(now.getTime() - 60 * 1000).toISOString();
+  const recentSessionEvents = await all(
+    `
+      SELECT created_at
+        FROM site_analytics_events_v2
+       WHERE session_hash = $1
+         AND created_at >= $2
+       ORDER BY created_at DESC
+       LIMIT 100
+    `,
+    [sessionHash, recentSessionCutoff]
+  );
+
+  const { qualityScore, flags: qualityFlags } = await scoreEventQuality(event, {
+    userAgent: ua,
+    ipHash,
+    recentSessionEvents,
+  });
+  const qualityFlagsText = qualityFlags.join(',');
+  const isBot = qualityScore < 0.3 ? 1 : 0;
+  const referrerDomain = isBot ? '' : extractReferrerDomain(event.referrer) || '(direct)';
 
   // Keep legacy daily rollups working for the two events the old pipeline knew.
   if (event.event_name === 'page_view') {
@@ -185,9 +208,9 @@ async function writeEventV2(event, ctx) {
         (event_name, event_version, path, page_type, temple_id, session_hash,
          ip_hash, ua_hash, ua_class, device, referrer, referrer_domain,
          utm_source, utm_medium, utm_campaign, country, properties, is_bot,
-         quality_score, created_at)
+         quality_score, quality_flags, created_at)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15,
-              $16, $17, $18, $19, $20)
+              $16, $17, $18, $19, $20, $21)
     `,
     [
       event.event_name,
@@ -207,24 +230,39 @@ async function writeEventV2(event, ctx) {
       event.utm_campaign || null,
       country,
       properties,
-      isBot ? 1 : 0,
+      isBot,
       qualityScore,
+      qualityFlagsText,
       event.created_at || now.toISOString(),
     ]
   );
+
+  const existingSession = await get(
+    `SELECT quality_flags FROM site_analytics_sessions WHERE session_hash = $1`,
+    [sessionHash]
+  );
+  const sessionQualityFlags = Array.from(
+    new Set([
+      ...(existingSession?.quality_flags
+        ? existingSession.quality_flags.split(',').filter(Boolean)
+        : []),
+      ...qualityFlags,
+    ])
+  ).join(',');
 
   await run(
     `
       INSERT INTO site_analytics_sessions
         (session_hash, first_seen_at, last_seen_at, entry_path, entry_temple_id,
          device, country, referrer_domain, utm_source, utm_medium, utm_campaign,
-         event_count, is_bot, quality_score)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, 1, $12, $13)
+         event_count, is_bot, quality_score, quality_flags)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, 1, $12, $13, $14)
       ON CONFLICT(session_hash) DO UPDATE SET
         last_seen_at = excluded.last_seen_at,
         event_count = event_count + 1,
         is_bot = CASE WHEN is_bot > excluded.is_bot THEN is_bot ELSE excluded.is_bot END,
-        quality_score = (quality_score * event_count + excluded.quality_score) / (event_count + 1)
+        quality_score = CASE WHEN quality_score < excluded.quality_score THEN quality_score ELSE excluded.quality_score END,
+        quality_flags = excluded.quality_flags
     `,
     [
       sessionHash,
@@ -238,8 +276,9 @@ async function writeEventV2(event, ctx) {
       event.utm_source || null,
       event.utm_medium || null,
       event.utm_campaign || null,
-      isBot ? 1 : 0,
+      isBot,
       qualityScore,
+      sessionQualityFlags,
     ]
   );
 

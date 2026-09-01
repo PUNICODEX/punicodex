@@ -216,6 +216,8 @@ const SUITES = [
   { name: 'Lexicon Meaning Style Tests', cmd: 'node test/lexicon-meaning-style.test.js' },
   { name: 'Site Analytics v2 Tests', cmd: 'node test/site-analytics-v2.test.js' },
   { name: 'Analytics Depth Tests', cmd: 'node test/analytics-depth.test.js' },
+  { name: 'Analytics Anomaly Tests', cmd: 'node --test test/analytics-anomaly.test.js' },
+  { name: 'Analytics Quality Tests', cmd: 'node --test test/analytics-quality.test.js' },
   { name: 'Trending Page Tests', cmd: 'node test/trending-page.test.js' },
   { name: 'Search Page Tests', cmd: 'node test/search-page.test.js' },
   { name: 'Brand Tests', cmd: 'node test/brand.test.js' },
@@ -541,6 +543,9 @@ const SERIAL_SUITES = new Set([
   'Session Attack Tests',
   'Abuse Economics Tests',
   'Security Telemetry Tests',
+  // prepareTestDb isolation: golden DB copy can race under parallel load.
+  'Analytics Anomaly Tests',
+  'Analytics Quality Tests',
   // Stamps ?v= pins across tracked HTML (tree-writer).
   'Asset Version Tests',
   // Writes index.html stats when they drift (tree-writer).
