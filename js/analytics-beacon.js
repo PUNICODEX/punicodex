@@ -1,24 +1,18 @@
 /**
- * PuniCodex — first-party analytics beacon (v2).
- *
- * Events, all anonymous:
- *   pv  — one page-view ping per load (path, referrer, tab-session id)
- *   eng — one engagement ping per page visit, sent on hide/unload
- *         (visible milliseconds + max scroll depth)
+ * PuniCodex — first-party analytics beacon (v3, event_v2 pipeline).
  *
  * Privacy contract:
  *   - Honors Do Not Track.
- *   - Reads the consent record (localStorage `punicodex.cookie-consent`,
- *     written by js/cookie-consent.js):
- *       declined          → send nothing, ever.
- *       accepted          → pv + eng.
- *       no choice yet     → pv only (anonymous page counting is the
- *                           strictly-necessary tier); eng stays off until
- *                           the visitor opts in.
- *   - Never fires on admin/auth surfaces (path prefix blocklist).
- *   - No visitor id, no fingerprinting, no cross-tab identity: the session
- *     id lives in sessionStorage and dies with the tab.
- *   - Never throws; never breaks the page over analytics.
+ *   - Reads localStorage `punicodex.cookie-consent`:
+ *       declined  → send nothing.
+ *       accepted  → page_view + engagement + tracked events.
+ *       unset     → page_view only.
+ *   - Skips admin/auth surfaces.
+ *   - Session id lives in sessionStorage and dies with the tab.
+ *   - Never throws.
+ *
+ * Events are normalized objects flushed as a JSON array to
+ * /api/analytics/collect/. window.px.track(name, props) is exposed.
  */
 (function () {
   'use strict';
@@ -73,8 +67,71 @@
     }
 
     var ENDPOINT = '/api/analytics/collect/';
-    var post = function (payload) {
+    var queue = [];
+    var flushTimer = null;
+    var MAX_QUEUE = 10;
+    var FLUSH_INTERVAL = 5000;
+    var TOP_KEYS = {
+      event_version: 1,
+      path: 1,
+      page_type: 1,
+      temple_id: 1,
+      session_hash: 1,
+      device: 1,
+      referrer: 1,
+      referrer_domain: 1,
+      utm_source: 1,
+      utm_medium: 1,
+      utm_campaign: 1,
+      country: 1,
+      properties: 1,
+      created_at: 1,
+    };
+
+    function getParam(name) {
       try {
+        return new URLSearchParams(location.search).get(name) || '';
+      } catch (e) {
+        return '';
+      }
+    }
+
+    function device() {
+      var ua = navigator.userAgent || '';
+      if (/Mobile|Android.*Mobile|iPhone/.test(ua)) return 'mobile';
+      if (/iPad|Tablet|Android(?!.*Mobile)/.test(ua)) return 'tablet';
+      return 'desktop';
+    }
+
+    function templeId(p) {
+      var m = p.match(/^\/sites\/([a-z0-9-]{1,64})(\/|$)/);
+      if (m) return m[1];
+      m = p.match(/^\/([a-z0-9-]{1,64})(\/|$)/);
+      return m ? m[1] : '';
+    }
+
+    function pageType(p) {
+      var sm = p.match(/^\/sites\/([a-z0-9-]{1,64})(\/|$)/);
+      var cm = p.match(/^\/([a-z0-9-]{1,64})(\/|$)/);
+      var rest = sm ? p.slice(('/sites/' + sm[1]).length) : cm ? p.slice(('/' + cm[1]).length) : '';
+      if (rest.indexOf('/blog') === 0) return 'blog';
+      if (rest.indexOf('/patterns') === 0) return 'patterns';
+      if (rest.indexOf('/lore') === 0) return 'lore';
+      if (rest.indexOf('/scholars') === 0) return 'scholars';
+      if (rest.indexOf('/store') === 0) return 'store';
+      if (sm || cm) return 'temple';
+      if (p.indexOf('/search') === 0) return 'search';
+      if (p.indexOf('/account') === 0) return 'account';
+      if (p.indexOf('/admin') === 0) return 'admin';
+      if (p.indexOf('/store') === 0) return 'store';
+      return 'static';
+    }
+
+    function flush() {
+      if (!queue.length) return;
+      var batch = queue.splice(0, queue.length);
+      try {
+        var payload = JSON.stringify(batch);
         if (navigator.sendBeacon) {
           var sent = navigator.sendBeacon(ENDPOINT, new Blob([payload], { type: 'application/json' }));
           if (sent) return;
@@ -87,29 +144,87 @@
           headers: { 'Content-Type': 'application/json' },
         });
       } catch (e) {
-        // Never break the page over analytics.
+        // ignore
       }
-    };
-
-    var sendPageView = function () {
-      post(JSON.stringify({ p: path, r: document.referrer || '', s: sid }));
-    };
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', sendPageView);
-    } else {
-      sendPageView();
     }
+
+    function scheduleFlush() {
+      if (flushTimer) return;
+      flushTimer = setTimeout(function () {
+        flushTimer = null;
+        flush();
+      }, FLUSH_INTERVAL);
+    }
+
+    function track(name, props) {
+      props = props || {};
+      var now = new Date().toISOString();
+      var evPath = props.path || path;
+      var ev = {
+        event_name: name,
+        event_version: props.event_version || 1,
+        path: evPath,
+        page_type: props.page_type || pageType(evPath),
+        temple_id: props.temple_id !== undefined ? props.temple_id : templeId(evPath),
+        session_hash: props.session_hash || sid,
+        referrer: props.referrer !== undefined ? props.referrer : document.referrer || '',
+        device: props.device || device(),
+        country: props.country || '',
+        properties: '',
+        created_at: props.created_at || now,
+      };
+      for (var key in props) {
+        if (Object.prototype.hasOwnProperty.call(props, key) && TOP_KEYS[key]) {
+          ev[key] = props[key];
+        }
+      }
+      var properties = props.properties || {};
+      if (name === 'engagement') {
+        properties = {
+          visible_ms: props.visible_ms || props.ms || 0,
+          scroll_pct: props.scroll_pct || props.sc || 0,
+        };
+      }
+      try {
+        ev.properties = JSON.stringify(properties);
+      } catch (e) {
+        ev.properties = '{}';
+      }
+      queue.push(ev);
+      if (queue.length >= MAX_QUEUE) flush();
+      else scheduleFlush();
+    }
+
+    window.px = window.px || {};
+    window.px.track = track;
+
+    track('page_view', {
+      path: path,
+      referrer: document.referrer || '',
+      utm_source: getParam('utm_source'),
+      utm_medium: getParam('utm_medium'),
+      utm_campaign: getParam('utm_campaign'),
+      device: device(),
+    });
+
+    function flushOnLeave() {
+      flush();
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') flushOnLeave();
+    });
+    window.addEventListener('pagehide', flushOnLeave);
+    window.addEventListener('beforeunload', flushOnLeave);
 
     if (!allowEngagement) return;
 
-    // ---- engagement: visible time + max scroll depth, one ping on leave ----
     var visibleMs = 0;
     var visibleSince = document.visibilityState === 'visible' ? Date.now() : 0;
     var maxScroll = 0;
     var flushed = false;
 
-    var measureScroll = function () {
+    function measureScroll() {
       try {
         var doc = document.documentElement;
         var total = doc.scrollHeight - window.innerHeight;
@@ -118,33 +233,34 @@
       } catch (e) {
         // ignore
       }
-    };
+    }
 
-    var onVisibility = function () {
+    function onVisibility() {
       if (document.visibilityState === 'visible') {
         if (!visibleSince) visibleSince = Date.now();
       } else if (visibleSince) {
         visibleMs += Date.now() - visibleSince;
         visibleSince = 0;
       }
-    };
+    }
 
-    var flush = function () {
+    function flushEngagement() {
       if (flushed) return;
       flushed = true;
       onVisibility();
-      var ms = Math.min(Math.max(visibleMs, 0), 1800000); // cap 30 min
-      if (ms < 500) return; // ignore bounces shorter than half a second
-      post(JSON.stringify({ t: 'eng', p: path, s: sid, ms: ms, sc: maxScroll }));
-    };
+      var ms = Math.min(Math.max(visibleMs, 0), 1800000);
+      if (ms < 500) return;
+      track('engagement', { visible_ms: ms, scroll_pct: maxScroll });
+      flush();
+    }
 
     document.addEventListener('visibilitychange', function () {
       onVisibility();
-      if (document.visibilityState === 'hidden') flush();
+      if (document.visibilityState === 'hidden') flushEngagement();
     });
     window.addEventListener('scroll', measureScroll, { passive: true });
-    window.addEventListener('pagehide', flush);
-    window.addEventListener('beforeunload', flush);
+    window.addEventListener('pagehide', flushEngagement);
+    window.addEventListener('beforeunload', flushEngagement);
     measureScroll();
   } catch (e) {
     // Never break the page over analytics.

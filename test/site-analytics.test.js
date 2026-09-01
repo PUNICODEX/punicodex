@@ -521,10 +521,13 @@ test('beacon script exists, is small, and honors Do Not Track', () => {
   );
   assert.ok(src.includes('px_sid'), 'beacon must use the px_sid session key');
   assert.ok(src.includes('/api/analytics/collect/'), 'beacon must post to the collect endpoint');
-  // v2 contract: consent gating, admin-surface silence, engagement payload.
+  // v3 contract: consent gating, admin-surface silence, engagement event, queue,
+  // window.px.track, and array flush to the collect endpoint.
   assert.ok(src.includes('punicodex.cookie-consent'), 'beacon must read the consent record');
   assert.ok(src.includes("'/admin'"), 'beacon must skip admin surfaces');
-  assert.ok(src.includes("t: 'eng'"), 'beacon must send the engagement event type');
+  assert.ok(src.includes("'engagement'"), 'beacon must send the engagement event type');
+  assert.ok(src.includes('window.px.track'), 'beacon must expose window.px.track');
+  assert.ok(src.includes('JSON.stringify(batch)'), 'beacon must flush events as an array');
 });
 
 test('inject-analytics.js is idempotent and injects the beacon exactly once', () => {

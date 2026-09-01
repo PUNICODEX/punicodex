@@ -21,6 +21,7 @@ const { runMigration } = require('../db/migrate-site-analytics');
 const { runMigration: runMigrationV2 } = require('../db/migrate-site-analytics-v2');
 const { runMigration: runMigrationV3 } = require('../db/migrate-site-analytics-v3');
 const { runMigration: runMigrationV4 } = require('../db/migrate-site-analytics-v4');
+const { runMigration: runMigrationV5 } = require('../db/migrate-site-analytics-v5');
 const { LEXICON } = require('../../type/js/lexicon.js');
 
 const KEY_PREFIX = 'punicodex:analytics:';
@@ -202,6 +203,7 @@ function ensureMigration() {
   runMigrationV2();
   runMigrationV3();
   runMigrationV4();
+  runMigrationV5();
   migrationRan = true;
 }
 
