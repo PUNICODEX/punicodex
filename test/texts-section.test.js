@@ -428,11 +428,11 @@ test('texts are wired into sitemap, nav, mobile menu, footer, and analytics', ()
     sitemap.includes('<loc>https://punicodex.com/texts/theogony/</loc>'),
     'sitemap missing /texts/theogony/'
   );
-  const appIdx = MORE.findIndex(([href]) => href === '/app/');
+  const innovationIdx = MORE.findIndex(([href]) => href === '/innovation/');
   assert.deepStrictEqual(
-    MORE[appIdx + 1],
+    MORE[innovationIdx + 1],
     ['/texts/', 'Texts'],
-    'Texts must follow App in the More dropdown'
+    'Texts must follow Innovation in the More dropdown'
   );
   assert.ok(CANONICAL_MENU.includes('<a href="/texts/">Texts</a>'), 'mobile menu missing Texts');
   assert.ok(

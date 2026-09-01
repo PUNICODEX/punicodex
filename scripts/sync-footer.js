@@ -50,6 +50,7 @@ const RESOURCES = [
   ['/authenticity/', 'Authenticity'],
   ['/pronunciation/', 'Pronunciation'],
   ['/innovation/', 'Innovation'],
+  ['/herald/', 'Herald'],
   ['/arbitrage/', 'Arbitrage'],
 ];
 const CONNECT = [

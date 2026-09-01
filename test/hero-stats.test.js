@@ -19,10 +19,10 @@ const tests = [];
 const test = (name, fn) => tests.push([name, fn]);
 
 test('index.html hero stats match the canonical sources', () => {
-  const { temples, pantheons, domains, entries } = stats();
+  const { temples, pantheons, productTypes, entries } = stats();
   assert.ok(temples >= 200, 'temples sane');
   assert.ok(pantheons >= 20, 'pantheons sane');
-  assert.ok(domains >= 200, 'domains sane');
+  assert.ok(productTypes >= 1, 'product types sane');
   assert.ok(entries >= 800, 'entries sane');
 
   const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
@@ -33,8 +33,8 @@ test('index.html hero stats match the canonical sources', () => {
   for (const [label, value] of [
     ['Digital Temples Restored', temples],
     ['Pantheons', pantheons],
-    ['Domains Owned', domains],
     ['Scholarly Entries', entries],
+    ['Product Types in the Reliquary', productTypes],
   ]) {
     const re = new RegExp(`data-count="${value}">0</span>\\s*<span class="stat-label">${label}`);
     assert.ok(re.test(html), `stat card ${label} must carry ${value}`);
@@ -53,7 +53,8 @@ test('sync() is idempotent and rewrites every known slot', () => {
   const fixed = sync(dirty, current);
   assert.ok(!fixed.includes('111 digital temples'), 'prose rewritten');
   assert.ok(!fixed.includes('data-count="111"'), 'cards rewritten');
-  assert.ok(fixed.includes(`${current.domains}">0`), 'domains card stamped');
+  assert.ok(fixed.includes(`${current.temples}">0`), 'temples card stamped');
+  assert.ok(fixed.includes(`${current.productTypes}">0`), 'product types card stamped');
 });
 
 test('the sync is registered in npm run generate', () => {

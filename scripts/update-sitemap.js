@@ -19,6 +19,7 @@ const mainPages = [
     { loc: 'https://punicodex.com/store/', priority: '0.6', changefreq: 'monthly' },
     { loc: 'https://punicodex.com/about/', priority: '0.7', changefreq: 'monthly' },
     { loc: 'https://punicodex.com/contact/', priority: '0.5', changefreq: 'monthly' },
+    { loc: 'https://punicodex.com/innovation/', priority: '0.8', changefreq: 'weekly' },
 ];
 
 mainPages.forEach(p => {

@@ -30,13 +30,13 @@ function stats() {
   const lexicon = LEX.LEXICON || LEX;
   const pantheons = new Set(lexicon.map((e) => e.pantheon)).size;
 
-  const OWNED = require(path.join(ROOT, 'platform', 'db', 'owned-domains.json'));
-  const domains = (OWNED.domains || OWNED).length;
+  const POD = JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'products.json'), 'utf8'));
+  const productTypes = new Set(POD.products.map((p) => p.id.split('-').pop())).size;
 
-  return { temples, pantheons, domains, entries: lexicon.length };
+  return { temples, pantheons, productTypes, entries: lexicon.length };
 }
 
-function sync(html, { temples, pantheons, domains, entries }) {
+function sync(html, { temples, pantheons, productTypes, entries }) {
   let out = html;
   // "<n> digital temples restored" (hero line, origin section, meta description)
   out = out.replace(/\d+ digital temples restored/g, `${temples} digital temples restored`);
@@ -57,8 +57,10 @@ function sync(html, { temples, pantheons, domains, entries }) {
   };
   card('Digital Temples Restored', temples);
   card('Pantheons', pantheons);
-  card('Domains Owned', domains);
+  card('Pantheon Traditions', pantheons);
   card('Scholarly Entries', entries);
+  card('Lexicon Entries', entries);
+  card('Product Types in the Reliquary', productTypes);
   // "<n> pantheons" (hero + "pantheons represented" + meta description)
   out = out.replace(/\d+ pantheons/g, `${pantheons} pantheons`);
   return out;

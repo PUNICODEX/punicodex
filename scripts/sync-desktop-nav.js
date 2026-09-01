@@ -51,6 +51,7 @@ const MORE = [
   ['/scholars/', 'Scholars'],
   ['/api/v1/docs/', 'API'],
   ['/appraise/', 'Appraise'],
+  ['/herald/', 'Herald'],
   ['/store/', 'Store'],
   ['/about/', 'About'],
   ['/contact/', 'Contact'],
@@ -61,7 +62,7 @@ const MORE = [
 const TARGETS = [
   { page: 'index.html', active: null },
   { page: '404.html', active: null },
-  { page: path.join('oracle', 'index.html'), active: '/oracle/' },
+  { page: path.join('oracle', 'index.html'), active: '/innovation/' },
   { page: path.join('search', 'index.html'), active: '/search/', chrome: 'search' },
   { page: path.join('search-v2', 'index.html'), active: '/search/', chrome: 'search' },
   { page: path.join('about', 'index.html'), active: '/about/' },

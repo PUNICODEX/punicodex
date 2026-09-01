@@ -88,6 +88,7 @@ const mainPages = [
   { loc: '/terms/creatives/', priority: '0.4', changefreq: 'yearly' },
   { loc: '/extension/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/app/', priority: '0.6', changefreq: 'monthly' },
+  { loc: '/innovation/', priority: '0.8', changefreq: 'weekly' },
   { loc: '/trending/', priority: '0.7', changefreq: 'weekly' },
   { loc: '/patterns/', priority: '0.8', changefreq: 'weekly' },
   { loc: '/everyday/', priority: '0.8', changefreq: 'monthly' },

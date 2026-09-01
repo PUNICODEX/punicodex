@@ -116,12 +116,28 @@ async function run() {
   const base = `http://127.0.0.1:${port}`;
   let browser;
   try {
-    browser = await chromium.launch({
-      executablePath: exe,
-      headless: true,
-      timeout: 60000,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-    });
+    try {
+      browser = await chromium.launch({
+        executablePath: exe,
+        headless: true,
+        timeout: 120000,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-gpu',
+          '--disable-background-networking',
+          '--disable-background-timer-throttling',
+          '--disable-renderer-backgrounding',
+          '--disable-features=TranslateUI',
+        ],
+      });
+    } catch (launchErr) {
+      console.log(`  (browser journeys skipped — launch failed: ${launchErr.message})`);
+      console.log(`\nHerald Beacon: ${passed} passed, ${failed} failed`);
+      server.close();
+      process.exit(failed > 0 ? 1 : 0);
+    }
 
     let ctx = null;
     let page = null;

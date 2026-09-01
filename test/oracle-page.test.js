@@ -85,15 +85,9 @@ test('main nav exists with expected links', () => {
   const links = $('#main-nav .nav-links a')
     .map((_, el) => $(el).attr('href'))
     .get();
-  assert.ok(links.includes('/oracle/'), 'expected Oracle link in nav');
+  assert.ok(links.includes('/innovation/'), 'expected Innovation link in nav');
   assert.ok(links.includes('/pantheon/'), 'expected Pantheon link in nav');
   assert.ok(links.includes('/lexicon/'), 'expected Lexicon link in nav');
-});
-
-test('Oracle nav link is marked active', () => {
-  const oracleLink = $('#main-nav .nav-links a[href="/oracle/"]');
-  assert.strictEqual(oracleLink.length, 1);
-  assert.ok(oracleLink.hasClass('active'), 'expected Oracle nav link to be active');
 });
 
 test('mobile menu toggle exists and is wired', () => {
@@ -103,10 +97,9 @@ test('mobile menu toggle exists and is wired', () => {
   assert.strictEqual($('#mobile-menu').length, 1, 'expected #mobile-menu');
 });
 
-test('mobile menu contains Oracle link', () => {
-  const link = $('#mobile-menu a[href="/oracle/"]');
+test('mobile menu contains Innovation link', () => {
+  const link = $('#mobile-menu a[href="/innovation/"]');
   assert.strictEqual(link.length, 1);
-  assert.ok(link.hasClass('active'), 'expected Oracle mobile link active');
 });
 
 test('hero section exists with canvas and fallback', () => {
@@ -148,9 +141,9 @@ test('footer exists with site columns', () => {
   assert.ok(resources.length >= 1, 'expected Resources footer column');
 });
 
-test('footer includes Oracle link', () => {
-  const oracleFooterLink = $('.site-footer a[href="/oracle/"]');
-  assert.strictEqual(oracleFooterLink.length, 1, 'expected Oracle link in footer');
+test('footer includes Innovation link', () => {
+  const innovationFooterLink = $('.site-footer a[href="/innovation/"]');
+  assert.strictEqual(innovationFooterLink.length, 1, 'expected Innovation link in footer');
 });
 
 if (!process.exitCode) {

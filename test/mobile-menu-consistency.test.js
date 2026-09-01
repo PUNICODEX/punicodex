@@ -31,15 +31,18 @@ const CANONICAL_LINKS = [
   '/connections/',
   '/patterns/',
   '/trending/',
+  '/store/',
   '/type/',
   '/search/',
-  '/tiers/',
-  '/oracle/',
+  '/everyday/',
+  '/ink/',
+  '/cards/',
+  '/innovation/',
   '/texts/',
   '/codex/',
   '/api/v1/docs/',
   '/appraise/',
-  '/store/',
+  '/herald/',
   '/about/',
   '/about/founder/',
   '/careers/',
@@ -55,7 +58,7 @@ function readPageSafe(rel) {
   return fs.existsSync(full) ? fs.readFileSync(full, 'utf8') : null;
 }
 
-test('canonical menu covers all 19 navigation links', () => {
+test('canonical menu covers all 21 navigation links', () => {
   for (const href of CANONICAL_LINKS) {
     assert.ok(CANONICAL_MENU.includes(`href="${href}"`), `menu links to ${href}`);
   }
