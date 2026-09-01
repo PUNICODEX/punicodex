@@ -116,6 +116,7 @@ function related(current) {
     ['/terms/api/', 'API &amp; Developer Terms', 'programmatic access to the lexicon and services'],
     ['/terms/authenticity/', 'Authenticity &amp; Brand-Protection Terms', 'verdicts, the checker, and the extension'],
     ['/terms/oracle/', 'Oracle Terms', 'the reflective oracle'],
+    ['/terms/analytics/', 'Analytics &amp; Insights Terms', 'admin analytics service and data handling'],
     ['/privacy/', 'Privacy Policy', 'how we handle personal data'],
     ['/terms/data-use/', 'Data Use Policy', 'dataset licensing under CC BY 4.0'],
   ];
@@ -555,6 +556,111 @@ ${GOVERNING}
 ${CONTACT}
 
 ${related('oracle')}
+`,
+});
+
+/* ──────────────────────────── ANALYTICS ──────────────────────────── */
+
+build({
+  slug: 'analytics',
+  title: 'Analytics & Insights Terms',
+  subtitle: 'PUNICODEX Admin Analytics Service',
+  breadcrumb: 'Analytics & Insights',
+  description:
+    'Terms for the PUNICODEX admin analytics service: aggregated-only data, no per-visitor tracking, retention periods, acceptable use, export responsibilities, and liability limits.',
+  ctaHref: '/admin-portal/',
+  ctaLabel: 'Open the Admin Portal',
+  content: `    <div class="section">
+      <h2>1. Definitions</h2>
+      <dl class="definition">
+        <dt>"Analytics service" / "the service"</dt>
+        <dd>The temple and site analytics dashboards, trend reports, cross-temple flow summaries, and CSV export features available through the PUNICODEX admin portal and authorised API endpoints.</dd>
+      </dl>
+      <dl class="definition">
+        <dt>"Aggregated data"</dt>
+        <dd>Event counts, averages, percentages, and other statistical summaries computed across groups of visitors or sessions, from which no individual visitor can be re-identified.</dd>
+      </dl>
+      <dl class="definition">
+        <dt>"Administrator"</dt>
+        <dd>An authorised user with credentials to access the analytics service, including superadmin, ops, leasing, scholars, and viewer roles.</dd>
+      </dl>
+    </div>
+
+    <div class="section">
+      <h2>2. Plain-English summary</h2>
+      <div class="highlight-box">
+        <p>The analytics service shows the shape of traffic, not the people behind it. <strong>All reports are built from aggregated events; we do not track individual visitors across sessions or pages.</strong> If you export data, you are responsible for keeping it safe and using it lawfully.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>3. Aggregated-only data</h2>
+      <p>The analytics service processes first-party beacon events that have been stripped of direct identifiers before storage. Reports display counts, rates, trends, and distributions. We do not provide user-level timelines, raw IP addresses, browser fingerprints, or any feature designed to single out a specific visitor.</p>
+      <p>If a query could reveal a very small group (for example, a single visitor on a rarely visited page), the service may suppress or round the result to preserve the aggregated nature of the data.</p>
+    </div>
+
+    <div class="section">
+      <h2>4. No per-visitor tracking</h2>
+      <p>We do not:</p>
+      <ul>
+        <li>assign persistent per-visitor identifiers;</li>
+        <li>follow visitors across third-party websites;</li>
+        <li>merge analytics data with search query logs, API account records, booking records, or authentication sessions to build individual profiles;</li>
+        <li>use analytics data for advertising targeting or retargeting.</li>
+      </ul>
+      <p>Session identifiers, where used for counting unique sessions within a day, are derived from one-way hashes and daily-rotating salts. They cannot be reversed or linked across days.</p>
+    </div>
+
+    <div class="section">
+      <h2>5. Retention</h2>
+      <p>Analytics data is stored in two layers:</p>
+      <ul>
+        <li><strong>Rolling analytics layer</strong> — dashboard and reporting data is retained for a rolling 120-day window and then automatically deleted.</li>
+        <li><strong>Storage archive</strong> — further-aggregated historical summaries may be retained for up to 365 days for trend analysis, capacity planning, and security review, after which they are deleted or reduced to non-identifiable statistical baselines.</li>
+      </ul>
+      <p>Administrators may not override these retention limits through the service.</p>
+    </div>
+
+    <div class="section">
+      <h2>6. Acceptable use</h2>
+      <p>Administrators and anyone with access to the analytics service must:</p>
+      <ul>
+        <li>use the data only for lawful internal purposes — operating, securing, and improving PUNICODEX services;</li>
+        <li>not attempt to re-identify visitors, combine analytics data with other datasets to identify individuals, or circumvent aggregation safeguards;</li>
+        <li>not share dashboards, credentials, or exports with unauthorised third parties;</li>
+        <li>not use analytics data to harass, discriminate against, or monitor any individual or group.</li>
+      </ul>
+      <p>We may suspend access immediately for suspected misuse, security risk, or breach of these Terms.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. Exports and responsibilities</h2>
+      <p>The service allows authorised administrators to export analytics data in CSV format. An export is a copy of aggregated summaries under your control. You are responsible for:</p>
+      <ul>
+        <li>protecting exported files with appropriate access controls, encryption, and storage practices;</li>
+        <li>using exported data only for the purposes for which it was originally collected;</li>
+        <li>complying with applicable privacy and data-protection laws when handling exports;</li>
+        <li>deleting exports when they are no longer needed and in any event within the applicable retention period.</li>
+      </ul>
+      <p>Exports may not be sold, republished, or used to build tracking or profiling products.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. Accuracy and availability</h2>
+      <p>Analytics reports reflect events received and processed by the service. There may be delays, gaps, or discrepancies due to network conditions, ad blockers, consent choices, clock skew, or processing latency. The service is provided "as is" and "as available". We do not warrant that any report, trend, forecast, or export is complete, timely, or error-free.</p>
+    </div>
+
+${ACL}
+
+${LIABILITY}
+
+${CHANGES}
+
+${GOVERNING}
+
+${CONTACT}
+
+${related('analytics')}
 `,
 });
 

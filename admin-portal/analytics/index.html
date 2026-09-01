@@ -18,6 +18,293 @@
     <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
     <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <style>
+    /* Scoped analytics dashboard enhancements — obsidian/gold palette */
+
+    .an-trend-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-family: var(--pz-font-data);
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.18rem 0.45rem;
+        border-radius: 100px;
+        margin-top: 0.35rem;
+        width: fit-content;
+    }
+
+    .an-trend-up {
+        color: #14532d;
+        background: rgba(74, 222, 128, 0.18);
+    }
+
+    .an-trend-down {
+        color: #7f1d1d;
+        background: rgba(242, 109, 109, 0.18);
+    }
+
+    .an-trend-neutral {
+        color: var(--pz-text-muted);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .an-chart-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 0.6rem;
+        font-size: 0.72rem;
+        color: var(--pz-text-muted);
+    }
+
+    .an-chart-toolbar label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .an-chart-toolbar input[type="checkbox"] {
+        accent-color: var(--pz-gold);
+        width: 0.85rem;
+        height: 0.85rem;
+        margin: 0;
+    }
+
+    .field.an-export-group {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        gap: 0;
+        min-width: auto;
+        flex: 0 0 auto;
+    }
+
+    .field.an-export-group select {
+        min-width: 110px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+    }
+
+    .field.an-export-group .btn {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .an-checkbox {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.78rem;
+        color: var(--pz-text);
+        cursor: pointer;
+        user-select: none;
+        min-height: 38px;
+    }
+
+    .an-checkbox input[type="checkbox"] {
+        accent-color: var(--pz-gold);
+        width: 0.9rem;
+        height: 0.9rem;
+        margin: 0;
+    }
+
+    .an-quarter-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+    }
+
+    .an-quarter-table th,
+    .an-quarter-table td {
+        padding: 0.55rem 0.7rem;
+        text-align: right;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .an-quarter-table th:first-child,
+    .an-quarter-table td:first-child {
+        text-align: left;
+    }
+
+    .an-quarter-table th {
+        color: var(--pz-text-muted);
+        font-weight: 600;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+    .an-quarter-table tbody tr:nth-child(even) td {
+        background: rgba(255, 255, 255, 0.015);
+    }
+
+    .an-quarter-table tbody tr:hover td {
+        background: rgba(212, 175, 55, 0.05);
+    }
+
+    .an-quarter-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .an-flow-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        font-size: 0.85rem;
+    }
+
+    .an-flow-row:last-child {
+        border-bottom: none;
+    }
+
+    .an-flow-path {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .an-flow-arrow {
+        color: var(--pz-text-muted);
+        font-size: 0.75rem;
+    }
+
+    .an-flow-val {
+        font-variant-numeric: tabular-nums;
+        color: var(--pz-gold);
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+    .an-cluster-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .an-cluster-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        border: 1px solid var(--pz-gold-dim);
+        border-radius: 100px;
+        padding: 0.3rem 0.7rem;
+        font-size: 0.75rem;
+        color: var(--pz-text);
+    }
+
+    .an-cluster-pill b {
+        color: var(--pz-gold);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .an-mini-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.82rem;
+    }
+
+    .an-mini-table th,
+    .an-mini-table td {
+        padding: 0.45rem 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .an-mini-table th {
+        color: var(--pz-text-muted);
+        font-weight: 600;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        text-align: left;
+    }
+
+    .an-mini-table .num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .an-mini-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .an-quarter-chart-wrap {
+        position: relative;
+        margin-top: 1rem;
+    }
+
+    .an-quarter-chart {
+        width: 100%;
+        height: 180px;
+        display: block;
+    }
+
+    .an-empty {
+        color: var(--pz-text-muted);
+        font-size: 0.85rem;
+        padding: 0.75rem 0;
+    }
+
+    .an-panel[hidden] {
+        display: none !important;
+    }
+
+    .an-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    .portal-table th.pz-sortable {
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+    }
+
+    .portal-table th.pz-sortable::after {
+        content: ' ⇅';
+        opacity: 0.5;
+        font-size: 0.75rem;
+    }
+
+    .portal-table th.pz-sortable.asc::after {
+        content: ' ▲';
+        opacity: 1;
+        color: var(--pz-gold);
+    }
+
+    .portal-table th.pz-sortable.desc::after {
+        content: ' ▼';
+        opacity: 1;
+        color: var(--pz-gold);
+    }
+
+    @media (max-width: 900px) {
+        .an-export-group {
+            width: 100%;
+        }
+
+        .an-export-group select {
+            flex: 1;
+        }
+    }
+    </style>
 </head>
 <body data-page="analytics" data-depth="1">
     <a class="skip-link" href="#portal-main">Skip to content</a>
@@ -38,13 +325,40 @@
                         <button type="button" class="period-btn" data-days="7">7 days</button>
                         <button type="button" class="period-btn active" data-days="30">30 days</button>
                         <button type="button" class="period-btn" data-days="90">90 days</button>
+                        <button type="button" class="period-btn" data-days="120">120 days</button>
                     </div>
+                </div>
+                <div class="field">
+                    <label for="an-quarter-picker">View</label>
+                    <select id="an-quarter-picker">
+                        <option value="">Rolling window</option>
+                        <option value="this-quarter">This quarter</option>
+                        <option value="last-quarter">Last quarter</option>
+                    </select>
+                </div>
+                <div class="field an-compare-field">
+                    <label class="an-checkbox" for="an-compare">
+                        <input type="checkbox" id="an-compare">
+                        <span>Compare vs previous period/quarter</span>
+                    </label>
                 </div>
                 <div class="field">
                     <label for="an-temple-scope">Temple scope</label>
                     <input type="text" id="an-temple-scope" placeholder="e.g. nike — Enter to apply" autocomplete="off" maxlength="64">
                 </div>
                 <button type="button" class="btn btn-secondary" id="an-scope-clear" hidden>Clear scope</button>
+                <div class="field an-export-group">
+                    <label for="an-export-type" class="an-sr-only">Export type</label>
+                    <select id="an-export-type">
+                        <option value="overview">Overview</option>
+                        <option value="daily">Daily</option>
+                        <option value="temples">Temples</option>
+                        <option value="referrers">Referrers</option>
+                        <option value="flows">Flows</option>
+                        <option value="quarterly">Quarterly</option>
+                    </select>
+                    <button type="button" class="btn btn-secondary" id="an-export">Export CSV</button>
+                </div>
                 <button type="button" class="btn btn-secondary" id="an-refresh">Refresh</button>
             </div>
             <p class="field-hint" id="an-scope-note" style="margin-top:0.75rem;" hidden></p>
@@ -56,7 +370,7 @@
             </div>
         </section>
 
-        <section class="panel" aria-label="Traffic over time">
+        <section class="panel an-panel" id="an-traffic-panel" aria-label="Traffic over time">
             <div class="panel-head">
                 <div>
                     <h2 class="panel-title">Traffic</h2>
@@ -70,10 +384,93 @@
             <div class="chart-legend">
                 <span><span class="legend-swatch" style="background:#d4af37;"></span>Human</span>
                 <span><span class="legend-swatch" style="background:#ff6b6b;"></span>Bot</span>
+                <span id="an-cum-legend" hidden><span class="legend-swatch" style="background:#e8e4dc;"></span>Cumulative</span>
+            </div>
+            <div class="an-chart-toolbar">
+                <label for="an-show-human"><input type="checkbox" id="an-show-human" checked> Human</label>
+                <label for="an-show-bot"><input type="checkbox" id="an-show-bot" checked> Bot</label>
+                <label for="an-cumulative"><input type="checkbox" id="an-cumulative"> Cumulative</label>
             </div>
         </section>
 
-        <section class="panel" aria-label="Attention leaders">
+        <section class="panel an-panel" id="an-quarter-panel" aria-label="Quarterly comparison" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Quarterly Comparison</h2>
+                    <p class="panel-sub">Human views, bot share, and engagement across the last four quarters.</p>
+                </div>
+            </div>
+            <div id="an-quarter-table-wrap">
+                <div class="state-block">Loading quarters…</div>
+            </div>
+            <div class="an-quarter-chart-wrap">
+                <canvas id="quarter-chart" class="an-quarter-chart" role="img" aria-label="Quarterly human views bar chart"></canvas>
+            </div>
+        </section>
+
+        <section class="panel an-panel" id="an-cross-panel" aria-label="Cross-temple insights" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Cross-Temple Insights</h2>
+                    <p class="panel-sub">How visitors move between temples in the selected window.</p>
+                </div>
+            </div>
+
+            <div class="panel-grid-2">
+                <section class="panel" aria-label="Top origin to destination flows">
+                    <div class="panel-head">
+                        <h3 class="panel-title">Top Origin → Destination</h3>
+                    </div>
+                    <div id="an-cross-flows">
+                        <div class="state-block">Loading flows…</div>
+                    </div>
+                </section>
+
+                <div>
+                    <section class="panel" aria-label="Entry temples">
+                        <div class="panel-head">
+                            <h3 class="panel-title">Entry Temples</h3>
+                        </div>
+                        <div id="an-cross-entry">
+                            <div class="state-block">Loading entry temples…</div>
+                        </div>
+                    </section>
+
+                    <section class="panel" aria-label="Exit temples" style="margin-top:1.5rem;">
+                        <div class="panel-head">
+                            <h3 class="panel-title">Exit Temples</h3>
+                        </div>
+                        <div id="an-cross-exit">
+                            <div class="state-block">Loading exit temples…</div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <section class="panel" aria-label="Co-view clusters">
+                <div class="panel-head">
+                    <h3 class="panel-title">Co-view Clusters</h3>
+                    <p class="panel-sub">Temple pairs viewed in the same session.</p>
+                </div>
+                <div id="an-cross-clusters">
+                    <div class="state-block">Loading clusters…</div>
+                </div>
+            </section>
+        </section>
+
+        <section class="panel an-panel" id="an-movers-panel" aria-label="Top movers" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Top Movers</h2>
+                    <p class="panel-sub">Temples with the biggest view changes versus the previous period.</p>
+                </div>
+            </div>
+            <div id="an-movers">
+                <div class="state-block">Loading movers…</div>
+            </div>
+        </section>
+
+        <section class="panel an-panel" id="an-engagement-panel" aria-label="Attention leaders">
             <div class="panel-head">
                 <div>
                     <h2 class="panel-title">Attention Leaders</h2>
@@ -85,7 +482,7 @@
             </div>
         </section>
 
-        <section class="panel" aria-label="Top temples">
+        <section class="panel an-panel" id="an-temples-panel" aria-label="Top temples">
             <div class="panel-head">
                 <div>
                     <h2 class="panel-title">Top Temples</h2>
@@ -101,7 +498,7 @@
             </div>
         </section>
 
-        <div class="panel-grid-2">
+        <div class="panel-grid-2 an-panel" id="an-devices-referrers-grid">
             <section class="panel" aria-label="Devices">
                 <div class="panel-head">
                     <h2 class="panel-title">Devices</h2>
@@ -124,7 +521,7 @@
             </section>
         </div>
 
-        <div class="panel-grid-2">
+        <div class="panel-grid-2 an-panel" id="an-pages-bots-grid">
             <section class="panel" id="an-pages-panel" aria-label="Top pages">
                 <div class="panel-head">
                     <div>
@@ -155,25 +552,52 @@
     <script>
     (function () {
         var state = {
+            mode: 'rolling',
             days: 30,
+            quarter: '',
+            compare: false,
             temple: '',
             data: null,
             hoverIndex: -1,
             loading: false,
             resizeTimer: null,
+            chart: { showHuman: true, showBot: true, cumulative: false },
         };
 
         var TEMPLE_RE = /^[a-z0-9-]{1,64}$/;
 
         // ── Small formatters ──────────────────────────────────
 
-        function statCard(value, label, hint) {
+        function statCard(value, label, hint, trendHtml) {
             return (
                 '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                (trendHtml || '') +
                 '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div>' +
                 (hint ? '<div class="stat-card-hint">' + Portal.escapeHtml(hint) + '</div>' : '') +
                 '</div>'
             );
+        }
+
+        function fmtPct(n) {
+            if (n == null || Number.isNaN(n)) return '—';
+            return Number(n).toFixed(1) + '%';
+        }
+
+        function fmtTrend(pct) {
+            if (pct == null || Number.isNaN(pct)) return '';
+            var cls = pct > 0 ? 'an-trend-up' : pct < 0 ? 'an-trend-down' : 'an-trend-neutral';
+            var arrow = pct > 0 ? '↑' : pct < 0 ? '↓' : '—';
+            return '<span class="an-trend-badge ' + cls + '">' + arrow + ' ' + fmtPct(Math.abs(pct)) + '</span>';
+        }
+
+        function getTrend(data, key) {
+            if (data.trends && data.trends.changePct && typeof data.trends.changePct === 'object') {
+                return data.trends.changePct[key];
+            }
+            if (data.overview && data.overview.comparison && typeof data.overview.comparison.changePct === 'object') {
+                return data.overview.comparison.changePct[key];
+            }
+            return null;
         }
 
         // "1m 24s" / "45 s" from milliseconds.
@@ -207,41 +631,123 @@
             });
         }
 
+        // ── Quarter helpers ───────────────────────────────────
+
+        function currentQuarterKey(d) {
+            var date = d || new Date();
+            var y = date.getFullYear();
+            var m = date.getMonth();
+            var q = Math.floor(m / 3) + 1;
+            return y + '-Q' + q;
+        }
+
+        function parseQuarterKey(key) {
+            var m = String(key).match(/^(\d{4})-Q([1-4])$/);
+            if (!m) return null;
+            return { year: parseInt(m[1], 10), quarter: parseInt(m[2], 10) };
+        }
+
+        function prevQuarterKey(key) {
+            var p = parseQuarterKey(key);
+            if (!p) return null;
+            if (p.quarter === 1) return (p.year - 1) + '-Q4';
+            return p.year + '-Q' + (p.quarter - 1);
+        }
+
+        function labelQuarterKey(key) {
+            var p = parseQuarterKey(key);
+            if (!p) return String(key);
+            return p.year + ' Q' + p.quarter;
+        }
+
+        function resolveQuarterValue(value) {
+            if (!value || value === 'rolling') return '';
+            if (value === 'this-quarter') return currentQuarterKey();
+            if (value === 'last-quarter') return prevQuarterKey(currentQuarterKey());
+            return value;
+        }
+
+        function buildQuarterOptions() {
+            var select = document.getElementById('an-quarter-picker');
+            var current = currentQuarterKey();
+            for (var i = 0; i < 8; i++) {
+                var key = current;
+                for (var j = 0; j < i; j++) key = prevQuarterKey(key);
+                var label = labelQuarterKey(key);
+                var opt = document.createElement('option');
+                opt.value = key;
+                opt.textContent = label;
+                select.appendChild(opt);
+            }
+            var crossOpt = document.createElement('option');
+            crossOpt.value = 'cross';
+            crossOpt.textContent = 'Cross-temple flows';
+            select.appendChild(crossOpt);
+        }
+
         // ── Stat cards ────────────────────────────────────────
 
         function renderStats(data) {
-            var totals = data.overview.totals;
+            var totals = data.overview ? data.overview.totals : null;
             var eng = data.engagement || {};
             var depth = data.depth;
-            var cards =
-                statCard(Portal.fmtNumber(totals.humanViews), 'Human Views', 'bot traffic filtered') +
-                statCard(Portal.fmtNumber(totals.uniqueSessions), 'Unique Sessions', '') +
-                statCard(
-                    eng.engagements > 0 ? Portal.escapeHtml(fmtDuration(eng.avgVisibleMs)) : '—',
-                    'Avg. Attention',
-                    eng.engagements > 0
-                        ? Portal.fmtNumber(eng.engagements) + ' engagement pings'
-                        : 'no engagement pings yet'
-                );
-            // depth is null when the storage driver cannot compute it — hide
-            // those cards honestly instead of fabricating numbers.
+            var cards = '';
+
+            if (state.mode === 'cross') {
+                var cross = data.crossTemple || {};
+                cards += statCard(Portal.fmtNumber((cross.flows || []).length), 'Flow Pairs', 'origin → destination');
+                cards += statCard(Portal.fmtNumber((cross.entryTemples || []).length), 'Entry Temples', 'where scoped sessions begin');
+                cards += statCard(Portal.fmtNumber((cross.exitTemples || []).length), 'Exit Temples', 'where scoped sessions end');
+                cards += statCard(Portal.fmtNumber((cross.coViewClusters || []).length), 'Co-view Clusters', 'temple pairs in same session');
+                document.getElementById('an-stats').innerHTML = cards;
+                return;
+            }
+
+            if (!totals) {
+                document.getElementById('an-stats').innerHTML = '<div class="state-block">No overview data.</div>';
+                return;
+            }
+
+            cards += statCard(
+                Portal.fmtNumber(totals.humanViews),
+                'Human Views',
+                'bot traffic filtered',
+                fmtTrend(getTrend(data, 'humanViews'))
+            );
+            cards += statCard(
+                Portal.fmtNumber(totals.uniqueSessions),
+                'Unique Sessions',
+                '',
+                fmtTrend(getTrend(data, 'uniqueSessions'))
+            );
+            var attentionMs = eng.avgVisibleMs != null ? eng.avgVisibleMs : totals.avgVisibleMs;
+            cards += statCard(
+                attentionMs > 0 ? Portal.escapeHtml(fmtDuration(attentionMs)) : '—',
+                'Avg. Attention',
+                (totals.engagements || eng.engagements)
+                    ? Portal.fmtNumber(totals.engagements || eng.engagements) + ' engagement pings'
+                    : 'no engagement pings yet',
+                fmtTrend(getTrend(data, 'avgVisibleMs'))
+            );
             if (depth) {
-                cards +=
-                    statCard(
-                        Portal.escapeHtml(String(depth.pagesPerSession)),
-                        'Pages / Session',
-                        Portal.fmtNumber(depth.sessions) + ' sessions'
-                    ) +
-                    statCard(
-                        Portal.escapeHtml(String(depth.bouncePct)) + '%',
-                        'Bounce',
-                        Portal.fmtNumber(depth.singlePageSessions) + ' single-page sessions'
-                    );
+                cards += statCard(
+                    Portal.escapeHtml(String(depth.pagesPerSession)),
+                    'Pages / Session',
+                    Portal.fmtNumber(depth.sessions) + ' sessions',
+                    fmtTrend(getTrend(data, 'pagesPerSession'))
+                );
+                cards += statCard(
+                    Portal.escapeHtml(String(depth.bouncePct)) + '%',
+                    'Bounce',
+                    Portal.fmtNumber(depth.singlePageSessions) + ' single-page sessions',
+                    fmtTrend(getTrend(data, 'bouncePct'))
+                );
             }
             cards += statCard(
                 Portal.escapeHtml(String(totals.botPct)) + '%',
                 'Bot Share',
-                Portal.fmtNumber(totals.botViews) + ' bot views filtered out'
+                Portal.fmtNumber(totals.botViews) + ' bot views filtered out',
+                fmtTrend(getTrend(data, 'botPct'))
             );
             document.getElementById('an-stats').innerHTML = cards;
         }
@@ -286,7 +792,17 @@
             var plotH = Math.max(1, h - CHART_PAD.top - CHART_PAD.bottom);
             var maxTotal = 1;
             for (var i = 0; i < byDay.length; i++) {
-                maxTotal = Math.max(maxTotal, (byDay[i].human || 0) + (byDay[i].bot || 0));
+                var total = 0;
+                if (state.chart.showHuman) total += byDay[i].human || 0;
+                if (state.chart.showBot) total += byDay[i].bot || 0;
+                maxTotal = Math.max(maxTotal, total);
+            }
+            if (state.chart.cumulative) {
+                var cum = 0;
+                for (var k = 0; k < byDay.length; k++) {
+                    cum += (byDay[k].human || 0) + (byDay[k].bot || 0);
+                }
+                maxTotal = Math.max(maxTotal, cum);
             }
             var yMax = niceMax(maxTotal);
             return {
@@ -304,8 +820,6 @@
             };
         }
 
-        // Integer tick step (1/2/5 × 10^n) so a view-count axis never shows
-        // fractional labels; ticks run up to yMax but need not land on it.
         function niceStep(yMax) {
             var target = Math.max(1, Math.ceil(yMax / 4));
             var mag = Math.pow(10, Math.floor(Math.log10(target)));
@@ -331,6 +845,23 @@
             ctx.stroke();
         }
 
+        function drawCumulativeLine(ctx, byDay, geom) {
+            var cum = 0;
+            ctx.beginPath();
+            for (var i = 0; i < byDay.length; i++) {
+                cum += (byDay[i].human || 0) + (byDay[i].bot || 0);
+                var x = geom.xAt(i);
+                var y = geom.yAt(cum);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = '#e8e4dc';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 3]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+
         function drawTrafficChart() {
             var canvas = document.getElementById('traffic-chart');
             if (!canvas) return;
@@ -347,7 +878,6 @@
 
             var geom = chartGeom(canvas, byDay);
 
-            // Y gridlines + tick labels.
             ctx.font = '10px Montserrat, sans-serif';
             var step = niceStep(geom.yMax);
             for (var v = 0; v <= geom.yMax; v += step) {
@@ -372,7 +902,15 @@
                 return;
             }
 
-            // X date labels (MM-DD).
+            var showAny = state.chart.showHuman || state.chart.showBot;
+            if (!showAny && !state.chart.cumulative) {
+                ctx.fillStyle = '#7a8a9e';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('Select at least one series', w / 2, CHART_PAD.top + geom.plotH / 2);
+                return;
+            }
+
             ctx.textAlign = 'center';
             ctx.textBaseline = 'alphabetic';
             var labelEvery = Math.max(1, Math.ceil(byDay.length / 8));
@@ -382,21 +920,34 @@
                 ctx.fillText(String(byDay[j].day).slice(5), geom.xAt(j), h - 6);
             }
 
-            // Stacked areas: human (gold) below, bot (red) on top.
-            drawArea(
-                ctx, byDay, geom,
-                function () { return 0; },
-                function (d) { return d.human || 0; },
-                'rgba(212,175,55,0.28)', '#d4af37'
-            );
-            drawArea(
-                ctx, byDay, geom,
-                function (d) { return d.human || 0; },
-                function (d) { return (d.human || 0) + (d.bot || 0); },
-                'rgba(255,107,107,0.20)', '#ff6b6b'
-            );
+            if (state.chart.showHuman) {
+                drawArea(
+                    ctx, byDay, geom,
+                    function () { return 0; },
+                    function (d) { return d.human || 0; },
+                    'rgba(212,175,55,0.28)', '#d4af37'
+                );
+            }
+            if (state.chart.showBot && state.chart.showHuman) {
+                drawArea(
+                    ctx, byDay, geom,
+                    function (d) { return d.human || 0; },
+                    function (d) { return (d.human || 0) + (d.bot || 0); },
+                    'rgba(255,107,107,0.20)', '#ff6b6b'
+                );
+            } else if (state.chart.showBot) {
+                drawArea(
+                    ctx, byDay, geom,
+                    function () { return 0; },
+                    function (d) { return d.bot || 0; },
+                    'rgba(255,107,107,0.20)', '#ff6b6b'
+                );
+            }
 
-            // Hover crosshair + value dots.
+            if (state.chart.cumulative) {
+                drawCumulativeLine(ctx, byDay, geom);
+            }
+
             if (state.hoverIndex >= 0 && state.hoverIndex < byDay.length) {
                 var hx = geom.xAt(state.hoverIndex);
                 ctx.strokeStyle = 'rgba(232,228,220,0.35)';
@@ -406,10 +957,13 @@
                 ctx.lineTo(hx, CHART_PAD.top + geom.plotH);
                 ctx.stroke();
                 var row = byDay[state.hoverIndex];
-                var pts = [
-                    { y: geom.yAt(row.human || 0), color: '#d4af37' },
-                    { y: geom.yAt((row.human || 0) + (row.bot || 0)), color: '#ff6b6b' },
-                ];
+                var pts = [];
+                if (state.chart.showHuman) pts.push({ y: geom.yAt(row.human || 0), color: '#d4af37' });
+                if (state.chart.showBot && state.chart.showHuman) {
+                    pts.push({ y: geom.yAt((row.human || 0) + (row.bot || 0)), color: '#ff6b6b' });
+                } else if (state.chart.showBot) {
+                    pts.push({ y: geom.yAt(row.bot || 0), color: '#ff6b6b' });
+                }
                 for (var p = 0; p < pts.length; p++) {
                     ctx.beginPath();
                     ctx.arc(hx, pts[p].y, 3, 0, Math.PI * 2);
@@ -443,11 +997,11 @@
 
             var row = byDay[idx];
             var tooltip = document.getElementById('chart-tooltip');
-            tooltip.innerHTML =
-                '<div class="tt-day">' + Portal.escapeHtml(String(row.day)) + '</div>' +
-                '<div>Human: ' + Portal.fmtNumber(row.human) + '</div>' +
-                '<div>Bot: ' + Portal.fmtNumber(row.bot) + '</div>' +
-                '<div class="tt-muted">Total: ' + Portal.fmtNumber((row.human || 0) + (row.bot || 0)) + '</div>';
+            var html = '<div class="tt-day">' + Portal.escapeHtml(String(row.day)) + '</div>';
+            if (state.chart.showHuman) html += '<div>Human: ' + Portal.fmtNumber(row.human) + '</div>';
+            if (state.chart.showBot) html += '<div>Bot: ' + Portal.fmtNumber(row.bot) + '</div>';
+            html += '<div class="tt-muted">Total: ' + Portal.fmtNumber((row.human || 0) + (row.bot || 0)) + '</div>';
+            tooltip.innerHTML = html;
             tooltip.style.display = 'block';
             var wrapRect = canvas.parentElement.getBoundingClientRect();
             var tx = e.clientX - wrapRect.left + 14;
@@ -458,10 +1012,107 @@
             tooltip.style.top = Math.max(4, ty) + 'px';
         }
 
+        // ── Quarterly bar chart ───────────────────────────────
+
+        function drawQuarterChart(rows) {
+            var canvas = document.getElementById('quarter-chart');
+            if (!canvas || !rows.length) return;
+            var dpr = window.devicePixelRatio || 1;
+            var w = canvas.clientWidth;
+            var h = canvas.clientHeight;
+            if (!w || !h) return;
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            var ctx = canvas.getContext('2d');
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, w, h);
+
+            var pad = { left: 44, right: 12, top: 12, bottom: 32 };
+            var plotW = Math.max(1, w - pad.left - pad.right);
+            var plotH = Math.max(1, h - pad.top - pad.bottom);
+            var maxV = 1;
+            for (var i = 0; i < rows.length; i++) maxV = Math.max(maxV, rows[i].humanViews || 0);
+            var yMax = niceMax(maxV);
+
+            ctx.font = '10px Montserrat, sans-serif';
+            var step = niceStep(yMax);
+            for (var v = 0; v <= yMax; v += step) {
+                var y = pad.top + plotH - (v / yMax) * plotH;
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.beginPath();
+                ctx.moveTo(pad.left, y);
+                ctx.lineTo(w - pad.right, y);
+                ctx.stroke();
+                ctx.fillStyle = '#7a8a9e';
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(Portal.fmtNumber(v), pad.left - 6, y);
+            }
+
+            var barGap = Math.min(24, plotW / (rows.length * 4));
+            var barW = (plotW - barGap * (rows.length + 1)) / Math.max(rows.length, 1);
+            for (var j = 0; j < rows.length; j++) {
+                var val = rows[j].humanViews || 0;
+                var bh = (val / yMax) * plotH;
+                var bx = pad.left + barGap + j * (barW + barGap);
+                var by = pad.top + plotH - bh;
+                ctx.fillStyle = j === rows.length - 1 ? '#d4af37' : 'rgba(212,175,55,0.55)';
+                ctx.fillRect(bx, by, barW, bh);
+                ctx.fillStyle = '#7a8a9e';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'alphabetic';
+                ctx.fillText(labelQuarterKey(rows[j].quarter), bx + barW / 2, h - 8);
+            }
+        }
+
         // ── Tables & panels ───────────────────────────────────
 
         function emptyState(message) {
             return '<div class="state-block">' + Portal.escapeHtml(message) + '</div>';
+        }
+
+        function attachSortable(wrap) {
+            if (!wrap) return;
+            var tables = wrap.querySelectorAll('table.portal-table');
+            for (var t = 0; t < tables.length; t++) {
+                var table = tables[t];
+                var headers = table.querySelectorAll('th.pz-sortable');
+                for (var h = 0; h < headers.length; h++) {
+                    (function (th) {
+                        th.addEventListener('click', function () {
+                            var tbody = table.querySelector('tbody');
+                            if (!tbody) return;
+                            var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+                            var colIndex = parseInt(th.getAttribute('data-sort-col'), 10);
+                            var current = th.classList.contains('asc') ? 'asc' : th.classList.contains('desc') ? 'desc' : '';
+                            var headersAll = table.querySelectorAll('th.pz-sortable');
+                            for (var c = 0; c < headersAll.length; c++) {
+                                headersAll[c].classList.remove('asc', 'desc');
+                            }
+                            var dir = current === 'asc' ? 'desc' : 'asc';
+                            th.classList.add(dir);
+
+                            rows.sort(function (a, b) {
+                                var ac = a.cells[colIndex];
+                                var bc = b.cells[colIndex];
+                                if (!ac || !bc) return 0;
+                                var av = ac.getAttribute('data-sort-value') || ac.textContent.trim();
+                                var bv = bc.getAttribute('data-sort-value') || bc.textContent.trim();
+                                var an = parseFloat(av.replace(/[^0-9.\-]/g, ''));
+                                var bn = parseFloat(bv.replace(/[^0-9.\-]/g, ''));
+                                if (!Number.isNaN(an) && !Number.isNaN(bn) && av !== '' && bv !== '') {
+                                    return dir === 'asc' ? an - bn : bn - an;
+                                }
+                                return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+                            });
+
+                            for (var r = 0; r < rows.length; r++) {
+                                tbody.appendChild(rows[r]);
+                            }
+                        });
+                    })(headers[h]);
+                }
+            }
         }
 
         function renderEngagement(eng) {
@@ -478,16 +1129,20 @@
                         '<td class="num">' + (i + 1) + '</td>' +
                         '<td><div class="cell-title">' + Portal.escapeHtml(prettyTemple(t.templeId)) + '</div>' +
                         '<div class="cell-sub">' + Portal.escapeHtml(t.templeId) + '</div></td>' +
-                        '<td class="num">' + Portal.fmtNumber(t.engagements) + '</td>' +
-                        '<td class="num">' + Portal.escapeHtml(fmtDuration(t.avgVisibleMs)) + '</td>' +
+                        '<td class="num" data-sort-value="' + (t.engagements || 0) + '">' + Portal.fmtNumber(t.engagements) + '</td>' +
+                        '<td class="num" data-sort-value="' + (t.avgVisibleMs || 0) + '">' + Portal.escapeHtml(fmtDuration(t.avgVisibleMs)) + '</td>' +
                         '</tr>'
                     );
                 })
                 .join('');
             wrap.innerHTML =
                 '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
-                '<th class="num">#</th><th>Temple</th><th class="num">Engagements</th><th class="num">Avg. Visible</th>' +
+                '<th class="num pz-sortable" data-sort-col="0">#</th>' +
+                '<th class="pz-sortable" data-sort-col="1">Temple</th>' +
+                '<th class="num pz-sortable" data-sort-col="2">Engagements</th>' +
+                '<th class="num pz-sortable" data-sort-col="3">Avg. Visible</th>' +
                 '</tr></thead><tbody>' + body + '</tbody></table></div>';
+            attachSortable(wrap);
         }
 
         function renderTemples() {
@@ -511,17 +1166,22 @@
                         '<td><div class="cell-title"><a href="/' + encodeURIComponent(t.templeId) + '/">' +
                         Portal.escapeHtml(prettyTemple(t.templeId)) + '</a></div>' +
                         '<div class="cell-sub">' + Portal.escapeHtml(t.templeId) + '</div></td>' +
-                        '<td class="num">' + Portal.fmtNumber(t.human) + '</td>' +
-                        '<td class="num">' + Portal.fmtNumber(t.uniques) + '</td>' +
-                        '<td class="num">' + Portal.fmtNumber(t.bot) + '</td>' +
+                        '<td class="num" data-sort-value="' + (t.human || 0) + '">' + Portal.fmtNumber(t.human) + '</td>' +
+                        '<td class="num" data-sort-value="' + (t.uniques || 0) + '">' + Portal.fmtNumber(t.uniques) + '</td>' +
+                        '<td class="num" data-sort-value="' + (t.bot || 0) + '">' + Portal.fmtNumber(t.bot) + '</td>' +
                         '</tr>'
                     );
                 })
                 .join('');
             wrap.innerHTML =
                 '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
-                '<th class="num">#</th><th>Temple</th><th class="num">Human</th><th class="num">Uniques</th><th class="num">Bot</th>' +
+                '<th class="num pz-sortable" data-sort-col="0">#</th>' +
+                '<th class="pz-sortable" data-sort-col="1">Temple</th>' +
+                '<th class="num pz-sortable" data-sort-col="2">Human</th>' +
+                '<th class="num pz-sortable" data-sort-col="3">Uniques</th>' +
+                '<th class="num pz-sortable" data-sort-col="4">Bot</th>' +
                 '</tr></thead><tbody>' + body + '</tbody></table></div>';
+            attachSortable(wrap);
         }
 
         function renderDevices(devices) {
@@ -561,21 +1221,21 @@
             var body = rows
                 .map(function (r) {
                     return (
-                        '<tr><td>' + Portal.escapeHtml(r.referrer) + '</td>' +
-                        '<td class="num">' + Portal.fmtNumber(r.count) + '</td></tr>'
+                        '<tr><td data-sort-value="' + Portal.escapeHtml(String(r.referrer || '')) + '">' + Portal.escapeHtml(r.referrer) + '</td>' +
+                        '<td class="num" data-sort-value="' + (r.count || 0) + '">' + Portal.fmtNumber(r.count) + '</td></tr>'
                     );
                 })
                 .join('');
             wrap.innerHTML =
                 '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
-                '<th>Referrer</th><th class="num">Views</th>' +
+                '<th class="pz-sortable" data-sort-col="0">Referrer</th>' +
+                '<th class="num pz-sortable" data-sort-col="1">Views</th>' +
                 '</tr></thead><tbody>' + body + '</tbody></table></div>';
+            attachSortable(wrap);
         }
 
         function renderTopPaths(topPaths) {
             var panel = document.getElementById('an-pages-panel');
-            // null means the storage driver cannot compute path rollups —
-            // hide the panel honestly rather than show fabricated numbers.
             if (topPaths === null || topPaths === undefined) {
                 panel.hidden = true;
                 return;
@@ -589,15 +1249,17 @@
             var body = topPaths
                 .map(function (p) {
                     return (
-                        '<tr><td>' + Portal.escapeHtml(p.path) + '</td>' +
-                        '<td class="num">' + Portal.fmtNumber(p.views) + '</td></tr>'
+                        '<tr><td data-sort-value="' + Portal.escapeHtml(String(p.path || '')) + '">' + Portal.escapeHtml(p.path) + '</td>' +
+                        '<td class="num" data-sort-value="' + (p.views || 0) + '">' + Portal.fmtNumber(p.views) + '</td></tr>'
                     );
                 })
                 .join('');
             wrap.innerHTML =
                 '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
-                '<th>Path</th><th class="num">Views</th>' +
+                '<th class="pz-sortable" data-sort-col="0">Path</th>' +
+                '<th class="num pz-sortable" data-sort-col="1">Views</th>' +
                 '</tr></thead><tbody>' + body + '</tbody></table></div>';
+            attachSortable(wrap);
         }
 
         function renderBotCats(cats) {
@@ -620,18 +1282,193 @@
                 '</div>';
         }
 
-        // ── Load & wire-up ────────────────────────────────────
+        function renderTopMovers(movers) {
+            var panel = document.getElementById('an-movers-panel');
+            var wrap = document.getElementById('an-movers');
+            var rows = movers || [];
+            if (!rows.length) {
+                panel.hidden = true;
+                return;
+            }
+            panel.hidden = false;
+            var body = rows
+                .map(function (m) {
+                    var trendCls = m.changePct > 0 ? 'an-trend-up' : m.changePct < 0 ? 'an-trend-down' : 'an-trend-neutral';
+                    var arrow = m.changePct > 0 ? '↑' : m.changePct < 0 ? '↓' : '—';
+                    return (
+                        '<tr>' +
+                        '<td><div class="cell-title"><a href="/' + encodeURIComponent(m.templeId) + '/">' +
+                        Portal.escapeHtml(prettyTemple(m.templeId)) + '</a></div>' +
+                        '<div class="cell-sub">' + Portal.escapeHtml(m.templeId) + '</div></td>' +
+                        '<td class="num" data-sort-value="' + (m.current || 0) + '">' + Portal.fmtNumber(m.current) + '</td>' +
+                        '<td class="num" data-sort-value="' + (m.previous || 0) + '">' + Portal.fmtNumber(m.previous) + '</td>' +
+                        '<td class="num" data-sort-value="' + (m.changePct || 0) + '">' +
+                        '<span class="an-trend-badge ' + trendCls + '">' + arrow + ' ' + fmtPct(Math.abs(m.changePct)) + '</span></td>' +
+                        '</tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                '<th class="pz-sortable" data-sort-col="0">Temple</th>' +
+                '<th class="num pz-sortable" data-sort-col="1">Current</th>' +
+                '<th class="num pz-sortable" data-sort-col="2">Previous</th>' +
+                '<th class="num pz-sortable" data-sort-col="3">Change</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+            attachSortable(wrap);
+        }
+
+        function renderQuarterTable(rows) {
+            var wrap = document.getElementById('an-quarter-table-wrap');
+            if (!rows || !rows.length) {
+                wrap.innerHTML = emptyState('No quarterly data available.');
+                drawQuarterChart([]);
+                return;
+            }
+            var body = rows
+                .map(function (r) {
+                    var trend = '';
+                    if (r.changePct != null && !Number.isNaN(r.changePct)) {
+                        var cls = r.changePct > 0 ? 'an-trend-up' : r.changePct < 0 ? 'an-trend-down' : 'an-trend-neutral';
+                        var arrow = r.changePct > 0 ? '↑' : r.changePct < 0 ? '↓' : '—';
+                        trend = '<span class="an-trend-badge ' + cls + '">' + arrow + ' ' + fmtPct(Math.abs(r.changePct)) + '</span>';
+                    }
+                    return (
+                        '<tr>' +
+                        '<td>' + Portal.escapeHtml(labelQuarterKey(r.quarter)) + '</td>' +
+                        '<td>' + Portal.fmtNumber(r.humanViews || 0) + '</td>' +
+                        '<td>' + Portal.escapeHtml(String(r.botPct || 0)) + '%</td>' +
+                        '<td>' + Portal.fmtNumber(r.uniqueSessions || 0) + '</td>' +
+                        '<td>' + Portal.fmtNumber(r.engagements || 0) + '</td>' +
+                        '<td>' + trend + '</td>' +
+                        '</tr>'
+                    );
+                })
+                .join('');
+            wrap.innerHTML =
+                '<div class="table-wrap"><table class="an-quarter-table"><thead><tr>' +
+                '<th>Quarter</th><th>Human Views</th><th>Bot Share</th><th>Uniques</th><th>Engagements</th><th>Change</th>' +
+                '</tr></thead><tbody>' + body + '</tbody></table></div>';
+            drawQuarterChart(rows);
+        }
+
+        function renderCrossPanel(cross) {
+            var flowsWrap = document.getElementById('an-cross-flows');
+            var entryWrap = document.getElementById('an-cross-entry');
+            var exitWrap = document.getElementById('an-cross-exit');
+            var clustersWrap = document.getElementById('an-cross-clusters');
+            var c = cross || {};
+
+            var flows = (c.flows || []).slice(0, 20);
+            if (!flows.length) {
+                flowsWrap.innerHTML = emptyState('No cross-temple flows for this scope.');
+            } else {
+                flowsWrap.innerHTML = flows
+                    .map(function (f) {
+                        return (
+                            '<div class="an-flow-row">' +
+                            '<div class="an-flow-path">' +
+                            '<span>' + Portal.escapeHtml(prettyTemple(f.from)) + '</span>' +
+                            '<span class="an-flow-arrow">→</span>' +
+                            '<span>' + Portal.escapeHtml(prettyTemple(f.to)) + '</span>' +
+                            '</div>' +
+                            '<div class="an-flow-val">' + Portal.fmtNumber(f.sessions) + ' sessions</div>' +
+                            '</div>'
+                        );
+                    })
+                    .join('');
+            }
+
+            function renderMiniTable(wrap, rows, emptyMsg) {
+                rows = rows || [];
+                if (!rows.length) {
+                    wrap.innerHTML = emptyState(emptyMsg);
+                    return;
+                }
+                var body = rows
+                    .map(function (r) {
+                        return (
+                            '<tr><td>' + Portal.escapeHtml(prettyTemple(r.templeId || r.id || '—')) + '</td>' +
+                            '<td class="num">' + Portal.fmtNumber(r.sessions || r.count || 0) + '</td></tr>'
+                        );
+                    })
+                    .join('');
+                wrap.innerHTML =
+                    '<div class="table-wrap"><table class="an-mini-table"><thead><tr>' +
+                    '<th>Temple</th><th class="num">Sessions</th>' +
+                    '</tr></thead><tbody>' + body + '</tbody></table></div>';
+            }
+
+            renderMiniTable(entryWrap, c.entryTemples, 'No entry temple data.');
+            renderMiniTable(exitWrap, c.exitTemples, 'No exit temple data.');
+
+            var clusters = c.coViewClusters || [];
+            if (!clusters.length) {
+                clustersWrap.innerHTML = emptyState('No co-view clusters for this scope.');
+            } else {
+                clustersWrap.innerHTML =
+                    '<div class="an-cluster-list">' +
+                    clusters
+                        .map(function (c) {
+                            var a = c.a || c[0] || '—';
+                            var b = c.b || c[1] || '—';
+                            var count = c.sessions != null ? c.sessions : c.count || 0;
+                            return (
+                                '<span class="an-cluster-pill">' + Portal.escapeHtml(prettyTemple(a)) + ' + ' +
+                                Portal.escapeHtml(prettyTemple(b)) + ' <b>' + Portal.fmtNumber(count) + '</b></span>'
+                            );
+                        })
+                        .join('') +
+                    '</div>';
+            }
+        }
+
+        // ── Visibility & orchestration ────────────────────────
+
+        function setPanelVisibility() {
+            var isRolling = state.mode === 'rolling';
+            var isQuarter = state.mode === 'quarter';
+            var isCross = state.mode === 'cross';
+
+            document.getElementById('an-traffic-panel').hidden = !isRolling;
+            document.getElementById('an-quarter-panel').hidden = !isQuarter;
+            document.getElementById('an-cross-panel').hidden = !isCross;
+            document.getElementById('an-engagement-panel').hidden = !isRolling;
+            document.getElementById('an-temples-panel').hidden = isCross;
+            document.getElementById('an-devices-referrers-grid').hidden = isCross;
+            document.getElementById('an-pages-bots-grid').hidden = isCross || isQuarter;
+            document.getElementById('an-movers-panel').hidden = true;
+
+            var compareField = document.querySelector('.an-compare-field');
+            if (compareField) compareField.style.opacity = isCross ? '0.45' : '1';
+            document.getElementById('an-compare').disabled = isCross;
+        }
 
         function renderAll(data) {
             var overview = data.overview || {};
             renderStamp();
             renderScopeNote();
             renderStats(data);
-            document.getElementById('an-chart-sub').textContent =
-                'Views per day — last ' + String(overview.periodDays || state.days) +
-                ' days, human stacked under bot.';
-            drawTrafficChart();
-            renderEngagement(data.engagement);
+            setPanelVisibility();
+
+            if (state.mode === 'cross') {
+                renderCrossPanel(data.crossTemple);
+                return;
+            }
+
+            if (state.mode === 'rolling') {
+                document.getElementById('an-chart-sub').textContent =
+                    'Views per day — last ' + String(overview.periodDays || state.days) +
+                    ' days, human stacked under bot.';
+                drawTrafficChart();
+                renderEngagement(data.engagement);
+                renderTopMovers(data.trends && data.trends.topMovers);
+            }
+
+            if (state.mode === 'quarter') {
+                renderQuarterTable(data.quarterRows || []);
+            }
+
             renderTemples();
             renderDevices(overview.devices);
             renderReferrers(overview.topReferrers);
@@ -644,16 +1481,78 @@
             document.getElementById('an-refresh').disabled = loading;
             var buttons = document.querySelectorAll('.period-btn');
             for (var i = 0; i < buttons.length; i++) buttons[i].disabled = loading;
+            document.getElementById('an-export').disabled = loading;
+            document.getElementById('an-quarter-picker').disabled = loading;
+            document.getElementById('an-compare').disabled = loading || state.mode === 'cross';
+        }
+
+        function buildQuery() {
+            var params = [];
+            if (state.mode === 'quarter') {
+                params.push('mode=quarter');
+                var q = resolveQuarterValue(state.quarter);
+                if (q) params.push('quarter=' + encodeURIComponent(q));
+                if (state.compare) params.push('compare=1');
+            } else if (state.mode === 'cross') {
+                params.push('mode=cross');
+                params.push('days=' + state.days);
+            } else {
+                params.push('mode=rolling');
+                params.push('days=' + state.days);
+                if (state.compare) params.push('compare=1');
+            }
+            if (state.temple) params.push('temple=' + encodeURIComponent(state.temple));
+            return '?' + params.join('&');
+        }
+
+        async function loadQuarterRows(selectedQuarter) {
+            var keys = [];
+            var key = selectedQuarter;
+            for (var i = 0; i < 4; i++) {
+                keys.push(key);
+                key = prevQuarterKey(key);
+                if (!key) break;
+            }
+            var results = [];
+            await Promise.all(keys.map(function (k) {
+                var qs = '?mode=quarter&quarter=' + encodeURIComponent(k);
+                if (state.temple) qs += '&temple=' + encodeURIComponent(state.temple);
+                return Portal.api('/api/admin/portal/analytics/' + qs).then(function (res) {
+                    var t = (res.overview && res.overview.totals) || {};
+                    results.push({
+                        quarter: k,
+                        humanViews: t.humanViews || 0,
+                        botPct: t.botPct || 0,
+                        uniqueSessions: t.uniqueSessions || 0,
+                        engagements: t.engagements || 0,
+                        changePct: (res.overview && res.overview.comparison && res.overview.comparison.changePct)
+                            ? res.overview.comparison.changePct.humanViews
+                            : null,
+                    });
+                }).catch(function () {
+                    results.push({ quarter: k, humanViews: 0, botPct: 0, uniqueSessions: 0, engagements: 0, changePct: null });
+                });
+            }));
+            results.sort(function (a, b) {
+                var pa = parseQuarterKey(a.quarter);
+                var pb = parseQuarterKey(b.quarter);
+                if (!pa || !pb) return 0;
+                if (pa.year !== pb.year) return pa.year - pb.year;
+                return pa.quarter - pb.quarter;
+            });
+            return results;
         }
 
         async function loadAnalytics() {
             setLoading(true);
             state.hoverIndex = -1;
             hideTooltip();
-            var qs = '?days=' + state.days;
-            if (state.temple) qs += '&temple=' + encodeURIComponent(state.temple);
             try {
+                var qs = buildQuery();
                 var data = await Portal.api('/api/admin/portal/analytics/' + qs);
+                if (state.mode === 'quarter') {
+                    data.quarterRows = await loadQuarterRows(resolveQuarterValue(state.quarter));
+                }
                 state.data = data;
                 renderAll(data);
             } catch (err) {
@@ -664,6 +1563,37 @@
                 }
             } finally {
                 setLoading(false);
+            }
+        }
+
+        async function exportCsv() {
+            var type = document.getElementById('an-export-type').value;
+            var params = ['mode=export', 'type=' + encodeURIComponent(type), 'days=' + state.days];
+            if (state.temple) params.push('temple=' + encodeURIComponent(state.temple));
+            var url = '/api/admin/portal/analytics/?' + params.join('&');
+            var token = Portal.getToken();
+            try {
+                var res = await fetch(url, {
+                    method: 'GET',
+                    headers: token ? { 'x-admin-token': token, Accept: 'text/csv' } : { Accept: 'text/csv' },
+                });
+                if (res.status === 401) {
+                    Portal.toast('Session expired. Please sign in again.', 'error');
+                    return;
+                }
+                if (!res.ok) throw new Error('Export failed (' + res.status + ')');
+                var blob = await res.blob();
+                var objUrl = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = objUrl;
+                a.download = 'punicodex-analytics-' + type + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                setTimeout(function () { URL.revokeObjectURL(objUrl); }, 30000);
+                Portal.toast('CSV export downloaded', 'success');
+            } catch (err) {
+                Portal.toast('Export failed: ' + err.message, 'error');
             }
         }
 
@@ -681,6 +1611,47 @@
             loadAnalytics();
         }
 
+        function updatePeriodButtons() {
+            var buttons = document.querySelectorAll('.period-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                var d = parseInt(buttons[i].getAttribute('data-days'), 10);
+                buttons[i].classList.toggle('active', d === state.days);
+            }
+        }
+
+        function syncViewFromState() {
+            var select = document.getElementById('an-quarter-picker');
+            var resolved = state.mode === 'quarter' ? state.quarter : '';
+            var found = false;
+            for (var i = 0; i < select.options.length; i++) {
+                if (select.options[i].value === resolved) {
+                    select.selectedIndex = i;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) select.selectedIndex = 0;
+            document.getElementById('an-compare').checked = state.compare;
+            updatePeriodButtons();
+        }
+
+        function onViewChange() {
+            var select = document.getElementById('an-quarter-picker');
+            var value = select.value;
+            if (!value || value === 'rolling') {
+                state.mode = 'rolling';
+                state.quarter = '';
+            } else if (value === 'cross') {
+                state.mode = 'cross';
+                state.quarter = '';
+            } else {
+                state.mode = 'quarter';
+                state.quarter = value;
+            }
+            syncViewFromState();
+            loadAnalytics();
+        }
+
         function wireControls() {
             var buttons = document.querySelectorAll('.period-btn');
             for (var i = 0; i < buttons.length; i++) {
@@ -688,11 +1659,16 @@
                     var days = parseInt(this.getAttribute('data-days'), 10);
                     if (days === state.days) return;
                     state.days = days;
-                    for (var j = 0; j < buttons.length; j++) buttons[j].classList.remove('active');
-                    this.classList.add('active');
+                    updatePeriodButtons();
                     loadAnalytics();
                 });
             }
+
+            document.getElementById('an-quarter-picker').addEventListener('change', onViewChange);
+            document.getElementById('an-compare').addEventListener('change', function () {
+                state.compare = this.checked;
+                loadAnalytics();
+            });
 
             var scopeInput = document.getElementById('an-temple-scope');
             scopeInput.addEventListener('keydown', function (e) {
@@ -709,7 +1685,22 @@
             });
 
             document.getElementById('an-refresh').addEventListener('click', loadAnalytics);
+            document.getElementById('an-export').addEventListener('click', exportCsv);
             document.getElementById('an-table-filter').addEventListener('input', renderTemples);
+
+            document.getElementById('an-show-human').addEventListener('change', function () {
+                state.chart.showHuman = this.checked;
+                drawTrafficChart();
+            });
+            document.getElementById('an-show-bot').addEventListener('change', function () {
+                state.chart.showBot = this.checked;
+                drawTrafficChart();
+            });
+            document.getElementById('an-cumulative').addEventListener('change', function () {
+                state.chart.cumulative = this.checked;
+                document.getElementById('an-cum-legend').hidden = !this.checked;
+                drawTrafficChart();
+            });
 
             var canvas = document.getElementById('traffic-chart');
             canvas.addEventListener('mousemove', onChartMove);
@@ -725,6 +1716,7 @@
                     state.hoverIndex = -1;
                     hideTooltip();
                     drawTrafficChart();
+                    if (state.mode === 'quarter') drawQuarterChart((state.data && state.data.quarterRows) || []);
                 }, 150);
             });
 
@@ -732,8 +1724,8 @@
         }
 
         async function init() {
-            // Fire the analytics fetch in parallel with the shell's /me round
-            // trip instead of waiting for the shell first.
+            buildQuarterOptions();
+            syncViewFromState();
             var load = loadAnalytics();
             var ctx = await Portal.initShell('analytics');
             if (!ctx) {

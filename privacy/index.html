@@ -168,6 +168,12 @@
                                             <td>Per hosting provider policy</td>
                                             <td>Vercel, Cloudflare</td>
                                         </tr>
+                                        <tr>
+                                            <td><a href="#analytics">Analytics &amp; Telemetry</a></td>
+                                            <td>Hashed, daily-rotating session identifiers; aggregated events only</td>
+                                            <td>120-day rolling analytics / 365-day storage</td>
+                                            <td>None (first-party beacon only)</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -180,6 +186,7 @@
                                 <li><a href="#keyboard">Keyboard &amp; Type Tool</a></li>
                                 <li><a href="#search">Search Engine</a></li>
                                 <li><a href="#website">Website</a></li>
+                                <li><a href="#analytics">Analytics &amp; Telemetry</a></li>
                                 <li><a href="#general">General Provisions</a></li>
                             </ol>
                         </article>
@@ -277,17 +284,52 @@
 
                         <hr class="policy-divider">
 
-                        <!-- 4. General -->
-                        <article class="privacy-article reveal-up" id="general">
-                            <h2 class="heading-lg mb-4">4. General Provisions</h2>
+                        <!-- 4. Analytics & Telemetry -->
+                        <article class="privacy-article reveal-up" id="analytics">
+                            <h2 class="heading-lg mb-4">4. Analytics &amp; Telemetry</h2>
 
-                            <h3 class="heading-sm mb-3">4.1 Data Deletion</h3>
+                            <h3 class="heading-sm mb-3">4.1 First-Party Beacon</h3>
+                            <p class="body-md mb-3">The PuniCodex website uses a <strong>first-party analytics beacon</strong> served from our own domain. No third-party analytics provider receives your data. The beacon collects only the information we need to understand aggregate traffic and improve the site.</p>
+
+                            <h3 class="heading-sm mb-3">4.2 What We Collect</h3>
+                            <p class="body-md mb-3">The beacon records page views and feature interactions as aggregated events. We do not store raw IP addresses, browser fingerprints, or persistent device identifiers. Instead, we use:</p>
+                            <ul class="body-md privacy-list">
+                                <li><strong>Hashed session identifiers</strong> — a one-way hash derived from rotating daily salts. We cannot reconstruct the original value or link sessions across days.</li>
+                                <li><strong>Aggregated event counts</strong> — such as page loads, clicks on internal navigation, and feature usage, grouped by temple or page path.</li>
+                                <li><strong>Browser environment</strong> — a coarse, non-identifying summary (for example, viewport size category and dark/light preference) used only for layout improvements.</li>
+                            </ul>
+
+                            <h3 class="heading-sm mb-3">4.3 Consent Gating</h3>
+                            <p class="body-md mb-3">The beacon is gated by our cookie-consent layer. Until you consent to analytics, the beacon loads but does not transmit events. You can withdraw or change consent at any time through the cookie-consent control; withdrawn consent stops event collection immediately and does not affect previously aggregated data.</p>
+
+                            <h3 class="heading-sm mb-3">4.4 Retention</h3>
+                            <p class="body-md mb-3">Analytics data is retained in two layers:</p>
+                            <ul class="body-md privacy-list">
+                                <li><strong>Rolling analytics</strong> — interactive dashboards and operational reports use a 120-day rolling window. Older events are automatically removed from this layer.</li>
+                                <li><strong>Storage archive</strong> — anonymized, aggregated aggregates are kept for up to 365 days for trend analysis, capacity planning, and security investigations, after which they are deleted or reduced to non-identifiable statistical summaries.</li>
+                            </ul>
+
+                            <h3 class="heading-sm mb-3">4.5 No Per-Visitor Tracking</h3>
+                            <p class="body-md mb-3">We do not build individual visitor profiles, do not follow you across third-party sites, and do not combine beacon data with search query logs, API keys, or account information. Reports are always computed from aggregated populations; a single visitor cannot be singled out.</p>
+
+                            <h3 class="heading-sm mb-3">4.6 Data-Subject Rights</h3>
+                            <p class="body-md mb-3">Because we do not retain personal identifiers in analytics, we generally cannot identify or extract data about a specific individual. You may still contact us to object to analytics collection, request deletion of any records we can reasonably link to you, or ask questions about this processing. We respond within 30 days.</p>
+                            <p class="body-md mb-3">More details for administrators using our analytics service are in the <a href="/terms/analytics/">Analytics &amp; Insights Terms</a>.</p>
+                        </article>
+
+                        <hr class="policy-divider">
+
+                        <!-- 5. General -->
+                        <article class="privacy-article reveal-up" id="general">
+                            <h2 class="heading-lg mb-4">5. General Provisions</h2>
+
+                            <h3 class="heading-sm mb-3">5.1 Data Deletion</h3>
                             <p class="body-md mb-3">For the Keyboard &amp; Type Tool, delete app data through your device's settings. For the Search Engine, contact <a href="mailto:punicodex@gmail.com">punicodex@gmail.com</a> to request removal of search logs or indexed site data. We process deletion requests within 30 days.</p>
 
-                            <h3 class="heading-sm mb-3">4.2 Changes to This Policy</h3>
+                            <h3 class="heading-sm mb-3">5.2 Changes to This Policy</h3>
                             <p class="body-md mb-3">We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. Material changes will be noted in the development log.</p>
 
-                            <h3 class="heading-sm mb-3">4.3 Contact</h3>
+                            <h3 class="heading-sm mb-3">5.3 Contact</h3>
                             <p class="body-md">If you have questions about this policy, contact us at <a href="mailto:punicodex@gmail.com">punicodex@gmail.com</a>.</p>
                         </article>
                     </div>
@@ -321,7 +363,8 @@
                                 <a href="#keyboard" class="quick-nav-link"><span class="quick-nav-num">01</span>Keyboard &amp; Type Tool</a>
                                 <a href="#search" class="quick-nav-link"><span class="quick-nav-num">02</span>Search Engine</a>
                                 <a href="#website" class="quick-nav-link"><span class="quick-nav-num">03</span>Website</a>
-                                <a href="#general" class="quick-nav-link"><span class="quick-nav-num">04</span>General Provisions</a>
+                                <a href="#analytics" class="quick-nav-link"><span class="quick-nav-num">04</span>Analytics &amp; Telemetry</a>
+                                <a href="#general" class="quick-nav-link"><span class="quick-nav-num">05</span>General Provisions</a>
                             </nav>
                         </div>
                     </aside>
