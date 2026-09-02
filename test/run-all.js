@@ -500,6 +500,11 @@ const SUITES = [
   { name: 'Original Script Provenance', cmd: 'node scripts/validate-provenance.js' },
 ];
 
+const SKIP_DIVERGENCE = process.env.PUNICODEX_CI_SKIP_DIVERGENCE === '1';
+const ACTIVE_SUITES = SKIP_DIVERGENCE
+  ? SUITES.filter((s) => s.name !== 'Divergence Gate')
+  : SUITES;
+
 const results = [];
 let totalPass = 0;
 let _totalFail = 0;
@@ -618,7 +623,7 @@ async function main() {
   // after every parallel suite has finished touching the tree.
   const serial = [];
   const parallel = [];
-  for (const suite of SUITES) {
+  for (const suite of ACTIVE_SUITES) {
     (SERIAL_SUITES.has(suite.name) ? serial : parallel).push(suite);
   }
   const queue = [...parallel];
@@ -643,7 +648,7 @@ async function main() {
   console.log(`${C.bold}Results:${C.reset}`);
   // Print the summary in original declaration order, not completion order.
   const byName = new Map(results.map((r) => [r.name, r]));
-  SUITES.forEach((suite) => {
+  ACTIVE_SUITES.forEach((suite) => {
     const r = byName.get(suite.name) || { ok: false };
     const icon = r.ok ? `${C.green}✓${C.reset}` : `${C.red}✗${C.reset}`;
     console.log(`  ${icon} ${suite.name}`);

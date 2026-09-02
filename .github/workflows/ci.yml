@@ -45,9 +45,13 @@ jobs:
         env:
           # Serialize the sharded runner: the full battery is memory-heavy and
           # the parallel phase can exhaust the GitHub-hosted runner, causing a
-          # silent process exit. Running one suite at a time is slower but
-          # stable, and the divergence gate still validates the full flywheel.
+          # silent process exit. Running one suite at a time is slower but stable.
           PUNICODEX_TEST_PARALLELISM: 1
+          # The divergence gate runs `npm run generate` twice inside the test
+          # runner; that is redundant with the dedicated "Ensure generated files
+          # are in sync" step below. Skip it here to keep the test job inside
+          # the runner's memory envelope.
+          PUNICODEX_CI_SKIP_DIVERGENCE: 1
           # 5 GB gives the suite enough heap while leaving headroom for the OS,
           # Pillow, and git processes on the ~7 GB GitHub-hosted runner.
           NODE_OPTIONS: --max-old-space-size=5120
