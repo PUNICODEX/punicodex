@@ -55,7 +55,14 @@ const SKIP = /^(docs\/lighthouse\/|Marketing\/|New material)/;
 function assetHash(rel) {
   const abs = path.join(ROOT, rel);
   if (!fs.existsSync(abs)) return null;
-  return crypto.createHash('sha256').update(fs.readFileSync(abs)).digest('hex').slice(0, 10);
+  let bytes = fs.readFileSync(abs);
+  // Normalize CRLF → LF before hashing: the pinned hash must be identical on
+  // Windows checkouts (core.autocrlf converts text files to CRLF) and Linux
+  // CI runners, or the divergence gate flip-flops on every cross-platform run.
+  if (bytes.includes(0x0d)) {
+    bytes = Buffer.from(bytes.toString('utf8').replace(/\r\n/g, '\n'), 'utf8');
+  }
+  return crypto.createHash('sha256').update(bytes).digest('hex').slice(0, 10);
 }
 
 function main() {
