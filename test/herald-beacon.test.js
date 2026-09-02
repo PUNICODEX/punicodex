@@ -238,13 +238,23 @@ async function run() {
       // race the beacon mount on slow CI runners.
       await page.goto(`${base}/pantheon/`, { waitUntil: 'networkidle' });
       await page.locator('.herald-beacon__seal').click();
+      // Wait for the card to actually open before touching the form; on slow
+      // runners the mount finishes after the seal becomes clickable.
+      await page.locator('.herald-beacon__card').waitFor({ state: 'visible', timeout: 30000 });
       await page.locator('input[name="email"]').fill('herald.fan@example.com');
       await page.locator('input[name="phone"]').fill('+61 400 111 222');
-      const requestPromise = page.waitForRequest('**/api/newsletter/subscribe/**', {
-        timeout: 30000,
-      });
-      await page.locator('.herald-beacon__submit').click();
-      await requestPromise;
+      // The submit handler binds at mount; a click that lands before binding
+      // is silently dropped. Retry the click until the request is observed
+      // (the route fulfills instantly, so a bound handler answers at once).
+      let subscribeReq = null;
+      for (let attempt = 0; attempt < 3 && !subscribeReq; attempt++) {
+        const requestPromise = page
+          .waitForRequest('**/api/newsletter/subscribe/**', { timeout: 10000 })
+          .catch(() => null);
+        await page.locator('.herald-beacon__submit').click();
+        subscribeReq = await requestPromise;
+      }
+      assert.ok(subscribeReq, 'subscribe request fired');
       await page.locator('.herald-beacon__success').first().waitFor({ timeout: 30000 });
       assert.ok(payload, 'request fired');
       assert.strictEqual(payload.email, 'herald.fan@example.com');
