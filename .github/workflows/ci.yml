@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [main, master]
 
+# A newer push supersedes stale runs of the same branch — cancel them instead
+# of letting multiple full batteries race.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest

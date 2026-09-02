@@ -24,6 +24,12 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
+# Serialize production deploys; never cancel one mid-flight (a half-aliased
+# deploy is worse than a queued one).
+concurrency:
+  group: deploy-prebuilt-production
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}

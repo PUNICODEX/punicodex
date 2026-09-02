@@ -20,6 +20,13 @@ on:
         required: false
         default: 'false'
 
+# One evolution cycle at a time per ref — a newer push supersedes a stale
+# in-progress cycle (its regeneration would be re-run against newer code
+# anyway).
+concurrency:
+  group: evolve-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   evolve:
     runs-on: ubuntu-latest
