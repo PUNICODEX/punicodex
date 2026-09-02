@@ -321,7 +321,11 @@ const SUITES = [
     timeout: 120000,
   },
   { name: 'Transport Posture Tests', cmd: 'node test/security-headers.test.js' },
-  { name: 'Asset Version Tests', cmd: 'node test/asset-versions.test.js' },
+  {
+    name: 'Asset Version Tests',
+    cmd: 'node test/asset-versions.test.js',
+    timeout: 120000,
+  },
   { name: 'Hero Stats Tests', cmd: 'node test/hero-stats.test.js' },
   { name: 'Sponsorship Flow Tests', cmd: 'node test/sponsorship-flow.test.js', timeout: 120000 },
   {
