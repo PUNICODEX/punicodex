@@ -66,10 +66,11 @@ jobs:
       - name: Ensure generated files are in sync
         timeout-minutes: 30
         env:
-          # sync-masters-composites is the slowest step; keep it moving with a
-          # bounded worker pool and a fast-but-still-effective compression level.
-          PUNICODEX_SYNC_MASTERS_CONCURRENCY: 8
-          PUNICODEX_SYNC_MASTERS_COMPRESSION_LEVEL: 6
+          # The merch-composite / .masters steps regenerate gigabytes of
+          # GITIGNORED PNGs on a fresh checkout — `git diff` can never see
+          # them, so they give zero divergence signal and previously blew the
+          # 30-minute budget recompressing 3,254 images every run.
+          PUNICODEX_GENERATE_SKIP_BINARY: 1
         run: |
           npm run generate
           git diff --exit-code

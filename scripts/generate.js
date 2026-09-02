@@ -30,7 +30,19 @@ const path = require('path');
 
 const root = path.join(__dirname, '..');
 
-const scripts = [
+// Steps whose outputs are gitignored binary assets (multi-GB merch composites,
+// .masters/ copies). On a fresh CI checkout they regenerate gigabytes of PNGs
+// that `git diff` can never see — pure cost, zero divergence signal. The
+// divergence gate and evolution cycles set PUNICODEX_GENERATE_SKIP_BINARY=1 to
+// skip them; local `npm run generate` always builds the full set.
+const BINARY_ONLY_STEPS = new Set([
+  'scripts/generate-merch-composites.js',
+  'scripts/sync-masters-composites.js',
+]);
+
+const SKIP_BINARY = process.env.PUNICODEX_GENERATE_SKIP_BINARY === '1';
+
+const allScripts = [
   'platform/generate-unicode-dir-v2.js',
   'scripts/sync-shared-lexicon.js',
   'scripts/sync-shared-engine.js',
@@ -163,6 +175,14 @@ const scripts = [
   // The pass is deterministic and leaves entries.jsonl byte-identical.
   'scripts/export-model-corpus.js',
 ];
+
+const scripts = SKIP_BINARY
+  ? allScripts.filter((script) => !BINARY_ONLY_STEPS.has(script.split(/\s+/)[0]))
+  : allScripts;
+
+if (SKIP_BINARY) {
+  console.log('  (PUNICODEX_GENERATE_SKIP_BINARY=1 — skipping gitignored binary asset steps)');
+}
 
 function run(script) {
   const parts = script.split(/\s+/);

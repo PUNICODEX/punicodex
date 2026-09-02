@@ -58,9 +58,10 @@ jobs:
 
       - name: Run evolution cycle
         env:
-          # Keep the merch-composite sync from hanging the runner.
-          PUNICODEX_SYNC_MASTERS_CONCURRENCY: 8
-          PUNICODEX_SYNC_MASTERS_COMPRESSION_LEVEL: 6
+          # Evolution runs `npm run generate` on a fresh checkout; skip the
+          # gitignored binary asset steps (multi-GB composites) that otherwise
+          # dominate the cycle without affecting any committed artifact.
+          PUNICODEX_GENERATE_SKIP_BINARY: 1
         run: |
           FLAGS=""
           if [ "${{ github.event.inputs.operational }}" = "true" ]; then
