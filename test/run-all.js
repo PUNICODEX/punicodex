@@ -501,9 +501,7 @@ const SUITES = [
 ];
 
 const SKIP_DIVERGENCE = process.env.PUNICODEX_CI_SKIP_DIVERGENCE === '1';
-const ACTIVE_SUITES = SKIP_DIVERGENCE
-  ? SUITES.filter((s) => s.name !== 'Divergence Gate')
-  : SUITES;
+const ACTIVE_SUITES = SKIP_DIVERGENCE ? SUITES.filter((s) => s.name !== 'Divergence Gate') : SUITES;
 
 const results = [];
 let totalPass = 0;
