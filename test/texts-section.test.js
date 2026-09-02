@@ -11,7 +11,7 @@
 const assert = require('node:assert');
 const fs = require('node:fs');
 const path = require('node:path');
-const { execSync } = require('node:child_process');
+const { execSync, execFileSync } = require('node:child_process');
 
 const root = path.join(__dirname, '..');
 const { XREF, normGreek, isCapitalGreek } = require('../scripts/generate-text-pages.js');
@@ -186,6 +186,12 @@ test('generator is idempotent (two runs, byte-identical output)', () => {
   execSync('node scripts/generate-text-pages.js', { cwd: root, stdio: 'pipe' });
   assert.strictEqual(read(relA), a1, 'texts/index.html changed between runs');
   assert.strictEqual(read(relB), b1, 'texts/theogony/index.html changed between runs');
+  // generate-text-pages.js emits placeholder pins; restore content-addressed
+  // pins so later suites (asset-versions, divergence gate) see committed state.
+  execFileSync(process.execPath, [path.join(root, 'scripts', 'stamp-asset-versions.js')], {
+    cwd: root,
+    stdio: 'pipe',
+  });
 });
 
 // ── Canonical chrome ────────────────────────────────────────────────────────

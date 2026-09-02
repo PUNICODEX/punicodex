@@ -9,7 +9,7 @@ const fs = require('node:fs');
 const http = require('node:http');
 const _os = require('node:os');
 const path = require('node:path');
-const { execSync } = require('node:child_process');
+const { execSync, execFileSync } = require('node:child_process');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -102,6 +102,12 @@ async function run() {
     // runs flip every page to cookie-then-herald order. Restore the pipeline
     // equilibrium (cookie last) or the Divergence Gate sees 6,952 dirty files.
     execSync('node scripts/inject-cookie-consent.js', { cwd: ROOT, stdio: 'pipe' });
+    // The injectors hard-code v=1 for their own assets; the committed pages
+    // carry content-addressed pins. Re-stamp so later suites see clean pins.
+    execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'stamp-asset-versions.js')], {
+      cwd: ROOT,
+      stdio: 'pipe',
+    });
   });
 
   const exe = findBrowser();
