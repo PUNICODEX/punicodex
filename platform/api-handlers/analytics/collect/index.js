@@ -293,7 +293,18 @@ async function writeEventV2(event, ctx) {
         count = count + 1,
         unique_sessions = unique_sessions + 1
     `,
-    [hour, event.event_name, pageType, templeId, referrerDomain, device, country]
+    // Dimensions are coalesced to '' — they form the PRIMARY KEY, which is
+    // implicitly NOT NULL on Postgres, and NULL keys would never fire the
+    // ON CONFLICT upsert on either dialect.
+    [
+      hour,
+      event.event_name,
+      pageType || '',
+      templeId || '',
+      referrerDomain || '',
+      device || '',
+      country || '',
+    ]
   );
 
   if (isRedisEnabled()) {

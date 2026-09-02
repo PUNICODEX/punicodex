@@ -10,7 +10,15 @@ const assert = require('node:assert');
 const { prepareTestDb } = require('./helpers/test-db.js');
 prepareTestDb(__filename);
 
-const { get, all, run, insert, transaction, isPostgres } = require('../platform/db/operational.js');
+const {
+  get,
+  all,
+  run,
+  insert,
+  transaction,
+  isPostgres,
+  translateForPostgres,
+} = require('../platform/db/operational.js');
 
 const tests = [];
 function test(name, fn) {
@@ -38,6 +46,25 @@ async function runSuite() {
 
 test('isPostgres reflects environment', () => {
   assert.strictEqual(isPostgres(), false);
+});
+
+test('translateForPostgres rewrites date(col) to a Postgres cast', () => {
+  assert.strictEqual(
+    translateForPostgres('SELECT date(created_at) FROM t WHERE date(created_at) >= $1'),
+    'SELECT (created_at)::date FROM t WHERE (created_at)::date >= $1'
+  );
+  assert.strictEqual(
+    translateForPostgres('GROUP BY date(s.first_seen_at)'),
+    'GROUP BY (s.first_seen_at)::date'
+  );
+  // Aliased selects survive intact.
+  assert.strictEqual(
+    translateForPostgres('date(e.created_at) AS event_day'),
+    '(e.created_at)::date AS event_day'
+  );
+  // Never touches a bare column named "date" or non-column arguments.
+  assert.strictEqual(translateForPostgres('SELECT date FROM t'), 'SELECT date FROM t');
+  assert.strictEqual(translateForPostgres("date('now')"), "date('now')");
 });
 
 test('get returns a single row', async () => {

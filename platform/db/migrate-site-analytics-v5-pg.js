@@ -77,11 +77,11 @@ async function runMigration() {
     `CREATE TABLE IF NOT EXISTS site_analytics_hourly (
       hour TEXT NOT NULL,
       event_name TEXT NOT NULL,
-      page_type TEXT,
-      temple_id TEXT,
-      referrer_domain TEXT,
-      device TEXT,
-      country TEXT,
+      page_type TEXT NOT NULL DEFAULT '',
+      temple_id TEXT NOT NULL DEFAULT '',
+      referrer_domain TEXT NOT NULL DEFAULT '',
+      device TEXT NOT NULL DEFAULT '',
+      country TEXT NOT NULL DEFAULT '',
       count INTEGER DEFAULT 0,
       unique_sessions INTEGER DEFAULT 0,
       PRIMARY KEY (hour, event_name, page_type, temple_id, referrer_domain, device, country)
@@ -146,6 +146,14 @@ async function runMigration() {
 
   for (const sql of statements) {
     await run(sql);
+  }
+
+  // Upgrade path for tables created by the first version of this migration
+  // (nullable dimensions): coalesce legacy NULLs, then enforce the contract.
+  for (const col of ['page_type', 'temple_id', 'referrer_domain', 'device', 'country']) {
+    await run(`UPDATE site_analytics_hourly SET ${col} = '' WHERE ${col} IS NULL`);
+    await run(`ALTER TABLE site_analytics_hourly ALTER COLUMN ${col} SET DEFAULT ''`);
+    await run(`ALTER TABLE site_analytics_hourly ALTER COLUMN ${col} SET NOT NULL`);
   }
 }
 

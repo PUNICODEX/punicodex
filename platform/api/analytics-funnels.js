@@ -243,6 +243,13 @@ async function materializeFunnels({ days = 30 }) {
   await transaction(async (t) => {
     for (const funnel of funnels) {
       const cfg = getFunnelConfig(funnel.id);
+      // Re-materialization must be idempotent: temple_id can be the ''
+      // site-wide sentinel, and NULL-keyed legacy rows never fire ON CONFLICT,
+      // so delete the window before rewriting it.
+      await t.run(
+        'DELETE FROM site_analytics_funnels WHERE funnel_id = $1 AND day >= $2 AND day <= $3',
+        [funnel.id, dayList[0], dayList[dayList.length - 1]]
+      );
       for (const day of dayList) {
         const rows = await fetchEventRows(t, cfg, { day });
         const groups = aggregateByTemple(rows, cfg);
@@ -260,7 +267,7 @@ async function materializeFunnels({ days = 30 }) {
               i,
               cfg.steps[i].name,
               day,
-              templeId || null,
+              templeId || '',
               g.counts[i],
             ]);
           }

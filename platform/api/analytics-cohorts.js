@@ -273,6 +273,12 @@ async function materializeCohorts({ days = 30 }) {
   `;
 
   await transaction(async (t) => {
+    // Idempotent re-materialization: clear the window first so legacy
+    // NULL-keyed rows (which never fire ON CONFLICT) cannot accumulate.
+    await t.run(
+      'DELETE FROM site_analytics_cohorts WHERE cohort_date >= $1 AND cohort_date <= $2',
+      [startDay, endDay]
+    );
     for (const matrix of [globalMatrix, ...templeMatrices]) {
       // Store the global rollup under an empty string so the unique constraint
       // treats repeated materializations as conflicts (SQLite NULLs are distinct).

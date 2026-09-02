@@ -45,7 +45,7 @@ function parsePlaceholders(sql) {
 }
 
 function toTaggedTemplate(sql, params) {
-  const { strings, values: paramIndices } = parsePlaceholders(sql);
+  const { strings, values: paramIndices } = parsePlaceholders(translateForPostgres(sql));
   const raw = [...strings];
   raw.raw = raw;
   const args = paramIndices.map((idx) => params[idx]);
@@ -58,6 +58,18 @@ function convertPlaceholders(sql) {
     return sql.replace(/\$(\d+)/g, () => '?');
   }
   return sql;
+}
+
+/**
+ * Translate SQLite-isms that have no Postgres equivalent. Currently:
+ *   date(col) → (col)::date
+ * Postgres has no single-argument date() function, and the analytics engines
+ * use date(...) pervasively to bucket TIMESTAMPTZ/text timestamps by day.
+ * Anchored to a bare column reference (optionally table-qualified) so it can
+ * never rewrite a column named "date" or a two-argument call.
+ */
+function translateForPostgres(sql) {
+  return sql.replace(/\bdate\(\s*([A-Za-z_][\w.]*)\s*\)/g, '($1)::date');
 }
 
 async function query(sql, params = []) {
@@ -230,4 +242,5 @@ module.exports = {
   transaction,
   wrapTransactionSql,
   closeDb,
+  translateForPostgres,
 };
