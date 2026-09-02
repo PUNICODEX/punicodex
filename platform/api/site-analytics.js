@@ -22,6 +22,7 @@ const { runMigration: runMigrationV2 } = require('../db/migrate-site-analytics-v
 const { runMigration: runMigrationV3 } = require('../db/migrate-site-analytics-v3');
 const { runMigration: runMigrationV4 } = require('../db/migrate-site-analytics-v4');
 const { runMigration: runMigrationV5 } = require('../db/migrate-site-analytics-v5');
+const { runMigration: runMigrationV5Pg } = require('../db/migrate-site-analytics-v5-pg');
 const { LEXICON } = require('../../type/js/lexicon.js');
 
 const KEY_PREFIX = 'punicodex:analytics:';
@@ -39,6 +40,15 @@ function sha256(value) {
   return crypto.createHash('sha256').update(value).digest('hex');
 }
 
+// The site did not exist before launch, so periods earlier than this are
+// structurally empty — showing them in quarter selectors, cohort grids, and
+// trend windows is noise, not honesty. Env-overridable for future re-launches.
+const ANALYTICS_LAUNCH_DATE = /^\d{4}-\d{2}-\d{2}$/.test(
+  process.env.PUNICODEX_ANALYTICS_LAUNCH_DATE || ''
+)
+  ? process.env.PUNICODEX_ANALYTICS_LAUNCH_DATE
+  : '2026-01-01';
+
 function dayString(date) {
   return date.toISOString().slice(0, 10);
 }
@@ -47,8 +57,11 @@ function lastNDays(days) {
   const list = [];
   const now = Date.now();
   for (let i = days - 1; i >= 0; i--) {
-    list.push(dayString(new Date(now - i * 24 * 60 * 60 * 1000)));
+    const day = dayString(new Date(now - i * 24 * 60 * 60 * 1000));
+    if (day >= ANALYTICS_LAUNCH_DATE) list.push(day);
   }
+  // Callers index list[0] as the window start; never return an empty window.
+  if (list.length === 0) list.push(dayString(new Date(now)));
   return list;
 }
 
@@ -74,7 +87,9 @@ function lastNQuarters(n) {
   let y = now.getUTCFullYear();
   let q = Math.ceil((now.getUTCMonth() + 1) / 3);
   for (let i = 0; i < n; i++) {
-    list.push(`${y}-Q${q}`);
+    const key = `${y}-Q${q}`;
+    // Drop quarters that ended before launch — they can never hold data.
+    if (quarterRange(key).end >= ANALYTICS_LAUNCH_DATE) list.push(key);
     q -= 1;
     if (q === 0) {
       q = 4;
@@ -197,18 +212,22 @@ async function recordToRedis({
 
 let migrationRan = false;
 
-function ensureMigration() {
-  if (migrationRan || isPostgres()) return;
-  runMigration();
-  runMigrationV2();
-  runMigrationV3();
-  runMigrationV4();
-  runMigrationV5();
+async function ensureMigration() {
+  if (migrationRan) return;
+  if (isPostgres()) {
+    await runMigrationV5Pg();
+  } else {
+    runMigration();
+    runMigrationV2();
+    runMigrationV3();
+    runMigrationV4();
+    runMigrationV5();
+  }
   migrationRan = true;
 }
 
 async function recordToSqlite(event) {
-  ensureMigration();
+  await ensureMigration();
   await insert(
     `
       INSERT INTO site_analytics_events
@@ -365,7 +384,7 @@ async function recordPageView({ path, templeId, referrer, sessionId, ip, userAge
 const MAX_VISIBLE_MS = 30 * 60 * 1000; // beacon caps at 30 min; enforce server-side too
 
 async function recordEngagementToSqlite(event) {
-  ensureMigration();
+  await ensureMigration();
   await insert(
     `
       INSERT INTO site_analytics_engagement
@@ -615,7 +634,7 @@ async function getRedisOverview({ days, templeId }) {
 }
 
 async function getSqliteOverview({ days, templeId }) {
-  ensureMigration();
+  await ensureMigration();
   const scoped = templeId !== null;
   const dayList = lastNDays(days);
   const params = scoped ? [dayList[0], templeId] : [dayList[0]];
@@ -829,7 +848,7 @@ async function getEngagementStats({ days = 30 } = {}) {
     }
   }
 
-  ensureMigration();
+  await ensureMigration();
   const totals = await get(
     `
       SELECT SUM(engagements) AS engagements, SUM(total_visible_ms) AS total_ms,
@@ -890,7 +909,7 @@ function finalizeEngagement({ days, engagements, totalMs, totalScroll, templeMap
  */
 async function getSessionDepth({ days = 30 } = {}) {
   if (isRedisEnabled()) return null;
-  ensureMigration();
+  await ensureMigration();
   const window = clampDays(days);
   const dayList = lastNDays(window);
   const row = await get(
@@ -962,7 +981,7 @@ async function getCountryStats({ days = 30, limit = 30 } = {}) {
     }
   }
 
-  ensureMigration();
+  await ensureMigration();
   const rows = await all(
     `
       SELECT country, SUM(human_views) AS views
@@ -1046,7 +1065,7 @@ async function getTempleAnalytics(templeId, { days = 30 } = {}) {
   }
 
   if (!isRedisEnabled()) {
-    ensureMigration();
+    await ensureMigration();
     const dayRows = await all(
       `
         SELECT day, SUM(human_views) AS views
@@ -1266,7 +1285,7 @@ async function getTrending({ days = 7, limit = 20 } = {}) {
   }
 
   if (!isRedisEnabled() || (temples.length === 0 && pages.length === 0)) {
-    ensureMigration();
+    await ensureMigration();
     const templeRows = await all(
       `
         SELECT temple_id, SUM(human_views) AS views
@@ -1311,7 +1330,7 @@ async function getTrending({ days = 7, limit = 20 } = {}) {
       // today deltas are cosmetic; never fail the board over them
     }
   } else {
-    ensureMigration();
+    await ensureMigration();
     const todayRows = await all(
       `
         SELECT temple_id, SUM(human_views) AS views
@@ -1352,7 +1371,7 @@ function daysInRange(startDay, endDay) {
 }
 
 async function getSqliteQuarterlyTotals(yearQuarter, templeId) {
-  ensureMigration();
+  await ensureMigration();
   const scoped = templeId !== null && /^[a-z0-9-]{1,64}$/.test(templeId);
   const params = scoped ? [yearQuarter, templeId] : [yearQuarter];
   const scopeClause = scoped ? 'AND temple_id = $2' : '';
@@ -1409,7 +1428,7 @@ async function getQuarterlyOverview({ yearQuarter, templeId = null, compareWith 
     }
   }
 
-  ensureMigration();
+  await ensureMigration();
   const { start, end } = quarterRange(yearQuarter);
   const params = scopedId !== null ? [yearQuarter, scopedId] : [yearQuarter];
   const scopeClause = scopedId !== null ? 'AND temple_id = $2' : '';
@@ -1621,7 +1640,7 @@ async function getRedisQuarterlyOverview({ yearQuarter, templeId, compareWith })
 // ─── Trend + momentum metrics ───
 
 async function getSqliteTrafficTotalsForRange(firstDay, lastDay, templeId) {
-  ensureMigration();
+  await ensureMigration();
   const scoped = templeId !== null && /^[a-z0-9-]{1,64}$/.test(templeId);
   const params = scoped ? [firstDay, lastDay, templeId] : [firstDay, lastDay];
   const scopeClause = scoped ? 'AND temple_id = $3' : '';
@@ -1651,7 +1670,7 @@ async function getSqliteTrafficTotalsForRange(firstDay, lastDay, templeId) {
 }
 
 async function getSqliteEngagementForRange(firstDay, lastDay, templeId) {
-  ensureMigration();
+  await ensureMigration();
   const scoped = templeId !== null && /^[a-z0-9-]{1,64}$/.test(templeId);
   const params = scoped ? [firstDay, lastDay, templeId] : [firstDay, lastDay];
   const scopeClause = scoped ? 'AND temple_id = $3' : '';
@@ -1771,7 +1790,7 @@ async function getTrendMetrics({ days = 30, templeId = null } = {}) {
  * Redis is the active driver).
  */
 async function getCrossTempleFlows({ days = 30, limit = 25, templeId = null } = {}) {
-  ensureMigration();
+  await ensureMigration();
   const window = clampDays(days);
   const max = Math.min(100, Math.max(1, parseInt(limit, 10) || 25));
   const dayList = lastNDays(window);
@@ -1963,7 +1982,7 @@ async function exportAnalyticsCsv({ mode = 'overview', days = 30, templeId = nul
       return rows.join('');
     }
     case 'quarterly': {
-      ensureMigration();
+      await ensureMigration();
       const quarters = lastNQuarters(8);
       const rows = [
         toCsvRow([
