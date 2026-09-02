@@ -48,9 +48,9 @@ jobs:
           # silent process exit. Running one suite at a time is slower but
           # stable, and the divergence gate still validates the full flywheel.
           PUNICODEX_TEST_PARALLELISM: 1
-          # 5.5 GB gives the suite enough heap while leaving headroom for the OS,
+          # 5 GB gives the suite enough heap while leaving headroom for the OS,
           # Pillow, and git processes on the ~7 GB GitHub-hosted runner.
-          NODE_OPTIONS: --max-old-space-size=5632
+          NODE_OPTIONS: --max-old-space-size=5120
 
       - name: Ensure generated files are in sync
         run: |
