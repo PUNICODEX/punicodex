@@ -39,11 +39,13 @@ const RELATIVE_ALIASES = new Map([
 const SKIP = /^(docs\/lighthouse\/|Marketing\/|New material)/;
 
 function hashOf(rel) {
-  return crypto
-    .createHash('sha256')
-    .update(fs.readFileSync(path.join(ROOT, rel)))
-    .digest('hex')
-    .slice(0, 10);
+  // Must mirror scripts/stamp-asset-versions.js: hash LF-normalized content so
+  // Windows (CRLF working tree) and Linux (LF) agree on the expected pin.
+  const bytes = Buffer.from(
+    fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n'),
+    'utf8'
+  );
+  return crypto.createHash('sha256').update(bytes).digest('hex').slice(0, 10);
 }
 
 const tests = [];

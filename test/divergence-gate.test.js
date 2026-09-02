@@ -50,10 +50,10 @@ function canonicalHashesUnchanged() {
   const recorded = manifest.canonicalHashes || {};
   return Object.entries(CANONICAL_SOURCES).every(([role, rel]) => {
     try {
-      const hash = crypto
-        .createHash('sha256')
-        .update(fs.readFileSync(path.join(ROOT, rel)))
-        .digest('hex');
+      // Mirror scripts/update-data-version.js: LF-normalized hashing so
+      // Windows CRLF working trees don't compute phantom hash changes.
+      const content = fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
+      const hash = crypto.createHash('sha256').update(content).digest('hex');
       return recorded[role] === hash;
     } catch {
       return false;
