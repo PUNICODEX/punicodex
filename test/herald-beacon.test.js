@@ -241,8 +241,31 @@ async function run() {
       // Wait for the card to actually open before touching the form; on slow
       // runners the mount finishes after the seal becomes clickable.
       await page.locator('.herald-beacon__card').waitFor({ state: 'visible', timeout: 30000 });
+      // openCard() focuses the email field on a 60ms timer; on slow runners
+      // that timer fires mid-fill and steals the phone keystrokes into the
+      // email field (observed in CI: email held both values, phone empty).
+      // Wait until the programmatic focus has landed before typing.
+      await page.waitForFunction(
+        () =>
+          document.activeElement ===
+          document.querySelector('.herald-beacon__card input[name="email"]'),
+        { timeout: 30000 }
+      );
       await page.locator('input[name="email"]').fill('herald.fan@example.com');
       await page.locator('input[name="phone"]').fill('+61 400 111 222');
+      // Verify the values actually stuck; refill once if anything stole them.
+      for (let refill = 0; refill < 3; refill++) {
+        const valuesOk = await page.evaluate(
+          () =>
+            document.querySelector('.herald-beacon__card input[name="email"]')?.value ===
+              'herald.fan@example.com' &&
+            document.querySelector('.herald-beacon__card input[name="phone"]')?.value ===
+              '+61 400 111 222'
+        );
+        if (valuesOk) break;
+        await page.locator('input[name="email"]').fill('herald.fan@example.com');
+        await page.locator('input[name="phone"]').fill('+61 400 111 222');
+      }
       // The submit handler binds at mount; a click that lands before binding
       // is silently dropped. Retry the click until the request is observed
       // (the route fulfills instantly, so a bound handler answers at once).
