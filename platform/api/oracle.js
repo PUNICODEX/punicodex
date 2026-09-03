@@ -12,6 +12,8 @@ const { getDbPath } = require('../db/db');
 const { searchKeywords } = require('./keyword-extractor');
 const { getEntryContext, loadLoreCatalog } = require('./oracle-context');
 const { chat: llmChat } = require('./llm');
+const { derivePronunciation } = require('../../type/js/pronunciation-rules');
+const ORIGINAL_SCRIPT_LOOKUP = require('../../js/original-script-lookup');
 const { embedText } = require('./embeddings');
 
 let db;
@@ -1396,6 +1398,47 @@ function resolveLlmConfig(env = process.env) {
   return { apiKey, model, baseUrl: env.ORACLE_LLM_BASE_URL || undefined, provider: 'openai' };
 }
 
+/**
+ * The Oracle's philological doctrine. This is what makes the model answer
+ * orthography questions better than a generic LLM: it states the project's
+ * diacritic semantics, the original-script vs transliteration distinction,
+ * and the citation discipline, so the model reasons *inside* our conventions
+ * instead of regressing to internet-average habits (stripping accents,
+ * calling transliterations "the original writing", flattening IAST).
+ */
+const ORACLE_SYSTEM_PROMPT = [
+  'You are the PUNICODEX Oracle — a philological specialist on mythological',
+  'name restorations, answering strictly from the supplied context.',
+  '',
+  'Diacritic doctrine (never violate):',
+  '- Macron (ā ē ī ō ū) marks a LONG vowel. Acute (á é ḗ) marks STRESS/pitch',
+  '  accent. Circumflex (â ê ô) marks BOTH stress and length. Underdots and',
+  '  line-below marks (ḥ ṣ ṭ ḍ ẹ ọ ṛ ḥ) are DISTINCT sounds, not decoration',
+  '  (Semitic emphatics, IAST retroflexes, Yoruba open vowels). Letters like',
+  '  þ ð æ œ š ǫ ꜣ ꜥ are atomic letters of the writing tradition.',
+  '- The restored Unicode form is canonical; the ASCII form is a lossy',
+  '  fallback. Never strip, drop, or "simplify" a diacritic, never present',
+  '  the ASCII spelling as more correct, and never "correct" a restored form.',
+  '',
+  'Script honesty doctrine:',
+  '- Say "original script" only for forms the context labels Original Script',
+  '  (Greek, Devanagari, CJK, hieroglyphs, cuneiform, runes...). A form',
+  '  labeled Scholarly Transliteration is a modern academic convention —',
+  '  never call it the original writing system.',
+  '- Egyptian vocalizations are conventional readings: hieroglyphs record',
+  '  consonants only. Sanskrit e/o are inherently long — IAST never writes',
+  '  ē/ō for them.',
+  '',
+  'Answering doctrine:',
+  '- Ground every claim in the context (meaning, etymology, character',
+  '  breakdown, pronunciation, sources). If the context does not support a',
+  '  claim, do not make it. Explain diacritics using the character breakdown',
+  '  when one is provided — name the letter and what its mark records.',
+  '- When a pronunciation is provided, you may quote its IPA and respelling',
+  '  verbatim; they come from a rules engine, not guesswork.',
+  '- Use HTML: <p> for paragraphs, <strong> for emphasis. Under 250 words.',
+].join('\n');
+
 async function callLlmIfConfigured(prompt) {
   const config = resolveLlmConfig();
   if (!config) return null;
@@ -1407,14 +1450,62 @@ async function callLlmIfConfigured(prompt) {
     messages: [
       {
         role: 'system',
-        content:
-          'You are the PUNICODEX Oracle. Synthesize the provided context into a scholarly, dense, citation-aware paragraph. Do not add facts absent from the context. Use HTML: <strong> for emphasis, <p> for paragraphs. Keep under 250 words.',
+        content: ORACLE_SYSTEM_PROMPT,
       },
       { role: 'user', content: prompt },
     ],
     temperature: 0.2,
-    maxTokens: 512,
+    maxTokens: 768,
   });
+}
+
+function formatBreakdownForPrompt(breakdown) {
+  if (!Array.isArray(breakdown) || !breakdown.length) return null;
+  const parts = breakdown
+    .filter((row) => row && (row.to_char || row.char))
+    .map((row) => {
+      const from = row.char || '';
+      const to = row.to_char || from;
+      const changed = from !== to;
+      const note = row.note ? ` — ${row.note}` : '';
+      return changed ? `${from} → ${to}${note}` : `${to}${note}`;
+    });
+  return parts.length ? parts.join('; ') : null;
+}
+
+function formatPronunciationForPrompt(ctx) {
+  try {
+    const p = derivePronunciation({
+      pantheon: ctx.pantheon,
+      unicode: ctx.unicode,
+      ascii: ctx.ascii,
+      id: ctx.id,
+    });
+    if (!p || !p.derived) return null;
+    const lines = [
+      `IPA: ${p.ipa} (${p.ipaLabel})`,
+      `Respelling: ${p.respelling}`,
+      `Syllables: ${p.syllables.join('·')}`,
+    ];
+    if (p.timing) lines.push(`Timing: ${p.timing.totalMorae} morae, ≈${p.timing.durationMs} ms`);
+    if (p.conventional) lines.push('This is a CONVENTIONAL reading, not an attested vocalization.');
+    if (p.notes?.length) lines.push(`Notes: ${p.notes.slice(0, 3).join(' | ')}`);
+    return lines.join('\n    ');
+  } catch (_e) {
+    return null;
+  }
+}
+
+function formatVariantsForPrompt(variants) {
+  if (!Array.isArray(variants) || !variants.length) return null;
+  const parts = variants.slice(0, 6).map((v) => {
+    if (typeof v === 'string') return v;
+    const form = v.form || v.unicode || v.value;
+    if (!form) return null;
+    const why = v.reason || v.note || (Array.isArray(v.sources) ? `sources: ${v.sources.join(', ')}` : '');
+    return why ? `${form} (${why})` : form;
+  });
+  return parts.filter(Boolean).join('; ') || null;
 }
 
 function buildLlmPrompt(q, contexts, intent) {
@@ -1423,15 +1514,38 @@ function buildLlmPrompt(q, contexts, intent) {
 
   for (const ctx of contexts.slice(0, 2)) {
     promptParts.push(
-      `- ${ctx.unicode || ctx.ascii} (${ctx.pantheon}, ${ctx.tierLabel || ctx.tier})`
+      `- ${ctx.unicode || ctx.ascii} (ASCII: ${ctx.ascii}; ${ctx.pantheon}, ${ctx.tierLabel || ctx.tier})`
     );
     if (ctx.meaning) promptParts.push(`  Meaning: ${ctx.meaning}`);
+
+    // Script honesty: the lookup carries the canonical label ("Original
+    // Script" vs "Scholarly Transliteration") — the model must inherit it.
+    const scriptInfo = ORIGINAL_SCRIPT_LOOKUP[ctx.id];
+    if (scriptInfo?.originalScript) {
+      promptParts.push(
+        `  ${scriptInfo.scriptLabel} (${scriptInfo.scriptName}): ${scriptInfo.originalScript}`
+      );
+    } else if (ctx.greek && ctx.greek !== '—') {
+      promptParts.push(`  Original Script: ${ctx.greek}`);
+    }
+
+    const breakdown = formatBreakdownForPrompt(ctx.breakdown);
+    if (breakdown) promptParts.push(`  Character breakdown (ASCII → restored): ${breakdown}`);
+
+    const pronunciation = formatPronunciationForPrompt(ctx);
+    if (pronunciation) promptParts.push(`  Pronunciation (rules-derived):\n    ${pronunciation}`);
+
+    const variants = formatVariantsForPrompt(ctx.variants);
+    if (variants) promptParts.push(`  Attested variants: ${variants}`);
+
     if (ctx.lore?.overview || ctx.lore?.domains?.lead) {
       promptParts.push(`  Overview: ${stripHtml(ctx.lore.overview || ctx.lore.domains.lead)}`);
     }
     if (ctx.lore?.mythology?.lead)
       promptParts.push(`  Mythology: ${stripHtml(ctx.lore.mythology.lead)}`);
     if (ctx.etymology) promptParts.push(`  Etymology: ${etymologySummary(ctx.etymology)}`);
+    if (ctx.sources?.length)
+      promptParts.push(`  Sources: ${ctx.sources.slice(0, 4).join('; ')}`);
     if (ctx.site) promptParts.push(`  Live site: ${ctx.site.domain} — ${ctx.site.title}`);
   }
 
@@ -1627,4 +1741,7 @@ module.exports = {
   retrieveRelated,
   etymologySummary,
   resolveLlmConfig,
+  formatBreakdownForPrompt,
+  formatPronunciationForPrompt,
+  formatVariantsForPrompt,
 };

@@ -3,7 +3,14 @@
  */
 
 const assert = require('node:assert');
-const { askOracle, detectIntent, resolveLlmConfig } = require('../platform/api/oracle');
+const {
+  askOracle,
+  detectIntent,
+  resolveLlmConfig,
+  formatBreakdownForPrompt,
+  formatPronunciationForPrompt,
+  formatVariantsForPrompt,
+} = require('../platform/api/oracle');
 
 async function test(name, fn) {
   try {
@@ -135,6 +142,52 @@ test('resolveLlmConfig: nemotron honors NVIDIA_API_KEY alias and overrides', () 
     baseUrl: 'http://127.0.0.1:8000/v1',
     provider: 'nemotron',
   });
+});
+
+test('formatBreakdownForPrompt renders ASCII→restored mappings with notes', () => {
+  const out = formatBreakdownForPrompt([
+    { char: 'a', to_char: 'á', type: 'accent', note: 'Acute on alpha' },
+    { char: 'p', to_char: 'p', type: 'same', note: 'Pi' },
+  ]);
+  assert.ok(out.includes('a → á — Acute on alpha'));
+  assert.ok(out.includes('p — Pi'));
+  assert.strictEqual(formatBreakdownForPrompt([]), null);
+  assert.strictEqual(formatBreakdownForPrompt(null), null);
+});
+
+test('formatPronunciationForPrompt returns rules-derived IPA without slash wrapping', () => {
+  const out = formatPronunciationForPrompt({
+    pantheon: 'greek',
+    unicode: 'Zeús',
+    ascii: 'Zeus',
+    id: 'zeus',
+  });
+  assert.ok(out.includes('IPA: /ˈzdeu̯s/'), `expected engine IPA, got: ${out}`);
+  assert.ok(!out.includes('//'), 'no double slash wrapping');
+  assert.ok(out.includes('ZDEWS'));
+  assert.ok(out.includes('morae'));
+});
+
+test('formatPronunciationForPrompt labels Egyptian readings as conventional', () => {
+  const out = formatPronunciationForPrompt({
+    pantheon: 'egyptian',
+    unicode: 'Ḏḥwtj',
+    ascii: 'Thoth',
+    id: 'thoth',
+  });
+  if (out) assert.ok(out.includes('CONVENTIONAL'), `expected conventional label: ${out}`);
+});
+
+test('formatVariantsForPrompt renders forms with notes and sources', () => {
+  const out = formatVariantsForPrompt([
+    { unicode: 'Hekatē', note: 'LSJ convention' },
+    'plain-variant',
+    { form: 'Sourced', sources: ['LSJ'] },
+  ]);
+  assert.ok(out.includes('Hekatē (LSJ convention)'));
+  assert.ok(out.includes('plain-variant'));
+  assert.ok(out.includes('Sourced (sources: LSJ)'));
+  assert.strictEqual(formatVariantsForPrompt([]), null);
 });
 
 if (!process.exitCode) {
