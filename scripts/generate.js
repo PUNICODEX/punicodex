@@ -160,6 +160,9 @@ const allScripts = [
   'scripts/generate-benchmark-suite.js',
   'scripts/generate-mythology-synthesis-corpus.js',
   'scripts/generate-oracle-corpus.js',
+  // Doctrine SFT corpus: reads entries.jsonl and the served Oracle system
+  // prompt; must follow export-model-corpus.js like the other phase generators.
+  'scripts/generate-oracle-doctrine-corpus.js',
   'scripts/generate-symbolic-corpus.js',
   'scripts/generate-scientific-analogies-corpus.js',
   'scripts/generate-pretrain-corpus.js',

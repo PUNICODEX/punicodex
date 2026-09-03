@@ -17,9 +17,9 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 62,975 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 15,608 | `data/corpus/chat-eval.jsonl` |
-| **Total** | **78,583** | — |
+| Train | 65,656 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 16,293 | `data/corpus/chat-eval.jsonl` |
+| **Total** | **81,949** | — |
 
 Source corpora:
 - `instructions.jsonl`: 9,410 examples
@@ -31,6 +31,7 @@ Source corpora:
 - `reasoning-examples.jsonl`: 3,883 examples
 - `mythology-synthesis.jsonl`: 404 examples
 - `oracle-examples.jsonl`: 1,977 examples
+- `oracle-doctrine-examples.jsonl`: 3,366 examples
 - `symbolic-correspondences.jsonl`: 1,236 examples
 - `scientific-analogies.jsonl`: 1,500 examples
 

@@ -14,6 +14,12 @@
 const assert = require('node:assert');
 const { LEXICON } = require('../type/js/lexicon.js');
 const { loadGoldenSet, runEval, THRESHOLDS } = require('../scripts/eval-oracle.js');
+const {
+  BACKENDS,
+  parseBackendFlag,
+  runBackendScorecard,
+  printScorecard,
+} = require('../scripts/oracle-backend-scorecard.js');
 
 async function test(name, fn) {
   try {
@@ -28,6 +34,15 @@ async function test(name, fn) {
 
 async function main() {
   console.log('Oracle Eval Battery');
+
+  // Optional A/B mode: --backend=<name> additionally scores the LLM polish
+  // layer for that backend. No flag = the deterministic battery only, with
+  // byte-for-byte unchanged output (CI runs it unflagged).
+  const flag = parseBackendFlag(process.argv.slice(2));
+  if (flag.error) {
+    console.error(`✗ ${flag.error}`);
+    process.exit(2);
+  }
 
   const golden = loadGoldenSet();
   const report = await runEval({ quick: true });
@@ -103,6 +118,21 @@ async function main() {
   } else {
     console.log('\n✗ Some Oracle Eval Battery tests failed');
     process.exit(1);
+  }
+
+  // Backend A/B scorecard: opt-in via --backend=<name>. A missing key env var
+  // is a skip, never a failure — CI has no keys.
+  if (flag.backend) {
+    const backend = BACKENDS[flag.backend];
+    if (!backend.isConfigured(process.env)) {
+      console.log(
+        `\nOracle Backend Scorecard — ${flag.backend}: SKIPPED ` +
+          `(set ${backend.keyHint} to enable; no key in the environment, exiting 0)`
+      );
+      return;
+    }
+    const scorecard = await runBackendScorecard(flag.backend, golden.cases, { quick: true });
+    printScorecard(scorecard);
   }
 }
 

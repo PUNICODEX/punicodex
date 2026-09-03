@@ -353,6 +353,7 @@ function main() {
   const benchmark = loadJsonlCounts('benchmark.jsonl');
   const mythologySynthesis = loadJsonlCounts('mythology-synthesis.jsonl');
   const oracle = loadJsonlCounts('oracle-examples.jsonl');
+  const oracleDoctrine = loadJsonlCounts('oracle-doctrine-examples.jsonl');
   const symbolic = loadJsonlCounts('symbolic-correspondences.jsonl');
   const scientific = loadJsonlCounts('scientific-analogies.jsonl');
   const instructions = loadJsonlCounts('instructions.jsonl');
@@ -396,6 +397,8 @@ function main() {
       mythologySynthesisByTask: mythologySynthesis.byTask,
       oracleExamples: oracle.count,
       oracleByTask: oracle.byTask,
+      oracleDoctrineExamples: oracleDoctrine.count,
+      oracleDoctrineByTask: oracleDoctrine.byTask,
       symbolicCorrespondenceExamples: symbolic.count,
       symbolicCorrespondenceByTask: symbolic.byTask,
       scientificAnalogyExamples: scientific.count,

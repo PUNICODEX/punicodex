@@ -265,6 +265,7 @@ if (require.main === module) {
 module.exports = {
   loadGoldenSet,
   stripAnswer,
+  MARKER_PATTERNS,
   scoreCase,
   summarize,
   runEval,

@@ -58,6 +58,7 @@ function main() {
     { name: 'benchmark.jsonl', desc: 'Held-out evaluation benchmark with known answers (Phase 8).' },
     { name: 'mythology-synthesis.jsonl', desc: 'Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10).' },
     { name: 'oracle-examples.jsonl', desc: 'Conversational Oracle training examples with system/user/assistant turns (Phase 11).' },
+    { name: 'oracle-doctrine-examples.jsonl', desc: 'Philological-doctrine instruction examples: diacritic semantics, script honesty, restoration-vs-ASCII, doctrine boundaries (Phase 11b).' },
     { name: 'symbolic-correspondences.jsonl', desc: 'Symbolic and hermetic correspondences with confidence and provenance (Phase 12).' },
     { name: 'scientific-analogies.jsonl', desc: 'Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13).' },
     { name: 'chat-train.jsonl', desc: 'Unified chat-format training corpus, 80% deterministic split (Phase 14).' },

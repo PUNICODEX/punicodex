@@ -10,6 +10,9 @@ const {
   formatBreakdownForPrompt,
   formatPronunciationForPrompt,
   formatVariantsForPrompt,
+  formatScribeSection,
+  formatWeaveSection,
+  stripLlmReasoning,
 } = require('../platform/api/oracle');
 
 async function test(name, fn) {
@@ -188,6 +191,72 @@ test('formatVariantsForPrompt renders forms with notes and sources', () => {
   assert.ok(out.includes('plain-variant'));
   assert.ok(out.includes('Sourced (sources: LSJ)'));
   assert.strictEqual(formatVariantsForPrompt([]), null);
+});
+
+test('detectIntent: scribe questions route to scribe', () => {
+  assert.strictEqual(detectIntent('Is Hekate spelled right?'), 'scribe');
+  assert.strictEqual(detectIntent('should I write Hekate or Hekátē?'), 'scribe');
+  assert.strictEqual(detectIntent('check my spelling of Apollon'), 'scribe');
+});
+
+test('detectIntent: modern-world pattern questions route to weave', () => {
+  assert.strictEqual(detectIntent('What does Hermes mean for the modern world?'), 'weave');
+  assert.strictEqual(detectIntent('why do companies name their brands after Athena?'), 'weave');
+  assert.strictEqual(detectIntent('the thread that connects Thor to modern industry'), 'weave');
+  // Plain meaning questions must NOT be swallowed by weave.
+  assert.strictEqual(detectIntent('what does Nike mean'), 'meaning');
+});
+
+test('askOracle: scribe answer carries the Scribe ruling with breakdown items', async () => {
+  const result = await askOracle('Is Hekate spelled right?');
+  assert.ok(result.answer.includes("Scribe's ruling"), 'scribe section present');
+  assert.ok(result.answer.includes('á'), 'restored letters shown');
+  assert.strictEqual(result.primaryId, 'hekate');
+});
+
+test('askOracle: weave answer carries pattern, industry, and everyday sections', async () => {
+  const result = await askOracle('What does Hermes mean for the modern world?');
+  assert.ok(
+    result.answer.includes('pattern across pantheons') ||
+      result.answer.includes('Where the pattern lives now') ||
+      result.answer.includes('Descendants in plain English'),
+    'at least one weave section present'
+  );
+  assert.strictEqual(result.primaryId, 'hermes');
+});
+
+test('formatWeaveSection grounds industry seats from data', () => {
+  const html = formatWeaveSection({ id: 'hermes', unicode: 'Hermês', ascii: 'Hermes' }, {});
+  assert.ok(html.includes('Where the pattern lives now'), 'industry section');
+  assert.ok(html.includes('Commerce'), 'Hermes commerce seat');
+  assert.strictEqual(formatWeaveSection({ id: 'nonexistent-entry' }, {}), '');
+});
+
+test('formatScribeSection lists only the changed characters', () => {
+  const html = formatScribeSection(
+    {
+      breakdown: [
+        { char: 'a', to_char: 'á', note: 'Acute on alpha' },
+        { char: 'p', to_char: 'p', note: 'Pi' },
+      ],
+    },
+    { unicode: 'Apóllōn', ascii: 'Apollon' }
+  );
+  assert.ok(html.includes('a → á'));
+  assert.ok(!html.includes('p → p'), 'unchanged chars omitted');
+});
+
+test('stripLlmReasoning salvages after a write-pivot and rejects pure meta', () => {
+  assert.strictEqual(
+    stripLlmReasoning("We need to answer. We must use only the context. Let's write: The answer."),
+    'The answer.'
+  );
+  assert.strictEqual(stripLlmReasoning('We must not mention other industries.'), null);
+  assert.strictEqual(
+    stripLlmReasoning('maybe two paragraphs. Paragraph 1: planning out loud'),
+    null
+  );
+  assert.strictEqual(stripLlmReasoning('<p>Clean answer.</p>'), '<p>Clean answer.</p>');
 });
 
 if (!process.exitCode) {

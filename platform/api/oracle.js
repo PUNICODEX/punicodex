@@ -8,6 +8,8 @@
  * to NVIDIA Nemotron via NIM or a self-hosted vLLM).
  */
 const Database = require('better-sqlite3');
+const fs = require('node:fs');
+const path = require('node:path');
 const { getDbPath } = require('../db/db');
 const { searchKeywords } = require('./keyword-extractor');
 const { getEntryContext, loadLoreCatalog } = require('./oracle-context');
@@ -17,6 +19,86 @@ const ORIGINAL_SCRIPT_LOOKUP = require('../../js/original-script-lookup');
 const { embedText } = require('./embeddings');
 
 let db;
+
+// ── Pattern-weave grounding (lazy-loaded generated datasets) ────────────────
+// The cross-pantheon connection graph, the industry-pattern seats, and the
+// everyday-word descendants let the Oracle answer "what does this ancient
+// pattern mean for the modern world" from data instead of vibes.
+let similarityGraph = null;
+function loadSimilarityGraph() {
+  if (similarityGraph) return similarityGraph;
+  try {
+    const raw = JSON.parse(
+      fs.readFileSync(path.join(__dirname, 'similarities.json'), 'utf8')
+    );
+    const names = new Map((raw.nodes || []).map((n) => [n.id, n.unicode || n.ascii || n.id]));
+    const byEntry = new Map();
+    for (const e of raw.edges || []) {
+      for (const [self, other] of [
+        [e.source, e.target],
+        [e.target, e.source],
+      ]) {
+        if (!byEntry.has(self)) byEntry.set(self, []);
+        byEntry.get(self).push({
+          id: other,
+          name: names.get(other) || other,
+          relationship: e.relationship,
+          category: e.category,
+          strength: e.strength || 1,
+        });
+      }
+    }
+    for (const list of byEntry.values()) list.sort((a, b) => b.strength - a.strength);
+    similarityGraph = byEntry;
+  } catch (_e) {
+    similarityGraph = new Map();
+  }
+  return similarityGraph;
+}
+
+let industryPatterns = null;
+function loadIndustryPatterns() {
+  if (industryPatterns) return industryPatterns;
+  try {
+    const raw = JSON.parse(
+      fs.readFileSync(path.join(__dirname, 'industry-patterns.json'), 'utf8')
+    );
+    industryPatterns = raw.byEntry || {};
+  } catch (_e) {
+    industryPatterns = {};
+  }
+  return industryPatterns;
+}
+
+let everydayByEntry = null;
+function loadEverydayWords() {
+  if (everydayByEntry) return everydayByEntry;
+  try {
+    const { EVERYDAY_WORDS } = require('../../type/js/everyday-words');
+    everydayByEntry = new Map();
+    for (const w of EVERYDAY_WORDS || []) {
+      if (!w.entry) continue;
+      if (!everydayByEntry.has(w.entry)) everydayByEntry.set(w.entry, []);
+      everydayByEntry.get(w.entry).push(w);
+    }
+  } catch (_e) {
+    everydayByEntry = new Map();
+  }
+  return everydayByEntry;
+}
+
+function similarityEdgesFor(entryId, limit = 4) {
+  return (loadSimilarityGraph().get(entryId) || []).slice(0, limit);
+}
+
+function industrySeatsFor(entryId, limit = 3) {
+  const seats = loadIndustryPatterns()[entryId] || [];
+  return [...seats].sort((a, b) => (b.weight || 0) - (a.weight || 0)).slice(0, limit);
+}
+
+function everydayWordsFor(entryId, limit = 3) {
+  return (loadEverydayWords().get(entryId) || []).slice(0, limit);
+}
 
 function escapeHtml(text) {
   return String(text ?? '')
@@ -400,6 +482,12 @@ function detectIntent(q) {
   if (/\b(who is|who was|who are|whom is|whom was|tell me about)\b/.test(lower)) return 'who';
   if (/\b(what is the etymology of|what was the etymology of|etymology of)\b/.test(lower))
     return 'etymology';
+  if (
+    /\b(echo(es)? of|patterns? (of|behind|connecting|across)|modern world|today's world|in today's|why (do|are|does) .*(named|name their|brands?)|what does .* (say|mean) (for|about)( the)? (us|today|modern)|connect(ion|ions|ing)? (to|with|between) (the )?(modern|today|world|industr)|weave|through.?line|thread that (runs|connects)|humanity|human civilization)\b/.test(
+      lower
+    )
+  )
+    return 'weave';
   if (/\b(what does|meaning of|what do|mean|stands for)\b/.test(lower)) return 'meaning';
   if (
     /\b(goddess of|god of|deity of|presides? over|rules? over|patron of|associated with)\b/.test(
@@ -417,7 +505,13 @@ function detectIntent(q) {
     return 'mythology';
   if (/\b(symbol|icon|attribute|sacred animal|sacred bird|weapon|staff|object)\b/.test(lower))
     return 'symbols';
-  if (/\b(variant|spelling|alternate|other form|different spelling|diacritics?)\b/.test(lower))
+  if (
+    /\b(is (it|this|that) (spelled|written)|spell(ed|ing)? (it|this|that|check)|correct(ly)? (spelled|spelling|form)|spelled (right|wrong|correctly)|should (i|we|it) (spell|write|use)|which (spelling|form|version) (is|should|to)|check (my|this|the) spelling)\b/.test(
+      lower
+    )
+  )
+    return 'scribe';
+  if (/\b(variant|spellings?|alternate|other form|different spellings?|diacritics?)\b/.test(lower))
     return 'variants';
   if (/\b(original script|writing|glyph|hieroglyph|devanagari|cuneiform|rune|script)\b/.test(lower))
     return 'script';
@@ -1096,6 +1190,74 @@ function formatArchaeology(archaeology) {
   return `<div class="oracle-section"><h4>Archaeology & worship</h4><p>${stripHtml(text)}</p></div>`;
 }
 
+// Scribe mode — adjudicate a spelling from the character breakdown: what each
+// mark records, and exactly what the ASCII form destroys.
+function formatScribeSection(ctx, entry) {
+  const breakdown = Array.isArray(ctx?.breakdown) ? ctx.breakdown : [];
+  const changed = breakdown.filter((row) => row && row.to_char && row.char !== row.to_char);
+  const name = escapeHtml(entry.unicode || entry.ascii);
+  const ascii = escapeHtml(entry.ascii || '');
+  if (!changed.length) {
+    return `<div class="oracle-section"><h4>The Scribe's ruling</h4><p><strong>${name}</strong> carries no marks beyond plain ASCII — the restoration and the fallback coincide here.</p></div>`;
+  }
+  const items = changed
+    .map(
+      (row) =>
+        `<li><strong>${escapeHtml(row.char)} → ${escapeHtml(row.to_char)}</strong>${
+          row.note ? ` — ${escapeHtml(row.note)}` : ''
+        }</li>`
+    )
+    .join('');
+  return (
+    `<div class="oracle-section"><h4>The Scribe's ruling</h4>` +
+    `<p><strong>${name}</strong> is the canonical restoration; <strong>${ascii}</strong> is the lossy fallback. ` +
+    `What the marks record:</p><ul>${items}</ul>` +
+    `<p>Drop them and the name keeps its letters but loses its sound — stress, length, and the distinctions the tradition wrote into it.</p></div>`
+  );
+}
+
+// Weave mode — the pattern-recognition section: cross-pantheon connections,
+// modern industry resonance, and everyday-word descendants, from data.
+function formatWeaveSection(entry, lore) {
+  let out = '';
+  const edges = similarityEdgesFor(entry.id, 4);
+  if (edges.length) {
+    const items = edges
+      .map(
+        (e) =>
+          `<li><strong>${escapeHtml(e.name)}</strong> — ${escapeHtml(e.relationship)}${
+            e.category ? ` <em>(${escapeHtml(e.category)})</em>` : ''
+          }</li>`
+      )
+      .join('');
+    out += `<div class="oracle-section"><h4>The pattern across pantheons</h4><p>The same archetype surfaces independently in other traditions:</p><ul>${items}</ul></div>`;
+  }
+  const seats = industrySeatsFor(entry.id, 3);
+  if (seats.length) {
+    const items = seats
+      .map(
+        (s) =>
+          `<li><strong>${escapeHtml(s.name)}</strong>${s.why ? ` — ${escapeHtml(s.why)}` : ''}</li>`
+      )
+      .join('');
+    out += `<div class="oracle-section"><h4>Where the pattern lives now</h4><p>The industries that still move to this archetype:</p><ul>${items}</ul></div>`;
+  }
+  const words = everydayWordsFor(entry.id, 3);
+  if (words.length) {
+    const items = words
+      .map(
+        (w) =>
+          `<li><strong>${escapeHtml(w.word)}</strong> — ${escapeHtml(w.gloss)}${
+            w.origin ? ` <em>(${escapeHtml(w.origin)})</em>` : ''
+          }</li>`
+      )
+      .join('');
+    out += `<div class="oracle-section"><h4>Descendants in plain English</h4><ul>${items}</ul></div>`;
+  }
+  if (!out && lore?.culturalLegacy) return '';
+  return out;
+}
+
 function formatSites(name, sites, availability) {
   const activeSites = (sites || []).filter((s) => s.status === 'active' || s.is_flagship);
   if (activeSites.length) {
@@ -1307,9 +1469,16 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
     answer += formatCulturalLegacy(lore.culturalLegacy);
   }
 
-  if (intent === 'legacy') {
+  if (intent === 'legacy' || intent === 'weave') {
     answer += formatCulturalLegacy(lore.culturalLegacy);
     answer += formatSyncretism(lore.syncretism);
+    answer += formatWeaveSection(primary, lore);
+  }
+
+  if (intent === 'scribe') {
+    answer += formatScribeSection(ctx, primary);
+    answer += formatVariants(ctx?.variants);
+    answer += formatOriginalScript(ctx);
   }
 
   if (intent === 'relation') {
@@ -1436,27 +1605,106 @@ const ORACLE_SYSTEM_PROMPT = [
   '  when one is provided — name the letter and what its mark records.',
   '- When a pronunciation is provided, you may quote its IPA and respelling',
   '  verbatim; they come from a rules engine, not guesswork.',
-  '- Use HTML: <p> for paragraphs, <strong> for emphasis. Under 250 words.',
+  '- Output ONLY the final answer: begin with the answer\'s first sentence —',
+  '  never open with planning, meta-commentary, or a restatement of the',
+  '  question or these instructions. Use HTML: <p> for paragraphs, <strong>',
+  '  for emphasis. Under 250 words.',
 ].join('\n');
 
-async function callLlmIfConfigured(prompt) {
+// Nemotron-class reasoning models occasionally spill their planning into the
+// content channel. Detect meta-narration, salvage a final answer embedded
+// after a "let's write:" pivot, or reject so the caller can retry/degrade.
+const LLM_META_OPEN = /^(we (need|must|should|will)|let'?s|the user|okay|to answer|first,|i (need|must|will)|so,|maybe|paragraph \d|note:|draft|plan:)/i;
+const LLM_META_BODY = /we (must|need|should) (not |)(use|answer|stick|avoid|mention)|paragraph \d|word count|aim ~|let'?s (write|craft)/i;
+
+function stripLlmReasoning(content) {
+  if (!content) return null;
+  let text = String(content).trim();
+  if (!text) return null;
+  if (LLM_META_OPEN.test(text.slice(0, 200))) {
+    const pivot = text.match(/let'?s (?:write|craft|answer)[:\s]+([\s\S]+)$/i);
+    if (pivot) {
+      text = pivot[1].trim();
+    } else {
+      const paras = text.split(/\n\s*\n/).filter((p) => p.trim());
+      const clean = paras.filter((p) => !LLM_META_OPEN.test(p.trim().slice(0, 80)));
+      text = clean.length ? clean[clean.length - 1].trim() : '';
+    }
+  }
+  if (!text) return null;
+  if (LLM_META_OPEN.test(text.slice(0, 200))) return null;
+  if (LLM_META_BODY.test(text.slice(0, 400))) return null;
+  return text;
+}
+
+const ORACLE_INTENT_ADDENDA = {
+  weave: [
+    'Weave mode: answer as a pattern-reader across human civilization. Trace',
+    'the through-line from the ancient archetype to the modern world using',
+    'ONLY the connections, industries, and everyday words supplied in the',
+    'context — never name an industry, brand, or parallel absent from it.',
+    'Philosophical in register, exact in claim: show how the pattern humanity',
+    'wrote into myth still organizes what we build, buy, fear, and worship.',
+  ].join('\n'),
+  scribe: [
+    'Scribe mode: adjudicate the spelling. Walk the character breakdown and',
+    'state exactly what each mark records and what the ASCII form loses.',
+    'The restored form is canonical — never endorse stripping marks, and if',
+    'the queried spelling drops them, say plainly what was lost.',
+  ].join('\n'),
+  relation: [
+    'Comparison mode: contrast the entries directly — what each restoration',
+    'preserves, where their archetypes converge and diverge across pantheons,',
+    'using only the supplied contexts.',
+  ].join('\n'),
+  legacy: [
+    'Legacy mode: connect the figure to the modern world strictly through',
+    'the supplied cultural-legacy, connection, and industry data.',
+  ].join('\n'),
+};
+
+async function callLlmIfConfigured(prompt, intent, contextCount = 1) {
   const config = resolveLlmConfig();
   if (!config) return null;
 
-  return llmChat({
+  let system = ORACLE_SYSTEM_PROMPT;
+  const addendum =
+    ORACLE_INTENT_ADDENDA[intent] ||
+    (contextCount > 1 ? ORACLE_INTENT_ADDENDA.relation : null);
+  if (addendum) system += `\n\n${addendum}`;
+
+  const messages = [
+    { role: 'system', content: system },
+    { role: 'user', content: prompt },
+  ];
+  const first = stripLlmReasoning(await llmChat({ ...configBase(config), messages }));
+  if (first) return first;
+
+  // One strict retry before degrading to the deterministic answer.
+  const retry = stripLlmReasoning(
+    await llmChat({
+      ...configBase(config),
+      messages: [
+        ...messages,
+        {
+          role: 'user',
+          content:
+            'FINAL ANSWER ONLY: begin with the first sentence of the answer itself. No planning, no meta-commentary, no restating instructions.',
+        },
+      ],
+    })
+  );
+  return retry || null;
+}
+
+function configBase(config) {
+  return {
     apiKey: config.apiKey,
     model: config.model,
     baseUrl: config.baseUrl,
-    messages: [
-      {
-        role: 'system',
-        content: ORACLE_SYSTEM_PROMPT,
-      },
-      { role: 'user', content: prompt },
-    ],
     temperature: 0.2,
     maxTokens: 768,
-  });
+  };
 }
 
 function formatBreakdownForPrompt(breakdown) {
@@ -1544,6 +1792,36 @@ function buildLlmPrompt(q, contexts, intent) {
     if (ctx.lore?.mythology?.lead)
       promptParts.push(`  Mythology: ${stripHtml(ctx.lore.mythology.lead)}`);
     if (ctx.etymology) promptParts.push(`  Etymology: ${etymologySummary(ctx.etymology)}`);
+
+    // Pattern-weave grounding: cross-pantheon connections, modern industry
+    // resonance, everyday-word descendants — only for intents that weave.
+    if (['weave', 'legacy', 'relation', 'who', 'general', 'explore'].includes(intent)) {
+      const edges = similarityEdgesFor(ctx.id, 4);
+      if (edges.length) {
+        promptParts.push(
+          `  Cross-pantheon pattern connections: ${edges
+            .map((e) => `${e.name} (${e.relationship})`)
+            .join('; ')}`
+        );
+      }
+      const seats = industrySeatsFor(ctx.id, 3);
+      if (seats.length) {
+        promptParts.push(
+          `  Modern industry resonance: ${seats
+            .map((s) => `${s.name}${s.why ? ` — ${s.why}` : ''}`)
+            .join('; ')}`
+        );
+      }
+      const words = everydayWordsFor(ctx.id, 3);
+      if (words.length) {
+        promptParts.push(
+          `  Everyday English descendants: ${words
+            .map((w) => `${w.word} (${w.gloss}; ${w.origin})`)
+            .join('; ')}`
+        );
+      }
+    }
+
     if (ctx.sources?.length)
       promptParts.push(`  Sources: ${ctx.sources.slice(0, 4).join('; ')}`);
     if (ctx.site) promptParts.push(`  Live site: ${ctx.site.domain} — ${ctx.site.title}`);
@@ -1720,7 +1998,7 @@ async function askOracle(q, history = [], { quick = false } = {}) {
     .filter(Boolean);
   if (contexts.length && resolveLlmConfig()) {
     const prompt = buildLlmPrompt(resolvedQ, contexts, intent);
-    const llmAnswer = await callLlmIfConfigured(prompt);
+    const llmAnswer = await callLlmIfConfigured(prompt, intent, contexts.length);
     if (llmAnswer) {
       // Prepend LLM summary, keep our structured sections below for depth
       result.answer = `<div class="oracle-llm-summary">${sanitizeHtml(llmAnswer)}</div>${result.answer}`;
@@ -1734,6 +2012,7 @@ async function askOracle(q, history = [], { quick = false } = {}) {
 askOracle.cacheStats = () => ({ size: ORACLE_CACHE.size, max: ORACLE_CACHE_MAX });
 
 module.exports = {
+  ORACLE_SYSTEM_PROMPT,
   askOracle,
   detectIntent,
   retrieveEntries,
@@ -1744,4 +2023,10 @@ module.exports = {
   formatBreakdownForPrompt,
   formatPronunciationForPrompt,
   formatVariantsForPrompt,
+  formatScribeSection,
+  formatWeaveSection,
+  stripLlmReasoning,
+  similarityEdgesFor,
+  industrySeatsFor,
+  everydayWordsFor,
 };

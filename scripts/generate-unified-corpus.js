@@ -48,6 +48,7 @@ const SOURCE_FILES = [
   { file: 'reasoning-examples.jsonl', taskPrefix: 'reasoning', system: ORACLE_SYSTEM },
   { file: 'mythology-synthesis.jsonl', taskPrefix: 'myth', system: ORACLE_SYSTEM },
   { file: 'oracle-examples.jsonl', taskPrefix: 'oracle', system: ORACLE_SYSTEM },
+  { file: 'oracle-doctrine-examples.jsonl', taskPrefix: 'doctrine', system: ORACLE_SYSTEM },
   { file: 'symbolic-correspondences.jsonl', taskPrefix: 'symbolic', system: ORACLE_SYSTEM },
   { file: 'scientific-analogies.jsonl', taskPrefix: 'science', system: ORACLE_SYSTEM },
 ];
@@ -169,7 +170,11 @@ function buildPreferenceRecord(ex, source) {
 function convertExample(ex, source) {
   const systemPrompt = isSafetyTask(ex.task) ? SAFETY_SYSTEM : source.system;
 
-  if (source.file === 'dialogue-examples.jsonl' || source.file === 'oracle-examples.jsonl') {
+  if (
+    source.file === 'dialogue-examples.jsonl' ||
+    source.file === 'oracle-examples.jsonl' ||
+    source.file === 'oracle-doctrine-examples.jsonl'
+  ) {
     // Oracle examples already include a system message; replace it with the canonical one.
     const stripped = (ex.messages || []).filter((m) => m.role !== 'system');
     return buildDialogueRecord({ ...ex, messages: stripped }, source);
@@ -294,6 +299,7 @@ function main() {
         'reasoning-examples.jsonl': 'reasoningExamples',
         'mythology-synthesis.jsonl': 'mythologySynthesisExamples',
         'oracle-examples.jsonl': 'oracleExamples',
+        'oracle-doctrine-examples.jsonl': 'oracleDoctrineExamples',
         'symbolic-correspondences.jsonl': 'symbolicCorrespondenceExamples',
         'scientific-analogies.jsonl': 'scientificAnalogyExamples',
       };

@@ -25,16 +25,17 @@ This corpus is the foundational training and evaluation data for a specialized A
 | benchmark.jsonl | 6,670 | 2.24 MB | Held-out evaluation benchmark with known answers (Phase 8). |
 | mythology-synthesis.jsonl | 404 | 265.8 KB | Comparative, esoteric, and modern-parallel mythology synthesis (Phase 10). |
 | oracle-examples.jsonl | 1,977 | 2.25 MB | Conversational Oracle training examples with system/user/assistant turns (Phase 11). |
+| oracle-doctrine-examples.jsonl | 3,366 | 7.77 MB | Philological-doctrine instruction examples: diacritic semantics, script honesty, restoration-vs-ASCII, doctrine boundaries (Phase 11b). |
 | symbolic-correspondences.jsonl | 1,236 | 750.7 KB | Symbolic and hermetic correspondences with confidence and provenance (Phase 12). |
 | scientific-analogies.jsonl | 1,500 | 1.03 MB | Scientific and philosophical analogies bridging ancient myth and modern thought (Phase 13). |
-| chat-train.jsonl | 62,975 | 85.71 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
-| chat-eval.jsonl | 15,608 | 21.26 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
-| MODEL_CARD.md | 78 | 4.4 KB | Model card with training recipe, evaluation plan, and hardware guidance (Phases 14-15). |
+| chat-train.jsonl | 65,656 | 88.84 MB | Unified chat-format training corpus, 80% deterministic split (Phase 14). |
+| chat-eval.jsonl | 16,293 | 22.05 MB | Held-out chat-format evaluation split, 20% (Phase 14). |
+| MODEL_CARD.md | 79 | 4.4 KB | Model card with training recipe, evaluation plan, and hardware guidance (Phases 14-15). |
 | pretrain.jsonl | 5,995 | 5.84 MB | Raw-text continual pretraining corpus, 95% split (Phase 15). |
 | pretrain-validation.jsonl | 312 | 308.2 KB | Held-out raw-text validation split, 5% (Phase 15). |
 | huggingface/train.jsonl | 5,995 | 5.04 MB | HuggingFace-compatible continual pretraining split (Phase 15). |
 | huggingface/validation.jsonl | 312 | 266.0 KB | HuggingFace-compatible validation split (Phase 15). |
-| manifest.json | 319 | 10.0 KB | Machine-readable corpus manifest. |
+| manifest.json | 326 | 10.2 KB | Machine-readable corpus manifest. |
 
 ## Phase Summary
 
