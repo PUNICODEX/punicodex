@@ -273,6 +273,13 @@ async function downloadMockup(url, outPath) {
     if (!res.ok) throw new Error(`download ${url} → ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
     fs.writeFileSync(outPath, buf);
+    // Store pages emit a <source type="image/webp"> alongside the JPEG; bake
+    // the variant here so the webp can never 404. (The historical half-missing
+    // webp fleet came from a separate converter racing the mockup batch.)
+    if (outPath.endsWith('.jpg')) {
+      const sharp = require('sharp');
+      await sharp(buf).webp({ quality: 82 }).toFile(outPath.replace(/\.jpg$/, '.webp'));
+    }
   } catch (err) {
     clearTimeout(timer);
     if (err.name === 'AbortError') {
