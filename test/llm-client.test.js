@@ -9,7 +9,7 @@
 
 const assert = require('node:assert');
 
-const { chat } = require('../platform/api/llm.js');
+const { chat, chatDetailed } = require('../platform/api/llm.js');
 
 const tests = [];
 const test = (name, fn) => tests.push([name, fn]);
@@ -106,6 +106,64 @@ test('empty content is treated as failure', async () => {
   const res = await chat({ apiKey: 'k', model: 'm', messages: [], timeoutMs: 50 });
   restoreFetch(original);
   assert.strictEqual(res, null);
+});
+
+test('chatDetailed reports failure classes', async () => {
+  const original = global.fetch;
+  stubFetch(async () => ({ ok: false, status: 401, json: async () => ({}) }));
+  let res = await chatDetailed({ apiKey: 'k', model: 'm', messages: [], timeoutMs: 50 });
+  assert.deepStrictEqual(res, { content: null, error: 'http_401' });
+
+  stubFetch(async () => ({ ok: true, json: async () => ({ choices: [] }) }));
+  res = await chatDetailed({ apiKey: 'k', model: 'm', messages: [], timeoutMs: 50 });
+  assert.deepStrictEqual(res, { content: null, error: 'empty' });
+
+  res = await chatDetailed({ apiKey: '', model: '', messages: [] });
+  restoreFetch(original);
+  assert.deepStrictEqual(res, { content: null, error: 'unconfigured' });
+});
+
+test('chatDetailed honors Retry-After on 429 and eventually succeeds', async () => {
+  const original = global.fetch;
+  let calls = 0;
+  const retryAfterSeconds = 0.05;
+  stubFetch(async () => {
+    calls++;
+    if (calls < 3) {
+      return {
+        ok: false,
+        status: 429,
+        headers: { get: (h) => (h === 'retry-after' ? String(retryAfterSeconds) : null) },
+        json: async () => ({}),
+      };
+    }
+    return { ok: true, json: async () => ({ choices: [{ message: { content: 'recovered' } }] }) };
+  });
+  const started = Date.now();
+  const res = await chatDetailed({ apiKey: 'k', model: 'm', messages: [], timeoutMs: 2000 });
+  restoreFetch(original);
+  assert.strictEqual(calls, 3, 'two 429s then success');
+  assert.deepStrictEqual(res, { content: 'recovered', error: null });
+  assert.ok(Date.now() - started >= 90, 'waited between retries');
+});
+
+test('chatDetailed exhausts attempts and reports http_429', async () => {
+  const original = global.fetch;
+  let calls = 0;
+  stubFetch(async () => {
+    calls++;
+    return { ok: false, status: 429, json: async () => ({}) };
+  });
+  const res = await chatDetailed({
+    apiKey: 'k',
+    model: 'm',
+    messages: [],
+    timeoutMs: 50,
+    maxAttempts: 2,
+  });
+  restoreFetch(original);
+  assert.strictEqual(calls, 2);
+  assert.deepStrictEqual(res, { content: null, error: 'http_429' });
 });
 
 async function run() {

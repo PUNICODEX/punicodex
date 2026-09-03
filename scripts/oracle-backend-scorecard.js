@@ -74,14 +74,23 @@ function extractLlmSummary(answer) {
 
 /**
  * Score the LLM-polish behavior of one oracle answer against a golden case.
+ * Accepts either the raw answer string or the full askOracle result — the
+ * latter also classifies WHY a summary did not fire (no context by design
+ * vs a backend failure class like http_429 or timeout).
  */
-function scoreBackendCase(testCase, answer) {
+function scoreBackendCase(testCase, answerOrResult) {
+  const answer = typeof answerOrResult === 'string' ? answerOrResult : answerOrResult?.answer;
+  const llmStatus =
+    typeof answerOrResult === 'object' && answerOrResult !== null
+      ? answerOrResult.llmStatus || null
+      : null;
   const summary = extractLlmSummary(answer);
   if (summary === null) {
     return {
       q: testCase.q,
       group: testCase.group,
       fired: false,
+      skipReason: llmStatus || 'unknown',
       words: 0,
       withinLimit: true,
       cleanOk: true,
@@ -97,6 +106,7 @@ function scoreBackendCase(testCase, answer) {
     q: testCase.q,
     group: testCase.group,
     fired: true,
+    skipReason: null,
     words,
     withinLimit: words <= SUMMARY_WORD_LIMIT,
     cleanOk: foundForbidden.length === 0 && markersFound.length === 0,
@@ -123,18 +133,23 @@ async function runBackendScorecard(name, goldenCases, { quick = true } = {}) {
   const cases = [];
   for (const testCase of goldenCases) {
     const result = await askOracle(testCase.q, [], { quick });
-    cases.push(scoreBackendCase(testCase, result.answer));
+    cases.push(scoreBackendCase(testCase, result));
   }
 
   const fired = cases.filter((c) => c.fired);
   const unclean = fired.filter((c) => !c.cleanOk);
   const overLimit = fired.filter((c) => !c.withinLimit);
+  const skipReasons = {};
+  for (const c of cases) {
+    if (!c.fired) skipReasons[c.skipReason] = (skipReasons[c.skipReason] || 0) + 1;
+  }
   return {
     backend: name,
     model: config?.model || null,
     baseUrl: config?.baseUrl || null,
     cases,
     coverage: { fired: fired.length, total: cases.length },
+    skipReasons,
     meanWords: fired.length ? fired.reduce((sum, c) => sum + c.words, 0) / fired.length : 0,
     overLimit,
     unclean,
@@ -155,6 +170,14 @@ function printScorecard(scorecard) {
   console.log(
     `Summary fired:  ${coverage.fired}/${coverage.total} (${pct(coverage.fired / coverage.total)})`
   );
+  const reasons = Object.entries(scorecard.skipReasons || {});
+  if (reasons.length) {
+    console.log(
+      `Not fired:      ${reasons.map(([reason, n]) => `${reason} ×${n}`).join(', ')}` +
+        '\n                (no-context = nothing to ground on, by design; ' +
+        'failed:* = backend failure class)'
+    );
+  }
   console.log(
     `Mean words:     ${scorecard.meanWords.toFixed(1)} (limit ${SUMMARY_WORD_LIMIT}; ` +
       `${scorecard.overLimit.length} over)`

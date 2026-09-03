@@ -13,7 +13,7 @@ const path = require('node:path');
 const { getDbPath } = require('../db/db');
 const { searchKeywords } = require('./keyword-extractor');
 const { getEntryContext, loadLoreCatalog } = require('./oracle-context');
-const { chat: llmChat } = require('./llm');
+const { chatDetailed: llmChatDetailed } = require('./llm');
 const { derivePronunciation } = require('../../type/js/pronunciation-rules');
 const ORIGINAL_SCRIPT_LOOKUP = require('../../js/original-script-lookup');
 const { embedText } = require('./embeddings');
@@ -28,9 +28,7 @@ let similarityGraph = null;
 function loadSimilarityGraph() {
   if (similarityGraph) return similarityGraph;
   try {
-    const raw = JSON.parse(
-      fs.readFileSync(path.join(__dirname, 'similarities.json'), 'utf8')
-    );
+    const raw = JSON.parse(fs.readFileSync(path.join(__dirname, 'similarities.json'), 'utf8'));
     const names = new Map((raw.nodes || []).map((n) => [n.id, n.unicode || n.ascii || n.id]));
     const byEntry = new Map();
     for (const e of raw.edges || []) {
@@ -60,9 +58,7 @@ let industryPatterns = null;
 function loadIndustryPatterns() {
   if (industryPatterns) return industryPatterns;
   try {
-    const raw = JSON.parse(
-      fs.readFileSync(path.join(__dirname, 'industry-patterns.json'), 'utf8')
-    );
+    const raw = JSON.parse(fs.readFileSync(path.join(__dirname, 'industry-patterns.json'), 'utf8'));
     industryPatterns = raw.byEntry || {};
   } catch (_e) {
     industryPatterns = {};
@@ -1605,7 +1601,7 @@ const ORACLE_SYSTEM_PROMPT = [
   '  when one is provided — name the letter and what its mark records.',
   '- When a pronunciation is provided, you may quote its IPA and respelling',
   '  verbatim; they come from a rules engine, not guesswork.',
-  '- Output ONLY the final answer: begin with the answer\'s first sentence —',
+  "- Output ONLY the final answer: begin with the answer's first sentence —",
   '  never open with planning, meta-commentary, or a restatement of the',
   '  question or these instructions. Use HTML: <p> for paragraphs, <strong>',
   '  for emphasis. Under 250 words.',
@@ -1614,8 +1610,10 @@ const ORACLE_SYSTEM_PROMPT = [
 // Nemotron-class reasoning models occasionally spill their planning into the
 // content channel. Detect meta-narration, salvage a final answer embedded
 // after a "let's write:" pivot, or reject so the caller can retry/degrade.
-const LLM_META_OPEN = /^(we (need|must|should|will)|let'?s|the user|okay|to answer|first,|i (need|must|will)|so,|maybe|paragraph \d|note:|draft|plan:)/i;
-const LLM_META_BODY = /we (must|need|should) (not |)(use|answer|stick|avoid|mention)|paragraph \d|word count|aim ~|let'?s (write|craft)/i;
+const LLM_META_OPEN =
+  /^(we (need|must|should|will)|let'?s|the user|okay|to answer|first,|i (need|must|will)|so,|maybe|paragraph \d|note:|draft|plan:)/i;
+const LLM_META_BODY =
+  /we (must|need|should) (not |)(use|answer|stick|avoid|mention)|paragraph \d|word count|aim ~|let'?s (write|craft)/i;
 
 function stripLlmReasoning(content) {
   if (!content) return null;
@@ -1635,6 +1633,24 @@ function stripLlmReasoning(content) {
   if (LLM_META_OPEN.test(text.slice(0, 200))) return null;
   if (LLM_META_BODY.test(text.slice(0, 400))) return null;
   return text;
+}
+
+// Hard word-budget enforcement: models get a soft limit in the prompt; this
+// is the hard cap, trimmed at the last sentence boundary inside the limit.
+function enforceWordBudget(text, maxWords = 230) {
+  const str = String(text || '');
+  const words = str.split(/\s+/).filter(Boolean);
+  if (words.length <= maxWords) return str;
+  const cut = words.slice(0, maxWords).join(' ');
+  const sentenceEnd = Math.max(
+    cut.lastIndexOf('. '),
+    cut.lastIndexOf('! '),
+    cut.lastIndexOf('? '),
+    cut.lastIndexOf('.</p>'),
+    cut.lastIndexOf('.</strong>')
+  );
+  if (sentenceEnd > cut.length * 0.5) return cut.slice(0, sentenceEnd + 1);
+  return `${cut.replace(/\s+\S*$/, '')}…`;
 }
 
 const ORACLE_INTENT_ADDENDA = {
@@ -1665,36 +1681,40 @@ const ORACLE_INTENT_ADDENDA = {
 
 async function callLlmIfConfigured(prompt, intent, contextCount = 1) {
   const config = resolveLlmConfig();
-  if (!config) return null;
+  if (!config) return { content: null, error: 'not-configured' };
 
   let system = ORACLE_SYSTEM_PROMPT;
   const addendum =
-    ORACLE_INTENT_ADDENDA[intent] ||
-    (contextCount > 1 ? ORACLE_INTENT_ADDENDA.relation : null);
+    ORACLE_INTENT_ADDENDA[intent] || (contextCount > 1 ? ORACLE_INTENT_ADDENDA.relation : null);
   if (addendum) system += `\n\n${addendum}`;
 
   const messages = [
     { role: 'system', content: system },
     { role: 'user', content: prompt },
   ];
-  const first = stripLlmReasoning(await llmChat({ ...configBase(config), messages }));
-  if (first) return first;
+  const first = await llmChatDetailed({ ...configBase(config), messages });
+  const cleanedFirst = stripLlmReasoning(first.content);
+  if (cleanedFirst) return { content: enforceWordBudget(cleanedFirst), error: null };
+  if (first.error) return { content: null, error: first.error };
 
-  // One strict retry before degrading to the deterministic answer.
-  const retry = stripLlmReasoning(
-    await llmChat({
-      ...configBase(config),
-      messages: [
-        ...messages,
-        {
-          role: 'user',
-          content:
-            'FINAL ANSWER ONLY: begin with the first sentence of the answer itself. No planning, no meta-commentary, no restating instructions.',
-        },
-      ],
-    })
-  );
-  return retry || null;
+  // Content was present but read as meta-narration: one strict retry before
+  // degrading to the deterministic answer.
+  const retry = await llmChatDetailed({
+    ...configBase(config),
+    messages: [
+      ...messages,
+      {
+        role: 'user',
+        content:
+          'FINAL ANSWER ONLY: begin with the first sentence of the answer itself. No planning, no meta-commentary, no restating instructions.',
+      },
+    ],
+  });
+  if (retry.error) return { content: null, error: retry.error };
+  const cleanedRetry = stripLlmReasoning(retry.content);
+  return cleanedRetry
+    ? { content: enforceWordBudget(cleanedRetry), error: null }
+    : { content: null, error: 'meta-leak' };
 }
 
 function configBase(config) {
@@ -1704,6 +1724,8 @@ function configBase(config) {
     baseUrl: config.baseUrl,
     temperature: 0.2,
     maxTokens: 768,
+    // Reasoning models think before they answer; allow a longer budget via env.
+    timeoutMs: Number(process.env.ORACLE_LLM_TIMEOUT_MS) || 30000,
   };
 }
 
@@ -1750,7 +1772,8 @@ function formatVariantsForPrompt(variants) {
     if (typeof v === 'string') return v;
     const form = v.form || v.unicode || v.value;
     if (!form) return null;
-    const why = v.reason || v.note || (Array.isArray(v.sources) ? `sources: ${v.sources.join(', ')}` : '');
+    const why =
+      v.reason || v.note || (Array.isArray(v.sources) ? `sources: ${v.sources.join(', ')}` : '');
     return why ? `${form} (${why})` : form;
   });
   return parts.filter(Boolean).join('; ') || null;
@@ -1822,8 +1845,7 @@ function buildLlmPrompt(q, contexts, intent) {
       }
     }
 
-    if (ctx.sources?.length)
-      promptParts.push(`  Sources: ${ctx.sources.slice(0, 4).join('; ')}`);
+    if (ctx.sources?.length) promptParts.push(`  Sources: ${ctx.sources.slice(0, 4).join('; ')}`);
     if (ctx.site) promptParts.push(`  Live site: ${ctx.site.domain} — ${ctx.site.title}`);
   }
 
@@ -1996,13 +2018,19 @@ async function askOracle(q, history = [], { quick = false } = {}) {
     .slice(0, 2)
     .map((e) => getEntryContext(e.id))
     .filter(Boolean);
+  result.llmStatus = 'no-context';
   if (contexts.length && resolveLlmConfig()) {
     const prompt = buildLlmPrompt(resolvedQ, contexts, intent);
-    const llmAnswer = await callLlmIfConfigured(prompt, intent, contexts.length);
-    if (llmAnswer) {
+    const llmResult = await callLlmIfConfigured(prompt, intent, contexts.length);
+    if (llmResult.content) {
       // Prepend LLM summary, keep our structured sections below for depth
-      result.answer = `<div class="oracle-llm-summary">${sanitizeHtml(llmAnswer)}</div>${result.answer}`;
+      result.answer = `<div class="oracle-llm-summary">${sanitizeHtml(llmResult.content)}</div>${result.answer}`;
+      result.llmStatus = 'fired';
+    } else {
+      result.llmStatus = `failed:${llmResult.error || 'unknown'}`;
     }
+  } else if (contexts.length) {
+    result.llmStatus = 'not-configured';
   }
 
   setCachedOracle(cacheKey, result);
@@ -2026,6 +2054,7 @@ module.exports = {
   formatScribeSection,
   formatWeaveSection,
   stripLlmReasoning,
+  enforceWordBudget,
   similarityEdgesFor,
   industrySeatsFor,
   everydayWordsFor,

@@ -13,6 +13,7 @@ const {
   formatScribeSection,
   formatWeaveSection,
   stripLlmReasoning,
+  enforceWordBudget,
 } = require('../platform/api/oracle');
 
 async function test(name, fn) {
@@ -257,6 +258,27 @@ test('stripLlmReasoning salvages after a write-pivot and rejects pure meta', () 
     null
   );
   assert.strictEqual(stripLlmReasoning('<p>Clean answer.</p>'), '<p>Clean answer.</p>');
+});
+
+test('enforceWordBudget trims at a sentence boundary inside the cap', () => {
+  const sentence = 'The restored form is canonical. ';
+  const long = sentence.repeat(20).trim();
+  const out = enforceWordBudget(long, 30);
+  assert.ok(out.split(/\s+/).length <= 31, 'within budget');
+  assert.ok(out.endsWith('.'), 'ends at a sentence boundary');
+  const short = 'Short answer stays.';
+  assert.strictEqual(enforceWordBudget(short, 30), short);
+});
+
+test('askOracle reports llmStatus for the polish layer', async () => {
+  const noCtx = await askOracle('zzzqqq unlikely to match anything');
+  assert.ok(
+    ['no-context', 'not-configured', 'fired'].includes(noCtx.llmStatus) ||
+      noCtx.llmStatus?.startsWith('failed:'),
+    `llmStatus present: ${noCtx.llmStatus}`
+  );
+  const withCtx = await askOracle('Who is Zeus?');
+  assert.strictEqual(withCtx.llmStatus, 'not-configured', 'no key in test env');
 });
 
 if (!process.exitCode) {
