@@ -231,6 +231,46 @@ const ORIGINAL_SCRIPTS = {
       ],
     },
   },
+  ambika: {
+    originalScript: 'अम्बिका',
+    scriptName: 'Devanagari',
+    provenance: {
+      original: 'अम्बिका',
+      transliteration: 'Ambikā',
+      steps: [
+        'अ = a',
+        'म् = m',
+        'ब = b',
+        'ि = short i',
+        'का = kā (long a)',
+        'Ambikā is the Divine Mother, an epithet of Pārvatī and Durgā'
+      ],
+      sources: [
+        'Monier-Williams Sanskrit-English Dictionary',
+        'Shiva Purana',
+        'Devi Mahatmya'
+      ],
+    },
+  },
+  bhudevi: {
+    originalScript: 'भूदेवी',
+    scriptName: 'Devanagari',
+    provenance: {
+      original: 'भूदेवी',
+      transliteration: 'Bhūdevī',
+      steps: [
+        'भू = bhū (earth, long ū)',
+        'दे = de',
+        'वी = vī (long ī)',
+        'Bhūdevī is the Earth goddess, consort of Varāha and mother of all beings'
+      ],
+      sources: [
+        'Monier-Williams Sanskrit-English Dictionary',
+        'Vishnu Purana',
+        'Bhagavata Purana'
+      ],
+    },
+  },
 
   aaru: {
     originalScript: '𓂝𓄿𓂋𓅱',

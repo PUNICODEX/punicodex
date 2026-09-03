@@ -4002,6 +4002,21 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "originalScript": "Ὄνειρος",
     "scriptName": "Greek",
     "scriptLabel": "Original Script"
+  },
+  "ambika": {
+    "originalScript": "अम्बिका",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "bhudevi": {
+    "originalScript": "भूदेवी",
+    "scriptName": "Devanagari",
+    "scriptLabel": "Original Script"
+  },
+  "pallas": {
+    "originalScript": "Πάλλας",
+    "scriptName": "Greek",
+    "scriptLabel": "Original Script"
   }
 };
 

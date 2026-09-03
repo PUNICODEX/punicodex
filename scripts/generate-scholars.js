@@ -355,7 +355,7 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function safeWriteFile(targetPath, data, retries = 8) {
+async function safeWriteFile(targetPath, data, retries = 30) {
   let lastError;
   for (let attempt = 0; attempt < retries; attempt++) {
     try {
@@ -364,7 +364,7 @@ async function safeWriteFile(targetPath, data, retries = 8) {
     } catch (err) {
       lastError = err;
       if (err.code === 'EPERM' || err.code === 'EBUSY' || err.code === 'UNKNOWN') {
-        await sleep(200 * (attempt + 1));
+        await sleep(300 * (attempt + 1));
         continue;
       }
       break;

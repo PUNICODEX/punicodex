@@ -1121,6 +1121,20 @@ const SOURCE_CATALOG = {
         edition: 'Various; Internet Sacred Text Archive selections',
         url: 'https://sacred-texts.com/hin/index.htm'
     },
+    'Vishnu Purana': {
+        full: 'Viṣṇu Purāṇa',
+        scope: 'Hindu Vaiṣṇava purāṇa',
+        year: '500',
+        edition: 'English translation by H. H. Wilson',
+        url: 'https://www.wisdomlib.org/hinduism/book/vishnu-purana-wilson'
+    },
+    'Bhagavata Purana': {
+        full: 'Bhāgavata Purāṇa',
+        scope: 'Hindu Vaiṣṇava purāṇa',
+        year: '800',
+        edition: 'English translation by C. L. Goswami',
+        url: 'https://www.wisdomlib.org/hinduism/book/srimad-bhagavatam'
+    },
     'Pythagoras': {
         full: 'Pythagoras of Samos and the Pythagorean tradition',
         scope: 'Greek philosophy / religion',

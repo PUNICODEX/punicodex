@@ -117,9 +117,14 @@ function addEntries(newEntries) {
     }
 
     // Append to lexicon file
-    // Find the last entry's closing brace and insert before the final `];`
-    const insertMarker = '];';
-    const lastIndex = lexiconCode.lastIndexOf(insertMarker);
+    // Find the array's closing bracket and insert before it. The file may end
+    // with `];` or with `]\nif (typeof module ...)`, so anchor on the module
+    // export marker when present.
+    const exportMarker = '\nif (typeof module';
+    const exportIdx = lexiconCode.indexOf(exportMarker);
+    const lastIndex = exportIdx >= 0
+        ? lexiconCode.lastIndexOf(']', exportIdx)
+        : lexiconCode.lastIndexOf('];');
     if (lastIndex === -1) {
         console.log(`${C.red}Could not find insertion point in lexicon.js${C.reset}`);
         process.exit(1);

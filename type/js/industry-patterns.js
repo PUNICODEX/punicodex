@@ -570,6 +570,8 @@ const INDUSTRY_GROUPS = [
       { id: 'hachiman', weight: 2, why: 'The war kami and divine protector of Japan; archery, warriors, and the state fall under his bow.' },
       { id: 'marishiten', weight: 2, why: 'Buddhist goddess of war and invisibility, patron of archers and warriors who confounds the enemy.' },
       { id: 'tajikarao', weight: 1, why: 'The strong-hand kami whose power pulled Amaterasu from the cave; raw force in defense of the realm.' },
+      { id: 'ambika', weight: 2, why: 'The armed mother whose weapons destroy demons; defense reframed as protective, righteous force.' },
+      { id: 'pallas', weight: 2, why: 'Titan of warcraft and father of Nike/Kratos/Bia/Zelos; the genealogy of strategic force itself.' },
     ],
   },
   {
@@ -851,6 +853,8 @@ const INDUSTRY_GROUPS = [
       { id: 'ninigi', weight: 2, why: 'The august rice spirit who descended to rule; the imperial line carries the grain mandate.' },
       { id: 'nishinakahime', weight: 2, why: 'The day-sun wave princess of rice and agriculture; the crop is her court.' },
       { id: 'omononushi', weight: 1, why: 'The mountain deity of Miwa; upland rice and sacred earth answer to him.' },
+      { id: 'adonis', weight: 1, why: 'The Gardens of Adonis — quick-sprouting, quick-withering herbs — make him the patron of seasonal greens and ritual floriculture.' },
+      { id: 'bhudevi', weight: 2, why: 'The earth goddess seated on a lotus with a vessel of grain; agriculture is her body and harvest her blessing.' },
     ],
   },
   {
@@ -1002,7 +1006,9 @@ const INDUSTRY_GROUPS = [
       { id: 'ngalyod', weight: 2, why: 'Canonical ngalyod resonance — environment climate' },
       { id: 'tjinimin', weight: 1, why: 'Canonical tjinimin resonance — environment climate' },
       { id: 'wandjina', weight: 1, why: 'Canonical wandjina resonance — environment climate' },
-      { id: 'yurlungur', weight: 2, why: 'Canonical yurlungur resonance — environment climate' }],
+      { id: 'yurlungur', weight: 2, why: 'Canonical yurlungur resonance — environment climate' },
+      { id: 'bhudevi', weight: 2, why: 'The earth goddess personified; ecological stewardship is the modern form of her ancient worship.' },
+    ],
   },
   {
     industry: 'manufacturing-craft',
@@ -1047,6 +1053,7 @@ const INDUSTRY_GROUPS = [
       { id: 'kagutsuchi', weight: 1, why: 'Fire kami of the forge; metal and volcano are the same craft to him.' },
       { id: 'nagoya', weight: 2, why: 'Japan\'s industrial heartland; Toyota and the Chūbu manufacturing belt make things at scale.' },
       { id: 'tajikarao', weight: 1, why: 'The strong-hand kami; his grip is the force behind every tool.' },
+      { id: 'pallas', weight: 1, why: 'The celestial bronze spear and panoply of the Titan warcraft — divine metallurgy and armament as craft.' },
     ],
   },
   {
@@ -1174,6 +1181,8 @@ const INDUSTRY_GROUPS = [
       { id: "sif", weight: 1, why: 'Her hair of gold is the original luxury mane — adornment as divine attribute.' },
       { id: 'helene', weight: 2, why: 'The Greek archetype of beauty whose face launched a thousand ships and still names allure itself.' },
       { id: 'psyche', weight: 1, why: 'Soul made visible; the Cupid-and-Psyche myth is a perennial brand for intimate beauty and interior life.' },
+      { id: 'adonis', weight: 2, why: 'Beauty and desire made mortal; the anemone and myrrh tree are still the raw material of cosmetics and fragrance branding.' },
+      { id: 'ambika', weight: 1, why: 'The divine feminine as adornment and power; her iconography colors South Asian beauty and bridal traditions.' },
     ],
   },
   {
@@ -1221,6 +1230,7 @@ const INDUSTRY_GROUPS = [
       { id: 'bhaisajyaguru', weight: 2, why: 'The Medicine Buddha whose vow is to heal every ailment; the East Asian patron of physicians and pharmacists.' },
       { id: 'kannon', weight: 2, why: 'The bodhisattva of compassion who hears the cries of the world; healing begins with mercy.' },
       { id: 'sukunahikona', weight: 2, why: 'The renowned little prince of healing and smallpox; folk medicine still invokes his name.' },
+      { id: 'bhudevi', weight: 1, why: 'The nourishing earth; her grain and green medicine are the original pharmacy and diet.' },
     ],
   },
   {
@@ -1366,6 +1376,9 @@ const INDUSTRY_GROUPS = [
       { id: 'amida', weight: 2, why: 'Infinite Light and the Pure Land; the promise of release underlies contemplative wellness.' },
       { id: 'fuji', weight: 1, why: 'Pilgrimage to the sacred summit is Japan\'s oldest wellness journey.' },
       { id: 'nishinakahime', weight: 1, why: 'The rice princess as nourishment and sustenance; the calm of the full granary.' },
+      { id: 'adonis', weight: 1, why: 'The cycle of beauty, loss, and renewal maps onto wellness narratives of regeneration and self-care.' },
+      { id: 'ambika', weight: 2, why: 'The mother-goddess as yogic power; her shakti is the active energy channeled in tantra and goddess spirituality.' },
+      { id: 'bhudevi', weight: 1, why: 'The grounding earth; her presence is the original "earthing" and somatic steadiness practice.' },
     ],
   },
   {
@@ -1824,6 +1837,7 @@ const INDUSTRY_GROUPS = [
       { id: 'angrboda', weight: 1, why: 'Monster-mother and Ragnarök figure; Norse-themed games mine her saga for bosses and backstory.' },
       { id: 'ereshkigal', weight: 1, why: 'Queen of the underworld is a recurring boss and realm-name in fantasy and gacha games.' },
       { id: 'theseus', weight: 1, why: 'The labyrinth and the Minotaur are one of gaming\'s oldest level-design templates.' },
+      { id: 'pallas', weight: 1, why: 'Titan of warcraft and father of the personifications of victory, strength, force, and rivalry — a ready-made pantheon for strategy and fantasy IP.' },
     ],
   },
   {
@@ -1901,6 +1915,7 @@ const INDUSTRY_GROUPS = [
       { id: 'hachiman', weight: 1, why: 'Archery, war, and competition; the bow is his attribute and the contest his rite.' },
       { id: 'hoori', weight: 1, why: 'The hunter whose skill with bow and field defines the athletic chase.' },
       { id: 'tajikarao', weight: 2, why: 'The strong-hand kami; strength sports and feats of power are his literal domain.' },
+      { id: 'pallas', weight: 2, why: 'Titan of warcraft whose children Nike, Kratos, and Bia are victory, strength, and force — the competitive ideal in one household.' },
     ],
   },
   {
@@ -2074,6 +2089,7 @@ const INDUSTRY_GROUPS = [
       { id: 'fjorgyn', weight: 1, why: 'The earth as home; the Norse earth-goddess is the ground beneath every hearth.' },
       { id: 'jord', weight: 1, why: 'The Norse earth is the ground beneath every dwelling; the mother of Þórr is the land itself.' },
       { id: 'oduduwa', weight: 1, why: 'Creator of the earth and first king of Ilé-Ifẹ̀; land, lineage, and homeland begin with him.' },
+      { id: 'bhudevi', weight: 2, why: 'The earth as goddess; every home and field rests on her body, making land itself sacred.' },
     ],
   },
   {
@@ -2321,7 +2337,9 @@ const INDUSTRY_GROUPS = [
       { id: 'ninigi', weight: 2, why: 'The grandson of Amaterasu sent to rule; the mandate from heaven made flesh.' },
       { id: 'sarutahiko', weight: 1, why: 'The kami who guides the great way; leadership as showing the path.' },
       { id: 'ugayafukiaezu', weight: 1, why: 'Ancestor of the first emperor; imperial leadership begins with him.' },
-      { id: 'baiame', weight: 2, why: 'Canonical baiame resonance — leadership' }],
+      { id: 'baiame', weight: 2, why: 'Canonical baiame resonance — leadership' },
+      { id: 'pallas', weight: 1, why: 'Titan of warcraft whose very name suggests the brandished spear; strategy and command before the clash.' },
+    ],
   },
   {
     industry: 'history-archives',
@@ -2802,6 +2820,7 @@ const INDUSTRY_GROUPS = [
       { id: 'hera', weight: 1, why: 'Marriage and childbirth were her household; the whole arc of women\'s lives ran under her eye.' },
       { id: 'selene', weight: 1, why: 'Her cycle was anciently read against the rhythms of women\'s bodies; the sector tracks what she once governed.' },
       { id: 'shakti', weight: 2, why: 'Divine feminine power personified; the active energy that creation, birth, and female-centered practice channel.' },
+      { id: 'ambika', weight: 2, why: 'The armed Divine Mother; her protective, multi-armed form speaks directly to maternal strength and women-centered health.' },
     ],
   },
   {
@@ -2847,6 +2866,7 @@ const INDUSTRY_GROUPS = [
       { id: 'var', weight: 2, why: 'Marriage agreements and sworn vows; the bond itself is her divine office.' },
       { id: 'helene', weight: 1, why: 'The face that launched a thousand ships remains the archetype of the bride around whom dynasties turn.' },
       { id: 'toyotama', weight: 1, why: 'The sea-goddess wife of Hoori and mother of Jimmu; the founding family of the imperial line.' },
+      { id: 'ambika', weight: 1, why: 'The Divine Mother as protector of children and household; her lion-riding form guards the family threshold.' },
     ],
   },
   {
@@ -2882,6 +2902,7 @@ const INDUSTRY_GROUPS = [
       { id: 'sati', weight: 1, why: 'She chose her husband against her father\'s house; devotion as the original partner choice.' },
       { id: 'yamuna', weight: 1, why: 'Kṛṣṇa\'s beloved, “co-wife of the Lord”; the rāsa-līlā romance plays out on her banks.' },
       { id: 'psyche', weight: 1, why: 'The Cupid-and-Psyche myth is the canonical divine love story — trust, separation, and reunion made archetype.' },
+      { id: 'adonis', weight: 1, why: 'The beautiful youth desired by Aphrodítē — desire, mourning, and the lover who returns each spring.' },
     ],
   },
   {
