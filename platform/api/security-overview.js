@@ -27,6 +27,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { get, all, run, isPostgres } = require('../db/operational');
 const { runMigration: migrateCspReports } = require('../db/migrate-csp-reports');
+const { runMigration: migrateCspReportsPg } = require('../db/migrate-csp-reports-pg');
 
 const AUTH_ACTIONS = [
   'portal.login.failed',
@@ -61,14 +62,18 @@ function toCount(value) {
 // ─────────────────────────────────────────────────────────────
 
 // Cold-start schema. SQLite: run the idempotent migration on the shared
-// connection. Postgres deployments get csp_reports from
-// init-operational-postgres.js out of band (same convention as the discount
-// codes schema), so there is nothing to do here.
+// connection. Postgres: create the table lazily here — the old assumption
+// that init-operational-postgres.js ran out of band in production was false,
+// and every report POST 500'd on the missing relation.
 let cspSchemaReady = false;
 async function ensureCspSchema() {
   if (cspSchemaReady) return;
+  if (isPostgres()) {
+    await migrateCspReportsPg();
+  } else {
+    migrateCspReports();
+  }
   cspSchemaReady = true;
-  if (!isPostgres()) migrateCspReports();
 }
 
 /**

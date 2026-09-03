@@ -7,6 +7,7 @@
  */
 
 const { all, transaction } = require('../db/operational');
+const { ensureAnalyticsV5Pg } = require('../db/ensure-analytics-v5');
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const MAX_RETENTION_DAYS = 30;
@@ -180,6 +181,7 @@ function buildCohorts({ sessionBucket, bucketSize, eventRows, maxDayIndex }) {
  * @returns {Promise<Object>}
  */
 async function computeCohorts({ days = 30, templeId = null, granularity = 'day' }) {
+  await ensureAnalyticsV5Pg();
   const normalizedDays = Math.max(1, days);
   const dayList = lastNDays(normalizedDays);
   const startDay = dayList[0];
@@ -237,6 +239,7 @@ function dateRangeFor(days) {
  * @returns {Promise<void>}
  */
 async function materializeCohorts({ days = 30 }) {
+  await ensureAnalyticsV5Pg();
   const { startDay, endDay } = dateRangeFor(days);
   const globalMatrix = await computeCohorts({ days, templeId: null, granularity: 'day' });
 
@@ -303,6 +306,7 @@ async function materializeCohorts({ days = 30 }) {
  * @returns {Promise<Object>}
  */
 async function getCohort({ days = 30, templeId = null, granularity = 'day' }) {
+  await ensureAnalyticsV5Pg();
   const normalizedDays = Math.max(1, days);
   const dayList = lastNDays(normalizedDays);
   const maxDayIndex = Math.min(normalizedDays, MAX_RETENTION_DAYS);

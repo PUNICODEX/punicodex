@@ -6,6 +6,7 @@
  */
 
 const { all } = require('../db/operational');
+const { ensureAnalyticsV5Pg } = require('../db/ensure-analytics-v5');
 
 const REVENUE_EVENTS = [
   'sponsor_payment_complete',
@@ -119,6 +120,7 @@ function emptyProductLine() {
  * @returns {Promise<Object>}
  */
 async function computeLtv({ days = 30, templeId = null }) {
+  await ensureAnalyticsV5Pg();
   const dayList = lastNDays(days);
   const startDay = dayList[0];
   const endDay = dayList[dayList.length - 1];
@@ -257,6 +259,7 @@ async function countCohortSessions({ startDay, endDay, templeId }) {
  * @returns {Promise<Array<Object>>}
  */
 async function computeLtvByCohort({ days = 30, templeId = null }) {
+  await ensureAnalyticsV5Pg();
   const dayList = lastNDays(days);
   const startDay = dayList[0];
   const endDay = dayList[dayList.length - 1];

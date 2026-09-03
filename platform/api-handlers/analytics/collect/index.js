@@ -6,8 +6,9 @@ const { classifyUserAgent } = require('../../../api/bot-detection');
 const { setCors } = require('../../../../api/_utils');
 const { checkPublicRateLimitByReq } = require('../../../api/public-rate-limiter');
 const { getClientIp } = require('../../../api/client-ip');
-const { run, all, get } = require('../../../db/operational');
+const { run, all, get, isPostgres } = require('../../../db/operational');
 const { runMigration: runMigrationV5 } = require('../../../db/migrate-site-analytics-v5');
+const { ensureAnalyticsV5Pg } = require('../../../db/ensure-analytics-v5');
 const { scoreEventQuality } = require('../../../api/analytics-quality');
 
 const MAX_BODY_LENGTH = 32768;
@@ -335,7 +336,13 @@ module.exports = async (req, res) => {
 
   res.setHeader('Cache-Control', 'no-store');
   try {
-    runMigrationV5();
+    // Dialect-aware schema ensure: SQLite migrations are synchronous and
+    // local; on Postgres the v5 tables are created by the PG migration.
+    if (isPostgres()) {
+      await ensureAnalyticsV5Pg();
+    } else {
+      runMigrationV5();
+    }
 
     const items = parseBeaconBody(req);
     const userAgent = req.headers['user-agent'] || '';

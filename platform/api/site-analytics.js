@@ -227,6 +227,11 @@ async function ensureMigration() {
 }
 
 async function recordToSqlite(event) {
+  // The legacy v1 pipeline (site_analytics_events + daily rollups) exists
+  // only in SQLite. Production Postgres reads overviews from Redis rollups
+  // and deep analytics from the v2 tables — the v1 tables are intentionally
+  // never created there, so writing them would only produce logged errors.
+  if (isPostgres()) return;
   await ensureMigration();
   await insert(
     `

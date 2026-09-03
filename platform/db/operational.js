@@ -61,15 +61,20 @@ function convertPlaceholders(sql) {
 }
 
 /**
- * Translate SQLite-isms that have no Postgres equivalent. Currently:
- *   date(col) → (col)::date
- * Postgres has no single-argument date() function, and the analytics engines
- * use date(...) pervasively to bucket TIMESTAMPTZ/text timestamps by day.
- * Anchored to a bare column reference (optionally table-qualified) so it can
- * never rewrite a column named "date" or a two-argument call.
+ * Translate SQLite-isms that have no Postgres equivalent:
+ *   date(col)              → (col)::date        (day bucketing)
+ *   substr(col, 1, 10)     → substr((col)::text, 1, 10)
+ *                            (PG substr() has no timestamptz overload; the
+ *                            text cast yields the same 'YYYY-MM-DD' prefix)
+ *   strftime('%s', col)    → EXTRACT(EPOCH FROM col)   (unix seconds)
+ * Anchored to bare column references (optionally table-qualified) so they can
+ * never rewrite a column named "date" or calls with literal arguments.
  */
 function translateForPostgres(sql) {
-  return sql.replace(/\bdate\(\s*([A-Za-z_][\w.]*)\s*\)/g, '($1)::date');
+  return sql
+    .replace(/\bdate\(\s*([A-Za-z_][\w.]*)\s*\)/g, '($1)::date')
+    .replace(/\bsubstr\(\s*([A-Za-z_][\w.]*)\s*,\s*1\s*,\s*10\s*\)/g, 'substr(($1)::text, 1, 10)')
+    .replace(/\bstrftime\(\s*'%s'\s*,\s*([A-Za-z_][\w.]*)\s*\)/g, 'EXTRACT(EPOCH FROM $1)');
 }
 
 async function query(sql, params = []) {

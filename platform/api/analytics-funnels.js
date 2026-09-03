@@ -7,6 +7,7 @@
  */
 
 const { all, transaction } = require('../db/operational');
+const { ensureAnalyticsV5Pg } = require('../db/ensure-analytics-v5');
 const { listFunnels, getFunnelConfig } = require('../analytics/funnels');
 
 function dayString(date) {
@@ -198,6 +199,7 @@ function finalizeStepMetrics(cfg, totalSessions, counts, medians) {
  * @returns {Promise<Object>}
  */
 async function computeFunnel({ funnelId, days = 30, templeId = null }) {
+  await ensureAnalyticsV5Pg();
   const cfg = getFunnelConfig(funnelId);
   if (!cfg) throw new Error(`Unknown funnel: ${funnelId}`);
 
@@ -227,6 +229,7 @@ async function computeFunnel({ funnelId, days = 30, templeId = null }) {
  * @returns {Promise<void>}
  */
 async function materializeFunnels({ days = 30 }) {
+  await ensureAnalyticsV5Pg();
   const dayList = lastNDays(days);
   const funnels = listFunnels();
 
@@ -288,6 +291,7 @@ async function materializeFunnels({ days = 30 }) {
  * @returns {Promise<Object>}
  */
 async function getFunnel({ funnelId, days = 30, templeId = null }) {
+  await ensureAnalyticsV5Pg();
   const cfg = getFunnelConfig(funnelId);
   if (!cfg) throw new Error(`Unknown funnel: ${funnelId}`);
 

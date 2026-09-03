@@ -7,6 +7,7 @@
  */
 
 const { all, get } = require('../db/operational');
+const { ensureAnalyticsV5Pg } = require('../db/ensure-analytics-v5');
 
 const DEFAULT_MINUTES = 60;
 const MAX_MINUTES = 120;
@@ -174,6 +175,7 @@ function computeVelocity(current, previous) {
  * @returns {Promise<Object>}
  */
 async function getRealtimePulse({ minutes = DEFAULT_MINUTES, templeId = null } = {}) {
+  await ensureAnalyticsV5Pg();
   const normalizedMinutes = clampMinutes(minutes);
   const bounds = windowBounds(normalizedMinutes);
 

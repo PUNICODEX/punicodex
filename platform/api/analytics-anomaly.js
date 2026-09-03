@@ -7,6 +7,7 @@
  */
 
 const { all } = require('../db/operational');
+const { ensureAnalyticsV5Pg } = require('../db/ensure-analytics-v5');
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -96,6 +97,7 @@ function findAnomalies(dayList, series, metric, zThreshold) {
  * @returns {Promise<Array<{date, templeId, metric, value, expected, zScore, severity}>>}
  */
 async function detectAnomalies({ days = 30, templeId = null, zThreshold = 3 } = {}) {
+  await ensureAnalyticsV5Pg();
   const windowDays = Math.min(120, Math.max(1, Number(days) || 30));
   const threshold = Number.isFinite(zThreshold) && zThreshold > 0 ? zThreshold : 3;
   const dayList = lastNDays(windowDays);

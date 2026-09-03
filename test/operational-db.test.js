@@ -65,6 +65,16 @@ test('translateForPostgres rewrites date(col) to a Postgres cast', () => {
   // Never touches a bare column named "date" or non-column arguments.
   assert.strictEqual(translateForPostgres('SELECT date FROM t'), 'SELECT date FROM t');
   assert.strictEqual(translateForPostgres("date('now')"), "date('now')");
+  // substr(col, 1, 10) gains a text cast (PG substr has no timestamptz overload).
+  assert.strictEqual(
+    translateForPostgres('substr(created_at, 1, 10) AS day'),
+    'substr((created_at)::text, 1, 10) AS day'
+  );
+  // strftime('%s', col) becomes an epoch extraction.
+  assert.strictEqual(
+    translateForPostgres("CAST(strftime('%s', e.created_at) AS INTEGER) >= $2"),
+    'CAST(EXTRACT(EPOCH FROM e.created_at) AS INTEGER) >= $2'
+  );
 });
 
 test('get returns a single row', async () => {
