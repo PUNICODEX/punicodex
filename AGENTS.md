@@ -123,6 +123,7 @@ npm run generate:check  # divergence gate
 npm test  # 232+ suites (node test/run-all.js)
 npm run validate  # lexicon + accuracy validators + engine tests
 npm run prepush  # npm test + generate:check
+npm run prepush:gate  # smart gate: only the suites your changed files can break
 npm run db-init  # build SQLite DB + all migrations
 npm run platform  # Express platform server on :3456
 npm run lint / lint:fix  # Biome
@@ -138,6 +139,10 @@ npm run browser:dev / browser:build / browser:dist  # Electron desktop browser
 `npm test` runs `test/run-all.js`: **232+ suites** sequentially (most 30s timeout; heavy up to 30min), plain Node + `node --test`. Groups: data integrity (Lexicon Validator 74k+ assertions, engine, generated artifacts, Divergence Gate); SEO/links/accuracy (Link Checker, Philological Accuracy, Flywheel Integrity, Lighthouse 90+); API & services; Scholars; Authenticity (red-team, FP/FN budgets); Clients; AI corpus.
 
 **Rule:** after any canonical-source change, `npm run generate && npm test` must pass before committing. Never mark work done while suites are red.
+
+### Pre-push gate (installed hook)
+
+A git `pre-push` hook (installed by `scripts/install-hooks.js` via `npm prepare`) runs `scripts/prepush-gate.js` before every push. It diffs the commits being pushed, maps changed files to the suites that can actually break (suite commands parsed from `test/run-all.js` at runtime — `--self-test` validates the mapping), and runs those plus the always-on Format Check + Biome Lint. Canonical-source changes additionally run the divergence gate. A red gate blocks the push — fix locally instead of discovering it in CI. Escape hatches: `git push --no-verify` (you own the red CI), `PREPUSH_FULL=1` to force the full battery, `PREPUSH_FILES="..."` to simulate. When adding suites to `test/run-all.js`, extend `RULES` in `scripts/prepush-gate.js` if the new suite guards a distinct area.
 
 ## Code Style (Biome)
 
