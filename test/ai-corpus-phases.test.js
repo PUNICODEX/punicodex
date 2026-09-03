@@ -50,6 +50,7 @@ const CORPORA = [
   { file: 'benchmark.jsonl', key: 'benchmarkExamples' },
   { file: 'mythology-synthesis.jsonl', key: 'mythologySynthesisExamples' },
   { file: 'oracle-examples.jsonl', key: 'oracleExamples' },
+  { file: 'oracle-doctrine-examples.jsonl', key: 'oracleDoctrineExamples' },
   { file: 'symbolic-correspondences.jsonl', key: 'symbolicCorrespondenceExamples' },
   { file: 'scientific-analogies.jsonl', key: 'scientificAnalogyExamples' },
 ];

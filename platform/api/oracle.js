@@ -96,6 +96,80 @@ function everydayWordsFor(entryId, limit = 3) {
   return (loadEverydayWords().get(entryId) || []).slice(0, limit);
 }
 
+// ── Screen Guide grounding ──────────────────────────────────────────────────
+// data/screen-index.json is the canonical work → depicted-temples mapping.
+// Lets the Oracle bridge screen audiences into the temples: "what mythology
+// is The Northman based on?" answered from data.
+let screenIndex = null;
+function loadScreenIndex() {
+  if (screenIndex) return screenIndex;
+  try {
+    const raw = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '..', '..', 'data', 'screen-index.json'), 'utf8')
+    );
+    screenIndex = raw.productions || [];
+  } catch (_e) {
+    screenIndex = [];
+  }
+  return screenIndex;
+}
+
+function normalizeForMatch(s) {
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Match a query against screen productions. Scores title hits highest, then
+ * token overlap, then depicted-entry matches so "movies about Zeus"
+ * surfaces works depicting Zeús.
+ */
+function retrieveProductions(q, limit = 3) {
+  const normalized = normalizeForMatch(q);
+  if (!normalized) return [];
+  const tokens = normalized.split(' ').filter((t) => t.length > 2);
+  const scored = [];
+  for (const p of loadScreenIndex()) {
+    const titleNorm = normalizeForMatch(p.title);
+    let score = 0;
+    if (titleNorm.length > 3 && normalized.includes(titleNorm)) score += 100;
+    const titleTokens = titleNorm.split(' ');
+    for (const t of tokens) if (titleTokens.includes(t)) score += 10;
+    for (const entryId of p.entries || []) {
+      const idNorm = entryId.replace(/-/g, ' ');
+      if (tokens.some((t) => idNorm === t || (t.length > 3 && idNorm.startsWith(t)))) score += 4;
+    }
+    if (score > 0) scored.push({ production: p, score });
+  }
+  return scored
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((s) => s.production);
+}
+
+/** True when the query names a production title (drives screen intent). */
+function queryNamesProduction(q) {
+  const normalized = normalizeForMatch(q);
+  if (!normalized) return false;
+  const hasHint =
+    /\b(film|movie|series|show|anime|game|gaming|playthrough|watch|netflix|screen|adaptation|depicted)\b/.test(
+      normalized
+    );
+  return loadScreenIndex().some((p) => {
+    const titleNorm = normalizeForMatch(p.title);
+    if (titleNorm.length <= 3 || !normalized.includes(titleNorm)) return false;
+    // Multi-word titles ("the northman") are distinctive on their own; a
+    // single-word title ("hades") needs a screen hint so deity questions
+    // like "Who is Hades?" are not hijacked by the production of that name.
+    return titleNorm.includes(' ') || hasHint;
+  });
+}
+
 function escapeHtml(text) {
   return String(text ?? '')
     .replace(/&/g, '&amp;')
@@ -475,6 +549,16 @@ function detectIntent(q) {
   const lower = normalizeQuery(q);
 
   if (/\b(punycode|xn--|idn|unicode domain)\b/.test(lower)) return 'punycode';
+  // Screen before who/meaning — "tell me about the Hades game" is a screen
+  // question, not an identity question. queryNamesProduction only fires when a
+  // real production title is named, so plain "Who is Hades?" stays 'who'.
+  if (
+    /\b(film|movie|series|tv show|anime|video game|game about|games? (based|inspired)|watch|playthrough|netflix|on screen|depicts?|depicted in)\b/.test(
+      lower
+    ) ||
+    queryNamesProduction(lower)
+  )
+    return 'screen';
   if (/\b(who is|who was|who are|whom is|whom was|tell me about)\b/.test(lower)) return 'who';
   if (/\b(what is the etymology of|what was the etymology of|etymology of)\b/.test(lower))
     return 'etymology';
@@ -497,7 +581,7 @@ function detectIntent(q) {
     return 'etymology';
   if (/\b(pronunciation|pronounce|how do you say|how is .* pronounced|phonetics?)\b/.test(lower))
     return 'pronunciation';
-  if (/\b(myth|mythology|story|legend|tale|epic|saga|born|birth|killed|defeated)\b/.test(lower))
+  if (/\b(myths?|mythology|story|legend|tale|epic|saga|born|birth|killed|defeated)\b/.test(lower))
     return 'mythology';
   if (/\b(symbol|icon|attribute|sacred animal|sacred bird|weapon|staff|object)\b/.test(lower))
     return 'symbols';
@@ -1254,6 +1338,37 @@ function formatWeaveSection(entry, lore) {
   return out;
 }
 
+// Screen mode — bridge a film/series/game question to its temple foundations.
+function formatScreenSection(productions, entryNames = new Map()) {
+  if (!productions?.length) return '';
+  const items = productions
+    .map((p) => {
+      const temples = (p.entries || [])
+        .slice(0, 8)
+        .map((id) => {
+          const label = entryNames.get(id) || id;
+          return `<a href="/${id}/"><strong>${escapeHtml(label)}</strong></a>`;
+        })
+        .join(', ');
+      const meta = [p.type, p.year, p.studio].filter(Boolean).join(' · ');
+      return (
+        `<li><a href="/screen/${p.id}/"><strong>${escapeHtml(p.title)}</strong></a>` +
+        (meta ? ` <em>(${escapeHtml(meta)})</em>` : '') +
+        (p.summary ? ` — ${escapeHtml(p.summary)}` : '') +
+        (temples ? `<br>Foundation temples: ${temples}` : '') +
+        `</li>`
+      );
+    })
+    .join('');
+  return `<div class="oracle-section"><h4>On screen — and the temples beneath</h4><ul>${items}</ul></div>`;
+}
+
+function entryNameMap() {
+  const database = getDb();
+  const rows = database.prepare('SELECT id, unicode, ascii FROM entries').all();
+  return new Map(rows.map((r) => [r.id, r.unicode || r.ascii || r.id]));
+}
+
 function formatSites(name, sites, availability) {
   const activeSites = (sites || []).filter((s) => s.status === 'active' || s.is_flagship);
   if (activeSites.length) {
@@ -1276,7 +1391,7 @@ function formatSites(name, sites, availability) {
   return '';
 }
 
-function buildCitations(entries, sites, loreSources = []) {
+function buildCitations(entries, sites, loreSources = [], productions = []) {
   const citations = [];
   for (const e of entries.slice(0, 3)) {
     citations.push({
@@ -1306,6 +1421,14 @@ function buildCitations(entries, sites, loreSources = []) {
         snippet: '',
       });
     }
+  }
+  for (const p of productions.slice(0, 3)) {
+    citations.push({
+      type: 'screen',
+      label: p.title,
+      url: `/screen/${p.id}/`,
+      snippet: p.summary || '',
+    });
   }
   return citations;
 }
@@ -1349,6 +1472,10 @@ function generateFollowUps(intent, primary, related = [], sites = []) {
     followUps.push(`Is ${name} available?`);
     followUps.push(`How much does ${name} cost?`);
   }
+  if (intent === 'screen') {
+    followUps.push(`What are the myths of ${name}?`);
+    followUps.push(`Which other films are rooted in ${name}?`);
+  }
   if (related.length) {
     followUps.push(`How is ${name} related to ${related[0].unicode || related[0].ascii}?`);
   }
@@ -1359,7 +1486,7 @@ function generateFollowUps(intent, primary, related = [], sites = []) {
   return followUps.slice(0, 3);
 }
 
-function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
+function synthesizeAnswer(q, entries, sites, related, intent, _history = [], productions = []) {
   const safeQ = escapeHtml(q);
   const primary = entries[0];
   const context = {
@@ -1374,8 +1501,11 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
   let answer = '';
 
   if (!primary) {
-    const citations = buildCitations(entries, sites);
-    if (sites.length) {
+    const citations = buildCitations(entries, sites, [], productions);
+    if (productions.length) {
+      answer = `<p>“${safeQ}” points at a screen work — here is how it maps onto the temples:</p>`;
+      answer += formatScreenSection(productions, entryNameMap());
+    } else if (sites.length) {
       answer = `<p>We found these indexed sites related to “${safeQ}”:</p><ul>${sites
         .map((s) => `<li><strong>${escapeHtml(s.tenant_name || s.title || s.domain)}</strong></li>`)
         .join('')}</ul>`;
@@ -1387,7 +1517,9 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
       answer,
       citations,
       context,
-      followUps: generateFollowUps('general', null),
+      followUps: productions.length
+        ? ['Who is Zeús?', 'Which games are rooted in Greek myth?', 'What films depict Ragnarök?']
+        : generateFollowUps('general', null),
       primaryId: null,
     };
   }
@@ -1498,6 +1630,12 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
     answer += formatSites(name, sites, ctx?.availability);
   }
 
+  if (intent === 'screen') {
+    answer += formatScreenSection(productions, entryNameMap());
+    answer += formatMyths(lore.mythology);
+    answer += formatCulturalLegacy(lore.culturalLegacy);
+  }
+
   // Default enrichments for every answer
   if (!['etymology', 'meaning', 'pronunciation', 'script', 'variants'].includes(intent)) {
     answer += formatEtymology(ctx?.etymology, lore);
@@ -1519,7 +1657,7 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
     answer += `<div class="oracle-section"><h4>Lexicon authorities</h4><p>${formatLexiconSources(ctx.sources)}</p></div>`;
   }
 
-  const citations = buildCitations(entries, sites, lore.sources);
+  const citations = buildCitations(entries, sites, lore.sources, productions);
   const followUps = generateFollowUps(intent, primary, related, sites);
 
   // Intent branches and the default enrichments above can emit the same
@@ -1611,9 +1749,9 @@ const ORACLE_SYSTEM_PROMPT = [
 // content channel. Detect meta-narration, salvage a final answer embedded
 // after a "let's write:" pivot, or reject so the caller can retry/degrade.
 const LLM_META_OPEN =
-  /^(we (need|must|should|will)|let'?s|the user|okay|to answer|first,|i (need|must|will)|so,|maybe|paragraph \d|note:|draft|plan:)/i;
+  /^(we (need|must|should|will)|let'?s|the user|okay|to answer|first,|i (need|must|will)|so,|maybe|paragraph \d|note:|draft|plan:|answer:)/i;
 const LLM_META_BODY =
-  /we (must|need|should) (not |)(use|answer|stick|avoid|mention)|paragraph \d|word count|aim ~|let'?s (write|craft)/i;
+  /we (must|need|should) (not |)(use|answer|stick|avoid|mention)|paragraph \d|word count|aim ~|let'?s (write|craft)|<p>\s*\.{3}\s*<\/p>/i;
 
 function stripLlmReasoning(content) {
   if (!content) return null;
@@ -1676,6 +1814,13 @@ const ORACLE_INTENT_ADDENDA = {
   legacy: [
     'Legacy mode: connect the figure to the modern world strictly through',
     'the supplied cultural-legacy, connection, and industry data.',
+  ].join('\n'),
+  screen: [
+    'Screen mode: connect the film, series, or game to its temple foundations.',
+    'Use ONLY the supplied production records and entry contexts — never assert',
+    'fidelity judgments the data does not state. Show which mythological',
+    'figures the work draws on, and what the restored names preserve that the',
+    'screen versions flatten.',
   ].join('\n'),
 };
 
@@ -1779,9 +1924,21 @@ function formatVariantsForPrompt(variants) {
   return parts.filter(Boolean).join('; ') || null;
 }
 
-function buildLlmPrompt(q, contexts, intent) {
+function buildLlmPrompt(q, contexts, intent, productions = []) {
   const _primary = contexts[0];
   const promptParts = [`User question: ${q}`, `Intent: ${intent}`, '', 'Context:'];
+
+  if (intent === 'screen' && productions.length) {
+    const names = entryNameMap();
+    promptParts.push('Screen works (canonical PuniCodex screen index):');
+    for (const p of productions.slice(0, 3)) {
+      const depicts = (p.entries || []).map((id) => names.get(id) || id).join(', ');
+      promptParts.push(`- ${p.title} (${[p.type, p.year, p.studio].filter(Boolean).join(', ')})`);
+      if (p.summary) promptParts.push(`  Summary: ${p.summary}`);
+      if (depicts) promptParts.push(`  Depicts / draws on: ${depicts}`);
+    }
+    promptParts.push('');
+  }
 
   for (const ctx of contexts.slice(0, 2)) {
     promptParts.push(
@@ -1956,9 +2113,10 @@ async function askOracle(q, history = [], { quick = false } = {}) {
   // Fast path: direct name match → skip expensive retrieval
   const direct = lookupEntryDirectly(resolvedQ);
   if (direct) {
+    const directProductions = intent === 'screen' ? retrieveProductions(resolvedQ) : [];
     const result = quick
       ? synthesizeQuickAnswer(direct, intent)
-      : synthesizeAnswer(resolvedQ, [direct], [], [], intent, history);
+      : synthesizeAnswer(resolvedQ, [direct], [], [], intent, history, directProductions);
     if (!quick) setCachedOracle(cacheKey, result);
     return result;
   }
@@ -2010,8 +2168,9 @@ async function askOracle(q, history = [], { quick = false } = {}) {
   }
   const sites = await retrieveSites(resolvedQ);
   const related = primary ? retrieveRelated(primary) : [];
+  const productions = intent === 'screen' ? retrieveProductions(resolvedQ) : [];
 
-  const result = synthesizeAnswer(resolvedQ, entries, sites, related, intent, history);
+  const result = synthesizeAnswer(resolvedQ, entries, sites, related, intent, history, productions);
 
   // Optional LLM polish with grounded prompt
   const contexts = entries
@@ -2020,7 +2179,7 @@ async function askOracle(q, history = [], { quick = false } = {}) {
     .filter(Boolean);
   result.llmStatus = 'no-context';
   if (contexts.length && resolveLlmConfig()) {
-    const prompt = buildLlmPrompt(resolvedQ, contexts, intent);
+    const prompt = buildLlmPrompt(resolvedQ, contexts, intent, productions);
     const llmResult = await callLlmIfConfigured(prompt, intent, contexts.length);
     if (llmResult.content) {
       // Prepend LLM summary, keep our structured sections below for depth
@@ -2058,4 +2217,7 @@ module.exports = {
   similarityEdgesFor,
   industrySeatsFor,
   everydayWordsFor,
+  retrieveProductions,
+  queryNamesProduction,
+  formatScreenSection,
 };

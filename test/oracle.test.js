@@ -14,6 +14,9 @@ const {
   formatWeaveSection,
   stripLlmReasoning,
   enforceWordBudget,
+  retrieveProductions,
+  queryNamesProduction,
+  formatScreenSection,
 } = require('../platform/api/oracle');
 
 async function test(name, fn) {
@@ -279,6 +282,72 @@ test('askOracle reports llmStatus for the polish layer', async () => {
   );
   const withCtx = await askOracle('Who is Zeus?');
   assert.strictEqual(withCtx.llmStatus, 'not-configured', 'no key in test env');
+});
+
+test('detectIntent: screen questions route to screen, deity questions stay put', () => {
+  assert.strictEqual(detectIntent('What mythology is The Northman based on?'), 'screen');
+  assert.strictEqual(detectIntent('Is the Hades game accurate?'), 'screen');
+  assert.strictEqual(detectIntent('Tell me about the Hades game'), 'screen');
+  assert.strictEqual(detectIntent('What films depict Ragnarok?'), 'screen');
+  // Single-word production titles must not hijack plain deity questions.
+  assert.strictEqual(detectIntent('Who is Hades?'), 'who');
+  assert.strictEqual(detectIntent('What does Athena mean?'), 'meaning');
+});
+
+test('retrieveProductions surfaces works depicting a deity', () => {
+  const prods = retrieveProductions('movies about Zeus');
+  assert.ok(prods.length > 0, 'found productions');
+  assert.ok(
+    prods.some((p) => p.id.startsWith('clash-of-the-titans')),
+    `expected clash-of-the-titans, got ${prods.map((p) => p.id)}`
+  );
+});
+
+test('queryNamesProduction requires a hint for single-word titles', () => {
+  assert.strictEqual(queryNamesProduction('tell me about the hades game'), true);
+  assert.strictEqual(queryNamesProduction('what is the northman based on'), true);
+  assert.strictEqual(queryNamesProduction('who is hades'), false);
+});
+
+test('formatScreenSection renders production + foundation temple links', () => {
+  const html = formatScreenSection(
+    [
+      {
+        id: 'hades-2020',
+        title: 'Hades',
+        type: 'game',
+        year: 2020,
+        summary: 'Roguelike set in the Greek underworld.',
+        entries: ['hades', 'zeus'],
+      },
+    ],
+    new Map([
+      ['hades', 'Hádēs'],
+      ['zeus', 'Zeús'],
+    ])
+  );
+  assert.ok(html.includes('/screen/hades-2020/'), 'production link');
+  assert.ok(html.includes('/hades/'), 'temple link');
+  assert.ok(html.includes('Hádēs'), 'restored name label');
+  assert.ok(html.includes('Foundation temples'), 'foundation label');
+  assert.strictEqual(formatScreenSection([]), '');
+});
+
+test('askOracle: screen answer bridges production to temples', async () => {
+  const r = await askOracle('Tell me about the Hades game');
+  assert.strictEqual(r.primaryId, 'hades');
+  assert.ok(r.answer.includes('On screen'), 'screen section present');
+  assert.ok(r.answer.includes('/screen/hades-2020/'), 'production link present');
+});
+
+test('askOracle: screen answer works without a lexicon hit', async () => {
+  const r = await askOracle('What mythology is The Northman based on?');
+  assert.ok(r.answer.includes('/screen/the-northman-2022/'), 'production link present');
+  assert.ok(r.answer.includes('Foundation temples'), 'foundation temples listed');
+  assert.ok(
+    r.citations.some((c) => c.type === 'screen'),
+    'screen citation present'
+  );
 });
 
 if (!process.exitCode) {
