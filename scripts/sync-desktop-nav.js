@@ -91,6 +91,7 @@ const TARGETS = [
   { page: path.join('connections', 'index.html'), active: '/connections/' },
   { page: path.join('contact', 'index.html'), active: '/contact/' },
   { page: path.join('creatives', 'index.html'), active: null, insertNav: true },
+  { page: path.join('herald', 'index.html'), active: '/herald/' },
   { page: path.join('lexicon', 'index.html'), active: '/lexicon/' },
   { page: path.join('lexicon', 'cognates.html'), active: '/lexicon/' },
   { page: path.join('pantheon', 'index.html'), active: '/pantheon/' },
