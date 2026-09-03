@@ -3,7 +3,9 @@
  *
  * Phase 2.5: Deep, citation-rich answers using the full lore catalog,
  * etymology, variants, original scripts, live sites, and scholarly sources.
- * Optional LLM polish when ORACLE_LLM_API_KEY + ORACLE_LLM_MODEL are set.
+ * Optional LLM polish when a backend is configured — see resolveLlmConfig
+ * (default OpenAI-compatible env vars; ORACLE_LLM_PROVIDER=nemotron switches
+ * to NVIDIA Nemotron via NIM or a self-hosted vLLM).
  */
 const Database = require('better-sqlite3');
 const { getDbPath } = require('../db/db');
@@ -1360,17 +1362,48 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
   return { answer, citations, context, followUps, primaryId: primary.id };
 }
 
-async function callLlmIfConfigured(prompt) {
-  // Provider-agnostic: any OpenAI-compatible endpoint (OpenAI, OpenRouter,
-  // Together, vLLM, or the self-hosted student model) via ORACLE_LLM_BASE_URL.
-  const apiKey = process.env.ORACLE_LLM_API_KEY;
-  const model = process.env.ORACLE_LLM_MODEL;
+const NEMOTRON_BASE_URL = 'https://integrate.api.nvidia.com/v1';
+const NEMOTRON_DEFAULT_MODEL = 'nvidia/llama-3.3-nemotron-super-49b-v1';
+
+/**
+ * Resolve the Oracle's LLM backend from the environment.
+ *
+ * `ORACLE_LLM_PROVIDER` selects the backend (default 'openai'):
+ * - 'openai' (default) — ORACLE_LLM_API_KEY / ORACLE_LLM_MODEL /
+ *   ORACLE_LLM_BASE_URL; any OpenAI-compatible endpoint (OpenAI, OpenRouter,
+ *   Together, vLLM, or the self-hosted student model).
+ * - 'nemotron' — NVIDIA Nemotron via NIM (or any vLLM serving the weights):
+ *   NEMOTRON_API_KEY (or NVIDIA_API_KEY), NEMOTRON_MODEL (defaults to the
+ *   hosted Llama-3.3-Nemotron-Super-49B), NEMOTRON_BASE_URL (defaults to the
+ *   NVIDIA NIM cloud endpoint — point at a local vLLM for self-hosting).
+ *
+ * Returns null when the selected backend is not fully configured, so callers
+ * degrade gracefully to the deterministic answer.
+ */
+function resolveLlmConfig(env = process.env) {
+  const provider = String(env.ORACLE_LLM_PROVIDER || 'openai')
+    .trim()
+    .toLowerCase();
+  if (provider === 'nemotron') {
+    const apiKey = env.NEMOTRON_API_KEY || env.NVIDIA_API_KEY;
+    const model = env.NEMOTRON_MODEL || NEMOTRON_DEFAULT_MODEL;
+    if (!apiKey || !model) return null;
+    return { apiKey, model, baseUrl: env.NEMOTRON_BASE_URL || NEMOTRON_BASE_URL, provider };
+  }
+  const apiKey = env.ORACLE_LLM_API_KEY;
+  const model = env.ORACLE_LLM_MODEL;
   if (!apiKey || !model) return null;
+  return { apiKey, model, baseUrl: env.ORACLE_LLM_BASE_URL || undefined, provider: 'openai' };
+}
+
+async function callLlmIfConfigured(prompt) {
+  const config = resolveLlmConfig();
+  if (!config) return null;
 
   return llmChat({
-    apiKey,
-    model,
-    baseUrl: process.env.ORACLE_LLM_BASE_URL || undefined,
+    apiKey: config.apiKey,
+    model: config.model,
+    baseUrl: config.baseUrl,
     messages: [
       {
         role: 'system',
@@ -1571,7 +1604,7 @@ async function askOracle(q, history = [], { quick = false } = {}) {
     .slice(0, 2)
     .map((e) => getEntryContext(e.id))
     .filter(Boolean);
-  if (contexts.length && process.env.ORACLE_LLM_API_KEY) {
+  if (contexts.length && resolveLlmConfig()) {
     const prompt = buildLlmPrompt(resolvedQ, contexts, intent);
     const llmAnswer = await callLlmIfConfigured(prompt);
     if (llmAnswer) {
@@ -1593,4 +1626,5 @@ module.exports = {
   retrieveSites,
   retrieveRelated,
   etymologySummary,
+  resolveLlmConfig,
 };

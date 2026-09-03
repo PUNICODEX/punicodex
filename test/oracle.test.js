@@ -3,7 +3,7 @@
  */
 
 const assert = require('node:assert');
-const { askOracle, detectIntent } = require('../platform/api/oracle');
+const { askOracle, detectIntent, resolveLlmConfig } = require('../platform/api/oracle');
 
 async function test(name, fn) {
   try {
@@ -88,6 +88,53 @@ test('askOracle returns availability for commercial intent', async () => {
   const result = await askOracle('Is Athena available?');
   assert.ok(result.answer);
   assert.strictEqual(result.primaryId, 'athena');
+});
+
+test('resolveLlmConfig: unset env returns null (graceful degradation)', () => {
+  assert.strictEqual(resolveLlmConfig({}), null);
+});
+
+test('resolveLlmConfig: default provider reads ORACLE_LLM_* vars', () => {
+  const config = resolveLlmConfig({ ORACLE_LLM_API_KEY: 'k', ORACLE_LLM_MODEL: 'm' });
+  assert.deepStrictEqual(config, {
+    apiKey: 'k',
+    model: 'm',
+    baseUrl: undefined,
+    provider: 'openai',
+  });
+  const withBase = resolveLlmConfig({
+    ORACLE_LLM_API_KEY: 'k',
+    ORACLE_LLM_MODEL: 'm',
+    ORACLE_LLM_BASE_URL: 'https://example.test/v1/',
+  });
+  assert.strictEqual(withBase.baseUrl, 'https://example.test/v1/');
+});
+
+test('resolveLlmConfig: nemotron needs a key, defaults model + NIM endpoint', () => {
+  assert.strictEqual(resolveLlmConfig({ ORACLE_LLM_PROVIDER: 'nemotron' }), null);
+  const config = resolveLlmConfig({
+    ORACLE_LLM_PROVIDER: 'Nemotron',
+    NEMOTRON_API_KEY: 'nvapi-k',
+  });
+  assert.strictEqual(config.provider, 'nemotron');
+  assert.strictEqual(config.apiKey, 'nvapi-k');
+  assert.ok(config.model.startsWith('nvidia/'), 'defaults to a hosted Nemotron model');
+  assert.strictEqual(config.baseUrl, 'https://integrate.api.nvidia.com/v1');
+});
+
+test('resolveLlmConfig: nemotron honors NVIDIA_API_KEY alias and overrides', () => {
+  const config = resolveLlmConfig({
+    ORACLE_LLM_PROVIDER: 'nemotron',
+    NVIDIA_API_KEY: 'alias-k',
+    NEMOTRON_MODEL: 'nvidia/custom-nemotron',
+    NEMOTRON_BASE_URL: 'http://127.0.0.1:8000/v1',
+  });
+  assert.deepStrictEqual(config, {
+    apiKey: 'alias-k',
+    model: 'nvidia/custom-nemotron',
+    baseUrl: 'http://127.0.0.1:8000/v1',
+    provider: 'nemotron',
+  });
 });
 
 if (!process.exitCode) {
