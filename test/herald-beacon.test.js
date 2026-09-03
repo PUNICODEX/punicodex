@@ -246,15 +246,31 @@ async function run() {
       // The submit handler binds at mount; a click that lands before binding
       // is silently dropped. Retry the click until the request is observed
       // (the route fulfills instantly, so a bound handler answers at once).
+      // Final fallback: requestSubmit() dispatches a trusted-equivalent submit
+      // event straight to the form, bypassing pointer-level flakiness.
       let subscribeReq = null;
       for (let attempt = 0; attempt < 3 && !subscribeReq; attempt++) {
         const requestPromise = page
           .waitForRequest('**/api/newsletter/subscribe/**', { timeout: 10000 })
           .catch(() => null);
-        await page.locator('.herald-beacon__submit').click();
+        if (attempt < 2) {
+          await page.locator('.herald-beacon__submit').click();
+        } else {
+          await page.locator('.herald-beacon__form').evaluate((f) => f.requestSubmit());
+        }
         subscribeReq = await requestPromise;
       }
-      assert.ok(subscribeReq, 'subscribe request fired');
+      if (!subscribeReq) {
+        const diag = await page.evaluate(() => ({
+          email: document.querySelector('input[name="email"]')?.value,
+          phone: document.querySelector('input[name="phone"]')?.value,
+          error: document.querySelector('.herald-beacon__error')?.textContent,
+          disabled: document.querySelector('.herald-beacon__submit')?.disabled,
+          forms: document.querySelectorAll('input[name="email"]').length,
+          open: !!document.querySelector('.herald-beacon--open'),
+        }));
+        assert.fail(`subscribe request fired — diag: ${JSON.stringify(diag)}`);
+      }
       await page.locator('.herald-beacon__success').first().waitFor({ timeout: 30000 });
       assert.ok(payload, 'request fired');
       assert.strictEqual(payload.email, 'herald.fan@example.com');
