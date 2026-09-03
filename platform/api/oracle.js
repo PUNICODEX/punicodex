@@ -1363,7 +1363,7 @@ function synthesizeAnswer(q, entries, sites, related, intent, _history = []) {
 }
 
 const NEMOTRON_BASE_URL = 'https://integrate.api.nvidia.com/v1';
-const NEMOTRON_DEFAULT_MODEL = 'nvidia/llama-3.3-nemotron-super-49b-v1';
+const NEMOTRON_DEFAULT_MODEL = 'nvidia/llama-3.3-nemotron-super-49b-v1.5';
 
 /**
  * Resolve the Oracle's LLM backend from the environment.
