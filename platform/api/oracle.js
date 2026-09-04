@@ -1274,7 +1274,7 @@ function formatArchaeology(archaeology) {
 // mark records, and exactly what the ASCII form destroys.
 function formatScribeSection(ctx, entry) {
   const breakdown = Array.isArray(ctx?.breakdown) ? ctx.breakdown : [];
-  const changed = breakdown.filter((row) => row && row.to_char && row.char !== row.to_char);
+  const changed = breakdown.filter((row) => row?.to_char && row.char !== row.to_char);
   const name = escapeHtml(entry.unicode || entry.ascii);
   const ascii = escapeHtml(entry.ascii || '');
   if (!changed.length) {
@@ -1896,7 +1896,7 @@ function formatPronunciationForPrompt(ctx) {
       ascii: ctx.ascii,
       id: ctx.id,
     });
-    if (!p || !p.derived) return null;
+    if (!p?.derived) return null;
     const lines = [
       `IPA: ${p.ipa} (${p.ipaLabel})`,
       `Respelling: ${p.respelling}`,
