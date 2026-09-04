@@ -58,7 +58,7 @@ const PALETTE_LIMITS = {
     supsub: 25,
     roman: 32,
     enclosed: 60,
-    hieroglyphs: 20,
+    hieroglyphs: 1200,
     alchemical: 20,
     // Previously missing categories — now included
     baybayin: 21,

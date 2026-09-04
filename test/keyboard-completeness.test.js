@@ -119,6 +119,40 @@ test('keyboard palette includes Indic dot-below letters', () => {
   assert.ok(paletteChars.has('ṣ'), 'palette should include ṣ');
 });
 
+test('hieroglyph names use official Unicode catalog names, not invented labels', () => {
+  const hieroglyphs = palette.filter((e) => e.category === 'hieroglyphs');
+  const bad = [];
+  for (const e of hieroglyphs) {
+    if (!/^EGYPTIAN HIEROGLYPH /.test(e.name)) {
+      bad.push(`${e.char} (${e.name})`);
+    }
+  }
+  if (bad.length > 0) {
+    throw new Error(
+      `${bad.length} hieroglyph(s) have non-Unicode names: ${bad.slice(0, 10).join(', ')}`
+    );
+  }
+});
+
+test('hieroglyph palette includes the full Egyptian block (no invented animal swaps)', () => {
+  // Spot-check the characters the user reported as mismatched.
+  const checks = {
+    𓃗: 'EGYPTIAN HIEROGLYPH E006', // was "Egyptian scarab"
+    𓃚: 'EGYPTIAN HIEROGLYPH E008A', // was "Egyptian bee"
+    𓃟: 'EGYPTIAN HIEROGLYPH E012', // was "Egyptian moth"
+    𓃰: 'EGYPTIAN HIEROGLYPH E026', // was "Egyptian sparrow"
+  };
+  for (const [ch, expectedName] of Object.entries(checks)) {
+    const entry = palette.find((e) => e.char === ch);
+    if (!entry) {
+      throw new Error(`Missing hieroglyph ${ch}`);
+    }
+    if (entry.name !== expectedName) {
+      throw new Error(`Expected ${ch} to be "${expectedName}", got "${entry.name}"`);
+    }
+  }
+});
+
 // Roman-numeral long-press palette on the symbol keyboard.
 function accentsForBase(base) {
   for (const line of accentBlock) {
