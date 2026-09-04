@@ -66,7 +66,7 @@ function render() {
 <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
 <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
-<link rel="stylesheet" href="/css/main.css?v=perf24">
+<link rel="stylesheet" href="/css/main.css?v=perf25">
 <link rel="stylesheet" href="/css/pc-fx.css?v=1">
 <style>
 .trend-hero{text-align:center;padding:5.5rem 1rem 2rem}

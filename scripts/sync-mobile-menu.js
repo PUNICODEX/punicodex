@@ -3,9 +3,14 @@
  * Sync the canonical mobile menu across all non-temple navigation pages.
  *
  * Every page that renders `.mobile-menu` must offer the same sectioned
- * enterprise menu (Explore / Tools / Resources / About). This script
- * replaces each page's `.mobile-menu` block with the canonical markup.
- * Idempotent: running it twice produces byte-identical files.
+ * menu (Explore / Tools / Resources / About):
+ *   Explore: Pantheon (featured), Realms, Patterns, Trending, Store,
+ *            Connections, Search, Words, Screen
+ *   Tools:   Type, Ink, Oracle, App, Extension, API, Codex, Appraise
+ *   Resources: Lexicon, Texts, Blog, Cards, Creatives, Scholars, Herald
+ *   About:   About, Founder, Careers, Contact
+ * This script replaces each page's `.mobile-menu` block with the canonical
+ * markup. Idempotent: running it twice produces byte-identical files.
  *
  * Temple pages (sites/, platform/public/) are intentionally excluded —
  * they use the flagship temple strip navigation.
@@ -38,36 +43,39 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Explore</span>
             <div class="mobile-menu-group">
-                <a href="/pantheon/">Pantheon</a>
+                <a href="/pantheon/" class="mobile-link--featured">Pantheon</a>
                 <a href="/realms/">Realms</a>
-                <a href="/lexicon/">Lexicon</a>
-                <a href="/connections/">Connections</a>
                 <a href="/patterns/">Patterns</a>
                 <a href="/trending/">Trending</a>
                 <a href="/store/">Store</a>
+                <a href="/connections/">Connections</a>
+                <a href="/search/">Search</a>
+                <a href="/everyday/">Words</a>
+                <a href="/screen/">Screen</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Tools</span>
             <div class="mobile-menu-group">
                 <a href="/type/">Type</a>
-                <a href="/search/">Search</a>
-                <a href="/everyday/">Words</a>
                 <a href="/ink/">Ink</a>
-                <a href="/cards/">Cards</a>
-                <a href="/innovation/">Innovation</a>
+                <a href="/oracle/">Oracle</a>
+                <a href="/app/">App</a>
+                <a href="/extension/">Extension</a>
+                <a href="/api/v1/docs/">API</a>
+                <a href="/codex/">Codex</a>
+                <a href="/appraise/">Appraise</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Resources</span>
             <div class="mobile-menu-group">
+                <a href="/lexicon/">Lexicon</a>
                 <a href="/texts/">Texts</a>
-                <a href="/codex/">Codex</a>
                 <a href="/blog/">Blog</a>
+                <a href="/cards/">Cards</a>
                 <a href="/creatives/">Creatives</a>
                 <a href="/scholars/">Scholars</a>
-                <a href="/api/v1/docs/">API</a>
-                <a href="/appraise/">Appraise</a>
                 <a href="/herald/">Herald</a>
             </div>
         </div>
@@ -89,7 +97,7 @@ const MENU_OPEN = '<div class="mobile-menu" id="mobile-menu">';
 const TARGETS = [
   { page: '404.html', active: null },
   { page: 'index.html', active: null },
-  { page: path.join('oracle', 'index.html'), active: '/innovation/' },
+  { page: path.join('oracle', 'index.html'), active: '/oracle/' },
   { page: path.join('about', 'index.html'), active: '/about/' },
   { page: path.join('about', 'authenticity.html'), active: null },
   { page: path.join('appraise', 'index.html'), active: '/appraise/' },
@@ -115,9 +123,9 @@ const TARGETS = [
   { page: path.join('terms', 'api', 'index.html'), active: null },
   { page: path.join('terms', 'authenticity', 'index.html'), active: null },
   { page: path.join('terms', 'oracle', 'index.html'), active: null },
-  { page: path.join('extension', 'index.html'), active: '/innovation/' },
-  { page: path.join('app', 'index.html'), active: '/innovation/' },
-  { page: path.join('innovation', 'index.html'), active: '/innovation/' },
+  { page: path.join('extension', 'index.html'), active: '/extension/' },
+  { page: path.join('app', 'index.html'), active: '/app/' },
+  { page: path.join('innovation', 'index.html'), active: null },
   { page: path.join('lexicon', 'index.html'), active: '/lexicon/' },
   { page: path.join('lexicon', 'cognates.html'), active: '/lexicon/' },
   { page: path.join('pantheon', 'index.html'), active: '/pantheon/' },
@@ -129,7 +137,7 @@ const TARGETS = [
   { page: path.join('cards', 'index.html'), active: '/cards/' },
   { page: path.join('tiers', 'index.html'), active: '/tiers/' },
   { page: path.join('type', 'index.html'), active: '/type/' },
-  { page: path.join('screen', 'index.html'), active: null },
+  { page: path.join('screen', 'index.html'), active: '/screen/' },
 ];
 
 // Per-pantheon landing pages mark the Pantheon section active in the mobile menu.
@@ -139,12 +147,23 @@ for (const id of Object.keys(PANTHEON_META).sort((a, b) => a.localeCompare(b))) 
 
 /**
  * The canonical menu for one page, with the page's own link marked active.
+ * The Pantheon link is always featured; when it is active it keeps the
+ * featured class and adds the active class.
  */
 function menuForPage(activeHref) {
   if (!activeHref) return CANONICAL_MENU;
-  const needle = `<a href="${activeHref}">`;
-  if (!CANONICAL_MENU.includes(needle)) return CANONICAL_MENU;
-  return CANONICAL_MENU.replace(needle, `<a href="${activeHref}" class="active">`);
+  const plainNeedle = `<a href="${activeHref}">`;
+  const featuredNeedle = `<a href="${activeHref}" class="mobile-link--featured">`;
+  if (CANONICAL_MENU.includes(plainNeedle)) {
+    return CANONICAL_MENU.replace(plainNeedle, `<a href="${activeHref}" class="active">`);
+  }
+  if (CANONICAL_MENU.includes(featuredNeedle)) {
+    return CANONICAL_MENU.replace(
+      featuredNeedle,
+      `<a href="${activeHref}" class="mobile-link--featured active">`
+    );
+  }
+  return CANONICAL_MENU;
 }
 
 /**

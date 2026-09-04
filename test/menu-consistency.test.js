@@ -2,7 +2,7 @@
  * PuniCodex — Menu Consistency Tests
  *
  * Guards the canonical navigation system: every non-temple page must carry
- * the same desktop nav (6 primary links + 17-item More dropdown + Enter CTA)
+ * the same desktop nav (6 primary links + sectioned More dropdown + Enter CTA)
  * and the canonical sectioned mobile menu, with the page's own item marked
  * aria-current. Prevents the hand-maintained drift this audit found
  * (7 different desktop menus across 26 pages).
@@ -40,11 +40,26 @@ test('sync-desktop-nav covers every root navigation page (53+ targets)', () => {
   // Base target list is 53; per-pantheon landing pages are appended at runtime.
   assert.ok(TARGETS.length >= 53, `expected at least 53 targets, got ${TARGETS.length}`);
   assert.strictEqual(PRIMARY.length, 6);
-  assert.strictEqual(MORE.length, 17);
+  assert.deepStrictEqual(
+    PRIMARY.map(([href, label, featured]) => [href, label, !!featured]),
+    [
+      ['/pantheon/', 'Pantheon', true],
+      ['/realms/', 'Realms', false],
+      ['/patterns/', 'Patterns', false],
+      ['/trending/', 'Trending', false],
+      ['/store/', 'Store', false],
+      ['/connections/', 'Connections', false],
+    ]
+  );
+  assert.strictEqual(MORE.length, 4);
+  for (const section of MORE) {
+    assert.ok(section.heading, 'every More section must have a heading');
+    assert.ok(Array.isArray(section.links), 'every More section must have a links array');
+  }
 });
 
 test('Rulebook and Pronunciation are footer-only (not in desktop nav menus)', () => {
-  const moreHrefs = MORE.map(([href]) => href);
+  const moreHrefs = MORE.flatMap((s) => s.links.map(([href]) => href));
   assert.ok(!moreHrefs.includes('/rulebook/'), 'More dropdown must not contain Rulebook');
   assert.ok(!moreHrefs.includes('/pronunciation/'), 'More dropdown must not contain Pronunciation');
   const primaryHrefs = PRIMARY.map(([href]) => href);
@@ -73,7 +88,7 @@ test('every target page carries the canonical primary links in order', () => {
   }
 });
 
-test('every target page carries the full 17-item More dropdown', () => {
+test('every target page carries the sectioned More dropdown with required links', () => {
   for (const { page } of TARGETS) {
     const html = readIfExists(page);
     if (!html) {
@@ -81,11 +96,17 @@ test('every target page carries the full 17-item More dropdown', () => {
       continue;
     }
     assert.ok(html.includes('class="nav-more-toggle"'), `${page}: missing More toggle`);
-    for (const [href, label] of MORE) {
+    for (const section of MORE) {
       assert.ok(
-        html.includes(`<a href="${href}" class="nav-link`),
-        `${page}: missing More link ${label} (${href})`
+        html.includes(`<span class="nav-more-section-title">${section.heading}</span>`),
+        `${page}: missing More section ${section.heading}`
       );
+      for (const [href, label] of section.links) {
+        assert.ok(
+          html.includes(`<a href="${href}" class="nav-link`),
+          `${page}: missing More link ${label} (${href})`
+        );
+      }
     }
   }
 });
@@ -107,7 +128,10 @@ test('every target page has the wordmark lockup, Enter CTA, and nav toggle', () 
 test('pages mark their own item aria-current="page"', () => {
   const cases = TARGETS.filter((t) => t.active);
   assert.ok(cases.length >= 15, 'expected most pages to have an active item');
-  const navHrefs = new Set([...PRIMARY, ...MORE].map(([href]) => href));
+  const navHrefs = new Set([
+    ...PRIMARY.map(([href]) => href),
+    ...MORE.flatMap((s) => s.links.map(([href]) => href)),
+  ]);
   for (const { page, active } of cases) {
     // Footer-only pages (Rulebook, Pronunciation) and per-pantheon landings
     // marked active on /pantheon/ are not expected to carry aria-current in
@@ -148,6 +172,10 @@ test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', 
       );
     }
     assert.ok(html.includes('<a href="/blog/">Blog</a>'), `${page}: mobile menu missing Blog`);
+    assert.ok(
+      html.includes('<a href="/pantheon/" class="mobile-link--featured'),
+      `${page}: mobile Pantheon link missing featured class`
+    );
   }
 });
 
@@ -184,15 +212,15 @@ test('sync-desktop-nav is registered in the generate pipeline before mobile sync
 });
 
 test('no target page still carries retired variant link sets', () => {
-  // The pre-audit variants lacked Connections or Oracle or Appraise; the
-  // canonical set must be a superset present on EVERY page now.
+  // The pre-audit variants lacked Connections or Oracle or App or Extension;
+  // the canonical set must be a superset present on EVERY page now.
   for (const { page } of TARGETS) {
     const html = readIfExists(page);
     if (!html) {
       console.warn(`    ⚠ ${page} missing, skipping retired variant check`);
       continue;
     }
-    for (const href of ['/connections/', '/innovation/', '/appraise/']) {
+    for (const href of ['/connections/', '/oracle/', '/app/', '/extension/']) {
       assert.ok(html.includes(`<a href="${href}" class="nav-link`), `${page}: missing ${href}`);
     }
   }

@@ -38,19 +38,16 @@ const EXPLORE = [
   ['/store/', 'Store'],
 ];
 const RESOURCES = [
-  ['/codex/', 'Codex'],
-  ['/blog/', 'Blog'],
   ['/texts/', 'Texts'],
+  ['/blog/', 'Blog'],
   ['/cards/', 'Cards'],
-  ['/screen/', 'Screen'],
   ['/creatives/', 'Creatives'],
   ['/scholars/', 'Scholars'],
-  ['/api/v1/docs/', 'API'],
-  ['/appraise/', 'Appraise'],
+  ['/herald/', 'Herald'],
+  ['/screen/', 'Screen'],
   ['/authenticity/', 'Authenticity'],
   ['/pronunciation/', 'Pronunciation'],
   ['/innovation/', 'Innovation'],
-  ['/herald/', 'Herald'],
   ['/arbitrage/', 'Arbitrage'],
 ];
 const CONNECT = [

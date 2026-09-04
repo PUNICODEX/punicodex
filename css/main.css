@@ -308,6 +308,20 @@ ul, ol {
     left: 0;
 }
 
+.nav-link--featured {
+    color: var(--gold-bright);
+    text-shadow: 0 0 12px rgba(244, 208, 63, 0.35);
+}
+
+.nav-link--featured:hover,
+.nav-link--featured.active {
+    color: var(--gold-bright);
+}
+
+.nav-link--featured::after {
+    background: var(--gold-bright);
+}
+
 /* ─── More Dropdown ─── */
 .nav-more {
     position: relative;
@@ -338,17 +352,17 @@ ul, ol {
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    min-width: 180px;
+    min-width: 540px;
     max-height: calc(100vh - 96px);
     overflow-y: auto;
     overscroll-behavior: contain;
     background: var(--surface-raised);
     border: 1px solid rgba(212, 175, 55, 0.15);
     border-radius: var(--radius-md);
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
     opacity: 0;
     pointer-events: none;
     transform: translateY(-8px);
@@ -370,6 +384,24 @@ ul, ol {
     opacity: 1;
     pointer-events: all;
     transform: translateY(0);
+}
+
+.nav-more-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-more-section-title {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 4px;
+    padding: 0 12px;
 }
 
 .nav-more-menu .nav-link {
@@ -551,6 +583,16 @@ body.menu-open {
 .mobile-menu-group a:hover,
 .mobile-menu-group a.active {
     color: var(--gold);
+}
+
+.mobile-menu-group a.mobile-link--featured {
+    color: var(--gold-bright);
+    font-weight: 600;
+}
+
+.mobile-menu-group a.mobile-link--featured:hover,
+.mobile-menu-group a.mobile-link--featured.active {
+    color: var(--gold-bright);
 }
 
 @media (min-width: 480px) {

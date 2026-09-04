@@ -292,7 +292,7 @@ ${themes.map((t) => `                <span class="pl-theme-chip">${escapeHtml(t)
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/main.css?v=perf24">
+    <link rel="stylesheet" href="/css/main.css?v=perf25">
     <link rel="stylesheet" href="/css/pantheon.css?v=perf22">
     <link rel="stylesheet" href="/css/pantheon-landing.css?v=1">
 </head>

@@ -198,7 +198,7 @@ ${ldBlocks}
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
 
     <link rel="stylesheet" href="/assets/fonts/fonts.css">
-    <link rel="stylesheet" href="/css/main.css?v=perf24">
+    <link rel="stylesheet" href="/css/main.css?v=perf25">
     <link rel="stylesheet" href="/css/screen-guide.css?v=1">
 </head>`;
 }

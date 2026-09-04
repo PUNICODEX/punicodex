@@ -42,6 +42,14 @@ test('Rulebook and Pronunciation remain in the footer', () => {
   assert.ok(allFooterHrefs.includes('/pronunciation/'), 'footer must contain Pronunciation');
 });
 
+test('Resources column contains Cards and no longer lists Codex, API, or Appraise', () => {
+  const resourceHrefs = RESOURCES.map(([href]) => href);
+  assert.ok(resourceHrefs.includes('/cards/'), 'footer Resources must contain Cards');
+  assert.ok(!resourceHrefs.includes('/codex/'), 'footer Resources must not contain Codex');
+  assert.ok(!resourceHrefs.includes('/api/v1/docs/'), 'footer Resources must not contain API');
+  assert.ok(!resourceHrefs.includes('/appraise/'), 'footer Resources must not contain Appraise');
+});
+
 test('every target page has exactly one footer with the three canonical columns', () => {
   for (const rel of TARGETS) {
     const html = readIfExists(rel);

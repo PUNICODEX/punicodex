@@ -7,9 +7,12 @@
  * (Connections/Oracle/Appraise appearing and disappearing at random).
  * This script makes the nav canonical everywhere:
  *
- *   Primary : Pantheon, Realms, Lexicon, Connections, Type, Search
- *   More ▾  : Tier System, Oracle, Extension, App, Texts, Codex, Blog,
- *             Creatives, Scholars, API, Appraise, Store, About, Contact
+ *   Primary : Pantheon (featured), Realms, Patterns, Trending, Store, Connections
+ *   More ▾  : sectioned dropdown with Explore, Tools, Resources, About
+ *              Explore  : Search, Words, Screen
+ *              Tools    : Type, Ink, Oracle, App, Extension, API, Codex, Appraise
+ *              Resources: Lexicon, Texts, Blog, Cards, Creatives, Scholars, Herald
+ *              About    : About, Contact
  *   CTA     : Enter
  *
  * Per page it normalizes the wordmark (horizontal gold lockup), replaces
@@ -30,31 +33,54 @@ const ROOT = path.join(__dirname, '..');
 const { PANTHEON_META } = require(path.join(ROOT, 'type', 'js', 'pantheon-meta.js'));
 
 const PRIMARY = [
-  ['/pantheon/', 'Pantheon'],
+  ['/pantheon/', 'Pantheon', true],
   ['/realms/', 'Realms'],
-  ['/lexicon/', 'Lexicon'],
+  ['/patterns/', 'Patterns'],
+  ['/trending/', 'Trending'],
+  ['/store/', 'Store'],
   ['/connections/', 'Connections'],
-  ['/type/', 'Type'],
-  ['/search/', 'Search'],
 ];
 const MORE = [
-  ['/patterns/', 'Patterns'],
-  ['/everyday/', 'Words'],
-  ['/ink/', 'Ink'],
-  ['/cards/', 'Cards'],
-  ['/innovation/', 'Innovation'],
-  ['/texts/', 'Texts'],
-  ['/trending/', 'Trending'],
-  ['/codex/', 'Codex'],
-  ['/blog/', 'Blog'],
-  ['/creatives/', 'Creatives'],
-  ['/scholars/', 'Scholars'],
-  ['/api/v1/docs/', 'API'],
-  ['/appraise/', 'Appraise'],
-  ['/herald/', 'Herald'],
-  ['/store/', 'Store'],
-  ['/about/', 'About'],
-  ['/contact/', 'Contact'],
+  {
+    heading: 'Explore',
+    links: [
+      ['/search/', 'Search'],
+      ['/everyday/', 'Words'],
+      ['/screen/', 'Screen'],
+    ],
+  },
+  {
+    heading: 'Tools',
+    links: [
+      ['/type/', 'Type'],
+      ['/ink/', 'Ink'],
+      ['/oracle/', 'Oracle'],
+      ['/app/', 'App'],
+      ['/extension/', 'Extension'],
+      ['/api/v1/docs/', 'API'],
+      ['/codex/', 'Codex'],
+      ['/appraise/', 'Appraise'],
+    ],
+  },
+  {
+    heading: 'Resources',
+    links: [
+      ['/lexicon/', 'Lexicon'],
+      ['/texts/', 'Texts'],
+      ['/blog/', 'Blog'],
+      ['/cards/', 'Cards'],
+      ['/creatives/', 'Creatives'],
+      ['/scholars/', 'Scholars'],
+      ['/herald/', 'Herald'],
+    ],
+  },
+  {
+    heading: 'About',
+    links: [
+      ['/about/', 'About'],
+      ['/contact/', 'Contact'],
+    ],
+  },
 ];
 
 // Every root page carrying the canonical nav. `active` marks the page's own
@@ -62,7 +88,7 @@ const MORE = [
 const TARGETS = [
   { page: 'index.html', active: null },
   { page: '404.html', active: null },
-  { page: path.join('oracle', 'index.html'), active: '/innovation/' },
+  { page: path.join('oracle', 'index.html'), active: '/oracle/' },
   { page: path.join('search', 'index.html'), active: '/search/', chrome: 'search' },
   { page: path.join('search-v2', 'index.html'), active: '/search/', chrome: 'search' },
   { page: path.join('about', 'index.html'), active: '/about/' },
@@ -109,13 +135,13 @@ const TARGETS = [
   { page: path.join('terms', 'api', 'index.html'), active: null },
   { page: path.join('terms', 'authenticity', 'index.html'), active: null },
   { page: path.join('terms', 'oracle', 'index.html'), active: null },
-  { page: path.join('extension', 'index.html'), active: '/innovation/' },
-  { page: path.join('app', 'index.html'), active: '/innovation/' },
-  { page: path.join('innovation', 'index.html'), active: '/innovation/' },
+  { page: path.join('extension', 'index.html'), active: '/extension/' },
+  { page: path.join('app', 'index.html'), active: '/app/' },
+  { page: path.join('innovation', 'index.html'), active: null },
   { page: path.join('tiers', 'index.html'), active: '/tiers/' },
   { page: path.join('type', 'index.html'), active: '/type/' },
   { page: path.join('university-sponsorship', 'index.html'), active: null },
-  { page: path.join('screen', 'index.html'), active: null },
+  { page: path.join('screen', 'index.html'), active: '/screen/' },
 ];
 
 // Per-pantheon landing pages are not in the top nav, but the Pantheon item is
@@ -142,21 +168,30 @@ const TOGGLE = `<button class="nav-toggle" id="nav-toggle" aria-label="Toggle me
                 <span></span>
             </button>`;
 
-function linkHtml([href, label], active) {
-  const cls = href === active ? 'nav-link active' : 'nav-link';
+function linkHtml([href, label, featured], active) {
+  let cls = 'nav-link';
+  if (featured) cls += ' nav-link--featured';
+  if (href === active) cls += ' active';
   const current = href === active ? ' aria-current="page"' : '';
   return `<a href="${href}" class="${cls}"${current}>${label}</a>`;
 }
 
+function sectionHtml(section, active) {
+  const links = section.links.map((l) => linkHtml(l, active)).join('\n                            ');
+  return `<div class="nav-more-section"><span class="nav-more-section-title">${section.heading}</span>
+                            ${links}
+                        </div>`;
+}
+
 function navLinksHtml(active) {
   const primary = PRIMARY.map((l) => linkHtml(l, active)).join('\n                ');
-  const more = MORE.map((l) => linkHtml(l, active)).join('\n                        ');
+  const sections = MORE.map((s) => sectionHtml(s, active)).join('\n                        ');
   return `<div class="nav-links">
                 ${primary}
                 <div class="nav-more">
                     <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
                     <div class="nav-more-menu">
-                        ${more}
+                        ${sections}
                     </div>
                 </div>
             </div>`;
@@ -281,9 +316,12 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
   if (!html.includes('/css/main.css')) {
     // Normalize component-CSS versions (immutable-cached URLs must change
     // when the files change), then ensure they're linked.
-    html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=4');
-    html = ensureCssLink(html, '/css/nav-more.css?v=4');
-    if (html.includes('class="mobile-menu"')) html = ensureCssLink(html, '/css/mobile-menu.css?v=3');
+    html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=5');
+    html = ensureCssLink(html, '/css/nav-more.css?v=5');
+    if (html.includes('class="mobile-menu"')) {
+      html = html.replace(/\/css\/mobile-menu\.css\?v=\d+/g, '/css/mobile-menu.css?v=4');
+      html = ensureCssLink(html, '/css/mobile-menu.css?v=4');
+    }
   }
   if (!html.includes('/js/px-core.js')) {
     html = ensureScript(html, '/js/px-core.js?v=perf9');

@@ -85,9 +85,9 @@ test('main nav exists with expected links', () => {
   const links = $('#main-nav .nav-links a')
     .map((_, el) => $(el).attr('href'))
     .get();
-  assert.ok(links.includes('/innovation/'), 'expected Innovation link in nav');
+  assert.ok(links.includes('/oracle/'), 'expected Oracle link in nav');
   assert.ok(links.includes('/pantheon/'), 'expected Pantheon link in nav');
-  assert.ok(links.includes('/lexicon/'), 'expected Lexicon link in nav');
+  assert.ok(links.includes('/connections/'), 'expected Connections link in nav');
 });
 
 test('mobile menu toggle exists and is wired', () => {
@@ -97,9 +97,11 @@ test('mobile menu toggle exists and is wired', () => {
   assert.strictEqual($('#mobile-menu').length, 1, 'expected #mobile-menu');
 });
 
-test('mobile menu contains Innovation link', () => {
-  const link = $('#mobile-menu a[href="/innovation/"]');
+test('mobile menu contains Oracle link in Tools section', () => {
+  const link = $('#mobile-menu a[href="/oracle/"]');
   assert.strictEqual(link.length, 1);
+  const sectionTitle = link.closest('.mobile-menu-section').find('.mobile-menu-title').text();
+  assert.ok(sectionTitle.includes('Tools'), 'Oracle link should sit under Tools');
 });
 
 test('hero section exists with canvas and fallback', () => {

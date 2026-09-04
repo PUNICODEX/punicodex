@@ -25,24 +25,34 @@ const {
 } = require('../scripts/sync-mobile-menu.js');
 
 const CANONICAL_LINKS = [
+  // Explore
   '/pantheon/',
   '/realms/',
-  '/lexicon/',
-  '/connections/',
   '/patterns/',
   '/trending/',
   '/store/',
-  '/type/',
+  '/connections/',
   '/search/',
   '/everyday/',
+  '/screen/',
+  // Tools
+  '/type/',
   '/ink/',
-  '/cards/',
-  '/innovation/',
-  '/texts/',
-  '/codex/',
+  '/oracle/',
+  '/app/',
+  '/extension/',
   '/api/v1/docs/',
+  '/codex/',
   '/appraise/',
+  // Resources
+  '/lexicon/',
+  '/texts/',
+  '/blog/',
+  '/cards/',
+  '/creatives/',
+  '/scholars/',
   '/herald/',
+  // About
   '/about/',
   '/about/founder/',
   '/careers/',
@@ -58,11 +68,15 @@ function readPageSafe(rel) {
   return fs.existsSync(full) ? fs.readFileSync(full, 'utf8') : null;
 }
 
-test('canonical menu covers all 21 navigation links', () => {
+test('canonical menu covers all 28 navigation links in 4 sections', () => {
   for (const href of CANONICAL_LINKS) {
     assert.ok(CANONICAL_MENU.includes(`href="${href}"`), `menu links to ${href}`);
   }
   assert.strictEqual((CANONICAL_MENU.match(/mobile-menu-section/g) || []).length, 4);
+  assert.ok(
+    CANONICAL_MENU.includes('<a href="/pantheon/" class="mobile-link--featured">Pantheon</a>'),
+    'Pantheon is featured in the mobile menu'
+  );
 });
 
 test('every navigation page carries the exact canonical mobile menu', () => {
@@ -114,10 +128,10 @@ test('pages whose own link is in the menu carry the active marker', () => {
       console.warn(`    ⚠ ${target.page} missing, skipping active marker check`);
       continue;
     }
-    assert.ok(
-      html.includes(`<a href="${target.active}" class="active">`),
-      `${target.page} marks ${target.active} active in its menu`
-    );
+    const hasActiveMarker =
+      html.includes(`<a href="${target.active}" class="active">`) ||
+      html.includes(`<a href="${target.active}" class="mobile-link--featured active">`);
+    assert.ok(hasActiveMarker, `${target.page} marks ${target.active} active in its menu`);
   }
 });
 
@@ -192,7 +206,7 @@ test('mobile-menu.css resets legacy temple-base counters and uppercase transform
 test('realms and lexicon load the cache-busted mobile-menu.css', () => {
   for (const rel of [path.join('realms', 'index.html'), path.join('lexicon', 'index.html')]) {
     const html = readPage(rel);
-    assert.ok(html.includes('/css/mobile-menu.css?v=3'), `${rel} loads mobile-menu.css?v=3`);
+    assert.ok(html.includes('/css/mobile-menu.css?v=4'), `${rel} loads mobile-menu.css?v=4`);
     assert.ok(
       !html.includes('/css/mobile-menu.css?v=1'),
       `${rel} does not load the stale v=1 mobile-menu.css`
@@ -200,6 +214,10 @@ test('realms and lexicon load the cache-busted mobile-menu.css', () => {
     assert.ok(
       !html.includes('/css/mobile-menu.css?v=2'),
       `${rel} does not load the stale v=2 mobile-menu.css`
+    );
+    assert.ok(
+      !html.includes('/css/mobile-menu.css?v=3'),
+      `${rel} does not load the stale v=3 mobile-menu.css`
     );
   }
 });

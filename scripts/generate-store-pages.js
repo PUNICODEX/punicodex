@@ -343,7 +343,7 @@ ${
 <link rel="stylesheet" href="/assets/fonts/fonts.css?v=1">
 <link rel="preload" href="/assets/fonts/cormorant-garamond-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/montserrat-300-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/main.css?v=perf24">
+<link rel="stylesheet" href="/css/main.css?v=perf25">
 <style>${BASE_CSS}${css}</style>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
