@@ -51,9 +51,10 @@
     <meta name="color-scheme" content="dark">
 </head>
 <body>
-    <nav class="main-nav">
-        <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.webp 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
-        <div class="nav-links">
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.webp 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
+            <div class="nav-links">
                 <a href="/pantheon/" class="nav-link">Pantheon</a>
                 <a href="/realms/" class="nav-link">Realms</a>
                 <a href="/lexicon/" class="nav-link">Lexicon</a>
@@ -84,9 +85,10 @@
                 </div>
             </div>
             <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
-            <span></span><span></span><span></span>
-        </button>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </nav>
 
     <div class="mobile-menu" id="mobile-menu">
@@ -133,35 +135,6 @@
                 <a href="/about/founder/">Founder</a>
                 <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Explore</span>
-            <div class="mobile-menu-group">
-                <a href="/pantheon/">Pantheon</a>
-                <a href="/lexicon/">Lexicon</a>
-                <a href="/realms/">Realms</a>
-                <a href="/codex/">Codex</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">Resources</span>
-            <div class="mobile-menu-group">
-                <a href="/blog/">Blog</a>
-                <a href="/herald/" aria-current="page">Herald</a>
-                <a href="/screen/">Screen</a>
-                <a href="/scholars/">Scholars</a>
-            </div>
-        </div>
-        <div class="mobile-menu-section">
-            <span class="mobile-menu-title">About</span>
-            <div class="mobile-menu-group">
-                <a href="/about/">About</a>
-                <a href="/contact/">Contact</a>
-                <a href="/store/">Store</a>
             </div>
         </div>
     </div>

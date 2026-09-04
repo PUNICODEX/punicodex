@@ -51,48 +51,90 @@
     <meta name="color-scheme" content="dark">
 </head>
 <body>
-    <nav class="main-nav">
-        <a href="/" class="nav-logo">
-            <img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex" class="nav-logo-img" width="160" height="40">
-        </a>
-        <div class="nav-links">
-            <a href="/pantheon/" class="nav-link">Pantheon</a>
-            <a href="/lexicon/" class="nav-link">Lexicon</a>
-            <a href="/realms/" class="nav-link">Realms</a>
-            <a href="/codex/" class="nav-link">Codex</a>
-            <a href="/blog/" class="nav-link">Blog</a>
-            <a href="/herald/" class="nav-link" aria-current="page">Herald</a>
+    <nav class="main-nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.webp 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.webp 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.webp 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.webp 3600w" sizes="(max-width: 640px) 173px, 231px" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-ivory.png" srcset="/assets/brand/01-logos/punicodex-wordmark-ivory-360.png 360w, /assets/brand/01-logos/punicodex-wordmark-ivory-720.png 720w, /assets/brand/01-logos/punicodex-wordmark-ivory-1080.png 1080w, /assets/brand/01-logos/punicodex-wordmark-ivory.png 3600w" sizes="(max-width: 640px) 173px, 231px" alt="PuniCodex — The Unicode Pantheon" width="3600" height="374"></picture></a>
+            <div class="nav-links">
+                <a href="/pantheon/" class="nav-link">Pantheon</a>
+                <a href="/realms/" class="nav-link">Realms</a>
+                <a href="/lexicon/" class="nav-link">Lexicon</a>
+                <a href="/connections/" class="nav-link">Connections</a>
+                <a href="/type/" class="nav-link">Type</a>
+                <a href="/search/" class="nav-link">Search</a>
+                <div class="nav-more">
+                    <button class="nav-more-toggle" aria-haspopup="true" aria-expanded="false">More</button>
+                    <div class="nav-more-menu">
+                        <a href="/patterns/" class="nav-link">Patterns</a>
+                        <a href="/everyday/" class="nav-link">Words</a>
+                        <a href="/ink/" class="nav-link">Ink</a>
+                        <a href="/cards/" class="nav-link">Cards</a>
+                        <a href="/innovation/" class="nav-link">Innovation</a>
+                        <a href="/texts/" class="nav-link">Texts</a>
+                        <a href="/trending/" class="nav-link">Trending</a>
+                        <a href="/codex/" class="nav-link">Codex</a>
+                        <a href="/blog/" class="nav-link">Blog</a>
+                        <a href="/creatives/" class="nav-link">Creatives</a>
+                        <a href="/scholars/" class="nav-link">Scholars</a>
+                        <a href="/api/v1/docs/" class="nav-link">API</a>
+                        <a href="/appraise/" class="nav-link">Appraise</a>
+                        <a href="/herald/" class="nav-link active" aria-current="page">Herald</a>
+                        <a href="/store/" class="nav-link">Store</a>
+                        <a href="/about/" class="nav-link">About</a>
+                        <a href="/contact/" class="nav-link">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <a href="/pantheon/" class="nav-cta"><span>Enter</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="mobile-menu">
-            <span></span><span></span><span></span>
-        </button>
     </nav>
 
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+    <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Explore</span>
             <div class="mobile-menu-group">
                 <a href="/pantheon/">Pantheon</a>
-                <a href="/lexicon/">Lexicon</a>
                 <a href="/realms/">Realms</a>
-                <a href="/codex/">Codex</a>
+                <a href="/lexicon/">Lexicon</a>
+                <a href="/connections/">Connections</a>
+                <a href="/patterns/">Patterns</a>
+                <a href="/trending/">Trending</a>
+                <a href="/store/">Store</a>
+            </div>
+        </div>
+        <div class="mobile-menu-section">
+            <span class="mobile-menu-title">Tools</span>
+            <div class="mobile-menu-group">
+                <a href="/type/">Type</a>
+                <a href="/search/">Search</a>
+                <a href="/everyday/">Words</a>
+                <a href="/ink/">Ink</a>
+                <a href="/cards/">Cards</a>
+                <a href="/innovation/">Innovation</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">Resources</span>
             <div class="mobile-menu-group">
+                <a href="/texts/">Texts</a>
+                <a href="/codex/">Codex</a>
                 <a href="/blog/">Blog</a>
-                <a href="/herald/" aria-current="page">Herald</a>
-                <a href="/screen/">Screen</a>
+                <a href="/creatives/">Creatives</a>
                 <a href="/scholars/">Scholars</a>
+                <a href="/api/v1/docs/">API</a>
+                <a href="/appraise/">Appraise</a>
+                <a href="/herald/" class="active">Herald</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">About</span>
             <div class="mobile-menu-group">
                 <a href="/about/">About</a>
+                <a href="/about/founder/">Founder</a>
+                <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
-                <a href="/store/">Store</a>
             </div>
         </div>
     </div>
@@ -137,22 +179,29 @@
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-column footer-brand">
-                    <a href="/" class="footer-logo">
-                        <img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex" width="160" height="40" loading="lazy">
-                    </a>
-                    <p class="footer-tagline">Restoring the original Unicode names of myth, place, and sacred tradition.</p>
+                <div class="footer-brand">
+                    <a href="/" class="footer-wordmark"><picture><source srcset="/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp" type="image/webp"><img src="/assets/brand/01-logos/punicodex-wordmark-camel-gold.png" alt="PuniCodex — The Unicode Pantheon" width="680" height="119"></picture></a>
+                    <p class="footer-tagline">Restoring the original names of the gods to the digital realm.</p>
                 </div>
                 <div class="footer-column">
                     <h2 class="footer-heading">Explore</h2>
                     <a href="/pantheon/">Pantheon</a>
-                    <a href="/lexicon/">Lexicon</a>
                     <a href="/realms/">Realms</a>
-                    <a href="/tiers/">Tiers</a>
+                    <a href="/lexicon/">Lexicon</a>
+                    <a href="/connections/">Connections</a>
+                    <a href="/patterns/">Patterns</a>
+                    <a href="/everyday/">Words</a>
+                    <a href="/ink/">Ink</a>
+                    <a href="/trending/">Trending</a>
+                    <a href="/tiers/">Tier System</a>
+                    <a href="/rulebook/">Rulebook</a>
+                    <a href="/type/">Type</a>
+                    <a href="/game/">Game</a>
                     <a href="/search/">Search</a>
+                    <a href="/store/">Store</a>
                 </div>
                 <div class="footer-column">
                     <h2 class="footer-heading">Resources</h2>
@@ -161,13 +210,22 @@
                     <a href="/texts/">Texts</a>
                     <a href="/cards/">Cards</a>
                     <a href="/screen/">Screen</a>
+                    <a href="/creatives/">Creatives</a>
                     <a href="/scholars/">Scholars</a>
-                    <a href="/store/">Store</a>
+                    <a href="/api/v1/docs/">API</a>
+                    <a href="/appraise/">Appraise</a>
+                    <a href="/authenticity/">Authenticity</a>
+                    <a href="/pronunciation/">Pronunciation</a>
+                    <a href="/innovation/">Innovation</a>
+                    <a href="/herald/">Herald</a>
+                    <a href="/arbitrage/">Arbitrage</a>
                 </div>
                 <div class="footer-column">
-                    <h2 class="footer-heading">About</h2>
+                    <h2 class="footer-heading">Connect</h2>
                     <a href="/about/">About</a>
                     <a href="/about/founder/">Founder</a>
+                    <a href="/art/">Art</a>
+                    <a href="/careers/">Careers</a>
                     <a href="/university-sponsorship/">Universities</a>
                     <a href="/contact/">Contact</a>
                     <a href="/privacy/">Privacy</a>
