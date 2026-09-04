@@ -34,6 +34,8 @@ import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -214,6 +216,19 @@ public class PunyKeyboardService extends InputMethodService {
     private AlertDialog paletteDialog;
     private final List<PaletteEntry> filteredPalette = new ArrayList<>();
     private String selectedCategory = null;
+
+    // Multi-select Unicode buffer state
+    private boolean paletteMultiSelectMode = false;
+    private final StringBuilder paletteBuffer = new StringBuilder();
+    private Button puniBtn;
+    private Button symPuniBtn;
+    private TextView paletteBufferText;
+    private TextView paletteBufferCopy;
+    private TextView paletteBufferInsert;
+    private TextView paletteBufferClear;
+    private TextView paletteMultiSelectToggle;
+    private LinearLayout paletteBufferBar;
+    private final Set<String> paletteSelectedCharacters = new LinkedHashSet<>();
 
     private final Handler repeatHandler = new Handler(Looper.getMainLooper());
     private Runnable repeatRunnable;
@@ -469,8 +484,8 @@ public class PunyKeyboardService extends InputMethodService {
             symbolsBtn = keyboardView.findViewById(R.id.key_symbols);
             if (symbolsBtn != null) attachSimpleTouchListener(symbolsBtn, this::onSymbolsToggle);
 
-            Button puniBtn = keyboardView.findViewById(R.id.key_puni);
-            if (puniBtn != null) attachSimpleTouchListener(puniBtn, this::showPalettePicker);
+            puniBtn = keyboardView.findViewById(R.id.key_puni);
+            if (puniBtn != null) attachPuniTouchListener(puniBtn);
 
             Button commaBtn = keyboardView.findViewById(R.id.key_comma);
             if (commaBtn != null) attachRepeatingTouchListener(commaBtn, () -> onPunct(","), this::onRepeatComma);
@@ -527,8 +542,8 @@ public class PunyKeyboardService extends InputMethodService {
             Button abcBtn = symbolKeyboardView.findViewById(R.id.key_abc);
             if (abcBtn != null) attachSimpleTouchListener(abcBtn, this::onSymbolsToggle);
 
-            Button puniBtn = symbolKeyboardView.findViewById(R.id.key_puni);
-            if (puniBtn != null) attachSimpleTouchListener(puniBtn, this::showPalettePicker);
+            symPuniBtn = symbolKeyboardView.findViewById(R.id.key_puni);
+            if (symPuniBtn != null) attachPuniTouchListener(symPuniBtn);
 
             Button symShift = symbolKeyboardView.findViewById(R.id.key_sym_shift);
             if (symShift != null) attachSimpleTouchListener(symShift, this::onSymbolShift);
@@ -629,6 +644,71 @@ public class PunyKeyboardService extends InputMethodService {
             }
             return false;
         });
+    }
+
+    /**
+     * Touch listener for the PuniCodex (Ω) key. A short tap opens the Unicode
+     * palette; a long press toggles multi-select mode so the next palette open
+     * is ready to string characters together.
+     */
+    private void attachPuniTouchListener(Button btn) {
+        final Runnable puniLongPressRunnable = () -> {
+            longPressFired = true;
+            togglePaletteMultiSelect();
+        };
+        btn.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    activeKey = btn;
+                    longPressFired = false;
+                    hapticLight();
+                    playKeySound();
+                    btn.setPressed(true);
+                    longPressRunnable = puniLongPressRunnable;
+                    longPressHandler.postDelayed(longPressRunnable, LONG_PRESS_DELAY);
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    longPressHandler.removeCallbacks(longPressRunnable);
+                    btn.setPressed(false);
+                    if (!longPressFired) {
+                        showPalettePicker();
+                    }
+                    activeKey = null;
+                    return true;
+                case MotionEvent.ACTION_CANCEL:
+                    longPressHandler.removeCallbacks(longPressRunnable);
+                    btn.setPressed(false);
+                    activeKey = null;
+                    return true;
+            }
+            return false;
+        });
+    }
+
+    private void togglePaletteMultiSelect() {
+        paletteMultiSelectMode = !paletteMultiSelectMode;
+        hapticMedium();
+        playKeySound();
+        updatePuniButtonVisual();
+        if (paletteDialog != null && paletteDialog.isShowing() && paletteBufferBar != null) {
+            updatePaletteBufferBarVisibility();
+            renderPaletteGrid((GridLayout) paletteDialog.findViewById(R.id.palette_grid),
+                (TextView) paletteDialog.findViewById(R.id.palette_empty));
+        }
+        Toast.makeText(this,
+            paletteMultiSelectMode ? "Multi-select mode on — tap symbols to build a sequence" : "Multi-select mode off",
+            Toast.LENGTH_SHORT).show();
+    }
+
+    private void updatePuniButtonVisual() {
+        if (puniBtn != null) {
+            puniBtn.setText(paletteMultiSelectMode ? "Ω+" : "Ω");
+            puniBtn.setTextColor(paletteMultiSelectMode ? 0xFFE8C96A : 0xFFD4AF37);
+        }
+        if (symPuniBtn != null) {
+            symPuniBtn.setText(paletteMultiSelectMode ? "Ω+" : "Ω");
+            symPuniBtn.setTextColor(paletteMultiSelectMode ? 0xFFE8C96A : 0xFFD4AF37);
+        }
     }
 
     /**
@@ -1711,6 +1791,13 @@ public class PunyKeyboardService extends InputMethodService {
         GridLayout grid = view.findViewById(R.id.palette_grid);
         TextView emptyView = view.findViewById(R.id.palette_empty);
 
+        paletteBufferBar = view.findViewById(R.id.palette_buffer_bar);
+        paletteBufferText = view.findViewById(R.id.palette_buffer_text);
+        paletteBufferCopy = view.findViewById(R.id.palette_buffer_copy);
+        paletteBufferInsert = view.findViewById(R.id.palette_buffer_insert);
+        paletteBufferClear = view.findViewById(R.id.palette_buffer_clear);
+        paletteMultiSelectToggle = view.findViewById(R.id.palette_multi_select_toggle);
+
         filteredPalette.clear();
         filteredPalette.addAll(palette);
         selectedCategory = null;
@@ -1757,6 +1844,31 @@ public class PunyKeyboardService extends InputMethodService {
         });
 
         renderPaletteGrid(grid, emptyView);
+        updatePaletteBufferBarVisibility();
+        updatePaletteBufferViews();
+
+        paletteMultiSelectToggle.setOnClickListener(v -> {
+            hapticLight();
+            togglePaletteMultiSelect();
+        });
+
+        paletteBufferCopy.setOnClickListener(v -> {
+            hapticMedium();
+            playKeySound();
+            copyPaletteBufferToClipboard();
+        });
+
+        paletteBufferInsert.setOnClickListener(v -> {
+            hapticMedium();
+            playKeySound();
+            commitPaletteBuffer();
+        });
+
+        paletteBufferClear.setOnClickListener(v -> {
+            hapticLight();
+            playKeySound();
+            clearPaletteBuffer();
+        });
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_NoActionBar);
         builder.setView(view);
@@ -1837,11 +1949,20 @@ public class PunyKeyboardService extends InputMethodService {
             charView.setText(entry.character);
             nameView.setText(entry.name);
 
+            boolean isSelected = paletteSelectedCharacters.contains(entry.character);
+            updatePaletteCellSelection(cell, charView, nameView, isSelected);
+
             cell.setOnClickListener(v -> {
                 hapticMedium();
                 playKeySound();
-                commitPaletteCharacter(entry.character);
-                dismissPaletteDialog();
+                if (paletteMultiSelectMode) {
+                    addToPaletteBuffer(entry.character);
+                    boolean nowSelected = paletteSelectedCharacters.contains(entry.character);
+                    updatePaletteCellSelection(cell, charView, nameView, nowSelected);
+                } else {
+                    commitPaletteCharacter(entry.character);
+                    dismissPaletteDialog();
+                }
             });
             cell.setOnLongClickListener(v -> {
                 Toast.makeText(this, entry.name + " — " + entry.category, Toast.LENGTH_SHORT).show();
@@ -1875,6 +1996,86 @@ public class PunyKeyboardService extends InputMethodService {
                 currentWord.setLength(0);
                 debouncedUpdateSuggestions();
                 updateSpaceBar();
+            });
+        });
+    }
+
+    private void updatePaletteCellSelection(View cell, TextView charView, TextView nameView, boolean selected) {
+        if (selected) {
+            cell.setBackgroundResource(R.drawable.palette_item_selected_bg);
+            charView.setTextColor(0xFF000000);
+            nameView.setTextColor(0xFF333333);
+        } else {
+            cell.setBackgroundResource(R.drawable.accent_key_bg);
+            charView.setTextColor(0xFFD4AF37);
+            nameView.setTextColor(0xFF888888);
+        }
+    }
+
+    private void updatePaletteBufferBarVisibility() {
+        if (paletteBufferBar == null) return;
+        paletteBufferBar.setVisibility(paletteMultiSelectMode ? View.VISIBLE : View.GONE);
+    }
+
+    private void updatePaletteBufferViews() {
+        if (paletteBufferText == null) return;
+        paletteBufferText.setText(paletteBuffer.toString());
+        boolean hasBuffer = paletteBuffer.length() > 0;
+        if (paletteBufferCopy != null) {
+            paletteBufferCopy.setTextColor(hasBuffer ? 0xFFD4AF37 : 0xFF555555);
+        }
+        if (paletteBufferInsert != null) {
+            paletteBufferInsert.setTextColor(hasBuffer ? 0xFFD4AF37 : 0xFF555555);
+        }
+        if (paletteMultiSelectToggle != null) {
+            paletteMultiSelectToggle.setSelected(paletteMultiSelectMode);
+            paletteMultiSelectToggle.setTextColor(paletteMultiSelectMode ? 0xFF000000 : 0xFFD4AF37);
+        }
+    }
+
+    private void addToPaletteBuffer(String character) {
+        paletteBuffer.append(character);
+        paletteSelectedCharacters.add(character);
+        updatePaletteBufferViews();
+    }
+
+    private void clearPaletteBuffer() {
+        paletteBuffer.setLength(0);
+        paletteSelectedCharacters.clear();
+        updatePaletteBufferViews();
+        if (paletteDialog != null && paletteDialog.isShowing()) {
+            GridLayout grid = paletteDialog.findViewById(R.id.palette_grid);
+            TextView emptyView = paletteDialog.findViewById(R.id.palette_empty);
+            if (grid != null) renderPaletteGrid(grid, emptyView);
+        }
+    }
+
+    private void copyPaletteBufferToClipboard() {
+        String text = paletteBuffer.toString();
+        if (text.isEmpty()) {
+            Toast.makeText(this, "Nothing to copy", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        if (cm != null) {
+            cm.setPrimaryClip(ClipData.newPlainText("PuniCodex characters", text));
+            Toast.makeText(this, "Copied " + text.codePointCount(0, text.length()) + " characters", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void commitPaletteBuffer() {
+        String text = paletteBuffer.toString();
+        if (text.isEmpty()) return;
+        InputConnection ic = getCurrentInputConnection();
+        if (ic == null) return;
+        ipcHandler.post(() -> {
+            ic.commitText(text, 1);
+            suggestionHandler.post(() -> {
+                currentWord.setLength(0);
+                debouncedUpdateSuggestions();
+                updateSpaceBar();
+                clearPaletteBuffer();
+                dismissPaletteDialog();
             });
         });
     }
