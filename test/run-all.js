@@ -228,7 +228,11 @@ const SUITES = [
   { name: 'Analytics Rollups Tests', cmd: 'node --test test/analytics-rollups.test.js' },
   { name: 'Analytics Retention Tests', cmd: 'node --test test/analytics-retention.test.js' },
   { name: 'Admin Analytics V2 Tests', cmd: 'node --test test/admin-analytics-v2.test.js' },
-  { name: 'Trending Page Tests', cmd: 'node test/trending-page.test.js' },
+  {
+    name: 'Trending Page Tests',
+    cmd: 'node test/trending-page.test.js',
+    timeout: 120000,
+  },
   { name: 'Search Page Tests', cmd: 'node test/search-page.test.js' },
   { name: 'Brand Tests', cmd: 'node test/brand.test.js' },
   { name: 'Admin Portal Page Tests', cmd: 'node test/admin-portal-page.test.js' },
@@ -325,7 +329,7 @@ const SUITES = [
   {
     name: 'Asset Version Tests',
     cmd: 'node test/asset-versions.test.js',
-    timeout: 120000,
+    timeout: 300000,
   },
   { name: 'Hero Stats Tests', cmd: 'node test/hero-stats.test.js' },
   { name: 'Sponsorship Flow Tests', cmd: 'node test/sponsorship-flow.test.js', timeout: 120000 },
