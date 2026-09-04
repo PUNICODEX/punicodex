@@ -3699,7 +3699,7 @@ function createFlagship(templeId, options = {}) {
 
     const finalContent =
       CROSSLINK_PATHS.has(relativePath) && relativePath.endsWith('.html')
-        ? autoLink(content, { selfId: templeId })
+        ? autoLink(content, { selfId: templeId, allowAmbiguousAscii: true })
         : content;
 
     // Preserve lore.json timestamp when the meaningful content has not changed

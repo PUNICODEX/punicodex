@@ -39,16 +39,26 @@ function capitalize(s) {
   return s.length ? s[0].toUpperCase() + s.slice(1) : s;
 }
 
-// Build the match table once: [{ id, form }] sorted longest-first so
+// Build the match tables once: [{ id, form }] sorted longest-first so
 // overlapping names match the longest form first. Entry variants (Latinized /
 // alternate forms registered on canonical entries) resolve to that entry.
+//
+// MATCHES is the conservative table: it skips ASCII forms that collide with
+// common English words. MATCHES_WITH_AMBIGUOUS includes those forms too, so
+// mythological callers (temple pages, scholars, blog) can opt into linking
+// names such as Nike, Atlas, or Gaia where the context removes ambiguity.
 const MATCHES = [];
+const MATCHES_WITH_AMBIGUOUS = [];
 function pushForm(id, form, { asciiLike = false } = {}) {
   if (!form || form.length < 2) return;
   if (/[^\x00-\x7F]/.test(form)) {
     MATCHES.push({ id, form });
-  } else if (asciiLike && form.length >= 4 && !AMBIGUOUS_ASCII.has(form.toLowerCase())) {
-    MATCHES.push({ id, form });
+    MATCHES_WITH_AMBIGUOUS.push({ id, form });
+  } else if (asciiLike && form.length >= 4) {
+    MATCHES_WITH_AMBIGUOUS.push({ id, form });
+    if (!AMBIGUOUS_ASCII.has(form.toLowerCase())) {
+      MATCHES.push({ id, form });
+    }
   }
 }
 for (const e of entries) {
@@ -59,13 +69,20 @@ for (const e of entries) {
   }
 }
 MATCHES.sort((a, b) => b.form.length - a.form.length);
+MATCHES_WITH_AMBIGUOUS.sort((a, b) => b.form.length - a.form.length);
 
-// One combined alternation for candidate discovery (unicode-aware boundaries).
-const COMBINED = new RegExp(
-  `(?<![\\p{L}\\p{M}])(${MATCHES.map((m) => escapeRe(m.form)).join('|')})(?![\\p{L}\\p{M}])`,
-  'gu'
-);
+function buildCombinedRegex(matchTable) {
+  return new RegExp(
+    `(?<![\\p{L}\\p{M}])(${matchTable.map((m) => escapeRe(m.form)).join('|')})(?![\\p{L}\\p{M}])`,
+    'gu'
+  );
+}
+
+// Combined alternations for candidate discovery (unicode-aware boundaries).
+const COMBINED = buildCombinedRegex(MATCHES);
+const COMBINED_WITH_AMBIGUOUS = buildCombinedRegex(MATCHES_WITH_AMBIGUOUS);
 const FORM_TO_ID = new Map(MATCHES.map((m) => [m.form, m.id]));
+const FORM_TO_ID_WITH_AMBIGUOUS = new Map(MATCHES_WITH_AMBIGUOUS.map((m) => [m.form, m.id]));
 
 const SKIP_TAGS = new Set([
   'a',
@@ -101,14 +118,22 @@ function transformWikilinks(html, { hrefFor = (id) => `/${id}/` } = {}) {
  *   selfId   — the page's own entry (never self-linked)
  *   hrefFor  — href builder (default /{id}/)
  *   maxPerEntry — links per entry per page (default 1)
+ *   allowAmbiguousAscii — link ASCII forms that collide with common English
+ *                          words (e.g., Nike, Atlas, Gaia). Use only when the
+ *                          surrounding context is unambiguously mythological.
  */
-function autoLink(html, { selfId, hrefFor = (id) => `/${id}/`, maxPerEntry = 1 } = {}) {
+function autoLink(
+  html,
+  { selfId, hrefFor = (id) => `/${id}/`, maxPerEntry = 1, allowAmbiguousAscii = false } = {}
+) {
   const linkedCount = new Map();
   // Document mode for full pages (doctype/head intact), fragment mode for
   // partial HTML (section bodies). Templates may start with comments before
   // the doctype, so scan the head of the document, not just its first char.
   const isDocument = /<!doctype|<html[\s>]/i.test(html.slice(0, 1000));
   const $ = cheerio.load(html, { decodeEntities: false }, isDocument);
+  const combined = allowAmbiguousAscii ? COMBINED_WITH_AMBIGUOUS : COMBINED;
+  const formToId = allowAmbiguousAscii ? FORM_TO_ID_WITH_AMBIGUOUS : FORM_TO_ID;
 
   function canLink(id) {
     return id !== selfId && (linkedCount.get(id) || 0) < maxPerEntry;
@@ -137,15 +162,15 @@ function autoLink(html, { selfId, hrefFor = (id) => `/${id}/`, maxPerEntry = 1 }
       }
       if (skip) return;
 
-      COMBINED.lastIndex = 0;
+      combined.lastIndex = 0;
       const text = node.data;
       let out = '';
       let cursor = 0;
       let changed = false;
       let m;
-      while ((m = COMBINED.exec(text)) !== null) {
+      while ((m = combined.exec(text)) !== null) {
         const form = m[1];
-        const id = FORM_TO_ID.get(form);
+        const id = formToId.get(form);
         if (!id || !canLink(id)) continue;
         const href = hrefFor(id);
         out += text.slice(cursor, m.index);

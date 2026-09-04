@@ -59,6 +59,28 @@ function run() {
     assert.ok(out.includes('data-crosslink="atlas">Átlas</a>'));
   });
 
+  test('allowAmbiguousAscii links deity names in mythological context', () => {
+    const out = autoLink('<p>Pallas fathers Nike, Kratos, Bia, and Zelos.</p>', {
+      selfId: 'pallas',
+      allowAmbiguousAscii: true,
+    });
+    assert.ok(
+      out.includes('data-crosslink="nike">Nike</a>'),
+      'Nike should link when allowAmbiguousAscii is true'
+    );
+    assert.ok(out.includes('data-crosslink="kratos">Kratos</a>'), 'Kratos should still link');
+  });
+
+  test('allowAmbiguousAscii still blocks short ambiguous names by length', () => {
+    const out = autoLink('<p>Ma and Ba and Sol walked into a temple.</p>', {
+      selfId: null,
+      allowAmbiguousAscii: true,
+    });
+    assert.ok(!out.includes('data-crosslink="ma"'), 'short ambiguous names must not link');
+    assert.ok(!out.includes('data-crosslink="ba"'), 'short ambiguous names must not link');
+    assert.ok(!out.includes('data-crosslink="sol"'), 'short ambiguous names must not link');
+  });
+
   test('never links inside anchors, code, headings, or <head>', () => {
     const out = autoLink('<p><a href="/x">Óðinn</a> <code>Óðinn</code></p><h2>Óðinn</h2>', {
       selfId: null,
@@ -159,6 +181,14 @@ function run() {
     const ids = new Set([...html.matchAll(/data-crosslink="([^"]+)"/g)].map((m) => m[1]));
     ids.delete('zeus');
     assert.ok(ids.size >= 3, `only ${ids.size} crosslinks on zeus lore`);
+  });
+
+  test('coverage: pallas lore links Nike in the hero subtitle', () => {
+    const html = fs.readFileSync(path.join(ROOT, 'sites', 'pallas', 'lore', 'index.html'), 'utf8');
+    assert.ok(
+      html.includes('data-crosslink="nike">Nike</a>'),
+      'Pallas lore should crosslink Nike in the hero subtitle'
+    );
   });
 
   console.log(`\nCrosslink Tests: ${passed} passed, ${failed} failed`);

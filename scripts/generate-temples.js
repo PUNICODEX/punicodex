@@ -1285,7 +1285,10 @@ async function main() {
     try {
       const related = getRelatedEntries(entry, LEXICON);
       // Crosslink deity mentions in the base-temple prose to their temples.
-      const html = autoLink(generateTempleHTML(entry, related), { selfId: entry.id });
+      const html = autoLink(generateTempleHTML(entry, related), {
+        selfId: entry.id,
+        allowAmbiguousAscii: true,
+      });
 
       fs.mkdirSync(dir, { recursive: true });
       // Atomic write with retry: avoid Windows file-lock issues by writing to

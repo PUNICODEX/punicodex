@@ -216,6 +216,7 @@ function buildSectionBodyHtml(section, templeId) {
     return (
       autoLink(renderMarkdown(section.body, { sectionKey: section.key }), {
         selfId: templeId,
+        allowAmbiguousAscii: true,
       }) + renderSources(section.sources, { sectionKey: section.key })
     );
   }

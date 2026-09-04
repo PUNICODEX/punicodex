@@ -77,7 +77,7 @@ for (const id of BUILT_IDS) {
   let html = TEMPLATE;
 
   const rendered = mdToHtml(post.body);
-  rendered.html = autoLink(rendered.html, { selfId: id });
+  rendered.html = autoLink(rendered.html, { selfId: id, allowAmbiguousAscii: true });
 
   const replacements = {
     TEMPLE_ID: id,
