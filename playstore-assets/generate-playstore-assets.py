@@ -316,47 +316,109 @@ def fit_font(draw, text, max_width, start_size):
     return load_font(20), 20
 
 
-def render_screenshot(filename, state='normal', long_press_key=None, suggestion_word=None, overlay_text=None, overlay_sub=None, top_content=None):
-    """Create a 1080x1920 phone screenshot with rendered keyboard."""
+def draw_status_bar(draw, w, y, time_text='9:41'):
+    """Draw a minimal, premium status bar."""
+    sb_h = 52
+    tf = load_font(22)
+    bbox = draw.textbbox((0, 0), time_text, font=tf)
+    draw.text((w // 2 - (bbox[2] - bbox[0]) // 2, y + (sb_h - (bbox[3] - bbox[1])) // 2),
+              time_text, fill=TEXT_DIM, font=tf)
+
+
+def draw_app_header(draw, w, y, title='Notes'):
+    """Draw a clean, centered app header."""
+    hh = 96
+    tf = load_font(40)
+    bbox = draw.textbbox((0, 0), title, font=tf)
+    draw.text((w // 2 - (bbox[2] - bbox[0]) // 2, y + (hh - (bbox[3] - bbox[1])) // 2),
+              title, fill=TEXT_LIGHT, font=tf)
+    # subtle divider
+    draw.line([(w // 4, y + hh - 1), (w * 3 // 4, y + hh - 1)], fill='#1a1a1a', width=1)
+    return hh
+
+
+def draw_note_body(draw, x, y, w, h, title=None, hint=None, typed=None):
+    """Draw a clean note card with title and body."""
+    draw.rounded_rectangle((x, y, x + w, y + h), 24, fill='#0f0f0f', outline='#222222', width=1)
+    pad = 32
+    cy = y + pad
+    if title:
+        tf = load_font(30)
+        draw.text((x + pad, cy), title, fill=GOLD, font=tf)
+        cy += 48
+    if typed:
+        tf = load_font(32)
+        draw.text((x + pad, cy), typed, fill=TEXT_LIGHT, font=tf)
+        cy += 50
+    elif hint:
+        tf = load_font(32)
+        draw.text((x + pad, cy), hint, fill='#555555', font=tf)
+        cy += 50
+    # body lines
+    line_font = load_font(24)
+    while cy < y + h - 36:
+        draw.line([(x + pad, cy + 18), (x + w - pad, cy + 18)], fill='#1a1a1a', width=1)
+        cy += 44
+
+
+def render_screenshot(filename, state='normal', long_press_key=None, suggestion_word=None, overlay_text=None, overlay_sub=None, title=None, typed_text=None, hint_text='Start typing…'):
+    """Create a 1080x1920 premium, minimal screenshot."""
     w, h = 1080, 1920
-    img = Image.new('RGB', (w, h), '#111111')
+    img = Image.new('RGB', (w, h), '#050505')
     draw = ImageDraw.Draw(img)
 
-    # fake app header / text field
-    header_h = 180
-    draw.rectangle((0, 0, w, header_h), fill='#1a1a1a')
-    draw.text((40, 70), 'Notes', fill=TEXT_LIGHT, font=load_font(48))
+    # soft ambient glow behind keyboard area
+    glow = Image.new('RGBA', (w, h), (0, 0, 0, 0))
+    glow_draw = ImageDraw.Draw(glow)
+    for i in range(700, 0, -1):
+        alpha = int(14 * (1 - i / 700))
+        glow_draw.ellipse([w // 2 - i, h - 650 - i, w // 2 + i, h - 650 + i], fill=(212, 175, 55, alpha))
+    img = Image.alpha_composite(img.convert('RGBA'), glow)
+    draw = ImageDraw.Draw(img)
 
-    # text field area
-    field_y = header_h + 40
-    draw.rectangle((40, field_y, w - 40, field_y + 140), fill='#0a0a0a', outline='#333333', width=2)
-    if top_content:
-        draw.text((60, field_y + 40), top_content, fill=TEXT_LIGHT, font=load_font(40))
-
-    # keyboard
-    kb = draw_keyboard(w, state=state, long_press_key=long_press_key, suggestion_word=suggestion_word)
-    kb_h = kb.height
-    img.paste(kb, (0, h - kb_h))
-
-    # overlay text
+    # elegant caption at top
+    caption_h = 0
     if overlay_text:
-        max_text_width = w - 80
-        overlay_font, _ = fit_font(draw, overlay_text, max_text_width, 56)
-        bbox = draw.textbbox((0, 0), overlay_text, font=overlay_font)
+        max_w = w - 80
+        cap_font, _ = fit_font(draw, overlay_text, max_w, 44)
+        bbox = draw.textbbox((0, 0), overlay_text, font=cap_font)
         tw = bbox[2] - bbox[0]
-        tx = w // 2 - tw // 2
-        # dark backing for readability
-        back_w = tw + 60
-        back_h = 90
-        draw.rounded_rectangle((tx - 30, 360, tx + back_w - 30, 360 + back_h), 20, fill=(0, 0, 0, 180))
-        draw.text((tx, 380), overlay_text, fill=GOLD, font=overlay_font)
+        draw.text((w // 2 - tw // 2, 56), overlay_text, fill=GOLD, font=cap_font)
+        caption_h = bbox[3] - bbox[1] + 28
         if overlay_sub:
-            sub_font, _ = fit_font(draw, overlay_sub, max_text_width, 32)
+            sub_font, _ = fit_font(draw, overlay_sub, max_w, 28)
             bbox2 = draw.textbbox((0, 0), overlay_sub, font=sub_font)
             tw2 = bbox2[2] - bbox2[0]
-            draw.text((w // 2 - tw2 // 2, 470), overlay_sub, fill=TEXT_DIM, font=sub_font)
+            draw.text((w // 2 - tw2 // 2, 56 + caption_h), overlay_sub, fill=TEXT_DIM, font=sub_font)
+            caption_h += bbox2[3] - bbox2[1] + 16
 
-    img.save(os.path.join(OUT_DIR, filename), quality=95)
+    # status bar
+    sb_h = 52
+    status_y = 56 + caption_h + 20 if caption_h else 40
+    draw_status_bar(draw, w, status_y)
+
+    # app header
+    header_y = status_y + sb_h
+    hh = draw_app_header(draw, w, header_y, title='Notes')
+
+    # note body card
+    body_margin = 50
+    body_y = header_y + hh + 32
+    body_h = 380
+    draw_note_body(draw, body_margin, body_y, w - 2 * body_margin, body_h, title=title, hint=hint_text, typed=typed_text)
+
+    # keyboard shadow
+    kb = draw_keyboard(w, state=state, long_press_key=long_press_key, suggestion_word=suggestion_word)
+    kb_h = kb.height
+    shadow = Image.new('RGBA', (w, kb_h + 60), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shadow)
+    for i in range(40):
+        alpha = int(80 * (1 - i / 40))
+        sd.line([(0, i), (w, i)], fill=(0, 0, 0, alpha))
+    img.paste(shadow, (0, h - kb_h - 40), shadow)
+    img.paste(kb, (0, h - kb_h))
+
+    img.convert('RGB').save(os.path.join(OUT_DIR, filename), quality=95)
     print(f'Wrote {filename}')
 
 
@@ -394,47 +456,50 @@ def generate_icon():
 
 
 def generate_feature_graphic():
-    """1024x500 feature graphic using real brand assets only."""
+    """1024x500 minimalist feature graphic using real brand assets only."""
     w, h = 1024, 500
-    img = Image.new('RGB', (w, h), BG)
+    img = Image.new('RGB', (w, h), '#050505')
     draw = ImageDraw.Draw(img)
 
-    # subtle radial glow
+    # soft gold radial glow behind emblem
     glow = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     glow_draw = ImageDraw.Draw(glow)
-    for i in range(350, 0, -1):
-        alpha = int(10 * (1 - i / 350))
-        glow_draw.ellipse([w - i - 80, h // 2 - i, w + i - 80, h // 2 + i],
+    for i in range(300, 0, -1):
+        alpha = int(18 * (1 - i / 300))
+        glow_draw.ellipse([w // 2 - i, h // 2 - 90 - i, w // 2 + i, h // 2 - 90 + i],
                           fill=(212, 175, 55, alpha))
     img = Image.alpha_composite(img.convert('RGBA'), glow)
+    draw = ImageDraw.Draw(img)
+
+    # emblem glyph (centered, medium)
+    emblem_path = os.path.join(BRAND_DIR, '01-logos', 'punicodex-emblem-glyph-gold.webp')
+    em_size = 160
+    if os.path.exists(emblem_path):
+        emblem = Image.open(emblem_path).convert('RGBA')
+        emblem = emblem.resize((em_size, em_size), Image.LANCZOS)
+        img.paste(emblem, (w // 2 - em_size // 2, 70), emblem)
 
     # wordmark
     wordmark_path = os.path.join(BRAND_DIR, '01-logos', 'punicodex-wordmark-ivory.png')
     if os.path.exists(wordmark_path):
         wm = Image.open(wordmark_path).convert('RGBA')
-        wm_w = 360
+        wm_w = 420
         wm_h = int(wm.height * (wm_w / wm.width))
         wm = wm.resize((wm_w, wm_h), Image.LANCZOS)
-        img.paste(wm, (70, 160), wm)
-
-    # emblem glyph on right
-    emblem_path = os.path.join(BRAND_DIR, '01-logos', 'punicodex-emblem-glyph-gold.webp')
-    if os.path.exists(emblem_path):
-        emblem = Image.open(emblem_path).convert('RGBA')
-        em_size = 260
-        emblem = emblem.resize((em_size, em_size), Image.LANCZOS)
-        img.paste(emblem, (w - em_size - 100, (h - em_size) // 2 - 20), emblem)
-
-    # floating real unicode characters
-    chars = ['Ω', 'þ', 'ð', 'Á', 'é', 'ṛ', 'μ', '☿']
-    positions = [(520, 120), (620, 90), (750, 110), (850, 160), (540, 360), (660, 390), (790, 370), (900, 340)]
-    char_font = load_font(44)
-    for ch, (cx, cy) in zip(chars, positions):
-        draw.text((cx, cy), ch, fill=(212, 175, 55, 90), font=char_font)
+        img.paste(wm, (w // 2 - wm_w // 2, 250), wm)
 
     # tagline
     tag_font = load_font(30)
-    draw.text((70, 260), 'Unicode Keyboard · 1,600+ Symbols · Zero Keylogging', fill=TEXT_DIM, font=tag_font)
+    tag = 'The Unicode Keyboard for Scholars'
+    bbox = draw.textbbox((0, 0), tag, font=tag_font)
+    tw = bbox[2] - bbox[0]
+    draw.text((w // 2 - tw // 2, 330), tag, fill=TEXT_LIGHT, font=tag_font)
+
+    sub_font = load_font(22)
+    sub = '1,600+ symbols · Mythological autocorrect · Zero keylogging'
+    bbox2 = draw.textbbox((0, 0), sub, font=sub_font)
+    tw2 = bbox2[2] - bbox2[0]
+    draw.text((w // 2 - tw2 // 2, 378), sub, fill=TEXT_DIM, font=sub_font)
 
     # greek key strip bottom
     strip_path = os.path.join(BRAND_DIR, '03-ornaments', 'punicodex-greek-key-strip.webp')
@@ -449,52 +514,82 @@ def generate_feature_graphic():
 
 
 def generate_picker_overlay():
-    """Render the Unicode picker dialog as it appears in the app."""
+    """Render the Unicode picker dialog full-screen with a dimmed app behind it."""
     w, h = 1080, 1920
-    img = Image.new('RGB', (w, h), '#111111')
+    img = Image.new('RGB', (w, h), '#050505')
     draw = ImageDraw.Draw(img)
 
-    # background keyboard dim
-    kb = draw_keyboard(w)
-    kb_h = kb.height
-    img.paste(kb, (0, h - kb_h))
-    # dim overlay over the area above the keyboard
+    # ambient glow
+    glow = Image.new('RGBA', (w, h), (0, 0, 0, 0))
+    glow_draw = ImageDraw.Draw(glow)
+    for i in range(700, 0, -1):
+        alpha = int(10 * (1 - i / 700))
+        glow_draw.ellipse([w // 2 - i, h // 2 - i, w // 2 + i, h // 2 + i], fill=(212, 175, 55, alpha))
+    img = Image.alpha_composite(img.convert('RGBA'), glow)
+    draw = ImageDraw.Draw(img)
+
+    # captions at top
+    caption = '1,600+ Unicode symbols'
+    sub = 'Tap Ω on the keyboard to open the palette picker'
+    max_w = w - 80
+    cap_font, _ = fit_font(draw, caption, max_w, 44)
+    bbox = draw.textbbox((0, 0), caption, font=cap_font)
+    tw = bbox[2] - bbox[0]
+    draw.text((w // 2 - tw // 2, 56), caption, fill=GOLD, font=cap_font)
+    subf, _ = fit_font(draw, sub, max_w, 28)
+    bbox2 = draw.textbbox((0, 0), sub, font=subf)
+    tw2 = bbox2[2] - bbox2[0]
+    draw.text((w // 2 - tw2 // 2, 56 + (bbox[3] - bbox[1]) + 20), sub, fill=TEXT_DIM, font=subf)
+    top_h = 56 + (bbox[3] - bbox[1]) + 20 + (bbox2[3] - bbox2[1]) + 24
+
+    # status bar + header
+    sb_h = 52
+    draw_status_bar(draw, w, top_h)
+    hh = draw_app_header(draw, w, top_h + sb_h, title='Symbols')
+
+    # dim the area below header
     dim = Image.new('RGBA', (w, h), (0, 0, 0, 0))
     draw_dim = ImageDraw.Draw(dim)
-    draw_dim.rectangle((0, 0, w, h - kb_h), fill=(0, 0, 0, 160))
+    draw_dim.rectangle((0, top_h + sb_h + hh, w, h), fill=(0, 0, 0, 140))
     img = Image.alpha_composite(img.convert('RGBA'), dim)
-
-    # dialog
-    dw = w - 60
-    dh = 1100
-    dx = 30
-    dy = (h - kb_h) // 2 - dh // 2
     draw = ImageDraw.Draw(img)
-    draw.rounded_rectangle((dx, dy, dx + dw, dy + dh), 24, fill=BG, outline='#333333', width=2)
+
+    # dialog centered
+    dw = w - 80
+    dh = 1180
+    dx = 40
+    dy = top_h + sb_h + hh + 60
+    draw.rounded_rectangle((dx, dy, dx + dw, dy + dh), 28, fill='#0d0d0d', outline='#2a2a2a', width=1)
+
+    # dialog header
+    hf = load_font(38)
+    draw.text((dx + 28, dy + 28), 'Unicode Palette', fill=TEXT_LIGHT, font=hf)
+    subf = load_font(24)
+    draw.text((dx + 28, dy + 78), 'Greek, Latin, Cyrillic, Runic & more', fill=TEXT_DIM, font=subf)
 
     # search bar
-    sb_x, sb_y = dx + 24, dy + 24
-    sb_w, sb_h = dw - 48, 48 * DP
-    draw.rounded_rectangle((sb_x, sb_y, sb_x + sb_w, sb_y + sb_h), 8, fill='#1a1a1a')
-    draw.text((sb_x + 20, sb_y + 14), 'Search symbols…', fill='#666666', font=load_font(16 * DP))
+    sb_x, sb_y = dx + 24, dy + 130
+    sb_w, sb_h = dw - 48, 44 * DP
+    draw.rounded_rectangle((sb_x, sb_y, sb_x + sb_w, sb_y + sb_h), 10, fill='#1a1a1a', outline='#2a2a2a', width=1)
+    draw.text((sb_x + 24, sb_y + 12), 'Search symbols…', fill='#666666', font=load_font(14 * DP))
 
     # category chips
-    chip_y = sb_y + sb_h + 20
+    chip_y = sb_y + sb_h + 24
     categories = ['All', 'Greek', 'Latin', 'Cyrillic', 'Runic', 'Math']
     cx = sb_x
-    chip_h = 34 * DP
+    chip_h = 30 * DP
     for i, cat in enumerate(categories):
         selected = i == 0
-        cw = len(cat) * 18 * DP + 28 * DP
+        cw = len(cat) * 16 * DP + 26 * DP
         fill = GOLD if selected else '#2a2a2a'
         text_col = '#000000' if selected else GOLD
         draw.rounded_rectangle((cx, chip_y, cx + cw, chip_y + chip_h), chip_h // 2, fill=fill,
-                               outline='#555555' if not selected else None, width=max(1, int(0.5 * DP)))
-        draw.text((cx + 14 * DP, chip_y + 7 * DP), cat[0].upper() + cat[1:], fill=text_col, font=load_font(12 * DP))
+                               outline='#3a3a3a' if not selected else None, width=max(1, int(0.5 * DP)))
+        draw.text((cx + 13 * DP, chip_y + 6 * DP), cat[0].upper() + cat[1:], fill=text_col, font=load_font(11 * DP))
         cx += cw + 8 * DP
 
     # grid of symbols
-    grid_y = chip_y + chip_h + 24
+    grid_y = chip_y + chip_h + 28
     cols = 5
     cell_w = (dw - 48) // cols
     cell_h = 64 * DP
@@ -504,8 +599,11 @@ def generate_picker_overlay():
         row = i // cols
         cx = sb_x + col * cell_w
         cy = grid_y + row * cell_h
-        draw.rounded_rectangle((cx + 4, cy + 4, cx + cell_w - 4, cy + cell_h - 4), 6, fill='#2a2a2a', outline='#444444', width=1)
-        draw.text((cx + cell_w // 2 - 14, cy + 8), sym, fill=GOLD, font=load_font(26 * DP))
+        draw.rounded_rectangle((cx + 5, cy + 5, cx + cell_w - 5, cy + cell_h - 5), 8, fill='#222222', outline='#3a3a3a', width=1)
+        sf = load_font(24 * DP)
+        bbox = draw.textbbox((0, 0), sym, font=sf)
+        tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        draw.text((cx + (cell_w - tw) // 2, cy + (cell_h - th) // 2 - 4), sym, fill=GOLD, font=sf)
 
     img.convert('RGB').save(os.path.join(OUT_DIR, 'screenshot-04-picker.png'))
     print('Wrote screenshot-04-picker.png')
@@ -516,16 +614,24 @@ if __name__ == '__main__':
     generate_feature_graphic()
     render_screenshot('screenshot-01-qwerty.png', state='normal',
                       overlay_text='The keyboard that knows mythology',
-                      overlay_sub='Tap Ω to browse 1,600+ Unicode symbols')
+                      overlay_sub='Tap Ω to browse 1,600+ Unicode symbols',
+                      title='New note',
+                      hint_text='Start typing a mythological name…')
     render_screenshot('screenshot-02-suggestions.png', state='suggesting', suggestion_word='Apóllōn',
                       overlay_text='Scholarly autocorrect',
-                      overlay_sub='Type Apollo, get Apóllōn with correct diacritics')
+                      overlay_sub='Type Apollo, get Apóllōn with correct diacritics',
+                      title='Apollo',
+                      typed_text='apollo')
     render_screenshot('screenshot-03-longpress.png', long_press_key='a',
                       overlay_text='Every accent, instantly',
-                      overlay_sub='Long-press any letter for curated diacritics')
+                      overlay_sub='Long-press any letter for curated diacritics',
+                      title='Note',
+                      typed_text='a')
     generate_picker_overlay()
     render_screenshot('screenshot-05-symbols.png', state='symbols',
                       overlay_text='Numbers, symbols & Roman numerals',
-                      overlay_sub='Switch to the 123 layout for math and punctuation')
+                      overlay_sub='Switch to the 123 layout for math and punctuation',
+                      title='Math class',
+                      hint_text='Type numbers, math and punctuation…')
 
     print('All assets generated in', OUT_DIR)
