@@ -27,8 +27,11 @@ import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.GridLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -201,13 +205,55 @@ public class PunyKeyboardService extends InputMethodService {
     private boolean longPressFired = false;
     private boolean soundEnabled = true;
 
+    private final Runnable cachedLongPressRunnable = () -> {
+        longPressFired = true;
+        hideKeyPopup();
+        if (activeKey != null) showAccentPopup(activeKey);
+    };
+
+    private AlertDialog paletteDialog;
+    private final List<PaletteEntry> filteredPalette = new ArrayList<>();
+    private String selectedCategory = null;
+
     private final Handler repeatHandler = new Handler(Looper.getMainLooper());
     private Runnable repeatRunnable;
     private Runnable currentRepeatAction;
     private boolean repeatFired = false;
 
+    private final Runnable cachedRepeatRunnable = () -> {
+        if (!repeatFired) {
+            repeatFired = true;
+            hapticLight();
+        }
+        if (currentRepeatAction != null) {
+            currentRepeatAction.run();
+        }
+        if (repeatRunnable != null) {
+            repeatHandler.postDelayed(repeatRunnable, REPEAT_INTERVAL_MS);
+        }
+    };
+
     private Runnable backspaceRepeatRunnable;
     private long backspaceRepeatStartTime;
+
+    private final Runnable cachedBackspaceRepeatRunnable = () -> {
+        if (!repeatFired) {
+            repeatFired = true;
+            hapticLight();
+        }
+        long elapsed = System.currentTimeMillis() - backspaceRepeatStartTime;
+        if (elapsed >= REPEAT_WORD_THRESHOLD_MS) {
+            deleteWordBeforeCursor();
+        } else {
+            deleteSingleCharBeforeCursor();
+        }
+        long nextDelay = elapsed >= REPEAT_ACCELERATE_THRESHOLD_MS
+            ? REPEAT_FAST_INTERVAL_MS
+            : REPEAT_BASE_INTERVAL_MS;
+        if (backspaceRepeatRunnable != null) {
+            repeatHandler.postDelayed(backspaceRepeatRunnable, nextDelay);
+        }
+    };
 
     // Performance: cached haptic effect
     private VibrationEffect cachedHapticLight;
@@ -391,6 +437,7 @@ public class PunyKeyboardService extends InputMethodService {
     public void onFinishInputView(boolean finishingInput) {
         super.onFinishInputView(finishingInput);
         dismissAllPopups();
+        dismissPaletteDialog();
     }
 
     private void setupKeys() {
@@ -421,6 +468,9 @@ public class PunyKeyboardService extends InputMethodService {
 
             symbolsBtn = keyboardView.findViewById(R.id.key_symbols);
             if (symbolsBtn != null) attachSimpleTouchListener(symbolsBtn, this::onSymbolsToggle);
+
+            Button puniBtn = keyboardView.findViewById(R.id.key_puni);
+            if (puniBtn != null) attachSimpleTouchListener(puniBtn, this::showPalettePicker);
 
             Button commaBtn = keyboardView.findViewById(R.id.key_comma);
             if (commaBtn != null) attachRepeatingTouchListener(commaBtn, () -> onPunct(","), this::onRepeatComma);
@@ -477,6 +527,9 @@ public class PunyKeyboardService extends InputMethodService {
             Button abcBtn = symbolKeyboardView.findViewById(R.id.key_abc);
             if (abcBtn != null) attachSimpleTouchListener(abcBtn, this::onSymbolsToggle);
 
+            Button puniBtn = symbolKeyboardView.findViewById(R.id.key_puni);
+            if (puniBtn != null) attachSimpleTouchListener(puniBtn, this::showPalettePicker);
+
             Button symShift = symbolKeyboardView.findViewById(R.id.key_sym_shift);
             if (symShift != null) attachSimpleTouchListener(symShift, this::onSymbolShift);
         } catch (Exception e) {
@@ -494,11 +547,7 @@ public class PunyKeyboardService extends InputMethodService {
                     hapticLight();
                     playKeySound();
                     btn.setPressed(true);
-                    longPressRunnable = () -> {
-                        longPressFired = true;
-                        hideKeyPopup();
-                        showAccentPopup(btn);
-                    };
+                    longPressRunnable = cachedLongPressRunnable;
                     longPressHandler.postDelayed(longPressRunnable, LONG_PRESS_DELAY);
                     return true;
 
@@ -536,11 +585,7 @@ public class PunyKeyboardService extends InputMethodService {
                     hapticLight();
                     playKeySound();
                     btn.setPressed(true);
-                    longPressRunnable = () -> {
-                        longPressFired = true;
-                        hideKeyPopup();
-                        showAccentPopup(btn);
-                    };
+                    longPressRunnable = cachedLongPressRunnable;
                     longPressHandler.postDelayed(longPressRunnable, LONG_PRESS_DELAY);
                     return true;
 
@@ -622,18 +667,7 @@ public class PunyKeyboardService extends InputMethodService {
         stopRepeat();
         currentRepeatAction = action;
         repeatFired = false;
-        repeatRunnable = () -> {
-            if (!repeatFired) {
-                repeatFired = true;
-                hapticLight();
-            }
-            if (currentRepeatAction != null) {
-                currentRepeatAction.run();
-            }
-            if (repeatRunnable != null) {
-                repeatHandler.postDelayed(repeatRunnable, REPEAT_INTERVAL_MS);
-            }
-        };
+        repeatRunnable = cachedRepeatRunnable;
         repeatHandler.postDelayed(repeatRunnable, REPEAT_INITIAL_DELAY_MS);
     }
 
@@ -683,24 +717,7 @@ public class PunyKeyboardService extends InputMethodService {
         stopBackspaceRepeat();
         repeatFired = false;
         backspaceRepeatStartTime = System.currentTimeMillis();
-        backspaceRepeatRunnable = () -> {
-            if (!repeatFired) {
-                repeatFired = true;
-                hapticLight();
-            }
-            long elapsed = System.currentTimeMillis() - backspaceRepeatStartTime;
-            if (elapsed >= REPEAT_WORD_THRESHOLD_MS) {
-                deleteWordBeforeCursor();
-            } else {
-                deleteSingleCharBeforeCursor();
-            }
-            long nextDelay = elapsed >= REPEAT_ACCELERATE_THRESHOLD_MS
-                ? REPEAT_FAST_INTERVAL_MS
-                : REPEAT_BASE_INTERVAL_MS;
-            if (backspaceRepeatRunnable != null) {
-                repeatHandler.postDelayed(backspaceRepeatRunnable, nextDelay);
-            }
-        };
+        backspaceRepeatRunnable = cachedBackspaceRepeatRunnable;
         repeatHandler.postDelayed(backspaceRepeatRunnable, REPEAT_INITIAL_DELAY_MS);
     }
 
@@ -1299,6 +1316,11 @@ public class PunyKeyboardService extends InputMethodService {
     // SUGGESTIONS (pooled views, zero-allocation hot path)
     // ═══════════════════════════════════════════════
 
+    private final Runnable cachedSuggestionRunnable = () -> {
+        pendingSuggestionRunnable = null;
+        updateSuggestions();
+    };
+
     private void debouncedUpdateSuggestions() {
         if (pendingSuggestionRunnable != null) {
             // Already scheduled; no need to reschedule
@@ -1307,21 +1329,17 @@ public class PunyKeyboardService extends InputMethodService {
 
         long now = System.currentTimeMillis();
         boolean rapid = (now - lastKeyTime) < RAPID_KEY_THRESHOLD_MS;
-
-        pendingSuggestionRunnable = () -> {
-            pendingSuggestionRunnable = null;
-            updateSuggestions();
-        };
+        pendingSuggestionRunnable = cachedSuggestionRunnable;
 
         if (rapid) {
             // Delay suggestion update during rapid typing to keep input responsive
-            suggestionHandler.postDelayed(pendingSuggestionRunnable, RAPID_KEY_THRESHOLD_MS);
+            suggestionHandler.postDelayed(cachedSuggestionRunnable, RAPID_KEY_THRESHOLD_MS);
         } else {
             // Sync to next vsync for zero-jank updates
             if (keyboardView != null) {
-                keyboardView.postOnAnimation(pendingSuggestionRunnable);
+                keyboardView.postOnAnimation(cachedSuggestionRunnable);
             } else {
-                suggestionHandler.post(pendingSuggestionRunnable);
+                suggestionHandler.post(cachedSuggestionRunnable);
             }
         }
     }
@@ -1671,29 +1689,232 @@ public class PunyKeyboardService extends InputMethodService {
         }
     }
 
+    // ═══════════════════════════════════════════════
+    // UNICODE PALETTE PICKER
+    // ═══════════════════════════════════════════════
+
+    private void showPalettePicker() {
+        hapticMedium();
+        playKeySound();
+        dismissAllPopups();
+        if (palette == null || palette.isEmpty()) {
+            Toast.makeText(this, "Unicode palette not loaded", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (paletteDialog != null && paletteDialog.isShowing()) {
+            return;
+        }
+
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_palette_picker, null);
+        EditText searchInput = view.findViewById(R.id.palette_search);
+        LinearLayout categoryRow = view.findViewById(R.id.palette_category_row);
+        GridLayout grid = view.findViewById(R.id.palette_grid);
+        TextView emptyView = view.findViewById(R.id.palette_empty);
+
+        filteredPalette.clear();
+        filteredPalette.addAll(palette);
+        selectedCategory = null;
+
+        List<String> categories = new ArrayList<>();
+        categories.add("All");
+        LinkedHashSet<String> seen = new LinkedHashSet<>();
+        for (PaletteEntry entry : palette) {
+            if (entry.category != null && !entry.category.isEmpty()) {
+                seen.add(entry.category);
+            }
+        }
+        categories.addAll(seen);
+
+        List<TextView> categoryViews = new ArrayList<>();
+        for (String category : categories) {
+            TextView chip = createCategoryChip(category);
+            boolean isAll = "All".equals(category);
+            chip.setSelected(isAll);
+            chip.setTextColor(isAll ? 0xFF000000 : 0xFFD4AF37);
+            chip.setOnClickListener(v -> {
+                hapticLight();
+                selectedCategory = isAll ? null : category;
+                for (TextView cv : categoryViews) {
+                    boolean selected = cv == chip;
+                    cv.setSelected(selected);
+                    cv.setTextColor(selected ? 0xFF000000 : 0xFFD4AF37);
+                }
+                filterPalette(searchInput.getText().toString(), grid, emptyView);
+            });
+            categoryViews.add(chip);
+            categoryRow.addView(chip);
+        }
+
+        searchInput.addTextChangedListener(new android.text.TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(android.text.Editable s) {
+                filterPalette(s.toString(), grid, emptyView);
+            }
+        });
+
+        renderPaletteGrid(grid, emptyView);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_NoActionBar);
+        builder.setView(view);
+        paletteDialog = builder.create();
+        android.view.Window win = paletteDialog.getWindow();
+        if (win != null) {
+            win.setType(android.view.WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
+            win.addFlags(android.view.WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+            win.setBackgroundDrawableResource(android.R.color.transparent);
+            android.view.WindowManager.LayoutParams lp = win.getAttributes();
+            lp.token = getWindow().getWindow().getDecorView().getWindowToken();
+            win.setAttributes(lp);
+        }
+        paletteDialog.show();
+    }
+
+    private TextView createCategoryChip(String category) {
+        TextView chip = new TextView(this);
+        chip.setText(category.substring(0, 1).toUpperCase(Locale.ROOT) + category.substring(1));
+        chip.setTextColor(0xFFD4AF37);
+        chip.setTextSize(12);
+        chip.setBackgroundResource(R.drawable.palette_chip_bg);
+        chip.setGravity(Gravity.CENTER);
+        chip.setPadding(dp(14), dp(6), dp(14), dp(6));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 0, dp(8), 0);
+        chip.setLayoutParams(params);
+        return chip;
+    }
+
+    private void filterPalette(String query, GridLayout grid, TextView emptyView) {
+        String normalized = query.trim().toLowerCase(Locale.ROOT);
+        filteredPalette.clear();
+        for (PaletteEntry entry : palette) {
+            boolean matchesCategory = selectedCategory == null
+                || selectedCategory.equalsIgnoreCase(entry.category);
+            boolean matchesQuery = normalized.isEmpty()
+                || (entry.name != null && entry.name.toLowerCase(Locale.ROOT).contains(normalized))
+                || (entry.keywords != null && entry.keywords.toLowerCase(Locale.ROOT).contains(normalized))
+                || (entry.character != null && entry.character.toLowerCase(Locale.ROOT).contains(normalized));
+            if (matchesCategory && matchesQuery) {
+                filteredPalette.add(entry);
+            }
+        }
+        renderPaletteGrid(grid, emptyView);
+    }
+
+    private static final int PALETTE_PAGE_SIZE = 200;
+
+    private void renderPaletteGrid(GridLayout grid, TextView emptyView) {
+        grid.removeAllViews();
+        if (filteredPalette.isEmpty()) {
+            emptyView.setVisibility(View.VISIBLE);
+            grid.setVisibility(View.GONE);
+            return;
+        }
+        emptyView.setVisibility(View.GONE);
+        grid.setVisibility(View.VISIBLE);
+
+        int columnCount = grid.getColumnCount();
+        int width = getResources().getDisplayMetrics().widthPixels - dp(24);
+        int cellWidth = width / columnCount;
+        int displayCount = Math.min(filteredPalette.size(), PALETTE_PAGE_SIZE);
+
+        for (int i = 0; i < displayCount; i++) {
+            PaletteEntry entry = filteredPalette.get(i);
+            View cell = LayoutInflater.from(this).inflate(R.layout.palette_item, grid, false);
+            GridLayout.LayoutParams cellParams = new GridLayout.LayoutParams(
+                GridLayout.spec(GridLayout.UNDEFINED, 1f),
+                GridLayout.spec(GridLayout.UNDEFINED, 1f));
+            cellParams.width = 0;
+            cellParams.height = dp(64);
+            cell.setLayoutParams(cellParams);
+
+            TextView charView = cell.findViewById(R.id.palette_item_char);
+            TextView nameView = cell.findViewById(R.id.palette_item_name);
+            charView.setText(entry.character);
+            nameView.setText(entry.name);
+
+            cell.setOnClickListener(v -> {
+                hapticMedium();
+                playKeySound();
+                commitPaletteCharacter(entry.character);
+                dismissPaletteDialog();
+            });
+            cell.setOnLongClickListener(v -> {
+                Toast.makeText(this, entry.name + " — " + entry.category, Toast.LENGTH_SHORT).show();
+                return true;
+            });
+            grid.addView(cell);
+        }
+
+        if (filteredPalette.size() > PALETTE_PAGE_SIZE) {
+            TextView footer = new TextView(this);
+            footer.setText("Showing " + PALETTE_PAGE_SIZE + " of " + filteredPalette.size() + " — search or pick a category");
+            footer.setTextColor(0xFF888888);
+            footer.setTextSize(11);
+            footer.setGravity(Gravity.CENTER);
+            footer.setPadding(0, dp(10), 0, dp(4));
+            GridLayout.LayoutParams footerParams = new GridLayout.LayoutParams(
+                GridLayout.spec(GridLayout.UNDEFINED, 1f),
+                GridLayout.spec(GridLayout.UNDEFINED, columnCount));
+            footerParams.width = GridLayout.LayoutParams.MATCH_PARENT;
+            footer.setLayoutParams(footerParams);
+            grid.addView(footer);
+        }
+    }
+
+    private void commitPaletteCharacter(String character) {
+        InputConnection ic = getCurrentInputConnection();
+        if (ic == null) return;
+        ipcHandler.post(() -> {
+            ic.commitText(character, 1);
+            suggestionHandler.post(() -> {
+                currentWord.setLength(0);
+                debouncedUpdateSuggestions();
+                updateSpaceBar();
+            });
+        });
+    }
+
+    private void dismissPaletteDialog() {
+        if (paletteDialog != null) {
+            paletteDialog.dismiss();
+            paletteDialog = null;
+        }
+    }
+
     private void dismissAllPopups() {
         hideKeyPopup();
         dismissAccentPopup();
         dismissVariantPopup();
+        dismissPaletteDialog();
     }
 
     private void commitSuggestion(String commitText) {
         InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
 
-        // Safe replacement: verify the word at cursor matches our tracked word
-        String tracked = currentWord.toString();
-        if (tracked.length() > 0) {
-            CharSequence before = ic.getTextBeforeCursor(tracked.length() + 2, 0);
-            String actual = getTrailingWord(before);
-            if (actual.equalsIgnoreCase(tracked)) {
-                ic.deleteSurroundingText(actual.length(), 0);
+        // Offload InputConnection work to the background IPC thread to keep the
+        // UI responsive on slower devices.
+        ipcHandler.post(() -> {
+            String tracked = currentWord.toString();
+            if (tracked.length() > 0) {
+                CharSequence before = ic.getTextBeforeCursor(tracked.length() + 2, 0);
+                String actual = getTrailingWord(before);
+                if (actual.equalsIgnoreCase(tracked)) {
+                    ic.deleteSurroundingText(actual.length(), 0);
+                }
             }
-        }
-        ic.commitText(commitText, 1);
-        currentWord.setLength(0);
-        debouncedUpdateSuggestions();
-        updateSpaceBar();
+            ic.commitText(commitText, 1);
+            suggestionHandler.post(() -> {
+                currentWord.setLength(0);
+                debouncedUpdateSuggestions();
+                updateSpaceBar();
+            });
+        });
     }
 
     private void addCategoryHeaderChip(String categoryName, int count) {
@@ -1833,6 +2054,12 @@ public class PunyKeyboardService extends InputMethodService {
         symBtn.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1.4f));
         symBtn.setOnClickListener(v -> onSymbolsToggle());
         bottomRow.addView(symBtn);
+
+        Button puniBtn = createFallbackKey("Ω");
+        puniBtn.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1.4f));
+        puniBtn.setTextColor(0xFFD4AF37);
+        puniBtn.setOnClickListener(v -> showPalettePicker());
+        bottomRow.addView(puniBtn);
 
         Button comma = createFallbackKey(",");
         comma.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));

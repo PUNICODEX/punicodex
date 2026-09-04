@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/palette_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#080808"
+    android:padding="12dp">
+
+    <EditText
+        android:id="@+id/palette_search"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#1a1a1a"
+        android:hint="Search symbols…"
+        android:textColorHint="#666666"
+        android:textColor="#e0e0e0"
+        android:textSize="16sp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:singleLine="true"
+        android:imeOptions="actionSearch"
+        android:inputType="textNoSuggestions"
+        android:importantForAutofill="no" />
+
+    <HorizontalScrollView
+        android:id="@+id/palette_category_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/palette_category_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:id="@+id/palette_grid_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="360dp"
+        android:scrollbars="vertical">
+
+        <GridLayout
+            android:id="@+id/palette_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="5"
+            android:useDefaultMargins="false" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/palette_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:text="No symbols found"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:visibility="gone" />
+</LinearLayout>
