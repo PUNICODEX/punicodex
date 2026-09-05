@@ -60,6 +60,7 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/type/">Type</a>
                 <a href="/ink/">Ink</a>
                 <a href="/oracle/">Oracle</a>
+                <a href="/authenticity/">Authenticity</a>
                 <a href="/app/">App</a>
                 <a href="/extension/">Extension</a>
                 <a href="/api/v1/docs/">API</a>
@@ -77,15 +78,20 @@ const CANONICAL_MENU = `<div class="mobile-menu" id="mobile-menu">
                 <a href="/creatives/">Creatives</a>
                 <a href="/scholars/">Scholars</a>
                 <a href="/herald/">Herald</a>
+                <a href="/rulebook/">Rulebook</a>
+                <a href="/screen/">Screen</a>
             </div>
         </div>
         <div class="mobile-menu-section">
             <span class="mobile-menu-title">About</span>
             <div class="mobile-menu-group">
                 <a href="/about/">About</a>
+                <a href="/university-sponsorship/">Universities</a>
                 <a href="/about/founder/">Founder</a>
                 <a href="/careers/">Careers</a>
                 <a href="/contact/">Contact</a>
+                <a href="/terms/">Terms</a>
+                <a href="/privacy/">Privacy</a>
             </div>
         </div>
     </div>`;

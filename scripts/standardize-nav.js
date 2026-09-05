@@ -48,9 +48,11 @@ const STRIP_HTML = `    <!-- Global Nav -->
             <a href="/" style="font-family:'Cinzel',serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;color:#D4AF37;text-decoration:none;">PUNICODEX</a>
             <div style="display:flex;gap:1.5rem;">
                 <a href="/pantheon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Pantheon</a>
-                <a href="/lexicon/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Lexicon</a>
-                <a href="/type/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Type</a>
-                <a href="/tiers/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Tiers</a>
+                <a href="/realms/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Realms</a>
+                <a href="/patterns/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Patterns</a>
+                <a href="/trending/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Trending</a>
+                <a href="/store/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Store</a>
+                <a href="/connections/" style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#A0A0A0;text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0A0A0'">Connections</a>
             </div>
         </div>
     </div>

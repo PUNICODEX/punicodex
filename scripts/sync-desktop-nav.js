@@ -55,6 +55,7 @@ const MORE = [
       ['/type/', 'Type'],
       ['/ink/', 'Ink'],
       ['/oracle/', 'Oracle'],
+      ['/authenticity/', 'Authenticity'],
       ['/app/', 'App'],
       ['/extension/', 'Extension'],
       ['/api/v1/docs/', 'API'],
@@ -72,13 +73,20 @@ const MORE = [
       ['/creatives/', 'Creatives'],
       ['/scholars/', 'Scholars'],
       ['/herald/', 'Herald'],
+      ['/rulebook/', 'Rulebook'],
+      ['/screen/', 'Screen'],
     ],
   },
   {
     heading: 'About',
     links: [
       ['/about/', 'About'],
+      ['/university-sponsorship/', 'Universities'],
+      ['/about/founder/', 'Founder'],
+      ['/careers/', 'Careers'],
       ['/contact/', 'Contact'],
+      ['/terms/', 'Terms'],
+      ['/privacy/', 'Privacy'],
     ],
   },
 ];

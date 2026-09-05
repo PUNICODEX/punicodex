@@ -183,8 +183,9 @@
 
     // Desktop "More" dropdown toggles
     document.querySelectorAll('.nav-more-toggle').forEach((toggle) => {
+      const more = toggle.closest('.nav-more');
       const menu = toggle.nextElementSibling;
-      if (!menu || !menu.classList.contains('nav-more-menu')) return;
+      if (!more || !menu || !menu.classList.contains('nav-more-menu')) return;
 
       const setOpen = (open) => {
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -201,8 +202,39 @@
         setOpen(open);
       });
 
+      // Hover persistence: opening on mouseenter and keeping the menu open
+      // while the pointer is anywhere inside .nav-more (including the gap
+      // between the toggle and the menu). A short leave delay prevents
+      // flicker when crossing the toggle-to-menu gap.
+      let leaveTimer = null;
+      const HOVER_LEAVE_DELAY = 120;
+
+      const clearLeaveTimer = () => {
+        if (leaveTimer) {
+          clearTimeout(leaveTimer);
+          leaveTimer = null;
+        }
+      };
+
+      more.addEventListener('mouseenter', () => {
+        clearLeaveTimer();
+        setOpen(true);
+      });
+
+      more.addEventListener('mouseleave', () => {
+        clearLeaveTimer();
+        leaveTimer = setTimeout(() => {
+          setOpen(false);
+        }, HOVER_LEAVE_DELAY);
+      });
+
+      menu.addEventListener('mouseenter', () => {
+        clearLeaveTimer();
+        setOpen(true);
+      });
+
       document.addEventListener('click', (e) => {
-        if (!toggle.closest('.nav-more').contains(e.target)) {
+        if (!more.contains(e.target)) {
           setOpen(false);
         }
       });

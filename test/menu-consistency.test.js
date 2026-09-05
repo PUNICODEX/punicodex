@@ -58,12 +58,10 @@ test('sync-desktop-nav covers every root navigation page (53+ targets)', () => {
   }
 });
 
-test('Rulebook and Pronunciation are footer-only (not in desktop nav menus)', () => {
+test('Pronunciation is footer-only (not in desktop nav menus)', () => {
   const moreHrefs = MORE.flatMap((s) => s.links.map(([href]) => href));
-  assert.ok(!moreHrefs.includes('/rulebook/'), 'More dropdown must not contain Rulebook');
   assert.ok(!moreHrefs.includes('/pronunciation/'), 'More dropdown must not contain Pronunciation');
   const primaryHrefs = PRIMARY.map(([href]) => href);
-  assert.ok(!primaryHrefs.includes('/rulebook/'), 'Primary nav must not contain Rulebook');
   assert.ok(
     !primaryHrefs.includes('/pronunciation/'),
     'Primary nav must not contain Pronunciation'
@@ -154,7 +152,6 @@ test('pages mark their own item aria-current="page"', () => {
 
 test('mobile menu is canonical (4 sections incl. Blog) on pages that carry it', () => {
   const { TARGETS: mobileTargets, CANONICAL_MENU } = require('../scripts/sync-mobile-menu.js');
-  assert.ok(!CANONICAL_MENU.includes('href="/rulebook/"'), 'mobile menu must not contain Rulebook');
   assert.ok(
     !CANONICAL_MENU.includes('href="/pronunciation/"'),
     'mobile menu must not contain Pronunciation'

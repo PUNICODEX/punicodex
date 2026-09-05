@@ -69,7 +69,7 @@ test('every patron page links required stylesheets', () => {
 });
 
 test('every patron page has a global strip with required links', () => {
-  const required = ['pantheon/', 'lexicon/', 'connections/', 'type/', 'search/', 'about/'];
+  const required = ['pantheon/', 'realms/', 'patterns/', 'trending/', 'store/', 'connections/'];
   for (const id of ids) {
     const $ = loadPatronPage(id);
     const strip = $('.global-strip');

@@ -39,6 +39,7 @@ const CANONICAL_LINKS = [
   '/type/',
   '/ink/',
   '/oracle/',
+  '/authenticity/',
   '/app/',
   '/extension/',
   '/api/v1/docs/',
@@ -52,11 +53,16 @@ const CANONICAL_LINKS = [
   '/creatives/',
   '/scholars/',
   '/herald/',
+  '/rulebook/',
+  '/screen/',
   // About
   '/about/',
+  '/university-sponsorship/',
   '/about/founder/',
   '/careers/',
   '/contact/',
+  '/terms/',
+  '/privacy/',
 ];
 
 function readPage(rel) {
@@ -68,7 +74,7 @@ function readPageSafe(rel) {
   return fs.existsSync(full) ? fs.readFileSync(full, 'utf8') : null;
 }
 
-test('canonical menu covers all 28 navigation links in 4 sections', () => {
+test('canonical menu covers all 34 navigation links in 4 sections', () => {
   for (const href of CANONICAL_LINKS) {
     assert.ok(CANONICAL_MENU.includes(`href="${href}"`), `menu links to ${href}`);
   }
