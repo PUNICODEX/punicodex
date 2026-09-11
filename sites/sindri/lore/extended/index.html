@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Sindri, Dwarf Smith. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/sindri/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Sindri?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Sindri is /ˈsin.dri/ — approximately 'SIN-dri' — two short beats, the weight on the first, the d clicked crisply between the n and the r as in 'laundry' said fast, both vowels clipped."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Sindri mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sindri means Sparkling in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Sindri?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sindri is associated with The bellows (The wager's condition and the forge's heartbeat — the one tool whose failure, for a single instant, marks the hammer forever), The fly that stung (Loki's sabotage in miniature — the god who cannot win the contest fairly trying to spoil the work, and succeeding only at the handle), Draupnir (The ring that drips eight rings every ninth night — wealth that renews itself, the forge's answer to Andvari's cursed gold), Mjǫllnir's short handle (The flaw in perfection — the Æsir's best defense carries the permanent mark of the moment the work was broken), The golden hall at Niðavellir (Völuspá's witness — the house of gold of Sindri's kindred in the dwarf-fields, a chieftain's seat beyond Snorri's forge-scene)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Sindri in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sindri is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Sindri?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Wager of the Head” — Sindri's dossier is one long scene in Snorri and one stanza in Völuspá — a forge and a hall. The Prose Edda gives him the wager that produced the gods' three greatest treasures; the Poetic Edda gives him a golden house in the dwarf-fields and a kindred to fill it. Between the two stands the corpus's most consequential craftsman: everything the Æsir trust in the last battle came off his anvil in a single afternoon. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/sindri_logolockup.webp" type="image/webp"><img src="../../assets/sindri_logolockup.png" alt="Sindri" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Sindri</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Sindri</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/sindri_mascot.webp" type="image/webp"><img src="../../assets/sindri_mascot.png" alt="Sindri — Dwarf Smith" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/sindri_mascot.webp" type="image/webp"><img src="../../assets/sindri_mascot.png" alt="Sindri — Dwarf Smith" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Sindri</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Sindri is Tier 2 by the mechanical rule: the normalized Old Norse form is already plain ASCII — no diacritic, no distinctive letter for the ASCII alphabet to lose. The smith whose name means 'sparkling' leaves his mark in meaning, not in orthography; only the capital distinguishes the restored form from the input.</p>
+                <p class="etymology-note">The name <strong>Sindri</strong> reaches the modern world through scholarly transliteration of the norse tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">S</td><td><code>U+0053</code></td><td>Latin Capital Letter S</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">d</td><td><code>U+0064</code></td><td>Latin Small Letter D</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Sindri</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Sindri is the dwarf at the anvil while his brother [[brokkr|Brokkr]] works the bellows: the smith who took <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>'s wager and cast, in three heats, the golden-bristled boar Gullinbursti for <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>, the ring Draupnir for <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, and the hammer Mjǫllnir for <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a> — the greatest single afternoon's work in the northern corpus, done to win a bet staked on a trickster's head. His name is his trade: sindra, 'to sparkle', the forge-word for metal throwing off sparks. And Völuspá gives him a second life beyond Snorri's forge-scene: north on Niðavellir stands a hall of gold belonging to the kindred of Sindri, a dwarf chieftain of the verse tradition whose family owns the golden house.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Sindri in Later Traditions</h3><p class="cultural-card-body">Sindri's closest kin are inside the corpus itself. His brother [[brokkr|Brokkr]] is the other half of one workshop — the two are never separated in the sources, bellows and anvil, and Snorri names the forge by the pair. [[andvari|<a href="/andvari/" class="crosslink" data-crosslink="andvari">Andvari</a>]] is the corpus's other great dwarf of the gold, but inverted: Andvari's hoard is won by robbery and carries a curse, Sindri's gold is made in three heats and carries only a wager. Vǫlundr of Vǫlundarkviða, 'prince of elves', is the verse tradition's other smith narrative — the smith wronged who takes revenge, where Sindri is the smith wagered against who wins. Cross-culturally the comparisons are structural, not borrowed: <a href="/hephaistos/" class="crosslink" data-crosslink="hephaistos">Hephaistos</a>, the Greek smith who forges the gods' masterworks and is himself marred; Ilmarinen of the Kalevala, who forges the Sampo under a bargain's pressure; Goibniu of the Irish Tuatha Dé Danann, whose smith-work arms the gods for their last battle. The pattern is old — the divine weapon must come from an other-than-divine hand — but Sindri's version is the only one where the masterpiece's flaw is timed to a single held breath of the bellows.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Sindri's afterlife is the afterlife of his three treasures: every retelling of Norse myth that reaches the forging of Mjǫllnir keeps his one afternoon and its three stings, from the Victorian handbooks onward — the short handle is the detail no adapter has ever dared to cut, because it is the story. The smith himself has had a quieter reception than his work, and much of it flows under his manuscript double: the variant name Eitri carries the same dwarf-smith into a robust modern afterlife in games and film, where the forge that made the hammer is restaged for new audiences — the inventions are modern, but the forge, the brother, and the interrupted casting are Skáldskaparmál's own. The sturdiest legacy is the name: Sindri never died out in Iceland and remains a living male given name, borne today by men who inherit the forge's spark in its plainest form.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Sindri</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Sindri in Later Traditions</h3><p class="cultural-card-body">Sindri's closest kin are inside the corpus itself. His brother [[brokkr|Brokkr]] is the other half of one workshop — the two are never separated in the sources, bellows and anvil, and Snorri names the forge by the pair. [[andvari|<a href="/andvari/" class="crosslink" data-crosslink="andvari">Andvari</a>]] is the corpus's other great dwarf of the gold, but inverted: Andvari's hoard is won by robbery and carries a curse, Sindri's gold is made in three heats and carries only a wager. Vǫlundr of Vǫlundarkviða, 'prince of elves', is the verse tradition's other smith narrative — the smith wronged who takes revenge, where Sindri is the smith wagered against who wins. Cross-culturally the comparisons are structural, not borrowed: <a href="/hephaistos/" class="crosslink" data-crosslink="hephaistos">Hephaistos</a>, the Greek smith who forges the gods' masterworks and is himself marred; Ilmarinen of the Kalevala, who forges the Sampo under a bargain's pressure; Goibniu of the Irish Tuatha Dé Danann, whose smith-work arms the gods for their last battle. The pattern is old — the divine weapon must come from an other-than-divine hand — but Sindri's version is the only one where the masterpiece's flaw is timed to a single held breath of the bellows.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Sindri's afterlife is the afterlife of his three treasures: every retelling of Norse myth that reaches the forging of Mjǫllnir keeps his one afternoon and its three stings, from the Victorian handbooks onward — the short handle is the detail no adapter has ever dared to cut, because it is the story. The smith himself has had a quieter reception than his work, and much of it flows under his manuscript double: the variant name Eitri carries the same dwarf-smith into a robust modern afterlife in games and film, where the forge that made the hammer is restaged for new audiences — the inventions are modern, but the forge, the brother, and the interrupted casting are Skáldskaparmál's own. The sturdiest legacy is the name: Sindri never died out in Iceland and remains a living male given name, borne today by men who inherit the forge's spark in its plainest form.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Sindri is a wholly textual dwarf: no runestone invokes him, no votive deposit names him, and no image can be securely identified with him. His attestation hangs on the manuscript witnesses — the Codex Regius and related codices of Snorri's Edda for <a href="/texts/prose-edda/#skaldskaparmal-35" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál 35</a> (with the Codex Upsaliensis tradition reading the brother's name as Eitri), and the Codex Regius of the <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a> for <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a>'s golden hall at Niðavellir. The material context is nonetheless richer for him than for most dwarfs, because his products are findable. <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a>'s-hammer pendants — Mjǫllnir in miniature — are the commonest amulets of the late Viking Age, known by the hundred from tenth-century graves, hoards, and settlement sites across Scandinavia and the diaspora: the forge's most famous casting, worn at the neck of the converted and unconverted alike. Gold arm-rings of Draupnir's type fill the hoards. And the corpus's visual language of the smithy survives on the Gotland picture stones — Ardre VIII shows a smithy scene with tools and a headless body, usually read as Vǫlundr — proof that the smith at his forge was a carved subject in the Viking-Age north, though no carving names Sindri himself.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Sindri means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Sindri is the Edda's shortest sermon on how perfection fails. The gods' three greatest treasures are made in one afternoon by a smith whose name is a forge-word for sparks, and two of them are flawless. The third — the best, the one the Æsir will trust in the last battle — is marred by a single instant: a fly, an eyelid, a held breath of the bellows, and the handle is short forever. The tradition does not call the hammer ruined; it calls it the finest thing ever forged, short handle and all. That is the forge's verdict and the story's mercy: the masterpiece is not the work that never faltered but the work that survived its interruption. <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> wins the sting and loses the wager. Sindri wins everything except the head he was promised — and takes the trickster's voice instead, one stitch at a time, with an awl. In a mythology that ends in fire, the smith who arms the gods gets the corpus's most practical blessing: his work holds, and no one remembers the fly who won.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Sindri, Dwarf Smith, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Sindri?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Sindri</strong> is /ˈsin.dri/ — approximately 'SIN-dri' — two short beats, the weight on the first, the d clicked crisply between the n and the r as in 'laundry' said fast, both vowels clipped..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Sindri mean?</summary><div class="faq-answer"><p><strong>Sindri</strong> means <strong>Sparkling</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Sindri?</summary><div class="faq-answer"><p>Sindri is associated with <strong>The bellows</strong> (The wager's condition and the forge's heartbeat — the one tool whose failure, for a single instant, marks the hammer forever), <strong>The fly that stung</strong> (Loki's sabotage in miniature — the god who cannot win the contest fairly trying to spoil the work, and succeeding only at the handle), <strong>Draupnir</strong> (The ring that drips eight rings every ninth night — wealth that renews itself, the forge's answer to Andvari's cursed gold), <strong>Mjǫllnir's short handle</strong> (The flaw in perfection — the Æsir's best defense carries the permanent mark of the moment the work was broken), <strong>The golden hall at Niðavellir</strong> (Völuspá's witness — the house of gold of Sindri's kindred in the dwarf-fields, a chieftain's seat beyond Snorri's forge-scene).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Sindri in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>sindri</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Sindri?</summary><div class="faq-answer"><p>It begins with a crime: Loki, for mischief, cuts off all the hair of Sif, Þórr's wife. Þórr seizes him and would break every bone, and Loki swears to get the svartálfar to make hair of gold for Sif that will grow like living hair. He goes first to the sons of Ívaldi, who make the golden hair and two more treasures — the ship Skíðblaðnir for Freyr and the spear Gungnir for Óðinn. Then, flushed with success, Loki goes to the dwarf Brokkr and wagers his own head that Brokkr's brother Sindri cannot make three treasures just as good.The bet is the whole engine of the chapter: a trickster's tongue staked against a smith's hands. Brokkr accepts, and the brothers go to the forge with the terms set — Sindri lays the metal, Brokkr works the bellows, and the bellows must not stop blowing until the work comes out of the fire.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Sindri?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Sindri</strong> is /ˈsin.dri/ — approximately 'SIN-dri' — two short beats, the weight on the first, the d clicked crisply between the n and the r as in 'laundry' said fast, both vowels clipped.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Sindri mean?</summary><div class="faq-answer"><p><strong>Sindri</strong> means <strong>Sparkling</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Sindri?</summary><div class="faq-answer"><p>Sindri is associated with <strong>The bellows</strong> (The wager's condition and the forge's heartbeat — the one tool whose failure, for a single instant, marks the hammer forever), <strong>The fly that stung</strong> (Loki's sabotage in miniature — the god who cannot win the contest fairly trying to spoil the work, and succeeding only at the handle), <strong>Draupnir</strong> (The ring that drips eight rings every ninth night — wealth that renews itself, the forge's answer to Andvari's cursed gold), <strong>Mjǫllnir's short handle</strong> (The flaw in perfection — the Æsir's best defense carries the permanent mark of the moment the work was broken), <strong>The golden hall at Niðavellir</strong> (Völuspá's witness — the house of gold of Sindri's kindred in the dwarf-fields, a chieftain's seat beyond Snorri's forge-scene).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Sindri in Unicode?</summary><div class="faq-answer"><p><strong>Sindri</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Sindri?</summary><div class="faq-answer"><p>“The Wager of the Head” — Sindri's dossier is one long scene in Snorri and one stanza in Völuspá — a forge and a hall. The <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> gives him the wager that produced the gods' three greatest treasures; the Poetic Edda gives him a golden house in the dwarf-fields and a kindred to fill it. Between the two stands the corpus's most consequential craftsman: everything the Æsir trust in the last battle came off his anvil in a single afternoon. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,19 +349,19 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Snorri Sturluson, Prose Edda: Skáldskaparmál 35 (the cutting of Sif's hair; the sons of Ívaldi's three treasures; the wager of Loki's head; Sindri at the forge and Brokkr at the bellows; Gullinbursti, Draupnir, and the short-handled Mjǫllnir; the judgment of the Æsir; the sewing of Loki's lips with Vartari); Skáldskaparmál þulur (dwarf heiti)</cite></li><li><cite>Poetic Edda: Völuspá 37 (the hall of gold of Sindri's kindred, standing north on Niðavellir); Grímnismál 43 (Ívaldi's sons and the making of Skíðblaðnir)</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning (the svartálfar and their world; Draupnir laid on <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s pyre and sent back from Hel by <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a>'s errand)</cite></li><li><cite>de Vries, Altnordisches etymologisches Wörterbuch, s.v. sindra, Sindri (the forge-word and its cognates: Old English sinder, modern English cinder)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Snorri Sturluson, Prose Edda: Skáldskaparmál 35 (the cutting of Sif's hair; the sons of Ívaldi's three treasures; the wager of Loki's head; Sindri at the forge and Brokkr at the bellows; Gullinbursti, Draupnir, and the short-handled Mjǫllnir; the judgment of the Æsir; the sewing of Loki's lips with Vartari); Skáldskaparmál þulur (dwarf heiti)</cite></li><li><cite>Poetic Edda: Völuspá 37 (the hall of gold of Sindri's kindred, standing north on Niðavellir); <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a> 43 (Ívaldi's sons and the making of Skíðblaðnir)</cite></li><li><cite>Snorri Sturluson, Prose Edda: <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning</a> (the svartálfar and their world; Draupnir laid on <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s pyre and sent back from Hel by <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a>'s errand)</cite></li><li><cite>de Vries, Altnordisches etymologisches Wörterbuch, s.v. sindra, Sindri (the forge-word and its cognates: Old English sinder, modern English cinder)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Sindri and related cults.</cite></li><li><cite>Sindri is a wholly textual dwarf: no runestone invokes him, no votive deposit names him, and no image can be securely identified with him. His attestation hangs on the manuscript witnesses — the Codex Regius and related codices of Snorri's Edda for Skáldskaparmál 35 (with the Codex Upsaliensis tradition reading the brother's name as Eitri), and the Codex Regius of the Poetic Edda for Völuspá's golden hall at Niðavellir. The material context is nonetheless richer for him than for most dwarfs, because his products are findable. Thor's-hammer pendants — Mjǫllnir in miniature — are the commonest amulets of the late Viking Age, known by the hundred from tenth-century graves, hoards, and settlement sites across Scandinavia and the diaspora: the forge's most famous casting, worn at the neck of the converted and unconverted alike. Gold arm-rings of Draupnir's type fill the hoards. And the corpus's visual language of the smithy survives on the Gotland picture stones — Ardre VIII shows a smithy scene with tools and a headless body, usually read as Vǫlundr — proof that the smith at his forge was a carved subject in the Viking-Age north, though no carving names Sindri himself.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Sindri and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/sindri_logomark.webp" type="image/webp"><img src="../../assets/sindri_logomark.webp" alt="Sindri logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/sindri_logomark.webp" type="image/webp"><img src="../../assets/sindri_logomark.webp" alt="Sindri logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

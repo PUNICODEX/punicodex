@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Ògún — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Ògún</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Ògún.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,136 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Ògún</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Ògún</strong> is the standard Yoruba romanisation, documented in academic sources — “God of iron”. Its acute stress marks preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">ogun</p>
-                    <p class="card-body">Reduced to plain <strong>ogun</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Ògún</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ògún</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Ògún.com → xn--gn-1ja7a.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Ògún</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ògún</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Ògún is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ògún</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ògún</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Ògún</p>
-                    <p class="card-body">The live temple domain — <strong>ògún.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">ogun</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Ògún was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Ògún</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ò.gṹ/</span>
-            <span class="ipa-label">Yoruba</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">aw-GOON, low tone on the first syllable, high on the last.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Yoruba</strong> Ògún</li><li><strong>Brazil</strong> Ogun / São Jorge</li><li><strong>Haiti</strong> Ogou Feray</li><li><strong>Owned form</strong> Ògún</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ògún carries Yoruba's tonal low-high melody: ò with the grave (low tone), gún with the acute (high) — the tones are phonemic, and the restoration keeps both exactly as the language requires. The name is bound to the word for iron (irin) in his praise-names: "Ogun, master of iron, the one who clears the road."</p></div>
+      <p class="lead-text">Ògún's myths are the Yoruba meditation on power: the strength that clears the way for everyone, and the rage that, unmastered, turns on its own town.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Descent</span>
+          <h3 class="myth-title">The First Road</h3>
+          <p class="myth-text">When the orisha first sought to descend from heaven to the unfinished earth, the primordial forest stood unbroken and no god could pass — not even the greatest among them, for all their wisdom. Ògún took his cutlass and cut the road through, and the gods followed him down (the tradition preserved by E. B. Idowu in <em><a href="/olodumare/" class="crosslink" data-crosslink="olodumare">Olódùmarè</a></em>, 1962, and sung in the Ifá odù Ogunda, ‘Ògún creates’). The detail the storytellers never drop is the technology: where other cosmogonies begin with a word or a combat, the Yoruba world begins with a blade — creation as clearance, being as path. Yet ritual order keeps its own counsel: <a href="/eshu/" class="crosslink" data-crosslink="eshu">Èṣù</a>-Ẹlẹ́gbá, not Ògún, is propitiated first in every rite, for the road-opener opens ways that others must keep. The myth encodes an entire philosophy of work: civilisation is something hacked out of chaos, by someone, with a tool — and the hacker is owed his portion forever after.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Retreat</span>
+          <h3 class="myth-title">The King of Irè</h3>
+          <p class="myth-text">Installed as king of Irè, Ògún came one festival day to find his people silent — the honours due him unperformed (the Irè tradition recorded by Idowu, <em>Olódùmarè</em>). In his rage he drew the sword and cut down his own townsfolk, and the slaughter ended only when he saw his own son among the fallen. Coming to himself, he declared that he would walk no more among men, and sank into the earth — remaining, as the praise-songs say, in the iron itself. Every Ògún festival at Irè replays the king’s coming and going: the worshippers greet him with noise and honour precisely where the myth says silence once killed. The myth does not excuse the rage; it institutionalises the apology — a god whose festival is a town’s vow never again to repeat the silence that set him off.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Hunter</span>
+          <h3 class="myth-title">Master of the Forest</h3>
+          <p class="myth-text">Before he was king or smith, Ògún was the supreme hunter, lord of the deep forest where no farm grows and no town reaches. The hunters’ guilds sing his oríkì at the forest’s edge — ‘Ògún, the one who has water yet bathes in blood,’ ‘the one whose dog never tires’ — and hunters still pour the first palm wine of the season to him before the first hunt (hunters’ lore collected across Yorubaland; see Awolalu, <em>Yoruba Beliefs and Sacrificial Rites</em>, 1979). The forest is his because the road is his: every path into the bush is a cut he owns, every trap a loan from his forge. The tradition makes him the patron not of hunting’s glamour but of its discipline — the oath-bound guild, the shared kill, the rules that keep the forest from becoming mere wilderness. His hunters do not conquer the bush; they negotiate with it, in his name and under his law.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Dog</span>
+          <h3 class="myth-title">The One Who Followed</h3>
+          <p class="myth-text">The corpus preserves, in several variants, the story of the dog. When Ògún had done the terrible thing at Irè and withdrew from men, the one creature that followed him into the wilderness was his dog; in some tellings the dog dies for him, in others it leads him back out of the bush when he is lost past return. The ethnography is plain: dogs are still the sacrifice his festivals accept — the one animal whose death honours rather than offends him (festival practice recorded by Pierre Verger, <em>Orixás</em>, 1981, and J. O. Awolalu, 1979; the black dog of the forge is a standing figure in Cuban patakís, Lydia Cabrera, <em>El Monte</em>, 1954). The sources do not fix one canonical version, and the honest reading keeps the variants side by side. The myth’s theology is of a piece with the rest of him: the god of the road keeps, as his emblem among living things, the one companion that will not leave the road’s end — loyalty itself, paid for in kind.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Alliance</span>
+          <h3 class="myth-title">The Trap and the Arrow</h3>
+          <p class="myth-text">Ògún’s deepest alliance is with his brother-in-law, the archer Òchósi — and the founding story is a quarrel. Both laid claim to the same kill: Ògún had set the trap, but Òchósi’s arrow had struck the beast, and each argued the kill was his by craft. They took the dispute before the council of orisha, which ruled that the meat belonged to both — and bound them thereafter as partners in every hunt, the smith whose iron holds and the hunter whose aim decides (the tale survives in Yoruba hunters’ lore and in the Cuban patakís collected by Cabrera, <em>El Monte</em>). The myth is a treatise on technology: the trap without the arrow is a cage, the arrow without the trap is a shot in the dark. Yoruba religion enshrines the lesson in devotion itself — the two orisha are worshipped together to this day, and no serious hunter’s shrine to one lacks the other.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -367,7 +293,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Road-Opener</h2>
             <p class="section-subtitle">Iron, War, Labour, and the First Path through the Forest</p>
         </div>
@@ -406,45 +332,34 @@
       <div class="symbol-item">
         <span class="symbol-name">The palm wine</span>
         <span class="symbol-meaning">His drink — offered by hunters and smiths for coolness and courage</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The dog</span>
+        <span class="symbol-meaning">The hunter's companion and the sacrifice his festivals accept — loyalty that follows the road even into the earth</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The iron itself</span>
+        <span class="symbol-meaning">His praise-names say it plainly: the metal is the god's body and his dwelling among men</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Ògún</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Ògún lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Ògún's myths are the Yoruba meditation on power: the strength that clears the way for everyone, and the rage that, unmastered, turns on its own town.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Descent</span>
-          <h3 class="myth-title">The First Road</h3>
-          <p class="myth-text">When the orisha first sought to descend to the earth, the primordial forest stood unbroken and none could pass — not <a href="/orunmila/" class="crosslink" data-crosslink="orunmila">Orunmila</a> with his wisdom, not any god with any tool. Ògún took his cutlass and cut the road through, and the gods followed him down — the mythic clearing of the way. Ritual primacy, though, belongs to another: it is <a href="/eshu/" class="crosslink" data-crosslink="eshu">Èṣù</a>-Ẹlẹ́gbá who is propitiated first in every Yoruba rite. Creation, in Yoruba thought, required not a word but a blade.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/nigerian-studies/" class="source-badge">Nigerian Studies — The Orisha Myths</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Retreat</span>
-          <h3 class="myth-title">The King of Ire</h3>
-          <p class="myth-text">Made king of the town of Ire, Ògún came one festival day to find the people silent — they did not greet him with the honours he was owed. In his rage he cut down his own people with the sword until his son stood in the way; coming to himself, he declared he would go no more among men, and sank into the earth — remaining, as his praise-songs say, in the iron itself. Every Ògún festival at Ire replays the king's coming and going.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Hunter</span>
-          <h3 class="myth-title">Master of the Forest</h3>
-          <p class="myth-text">Before he was king or smith, Ògún was the supreme hunter: lord of the deep forest where no farm grows, guide of the hunters' guilds whose odu-ifá praise-songs call him "the one who has water but bathes in blood." Hunters still chant his oríkì at the forest's edge: the road-opener is also the one who knows the road's dangers better than any god.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -452,7 +367,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the yoruba pantheon</p>
         </div>
@@ -516,23 +431,137 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Ògún lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/nigerian-studies/" class="source-badge">Nigerian Studies — The Orisha Myths</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Ògún</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Ògún</strong> is the standard Yoruba romanisation, documented in academic sources — “God of iron”. Its acute stress marks preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">ogun</p>
+                <p class="card-body">Reduced to plain <strong>ogun</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Ògún</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ògún</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Ògún.com → xn--gn-1ja7a.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Ògún</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ògún</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ògún</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Ògún</p>
+                    <p class="card-body">The live temple domain — <strong>ògún.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">ogun</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Ògún was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ò.gṹ/</span>
+            <span class="ipa-label">Yoruba</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">aw-GOON, low tone on the first syllable, high on the last.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ògún carries Yoruba's tonal low-high melody: ò with the grave (low tone), gún with the acute (high) — the tones are phonemic, and the restoration keeps both exactly as the language requires. The name is bound to the word for iron (irin) in his praise-names: "Ogun, master of iron, the one who clears the road."</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Ògún is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ògún</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -551,7 +580,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/ogun_mascot.webp" type="image/webp"><img src="../assets/ogun_mascot.png" alt="Ògún mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ogun_mascot.webp" type="image/webp"><img src="../assets/ogun_mascot.png" alt="Ògún mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -589,7 +618,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/ogun_logomark.webp" type="image/webp"><img src="../assets/ogun_logomark.webp" alt="Ògún logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ogun_logomark.webp" type="image/webp"><img src="../assets/ogun_logomark.webp" alt="Ògún logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Xīwángmǔ — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">西王母</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Xīwángmǔ.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,148 +236,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">西王母</p>
-                    <p class="card-body">The name in its original Taoist form. <strong>Xīwángmǔ</strong> (西王母) is attested in the source tradition — “Western queen mother”. Its macron-length vowels and acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">xiwangmu</p>
-                    <p class="card-body">Reduced to plain <strong>xiwangmu</strong>, the name loses everything that made it specific: macron-length vowels and acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Xīwángmǔ</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Xīwángmǔ</strong> restores macron-length vowels and acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Xīwángmǔ.com → xn--xwngm-yqa03cy7b.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Xīwángmǔ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Xīwángmǔ</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Xīwángmǔ is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">西王母</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Xīwángmǔ is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Xīwángmǔ</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Xīwángmǔ</p>
-                    <p class="card-body">Restores <strong>西王母</strong>. The live temple domain — <strong>xīwángmǔ.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">xiwangmu</p>
-                    <p class="card-body">Flattens <strong>西王母</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Xīwángmǔ was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Xīwángmǔ</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ɕi˥ waŋ˧˥ mu˨˩˦/</span>
-            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">xī</span>
-        <span class="phoneme-desc">Voiceless alveolo-palatal fricative [ɕ] followed by high front vowel [i], Tone 1 (high level, ˥). Pinyin 'x' has no English equivalent; it is the 'sh' of 'she' pushed forward toward the teeth.</span>
+      <p class="lead-text">Xīwángmǔ's myths trace an arc no other Chinese deity matches: from wilderness terror to the most gracious sovereign of the Taoist heavens. Each age kept something of the last, so that the serene hostess of the Peach Banquet still carries the teeth and tail of the mountain power she once was.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Shan Hai Jing</span>
+          <h3 class="myth-title">The Fearsome Portrait</h3>
+          <p class="myth-text">Her oldest portrait is the strangest. In the <em>Classic of Mountains and Seas</em>, compiled from Warring States to Han materials, the Queen Mother "has the form of a human, the tail of a leopard, the teeth of a tiger, and is good at whistling; her tangled hair is bound with a sheng headdress" (ch. 2, Xishan jing). A later stratum adds her office — she "presides over the calamities of heaven and the five punishments" (ch. 16, Dahuang xi jing), seated on Mount Kūnlún with three azure birds to fetch her food. She is not yet a queen in any courtly sense. She is the numinous danger of the far west itself: the lands where the sun goes down, source of plague and of everything the settled world cannot control. Later ages would dress her in silk and seat her among goddesses — but the earliest text keeps her wild, and the wildness never entirely left the throne.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">wáng</span>
-        <span class="phoneme-desc">Labial-velar approximant [w] with the final [aŋ] (open central vowel + velar nasal), Tone 2 (rising, ˧˥).</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Huainanzi</span>
+          <h3 class="myth-title">The Elixir for Hòuyì</h3>
+          <p class="myth-text">It is from Xīwángmǔ that immortality flows. The <em>Huainanzi</em> records that <a href="/houyi/" class="crosslink" data-crosslink="houyi">Hòuyì</a>, the archer who shot down the nine excess suns, "begged the elixir of undying from the Queen Mother of the West" — and that his wife Héng'é stole it and fled to the moon, where she became the moon's goddess (her name later softened to Cháng'é under a Han emperor's name-taboo). Versions disagree about the theft — greed, fear, or rescue of the elixir from unworthy hands — but they agree on the source: no one in the Chinese cosmos rises beyond death except through the Queen Mother's treasury. The same storehouse reappears in every later system: her peaches ripen once in three thousand years; her banquet seats the assembled immortals; her garden is raided in every retelling of the Monkey King. Sovereignty over the boundary between life and death was her first office and remained her last — whether she wore a leopard's tail or a phoenix crown.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">mǔ</span>
-        <span class="phoneme-desc">Bilabial nasal [m] with high back rounded vowel [u], Tone 3 (dipping, ˨˩˦) — the low, dipping contour that falls before it rises.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Book of Han</span>
+          <h3 class="myth-title">The Movement of 3 BCE</h3>
+          <p class="myth-text">The Queen Mother was never only a goddess of mirrors and palace ladies. In 3 BCE — recorded in the <em>Book of Han</em> (ch. 11, Annals of Emperor Ai) — her cult ignited across the empire: crowds in more than twenty commanderies passed her tally-tokens (chóu) from hand to hand, sang and danced in the streets, wore her tokens, and converged on the capitals "thousands strung together", awaiting the fulfilment of her promise. The movement alarmed the court enough to be entered in the dynastic history — one of the earliest documented popular religious movements in China, three centuries before the organized Daoist church. The tallies were small pieces of wood, and their passing was the whole theology: a pledge, from the goddess of the west, that the world as it was could not last. The chroniclers record the phenomenon and not the promise. The crowds, clearly, knew what they were waiting for.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Journey to the West</span>
+          <h3 class="myth-title">The Theft of the Peaches</h3>
+          <p class="myth-text">Once in three thousand years the Peaches of Immortality ripen in the Queen Mother's orchard, and once in three thousand years she hosts the <em>pántáohuì</em>, the Peach Banquet, for the assembled immortals, gods, and buddhas of the three religions. In <em>Journey to the West</em> (ch. 5) the task of guarding the orchard is given, with fatal optimism, to Sūn Wùkōng — who samples the fruit systematically, dining on the 3,000-year, 6,000-year, and 9,000-year trees alike, and then crashes the feast itself in a disguise borrowed from a serving goddess. It is one of literature's great heists, and its comedy rests on real theology: the peaches are the most tightly held treasure in heaven, ripening on a schedule longer than recorded history, and the Queen Mother is their unanswerable custodian. The Monkey King's appetite did what no god could. It made her orchard — and her three-thousand-year patience — the most famous garden in Chinese fiction.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Mu Tianzi Zhuan</span>
+          <h3 class="myth-title">The Hostess at the Jasper Pool</h3>
+          <p class="myth-text">Before she was a Taoist sovereign she was a royal hostess. The <em>Mu Tianzi Zhuan</em> (Account of King Mu) — a Warring States text unearthed in 281 CE from a Wei royal tomb — sends King Mu of Zhou to her Jasper Pool (Yáochí) at the western edge of the world. There she receives the traveling king as an equal: she sings to him in the text's archaic verse — "white clouds in the sky, the road long, mountains between us; may you not die, and come again" — and he answers in kind before turning his eight-horse team east. The scene is her earliest humane portrait, and it fixed two things: the title by which Taiwanese temples still know her, Golden Mother of the Jasper Pool, and her oldest character — not empress, not bureaucrat, but the hostess at the end of the road, inviting the greatest traveler of the age to live long enough to come back. Every later banquet descends from that first cup of wine at the edge of the world.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">shee-WAHNG-moo — Xī held high and level like a sustained note, wáng rising from mid to high as in a question, mǔ dipping low and turning up again.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Traditional</strong> 西王母</li><li><strong>Simplified</strong> 西王母</li><li><strong>Wade-Giles</strong> Hsi¹-wang²-mu³</li><li><strong>Her consort</strong> 東王公 <a href="/dongwanggong/" class="crosslink" data-crosslink="dongwanggong">Dōngwánggōng</a> (King Father of the East)</li><li><strong>Related terms</strong> 蟠桃 pántáo (Peaches of Immortality); 蟠桃會 pántáohuì (the Peach Banquet); 崑崙 Kūnlún (her western mountain)</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">西王母 means 'Queen Mother of the West' — xī (west), wáng (king, sovereign), mǔ (mother). The Modern Standard Mandarin reading is Xīwángmǔ (Tones 1-2-3), as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. The tone-marked Pinyin restoration Xīwángmǔ preserves the citation tones of all three syllables; in connected speech the third tone on mǔ is often realized as a low half-third tone, but the lexical tone remains Tone 3.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -380,12 +294,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Western Paradise</h2>
             <p class="section-subtitle">The Peaches of Immortality, Mount Kūnlún, and the Taming of a Wilderness Goddess</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Xīwángmǔ</strong>, the Queen Mother of the West, has the strangest biography of any great goddess in the Chinese tradition. Her oldest portrait, in the <em>Classic of Mountains and Seas</em>, is fearsome: a figure with a tiger's teeth and a leopard's tail, her hair wild, wearing the <em>shèng</em> headdress, presiding over plague and calamity from Mount Kūnlún at the western edge of the world. She is not yet the serene sovereign of later ages — she is the numinous power of the untamed west itself.</p><p class="lead-text">Across the Han dynasty she was refined, age by age, into the great goddess of the western paradise: keeper of the Peaches of Immortality, which ripen once every three thousand years; host of the Peach Banquet; bestower of the elixir that lifts <a href="/change/" class="crosslink" data-crosslink="change">Chángé</a> to the moon; and, in the fullness of Taoist theology, the sovereign of yin and the west, balanced against Dōngwánggōng, the King Father of the East. The wilderness was never banished from her — it was enthroned.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Xīwángmǔ</strong>, the Queen Mother of the West, has the strangest biography of any great Chinese goddess: in the oldest text she is a tiger-toothed power of plague on Mount Kūnlún; by the Han she is enthroned in the western paradise; by the Tang she hosts the Peach Banquet and guards the elixir. The wilderness was never banished from her — it was enthroned.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 52L24 20L32 34L40 16L56 52Z"></path></svg></div>
@@ -405,7 +319,7 @@
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C20 8 12 18 12 32C12 46 20 56 32 56C32 56 32 40 32 32C32 24 32 8 32 8ZM32 20C36 20 40 24 40 28C40 32 36 36 32 36ZM32 40C28 40 24 44 24 48C24 52 28 56 32 56"></path></svg></div>
         <h4 class="domain-name">Sovereign of Yin and the West</h4>
-        <p class="domain-desc">In mature Taoist theology she rules yin, the west, and all goddesses, balanced against Dōngwánggōng's yang and east — the two poles of a complete cosmos.</p>
+        <p class="domain-desc">In mature Taoist theology she rules yin, the west, and all goddesses, balanced against <a href="/dongwanggong/" class="crosslink" data-crosslink="dongwanggong">Dōngwánggōng</a>'s yang and east — the two poles of a complete cosmos.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
@@ -431,57 +345,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Xīwángmǔ</p>
-        </div>
-        
-      <p class="lead-text">Xīwángmǔ's myths trace an arc no other Chinese deity matches: from wilderness terror to the most gracious sovereign of the Taoist heavens. Each age kept something of the last, so that the serene hostess of the Peach Banquet still carries the teeth and tail of the mountain power she once was.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Shan Hai Jing</span>
-          <h3 class="myth-title">The Fearsome Portrait</h3>
-          <p class="myth-text">In the <em>Classic of Mountains and Seas</em>, the oldest surviving description, the Queen Mother is not a queen at all in the courtly sense. She has a tiger's teeth and a leopard's tail, her hair unbound beneath the <em>shèng</em> headdress, and she presides over plague and calamity from Mount Kūnlún. She is the personified danger of the far west — the lands beyond the pale of the settled world, where the sun goes down into mystery. Later ages would clothe her in silk, but the earliest text keeps her wild.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Huainanzi</span>
-          <h3 class="myth-title">The Elixir for Hòuyì</h3>
-          <p class="myth-text">It is the Queen Mother who holds the elixir of immortality, and it is she who grants it to <a href="/houyi/" class="crosslink" data-crosslink="houyi">Hòuyì</a>, the archer who shot down the nine excess suns. The gift does not stay in his hands: it becomes Chángé's ascension to the moon. The versions differ — in some tellings Chángé takes the elixir unbidden, in others to keep it from unworthy hands — but the constant is the source: immortality flows from the Queen Mother's store, and no one rises to the heavens except through her treasury.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Journey to the West</span>
-          <h3 class="myth-title">The Theft of the Peaches</h3>
-          <p class="myth-text">Once every three thousand years the Peaches of Immortality ripen, and the Queen Mother hosts the <em>Peach Banquet</em> for the assembled immortals. In the <em>Journey to the West</em>, Sūn Wùkōng — appointed, with fatal optimism, as guardian of the orchard — eats his way through the finest fruit and crashes the feast he was never invited to. It is one of literature's great heists, and its comedy rests on a real theological point: the peaches are the most tightly held treasure in heaven, and the Queen Mother is their unanswerable custodian.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Book of Han</span>
-          <h3 class="myth-title">The Movement of 3 BCE</h3>
-          <p class="myth-text">The Queen Mother was not only a figure of elite texts and palace mirrors. The <em>Book of Han</em> records a genuine millenarian movement in 3 BCE, when crowds across the commanderies carried her tallies, passed them from hand to hand, and awaited the fulfilment of her promise. It is one of the earliest documented popular religious movements in Chinese history — proof that the western goddess had seized the imagination of ordinary people centuries before the novelists found her.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the taoist pantheon</p>
         </div>
@@ -545,8 +416,150 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">西王母</p>
+                <p class="card-body">The name in its original Taoist form. <strong>Xīwángmǔ</strong> (西王母) is attested in the source tradition — “Western queen mother”. Its macron-length vowels and acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">xiwangmu</p>
+                <p class="card-body">Reduced to plain <strong>xiwangmu</strong>, the name loses everything that made it specific: macron-length vowels and acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Xīwángmǔ</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Xīwángmǔ</strong> restores macron-length vowels and acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Xīwángmǔ.com → xn--xwngm-yqa03cy7b.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Xīwángmǔ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Xīwángmǔ</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Xīwángmǔ</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Xīwángmǔ</p>
+                    <p class="card-body">Restores <strong>西王母</strong>. The live temple domain — <strong>xīwángmǔ.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">xiwangmu</p>
+                    <p class="card-body">Flattens <strong>西王母</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Xīwángmǔ was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ɕi˥ waŋ˧˥ mu˨˩˦/</span>
+            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">xī</span>
+        <span class="phoneme-desc">Voiceless alveolo-palatal fricative [ɕ] followed by high front vowel [i], Tone 1 (high level, ˥). Pinyin 'x' has no English equivalent; it is the 'sh' of 'she' pushed forward toward the teeth.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">wáng</span>
+        <span class="phoneme-desc">Labial-velar approximant [w] with the final [aŋ] (open central vowel + velar nasal), Tone 2 (rising, ˧˥).</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">mǔ</span>
+        <span class="phoneme-desc">Bilabial nasal [m] with high back rounded vowel [u], Tone 3 (dipping, ˨˩˦) — the low, dipping contour that falls before it rises.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">shee-WAHNG-moo — Xī held high and level like a sustained note, wáng rising from mid to high as in a question, mǔ dipping low and turning up again.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">西王母 means 'Queen Mother of the West' — xī (west), wáng (king, sovereign), mǔ (mother). The Modern Standard Mandarin reading is Xīwángmǔ (Tones 1-2-3), as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. The tone-marked Pinyin restoration Xīwángmǔ preserves the citation tones of all three syllables; in connected speech the third tone on mǔ is often realized as a low half-third tone, but the lexical tone remains Tone 3.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Xīwángmǔ is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">西王母</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Xīwángmǔ is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -564,7 +577,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/xiwangmu_mascot.webp" type="image/webp"><img src="../assets/xiwangmu_mascot.png" alt="Xīwángmǔ mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/xiwangmu_mascot.webp" type="image/webp"><img src="../assets/xiwangmu_mascot.png" alt="Xīwángmǔ mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -602,7 +615,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/xiwangmu_logomark.webp" type="image/webp"><img src="../assets/xiwangmu_logomark.webp" alt="Xīwángmǔ logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/xiwangmu_logomark.webp" type="image/webp"><img src="../assets/xiwangmu_logomark.webp" alt="Xīwángmǔ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

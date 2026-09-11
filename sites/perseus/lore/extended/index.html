@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Perseús, Hero, Slayer of Medousa. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/perseus/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Perseús?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Perseús is /perˈseu̯s/ — approximately 'per-SEUS' — stress the final syllable, and let the eu glide like 'eh-oo' said in one motion."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Perseús mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Perseús means Destroyer, possibly Persian in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Perseús?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Perseús is associated with Harpe (adamantine sickle-sword) (The curved blade Hermes gave him for the one stroke at Medousa's neck — a weapon older than the gods' order), Mirrored shield (Athena's polished bronze, in which Perseus watched the Gorgon safely — knowledge taken only by reflection), Cap of Hades (The helmet of invisibility that hid him from the waking Gorgon sisters and the giants of Seriphos), Kibisis (The wallet that holds the severed head without harm — the first container built for a monster), Gorgoneion (The apotropaic face itself, set on Athena's aegis, turning enemies to stone at the city's threshold)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Perseús in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII perseus strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Perseús?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Shower of Gold” — Perseus is the Argive hero of the Gorgon-slaying, the rescuer of Andromeda, and the founder of the dynasty that produces Heracles. His cycle, told most fully by Apollodorus and Ovid, turns on oracles, divine equipment, and the terrible double gift of the Gorgon's head. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,14 @@
                 <picture><source srcset="../../assets/perseus_logolockup.webp" type="image/webp"><img src="../../assets/perseus_logolockup.png" alt="Perseús" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +175,14 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +195,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Perseús</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Perseús</span>
@@ -157,7 +210,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/perseus_mascot.webp" type="image/webp"><img src="../../assets/perseus_mascot.png" alt="Perseús — Hero, Slayer of Medousa" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/perseus_mascot.webp" type="image/webp"><img src="../../assets/perseus_mascot.png" alt="Perseús — Hero, Slayer of Medousa" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +229,7 @@
             <p class="section-subtitle">Essential information about Perseús, Hero, Slayer of <a href="/medousa/" class="crosslink" data-crosslink="medousa">Medousa</a></p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">Περσεύς</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Perseús</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/perseus/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Hero, Slayer of Medousa</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Destroyer, possibly Persian</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Perseús</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Name, Domain</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">Περσεύς</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Perseús</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/perˈseu̯s/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Hero, Slayer of Medousa</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Destroyer, possibly Persian</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Perseús</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Harpe (adamantine sickle-sword), Mirrored shield, Cap of <a href="/hades/" class="crosslink" data-crosslink="hades">Hades</a>, Kibisis, Gorgoneion</span></div></div>
         </div>
     </div>
 </section>
@@ -210,11 +263,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The ASCII form "perseus" is a DNS compromise; the restoration "Perseus" preserves the name's scholarly dignity.</p>
+                <p class="etymology-note">The name <strong>Perseús</strong> carries the orthographic signature of the greek tradition: Περσεύς. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Modern Descendants</h4><ul><li><strong>perseus</strong> — Modern English / international usage</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Περσεύς (Perseús), attested from Hesiod onward (<a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 280) and in Pindar's victory odes (Pythian 12)</li><li><strong>Cognate verb</strong> — Greek πέρθω (perthō), 'to destroy, sack, ravage' — the root behind the ancient gloss 'Destroyer'</li><li><strong>Eastern association</strong> — Already in antiquity linked with the ethnonym of the Persians: 'the Persians say that Perseus, son of Danaë, was an Assyrian who became a Greek' (Herodotus 7.61); later tradition made his son Perses the eponym of Persia</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,31 +300,45 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Perseus</strong> is hero, slayer of medousa. The name means "Destroyer, possibly Persian" and belongs to the greek tradition.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Perseus remains a touchstone for understanding greek religion, art, and identity.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Perseús</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Perseús in Later Traditions</h3><p class="cultural-card-body">Perseus carried an eastern passport from the beginning. Herodotus records that 'the Persians say that Perseus, son of Danaë, was an Assyrian who became a Greek' (7.61), and later tradition made his son by <a href="/andromeda/" class="crosslink" data-crosslink="andromeda">Andromeda</a>, Perses, the eponymous ancestor of the Persian kings — a genealogy Greeks used to explain a familiar name in a foreign country. In Greece itself he never quite became a god: Pausanias saw the grave the Argives showed for him (2.18.1) and the spring at Mycenae where he washed after the slaying (2.16.6), and his cult remained hero-cult — games, tomb, local memory — rather than Olympian worship. His afterlife in art outran his afterlife in cult: the gorgoneion on <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>'s aegis became the West's oldest apotropaic emblem, Cellini's bronze <em>Perseus with the Head of Medusa</em> (Loggia dei Lanzi, Florence, 1554) fixed the decapitation group for the Renaissance, and Rubens and Tiepolo re-staged the Andromeda rescue for a Christian <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a> that read the sea-monster as evil and the hero as providence.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Perseus survives in the sky: Ptolemy placed him among the 48 constellations, and every August the Perseid meteor shower streams from his direction — the hero still throws. The gorgoneion lives on wherever a face is set up to ward off harm, most famously as the Medusa head of the Versace logo. Cinema keeps returning to him — <em>Clash of the Titans</em> (1981, 2010) — and fantasy gaming has made the mirrored-shield tactic a genre convention. But his deepest legacy is genealogical: through Electryon and Alkmene he is the grandfather of Heracles, so the whole of Greek heroic myth, Argonauts included, descends from the boy in the brazen room. Every retelling of the Gorgon-slaying re-asks his question: how do you face what cannot be looked at?</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Pausanias walked the hero's topography: at Mycenae he saw the Persea, the spring 'where Perseus is said to have washed when he brought back the Gorgon's head' (2.16.6), and at <a href="/argos/" class="crosslink" data-crosslink="argos">Argos</a> the grave-heroon the Argives claimed for him beside the sanctuary of <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a> (2.18.1). The chest of Cypselus at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a>, described by Pausanias (5.18), carried carved scenes of Perseus and the Gorgons among its archaic reliefs. The monster herself dominates the material record: the west pediment of the temple of <a href="/artemis/" class="crosslink" data-crosslink="artemis">Artemis</a> at Corfu (c. 580 BC) displays the largest early Gorgon in Greek art, wide-eyed and tongue-out, the apotropaic face Perseus delivered to Athena. Attic and Argive vase-paintings of the sixth and fifth centuries show the whole cycle — the chest at sea, the decapitation, the petrification of Polydectes' court.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Perseús means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Perseus is the hero who wins by not looking. Every other Greek hero faces his monster; Perseus can only succeed by watching a reflection, taking the truth of the Gorgon secondhand, obliquely. It is the myth's central intelligence: some realities cannot be met head-on — only approached in a mirror, at an angle, by indirection. Even his equipment is borrowed, none of it his own; the self that triumphs is assembled from others' gifts, as a scholar's knowledge is assembled from books. And his name is itself a reflection — possibly Persian, possibly 'Destroyer,' seen dimly through two languages. Perseus suggests that heroism is not the native strength of Achilles but the managed gaze: know the monster's true shape well enough to cut its neck, and never meet its eyes.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     <section class="section section-name" id="screen-appearances">
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Screen Appearances</h2>
-            <p class="section-subtitle">Films, series, animations, and games featuring Perseús</p>
+            <span class="section-number">06</span>
+            <h2 class="section-title">Screen &amp; Culture</h2>
+            <p class="section-subtitle">Where Perseús echoes through film, television, and games — and how</p>
         </div>
         <div class="screen-appearances-grid"><a class="screen-appearance-card reveal-up" href="/screen/clash-of-the-titans-1981/">
                 <span class="screen-appearance-year">1981</span>
                 <h3 class="screen-appearance-title">Clash of the Titans</h3>
                 <span class="screen-appearance-type">Film</span>
                 <p class="screen-appearance-studio">Metro-Goldwyn-Mayer / United Artists</p>
+                <p class="screen-appearance-summary">Ray Harryhausen's stop-motion epic follows Perseus as he faces the Kraken and challenges the gods of Olympus.</p>
             </a><a class="screen-appearance-card reveal-up" href="/screen/clash-of-the-titans-2010/">
                 <span class="screen-appearance-year">2010</span>
                 <h3 class="screen-appearance-title">Clash of the Titans</h3>
                 <span class="screen-appearance-type">Film</span>
                 <p class="screen-appearance-studio">Warner Bros. Pictures / Legendary Pictures</p>
+                <p class="screen-appearance-summary">A remake in which Perseus battles the Kraken and the underworld while Olympus argues over the fate of mortals.</p>
             </a></div>
     </div>
 </section>
@@ -280,11 +347,11 @@
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Perseús, Hero, Slayer of Medousa, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Perseús?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Perseús</strong> is /perseus/ — approximately Say "perseus" with the stress and length implied by the scholarly restoration "Perseus"..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Perseús mean?</summary><div class="faq-answer"><p><strong>Perseús</strong> means <strong>Destroyer, possibly Persian</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Perseús?</summary><div class="faq-answer"><p>Perseús is associated with <strong>Name</strong> (The restored form Perseus, carrying scholarly and cultural weight.), <strong>Domain</strong> (Hero, Slayer of Medousa).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Perseús in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>perseus</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Perseús?</summary><div class="faq-answer"><p>Perseus appears in greek tradition as hero, slayer of medousa. The name's meaning, "Destroyer, possibly Persian", shapes the narratives told about this figure.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Perseús?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Perseús</strong> is /perˈseu̯s/ — approximately 'per-SEUS' — stress the final syllable, and let the eu glide like 'eh-oo' said in one motion.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Perseús mean?</summary><div class="faq-answer"><p><strong>Perseús</strong> means <strong>Destroyer, possibly Persian</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Perseús?</summary><div class="faq-answer"><p>Perseús is associated with <strong>Harpe (adamantine sickle-sword)</strong> (The curved blade <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermes</a> gave him for the one stroke at Medousa's neck — a weapon older than the gods' order), <strong>Mirrored shield</strong> (Athena's polished bronze, in which Perseus watched the Gorgon safely — knowledge taken only by reflection), <strong>Cap of Hades</strong> (The helmet of invisibility that hid him from the waking Gorgon sisters and the giants of Seriphos), <strong>Kibisis</strong> (The wallet that holds the severed head without harm — the first container built for a monster), <strong>Gorgoneion</strong> (The apotropaic face itself, set on Athena's aegis, turning enemies to stone at the city's threshold).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Perseús in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>perseus</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Perseús?</summary><div class="faq-answer"><p>“The Shower of Gold” — Perseus is the Argive hero of the Gorgon-slaying, the rescuer of Andromeda, and the founder of the dynasty that produces Heracles. His cycle, told most fully by Apollodorus and Ovid, turns on oracles, divine equipment, and the terrible double gift of the Gorgon's head. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -293,7 +360,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">08</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -312,7 +379,7 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod, Theogony 270–286 (birth of Chrysaor and Pegasus from the severed neck)</cite></li><li><cite>Pindar, Pythian 12 (the Gorgon-slaying and the 'fair-faced' Perseus)</cite></li><li><cite>Apollodorus, Bibliotheca 2.2.1–2.4.5 (the fullest surviving continuous account of the cycle)</cite></li><li><cite>Ovid, <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 4.604–803 (Perseus' own narration: the Graiai, Medousa, Andromeda)</cite></li><li><cite>Pausanias, Description of Greece 2.16.6 and 2.18.1 (the Persea spring at Mycenae and Perseus' grave at Argos)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -324,7 +391,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of greek religion and the place of Perseús within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Herodotus, Histories 7.61 (the Persian claim that Perseus was 'an Assyrian who became a Greek')</cite></li><li><cite>Daniel Ogden, Perseus (Routledge, Gods and Heroes of the Ancient World, 2008)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -385,7 +452,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/perseus_logomark.webp" type="image/webp"><img src="../../assets/perseus_logomark.webp" alt="Perseús logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/perseus_logomark.webp" type="image/webp"><img src="../../assets/perseus_logomark.webp" alt="Perseús logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

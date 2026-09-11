@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Mūt, Death, Underworld. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/mot/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Mūt?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Mūt is /moːt/ — approximately 'MOHT' — one syllable with a long, drawn-out o (or oo) and a crisp final t."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Mūt mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mūt means Death in the phoenician tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Mūt?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mūt is associated with Devouring mouth (His throat is the abyss — 'like a whale's gullet' (KTU 1.5 i) — that swallows Baꜥal whole), Dust and dry earth (The landscape of his kingdom; when he wins, the world becomes his emblem), Sword and winnowing fan (The harvest tools ꜥAnat turns against him (KTU 1.6 ii)), Seven portions (The meal he demands — meat by double handfuls, drink by the riverful (KTU 1.4 viii)), Desert wasteland (The parched country that announces his season has begun)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Mūt in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII mot strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Mūt?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Appetite of Death” — Mōt's mythology is the dark season of the year made personal. His stories are preserved in the Baꜥal Cycle, where he confronts Baꜥal, kills him, and is in turn destroyed and reborn in a cycle that explains drought, death, and the return of fertility. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/mot_logolockup.webp" type="image/webp"><img src="../../assets/mot_logolockup.png" alt="Mūt" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Mūt</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Mūt.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/mot_mascot.webp" type="image/webp"><img src="../../assets/mot_mascot.png" alt="Mūt — Death, Underworld" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/mot_mascot.webp" type="image/webp"><img src="../../assets/mot_mascot.png" alt="Mūt — Death, Underworld" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The name is the Canaanite word for 'death.' The macron on the registrable Mōt signals vowel length, not a fixed quality: Phoenician has mūt, Hebrew māwet, and Ugaritic mt gives no vowels. We follow the PUNICODEX macron convention with /moːt/; hear a long low/back vowel rather than the short English 'o.' Tier 1: the macron preserves a reconstructed long vowel. Sources: KTU, CIS/KAI, Smith The Ugaritic <a href="/baal/" class="crosslink" data-crosslink="baal">Baal</a> Cycle, Day Yahweh and the Gods and Goddesses of Canaan.</p>
+                <p class="etymology-note">The name <strong>Mūt</strong> carries the orthographic signature of the phoenician tradition: 𐤌𐤕. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Ugaritic</strong> — 𐎎𐎚 (mt), the personified Death of the Baal Cycle</li><li><strong>Phoenician</strong> — 𐤌𐤕 (mūt), the divine name in Philo of Byblos/Sanchuniathon</li><li><strong>Hebrew</strong> — מָוֶת (māweṯ), 'death'</li><li><strong>Akkadian</strong> — 𒍗 (mūtu), the common noun for death</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Ugaritic</strong> — 𐎎𐎚 (mt), the personified Death of the <a href="/baal/" class="crosslink" data-crosslink="baal">Baal</a> Cycle</li><li><strong>Phoenician</strong> — 𐤌𐤕 (mūt), the divine name in Philo of Byblos/Sanchuniathon</li><li><strong>Hebrew</strong> — מָוֶת (māweṯ), 'death'</li><li><strong>Akkadian</strong> — 𒍗 (mūtu), the common noun for death</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Mōt is the <strong>personified appetite of death</strong> in Canaanite myth — not a reaper with a scythe but a being whose throat is a chasm and whose jaws grind gods and mortals alike. In the Baꜥal Cycle he is the necessary opposite of the storm-god: where Baꜥal brings rain, Mōt brings the parched season when growth stops and the world turns to dust.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Mūt in Later Traditions</h3><p class="cultural-card-body">The Hellenistic Phoenician account preserved by Eusebius of Caesarea — quoting Philo of Byblos, who summarized Sanchuniathon — makes Mōt (Muth) a son of El and <a href="/rhea/" class="crosslink" data-crosslink="rhea">Rhea</a>, deified after death and identified by the Phoenicians with the Greek <a href="/thanatos/" class="crosslink" data-crosslink="thanatos">Thanatos</a> and <a href="/pluto/" class="crosslink" data-crosslink="pluto">Pluto</a>. A more speculative cosmogonic strand in the same tradition makes Mōt arise from primal mud or putrefaction, the source from which the seeds of creation emerge. In the Hebrew Bible the common noun <em>māwet</em> ('death') sometimes appears almost personified, especially in Hosea 13:14, suggesting that the Canaanite figure lingered in Israelite imagination even where he was no longer worshipped.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Mōt's name survives in Hebrew <em>māwet</em>, Arabic <em>mawt</em>, and the Semitic root for death itself. His myth helped shape later personifications of death in biblical and apocalyptic literature, and the Baꜥal-Mōt cycle has long fascinated scholars of ancient religion as a Near Eastern parallel to — and a warning against facile equations with — later dying-and-rising god traditions. In modern fantasy, games, and Neopagan reconstructions, Mōt appears as the Canaanite lord of the underworld, a reminder that every pantheon must make room for the figure who says, 'All feasting ends here.'</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Mūt</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Mūt in Later Traditions</h3><p class="cultural-card-body">The Hellenistic Phoenician account preserved by Eusebius of Caesarea — quoting Philo of Byblos, who summarized Sanchuniathon — makes Mōt (Muth) a son of El and <a href="/rhea/" class="crosslink" data-crosslink="rhea">Rhea</a>, deified after death and identified by the Phoenicians with the Greek <a href="/thanatos/" class="crosslink" data-crosslink="thanatos">Thanatos</a> and <a href="/pluto/" class="crosslink" data-crosslink="pluto">Pluto</a>. A more speculative cosmogonic strand in the same tradition makes Mōt arise from primal mud or putrefaction, the source from which the seeds of creation emerge. In the Hebrew Bible the common noun <em>māwet</em> ('death') sometimes appears almost personified, especially in Hosea 13:14, suggesting that the Canaanite figure lingered in Israelite imagination even where he was no longer worshipped.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Mōt's name survives in Hebrew <em>māwet</em>, Arabic <em>mawt</em>, and the common Semitic root for death itself — the god never outlived the noun. His myth helped shape later personifications of death in biblical and apocalyptic literature, from the personified Death of Hosea 13:14 to the pale rider of Revelation, and the Baꜥal–Mōt cycle has long fascinated scholars as a Near Eastern parallel to — and a warning against facile equations with — later dying-and-rising god traditions. Philo of Byblos, as quoted by Eusebius, still remembered a Phoenician Muth whom the learned identified with the Greek Thanatos and Pluto. In modern fantasy, games, and Neopagan reconstructions, Mōt appears as the Canaanite lord of the underworld, gaunt and voracious. He endures as the figure every pantheon must make room for: the one who says, without anger, that all feasting ends here.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Baꜥal Cycle tablets from Ras Shamra (KTU 1.4–1.6) are the principal witnesses to Mōt's mythology, preserving his threats, his swallowing of Baꜥal, and his dismemberment by <a href="/anat/" class="crosslink" data-crosslink="anat">ꜥAnat</a> in alphabetic cuneiform. The Hellenistic Phoenician cosmogony survives only in the excerpts of Philo of Byblos transmitted by Eusebius. No distinct sanctuary of Mōt has been identified, but the widespread West Semitic word for death — Ugaritic mt, Phoenician mūt, Hebrew māwet, Akkadian mūtu — testifies to the concept's deep cultural reach.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Mūt means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Mōt is the god nobody wants to meet and nobody can avoid. He is not evil; he is <strong>hungry</strong>. His throat does not distinguish between good and bad, rich and poor, god and mortal. That is what makes him terrifying, and that is what makes him honest. Every other deity in the pantheon has favorites; Mōt has only appetite.</p><p>Yet Mōt is also necessary. Without the dry season, the seed would rot. Without the limit of death, life would have no shape. The Canaanites did not deny him; they told stories about how to survive him — how a sister's rage, a sun-goddess's warning, and a storm's return could push death back into its season. Mōt teaches that mortality is not a punishment but a boundary, and that the boundary is what makes the feast possible.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Mūt, Death, Underworld, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Mūt?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Mūt</strong> is /moːt/ — approximately 'MOHT' — one syllable with a long, drawn-out o (or oo) and a crisp final t..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Mūt mean?</summary><div class="faq-answer"><p><strong>Mūt</strong> means <strong>Death</strong> in the phoenician tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Mūt?</summary><div class="faq-answer"><p>Mūt is associated with <strong>Devouring mouth</strong> (His throat is the underworld itself; his jaws crush gods and mortals), <strong>Dust and dry earth</strong> (The landscape of his kingdom and the sign of his victory over Baꜥal), <strong>Sword and winnowing fan</strong> (The tools <a href="/anat/" class="crosslink" data-crosslink="anat">ꜥAnat</a> uses to split, scatter, and destroy him), <strong>Seven portions</strong> (The meal Mōt demands; he eats by double handfuls and drinks a river), <strong>Desert wasteland</strong> (The parched country where death's rule is felt most keenly).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Mūt in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mot</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Mūt?</summary><div class="faq-answer"><p>In KTU 1.4 vii–viii, Mōt sends word to Baꜥal: because he was not invited to the storm-god's feast, he will feast on Baꜥal himself. His messengers describe a throat like a lion's, a gullet like a whale's, and an appetite that devours by the double handful. Baꜥal's own envoys are warned not to come too close, 'lest he make you like a lamb in his mouth' (KTU 1.4 viii 17–20).</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Mūt?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Mūt</strong> is /moːt/ — approximately 'MOHT' — one syllable with a long, drawn-out o (or oo) and a crisp final t.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Mūt mean?</summary><div class="faq-answer"><p><strong>Mūt</strong> means <strong>Death</strong> in the phoenician tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Mūt?</summary><div class="faq-answer"><p>Mūt is associated with <strong>Devouring mouth</strong> (His throat is the abyss — 'like a whale's gullet' (KTU 1.5 i) — that swallows Baꜥal whole), <strong>Dust and dry earth</strong> (The landscape of his kingdom; when he wins, the world becomes his emblem), <strong>Sword and winnowing fan</strong> (The harvest tools ꜥAnat turns against him (KTU 1.6 ii)), <strong>Seven portions</strong> (The meal he demands — meat by double handfuls, drink by the riverful (KTU 1.4 viii)), <strong>Desert wasteland</strong> (The parched country that announces his season has begun).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Mūt in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mot</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Mūt?</summary><div class="faq-answer"><p>“The Appetite of Death” — Mōt's mythology is the dark season of the year made personal. His stories are preserved in the Baꜥal Cycle, where he confronts Baꜥal, kills him, and is in turn destroyed and reborn in a cycle that explains drought, death, and the return of fertility. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,7 +361,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Mūt and related cults.</cite></li><li><cite>The Baꜥal Cycle tablets from Ras Shamra (KTU 1.4–1.6) are the principal witnesses to Mōt's mythology, preserving his threats, his swallowing of Baꜥal, and his dismemberment by ꜥAnat in alphabetic cuneiform. The Hellenistic Phoenician cosmogony survives only in the excerpts of Philo of Byblos transmitted by Eusebius. No distinct sanctuary of Mōt has been identified, but the widespread West Semitic word for death — Ugaritic mt, Phoenician mūt, Hebrew māwet, Akkadian mūtu — testifies to the concept's deep cultural reach.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Mūt and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/mot_logomark.webp" type="image/webp"><img src="../../assets/mot_logomark.webp" alt="Mūt logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/mot_logomark.webp" type="image/webp"><img src="../../assets/mot_logomark.webp" alt="Mūt logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

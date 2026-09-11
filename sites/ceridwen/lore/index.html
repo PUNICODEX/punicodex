@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Ceridwen — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Ceridwen</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Ceridwen</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,143 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Ceridwen</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Ceridwen</strong> is the standard Celtic romanisation, documented in academic sources — “Bent or crooked woman”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">ceridwen</p>
-                    <p class="card-body">The plain <strong>ceridwen</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Ceridwen</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Ceridwen</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Ceridwen.com → ceridwen.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Ceridwen</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ceridwen</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Ceridwen is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ceridwen</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ceridwen</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Ceridwen</p>
-                    <p class="card-body">The full Unicode restoration. <strong>ceridwen.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Ceridwen was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Ceridwen</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/kɛrˈɪd.wɛn/</span>
-            <span class="ipa-label">Modern Welsh</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Cer-</span>
-        <span class="phoneme-desc">Voiceless velar stop [k] — Welsh c is always hard — with short open [ɛ] and trilled [r]; the light, unstressed first syllable.</span>
+      <p class="lead-text">Ceridwen's whole dossier is a single tale — Hanes <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>, the Tale of Taliesin — preserved in sixteenth-century Welsh manuscripts and customarily printed with the Mabinogion, though it is none of the Four Branches. Within that tale she owns its great engine: the cauldron, the hunt, and the rebirth.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hanes Taliesin</span>
+          <h3 class="myth-title">The Household by Llyn Tegid</h3>
+          <p class="myth-text">In the beginning, the tale says, Ceridwen lived beside Llyn Tegid in the land of Penllyn, the wife of Tegid Foel — Tegid the Bald — whose name the lake still carries. They had two children whose fortunes were weighed in opposite scales: a daughter, Creirwy, the fairest maiden in the world, and a son, Morfran, so dark and ill-favoured that he was called Afagddu, Utter Darkness. No god could have made the boy handsome; but Ceridwen was skilled in the arts, and she resolved to give him what nature had refused — knowledge and the gift of poetry, so that his birth might yet be honoured among men of culture. The household is the tale's moral center of gravity: everything that follows — the cauldron, the chase, the sea — is a mother's engineering on behalf of a child the world despised. Welsh tradition never asks whether her favoritism was just; it asks what a mother with power will do, and then follows the answer for a year and a day.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-id-</span>
-        <span class="phoneme-desc">Short close [ɪ] under stress with a voiced dental [d]; Welsh words stress the penultimate syllable, so the weight of the name lands here.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hanes Taliesin</span>
+          <h3 class="myth-title">The Cauldron of a Year and a Day</h3>
+          <p class="myth-text">From the books of the feryllt — the Welsh name for the alchemist's art — Ceridwen compounded a cauldron of Inspiration and Science. It must boil a year and a day, ceaselessly, until three drops of the spirit of inspiration should be won from it. To keep the vigil she set a blind man, Morda, to kindle the fire beneath, and a servant-boy, Gwion Bach, son of Gwreang of Llanfair in Powys, to stir the pot. The design was exact and the patience enormous: everything in the tale that follows is the unmaking of this design by a single splash. A year and a day is not a deadline but a discipline. The tale insists that inspiration, like ale, is a product of time, fire, and someone else's ceaseless labor — and that the brewer who does everything right is already at the mercy of the last hour, when the drops rise and every plan becomes a hope.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-wen</span>
-        <span class="phoneme-desc">Labial-velar [w] plus open-mid [ɛ] and alveolar [n]; the unstressed ultima closes quietly.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hanes Taliesin</span>
+          <h3 class="myth-title">The Three Drops and the Flight of Shapes</h3>
+          <p class="myth-text">At the year's end the three charmed drops leapt from the cauldron — and fell, not on Morfran, but on the finger of Gwion Bach. The boy put his burning finger in his mouth, and in that instant all the awen was his: he knew all that was past and all that was to come, and knew above all that Ceridwen would kill him. He fled. She pursued; and the pursuit is the oldest Welsh telling of the magic flight, the transformation chase of the folktales. He became a hare; she became a greyhound and gained on him. He leapt into a river and became a fish; she became an otter-bitch behind him. He rose into the air as a bird; she was a hawk on his wing. Every shape he took, she took its hunter — and the chase is a catalogue of the world's appetite, which the boy learns at full speed. The myth encodes what every poet since has suspected: to receive the awen is to become quarry.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hanes Taliesin</span>
+          <h3 class="myth-title">The Grain of Wheat and the Black Hen</h3>
+          <p class="myth-text">Spent at last, Gwion dropped into a barn and hid himself as one grain of winnowed wheat on the threshing-floor. Ceridwen became a high-crested black hen, went to the wheat, found the grain, and swallowed it. The swallowing is the tale's hinge: she carried him nine months, and when she bore him again he was so beautiful that she could not do what she had sworn — she could not kill him. So she sewed him in a hide bag and cast him into the sea, to the mercy of God, on the twenty-ninth of April. With that, Ceridwen passes out of her own story; she never appears again. The oath-breaking is the tale's quiet miracle: the witch who swore to kill cannot kill, and the mercy she substitutes — the sea — delivers him to exactly the fate she feared most, a greatness she never planned. With that, Ceridwen passes out of her own story; the tale follows the boy to the water and lets the witch of Llyn Tegid rest, her cauldron empty, her work done, her name over the door of every song that comes unplanned.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hanes Taliesin</span>
+          <h3 class="myth-title">The Radiant Brow</h3>
+          <p class="myth-text">The sea carried the bag to the salmon-weir of Gwyddno Garanhir, near the mouth of the Dyfi, and there on May Day Gwyddno's son Elffin found it among the fish. Opening it, he saw the boy's forehead and cried out what became a name: 'Behold the radiant brow' — tal iesin. 'Taliesin be I called,' the child answered, and as Elffin carried him home on horseback the boy sang his first poem, a song of consolation: Fair Elphin, cease your weeping. Years later, when Maelgwn Gwynedd imprisoned Elffin, the boy Taliesin went to the king's court, shamed every bard in the hall with poems they could not match, foretold the king's death, and freed his foster-father. The inspiration Ceridwen brewed for one son had become the making of another: the greatest poet of the Welsh tradition is, in the end, her child — swallowed, carried, born again, and set adrift by her own hands. The tale does not call her defeated. It simply follows the boy to the sea, and lets her failure stand as the only kind of success the awen has ever accepted.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'keh-RID-wen' — every c is hard, the r is rolled, and the stress falls on the middle syllable, the Welsh penult.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Medieval Welsh verse</strong> Kerritwen, Kyrridven — the early spellings preserved in the poetry that names her</li><li><strong>Ifor Williams (reconstruction)</strong> Cyridfen, 'crooked woman' — the original form the greatest editor of Welsh poetry proposed; the lexicon's gloss follows it</li><li><strong>Traditional analysis</strong> cerdd 'song, craft, poetry' + gwen 'white, fair, blessed' — 'fair of song, blessed of poetry', the romantic reading</li><li><strong>Modern Welsh</strong> Ceridwen, the unbroken living form — and the name of the awen's keeper</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ceridwen is Tier 2 by the mechanical rule: the Welsh form is already plain ASCII — there is no diacritic and no distinctive letter for the restoration to recover, and only the capital distinguishes the restored form from the input. The etymology is a genuine scholarly debate: Ifor Williams derived the name from an original Cyridfen, 'crooked woman', while the traditional analysis reads cerdd 'poetry' + gwen 'fair, blessed'; the handbooks register both rather than settle the question.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -374,12 +293,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Inspiration, Transformation</h2>
             <p class="section-subtitle">The Cauldron of Awen, the Three Drops, the Flight of Shapes</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Ceridwen is the keeper of the cauldron of awen — the poetic inspiration of Welsh tradition. From her house by Llyn Tegid she brews a year and a day for the three drops of inspired knowledge, hunts the servant-boy who steals them through every shape in creation, swallows him as a grain of wheat, and gives him back to the world as <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>, the greatest poet Wales remembers. The early Welsh sources concur on the essential fact: she is the owner of the cauldron that is the source of poetic inspiration.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Ceridwen is the keeper of the cauldron of awen — the poetic inspiration of Welsh tradition. From her house by Llyn Tegid she brews a year and a day for the three drops of inspired knowledge, hunts the servant-boy who steals them through every shape in creation, swallows him as a grain of wheat, and gives him back to the world as Taliesin, the greatest poet Wales remembers. The early Welsh sources concur on the essential fact: she is the owner of the cauldron that is the source of poetic inspiration.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 24H52L48 44C48 50 40 54 32 54C24 54 16 50 16 44L12 24ZM20 24C20 16 26 12 32 12C38 12 44 16 44 24"></path></svg></div>
@@ -429,65 +348,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Ceridwen</p>
-        </div>
-        
-      <p class="lead-text">Ceridwen's whole dossier is a single tale — Hanes Taliesin, the Tale of Taliesin — preserved in sixteenth-century Welsh manuscripts and customarily printed with the Mabinogion, though it is none of the Four Branches. Within that tale she owns its great engine: the cauldron, the hunt, and the rebirth.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hanes Taliesin</span>
-          <h3 class="myth-title">The Household by Llyn Tegid</h3>
-          <p class="myth-text">In the beginning, the tale says, Ceridwen lived beside Llyn Tegid in the land of Penllyn, the wife of Tegid Foel — Tegid the Bald — whose name the lake still carries. They had two children whose fortunes were weighed in opposite scales: a daughter, Creirwy, the fairest maiden in the world, and a son, Morfran, so dark and ill-favoured that he was called Afagddu, Utter Darkness. No god could have made the boy handsome; but Ceridwen was skilled in the arts, and she resolved to give him what nature had refused — knowledge and the gift of poetry, so that his birth might yet be honoured among men of culture.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hanes Taliesin</span>
-          <h3 class="myth-title">The Cauldron of a Year and a Day</h3>
-          <p class="myth-text">From the books of the feryllt — the Welsh name for the alchemist's art — Ceridwen compounded a cauldron of Inspiration and Science. It must boil a year and a day, ceaselessly, until three drops of the spirit of inspiration should be won from it. To keep the vigil she set a blind man, Morda, to kindle the fire beneath, and a servant-boy, Gwion Bach, son of Gwreang of Llanfair in Powys, to stir the pot. The design was exact and the patience enormous: everything in the tale that follows is the unmaking of this design by a single splash.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hanes Taliesin</span>
-          <h3 class="myth-title">The Three Drops and the Flight of Shapes</h3>
-          <p class="myth-text">At the year's end the three charmed drops leapt from the cauldron — and fell, not on Morfran, but on the finger of Gwion Bach. The boy put his burning finger in his mouth, and in that instant all the awen was his: he knew all that was past and all that was to come, and knew above all that Ceridwen would kill him. He fled. She pursued; and the pursuit is the oldest Welsh telling of the magic flight, the transformation chase of the folktales. He became a hare; she became a greyhound and gained on him. He leapt into a river and became a fish; she became an otter-bitch behind him. He rose into the air as a bird; she was a hawk on his wing. Every shape he took, she took its hunter.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hanes Taliesin</span>
-          <h3 class="myth-title">The Grain of Wheat and the Black Hen</h3>
-          <p class="myth-text">Spent at last, Gwion dropped into a barn and hid himself as one grain of winnowed wheat on the threshing-floor. Ceridwen became a high-crested black hen, went to the wheat, found the grain, and swallowed it. The swallowing is the tale's hinge: she carried him nine months, and when she bore him again he was so beautiful that she could not do what she had sworn — she could not kill him. So she sewed him in a hide bag and cast him into the sea, to the mercy of God, on the twenty-ninth of April. With that, Ceridwen passes out of her own story; she never appears again.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hanes Taliesin</span>
-          <h3 class="myth-title">The Radiant Brow</h3>
-          <p class="myth-text">The sea carried the bag to the salmon-weir of Gwyddno Garanhir, near the mouth of the Dyfi, and there on May Day Gwyddno's son Elffin found it among the fish. Opening it, he saw the boy's forehead and cried out what became a name: 'Behold the radiant brow' — tal iesin. 'Taliesin be I called,' the child answered, and as Elffin carried him home on horseback the boy sang his first poem, a song of consolation: Fair Elphin, cease your weeping. Years later, when Maelgwn Gwynedd imprisoned Elffin, the boy Taliesin went to the king's court, shamed every bard in the hall with poems they could not match, foretold the king's death, and freed his foster-father. The inspiration Ceridwen brewed for one son had become the making of another: the greatest poet of the Welsh tradition is, in the end, her child — swallowed, carried, born again, and set adrift by her own hands.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -551,8 +419,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Ceridwen</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Ceridwen</strong> is the standard Celtic romanisation, documented in academic sources — “Bent or crooked woman”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">ceridwen</p>
+                <p class="card-body">The plain <strong>ceridwen</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Ceridwen</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Ceridwen</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Ceridwen.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Ceridwen</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ceridwen</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Ceridwen</p>
+                    <p class="card-body">The full Unicode restoration. <strong>ceridwen.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Ceridwen was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/kɛrˈɪd.wɛn/</span>
+            <span class="ipa-label">Modern Welsh</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Cer-</span>
+        <span class="phoneme-desc">Voiceless velar stop [k] — Welsh c is always hard — with short open [ɛ] and trilled [r]; the light, unstressed first syllable.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-id-</span>
+        <span class="phoneme-desc">Short close [ɪ] under stress with a voiced dental [d]; Welsh words stress the penultimate syllable, so the weight of the name lands here.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-wen</span>
+        <span class="phoneme-desc">Labial-velar [w] plus open-mid [ɛ] and alveolar [n]; the unstressed ultima closes quietly.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'keh-RID-wen' — every c is hard, the r is rolled, and the stress falls on the middle syllable, the Welsh penult.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ceridwen is Tier 2 by the mechanical rule: the Welsh form is already plain ASCII — there is no diacritic and no distinctive letter for the restoration to recover, and only the capital distinguishes the restored form from the input. The etymology is a genuine scholarly debate: Ifor Williams derived the name from an original Cyridfen, 'crooked woman', while the traditional analysis reads cerdd 'poetry' + gwen 'fair, blessed'; the handbooks register both rather than settle the question.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Ceridwen is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ceridwen</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -570,7 +575,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/ceridwen_mascot.webp" type="image/webp"><img src="../assets/ceridwen_mascot.png" alt="Ceridwen mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ceridwen_mascot.webp" type="image/webp"><img src="../assets/ceridwen_mascot.png" alt="Ceridwen mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -608,7 +613,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/ceridwen_logomark.webp" type="image/webp"><img src="../assets/ceridwen_logomark.webp" alt="Ceridwen logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ceridwen_logomark.webp" type="image/webp"><img src="../assets/ceridwen_logomark.webp" alt="Ceridwen logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

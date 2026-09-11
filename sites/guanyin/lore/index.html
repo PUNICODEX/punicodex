@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Guānyīn — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">觀音</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Guānyīn.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">觀音</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Guānyīn</strong> (觀音) is attested in the source tradition — “Perceiver of sounds”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">guanyin</p>
-                    <p class="card-body">Reduced to plain <strong>guanyin</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Guānyīn</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Guānyīn</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Guānyīn.com → xn--gunyn-gwa01a.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Guānyīn</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Guānyīn</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Guānyīn is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">觀音</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Guānyīn is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Guānyīn</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Guānyīn</p>
-                    <p class="card-body">Restores <strong>觀音</strong>. The live temple domain — <strong>guānyīn.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">guanyin</p>
-                    <p class="card-body">Flattens <strong>觀音</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Guānyīn was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Guānyīn</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/kwan˥ ɥin˥/</span>
-            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">gwahn-yin, high level tone on both syllables.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Chinese</strong> 觀音</li><li><strong>Full title</strong> 觀世音 (Guānshìyīn)</li><li><strong>Sanskrit</strong> <a href="/avalokiteshvara/" class="crosslink" data-crosslink="avalokiteshvara">Avalokiteśvara</a></li><li><strong>Owned form</strong> Guānyīn</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Guānyīn 观音 means "Perceiver of Sounds" — the one who hears the cries of the world, a rendering of Avalokiteśvara's name as the Chinese translators analyzed it. The level tone on guān and the falling-level yīn are among the most recognized syllables in East Asian devotion.</p></div>
+      <p class="lead-text">Guānyīn's "myths" are vows and legends of response: the sūtra promises that whoever calls her name in danger will be heard, Chinese legend supplies the daughter who keeps the promise, and the great novels make her the patron of every journey. What is worshipped is attention itself — the answer that never comes too late.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Vow</span>
+          <h3 class="myth-title">The Universal Gateway</h3>
+          <p class="myth-text">Chapter 25 of the <a href="/texts/lotus-sutra/" class="crosslink citation-link" data-citation="lotus-sutra">Lotus Sūtra</a> — Kumārajīva's Chinese translation of 406 CE, so widely copied on its own that it became the independent <em>Guānyīn Jīng</em> — makes the vow explicit: if beings caught in fire, flood, storm, demon-lands, or the executioner's blade "call in one voice upon the name of Guānshìyīn, the bodhisattva will immediately perceive the sound and free them." The chapter names the perils one by one and then multiplies the rescue: Guānyīn appears in thirty-three forms — monk, king, celestial, even demon-queller — going wherever beings are. It became the most recited chapter in East Asian Buddhism, chanted at funerals and deathbed vigils, and the Great Compassion Dhāraṇī that grew around her cult turned the vow into a chant anyone could carry. The chapter’s insight is structural: compassion is not an emotion but an infrastructure — a cosmic emergency line with no closing hour, answering every call.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Princess</span>
+          <h3 class="myth-title">Miàoshàn of Fragrant Mountain</h3>
+          <p class="myth-text">The legend that made her a daughter is preserved in the <em>Xiangshan Baojuan</em>, a precious scroll of the twelfth–thirteenth centuries: Princess Miàoshàn refuses marriage to pursue awakening, and her enraged father commits her to a convent and then burns it down around her. Executed at last, she descends to the underworld — where her compassion turns hell into a garden of flowers, and the kings of death hasten to restore her to life. When the same father lies dying of a karmic disease curable only by the eyes and arms of one without anger, a blind, armless monk appears and gives them. The monk is his daughter. Revealed as the thousand-armed, thousand-eyed Guānyīn, she forgives him, and the king becomes her devotee. The story is pious fiction, not scripture — and it did what scripture could not: it gave East <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>'s compassion a daughter's face, and made the most radical of vows imaginable as a family drama every household knew.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Crossing</span>
+          <h3 class="myth-title">Avalokiteśvara Comes East</h3>
+          <p class="myth-text">The Indian <a href="/avalokiteshvara/" class="crosslink" data-crosslink="avalokiteshvara">Avalokiteśvara</a> — "the lord who looks down in compassion" — entered China with the first sūtra translations, and Kumārajīva's school analyzed the Sanskrit name into exactly what Chinese could carry: guān, to observe; shì, the world; yīn, its sounds. The early art keeps the Indian body: Tang paintings and Dunhuang banners show a princely, sometimes mustached figure, and Dunhuang manuscripts even depict the pilgrim Xuanzang's celestial guardian as a masculine guide. The transformation came between the late Tang and the Song: by the eleventh century the white-robed woman stands in nearly every temple. Scholars debate the causes — the Miàoshàn legend, the cult of the Queen Mother, the sheer grammar of a culture that heard mercy in a mother's voice. The result is one of the great metamorphoses of religious history: the bodhisattva crossed a continent and changed sex, and the change carried the doctrine further than any translation could.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Patron</span>
+          <h3 class="myth-title">The Pilgrimage's Case Officer</h3>
+          <p class="myth-text">In <em>Journey to the West</em> (ch. 8–9), Guānyīn volunteers for the quest that organizes the whole novel: the Buddha offers the scriptures of the Great Vehicle, and she descends to the world of the Tang to find someone worthy to fetch them. She recruits the entire pilgrimage — the monk Tripitaka, the disgraced celestial officer who will be Zhu Bajie, the exiled curtain-lifting general who will be Sha Wujing, and the dragon prince who will serve as a horse — and for Sūn Wùkōng she keeps the golden fillet and the headache spell that turn the monkey from a catastrophe into a disciple (ch. 13–14). Through eighty-one tribulations she returns whenever heaven's bureaucracy stalls, once descending with the fish-basket that gave her another popular form. The novel's theology is plain: the journey works not because the pilgrims are strong but because compassion is their case officer — mercy quietly running the operation from above, one rescue at a time.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The One Who Hears</h2>
             <p class="section-subtitle">Compassion, the Lotus Sūtra, and the Cries of the World</p>
         </div>
@@ -407,45 +325,34 @@
       <div class="symbol-item">
         <span class="symbol-name">The child in her arms</span>
         <span class="symbol-meaning">The Songzi Guānyīn — giver of children, mother of the vow</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The white robe</span>
+        <span class="symbol-meaning">The White-Robed and Water-Moon forms of the Song — purity beyond ritual, the sage at ease in the world, reflected in the moonlit water</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The crown bearing <a href="/amitabha/" class="crosslink" data-crosslink="amitabha">Amitābha</a></span>
+        <span class="symbol-meaning">Her origin worn on her brow — the Buddha of the Western Paradise in whose court she serves, and from whom her vow descends</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Guānyīn</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Guānyīn lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Guānyīn's "myths" are vows and legends of response: the sūtra promises that whoever calls her name in danger will be heard — and Chinese legend supplies a thousand proofs.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Vow</span>
-          <h3 class="myth-title">The Universal Gateway</h3>
-          <p class="myth-text">Chapter 25 of the Lotus Sūtra — circulated independently as the Guānyīn Sūtra — makes the vow explicit: if beings in danger from fire, flood, demons, or the executioner's blade call on the name of Guānshìyīn, the bodhisattva will at once perceive the sound and deliver them. It is the most recited chapter in East Asian Buddhism: compassion as a cosmic emergency line.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/lotus-sutra/" class="source-badge">Lotus Sutra</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Princess</span>
-          <h3 class="myth-title">Miàoshàn</h3>
-          <p class="myth-text">The Chinese legend that made her a daughter: Princess Miàoshàn refuses marriage to seek awakening, endures her father's destruction of her convent, and is executed — descending to hell, which her compassion turns to a paradise of flowers. When her father lies dying of a karmic illness, she gives her own eyes and arms for the medicine; revealed as the thousand-armed, thousand-eyed Guānyīn, she forgives him, and the king becomes her devotee.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Crossing</span>
-          <h3 class="myth-title">Avalokiteśvara Comes East</h3>
-          <p class="myth-text">The Indian bodhisattva of compassion — "the Lord who looks down" — entered China with the first sūtras and slowly changed form: male in the early translations, androgynous in Tang art, unmistakably a white-robed woman by the Song. The transformation, among the most studied in religious history, is usually read as compassion's logic: the vow to hear suffering answered, in China, in a mother's voice.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -453,7 +360,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -517,23 +424,137 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Guānyīn lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/lotus-sutra/" class="source-badge">Lotus Sutra</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">觀音</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Guānyīn</strong> (觀音) is attested in the source tradition — “Perceiver of sounds”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">guanyin</p>
+                <p class="card-body">Reduced to plain <strong>guanyin</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Guānyīn</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Guānyīn</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Guānyīn.com → xn--gunyn-gwa01a.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Guānyīn</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Guānyīn</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Guānyīn</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Guānyīn</p>
+                    <p class="card-body">Restores <strong>觀音</strong>. The live temple domain — <strong>guānyīn.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">guanyin</p>
+                    <p class="card-body">Flattens <strong>觀音</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Guānyīn was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/kwan˥ ɥin˥/</span>
+            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">gwahn-yin, high level tone on both syllables.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Guānyīn 观音 means "Perceiver of Sounds" — the one who hears the cries of the world, a rendering of Avalokiteśvara's name as the Chinese translators analyzed it. The level tone on guān and the falling-level yīn are among the most recognized syllables in East Asian devotion.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Guānyīn is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">觀音</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Guānyīn is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -552,7 +573,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/guanyin_mascot.webp" type="image/webp"><img src="../assets/guanyin_mascot.png" alt="Guānyīn mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/guanyin_mascot.webp" type="image/webp"><img src="../assets/guanyin_mascot.png" alt="Guānyīn mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -590,7 +611,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/guanyin_logomark.webp" type="image/webp"><img src="../assets/guanyin_logomark.webp" alt="Guānyīn logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/guanyin_logomark.webp" type="image/webp"><img src="../assets/guanyin_logomark.webp" alt="Guānyīn logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Wyrd, Fate, Destiny. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/wyrd/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Wyrd?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Wyrd is /ˈwyrd/ — approximately 'WÜRD' — one syllable: begin as in 'we', round the lips tight for ü, roll into a sounded r, and stop on d; a German speaker can say it as the start of 'Würde'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Wyrd mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wyrd means Fate (cognate with Urðr) in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Wyrd?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wyrd is associated with The decree (wyrda gesceaft) (The Wanderer's 'shaping of fates' that turns the world under heaven — fate as ordinance written into things, not accident), The fixed resolve (ful ārǣd) ('Fate is wholly determined' — the exile's hardest consolation, five words that close every appeal), The spared undoomed man (unfǣgne eorl) (Beowulf's exception — fate often preserves the man not doomed when his courage avails: the loophole that makes heroism rational), The wheel declined (Alfred's Boethius keeps the word wyrd but strips Fortune's wheel — fate re-founded as God's instrument, not a spinning goddess), The well of Urðr (The northern mirror — the norn at the spring beneath Yggdrasill where the Æsir hold their judgements)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Wyrd in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wyrd is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Wyrd?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Fate Is Wholly Fixed” — Wyrd has no mythology in the usual sense — no birth, no hall, no marriage — because Wyrd is not a figure but the Old English word for fate itself. What it has instead is a dossier of sentences: the moments where the poets reach for the word and the whole Anglo-Saxon theory of destiny shows through. Four witnesses matter most — the Wanderer, Beowulf, the proverb poems, and Alfred's Boethius — and one northern mirror, the norn Urðr. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/wyrd_logolockup.webp" type="image/webp"><img src="../../assets/wyrd_logolockup.png" alt="Wyrd" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Wyrd</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Wyrd</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/wyrd_mascot.webp" type="image/webp"><img src="../../assets/wyrd_mascot.png" alt="Wyrd — Fate, Destiny" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/wyrd_mascot.webp" type="image/webp"><img src="../../assets/wyrd_mascot.png" alt="Wyrd — Fate, Destiny" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Wyrd</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Wyrd is Tier 2 by the mechanical rule: the normalized Old English form is already plain ASCII — no diacritic, no distinctive letter for the ASCII alphabet to lose. The word's thousand-year career vastly outruns its orthography; only the capital distinguishes the restored form from the input.</p>
+                <p class="etymology-note">Fate (cognate with Urðr)</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">W</td><td><code>U+0057</code></td><td>Latin Capital Letter W</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">y</td><td><code>U+0079</code></td><td>Latin Small Letter Y</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">d</td><td><code>U+0064</code></td><td>Latin Small Letter D</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Wyrd</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Wyrd is the Old English word for what happens — fate, destiny, the shape of events — built on the verb weorðan, 'to become'. It is not a goddess enthroned at a spindle but a noun the poets kept reaching for: 'Wyrd bið ful ārǣd', says the Wanderer — fate is wholly fixed. Beowulf goes to the dragon with 'Gǣð ā wyrd swā hīo sceal' on his lips — fate goes always as she must. Its exact Norse cognate is Urðr, eldest of the three Norns at the well beneath the world-tree; its modern descendant is the word 'weird', the fateful worn smooth into the strange.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Wyrd in Later Traditions</h3><p class="cultural-card-body">Wyrd's learned afterlife begins as translation. Bosworth–Toller record the word glossing Latin fatum, fortuna, and even the Parcae — the three spinning Fates — and Alfred's Boethius makes the equation systematic, putting the English word in Fortuna's place while denying her Fortune's independence. The comparison with the Greek <a href="/moirai/" class="crosslink" data-crosslink="moirai">Moirai</a> is therefore as old as the word's manuscript life, but Timmer's classic study sounds the necessary caution: Old English wyrd is fundamentally the event-word, 'what happens', and its personification is grammatical and poetic, never cultic — no spindle, no altar, no priesthood is attested. The honest alignment is structural: with the Norns, who in Völuspá 'laid down laws and allotted life', and above all with [[urdr|Urðr]] herself, the exact cognate, the past tense of becoming enthroned beside <a href="/verdandi/" class="crosslink" data-crosslink="verdandi">Verðandi</a> and <a href="/skuld/" class="crosslink" data-crosslink="skuld">Skuld</a>. Within the corpus the related figures are the well's company: [[urdr|Urðr]], [[verdandi|Verðandi]], [[skuld|Skuld]], and the tree they tend, [[yggdrasill|Yggdrasill]].</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The word's modern career is the strangest semantic journey in English. In medieval Scots and northern usage 'weird' stayed a noun of fate — to 'dree one's weird' is to endure one's destiny — and the prophetic women of Holinshed's chronicle were 'the weird sisters, that is (as ye would say) the goddesses of destinie'. Shakespeare took the phrase into Macbeth, the sisters' supernatural strangeness rubbed off on the word, and by the nineteenth century 'weird' meant simply uncanny, then merely odd: the noun of absolute fate worn down to an adjective of mild strangeness. Modern fantasy and gaming revived 'wyrd' as a deliberate archaism for deep fate; runic revivalism added the so-called 'wyrd rune', a blank stone invented in the 1980s with no medieval attestation — a modern ornament the inscriptions do not know. Through all of it the old word keeps its dignity in the Exeter Book and Beowulf, where it still means what it meant: what happens, wholly fixed, and faced with courage.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Wyrd</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Wyrd in Later Traditions</h3><p class="cultural-card-body">Wyrd's learned afterlife begins as translation. Bosworth–Toller record the word glossing Latin fatum, fortuna, and even the Parcae — the three spinning Fates — and Alfred's Boethius makes the equation systematic, putting the English word in Fortuna's place while denying her Fortune's independence. The comparison with the Greek <a href="/moirai/" class="crosslink" data-crosslink="moirai">Moirai</a> is therefore as old as the word's manuscript life, but Timmer's classic study sounds the necessary caution: Old English wyrd is fundamentally the event-word, 'what happens', and its personification is grammatical and poetic, never cultic — no spindle, no altar, no priesthood is attested. The honest alignment is structural: with the Norns, who in <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a> 'laid down laws and allotted life', and above all with Urðr herself, the exact cognate, the past tense of becoming enthroned beside <a href="/verdandi/" class="crosslink" data-crosslink="verdandi">Verðandi</a> and <a href="/skuld/" class="crosslink" data-crosslink="skuld">Skuld</a>. Within the corpus the related figures are the well's company: Urðr, Verðandi, Skuld, and the tree they tend, Yggdrasill.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The word's modern career is the strangest semantic journey in English. In medieval Scots and northern usage 'weird' stayed a noun of fate — to 'dree one's weird' is to endure one's destiny — and the prophetic women of Holinshed's chronicle were 'the weird sisters, that is (as ye would say) the goddesses of destinie'. Shakespeare took the phrase into Macbeth, the sisters' supernatural strangeness rubbed off on the word, and by the nineteenth century 'weird' meant simply uncanny, then merely odd: the noun of absolute fate worn down to an adjective of mild strangeness. Modern fantasy and gaming revived 'wyrd' as a deliberate archaism for deep fate; runic revivalism added the so-called 'wyrd rune', a blank stone invented in the 1980s with no medieval attestation — a modern ornament the inscriptions do not know. Through all of it the old word keeps its dignity in the Exeter Book and Beowulf, where it still means what it meant: what happens, wholly fixed, and faced with courage.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Wyrd is a word of manuscripts, not monuments: no runic inscription carves it, no amulet invokes it, and no material image can be identified with a personified Wyrd. Its witnesses are codices. The Exeter Book (Exeter Cathedral Library MS 3501, written c. 975) preserves The Wanderer and Maxims II; the Nowell Codex (British Library, Cotton Vitellius A.xv, c. 1000, scorched in the Ashburnham House fire of 1731) alone preserves Beowulf; the Vercelli Book and the Corpus and CCCC manuscripts carry the homiletic prose where wyrd is debated. The Anglo-Saxon futhorc is itself materially attested — the ninth-century Thames scramasax bears the full inscribed row — and in that row the word would run ᚹᚣᚱᛞ (w-ȳ-r-d), though no surviving carving spells it. The manuscript hand's wynn (ƿ), borrowed from the runes into the book alphabet, is the last material trace of the runic world inside the word's own spelling.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Wyrd means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Wyrd is the rare fate-word that never pretends to be a person. The Greeks spun fate into three women with shears; the Icelanders gave her a name and a well; the English kept her a common noun — the shape of what happens, grammatically feminine by accident of declension, addressed by no prayer and moved by no sacrifice. And yet the Beowulf poet finds the loophole that keeps the word honest: fate often spares the undoomed man when his courage avails. Doom is real, but it is not everything; between the fixed decree and the falling sword there is a space the size of a man's ellen, his courage, and in that space the whole heroic ethic of the poem lives. The Wanderer ends where Alfred ends: the decree turns the world under heaven, and the one fastness is not in the turning but above it. A word for fate that leaves room for courage and for God — that is the Anglo-Saxon settlement, and no tradition stated it more economically.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Wyrd, Fate, Destiny, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Wyrd?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Wyrd</strong> is /ˈwyrd/ — approximately 'WÜRD' — one syllable: begin as in 'we', round the lips tight for ü, roll into a sounded r, and stop on d; a German speaker can say it as the start of 'Würde'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Wyrd mean?</summary><div class="faq-answer"><p><strong>Wyrd</strong> means <strong>Fate (cognate with Urðr)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Wyrd?</summary><div class="faq-answer"><p>Wyrd is associated with <strong>The decree (wyrda gesceaft)</strong> (The Wanderer's 'shaping of fates' that turns the world under heaven — fate as ordinance written into things, not accident), <strong>The fixed resolve (ful ārǣd)</strong> ('Fate is wholly determined' — the exile's hardest consolation, five words that close every appeal), <strong>The spared undoomed man (unfǣgne eorl)</strong> (Beowulf's exception — fate often preserves the man not doomed when his courage avails: the loophole that makes heroism rational), <strong>The wheel declined</strong> (Alfred's Boethius keeps the word wyrd but strips Fortune's wheel — fate re-founded as God's instrument, not a spinning goddess), <strong>The well of Urðr</strong> (The northern mirror — the norn at the spring beneath Yggdrasill where the Æsir hold their judgements).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Wyrd in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>wyrd</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Wyrd?</summary><div class="faq-answer"><p>The Exeter Book's exile opens his elegy with the coldest sentence in Old English: 'Wyrd bið ful ārǣd' — fate is wholly fixed, fully resolved, past all appeal. He has buried his lord, crossed the winter seas, and found no hall that will take him in; the word wyrd is the name he gives the weight of all of it. Near the poem's end the word returns in its grandest frame: 'eall is earfoðlīc eorþan rīce, onwendeð wyrda gesceaft weoruld under heofonum' — all is full of hardship in the earthly kingdom; the decree of fates turns the world under heaven.Note what the poem does not do: it gives Wyrd no face, no spindle, no shrine. The word stays a noun of process — the way things go — and the poem's consolation is not that Wyrd can be moved but that God alone is the fastness that stands when her turning is done.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Wyrd?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Wyrd</strong> is /ˈwyrd/ — approximately 'WÜRD' — one syllable: begin as in 'we', round the lips tight for ü, roll into a sounded r, and stop on d; a German speaker can say it as the start of 'Würde'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Wyrd mean?</summary><div class="faq-answer"><p><strong>Wyrd</strong> means <strong>Fate (cognate with Urðr)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Wyrd?</summary><div class="faq-answer"><p>Wyrd is associated with <strong>The decree (wyrda gesceaft)</strong> (The Wanderer's 'shaping of fates' that turns the world under heaven — fate as ordinance written into things, not accident), <strong>The fixed resolve (ful ārǣd)</strong> ('Fate is wholly determined' — the exile's hardest consolation, five words that close every appeal), <strong>The spared undoomed man (unfǣgne eorl)</strong> (Beowulf's exception — fate often preserves the man not doomed when his courage avails: the loophole that makes heroism rational), <strong>The wheel declined</strong> (Alfred's Boethius keeps the word wyrd but strips Fortune's wheel — fate re-founded as God's instrument, not a spinning goddess), <strong>The well of Urðr</strong> (The northern mirror — the norn at the spring beneath Yggdrasill where the Æsir hold their judgements).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Wyrd in Unicode?</summary><div class="faq-answer"><p><strong>Wyrd</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Wyrd?</summary><div class="faq-answer"><p>“Fate Is Wholly Fixed” — Wyrd has no mythology in the usual sense — no birth, no hall, no marriage — because Wyrd is not a figure but the Old English word for fate itself. What it has instead is a dossier of sentences: the moments where the poets reach for the word and the whole Anglo-Saxon theory of destiny shows through. Four witnesses matter most — the Wanderer, Beowulf, the proverb poems, and Alfred's Boethius — and one northern mirror, the norn Urðr. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Beowulf</cite></li><li><cite>Bosworth-Toller</cite></li></ul>
+                    <ul class="source-list"><li><cite>Bosworth-Toller</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Beowulf, ll. 455 ('Gǣð ā wyrd swā hīo sceal') and 572–573 ('Wyrd oft nereð unfǣgne eorl, þonne his ellen dēah') — Klaeber's Beowulf, 4th ed., ed. Fulk, Bjork &amp; Niles (Toronto, 2008)</cite></li><li><cite>King Alfred's Old English Version of Boethius, De consolatione philosophiae, ed. Sedgefield (1899); ed. Godden &amp; Irvine (2009) — wyrd translating Fortuna, fate re-founded as God's instrument</cite></li><li><cite>Völuspá 19–20 (Poetic Edda) and Snorri Sturluson, Gylfaginning 15–16 — Urðr, Verðandi, and Skuld at the well beneath Yggdrasill, the Old Norse cognate personified</cite></li></ul>
+                    <ul class="source-list"><li><cite>Beowulf</cite></li><li><cite>Beowulf, ll. 455 ('Gǣð ā wyrd swā hīo sceal') and 572–573 ('Wyrd oft nereð unfǣgne eorl, þonne his ellen dēah') — Klaeber's Beowulf, 4th ed., ed. Fulk, Bjork &amp; Niles (Toronto, 2008)</cite></li><li><cite>King Alfred's Old English Version of Boethius, De consolatione philosophiae, ed. Sedgefield (1899); ed. Godden &amp; Irvine (2009) — wyrd translating Fortuna, fate re-founded as God's instrument</cite></li><li><cite>Völuspá 19–20 (<a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a>) and Snorri Sturluson, <a href="/texts/prose-edda/#gylfaginning-15" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 15</a>–16 — Urðr, Verðandi, and Skuld at the well beneath Yggdrasill, the Old Norse cognate personified</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Wyrd and related cults.</cite></li><li><cite>Wyrd is a word of manuscripts, not monuments: no runic inscription carves it, no amulet invokes it, and no material image can be identified with a personified Wyrd. Its witnesses are codices. The Exeter Book (Exeter Cathedral Library MS 3501, written c. 975) preserves The Wanderer and Maxims II; the Nowell Codex (British Library, Cotton Vitellius A.xv, c. 1000, scorched in the Ashburnham House fire of 1731) alone preserves Beowulf; the Vercelli Book and the Corpus and CCCC manuscripts carry the homiletic prose where wyrd is debated. The Anglo-Saxon futhorc is itself materially attested — the ninth-century Thames scramasax bears the full inscribed row — and in that row the word would run ᚹᚣᚱᛞ (w-ȳ-r-d), though no surviving carving spells it. The manuscript hand's wynn (ƿ), borrowed from the runes into the book alphabet, is the last material trace of the runic world inside the word's own spelling.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Wyrd and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The Exeter Book (ASPR III): The Wanderer 5 ('Wyrd bið ful ārǣd') and 106–107 (wyrda gesceaft); Maxims II 5 ('Wyrd byð swīðost'); <a href="/solomon/" class="crosslink" data-crosslink="solomon">Solomon</a> and Saturn (the proverb of fate hard to turn)</cite></li><li><cite>Bosworth–Toller, An Anglo-Saxon Dictionary, s.v. wyrd — the senses 'event, fate, destiny', the personified uses, and the Latin glosses fatum, fortuna, Parcae</cite></li><li><cite>B. J. Timmer, 'Wyrd in Anglo-Saxon Prose and Poetry', Neophilologus 26 (1941) — the classic semantic study of the word between event, destiny, and half-personified power</cite></li><li><cite>Oxford English Dictionary, s.v. weird, n. and adj. — the afterlife from fate-noun to strangeness-adjective, via the weird sisters</cite></li></ul>
+                    <ul class="source-list"><li><cite>The Exeter Book (ASPR III): The Wanderer 5 ('Wyrd bið ful ārǣd') and 106–107 (wyrda gesceaft); Maxims II 5 ('Wyrd byð swīðost'); <a href="/solomon/" class="crosslink" data-crosslink="solomon">Solomon</a> and Saturn (the proverb of fate hard to turn)</cite></li><li><cite>Bosworth–Toller, An Anglo-Saxon Dictionary, s.v. wyrd — the senses 'event, fate, destiny', the personified uses, and the Latin glosses fatum, fortuna, Parcae</cite></li><li><cite>B. J. Timmer, 'Wyrd in Anglo-Saxon Prose and Poetry', Neophilologus 26 (1941) — the classic semantic study of the word between event, destiny, and half-personified power</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/wyrd_logomark.webp" type="image/webp"><img src="../../assets/wyrd_logomark.webp" alt="Wyrd logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/wyrd_logomark.webp" type="image/webp"><img src="../../assets/wyrd_logomark.webp" alt="Wyrd logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

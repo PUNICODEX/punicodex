@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Gunnr, Valkyrie of War. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/gunnr/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Gunnr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Gunnr is /ˈɡunːr̩/ — approximately 'GOON-ur' — a hard g as in 'go', a short full 'u' as in 'put', the n held long and doubled, and the final r sounded as a light syllabic trill, as in modern Icelandic Gunnur."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Gunnr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gunnr means War in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Gunnr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gunnr is associated with The spear (The weapon of the chooser — the stroke that both kills and elects), The shield of the company (Völuspá's riding detail: the valkyries go armed and ranked, not as omens but as soldiers), The choice of the slain (valr) (The office itself — war's harvest selected by name, the power the name gunnr carries into personhood), The name that is a noun (Gunnr the valkyrie and gunnr the battle are one word — war personified walking its own field)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Gunnr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gunnr is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Gunnr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Riders the Seeress Saw” — Gunnr has no adventure of her own; her mythology is her office, told in lists that are anything but dry. Four witnesses fix her in the corpus: the Völuspá seeress sees her ride, Snorri states her function in a single sentence, the þulur keep her name in the valkyrie roll, and the skaldic poems describe the choosing she personifies — the tradition's way of saying that battle, in the North, had a chooser, and the chooser had a name. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/gunnr_logolockup.webp" type="image/webp"><img src="../../assets/gunnr_logolockup.png" alt="Gunnr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Gunnr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Gunnr</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/gunnr_mascot.webp" type="image/webp"><img src="../../assets/gunnr_mascot.png" alt="Gunnr — Valkyrie of War" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/gunnr_mascot.webp" type="image/webp"><img src="../../assets/gunnr_mascot.png" alt="Gunnr — Valkyrie of War" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Gunnr</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Old Norse Gunnr is not a theonym built from elements but the common noun itself: gunnr, feminine, 'war, battle' — the valkyrie's name is the thing she governs, personified. The restoration Gunnr keeps the double n and the nominative -r exactly as the manuscripts write them; the name is already plain ASCII, so there is nothing for the restoration to rescue. Tier-2 by rule: no diacritic and no distinctive letter for the ASCII alphabet to lose.</p>
+                <p class="etymology-note">The name <strong>Gunnr</strong> reaches the modern world through scholarly transliteration of the norse tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">G</td><td><code>U+0047</code></td><td>Latin Capital Letter G</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Gunnr</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Gunnr is the valkyrie whose name is the whole battlefield: Old Norse gunnr is simply the word for war, and the þulur and the Völuspá seeress set her riding among <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s choosers of the slain. Snorri gives her the purest job-description in the corpus: Gunnr and Rota and the youngest norn, <a href="/skuld/" class="crosslink" data-crosslink="skuld">Skuld</a>, always ride to choose the slain and decide battles.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Gunnr in Later Traditions</h3><p class="cultural-card-body">Gunnr's nearest kin are not borrowings but reflections. Within the Norse corpus she belongs to the tight triad Snorri names — herself, Rota, and the norn Skuld — where the valkyrie's battlefield choice and the norn's weaving of fate are one operation; [[skuld|Skuld]] carries the same office into the world of time itself. Across the sea, the Old English cognate gūþ never grew a person: Beowulf sings of gūþ as plain war, and the personification stayed Norse. Scholars comparing traditions point to the Irish <a href="/morrigan/" class="crosslink" data-crosslink="morrigan">Morrígan</a> and <a href="/badb/" class="crosslink" data-crosslink="badb">Badb</a> — battle-goddesses who also decide fights and choose their dead — as the closest functional parallel in the neighbouring mythology, though no historical link is provable and none need be claimed. Gunnr needs no foreign template: she is what happens when a warrior culture declines its own word for war in the feminine and gives it a horse.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Gunnr's afterlife flows through two channels. The first is the word itself: gunnr lived on as the battle-element of Scandinavian naming — Gunnarr ('warrior of battle'), Gunnhildr ('battle-fight'), and the living Icelandic and Faroese women's name Gunnur — so that the valkyrie's name is still spoken daily in the North, worn by ordinary people. The second is the image she helped fix: the armed maiden riding to the field to choose the dead, the seed from which the whole later figure of the valkyrie grew — the Valkyries of Wagner's Walküre, the shieldmaidens of modern fiction and games, and the revived valkyrie devotion of contemporary Heathenry. In scholarship she stands as the standing example of the Norse habit of personifying abstractions: not an allegory imposed on war, but war itself, named and riding.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Gunnr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Gunnr in Later Traditions</h3><p class="cultural-card-body">Gunnr's nearest kin are not borrowings but reflections. Within the Norse corpus she belongs to the tight triad Snorri names — herself, Rota, and the norn <a href="/skuld/" class="crosslink" data-crosslink="skuld">Skuld</a> — where the valkyrie's battlefield choice and the norn's weaving of fate are one operation; Skuld carries the same office into the world of time itself. Across the sea, the Old English cognate gūþ never grew a person: Beowulf sings of gūþ as plain war, and the personification stayed Norse. Scholars comparing traditions point to the Irish <a href="/morrigan/" class="crosslink" data-crosslink="morrigan">Morrígan</a> and <a href="/badb/" class="crosslink" data-crosslink="badb">Badb</a> — battle-goddesses who also decide fights and choose their dead — as the closest functional parallel in the neighbouring mythology, though no historical link is provable and none need be claimed. Gunnr needs no foreign template: she is what happens when a warrior culture declines its own word for war in the feminine and gives it a horse.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Gunnr's afterlife flows through two channels. The first is the word itself: gunnr lived on as the battle-element of Scandinavian naming — Gunnarr ('warrior of battle'), Gunnhildr ('battle-fight'), and the living Icelandic and Faroese women's name Gunnur — so that the valkyrie's name is still spoken daily in the North, worn by ordinary people. The second is the image she helped fix: the armed maiden riding to the field to choose the dead, the seed from which the whole later figure of the valkyrie grew — the Valkyries of Wagner's Walküre, the shieldmaidens of modern fiction and games, and the revived valkyrie devotion of contemporary Heathenry. In scholarship she stands as the standing example of the Norse habit of personifying abstractions: not an allegory imposed on war, but war itself, named and riding.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Gunnr is a wholly textual figure: no runestone invokes her, no votive deposit names her, and no cult site is hers — she shares this silence with nearly all the valkyries, who were functions of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s household rather than objects of cult. The material record knows the office if not the name. Gotlandic picture stones repeatedly show a mounted warrior received by a female figure bearing a drinking horn — the so-called valkyrie-welcome motif — and small female armed figurines, above all the gilt-silver valkyrie with sword and shield found at Hårby on Funen (Denmark), prove the image's currency in the Viking Age. The textual witnesses are the Codex Regius (GKS 2365 4to, c. 1270) for <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a> and the principal manuscripts of the <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> for Gylfaginning and the þulur; the noun gunnr itself is carved on runestones within personal names, where the battle-element lives on in the anthroponymy.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Gunnr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Gunnr is the most honest figure in the valkyrie roll because she pretends to be nothing but what she is. Other choosers of the slain carry names of tumult, of rulership, of the spear; hers is the field itself. To say that Gunnr chooses the slain is to say that battle chooses its own — that once the spears cross, the outcome belongs to something no combatant commands. The Norse did not soften that thought; they dignified it. They gave the blind lottery of combat a rider, a rank among Óðinn's women, and a place in the seeress's vision, as if to say: what you cannot control, you can at least name. Every soldier who ever marched out knowing the choice was not his own has stood, without knowing it, in Gunnr's shadow.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Gunnr, Valkyrie of War, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Gunnr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Gunnr</strong> is /ˈɡunːr̩/ — approximately 'GOON-ur' — a hard g as in 'go', a short full 'u' as in 'put', the n held long and doubled, and the final r sounded as a light syllabic trill, as in modern Icelandic Gunnur..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Gunnr mean?</summary><div class="faq-answer"><p><strong>Gunnr</strong> means <strong>War</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Gunnr?</summary><div class="faq-answer"><p>Gunnr is associated with <strong>The spear</strong> (The weapon of the chooser — the stroke that both kills and elects), <strong>The shield of the company</strong> (Völuspá's riding detail: the valkyries go armed and ranked, not as omens but as soldiers), <strong>The choice of the slain (valr)</strong> (The office itself — war's harvest selected by name, the power the name gunnr carries into personhood), <strong>The name that is a noun</strong> (Gunnr the valkyrie and gunnr the battle are one word — war personified walking its own field).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Gunnr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>gunnr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Gunnr?</summary><div class="faq-answer"><p>Deep in the völva's vision, between the creation of the world and its burning, the seeress watches the valkyries come: 'She saw valkyries come from far and wide, ready to ride to the gods' people; Skuld held a shield, and Skögul was with her; Gunnr, Hildr, Göndul and Geirskögul — now are counted Herjan's ladies, valkyries ready to ride the earth.' Herjan is Óðinn, and the company is his. Gunnr rides fourth-named in the most famous catalogue of the Poetic Edda — not as a character in a story but as a fixture of the cosmos, as certain as the norms and the doom they enforce.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Gunnr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Gunnr</strong> is /ˈɡunːr̩/ — approximately 'GOON-ur' — a hard g as in 'go', a short full 'u' as in 'put', the n held long and doubled, and the final r sounded as a light syllabic trill, as in modern Icelandic Gunnur.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Gunnr mean?</summary><div class="faq-answer"><p><strong>Gunnr</strong> means <strong>War</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Gunnr?</summary><div class="faq-answer"><p>Gunnr is associated with <strong>The spear</strong> (The weapon of the chooser — the stroke that both kills and elects), <strong>The shield of the company</strong> (Völuspá's riding detail: the valkyries go armed and ranked, not as omens but as soldiers), <strong>The choice of the slain (valr)</strong> (The office itself — war's harvest selected by name, the power the name gunnr carries into personhood), <strong>The name that is a noun</strong> (Gunnr the valkyrie and gunnr the battle are one word — war personified walking its own field).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Gunnr in Unicode?</summary><div class="faq-answer"><p><strong>Gunnr</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Gunnr?</summary><div class="faq-answer"><p>“The Riders the Seeress Saw” — Gunnr has no adventure of her own; her mythology is her office, told in lists that are anything but dry. Four witnesses fix her in the corpus: the Völuspá seeress sees her ride, Snorri states her function in a single sentence, the þulur keep her name in the valkyrie roll, and the skaldic poems describe the choosing she personifies — the tradition's way of saying that battle, in the North, had a chooser, and the chooser had a name. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Völuspá 30 (the valkyrie ride: Skuld, Skögul, Gunnr, Hildr, Göndul, Geirskögul), trans. Carolyne Larrington</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 36 (Gunnr, Rota and Skuld ride to choose the slain and decide battles), trans. Anthony Faulkes</cite></li><li><cite>Snorri Sturluson, Prose Edda: Skáldskaparmál, þulur of valkyrie names, trans. Anthony Faulkes</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a></cite></li><li><cite>Poetic Edda: Völuspá 30 (the valkyrie ride: Skuld, Skögul, Gunnr, Hildr, Göndul, Geirskögul), trans. Carolyne Larrington</cite></li><li><cite>Snorri Sturluson, Prose Edda: <a href="/texts/prose-edda/#gylfaginning-36" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 36</a> (Gunnr, Rota and Skuld ride to choose the slain and decide battles), trans. Anthony Faulkes</cite></li><li><cite>Snorri Sturluson, Prose Edda: <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál</a>, þulur of valkyrie names, trans. Anthony Faulkes</cite></li><li><cite>Poetic Edda: Hákonarmál (Eyvindr skáldaspillir) and Eiríksmál (anonymous), on the choosing and the welcome of the slain; <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a> 36 (the mead-bearers)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Gunnr and related cults.</cite></li><li><cite>Gunnr is a wholly textual figure: no runestone invokes her, no votive deposit names her, and no cult site is hers — she shares this silence with nearly all the valkyries, who were functions of Óðinn's household rather than objects of cult. The material record knows the office if not the name. Gotlandic picture stones repeatedly show a mounted warrior received by a female figure bearing a drinking horn — the so-called valkyrie-welcome motif — and small female armed figurines, above all the gilt-silver valkyrie with sword and shield found at Hårby on Funen (Denmark), prove the image's currency in the Viking Age. The textual witnesses are the Codex Regius (GKS 2365 4to, c. 1270) for Völuspá and the principal manuscripts of the Prose Edda for Gylfaginning and the þulur; the noun gunnr itself is carved on runestones within personal names, where the battle-element lives on in the anthroponymy.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Gunnr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cleasby–Vigfusson, An Icelandic-English Dictionary, s.v. gunnr ('war, battle'; a valkyrie)</cite></li><li><cite>Zoëga, A Concise Dictionary of Old Icelandic, s.v. gunnr</cite></li><li><cite>de Vries, Altnordisches etymologisches Wörterbuch, s.v. gunnr</cite></li><li><cite>Simek, Dictionary of Northern Mythology; Lindow, Norse Mythology: A Guide; Orchard, Dictionary of Norse Myth and Legend — s.v. Gunnr, valkyries</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby–Vigfusson, An Icelandic-English Dictionary, and Zoëga, A Concise Dictionary of Old Icelandic, s.v. gunnr ('war, battle'; a valkyrie)</cite></li><li><cite>de Vries, Altnordisches etymologisches Wörterbuch, s.v. gunnr; Simek, Dictionary of Northern Mythology, s.v. Gunnr, valkyries</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/gunnr_logomark.webp" type="image/webp"><img src="../../assets/gunnr_logomark.webp" alt="Gunnr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/gunnr_logomark.webp" type="image/webp"><img src="../../assets/gunnr_logomark.webp" alt="Gunnr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Dažbog, Sun, Wealth, Giving. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/dazhbog/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Dažbog?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Dažbog is /ˈdaʒ.boɡ/ — approximately 'DAHZH-bog' — crisp 'dah', then the 'zh' sound of 'measure', and end with 'bog' as in 'god' (which is what the word means)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Dažbog mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dažbog means Giving god in the slavic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Dažbog?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dažbog is associated with Sun wheel or disk (The solar body with which Dažbog was identified in the learned glosses), Wheat or sheaf (The harvest produced by the sun's warmth and the god's generosity), Gold and amber (Treasures associated with sunlight and divine wealth), Horse or chariot (The solar vehicle common to Indo-European sun-god imagery, inferred rather than attested)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Dažbog in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII dazhbog strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Dažbog?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Idols on the Hill” — Dažbog is known almost entirely from external, often hostile, sources. The Slavs left no extensive native mythology, so his story must be rebuilt from the chronicle lists, a single learned gloss, one epic phrase, and the grammar of South Slavic blessings — each fragment saying more than it meant to. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/dazhbog_logolockup.webp" type="image/webp"><img src="../../assets/dazhbog_logolockup.png" alt="Dažbog" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Dažbog</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Dažbog.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/dazhbog_mascot.webp" type="image/webp"><img src="../../assets/dazhbog_mascot.png" alt="Dažbog — Sun, Wealth, Giving" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/dazhbog_mascot.webp" type="image/webp"><img src="../../assets/dazhbog_mascot.png" alt="Dažbog — Sun, Wealth, Giving" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Dažbog is Tier 1: the caron on ž preserves the distinctive Common Slavic fricative, a feature the ASCII form loses. The h in the lexicon's ASCII form is silent, reflecting an older East Slavic spelling convention (Daždbog / Dadzbog) that was later simplified. We do not invent an etymology beyond the attested compound 'giving god'.</p>
+                <p class="etymology-note">The name <strong>Dažbog</strong> carries the orthographic signature of the slavic tradition: Дажбог. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Common Slavic</strong> — *dažь bogъ, 'giving god' (from *dati, 'to give', + *bogъ, 'god')</li><li><strong>Old East Slavic / Russian</strong> — Dažĭbogŭ, son of <a href="/svarog/" class="crosslink" data-crosslink="svarog">Svarog</a> in the Primary Chronicle</li><li><strong>Serbian/Croatian folk tradition</strong> — Dabog or Dajbog, invoked in blessings and oaths</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Common Slavic</strong> — *dažь bogъ, 'giving god' (from *dati, 'to give', + *bogъ, 'god')</li><li><strong>Old East Slavic / Russian</strong> — Dažĭbogŭ, son of <a href="/svarog/" class="crosslink" data-crosslink="svarog">Svarog</a> in the Primary Chronicle's Malalas gloss</li><li><strong>Serbian/Croatian folk tradition</strong> — Dabog or Dajbog, invoked in blessings and oaths</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Dažbog is the <strong>Slavic sun god, son of the smith-god Svarog, and a giver of wealth and agricultural bounty</strong>. His name means 'giving god,' and in the medieval East Slavic sources he is honored alongside <a href="/perun/" class="crosslink" data-crosslink="perun">Perun</a>, Svarog, and other members of the Kievan pantheon. Although the Christian chroniclers dismissed him as a demon, folk memory preserved him in blessings, oaths, and the figure of Dabog.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Dažbog in Later Traditions</h3><p class="cultural-card-body">Christian chroniclers explicitly equated Dažbog with the Greek sun god <strong><a href="/helios/" class="crosslink" data-crosslink="helios">Helios</a></strong>, reflecting both his solar identification and the Byzantine interpretatio Graeca favored in Kievan Rus'. In South Slavic folk religion, Dabog/Dajbog blends with the Christian God while retaining the old 'giving' epithet. Comparisons have also been made to the Vedic <em>Savitar</em> and the Roman <em>Sol Invictus</em>, both solar deities associated with bestowal. The Iranian <a href="/mithra/" class="crosslink" data-crosslink="mithra">Mithra</a> has been proposed as a distant cousin, though the evidence is speculative. Dažbog illustrates a common pattern: a major pagan god is first demonized, then absorbed into popular Christian speech.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Dažbog survives most clearly in South Slavic invocations of <em>Dajbog</em> and in place-names and personal names across Slavic-speaking regions. Modern Slavic Rodnovery (Native Faith) movements honor him as a solar and prosperity deity. In linguistics, his name is a textbook example of the Common Slavic compound *dažь bogъ. For scholars of medieval Slavic religion, Dažbog is a crucial but frustratingly elusive figure: important enough to be named by chroniclers, yet absent from the rich narrative cycles that preserve Norse or Greek mythology.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Dažbog</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Dažbog in Later Traditions</h3><p class="cultural-card-body">Christian chroniclers explicitly equated Dažbog with the Greek sun god <strong><a href="/helios/" class="crosslink" data-crosslink="helios">Helios</a></strong>, reflecting both his solar identification and the Byzantine <em>interpretatio Graeca</em> favored in Kievan Rus'. In South Slavic folk religion, Dabog/Dajbog blends with the Christian God while retaining the old 'giving' epithet. Comparisons have been made to the Vedic <em>Savitar</em> and the Roman <em>Sol Invictus</em>, both solar deities associated with bestowal; the Iranian <a href="/mithra/" class="crosslink" data-crosslink="mithra">Mithra</a> has been proposed as a distant cousin, though the evidence is speculative. Dažbog illustrates a common pattern: a major pagan god is first demonized by the chronicle, then absorbed into popular Christian speech, and finally resurrected by philology. In modern Slavic Native Faith he is honored again as a solar and prosperity deity — a reconstruction, but one with better folk credentials than most.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Dažbog survives most clearly in South Slavic invocations of <em>Dajbog</em> and in place-names and personal names across Slavic-speaking regions — Dajbog's compound still opens every well-wishing sentence in Serbia, unremarked and unbroken. Modern Slavic Rodnovery (Native Faith) movements honor him as a solar and prosperity deity. In linguistics, his name is a textbook example of the Common Slavic compound *dažь bogъ. For scholars of medieval Slavic religion, Dažbog is a crucial but frustratingly elusive figure: important enough to be named by chroniclers and sworn by in epic, yet absent from the rich narrative cycles that preserve Norse or Greek mythology.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No archaeological find names Dažbog directly. His attestation depends on the written sources, especially the Primary Chronicle and the Hypatian Malalas gloss, and on the survival of his name in South Slavic folklore. Solar imagery in Slavic folk art — wheel-shaped amulets, spring-sun rituals, roundel embroidery — may indirectly reflect the cult of a solar deity, but none can be securely linked to Dažbog by inscription or context. The destruction of the Kyiv idols in 988 and the thoroughness of Christianization mean that material evidence for the major gods is sparse and ambiguous; for the sun-giver, the word <em>giving</em> outlasted every object it once described.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Dažbog means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Dažbog is the god of giving made visible in sunlight. Every harvest, every warm morning, every coin earned is a gift that his name once sanctified. The chroniclers called him a demon and threw his idol in the river, but the people kept saying his name whenever they hoped for something good.</p><p>There is a quiet resistance in that survival. Dažbog did not need temples or epics; he needed only the human habit of asking. 'Giving god' is not a description of power but a description of relationship: the deity who responds to need, who makes the asker and the giver partners in one small sacred transaction. In an age of scarcity and competition, his name is a reminder that the sun still rises without charge and that generosity can be sacred.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Dažbog, Sun, Wealth, Giving, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Dažbog?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Dažbog</strong> is /ˈdaʒ.boɡ/ — approximately 'DAHZH-bog' — crisp 'dah', then the 'zh' sound of 'measure', and end with 'bog' as in 'god' (which is what the word means)..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Dažbog mean?</summary><div class="faq-answer"><p><strong>Dažbog</strong> means <strong>Giving god</strong> in the slavic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Dažbog?</summary><div class="faq-answer"><p>Dažbog is associated with <strong>Sun wheel or disk</strong> (The solar body with which Dažbog was identified), <strong>Wheat or sheaf</strong> (The harvest produced by the sun's warmth and the god's generosity), <strong>Gold and amber</strong> (Treasures associated with sunlight and divine wealth), <strong>Horse or chariot</strong> (The solar vehicle common to Indo-European sun-god imagery).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Dažbog in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>dazhbog</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Dažbog?</summary><div class="faq-answer"><p>The <em>Povest' vremennykh let</em> ('Tale of Bygone Years,' c. 1113) records that after Prince Vladimir's conversion, the idols of Perun, Khors, Dazhbog, <a href="/stribog/" class="crosslink" data-crosslink="stribog">Stribog</a>, <a href="/simargl/" class="crosslink" data-crosslink="simargl">Simargl</a>, and <a href="/mokosh/" class="crosslink" data-crosslink="mokosh">Mokosh</a> were thrown into the Dnieper. Dažbog is listed as the son of Svarog. The chroniclers' contempt preserves the fact that he was once a major deity of the East Slavic pantheon.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Dažbog?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Dažbog</strong> is /ˈdaʒ.boɡ/ — approximately 'DAHZH-bog' — crisp 'dah', then the 'zh' sound of 'measure', and end with 'bog' as in 'god' (which is what the word means).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Dažbog mean?</summary><div class="faq-answer"><p><strong>Dažbog</strong> means <strong>Giving god</strong> in the slavic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Dažbog?</summary><div class="faq-answer"><p>Dažbog is associated with <strong>Sun wheel or disk</strong> (The solar body with which Dažbog was identified in the learned glosses), <strong>Wheat or sheaf</strong> (The harvest produced by the sun's warmth and the god's generosity), <strong>Gold and amber</strong> (Treasures associated with sunlight and divine wealth), <strong>Horse or chariot</strong> (The solar vehicle common to Indo-European sun-god imagery, inferred rather than attested).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Dažbog in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>dazhbog</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Dažbog?</summary><div class="faq-answer"><p>“The Idols on the Hill” — Dažbog is known almost entirely from external, often hostile, sources. The Slavs left no extensive native mythology, so his story must be rebuilt from the chronicle lists, a single learned gloss, one epic phrase, and the grammar of South Slavic blessings — each fragment saying more than it meant to. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,13 +361,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Dažbog and related cults.</cite></li><li><cite>No archaeological find names Dažbog directly. His attestation depends on the written sources, especially the Primary Chronicle, and on the survival of his name in South Slavic folklore. Solar imagery in Slavic folk art, including wheel-shaped amulets and spring-sun rituals, may indirectly reflect the cult of a solar deity, but none can be securely linked to Dažbog. The destruction of pagan idols ordered by Vladimir in 988 and the Christianization of Slavic religion mean that material evidence for major gods is sparse and ambiguous.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Dažbog and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Primary Chronicle / Povest' vremennykh let (Tale of Bygone Years), Laurentian and Hypatian recensions</cite></li><li><cite>Miklosich, Franz, Etymologisches Wörterbuch der slavischen Sprachen</cite></li><li><cite>Vasmer, Max, Russisches etymologisches Wörterbuch</cite></li><li><cite>Helmold of Bosau, Chronica Slavorum (12th-century account of Slavic religion)</cite></li><li><cite>Katicic, Radoslav, Illyrian iconography and Slavic mythology</cite></li><li><cite>Zaroff, Roman, 'Organized Pagan Cult in Kievan Rus''</cite></li><li><cite>Ivanov, Vyacheslav, and Vladimir Toporov, Studies in Slavic mythology</cite></li></ul>
+                    <ul class="source-list"><li><cite>Primary Chronicle / Povest' vremennykh let, s.a. 980, 988</cite></li><li><cite>Hypatian Chronicle, s.a. 1114 (Malalas gloss: Dažbog, son of Svarog, called Helios)</cite></li><li><cite>Slovo o polku Igoreve (The Tale of Igor's Campaign)</cite></li><li><cite>Vasmer, Max, Russisches etymologisches Wörterbuch</cite></li><li><cite>Ivanov, Vyacheslav, and Vladimir Toporov, Studies in Slavic mythology</cite></li><li><cite>Zaroff, Roman, 'Organized Pagan Cult in Kievan Rus''</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/dazhbog_logomark.webp" type="image/webp"><img src="../../assets/dazhbog_logomark.webp" alt="Dažbog logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/dazhbog_logomark.webp" type="image/webp"><img src="../../assets/dazhbog_logomark.webp" alt="Dažbog logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

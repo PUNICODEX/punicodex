@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Gwydion — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Gwydion</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Gwydion</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,131 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Gwydion</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Gwydion</strong> is the standard Celtic romanisation, documented in academic sources — “Born of trees”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">gwydion</p>
-                    <p class="card-body">The plain <strong>gwydion</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Gwydion</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Gwydion</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Gwydion.com → gwydion.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Gwydion</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Gwydion</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Gwydion is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Gwydion</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Gwydion</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Gwydion</p>
-                    <p class="card-body">The full Unicode restoration. <strong>gwydion.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Gwydion was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Gwydion</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈɡwɪdjɔn/</span>
-            <span class="ipa-label">Modern Welsh</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">GWID-yon — the gw is a single lip-rounded consonant, the y sounds like the i of 'kin', and the stress falls on the first syllable.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Gwydion uab Dôn, the manuscript form in the White Book of Rhydderch and the Red Book of Hergest</li><li><strong>Welsh</strong> gwydd, 'trees, wood' — the proposed cognate behind the *widu- etymology</li><li><strong>Old Irish</strong> fid, 'wood, tree' — cognate of the proposed root *widu-</li><li><strong>Attested form</strong> Gwydion — plain ASCII, identical to the manuscript spelling</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Middle Welsh Gwydion (Gwydion uab Dôn) is already written in the Latin alphabet, so the ASCII form loses nothing: the name is Tier 2 by the mechanical rule, since the restoration preserves no diacritic or distinctive letter that ASCII drops. The etymology is honestly debated: a derivation from the Celtic root *widu- 'wood, forest' has often been proposed (compare Welsh gwydd 'trees', Old Irish fid, Gaulish vidu-), but the connection is not proven and the standard handbooks mark it uncertain.</p></div>
+      <p class="lead-text"><strong>Gwydion</strong> fab Dôn is the enchanter of the Fourth Branch of the Mabinogi, '<a href="/math/" class="crosslink" data-crosslink="math">Math</a> fab Mathonwy': nephew of Math the king of Gwynedd, brother of Gilfaethwy, and the foremost magician of medieval Welsh literature. He is poet, trickster, foster-father, and avenger in one figure — the man who makes illusions that pass for wealth, who pays for his crimes in animal skins, and who ends the tale as the careful hand that puts a broken world back into shape.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The War for the Swine</h3>
+          <p class="myth-text">King Math of Gwynedd could live only with his feet in the lap of a virgin, except in time of war, and the maiden Goewin held that office. When Gilfaethwy desired her, Gwydion devised the remedy: war. He went to <a href="/pryderi/" class="crosslink" data-crosslink="pryderi">Pryderi</a> of Dyfed in the guise of a poet and asked for the swine — the hobeu, the first pigs ever brought to Wales, a gift from <a href="/arawn/" class="crosslink" data-crosslink="arawn">Arawn</a> of Annwfn. Refused, he conjured twelve stallions with golden harness, twelve greyhounds with golden collars, and twelve golden shields, and traded the apparitions for the herd. By the time Pryderi's glamour faded, Gwydion was gone, and Pryderi came north with an army.</p><p class="myth-text">While Math marched to meet him, Gwydion and Gilfaethwy forced Goewin. At the peace-talks Pryderi demanded single combat, 'for it was because of me that the hosts came'; at Maenor Penard, the tale says, Gwydion slew him 'by strength and valour and by magic and enchantment', and Dyfed went home under tribute. The victory is real and so is its cost: Gwydion's finest trick is also his crime, and the Fourth Branch never lets the two be separated.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The Punishment of the Brothers</h3>
+          <p class="myth-text">Math's justice is the strangest in the Mabinogi. He struck Gwydion and Gilfaethwy with his magic wand and turned them into a stag and a hind, and sent them into the wild for a year; when they returned with a fawn, he made them a boar and a sow for the second year, and a wolf and a she-wolf for the third. Each year their offspring — Hyddwn, Hychddwn Hir, and Bleiddwn — were sent to the court, baptized, and raised.</p><p class="myth-text">After the third year Math struck them back into their own shapes: 'You have had punishment enough, and you have been greatly shamed.' The punishment is exact and even-handed — the brothers suffer in the flesh what they did, and when the debt is paid the king takes them back into honour. It is the Fourth Branch's doctrine of justice in miniature: transformation as sentence, restoration as mercy. And it matters that the wand passes finally into Gwydion's own hand: the man punished by shape-shaping becomes the master of it, and the tale watches to see what he does with the power that once unmade him.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The Naming and Arming of Lleu</h3>
+          <p class="myth-text">When Gwydion proposed his sister Arianrhod as Math's new footholder, she stepped over the wand for the virginity test and dropped a yellow-haired boy — Dylan, who made for the sea — and 'something small' that Gwydion hid in a chest at the foot of his bed. From the chest came the boy who would be Lleu. Gwydion fostered him, and Arianrhod, shamed, laid three tynghedau upon him: he should have no name until she named him, no arms until she armed him, and no wife of any race then on earth.</p><p class="myth-text">Gwydion undid the destinies by craft. Disguised as a shoemaker with the boy at his side, he came beneath Caer Arianrhod, and when Lleu flung a stone and struck a wren's leg askew, Arianrhod cried that the fair one had struck it with a skilful hand — and so named him Lleu Llaw Gyffes. For the arms, Gwydion conjured a phantom fleet against the castle until Arianrhod herself armed the defenders. The magician wins not by force but by arranging the world so that his opponent speaks the words he needs: the tynged is a lock, and Gwydion's trade is keys.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The Flower-Maiden and the Eagle</h3>
+          <p class="myth-text">For the third tynged there was no earthly answer, so Gwydion and Math made one: from the flowers of the oak, the broom, and the meadowsweet they fashioned the fairest woman anyone had seen, and named her <a href="/blodeuwedd/" class="crosslink" data-crosslink="blodeuwedd">Blodeuwedd</a>, 'Flower-face'. She married Lleu — and betrayed him with Gronw Pebr of Penllyn, drawing from her husband the secret of how he could be killed, so that Gronw's spear struck him at the impossible meeting of conditions and Lleu flew off in the shape of an eagle, screaming.</p><p class="myth-text">Gwydion searched Gwynedd and Powys until he followed a sow to an oak where rotten flesh fell to her snout, and in the top of the tree sat the eagle. He sang three englynion down the perches of the years until Lleu came to his knee, then struck him with the wand back into human shape — skin and bone, to be nursed with doctors and good care. The vengeance was as crafted as the rescue: Blodeuwedd he would not kill, but turned into an owl, 'the shape hated by all the birds'; and Gronw, standing where Lleu had stood, took Lleu's spear-cast through the slab at Llech Gronw and died. Maker of the woman, finder of the man, instrument of the sentence: Gwydion's whole domain is in this last movement.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Kat Godeu</span>
+          <h3 class="myth-title">The Battle of the Trees</h3>
+          <p class="myth-text">Outside the Mabinogi, the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a> preserves Gwydion's other great fame: Kat Godeu, 'The Battle of the Trees', in which he enchants the trees of the forest to march as an army — the alder in the van, the oak amid the hosts. The poem's speaker, Taliesin, boasts that he was there when Gwydion 'made the sally of the trees'. In the tale-material gathered around the poem, the sons of Dôn fight the forces of Annwfn over a white roebuck, a whelp, and a lapwing, and the battle turns when the hidden name of the enemy's champion is guessed from the alder twigs in his hand — the same magic of the name that the Fourth Branch shows in the wren scene. Whether the poem preserves older myth or later learned fancy is honestly debated, but its Gwydion is unmistakably the Mabinogi's: the magician whose weapons are other things' natures, who wins by knowing what a thing is called and what it can be made to do.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -362,17 +293,17 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Magic, Poetry, Trickery</h2>
-            <p class="section-subtitle">The domain of Gwydion</p>
+            <p class="section-subtitle">Enchanter of Gwynedd — illusion, craft, and the fate of Lleu Llaw Gyffes</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p>In the celtic tradition, <strong>Gwydion</strong> governed magic, craft, vengeance. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">In the Welsh tradition, <strong>Gwydion fab Dôn</strong> is the foremost magician of the Mabinogi: master of illusion, disguise, and the hidden name, whose tricks win a war — and whose craft finally puts a broken world back together.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 38C12 28 20 22 32 22C44 22 52 28 52 38C52 46 46 52 32 52C18 52 12 46 12 38ZM20 22L16 14M44 22L48 14M28 38H36"></path></svg></div>
         <h4 class="domain-name">The Enchanted Swine</h4>
-        <p class="domain-desc">Disguised as a poet, Gwydion conjured illusory stallions, hounds, and shields to trade for <a href="/pryderi/" class="crosslink" data-crosslink="pryderi">Pryderi</a>'s otherworld pigs — the first swine in Wales — and started a war with a vanishing herd.</p>
+        <p class="domain-desc">Disguised as a poet, Gwydion conjured illusory stallions, hounds, and shields to trade for Pryderi's otherworld pigs — the first swine in Wales — and started a war with a vanishing herd.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 48L44 20M40 16L48 24M44 12L52 20M38 22L46 30"></path></svg></div>
@@ -382,7 +313,7 @@
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 52V32M32 32C32 22 24 18 18 18C18 28 24 32 32 32ZM32 32C32 22 40 18 46 18C46 28 40 32 32 32ZM32 18V10"></path></svg></div>
         <h4 class="domain-name">The Flower-Maiden</h4>
-        <p class="domain-desc">With <a href="/math/" class="crosslink" data-crosslink="math">Math</a>, Gwydion fashioned <a href="/blodeuwedd/" class="crosslink" data-crosslink="blodeuwedd">Blodeuwedd</a> from the flowers of oak, broom, and meadowsweet — a wife made by craft for the man no earthly wife was allowed.</p>
+        <p class="domain-desc">With Math, Gwydion fashioned Blodeuwedd from the flowers of oak, broom, and meadowsweet — a wife made by craft for the man no earthly wife was allowed.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 14 18 24 18 34C18 46 24 54 32 58C40 54 46 46 46 34C46 24 40 14 32 8ZM32 22L28 30H36Z"></path></svg></div>
@@ -417,65 +348,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Gwydion</p>
-        </div>
-        
-      <p class="lead-text"><strong>Gwydion</strong> fab Dôn is the enchanter of the Fourth Branch of the Mabinogi, 'Math fab Mathonwy': nephew of Math the king of Gwynedd, brother of Gilfaethwy, and the foremost magician of medieval Welsh literature. He is poet, trickster, foster-father, and avenger in one figure — the man who makes illusions that pass for wealth, who pays for his crimes in animal skins, and who ends the tale as the careful hand that puts a broken world back into shape.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Math fab Mathonwy</span>
-          <h3 class="myth-title">The War for the Swine</h3>
-          <p class="myth-text">King Math of Gwynedd could live only with his feet in the lap of a virgin, except in time of war, and the maiden Goewin held that office. When Gilfaethwy desired her, Gwydion devised the remedy: war. He went to Pryderi of Dyfed in the guise of a poet and asked for the swine — the hobeu, the first pigs ever brought to Wales, a gift from <a href="/arawn/" class="crosslink" data-crosslink="arawn">Arawn</a> of Annwfn. Refused, he conjured twelve stallions with golden harness, twelve greyhounds with golden collars, and twelve golden shields, and traded the apparitions for the herd. By the time Pryderi's glamour faded, Gwydion was gone, and Pryderi came north with an army.</p><p class="myth-text">While Math marched to meet him, Gwydion and Gilfaethwy forced Goewin. At the peace-talks Pryderi demanded single combat, 'for it was because of me that the hosts came'; at Maenor Penard, the tale says, Gwydion slew him 'by strength and valour and by magic and enchantment', and Dyfed went home under tribute. The victory is real and so is its cost: Gwydion's finest trick is also his crime, and the Fourth Branch never lets the two be separated.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Math fab Mathonwy</span>
-          <h3 class="myth-title">The Punishment of the Brothers</h3>
-          <p class="myth-text">Math's justice is the strangest in the Mabinogi. He struck Gwydion and Gilfaethwy with his magic wand and turned them into a stag and a hind, and sent them into the wild for a year; when they returned with a fawn, he made them a boar and a sow for the second year, and a wolf and a she-wolf for the third. Each year their offspring — Hyddwn, Hychddwn Hir, and Bleiddwn — were sent to the court, baptized, and raised.</p><p class="myth-text">After the third year Math struck them back into their own shapes: 'You have had punishment enough, and you have been greatly shamed.' The punishment is exact and even-handed — the brothers suffer in the flesh what they did, and when the debt is paid the king takes them back into honour. It is the Fourth Branch's doctrine of justice in miniature: transformation as sentence, restoration as mercy.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Math fab Mathonwy</span>
-          <h3 class="myth-title">The Naming and Arming of Lleu</h3>
-          <p class="myth-text">When Gwydion proposed his sister Arianrhod as Math's new footholder, she stepped over the wand for the virginity test and dropped a yellow-haired boy — Dylan, who made for the sea — and 'something small' that Gwydion hid in a chest at the foot of his bed. From the chest came the boy who would be Lleu. Gwydion fostered him, and Arianrhod, shamed, laid three tynghedau upon him: he should have no name until she named him, no arms until she armed him, and no wife of any race then on earth.</p><p class="myth-text">Gwydion undid the destinies by craft. Disguised as a shoemaker with the boy at his side, he came beneath Caer Arianrhod, and when Lleu flung a stone and knocked a wren's leg askew, Arianrhod cried that the fair one had struck it with a skilful hand — and so named him Lleu Llaw Gyffes. For the arms, Gwydion conjured a phantom fleet against the castle until Arianrhod herself armed the defenders. The magician wins not by force but by arranging the world so that his opponent speaks the words he needs.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Math fab Mathonwy</span>
-          <h3 class="myth-title">The Flower-Maiden and the Eagle</h3>
-          <p class="myth-text">For the third tynged there was no earthly answer, so Gwydion and Math took their wands and made one: from the flowers of the oak, the broom, and the meadowsweet they fashioned the fairest woman anyone had seen, and named her Blodeuwedd, 'Flower-face'. She married Lleu — and betrayed him with Gronw Pebr of Penllyn, drawing from her husband the secret of how he could be killed, so that Gronw's spear struck him at the impossible meeting of conditions. Lleu flew off in the shape of an eagle, screaming.</p><p class="myth-text">Gwydion searched Gwynedd and Powys until he followed a sow to an oak where rotten flesh and maggots fell to her snout, and in the top of the tree sat the eagle. He sang three englynion down the years of the bird's perches until Lleu came to his knee, then struck him with the wand back into human shape — skin and bone, a man to be nursed back with doctors and good care. The vengeance that followed was as crafted as the rescue: Blodeuwedd he would not kill, but turned into an owl, 'the shape hated by all the birds', renamed Blodeuwedd, 'Flower-face' become 'Owl'; and Gronw, standing where Lleu had stood, took Lleu's spear-cast through the slab at Llech Gronw and died. Maker of the woman, finder of the man, instrument of the sentence: the whole of Gwydion's domain is in this last movement.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Kat Godeu</span>
-          <h3 class="myth-title">The Battle of the Trees</h3>
-          <p class="myth-text">Outside the Mabinogi, the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a> preserves Gwydion's other great fame: Kat Godeu, 'The Battle of the Trees', in which he enchants the trees of the forest to march as an army against Arawn of Annwfn — alder at the front, oak in the thick of it. The poem's voice, Taliesin, boasts that he was there when Gwydion 'made the sally of the trees'. In the later tale-tradition around the poem, Gwydion also guesses the hidden name of the opponent's champion from the alder twigs in his hand — the same gift of naming-by-craft that the Fourth Branch shows in the wren scene. Whether the poem preserves older myth or learned fancy is debated, but its Gwydion is unmistakably the Mabinogi's: the magician whose weapons are other things' natures.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -539,8 +419,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Gwydion</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Gwydion</strong> is the standard Celtic romanisation, documented in academic sources — “Born of trees”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">gwydion</p>
+                <p class="card-body">The plain <strong>gwydion</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Gwydion</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Gwydion</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Gwydion.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Gwydion</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Gwydion</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Gwydion</p>
+                    <p class="card-body">The full Unicode restoration. <strong>gwydion.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Gwydion was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈɡwɪdjɔn/</span>
+            <span class="ipa-label">Modern Welsh</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Gwy-</span>
+        <span class="phoneme-desc">Voiced velar stop plus rounded glide — a single lip-rounded consonant cluster, as in Welsh gwynt 'wind'.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-di-</span>
+        <span class="phoneme-desc">Voiced alveolar stop plus close front vowel; the y sounds like the i of 'kin'.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-on</span>
+        <span class="phoneme-desc">Mid back rounded vowel plus alveolar n; the stress falls on the first syllable.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">GWID-yon — the gw is a single lip-rounded consonant, the y sounds like the i of 'kin', and the stress falls on the first syllable.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Middle Welsh Gwydion (Gwydion uab Dôn) is already written in the Latin alphabet, so the ASCII form loses nothing: the name is Tier 2 by the mechanical rule, since the restoration preserves no diacritic or distinctive letter that ASCII drops. The etymology is honestly debated: a derivation from the Celtic root *widu- 'wood, forest' has often been proposed (compare Welsh gwydd 'trees', Old Irish fid, Gaulish vidu-), but the connection is not proven and the standard handbooks mark it uncertain.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Gwydion is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Gwydion</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -558,7 +575,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/gwydion_mascot.webp" type="image/webp"><img src="../assets/gwydion_mascot.png" alt="Gwydion mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/gwydion_mascot.webp" type="image/webp"><img src="../assets/gwydion_mascot.png" alt="Gwydion mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -596,7 +613,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/gwydion_logomark.webp" type="image/webp"><img src="../assets/gwydion_logomark.webp" alt="Gwydion logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/gwydion_logomark.webp" type="image/webp"><img src="../assets/gwydion_logomark.webp" alt="Gwydion logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

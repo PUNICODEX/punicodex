@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Jǫrmungandr — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Jǫrmungandr.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,64 +236,316 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Jǫrmungandr</p>
+        </div>
+        
+      <p class="lead-text">Jǫrmungandr is one of the three great threats to the gods, alongside <a href="/fenrir/" class="crosslink" data-crosslink="fenrir">Fenrir</a> and Hel. It does not speak in the myths, yet its body defines the shape of the world and its final battle with <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a> is one of the climactic moments of Ragnarök.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Gylfaginning</span>
+          <h3 class="myth-title">The Casting into the Sea</h3>
+          <p class="myth-text">When the gods learned that <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> and <a href="/angrboda/" class="crosslink" data-crosslink="angrboda">Angrboða</a> had produced three monstrous children — Fenrir, Jǫrmungandr, and Hel — they seized them. Fenrir they bound, Hel they cast into Niflhel, and Jǫrmungandr they threw into the sea that surrounds all lands. There it grew so large that it encircled <a href="/midgardr/" class="crosslink" data-crosslink="midgardr">Miðgarðr</a> and bit its own tail. The gods' attempt to neutralize the threat merely made it cosmic.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/poetic-edda/#hymiskvitha" class="crosslink citation-link" data-citation="hymiskvitha">Hymiskviða</a></span>
+          <h3 class="myth-title">Fishing for the World Serpent</h3>
+          <p class="myth-text">Þórr goes fishing with the giant <a href="/hymir/" class="crosslink" data-crosslink="hymir">Hymir</a>, using the head of Hymir's best ox as bait. He hooks Jǫrmungandr and pulls it up until its venom drips and the sea boils around the boat. Hymir, terrified, cuts the line, and the serpent sinks back into the deep. The episode foreshadows their final meeting: the fisher who hooks the world is fated to be killed by it.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a> / Gylfaginning</span>
+          <h3 class="myth-title">The Death of Thor</h3>
+          <p class="myth-text">At Ragnarök, Jǫrmungandr will rise from the sea and poison land and sky. Þórr will slay it with Mjölnir, but after walking nine paces he will fall dead from the serpent's venom. It is a mutual killing: the guardian of order and the beast of chaos destroy each other, leaving the world to be inherited by quieter gods.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/prose-edda/#gylfaginning-46" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 46</a>–47</span>
+          <h3 class="myth-title">The Cat That Lifted the World</h3>
+          <p class="myth-text">At the hall of Útgarða-Loki, Þórr is given three contests that seem, each one, impossible. The last seems the least: lift the giant's grey cat from the floor. Þórr bends and heaves, 'and when he began to lift it, the cat arched its back, and no matter how high Þórr raised his hand, the cat arched its back in proportion, so that only one of its paws could be lifted from the ground' (Gylfaginning 46, trans. Faulkes). The company laughs, and Þórr leaves shamed — the strongest of the gods beaten by a house-cat. Only afterward does Útgarða-Loki reveal what the game had measured: the cat was Jǫrmungandr itself, and 'when you lifted the cat so high that one of its paws left the ground, it was a great marvel — everyone who saw it was terrified' (Gylfaginning 47). The whole encircling world had risen on one wrist, and the seas had trembled to their floors. The myth measures the gods against the world's own weight and finds them almost equal: the strongest of the Æsir can move the world-serpent exactly as far as one paw — and even that much terrifies everyone watching.</p>
+        </div>
+      </div></div>
+    </div>
+</section>
+
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">The World Serpent</h2>
+            <p class="section-subtitle">The Midgard Worm and Thor's Doom</p>
+        </div>
+        
+      <div class="domains-intro reveal-up"><p class="lead-text">Jǫrmungandr is the <strong>great serpent that encircles Miðgarðr, biting its own tail</strong>. One of the three monstrous children of Loki and Angrboða, it was cast into the ocean by <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and grew until it surrounded the entire world. It is the nemesis of Þórr, and at Ragnarök the two will finally kill one another.</p></div>
+      <div class="domains-grid">
+      <div class="domain-card reveal-up">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 40C12 28 20 20 32 20C44 20 52 28 52 40C52 48 46 56 32 56C18 56 12 48 12 40ZM32 8V20"></path></svg></div>
+        <h4 class="domain-name">Encircler of Worlds</h4>
+        <p class="domain-desc">So vast that it grips its own tail beneath the ocean that surrounds the human world.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="100">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 16L24 24L16 32M48 16L40 24L48 32M32 8V56"></path></svg></div>
+        <h4 class="domain-name">Nemesis of Thor</h4>
+        <p class="domain-desc">Their enmity shapes two myths: the fishing trip and the final battle at Ragnarök.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="200">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L40 28H56L44 40L48 56L32 48L16 56L20 40L8 28H24L32 8Z"></path></svg></div>
+        <h4 class="domain-name">Child of Loki</h4>
+        <p class="domain-desc">Born of Loki and the giantess Angrboða in <a href="/jotunheimr/" class="crosslink" data-crosslink="jotunheimr">Jötunheimr</a>, then hurled into the sea.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 48L32 56L56 48L32 8L8 48Z"></path></svg></div>
+        <h4 class="domain-name">Ouroboros</h4>
+        <p class="domain-desc">The tail-biting serpent becomes an image of cyclical time and cosmic boundary.</p>
+      </div></div>
+      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
+      <div class="symbol-item">
+        <span class="symbol-name">Coiled serpent biting its tail</span>
+        <span class="symbol-meaning">The ouroboros, an image of the world bounded by a single endless body</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Ocean</span>
+        <span class="symbol-meaning">The watery realm into which Jǫrmungandr was cast and in which it grew</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Ox-head bait</span>
+        <span class="symbol-meaning">The bait Þórr used when he fished for the serpent in Hymiskviða</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Venom</span>
+        <span class="symbol-meaning">The poison that will kill Þórr even after he slays the worm at Ragnarök</span>
+      </div></div></div>
+    </div>
+</section>
+
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Jǫrmungandr lives in the sacred library and in the words you still speak</p>
+        </div>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/prose-edda/" class="source-badge">Prose Edda</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Related Names -->
+    <section class="section section-related" id="related">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Related Names</h2>
+            <p class="section-subtitle">Other figures in the norse pantheon</p>
+        </div>
+        <div class="related-grid reveal-up">
+            
+    <a href="/asgardr/" class="related-card reveal-up">
+      <span class="related-name">Ásgarðr</span>
+      
+      <span class="related-domain">Realm of the Æsir</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/valholl/" class="related-card reveal-up">
+      <span class="related-name">Valhǫll</span>
+      
+      <span class="related-domain">Hall of the Slain</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/ragnarok/" class="related-card reveal-up">
+      <span class="related-name">Ragnarǫk</span>
+      
+      <span class="related-domain">Doom of the Gods</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/midgardr/" class="related-card reveal-up">
+      <span class="related-name">Miðgarðr</span>
+      
+      <span class="related-domain">Middle Enclosure (Earth)</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/alfheimr/" class="related-card reveal-up">
+      <span class="related-name">Álfheimr</span>
+      
+      <span class="related-domain">Realm of the Light Elves</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/jotunheimr/" class="related-card reveal-up">
+      <span class="related-name">Jötunheimr</span>
+      
+      <span class="related-domain">Land of the Giants</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+        </div>
+    </div>
+</section>
+
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
     <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ</p>
+                <p class="card-body">The name in its original Norse form. <strong>Jǫrmungandr</strong> (ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ) is attested in the source tradition — “Huge monster (from jǫrmun + gandr)”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
+                
             </div>
 
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ</p>
-                    <p class="card-body">The name in its original Norse form. <strong>Jǫrmungandr</strong> (ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ) is attested in the source tradition — “Huge monster (from jǫrmun + gandr)”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
                 </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">jormungandr</p>
-                    <p class="card-body">Reduced to plain <strong>jormungandr</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Jǫrmungandr</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Jǫrmungandr</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">jormungandr</p>
+                <p class="card-body">Reduced to plain <strong>jormungandr</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
             </div>
 
-            <div class="punycode-explainer reveal-up">
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Jǫrmungandr</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Jǫrmungandr</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
                     <code class="explainer-code">Jǫrmungandr.com → xn--jrmungandr-ejd.com</code>
                     <p class="explainer-note">The non-ASCII characters in <strong>Jǫrmungandr</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Jǫrmungandr</em>.</p>
                 </div>
             </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Jǫrmungandr</p>
         </div>
-    </section>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Jǫrmungandr</p>
+                    <p class="card-body">Restores <strong>ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ</strong>. The live temple domain — <strong>jǫrmungandr.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">jormungandr</p>
+                    <p class="card-body">Flattens <strong>ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Jǫrmungandr was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈjɔrˌmun.ɡan.dr/</span>
+            <span class="ipa-label">Old Norse Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">J-</span>
+        <span class="phoneme-desc">Palatal approximant [j], the y-glide as in English 'yes'.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ǫr-</span>
+        <span class="phoneme-desc">Short open-mid back rounded [ɔ] plus trilled [r], the first syllable carrying stress.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-mun-</span>
+        <span class="phoneme-desc">Bilabial nasal [m], close back rounded [u], and alveolar nasal [n].</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-gandr</span>
+        <span class="phoneme-desc">Voiced velar [ɡ], open front [a], alveolar nasal [n], and trilled [r].</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'YOR-mun-gand-r' — stress the first syllable, pronounce the 'or' like the 'o' in 'hot' with an r-color, and keep the final r light and trilled.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Jǫrmungandr is Tier 1: the ǫ preserves the distinctive Old Norse rounded back vowel — a distinctive feature the ASCII form loses. The first element is related to words for 'great' or 'universal'; gandr can mean monster, wand, or wolf, making the compound a 'mighty monster' or 'vast beast'.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
 
     <!-- Original Script Provenance -->
     
@@ -297,7 +554,7 @@
   <div class="section-bg-glow"></div>
   <div class="container">
     <div class="section-header reveal-up">
-      <span class="section-number">02</span>
+      <span class="section-number">08</span>
       <h2 class="section-title">Original Script &amp; Provenance</h2>
       <p class="section-subtitle">How Jǫrmungandr travels from ancient script to the modern URL</p>
     </div>
@@ -444,11 +701,11 @@
             
           </div>
           <div class="source-item">
-            <div class="source-title">Poetic Edda<span class="source-tier tier-2">Tier 2</span></div>
+            <div class="source-title"><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a><span class="source-tier tier-2">Tier 2</span></div>
             
           </div>
           <div class="source-item">
-            <div class="source-title">Prose Edda<span class="source-tier tier-2">Tier 2</span></div>
+            <div class="source-title"><a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a><span class="source-tier tier-2">Tier 2</span></div>
             
           </div>
           <div class="source-item">
@@ -462,250 +719,6 @@
       </div>
     </div>
   </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Jǫrmungandr</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Jǫrmungandr</p>
-                    <p class="card-body">Restores <strong>ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ</strong>. The live temple domain — <strong>jǫrmungandr.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">jormungandr</p>
-                    <p class="card-body">Flattens <strong>ᛁᚢᚱᛘᚢᚾᚴᛅᚾᛏᚱ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Jǫrmungandr was spoken</p>
-        </div>
-        
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈjɔrˌmun.ɡan.dr/</span>
-            <span class="ipa-label">Old Norse Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">J-</span>
-        <span class="phoneme-desc">Palatal approximant [j], the y-glide as in English 'yes'.</span>
-      </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ǫr-</span>
-        <span class="phoneme-desc">Short open-mid back rounded [ɔ] plus trilled [r], the first syllable carrying stress.</span>
-      </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-mun-</span>
-        <span class="phoneme-desc">Bilabial nasal [m], close back rounded [u], and alveolar nasal [n].</span>
-      </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-gandr</span>
-        <span class="phoneme-desc">Voiced velar [ɡ], open front [a], alveolar nasal [n], and trilled [r].</span>
-      </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'YOR-mun-gand-r' — stress the first syllable, pronounce the 'or' like the 'o' in 'hot' with an r-color, and keep the final r light and trilled.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Old Norse components</strong> jǫrmun-, 'mighty, vast' (also in Jǫrmunrekr, Jǫrmungrund) + gandr, 'monster, magic staff, wolf'</li><li><strong>Alternate name</strong> Miðgarðsormr, 'the Midgard serpent, the worm that encircles the world'</li><li><strong>Family</strong> Son of <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> and <a href="/angrboda/" class="crosslink" data-crosslink="angrboda">Angrboða</a>; brother of <a href="/fenrir/" class="crosslink" data-crosslink="fenrir">Fenrir</a> and Hel</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Jǫrmungandr is Tier 1: the ǫ preserves the distinctive Old Norse rounded back vowel — a distinctive feature the ASCII form loses. The first element is related to words for 'great' or 'universal'; gandr can mean monster, wand, or wolf, making the compound a 'mighty monster' or 'vast beast'.</p></div>
-        </div>
-      </div>
-    </div>
-</section>
-
-    <!-- Domains & Sacred Symbols -->
-    <section class="section section-symbols" id="symbols">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">05</span>
-            <h2 class="section-title">The World Serpent</h2>
-            <p class="section-subtitle">The Midgard Worm and <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a>'s Doom</p>
-        </div>
-        
-      <div class="domains-intro reveal-up"><p class="lead-text">Jǫrmungandr is the <strong>great serpent that encircles <a href="/midgardr/" class="crosslink" data-crosslink="midgardr">Miðgarðr</a>, biting its own tail</strong>. One of the three monstrous children of Loki and Angrboða, it was cast into the ocean by <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and grew until it surrounded the entire world. It is the nemesis of Þórr, and at Ragnarök the two will finally kill one another.</p></div>
-      <div class="domains-grid">
-      <div class="domain-card reveal-up">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 40C12 28 20 20 32 20C44 20 52 28 52 40C52 48 46 56 32 56C18 56 12 48 12 40ZM32 8V20"></path></svg></div>
-        <h4 class="domain-name">Encircler of Worlds</h4>
-        <p class="domain-desc">So vast that it grips its own tail beneath the ocean that surrounds the human world.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="100">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 16L24 24L16 32M48 16L40 24L48 32M32 8V56"></path></svg></div>
-        <h4 class="domain-name">Nemesis of Thor</h4>
-        <p class="domain-desc">Their enmity shapes two myths: the fishing trip and the final battle at Ragnarök.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="200">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L40 28H56L44 40L48 56L32 48L16 56L20 40L8 28H24L32 8Z"></path></svg></div>
-        <h4 class="domain-name">Child of Loki</h4>
-        <p class="domain-desc">Born of Loki and the giantess Angrboða in <a href="/jotunheimr/" class="crosslink" data-crosslink="jotunheimr">Jötunheimr</a>, then hurled into the sea.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="300">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 48L32 56L56 48L32 8L8 48Z"></path></svg></div>
-        <h4 class="domain-name">Ouroboros</h4>
-        <p class="domain-desc">The tail-biting serpent becomes an image of cyclical time and cosmic boundary.</p>
-      </div></div>
-      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
-      <div class="symbol-item">
-        <span class="symbol-name">Coiled serpent biting its tail</span>
-        <span class="symbol-meaning">The ouroboros, an image of the world bounded by a single endless body</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Ocean</span>
-        <span class="symbol-meaning">The watery realm into which Jǫrmungandr was cast and in which it grew</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Ox-head bait</span>
-        <span class="symbol-meaning">The bait Þórr used when he fished for the serpent in Hymiskviða</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Venom</span>
-        <span class="symbol-meaning">The poison that will kill Þórr even after he slays the worm at Ragnarök</span>
-      </div></div></div>
-    </div>
-</section>
-
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Jǫrmungandr</p>
-        </div>
-        
-      <p class="lead-text">Jǫrmungandr is one of the three great threats to the gods, alongside Fenrir and Hel. It does not speak in the myths, yet its body defines the shape of the world and its final battle with Þórr is one of the climactic moments of Ragnarök.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Gylfaginning</span>
-          <h3 class="myth-title">The Casting into the Sea</h3>
-          <p class="myth-text">When the gods learned that Loki and Angrboða had produced three monstrous children — Fenrir, Jǫrmungandr, and Hel — they seized them. Fenrir they bound, Hel they cast into Niflhel, and Jǫrmungandr they threw into the sea that surrounds all lands. There it grew so large that it encircled Miðgarðr and bit its own tail. The gods' attempt to neutralize the threat merely made it cosmic.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hymiskviða</span>
-          <h3 class="myth-title">Fishing for the World Serpent</h3>
-          <p class="myth-text">Þórr goes fishing with the giant <a href="/hymir/" class="crosslink" data-crosslink="hymir">Hymir</a>, using the head of Hymir's best ox as bait. He hooks Jǫrmungandr and pulls it up until its venom drips and the sea boils around the boat. Hymir, terrified, cuts the line, and the serpent sinks back into the deep. The episode foreshadows their final meeting: the fisher who hooks the world is fated to be killed by it.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Völuspá / Gylfaginning</span>
-          <h3 class="myth-title">The Death of Thor</h3>
-          <p class="myth-text">At Ragnarök, Jǫrmungandr will rise from the sea and poison land and sky. Þórr will slay it with Mjölnir, but after walking nine paces he will fall dead from the serpent's venom. It is a mutual killing: the guardian of order and the beast of chaos destroy each other, leaving the world to be inherited by quieter gods.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
-
-    <!-- Related Names -->
-    <section class="section section-related" id="related">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Related Names</h2>
-            <p class="section-subtitle">Other figures in the norse pantheon</p>
-        </div>
-        <div class="related-grid reveal-up">
-            
-    <a href="/asgardr/" class="related-card reveal-up">
-      <span class="related-name">Ásgarðr</span>
-      
-      <span class="related-domain">Realm of the Æsir</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/valholl/" class="related-card reveal-up">
-      <span class="related-name">Valhǫll</span>
-      
-      <span class="related-domain">Hall of the Slain</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/ragnarok/" class="related-card reveal-up">
-      <span class="related-name">Ragnarǫk</span>
-      
-      <span class="related-domain">Doom of the Gods</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/midgardr/" class="related-card reveal-up">
-      <span class="related-name">Miðgarðr</span>
-      
-      <span class="related-domain">Middle Enclosure (Earth)</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/alfheimr/" class="related-card reveal-up">
-      <span class="related-name">Álfheimr</span>
-      
-      <span class="related-domain">Realm of the Light Elves</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/jotunheimr/" class="related-card reveal-up">
-      <span class="related-name">Jötunheimr</span>
-      
-      <span class="related-domain">Land of the Giants</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-        </div>
-    </div>
-</section>
-
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Jǫrmungandr lives in the sacred library and in the words you still speak</p>
-        </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/prose-edda/" class="source-badge">Prose Edda</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -724,7 +737,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/jormungandr_mascot.webp" type="image/webp"><img src="../assets/jormungandr_mascot.png" alt="Jǫrmungandr mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/jormungandr_mascot.webp" type="image/webp"><img src="../assets/jormungandr_mascot.png" alt="Jǫrmungandr mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -762,7 +775,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/jormungandr_logomark.webp" type="image/webp"><img src="../assets/jormungandr_logomark.webp" alt="Jǫrmungandr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/jormungandr_logomark.webp" type="image/webp"><img src="../assets/jormungandr_logomark.webp" alt="Jǫrmungandr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Hestía, Hearth, Home, Family. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/hestia/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Hestía?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Hestía is /hɛs.tí.a/ — approximately 'hess-TEE-ah' — the middle syllable carries the pitch, and the final 'ah' is short and open."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Hestía mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hestía means Hearth, fireplace in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Hestía?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hestía is associated with Hearth fire (The center of home, city, and cosmos — the flame that must never be allowed to die), Kettle or cauldron (The tripod vessel standing over the fire; in art she is a veiled woman beside it, tending the coals), Pig (The animal offered at hearth-centered rites, especially the women's Thesmophoria shared with Demeter), Circle (The shape of the hearth and of the gathering around it — the Greeks seated by rank around the fire's round), Modest veil (Her chaste, domestic nature; no mythology of scandal attaches to her anywhere)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Hestía in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII hestia strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Hestía?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Virginity and Precedence” — Hestía has almost no myths of her own, and that absence is her meaning: she is not a narrative goddess but a presence, the fire that must never go out. Her few stories all concern her refusal to leave the center — and the honors that refusal earned her. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/hestia_logolockup.webp" type="image/webp"><img src="../../assets/hestia_logolockup.png" alt="Hestía" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Hestía</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Hestía.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/hestia_mascot.webp" type="image/webp"><img src="../../assets/hestia_mascot.png" alt="Hestía — Hearth, Home, Family" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/hestia_mascot.webp" type="image/webp"><img src="../../assets/hestia_mascot.png" alt="Hestía — Hearth, Home, Family" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -216,11 +267,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Hestía is Tier 2 because the original Ἑστία bears the acute stress only; the final alpha is short, so a single feature is preserved. The name is built on the PIE root *h₂wes-, 'to dwell,' making her literally the goddess of the dwelling-place.</p>
+                <p class="etymology-note">From Ἑστία "hearth", cognate with Latin Vesta. The hearth goddess.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>PIE</strong> — *h₂wes- 'to dwell, pass the night' — root of Greek ἑστία and Latin Vesta</li><li><strong>Sanskrit</strong> — vásati 'dwells' — cognate verb</li><li><strong>Latin</strong> — Vesta, the Roman hearth goddess — exact functional equivalent</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>PIE</strong> — *h₂wes- 'to dwell, pass the night' — root of Greek ἑστία and Latin Vesta (Beekes, Etymological Dictionary of Greek)</li><li><strong>Sanskrit</strong> — vásati 'dwells' — the cognate verb, attested from the <a href="/texts/rig-veda/" class="crosslink citation-link" data-citation="rig-veda">Rigveda</a> onward</li><li><strong>Latin</strong> — Vesta, the Roman hearth goddess — exact functional equivalent, sharing both the name and the eternal flame</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -253,24 +304,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Hestía is the quietest Olympian. She never leaves Olympus, never quarrels, never takes lovers. She is <strong>the hearth-fire itself</strong> — the fixed point around which the family, the city, and the world are organized. Every sacrifice begins and ends with her.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Hestía in Later Traditions</h3><p class="cultural-card-body">The Roman identification with Vesta was exact: same goddess, same function, same eternal flame. The Vestal Virgins gave the cult an institutional form unmatched in Greece. In Christianity, the hearth's sacredness was transferred to the household and, in the Byzantine East, to the church's sanctuary lamp. Hestía's archaic importance is visible in the fact that every Greek prayer and sacrifice began with her name. She is the most conservative deity in the pantheon, the one whose worship changed least across millennia.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hestía's legacy is the sanctity of home. The English word 'hearth' still carries emotional weight far beyond its practical function. The concepts of hospitality, asylum, and household gods all descend from her cult. The Roman Vestal Virgins were among the most powerful women in the ancient world; their oath bound the state itself. In modern usage, 'Vestal' and 'hearth' evoke purity, warmth, and centeredness. Restoring <em>Hestía</em> restores the name of the goddess who made the home a temple.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Hestía</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Hestía in Later Traditions</h3><p class="cultural-card-body">The Roman identification with Vesta was exact: same goddess, same function, same eternal flame, and the Vestal Virgins gave the cult an institutional form unmatched in Greece. In Christianity, the hearth's sanctity migrated into the home itself and, in the Byzantine East, into the sanctuary lamp that still burns before Orthodox icons. Hestia's archaic importance is visible in syntax as much as cult: Greek prayers and sacrifices opened with her name, and Pindar opens a victory ode at the prytaneion she presides over (Nemean 11.1–8). She is the most conservative deity in the pantheon — the one whose worship changed least from the Bronze Age hearth to the Roman Forum.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hestia's legacy is the sanctity of home. The English word 'hearth' still carries emotional weight far beyond its practical function, and the concepts of hospitality, asylum, and household gods all descend from her cult: to harm a guest seated by the hearth was to profane her. The Roman Vestals were among the most powerful women in the ancient world, and 'vestal' still means chaste and guardianship. Modern phrases — 'home and hearth,' 'keep the home fires burning' — are secular liturgies of her flame. Restoring <em>Hestía</em> restores the name of the goddess who made the home a temple.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Every Greek city maintained a prytaneion housing the public hearth, and their remains anchor the archaeological record: the circular Tholos by the Athenian Agora sheltered the prytaneis' common fire, and monumental prytaneia are excavated at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a>, <a href="/delos/" class="crosslink" data-crosslink="delos">Delos</a>, Priene, and Ai-Khanoum in Bactria. At Magnesia on the Maeander, inscriptions mention a round temple of Hestia at the agora's center — civic architecture imitating her flame's geometry. The Roman temple of Vesta in the Forum, rebuilt many times on its archaic round plan, still stands beside the House of the Vestals, and its sisters at Tivoli and elsewhere repeat the form. Public oaths from Samos, Cos, and Thera open with Hestia's name, and her figure appears modestly on votive reliefs — a veiled woman at a small flame — exactly as unassuming as her cult.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Hestía means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Hestia is the god of staying put. While other gods roam, fight, and love, she remains at the center, tending the fire. Her power is not dramatic; it is structural. Without her, there is no place from which to depart and to which to return.</p><p>In a mobile, dispersed world, Hestia asks what we have lost by making everywhere equally available and nowhere truly central. The hearth is not merely a source of heat; it is the symbol of continuity — the same fire, the same family, the same city across generations. The restoration of her name is a reminder that some powers are preserved not by movement but by steadfastness.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Hestía, Hearth, Home, Family, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hestía?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hestía</strong> is /hɛs.tí.a/ — approximately 'hess-TEE-ah' — the middle syllable carries the pitch, and the final 'ah' is short and open..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hestía mean?</summary><div class="faq-answer"><p><strong>Hestía</strong> means <strong>Hearth, fireplace</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hestía?</summary><div class="faq-answer"><p>Hestía is associated with <strong>Hearth fire</strong> (The center of home, city, and cosmos), <strong>Kettle or cauldron</strong> (The vessel that holds the sacred flame), <strong>Pig</strong> (Sacrificial animal offered at the hearth), <strong>Circle</strong> (The shape of the hearth and the gathering around it), <strong>Modest veil</strong> (Her chaste, domestic nature).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hestía in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hestia</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hestía?</summary><div class="faq-answer"><p><a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a> and <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidôn</a> both sought to marry Hestía, but she asked <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> to let her remain a virgin. Zeús agreed and granted her instead the first portion of every sacrifice and the honor of the hearth's center. In the Homeric <em>Hymn to Aphrodite</em> (21–32), Hestía is one of three goddesses — with <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> and <a href="/artemis/" class="crosslink" data-crosslink="artemis">Artemis</a> — whom <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodítē</a> cannot sway. Her virginity is not absence but sovereignty over her own domain.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hestía?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hestía</strong> is /hɛs.tí.a/ — approximately 'hess-TEE-ah' — the middle syllable carries the pitch, and the final 'ah' is short and open.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hestía mean?</summary><div class="faq-answer"><p><strong>Hestía</strong> means <strong>Hearth, fireplace</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hestía?</summary><div class="faq-answer"><p>Hestía is associated with <strong>Hearth fire</strong> (The center of home, city, and cosmos — the flame that must never be allowed to die), <strong>Kettle or cauldron</strong> (The tripod vessel standing over the fire; in art she is a veiled woman beside it, tending the coals), <strong>Pig</strong> (The animal offered at hearth-centered rites, especially the women's Thesmophoria shared with <a href="/demeter/" class="crosslink" data-crosslink="demeter">Demeter</a>), <strong>Circle</strong> (The shape of the hearth and of the gathering around it — the Greeks seated by rank around the fire's round), <strong>Modest veil</strong> (Her chaste, domestic nature; no mythology of scandal attaches to her anywhere).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hestía in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hestia</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hestía?</summary><div class="faq-answer"><p>“Virginity and Precedence” — Hestía has almost no myths of her own, and that absence is her meaning: she is not a narrative goddess but a presence, the fire that must never go out. Her few stories all concern her refusal to leave the center — and the honors that refusal earned her. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -279,7 +342,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,19 +361,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homeric Hymn to Hestia</cite></li><li><cite>Homeric Hymn to Aphrodite</cite></li><li><cite>Plato, Cratylus</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 453–458</cite></li><li><cite><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodite</a> 7–44</cite></li><li><cite>Homeric Hymn 24 to Hestia</cite></li><li><cite>Pindar, Nemean 11.1–8</cite></li><li><cite>Ovid, Fasti 6</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hestía and related cults.</cite></li><li><cite>Every Greek city maintained a Prytaneion with an eternal hearth fire sacred to Hestia; remains have been excavated at Athens, <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a>, Delphi, and Priene. In Magnesia on the Maeander, the agora contained a circular Hestia temple mentioned in inscriptions. Public inscriptions from Samos and Cos record civic oaths taken 'by Hestia and the other gods'.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hestía and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Burkert, Greek Religion</cite></li></ul>
+                    <ul class="source-list"><li><cite>Dionysius of Halicarnassus, Roman Antiquities 2.64–67</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -371,7 +434,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/hestia_logomark.webp" type="image/webp"><img src="../../assets/hestia_logomark.webp" alt="Hestía logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/hestia_logomark.webp" type="image/webp"><img src="../../assets/hestia_logomark.webp" alt="Hestía logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

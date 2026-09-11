@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Îris — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ἶρις</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Îris.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,144 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ἶρις</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Îris</strong> (Ἶρις) is attested in the source tradition — “Rainbow”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">iris</p>
-                    <p class="card-body">Reduced to plain <strong>iris</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Îris</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Îris</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Îris.com → xn--ris-uma.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Îris</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Îris</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Îris is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ἶρις</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Îris is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Îris</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Îris</p>
-                    <p class="card-body">Restores <strong>Ἶρις</strong>. The live temple domain — <strong>îris.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">iris</p>
-                    <p class="card-body">Flattens <strong>Ἶρις</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Îris was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Îris</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ǐː.ris/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Î-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> iota with acute or circumflex [ǐː], the pitch peak of the name.</span>
+      <p class="lead-text">Îris is a <strong>function more than a character</strong> in early epic: she goes where she is sent. Yet her appearances are dramatic, and she occasionally shows judgment and pity. The Iliad knows her as <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>'s courier; Hesiod makes her kin to storms; later mythographers hand her the black water by which gods swear.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Iliad 15</span>
+          <h3 class="myth-title">The Command of Zeus</h3>
+          <p class="myth-text">In Iliad 15, when Zeus wakes from the seduction contrived by <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a> and sees <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidon</a> aiding the Greeks against his decree, he does not go himself — he pours Iris down from Ida 'like a snowstorm' to deliver his will. Her words are the god's words, and her manner is his: she orders Poseidon to quit the field, and the sea-god bridles at a command from his younger brother, answering that the realms were drawn by lot and the sea is his. Iris, unshaken, repeats that the command came from Zeus 'who claims to be your elder and your better' — and adds the threat of the Erinyes behind it. Poseidon yields.</p><p class="myth-text">The scene shows what a messenger is: not a diplomat but sovereignty made visible, carrying an authority her own rank could never claim.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ris</span>
-        <span class="phoneme-desc">Rho-iota-sigma; the name is short and bright, like the rainbow it names.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Iliad 18</span>
+          <h3 class="myth-title">The News of Patroklos</h3>
+          <p class="myth-text">In Iliad 18, Achilles sits by the ships, ignorant, while Patroklos lies dead on the field. Hera sends Iris down — 'wind-footed' — and the goddess comes unseen by the other Greeks, stands close, and asks why Achilles idles when the dearest of his comrades lies at the ships 'with the life hacked from his body.' Achilles is stunned that she knows: who are you? 'Iris, swift messenger of the gods,' she answers, sent by Hera, who loves him. Her errand complete, she departs — and Achilles, still without armor, goes out, while <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> throws the aegis around his shoulders and crowns his head with golden fire.</p><p class="myth-text">The messenger's news, not the war-goddess's fire, is what moves him: in the Iliad, grief always arrives by courier.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 265</span>
+          <h3 class="myth-title">Daughter of Thaumas</h3>
+          <p class="myth-text">Hesiod gives Iris the sparest and most suggestive of genealogies: she is the daughter of Thaumas, 'the Wondrous,' and <a href="/elektra/" class="crosslink" data-crosslink="elektra">Elektra</a>, 'the Amber-Shining,' and her sisters are the Harpies, the storm-snatchers (Theogony 265–267). Wonder married to flashing light begets, on one side, the rainbow and the herald's wing, and on the other, the shrieking wind that carries mortals off. Later poets completed the weather-family: the lyric poet Alcaeus, as the tradition reports, made her the wife of the west wind <a href="/zephyros/" class="crosslink" data-crosslink="zephyros">Zephyros</a> and the mother of <a href="/eros/" class="crosslink" data-crosslink="eros">Eros</a>.</p><p class="myth-text">In the Iliad, moreover, she is the messenger Zeus actually uses — <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermes</a> comes into the poem only later, escorting Priam — so that in epic time the rainbow is the senior road between heaven and earth, older than the herald's staff.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Apollodorus</span>
+          <h3 class="myth-title">The Water of the Styx</h3>
+          <p class="myth-text">Gods, unlike mortals, cannot simply lie — their oaths are enforced by the water of <a href="/styx/" class="crosslink" data-crosslink="styx">Styx</a>, and the fetching of that water is Iris's office. Hesiod describes the dread spring itself (Theogony 775–806): a branch of Ocean set apart, falling from a high rock, by which the gods swear, and perjury among them is punished with a year of coma and nine more of exile from the feast. The mythographic tradition — Apollodorus, followed by the scholiasts — assigns the cup-bearing to Iris, so that every divine oath, from Hera's protestations in the Iliad onward, passes through the rainbow's hands.</p><p class="myth-text">The office makes Iris the guarantor of truth in heaven: she who carries orders down carries the means of punishing disobedience back up — and the bright bridge and the black water are one circuit.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'EE-ris' — a long, high-pitched first syllable and a quick second syllable, like the arc of a rainbow.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Ἶρις (Îris), the rainbow and its divine personification</li><li><strong>PIE</strong> Root *weh₁i- 'to bend, twist'; related to εἴρω and possibly Latin iris</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Îris is Tier 1 because the Greek Ἶρις bears the circumflex, which marks both stress and the long vowel (iota) in a single accent — both features the ASCII form loses. She is the only Olympian messenger in the Iliad, older than <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermes</a> in epic convention.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -376,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Rainbow Messenger</h2>
             <p class="section-subtitle">Messenger of the Gods, Oaths, Thresholds</p>
         </div>
@@ -386,7 +296,7 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 4L40 24H60L44 36L48 56L32 44L16 56L20 36L4 24H24L32 4Z"></path></svg></div>
         <h4 class="domain-name">Divine Messenger</h4>
-        <p class="domain-desc">In the Iliad she carries <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>'s orders to gods and mortals with unerring speed.</p>
+        <p class="domain-desc">In the Iliad she carries Zeus's orders to gods and mortals with unerring speed.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 48C16 36 24 32 32 32C40 32 48 36 56 48V56H8V48Z"></path></svg></div>
@@ -401,7 +311,7 @@
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M24 48H40M24 40H40M24 32H40M20 24H44L40 16H24L20 24Z"></path></svg></div>
         <h4 class="domain-name">Bringer of Water</h4>
-        <p class="domain-desc">She draws water from the <a href="/styx/" class="crosslink" data-crosslink="styx">Styx</a> for divine oaths, making perjury impossible for gods.</p>
+        <p class="domain-desc">She draws water from the Styx for divine oaths, making perjury impossible for gods.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
@@ -423,41 +333,28 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Îris</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Îris lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Îris is a <strong>function more than a character</strong> in early epic: she goes where she is sent. Yet her appearances are dramatic, and she occasionally shows judgment and pity.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Iliad</span>
-          <h3 class="myth-title">Messenger of Zeus</h3>
-          <p class="myth-text">In the Iliad, Iris carries Zeus's commands to Achilles, <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>, <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a>, and <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidon</a>. When the gods quarrel, she is the voice that enforces the king's will. She also warns Priam not to mourn too loudly and escorts the old king to Achilles' tent.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+                </div>
+            </div>
+            <div class="reveal-up">
+                <h3 class="symbols-title">Words Descended from This Name</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/everyday/#iris" class="source-badge" title="the eye's rainbow ring; the flower">iris</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Iliad</span>
-          <h3 class="myth-title">Iris and Achilles</h3>
-          <p class="myth-text">When Achilles threatens to attack <a href="/agamemnon/" class="crosslink" data-crosslink="agamemnon">Agamemnon</a> directly, Athena descends to restrain him, but Iris is also sent by Hera to urge him not to draw his sword. Achilles recognizes her and obeys — one of the rare moments when a mortal heeds a divine messenger instantly.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Post-Homeric</span>
-          <h3 class="myth-title">Iris in the Trojan War</h3>
-          <p class="myth-text">Later poets and vase painters show Iris actively involved in the Trojan War: she warns Helen, summons the winds, and in some versions delivers the message that draws Achilles back to battle after Patroklos's death.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -465,7 +362,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -529,29 +426,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Îris lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ἶρις</p>
+                <p class="card-body">The name in its original Greek form. <strong>Îris</strong> (Ἶρις) is attested in the source tradition — “Rainbow”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">iris</p>
+                <p class="card-body">Reduced to plain <strong>iris</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Îris</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Îris</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Îris.com → xn--ris-uma.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Îris</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Îris</em>.</p>
                 </div>
             </div>
-            <div class="reveal-up">
-                <h3 class="symbols-title">Words Descended from This Name</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/everyday/#iris" class="source-badge" title="the eye's rainbow ring; the flower">iris</a>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Îris</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Îris</p>
+                    <p class="card-body">Restores <strong>Ἶρις</strong>. The live temple domain — <strong>îris.com</strong>.</p>
                 </div>
-            </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">iris</p>
+                    <p class="card-body">Flattens <strong>Ἶρις</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
         </div>
     </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Îris was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ǐː.ris/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Î-</span>
+        <span class="phoneme-desc">Long iota with acute or circumflex [ǐː], the pitch peak of the name.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ris</span>
+        <span class="phoneme-desc">Rho-iota-sigma; the name is short and bright, like the rainbow it names.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'EE-ris' — a long, high-pitched first syllable and a quick second syllable, like the arc of a rainbow.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Îris is Tier 1 because the Greek Ἶρις bears the circumflex, which marks both stress and the long vowel (iota) in a single accent — both features the ASCII form loses. She is the only Olympian messenger in the Iliad, older than Hermes in epic convention.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Îris is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ἶρις</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Îris is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -570,7 +583,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/iris_mascot.webp" type="image/webp"><img src="../assets/iris_mascot.png" alt="Îris mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/iris_mascot.webp" type="image/webp"><img src="../assets/iris_mascot.png" alt="Îris mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -608,7 +621,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/iris_logomark.webp" type="image/webp"><img src="../assets/iris_logomark.webp" alt="Îris logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/iris_logomark.webp" type="image/webp"><img src="../assets/iris_logomark.webp" alt="Îris logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Mídas, King of Phrygia, the Golden Touch. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/midas/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Mídas?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Mídas is /mí.das/ — approximately 'MEE-dass' — stress forward, the first syllable bright and the second clipped; the English 'MY-das' flattens both."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Mídas mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mídas means Phrygian royal name in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Mídas?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mídas is associated with Gold (The substance of his wish and his punishment), The ass's ears (The mark of the critic who hears wrongly), The whispering reeds (Grown from the hole where the barber buried the secret; they repeat it still), The rose gardens (His gardens below Mount Bermion, where Silenos was taken — roses of sixty petals, Herodotus says), The Pactolus (The river that took the gold from his hands into its sands)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Mídas in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII midas strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Mídas?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Silenos Returned” — The Greeks attached two great fables to Mídas — the touch and the ears — and one genuine history: the wealthy Phrygian king whose gifts reached Delphi and whose wars reached Assyria. Ovid gives the fables their classic form; Herodotus keeps the history. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/midas_logolockup.webp" type="image/webp"><img src="../../assets/midas_logolockup.png" alt="Mídas" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Mídas</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Mídas.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/midas_mascot.webp" type="image/webp"><img src="../../assets/midas_mascot.png" alt="Mídas — King of Phrygia, the Golden Touch" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/midas_mascot.webp" type="image/webp"><img src="../../assets/midas_mascot.png" alt="Mídas — King of Phrygia, the Golden Touch" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Mídas is Tier 2 because the Greek Μίδας carries only the acute stress; the vowels are short and no long vowel or diphthong is preserved. Behind the Greek form stands a genuine Phrygian royal name — the legend has a historical king inside it.</p>
+                <p class="etymology-note">The name <strong>Mídas</strong> carries the orthographic signature of the greek tradition: Μίδας. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Mídas is the double figure of Greek imagination: a real king of Phrygia, known to Assyrian scribes as Mitâ of Muški and to Herodotus as the first foreigner to send gifts to Delphi — and the mythic fool whose wish made the world gold and his stomach empty. In him, legend and chronicle meet like the two halves of a coin.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Mídas in Later Traditions</h3><p class="cultural-card-body">Mídas absorbed no foreign gods; instead, the myth absorbed the man. Greek storytellers took a historical Phrygian dynasty and hung upon it their two great parables of appetite and judgment. Rome passed the fables on in Ovid's polished telling, and in time the moral inverted itself: the 'Midas touch', once a curse, became the financier's compliment. The ass's ears went the other way, remaining exactly what Apollo made them — the emblem of the critic who cannot hear.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Few names are so thoroughly proverbial. 'The Midas touch' names effortless profit; 'Midas ears' names the opposite gift in judgment. Hawthorne's A Wonder-Book (1852) added the golden daughter, the version children now learn first; opera, satire, and economics have all mined him. The historical king endures as firmly as the fool: Gordion's excavations made him a fixed point of Iron Age chronology. To restore Mídas with its acute is to restore the Greek shape of a Phrygian name — a small act of hearing rightly, which he himself never managed.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Mídas</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Mídas in Later Traditions</h3><p class="cultural-card-body">Mídas absorbed no foreign gods; instead, the myth absorbed the man. Greek storytellers took a historical Phrygian dynasty and hung upon it their two great parables of appetite and judgment. Rome passed the fables on in Ovid's polished telling, and in time the moral inverted itself: the 'Midas touch', once a curse, became the financier's compliment. The ass's ears went the other way, remaining exactly what Apollo made them — the emblem of the critic who cannot hear.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Few names are so thoroughly proverbial. 'The Midas touch' names effortless profit; 'Midas ears' names the opposite gift in judgment. Hawthorne's A Wonder-Book (1852) added the golden daughter, the version children now learn first; opera, satire, and economics have all mined him. The historical king endures as firmly as the fool: Gordion's excavations made him a fixed point of Iron Age chronology. To restore Mídas with its acute is to restore the Greek shape of a Phrygian name — a small act of hearing rightly, which he himself never managed.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Gordion (Yassıhöyük), the Phrygian capital on the Sangarios, has been excavated by the University of Pennsylvania since 1950: the citadel's gate and megarons, and the Great Tumulus (Tumulus MM, ca. 740 BCE) with its preserved wooden chamber and hoard of bronzes — now dated a generation too early for Mídas himself and assigned to his dynasty, most plausibly Gordias his father. Old Phrygian inscriptions name Midas on the rock façade of the 'Midas Monument' at Yazılıkaya and at Midas City. The Assyrian annals of Sargon II supply the external chronicle, naming Mitâ of Muški between 718 and 709 BCE. His ivory throne at Delphi, which Herodotus saw, has not survived.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Mídas means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>The touch and the ears are one story told twice. Both are parables of misjudged value: the king who thinks gold is the best thing in the world, and the listener who thinks pipes are better than the lyre. Each wish-come-true is a famine; each judgment is a deformity. The Greeks were exact about this — wealth and taste are the two places where a man chooses what he is, and Midas chose wrong both times, and knew it, and wept, and was not destroyed.</p><p>For the myth is gentler than its proverb. <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a> releases him; Apollo only marks him. He washes the gold away in the river and, Ovid says, hated riches ever after — a man cured by his cure. Perhaps that is why a real king's name clung to the fable: the historical Midas was famous for sending his treasures away, a throne across the sea to Delphi. The legend only exaggerates the gesture. He is the king forever giving gold back, and the river still pays it out, grain by grain.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Mídas, King of Phrygia, the Golden Touch, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Mídas?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Mídas</strong> is /mí.das/ — approximately 'MEE-dass' — stress forward, the first syllable bright and the second clipped; the English 'MY-das' flattens both..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Mídas mean?</summary><div class="faq-answer"><p><strong>Mídas</strong> means <strong>Phrygian royal name</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Mídas?</summary><div class="faq-answer"><p>Mídas is associated with <strong>Gold</strong> (The substance of his wish and his punishment), <strong>The ass's ears</strong> (The mark of the critic who hears wrongly), <strong>The whispering reeds</strong> (Grown from the hole where the barber buried the secret; they repeat it still), <strong>The rose gardens</strong> (His gardens below Mount Bermion, where Silenos was taken — roses of sixty petals, Herodotus says), <strong>The Pactolus</strong> (The river that took the gold from his hands into its sands).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Mídas in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>midas</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Mídas?</summary><div class="faq-answer"><p>Silenos, the drunken companion of <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a>, strayed and was brought to Mídas — in some tellings caught in the king's own rose gardens. Mídas entertained him ten days and returned him to the god, who offered any gift in thanks. The king, thinking of his treasury, wished that everything he touched might become gold. The wish was granted on the spot.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Mídas?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Mídas</strong> is /mí.das/ — approximately 'MEE-dass' — stress forward, the first syllable bright and the second clipped; the English 'MY-das' flattens both.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Mídas mean?</summary><div class="faq-answer"><p><strong>Mídas</strong> means <strong>Phrygian royal name</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Mídas?</summary><div class="faq-answer"><p>Mídas is associated with <strong>Gold</strong> (The substance of his wish and his punishment), <strong>The ass's ears</strong> (The mark of the critic who hears wrongly), <strong>The whispering reeds</strong> (Grown from the hole where the barber buried the secret; they repeat it still), <strong>The rose gardens</strong> (His gardens below Mount Bermion, where Silenos was taken — roses of sixty petals, Herodotus says), <strong>The Pactolus</strong> (The river that took the gold from his hands into its sands).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Mídas in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>midas</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Mídas?</summary><div class="faq-answer"><p>“Silenos Returned” — The Greeks attached two great fables to Mídas — the touch and the ears — and one genuine history: the wealthy Phrygian king whose gifts reached Delphi and whose wars reached Assyria. Ovid gives the fables their classic form; Herodotus keeps the history. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Herodotus</cite></li><li><cite>Ovid</cite></li></ul>
+                    <ul class="source-list"><li><cite>Herodotus</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Ovid</cite></li></ul>
+                    <ul class="source-list"><li><cite>Ovid</cite></li><li><cite>Ovid, <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 11.85–193</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Mídas and related cults.</cite></li><li><cite>Gordion (Yassıhöyük), the Phrygian capital on the Sangarios, has been excavated by the University of Pennsylvania since 1950: the citadel's gate and megarons, and the Great Tumulus (Tumulus MM, ca. 740 BCE) with its preserved wooden chamber and hoard of bronzes — now dated a generation too early for Mídas himself and assigned to his dynasty, most plausibly Gordias his father. Old Phrygian inscriptions name Midas on the rock façade of the 'Midas Monument' at Yazılıkaya and at Midas City. The Assyrian annals of Sargon II supply the external chronicle, naming Mitâ of Muški between 718 and 709 BCE. His ivory throne at Delphi, which Herodotus saw, has not survived.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Mídas and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Herodotus</cite></li></ul>
+                    <ul class="source-list"><li><cite>Herodotus 1.14, 7.73, 8.138</cite></li><li><cite>Hyginus, Fabulae 191 (the music-contest)</cite></li><li><cite>Assyrian annals of Sargon II, years 5–13 (Mitâ of Muški)</cite></li><li><cite>Hawthorne, Nathaniel, A Wonder-Book (1852) — the gilded daughter in the modern tradition</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/midas_logomark.webp" type="image/webp"><img src="../../assets/midas_logomark.webp" alt="Mídas logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/midas_logomark.webp" type="image/webp"><img src="../../assets/midas_logomark.webp" alt="Mídas logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Māzǔ — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">媽祖</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Māzǔ.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">媽祖</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Māzǔ</strong> (媽祖) is attested in the source tradition — “Mother ancestor”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">mazu</p>
-                    <p class="card-body">Reduced to plain <strong>mazu</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Māzǔ</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Māzǔ</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Māzǔ.com → xn--mz-dla95f.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Māzǔ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Māzǔ</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Māzǔ is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">媽祖</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Māzǔ is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Māzǔ</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Māzǔ</p>
-                    <p class="card-body">Restores <strong>媽祖</strong>. The live temple domain — <strong>māzǔ.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">mazu</p>
-                    <p class="card-body">Flattens <strong>媽祖</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Māzǔ was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Māzǔ</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ma˥ tsu˨˩˦/</span>
-            <span class="ipa-label">Standard Mandarin</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">MAH-tsoo — level tone, then a dip-and-rise.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Chinese</strong> 媽祖</li><li><strong>Her title</strong> <a href="/tianhou/" class="crosslink" data-crosslink="tianhou">Tiānhòu</a> (天后)</li><li><strong>Cantonese</strong> Tin Hau</li><li><strong>Owned form</strong> Māzǔ</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Māzǔ 媽祖 — "Maternal Ancestor" — carries the first tone on mā and the dipping third tone on zǔ; the restoration keeps both tone marks. Her personal name was Lín Mòniáng ("Silent Maiden"), but the world prays to the title: Grandmother of the sea. The third tone on zǔ dips and rises — the small valley in the name that Mandarin speakers sing without noticing.</p></div>
+      <p class="lead-text">Māzǔ's myth is a life, not a legend-cycle: the historical Lín Mòniáng of 10th-century Meizhou, whose silence, visions, and early death became the sea's own religion — a canon written not in scripture but in rescue-stories kept at harbors, and crowned by twelve centuries of imperial gratitude.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Maiden</span>
+          <h3 class="myth-title">The Silent Girl of Meizhou</h3>
+          <p class="myth-text">The historical Lín Mòniáng was born on Meizhou Island, off the Fujian coast, in 960 CE, as the Five Dynasties gave way to the Song — and the tradition remembers that she did not cry at birth, which is why the world calls her the Silent Maiden. She learned the sea on her father's fishing junk, stood watch on the cliffs in her red dress, and was said to fall into trances in which her spirit walked the waves beside foundering ships, guiding them home. The legend insists she died at twenty-eight, in 987, ascending bodily from the island's peak on a ribbon of incense smoke; other tellings say she drowned searching for her father's lost boat in a typhoon. The sources are late — the miracle collections were compiled centuries afterward — so the facts inside the legend cannot be audited. But the outline is stable, and it is the whole theology: a daughter who never stopped watching the water.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Apotheosis</span>
+          <h3 class="myth-title">From Daughter to Empress of Heaven</h3>
+          <p class="myth-text">The titles came as the rescues accumulated. The Song court's first recognition was modest — after the diplomat Lù Yùndì's storm-battered embassy to Korea came safely home in 1122–23, the Huizong emperor granted her island temple the plaque <em>Shùnjì</em>, "Facilitating Succor" (1123). The Southern Song made her Consort (1155) and then raised her again (1190); Kublai Khan's Yuan made her Heavenly Consort, Tiānfēi, in 1278, after her winds saw the grain fleets safely to Dàdū; Zhèng Hè thanked her on ocean-facing steles before his voyages; and the Kangxi emperor, after her waves helped Shi Lang's fleet take Taiwan in 1683, raised her at last to <a href="/tianhou/" class="crosslink" data-crosslink="tianhou">Tiānhòu</a> — Empress of Heaven (1684). The ladder is a ledger. Every rank commemorates a storm survived, and the imperial bureaucracy kept promoting the fisherman's daughter until she outranked every other god in the register.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Generals</span>
+          <h3 class="myth-title">Eyes and Ears of the Sea</h3>
+          <p class="myth-text">Flanking her throne in every temple stand two of the fiercest statues in Chinese religion: Qiānlǐyǎn, Thousand-Mile Eye, and Shùnfēng'ěr, Wind-Following Ear — demons of the coast whom the young goddess subdued on the beach and bound to her service. The legend is a parable of conscription: the sea's own dangers made watchmen. The eye sees a ship's distress a thousand li off; the ear hears a prayer through a gale; between them, nothing that happens on her water goes unseen or unheard. Sailors cherish the corollary — that in fair weather the two generals stand visibly bored, since vigilance with nothing to watch is the hardest duty in the world. The theology of an entire sea fits inside their pairing. The goddess does not herself need eyes or ears: she has tamed the very powers that threaten her people and set them, forever, at her door.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Pilgrimage</span>
+          <h3 class="myth-title">The Island Procession</h3>
+          <p class="myth-text">Her living myth walks. The Dajia pilgrimage carries the statue of Māzǔ from the Jenn Lann temple in Taichung three hundred and forty kilometers around Taiwan over nine days, through a moving river of kneeling devotees, firecrackers, and rival sedan chairs, while hundreds of thousands walk with her and millions more follow on live broadcasts. It is among the largest annual religious processions on earth — and it contains almost no doctrine. No sermon is preached; no scripture is read; the statue simply makes her circuit like a magistrate inspecting her district, and the crowds confirm her jurisdiction by surging forward to touch her palanquin as it passes. Pilgrims speak of walking to repay a rescue — the grandfather guided home, the net that held, the storm that turned. The procession is the sea-faith's whole argument made mobile: salvation remembered annually, on foot, at the pace of gratitude.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Lantern</span>
+          <h3 class="myth-title">The Red Lantern in the Storm</h3>
+          <p class="myth-text">On storm nights off the Fujian coast, sailors swore, a red lantern would appear on the black water — above the temple roof, or drifting at the harbor mouth — and every boat that steered for it came through. The red lantern became her emblem in every coastal household: painted on prows, hung in shrines, sewn into the little amulets fishermen pinned inside their coats. Later centuries gave the miracle an institutional form — lighthouses on the headlands where her temples already stood, their keepers often her devotees — so the boundary between goddess and lighthouse-keeper blurred deliberately: the lamp was the same service, only mechanized. The myth's genius is its modesty. No thunder, no parted sea — only a light, placed exactly where a fisherman's daughter would know a drowning man would look for one. It is the smallest miracle in this catalog, and the most believed.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,12 +294,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Mother of the Sea</h2>
             <p class="section-subtitle">Sailors, Storms, and the Red Lantern</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Māzǔ is the most-worshipped sea goddess on earth: the fisherman's daughter who became the guardian of everyone who works the water, whose temples line every coast of the Chinese world, and whose red lanterns guide sailors home through a thousand years of storms.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Māzǔ is the most-worshipped sea goddess on earth: the fisherman's daughter who became the guardian of everyone who works the water, whose temples line every coast of the Chinese world, and whose red lanterns guide sailors home through a thousand years of storms. The historical Lín Mòniáng of Meizhou Island was deified not by doctrine but by rescue — and the rescues never stopped.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 40H52L44 52H20L12 40ZM32 8V40M32 12C40 18 44 28 44 36M32 12C24 18 20 28 20 36"></path></svg></div>
@@ -411,57 +337,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Māzǔ</p>
-        </div>
-        
-      <p class="lead-text">Māzǔ's myth is a life, not a legend: the historical Lín Mòniáng of 10th-century Meizhou, whose silence, visions, and early death became the sea's own religion.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Maiden</span>
-          <h3 class="myth-title">The Silent Girl of Meizhou</h3>
-          <p class="myth-text">Lín Mòniáng was born on Meizhou island in 960 CE, and tradition says she did not cry at birth — hence "Silent Maiden." She learned to read the weather on her father's fishing boat, stood on the shore watching for lost sails, and was seen in dreams guiding drowning sailors home. Dead by twenty-eight, she rose, the fishermen said, straight to the sky on a cloud of incense — and the sea was never without her again.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Apotheosis</span>
-          <h3 class="myth-title">From Daughter to Empress of Heaven</h3>
-          <p class="myth-text">The dynasties out-titled each other: the Song made her Consort of Heaven, the Yuan made her Princess, the Ming made her Holy Mother, the Qing made her Tiānhòu — Empress of Heaven. The historical woman is buried in the titles: the fishing daughter became, by twelve centuries of gratitude, the highest-ranked goddess of the Chinese sea, outranking every god the bureaucracy could promote her past.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Generals</span>
-          <h3 class="myth-title">Eyes and Ears of the Sea</h3>
-          <p class="myth-text">Her two attendants are the myth of vigilance itself: Qiānlǐyǎn ("thousand-mile eye") and Shùnfēng'ěr ("with-the-wind ear"), the demon-generals she tamed to watch and listen for sailors in distress. Their horned, fierce statues flank her in every temple — the goddess's instruments: nothing that happens on her sea goes unseen or unheard.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Pilgrimage</span>
-          <h3 class="myth-title">The Island Procession</h3>
-          <p class="myth-text">Her living myth is the Dajia Māzú pilgrimage: each year her statue walks 340 kilometers around Taiwan for nine days, and a million people walk with it — touch the palanquin, kneel as it passes, weep when it returns home. The largest annual religious procession in the Chinese world is not to a cathedral but after a fisherman's daughter, walking the roads she still guards.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -525,8 +408,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">媽祖</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Māzǔ</strong> (媽祖) is attested in the source tradition — “Mother ancestor”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">mazu</p>
+                <p class="card-body">Reduced to plain <strong>mazu</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Māzǔ</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Māzǔ</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Māzǔ.com → xn--mz-dla95f.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Māzǔ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Māzǔ</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Māzǔ</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Māzǔ</p>
+                    <p class="card-body">Restores <strong>媽祖</strong>. The live temple domain — <strong>māzǔ.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">mazu</p>
+                    <p class="card-body">Flattens <strong>媽祖</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Māzǔ was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ma˥ tsu˨˩˦/</span>
+            <span class="ipa-label">Standard Mandarin</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">MAH-tsoo — level tone, then a dip-and-rise.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Māzǔ 媽祖 — "Maternal Ancestor" — carries the first tone on mā and the dipping third tone on zǔ; the restoration keeps both tone marks. Her personal name was Lín Mòniáng ("Silent Maiden"), but the world prays to the title: Grandmother of the sea. The third tone on zǔ dips and rises — the small valley in the name that Mandarin speakers sing without noticing.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Māzǔ is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">媽祖</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Māzǔ is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -544,7 +557,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/mazu_mascot.webp" type="image/webp"><img src="../assets/mazu_mascot.png" alt="Māzǔ mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/mazu_mascot.webp" type="image/webp"><img src="../assets/mazu_mascot.png" alt="Māzǔ mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -582,7 +595,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/mazu_logomark.webp" type="image/webp"><img src="../assets/mazu_logomark.webp" alt="Māzǔ logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/mazu_logomark.webp" type="image/webp"><img src="../assets/mazu_logomark.webp" alt="Māzǔ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

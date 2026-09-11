@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Lētō — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Λητώ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Lētō.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,157 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Λητώ</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Lētō</strong> (Λητώ) is attested in the source tradition — “Lady, forgotten one”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">leto</p>
-                    <p class="card-body">Reduced to plain <strong>leto</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Lētō</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Lētō</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Lētō.com → xn--lt-wma7u.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Lētō</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Lētō</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Lētō is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Λητώ</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Lētō is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Lētō</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Lētō</p>
-                    <p class="card-body">Restores <strong>Λητώ</strong>. The live temple domain — <strong>lētō.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Ideal Form</h3>
-                    <p class="card-unicode">Lētṓ</p>
-                    <p class="card-body">Restores <strong>Λητώ</strong>. Stacked macron+acute on the stressed long vowel, matching Greek Λητώ; philologically ideal but often untypeable on phones.. Not in the PuniCodex collection.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">leto</p>
-                    <p class="card-body">Flattens <strong>Λητώ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Lētō was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Lētō</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/leː.tɔ̌ː/</span>
-            <span class="ipa-label">Ancient Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">L-</span>
-        <span class="phoneme-desc">Voiced alveolar lateral approximant [l].</span>
+      <p class="lead-text">Lētō's mythology is dominated by one of the most famous birth narratives in Greek religion: the persecution of a pregnant goddess, the one island that dared receive her, and the twin archers who answered every insult to their mother.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hymn</span>
+          <h3 class="myth-title">The Wanderings of Lētō</h3>
+          <p class="myth-text"><a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a>, furious that <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> had fathered children on Lētō, sent the great serpent <a href="/python/" class="crosslink" data-crosslink="python">Pýthōn</a> to hunt the pregnant goddess and bound the earth by oath to give her no resting place. So the <em><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to Apollo</em> (30–178) tells it: Lētō wandered the islands and coastlands, and every land feared to receive what would be Apollo's birthplace. Only <a href="/delos/" class="crosslink" data-crosslink="delos">Delos</a>, the little floating island, dared to ask — and even Delos trembled, fearing the god who, once grown, might spurn her barrenness. Lētō swore the great oath on <a href="/styx/" class="crosslink" data-crosslink="styx">Styx</a>: here Apollo would build his altar and oracle, and Delos would be rich in offerings and famous forever. The island rooted itself; the birth began — but Hera, unrelenting, detained <a href="/eileithyia/" class="crosslink" data-crosslink="eileithyia">Eileithyia</a>, goddess of childbirth, for nine days, until the attending goddesses bribed the goddess with a golden necklace and <a href="/iris/" class="crosslink" data-crosslink="iris">Iris</a> fetched her across the sea. Clinging to the palm tree beside the spring of Inopos, Lētō first delivered <a href="/artemis/" class="crosslink" data-crosslink="artemis">Artemis</a> — born, the hymn adds with a smile, without pain — and then, with Artemis already acting as midwife, the far-shooting Apollo. The island that received what all others refused became the fixed center of the Greek world: holiness, the hymn insists, repays its hosts in fame.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ē-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> close-mid front vowel [eː], written eta.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ovid</span>
+          <h3 class="myth-title">Latona and the Lycian Peasants</h3>
+          <p class="myth-text">In the sixth book of the <em><a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a></em> (6.317–381), Ovid gives Lētō her most retold scene — under her Roman name Latona. Fleeing with the infant twins still at her breast, she comes parched to a clear pool in a Lycian valley and kneels to drink. The local peasants see a stranger, a woman alone with two children, and order her off; she pleads — not as a goddess but as a nursing mother: will they deny her water? They wade in before her and churn the pool to mud with feet and hands, leaping and splashing. Latona lifts her arms: may they live forever in their pool. At once their throats narrow to croaks, their backs green; they dive and surface as frogs, croaking in the mire to this day, free of the land that refused her. The myth turns on <em>xenia</em>, the law of hospitality binding host and stranger alike: the crime is not thirst denied to a goddess but rudeness shown to a beggar — and the punishment fits with Ovidian exactness, since mud is what they loved.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-t-</span>
-        <span class="phoneme-desc">Voiceless alveolar stop [t].</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cult</span>
+          <h3 class="myth-title">The Letoon of Lycia</h3>
+          <p class="myth-text">At the Letoon, three kilometers south of Xanthos in Lycia, Lētō was worshipped with Apollo and Artemis as a triad — the federal sanctuary of the Lycian League, where its delegates met and its priests held the power of asylum. The site's importance is written in stone: the great Xanthos trilingual inscription (337 BCE), set up in Aramaic, Greek, and Lycian, honours the Letoon and names the local goddess <a href="/lada/" class="crosslink" data-crosslink="lada">Lada</a> beside Leto — documentary proof that the Greek mother of the twins was grafted onto an older Lycian mother-goddess. The Roman poet already knew the frog story as Lycian, and the French excavations at the site since 1962 have uncovered the three temples of the triad, the theatre, and the pilgrim stoa. For a goddess refused by every shore, Lycia built the one sanctuary that spoke her name in three languages at once — and kept speaking it for six centuries.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-ō</span>
-        <span class="phoneme-desc">Long open-mid back rounded vowel [ɔː], with circumflex marking length and falling pitch.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Epic</span>
+          <h3 class="myth-title">The Giant Who Reached for a Goddess</h3>
+          <p class="myth-text">Tityos, the giant son of Earth, saw Lētō passing alone through Panopeus on her way to Pytho and 'purposed violence' — in the Odyssey's grave phrase, he tried to carry her off (Odyssey 11.576–581). Her children answered. Homer leaves the avenger between his lines; Pindar gives the arrow to Apollo, who slew the giant with his painless shafts at Delphi itself (<em>Pythian</em> 4.90–92), and later handbooks add Artemis beside her brother — a family act of defense. For the insult Tityos is pinned in the underworld, stretched across nine acres while two vultures tear his liver without end (Odyssey 11.578–579). The giant's crime and Lētō's innocence are mirror images: he grasped at a goddess and received endlessness as his sentence; she, who asked only water and a place to rest, received everlasting honor. The Odyssey sets him beside Tantalos — and in that company, the meaning is plain: what is punished eternally is not desire itself, but desire that reaches for what must be freely given.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'LAY-toh' — hold the first vowel long like 'lay' without the off-glide, and let the final 'oh' carry a gentle rise-and-fall pitch.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Λητώ (Lētṓ), mother of Apollo and <a href="/artemis/" class="crosslink" data-crosslink="artemis">Artemis</a>.</li><li><strong>Roman</strong> Latona, the Latin adaptation worshipped at the Letoon.</li><li><strong>Lycian</strong> <a href="/lada/" class="crosslink" data-crosslink="lada">Lada</a>, a local goddess linked to Leto in the Xanthos trilingual.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Lētō is Tier 1: the Greek original contains both length (ē and ō) and the circumflex pitch contour. The English 'Leto' preserves neither.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -389,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Mother of the Divine Twins</h2>
             <p class="section-subtitle">Night, Refuge, and the Letoön</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Lētō is the <strong>mother of Apollo and Artemis</strong>, pursued across land and sea by <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a>'s jealousy, and at last given refuge by the floating island of <a href="/delos/" class="crosslink" data-crosslink="delos">Delos</a>. She is the goddess of the hidden journey, the patience of motherhood, and the sanctuary that becomes holy because it sheltered the gods.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Lētō is the <strong>mother of Apollo and Artemis</strong>, pursued across land and sea by Hera's jealousy, and at last given refuge by the floating island of Delos. She is the goddess of the hidden journey, the patience of motherhood, and the sanctuary that becomes holy because it sheltered the gods.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C20 8 12 18 12 32C12 46 20 56 32 56C44 56 52 46 52 32C52 18 44 8 32 8Z"></path></svg></div>
@@ -419,11 +316,11 @@
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">Date palm</span>
-        <span class="symbol-meaning">The tree to which Lētō clung while giving birth on Delos.</span>
+        <span class="symbol-meaning">The tree to which Lētō clung while giving birth on Delos, beside the spring of Inopos.</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Wolf</span>
-        <span class="symbol-meaning">The animal associated with Apollo and the wilderness of Lētō's wanderings.</span>
+        <span class="symbol-name">The vultures of Tityos</span>
+        <span class="symbol-meaning">The eternal punishment of the giant who reached for Lētō — her innocence written in her enemy's sentence.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Island</span>
@@ -431,46 +328,32 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Bow and lyre</span>
-        <span class="symbol-meaning">The attributes of her children, Apollo and Artemis.</span>
+        <span class="symbol-meaning">The attributes of her children, Apollo and Artemis — the twins who answered every insult to their mother.</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The Lycian pool</span>
+        <span class="symbol-meaning">The spring muddied by the peasants — the site of the myth of the frogs, and the origin of every croak.</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Lētō</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Lētō lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Lētō's mythology is dominated by one of the most famous birth narratives in Greek religion: the persecution of a pregnant goddess and the founding of a holy island.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hymn</span>
-          <h3 class="myth-title">The Wanderings of Lētō</h3>
-          <p class="myth-text">Hera, furious that <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> had fathered children by Lētō, sent the serpent <a href="/python/" class="crosslink" data-crosslink="python">Pýthōn</a> to pursue her and forbade any land under the sun to receive her. Lētō wandered through many lands until she reached Delos, a barren, floating island. The island trembled at first, fearing Apollo's wrath, but Lētō swore that her son would make it famous and rich. There, clinging to a palm tree, she gave birth first to Artemis and then, with Artemis's help, to Apollo.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+                    <a href="https://punicodex.com/texts/works-and-days/" class="source-badge">Works and Days</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Ovid</span>
-          <h3 class="myth-title">Latona and the Lycian Peasants</h3>
-          <p class="myth-text">In Ovid's version, the thirsty Latona stopped at a Lycian pool to drink. Local peasants stirred the mud to prevent her. In anger she transformed them into frogs, condemning them to croak forever in the mire. The story explains the croaking of frogs and warns against insulting a goddess in need.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Cult</span>
-          <h3 class="myth-title">The Letoon of Lycia</h3>
-          <p class="myth-text">At the Letoon near Xanthos, Lētō was worshipped alongside Apollo and Artemis as a triad. The site was so important that its priests could grant asylum, and the Lycian confederation held meetings there. The great Xanthos trilingual inscription was set up to honour the sanctuary, linking Greek, Lycian, and Aramaic conceptions of the goddess.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -478,7 +361,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -542,24 +425,158 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Lētō lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
-                    <a href="https://punicodex.com/texts/works-and-days/" class="source-badge">Works and Days</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Λητώ</p>
+                <p class="card-body">The name in its original Greek form. <strong>Lētō</strong> (Λητώ) is attested in the source tradition — “Lady, forgotten one”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">leto</p>
+                <p class="card-body">Reduced to plain <strong>leto</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Lētō</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Lētō</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Lētō.com → xn--lt-wma7u.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Lētō</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Lētō</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Lētō</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Lētō</p>
+                    <p class="card-body">Restores <strong>Λητώ</strong>. The live temple domain — <strong>lētō.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Ideal Form</h3>
+                    <p class="card-unicode">Lētṓ</p>
+                    <p class="card-body">Restores <strong>Λητώ</strong>. Stacked macron+acute on the stressed long vowel, matching Greek Λητώ; philologically ideal but often untypeable on phones.. Not in the PuniCodex collection.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">leto</p>
+                    <p class="card-body">Flattens <strong>Λητώ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Lētō was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/leː.tɔ̌ː/</span>
+            <span class="ipa-label">Ancient Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">L-</span>
+        <span class="phoneme-desc">Voiced alveolar lateral approximant [l].</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ē-</span>
+        <span class="phoneme-desc">Long close-mid front vowel [eː], written eta.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-t-</span>
+        <span class="phoneme-desc">Voiceless alveolar stop [t].</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-ō</span>
+        <span class="phoneme-desc">Long open-mid back rounded vowel [ɔː], with circumflex marking length and falling pitch.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'LAY-toh' — hold the first vowel long like 'lay' without the off-glide, and let the final 'oh' carry a gentle rise-and-fall pitch.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Lētō is Tier 1: the Greek original contains both length (ē and ō) and the circumflex pitch contour. The English 'Leto' preserves neither.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Lētō is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Λητώ</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Lētō is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -578,7 +595,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/leto_mascot.webp" type="image/webp"><img src="../assets/leto_mascot.png" alt="Lētō mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/leto_mascot.webp" type="image/webp"><img src="../assets/leto_mascot.png" alt="Lētō mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -616,7 +633,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/leto_logomark.webp" type="image/webp"><img src="../assets/leto_logomark.webp" alt="Lētō logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/leto_logomark.webp" type="image/webp"><img src="../assets/leto_logomark.webp" alt="Lētō logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

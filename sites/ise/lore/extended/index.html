@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Ise, Sacred Shrine. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/ise/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Ise?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Ise is /i.se/ — approximately 'EE-seh' — two light, even syllables."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Ise mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ise means Ancient province in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Ise?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ise is associated with Mirror (The yata no kagami, one of the Three Imperial Regalia, enshrined at Ise), Cypress (hinoki) (The wood from which the shrine buildings are rebuilt every twenty years), Uji Bridge (The bridge over the Isuzu River marking the boundary to the sacred precinct), Shikinen-zōtai (The twenty-year rebuilding cycle that renews the shrine and its implements)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Ise in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ise is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Ise?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Amaterasu Comes to Ise” — Ise's mythology is inseparable from the mythology of Amaterasu and the imperial house. The city exists because the sun goddess needed a dwelling worthy of her. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/ise_logolockup.webp" type="image/webp"><img src="../../assets/ise_logolockup.png" alt="Ise" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Ise</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Ise</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/ise_mascot.webp" type="image/webp"><img src="../../assets/ise_mascot.png" alt="Ise — Sacred Shrine" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/ise_mascot.webp" type="image/webp"><img src="../../assets/ise_mascot.png" alt="Ise — Sacred Shrine" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Ise</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Ise is Tier 2: plain Hepburn. Its significance is cultic and geographic, not orthographic.</p>
+                <p class="etymology-note">The name <strong>Ise</strong> reaches the modern world through scholarly transliteration of the japanese tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">I</td><td><code>U+0049</code></td><td>Latin Capital Letter I</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">s</td><td><code>U+0073</code></td><td>Latin Small Letter S</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Ise</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Ise</strong> is not merely a place; it is the spiritual center of Shinto and the home of Amaterasu, the sun goddess and ancestor of the imperial house. For more than a thousand years, the Ise Grand Shrine has been rebuilt every twenty years in an unbroken cycle of renewal, making Ise a city where architecture, nature, and divine presence are continuously reborn.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Ise in Later Traditions</h3><p class="cultural-card-body">Ise has both resisted and absorbed outside influences. It remained the symbolic center of State Shinto in the modern period, yet its rituals and architecture preserve ancient Japanese forms. Buddhist influence was deliberately excluded from the Inner Shrine for long periods, making Ise a stronghold of 'pure' Shinto ideology — even as the broader Shinto tradition was itself shaped by Buddhist and continental models.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ise remains the most sacred destination in Shinto. The Ise-Shima region hosts the G7 summit's shrine visit; the rebuilding ceremonies draw national attention; and the phrase 'Ise ni ichido wa' ('to Ise at least once') still expresses a cultural aspiration. The simple, raised-floor architecture of Ise has influenced modern Japanese design and the global image of Shinto.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Ise</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ise in Later Traditions</h3><p class="cultural-card-body">Ise has both resisted and absorbed outside influences. It remained the symbolic center of State Shinto in the modern period, yet its rituals and architecture preserve ancient Japanese forms. Buddhist influence was deliberately excluded from the Inner Shrine for long periods, making Ise a stronghold of 'pure' Shinto ideology — even as the broader Shinto tradition was itself shaped by Buddhist and continental models.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ise remains the most sacred destination in Shinto. The Ise-Shima region hosts the G7 summit's shrine visit; the rebuilding ceremonies draw national attention; and the phrase 'Ise ni ichido wa' ('to Ise at least once') still expresses a cultural aspiration. The simple, raised-floor architecture of Ise has influenced modern Japanese design and the global image of Shinto.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Ise Grand Shrine complex includes the Inner Shrine (Kōtai Jingū), Outer Shrine (Gekū), and numerous auxiliary shrines. Archaeological investigations have clarified the shifting locations of successive rebuilding plots and the ancient use of the Isuzu River for ritual purification. The nearby Sengu Museum preserves building models and ritual implements from past rebuildings.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Ise means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Ise asks what it means to preserve by renewing. The shrine is never allowed to grow old; its decay is built into the plan. In a culture that often idolizes permanence, Ise teaches that sacred things must be remade, that craftsmanship is a form of prayer, and that the same place can be born again and again.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Ise, Sacred Shrine, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ise?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ise</strong> is /i.se/ — approximately 'EE-seh' — two light, even syllables..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ise mean?</summary><div class="faq-answer"><p><strong>Ise</strong> means <strong>Ancient province</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ise?</summary><div class="faq-answer"><p>Ise is associated with <strong>Mirror</strong> (The yata no kagami, one of the Three Imperial Regalia, enshrined at Ise), <strong>Cypress (hinoki)</strong> (The wood from which the shrine buildings are rebuilt every twenty years), <strong>Uji Bridge</strong> (The bridge over the Isuzu River marking the boundary to the sacred precinct), <strong>Shikinen-zōtai</strong> (The twenty-year rebuilding cycle that renews the shrine and its implements).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ise in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>ise</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ise?</summary><div class="faq-answer"><p>According to tradition, the imperial princess Yamatohime-no-mikoto traveled for twenty years searching for a permanent dwelling for Amaterasu. She finally received an oracle at Ise, where the goddess declared her love for the place. The Inner Shrine was established there, and the imperial house has maintained it ever since.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ise?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ise</strong> is /i.se/ — approximately 'EE-seh' — two light, even syllables.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ise mean?</summary><div class="faq-answer"><p><strong>Ise</strong> means <strong>Ancient province</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ise?</summary><div class="faq-answer"><p>Ise is associated with <strong>Mirror</strong> (The yata no kagami, one of the Three Imperial Regalia, enshrined at Ise), <strong>Cypress (hinoki)</strong> (The wood from which the shrine buildings are rebuilt every twenty years), <strong>Uji Bridge</strong> (The bridge over the Isuzu River marking the boundary to the sacred precinct), <strong>Shikinen-zōtai</strong> (The twenty-year rebuilding cycle that renews the shrine and its implements).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ise in Unicode?</summary><div class="faq-answer"><p><strong>Ise</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ise?</summary><div class="faq-answer"><p>“Amaterasu Comes to Ise” — Ise's mythology is inseparable from the mythology of Amaterasu and the imperial house. The city exists because the sun goddess needed a dwelling worthy of her. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lexical and philological sources for Ise.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki and Nihon Shoki (Amaterasu and Yamatohime legends)</cite></li><li><cite>Engishiki (ritual regulations for Ise)</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a></cite></li><li><cite><a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a></cite></li><li><cite>Kojiki and Nihon Shoki (Amaterasu, Ama-no-Iwato, and Yamatohime legends)</cite></li><li><cite>Engishiki (ritual regulations for the Ise cult)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ise and related cults.</cite></li><li><cite>The Ise Grand Shrine complex includes the Inner Shrine (Kōtai Jingū), Outer Shrine (Gekū), and numerous auxiliary shrines. Archaeological investigations have clarified the shifting locations of successive rebuilding plots and the ancient use of the Isuzu River for ritual purification. The nearby Sengu Museum preserves building models and ritual implements from past rebuildings.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ise and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Bocking, A Popular Dictionary of Shinto</cite></li></ul>
+                    <ul class="source-list"><li><cite>Mark Teeuwen &amp; John Breen, A New History of Shinto (2010)</cite></li><li><cite>Brian Bocking, A Popular Dictionary of Shinto (1996)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/ise_logomark.webp" type="image/webp"><img src="../../assets/ise_logomark.webp" alt="Ise logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/ise_logomark.webp" type="image/webp"><img src="../../assets/ise_logomark.webp" alt="Ise logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

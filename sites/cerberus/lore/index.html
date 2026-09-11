@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Kérberos — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Κέρβερος</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Kérberos.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Κέρβερος</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Kérberos</strong> (Κέρβερος) is attested in the source tradition — “Spot, darkness”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">cerberus</p>
-                    <p class="card-body">Reduced to plain <strong>cerberus</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Kérberos</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Kérberos</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Kérberos.com → xn--krberos-bya.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Kérberos</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Kérberos</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Kérberos is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Κέρβερος</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Kérberos is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kérberos</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Kérberos</p>
-                    <p class="card-body">Restores <strong>Κέρβερος</strong>. The live temple domain — <strong>kérberos.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">cerberus</p>
-                    <p class="card-body">Flattens <strong>Κέρβερος</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Kérberos was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Kérberos</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈker.be.ros/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">KAIR-beh-ros — the acute falls on the first syllable; sound the final -ros with a light trill.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Κέρβερος</li><li><strong>Latin</strong> Cerberus</li><li><strong>Proposed cognate</strong> Sanskrit śárvara, "the spotted," a hound of <a href="/yama/" class="crosslink" data-crosslink="yama">Yama</a> — the comparison is famous, the proof elusive</li><li><strong>Owned form</strong> Kérberos</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Κέρβερος is proparoxytone — the accent rests on the first syllable, exactly as LSJ prints it. The restoration Kérberos keeps that acute; the ASCII "Cerberus" is the Latinized form that lost it. The etymology is genuinely dark: the old comparison with Sanskrit śárvara ("spotted," one of Yama's two hounds) is famous but unproven, and Beekes (EDG) treats the word as likely Pre-Greek. Tier-2 by rule: the single feature preserved is the accent.</p></div>
+      <p class="lead-text">Kérberos' myths are the myths of every threshold that must not be crossed — the one-way gate of Hades, the hero who chains it, and the musicians and magicians who slip past it — and together they are the West's oldest anatomy of a boundary.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a></span>
+          <h3 class="myth-title">Born of Typhon and Echidna</h3>
+          <p class="myth-text">Hesiod sets him in the monstrous brood of <a href="/typhon/" class="crosslink" data-crosslink="typhon">Typhon</a> and Echidna (Theogony 306–312): first Orthrus, the hound of Geryon, then “Cerberus the flesh-eater, the brazen-voiced hound of Hades, fifty-headed, shameless and strong,” and after him the Lernaean <a href="/hydra/" class="crosslink" data-crosslink="hydra">Hydra</a> and the <a href="/chimaira/" class="crosslink" data-crosslink="chimaira">Chimaira</a> — with the Nemean lion and the <a href="/sphinx/" class="crosslink" data-crosslink="sphinx">Sphinx</a> of Thebes among the family's cousins. It is the underworld's kennel and armory in a single bloodline: wherever the myths need an impossible guardian, one of Echidna's children is already on duty. Fifty heads is Hesiod's number, and the earliest vase-painters modestly drew two or three; the tradition never settles, because the point is not arithmetic but totality — a watchfulness with no blind side. The genealogy also fixes his allegiance from birth: sired by the storm-giant who once stormed Olympus, he ends up as Hades' doorman, the monster employed by order. His family makes monsters; his job is to keep them in.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Theogony</span>
+          <h3 class="myth-title">The Porter of the Dead</h3>
+          <p class="myth-text">Later in the same poem (Theogony 767–773) Hesiod gives the hound his job description: Kérberos waits before the dark house of Hades and dread <a href="/persephone/" class="crosslink" data-crosslink="persephone">Persephone</a>, and on those who come in he fawns with his tail and both ears — but he lets none go back out; he watches, and devours whomsoever he catches passing the gates. It is the earliest full portrait of the boundary's one-way logic: courtesy inward, annihilation outward. The detail that he fawns — tail wagging, ears flat — is stranger and better than mere ferocity: the gate of death is not cruel, only absolute. Everyone is welcome to enter, and no one is allowed to leave; hospitality and appetite are the same policy seen from different sides. Every later descent-katabasis narrative in Greek, and arguably in the West, inherits this grammar — Charon's fare, the rivers, the judges — but the dog was there first, holding the door in the oldest written map of the Greek underworld.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Apollodorus</span>
+          <h3 class="myth-title">The Twelfth Labor</h3>
+          <p class="myth-text">The last and hardest labor set by Eurystheus was to bring the hound up from the dead. Apollodorus (Library 2.5.12) tells it plainly: Heracles descended — through the cave at Tainaron in the southern Peloponnese, Pausanias notes (3.25.5), though Heracleia Pontica claimed the same honor — asked Hades for the dog, and was given leave to take him if he could master him without weapons. Wrapped in the lion's skin, Heracles grappled Kérberos until the hound yielded, led him up into the light, and showed him to Eurystheus, who hid in his bronze storage jar — then dutifully carried him back down again. Homer already knows the tale: the Odyssey (11.623–626) remembers Heracles' fetching “the hound of the loathed king of the underworld,” and the Iliad remembers the wound Hades took at Pylos over the same expedition. The labor completes the hero's curriculum: having visited every extremity of the living world, he is sent for its door itself — and brings it home on a chain, briefly, as proof.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Georgics / Aeneid</span>
+          <h3 class="myth-title">Charmed and Drugged</h3>
+          <p class="myth-text">Music succeeded where force was not asked to try. In Virgil's Georgics (4.483) <a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a>' song holds Kérberos gaping, his three mouths stilled and his jaws relaxed, as the poet walks the path toward <a href="/eurydice/" class="crosslink" data-crosslink="eurydice">Eurydice</a>. A generation of readers later the Aeneid (6.417–423) gives the Sibyl the practical method: a cake sopped in honey and soporific drugs, tossed into the three ravenous throats, which sink the watchdog into sprawled unconsciousness while Aeneas slips past. Force, song, and pastry: the three keys the tradition cuts for the one lock the dead cannot pick. The Aeneid's detail is the more honest one — the sop is a bribe paid to a functionary, and the Sibyl treats the hound less as a monster than as customs. Both versions agree on the rule that governs every threshold: what cannot be overpowered can sometimes be put to sleep, and what cannot be put to sleep can sometimes be sung through — but the gate itself never opens both ways.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Hound of Hades</h2>
             <p class="section-subtitle">The Fifty Heads, the Brazen Voice, and the Gate of No Return</p>
         </div>
@@ -407,61 +325,22 @@
       <div class="symbol-item">
         <span class="symbol-name">The honeyed cake</span>
         <span class="symbol-meaning">The Sibyl's drugged sop in the Aeneid: the one bribe the gate accepts</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The chain of Heracles</span>
+        <span class="symbol-meaning">The only leash ever to hold him — the hero’s bare-handed grip, remembered on vases from the sixth century BCE</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Kérberos</p>
-        </div>
-        
-      <p class="lead-text">Kérberos' myths are the myths of every threshold that must not be crossed — and of the handful of heroes who crossed his anyway.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Theogony</span>
-          <h3 class="myth-title">Born of Typhon and Echidna</h3>
-          <p class="myth-text">Hesiod sets him in the monstrous brood of <a href="/typhon/" class="crosslink" data-crosslink="typhon">Typhon</a> and Echidna (Theogony 306-312): Orthrus the hound of Geryon, then "Cerberus the flesh-eater, the brazen-voiced hound of Hades, fifty-headed, shameless and strong," and after him the Lernaean <a href="/hydra/" class="crosslink" data-crosslink="hydra">Hydra</a> and the <a href="/chimaira/" class="crosslink" data-crosslink="chimaira">Chimaira</a>. The family is the underworld's kennel and armory in one: wherever the myths need an impossible guardian, one of Echidna's children is already on duty.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Theogony</span>
-          <h3 class="myth-title">The Porter of the Dead</h3>
-          <p class="myth-text">Later in the same poem (Theogony 767-773) Hesiod gives the hound his job description: he waits before the houses of Hades and dread <a href="/persephone/" class="crosslink" data-crosslink="persephone">Persephone</a>, and on those who come in he fawns with his tail and both ears — but he lets none go back out; he watches, and devours whomsoever he catches passing the gates. It is the earliest full portrait of the boundary's one-way logic: courtesy inward, annihilation outward.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Apollodorus</span>
-          <h3 class="myth-title">The Twelfth Labor</h3>
-          <p class="myth-text">The last and hardest labor set by Eurystheus was to bring the hound up from the dead. Apollodorus (Library 2.5.12) tells it plainly: Heracles descended, asked Hades for the dog, and was given leave to take him if he could master him without weapons. Wrapped in the lion's skin, he throttled Kérberos until the hound yielded, led him up, and showed him to Eurystheus — who hid in his storage jar — then dutifully carried him back down again. Homer already knows the tale: the Iliad and the Odyssey both remember the fetching of "the hound of the loathed king of the underworld."</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Georgics / Aeneid</span>
-          <h3 class="myth-title">Charmed and Drugged</h3>
-          <p class="myth-text">Music succeeded where force was not asked to try: in Virgil's Georgics (4.483) <a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a>' song holds Kérberos gaping, his three mouths stilled, as the poet walks <a href="/eurydice/" class="crosslink" data-crosslink="eurydice">Eurydice</a>'s path. A generation of readers later, the Aeneid (6.417-423) gives the Sibyl the practical method — a cake sopped in honey and soporific grains tossed into the three ravenous throats. Force, song, and pastry: the three keys the tradition cuts for the one lock the dead cannot pick.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -525,8 +404,150 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Κέρβερος</p>
+                <p class="card-body">The name in its original Greek form. <strong>Kérberos</strong> (Κέρβερος) is attested in the source tradition — “Spot, darkness”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">cerberus</p>
+                <p class="card-body">Reduced to plain <strong>cerberus</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Kérberos</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Kérberos</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Kérberos.com → xn--krberos-bya.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Kérberos</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Kérberos</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kérberos</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Kérberos</p>
+                    <p class="card-body">Restores <strong>Κέρβερος</strong>. The live temple domain — <strong>kérberos.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">cerberus</p>
+                    <p class="card-body">Flattens <strong>Κέρβερος</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Kérberos was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈker.be.ros/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Kér-</span>
+        <span class="phoneme-desc">Voiceless velar [k] plus open-mid [e], bearing the acute accent on the first syllable, exactly as LSJ prints it.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-be-</span>
+        <span class="phoneme-desc">Voiced bilabial stop [b] plus short [e]; the middle syllable is light and unaccented.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ros</span>
+        <span class="phoneme-desc">Alveolar trill [r], short rounded [o], voiceless [s]; the nominative ending of the masculine noun.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">KAIR-beh-ros — the acute falls on the first syllable; sound the final -ros with a light trill.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Κέρβερος is proparoxytone — the accent rests on the first syllable, exactly as LSJ prints it. The restoration Kérberos keeps that acute; the ASCII "Cerberus" is the Latinized form that lost it. The etymology is genuinely dark: the old comparison with Sanskrit śárvara ("spotted," one of Yama's two hounds) is famous but unproven, and Beekes (EDG) treats the word as likely Pre-Greek. Tier-2 by rule: the single feature preserved is the accent.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Kérberos is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Κέρβερος</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Kérberos is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -544,7 +565,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/cerberus_mascot.webp" type="image/webp"><img src="../assets/cerberus_mascot.png" alt="Kérberos mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/cerberus_mascot.webp" type="image/webp"><img src="../assets/cerberus_mascot.png" alt="Kérberos mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -582,7 +603,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/cerberus_logomark.webp" type="image/webp"><img src="../assets/cerberus_logomark.webp" alt="Kérberos logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/cerberus_logomark.webp" type="image/webp"><img src="../assets/cerberus_logomark.webp" alt="Kérberos logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

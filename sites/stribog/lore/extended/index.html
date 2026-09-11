@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Stribog, Winds, Storms. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/stribog/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Stribog?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Stribog is /stribog/ — approximately 'STREE-bog', rolled r, stress forward; the second half of the name literally means 'god'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Stribog mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stribog means Father of winds in the slavic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Stribog?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stribog is associated with Wind and weather (The element itself, which the epic makes his family: the winds do what grandsons do), Storm cloud and squall (The war-weather of the Slovo — the black sky under which Igor's campaign marched), The steppe horizon (Kyiv's winds came off the open steppe; his one vivid scene is a steppe wind rising from the sea), The moving air of thaw (The spring winds that break the river ice — function inferred from his wind-kin, not attested)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Stribog in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stribog is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Stribog?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Idols in the Dnieper” — The sources for Stribog are two lines long: a place in the chronicle's list of drowned idols, and a genealogy in the nation's greatest poem. Everything else — his character, his rites, his season — is inference, and this entry says so wherever inference is doing the work. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/stribog_logolockup.webp" type="image/webp"><img src="../../assets/stribog_logolockup.png" alt="Stribog" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Stribog</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Stribog</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/stribog_mascot.webp" type="image/webp"><img src="../../assets/stribog_mascot.png" alt="Stribog — Winds, Storms" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/stribog_mascot.webp" type="image/webp"><img src="../../assets/stribog_mascot.png" alt="Stribog — Winds, Storms" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -175,7 +226,7 @@
             <p class="section-subtitle">Essential information about Stribog, Winds, Storms</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Stribog</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Stribog</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/stribog/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Slavic</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Winds, Storms</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Father of winds</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Stribog</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Name, Domain</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Stribog</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Stribog</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/stribog/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Slavic</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Winds, Storms</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Father of winds</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Stribog</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Wind and weather, Storm cloud and squall, The steppe horizon, The moving air of thaw</span></div></div>
         </div>
     </div>
 </section>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Stribog</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,11 +260,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The ASCII form "stribog" is a DNS compromise; the restoration "Stribog" preserves the name's scholarly dignity.</p>
+                <p class="etymology-note">The name <strong>Stribog</strong> reaches the modern world through scholarly transliteration of the slavic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Modern Descendants</h4><ul><li><strong>stribog</strong> — Modern English / international usage</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Common Slavic</strong> — *Stribogъ — the second element is *bogъ 'god' (compare <a href="/dazhbog/" class="crosslink" data-crosslink="dazhbog">Dažbog</a>, 'giving god'); the first element is opaque</li><li><strong>Proposals</strong> — connections with roots meaning 'arrow' and 'to spread, scatter' circulate in the literature; none commands consensus (Gieysztor; Brückner)</li><li><strong>Epic genealogy</strong> — the Slovo o polku Igoreve gives him a family anyway: the winds are 'grandsons of Stribog'</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">S</td><td><code>U+0053</code></td><td>Latin Capital Letter S</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">t</td><td><code>U+0074</code></td><td>Latin Small Letter T</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">b</td><td><code>U+0062</code></td><td>Latin Small Letter B</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Stribog</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Stribog</strong> is winds, storms. The name means "Father of winds" and belongs to the slavic tradition.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Stribog remains a touchstone for understanding slavic religion, art, and identity.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Stribog</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Stribog in Later Traditions</h3><p class="cultural-card-body">Stribog attracted no Christian successor — no saint took the winds from him the way Elijah took <a href="/perun/" class="crosslink" data-crosslink="perun">Perun</a>'s storm — and Byzantine writers had no classical slot for a wind-god, so no <em>interpretatio</em> rescued him either. His afterlife is purely literary and comparative. Comparative mythology seats him beside the Vedic Vāyu, master of the winds, and beside the Greek winds as a brood rather than a person — <a href="/aeolus/" class="crosslink" data-crosslink="aeolus">Aeolus</a> managing his bag of quarrelsome grandchildren. In the twentieth century Rodnover calendars promoted him as a god of winds and weather, roles extrapolated from the Slovo formula; fantasy fiction and games drift him as a stock 'old Slavic' name. The most honest syncretism is the one the poet performed unwittingly: naming the winds a family. That is how a polytheist sky is actually experienced — every gust somebody's relative, every storm a household arriving.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Stribog's legacy is almost entirely onomastic and literary. The Slovo's phrase 'Stribog's grandsons' entered every anthology of Old Rus' literature and every schoolroom, so that his name survives more widely read than those of gods with far richer cults. Modern paganism adopted him enthusiastically but thinly: he appears in Rodnover calendars and in fantasy fiction, games, and brand names, usually as a generic wind or storm patron — attributes supplied by authors, not sources. For linguists he remains a standing exhibit in seminars on Slavic theonymy, a name whose opaque first element defeats each new generation of etymologists. If Perun is the god who would not die and <a href="/veles/" class="crosslink" data-crosslink="veles">Veles</a> the god who would not stay hidden, Stribog is the god who never quite existed in the record — a place kept for the wind in the pantheon's seating plan, honored now mostly by being quoted correctly.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No artifact, building, image, or inscription can be tied to Stribog. Unlike Perun's Peryn' enclosure or Veles's Novgorod street, the wind-god left no footprint in the ground, and the destruction of 988 swept away whatever shrine the Kyiv hill may have held. Wind and storm imagery on medieval jewelry and amulets — whirlwind stamps, storm-bird pendants — is sometimes laid at his door, but the attributions are decorative rather than demonstrated, and nothing bears his name. The Slovo's 'grandsons of Stribog' remains his only monument: a line of verse that has outlasted every temple in the pantheon, copied in more than a hundred manuscripts of the national epic and read aloud in classrooms eight centuries after the last wind was officially his.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Stribog means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Stribog is the god of what passes through. Wind cannot be sworn by, cannot be fed, cannot even be consistently blamed — and so the tradition left him almost nothing to hold. What the epic gives him instead is better than a cult: a family. The winds are his grandsons — not his subjects, not his weapons, his grandsons, the way weather actually behaves, arriving uninvited, full of intentions, unmistakably related. The phrase is a miniature of how polytheism worked before it learned to be systematic: the world is not governed, it is inhabited, by beings with kin. Stribog matters to the modern imagination precisely because he is so nearly empty — a vessel into which every age pours its theory of the wind, from philology's unsolved root to fantasy's storm lord. Perhaps a god who is only a name and a family of winds is the truest wind-god of all: felt everywhere, pinned down nowhere, and quoted — 'the winds, Stribog's grandsons' — whenever the air itself needs a lineage.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Stribog, Winds, Storms, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Stribog?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Stribog</strong> is /stribog/ — approximately Say "stribog" with the stress and length implied by the scholarly restoration "Stribog"..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Stribog mean?</summary><div class="faq-answer"><p><strong>Stribog</strong> means <strong>Father of winds</strong> in the slavic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Stribog?</summary><div class="faq-answer"><p>Stribog is associated with <strong>Name</strong> (The restored form Stribog, carrying scholarly and cultural weight.), <strong>Domain</strong> (Winds, Storms).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Stribog in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>stribog</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Stribog?</summary><div class="faq-answer"><p>Stribog appears in slavic tradition as winds, storms. The name's meaning, "Father of winds", shapes the narratives told about this figure.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Stribog?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Stribog</strong> is /stribog/ — approximately 'STREE-bog', rolled r, stress forward; the second half of the name literally means 'god'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Stribog mean?</summary><div class="faq-answer"><p><strong>Stribog</strong> means <strong>Father of winds</strong> in the slavic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Stribog?</summary><div class="faq-answer"><p>Stribog is associated with <strong>Wind and weather</strong> (The element itself, which the epic makes his family: the winds do what grandsons do), <strong>Storm cloud and squall</strong> (The war-weather of the Slovo — the black sky under which Igor's campaign marched), <strong>The steppe horizon</strong> (Kyiv's winds came off the open steppe; his one vivid scene is a steppe wind rising from the sea), <strong>The moving air of thaw</strong> (The spring winds that break the river ice — function inferred from his wind-kin, not attested).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Stribog in Unicode?</summary><div class="faq-answer"><p><strong>Stribog</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Stribog?</summary><div class="faq-answer"><p>“The Idols in the Dnieper” — The sources for Stribog are two lines long: a place in the chronicle's list of drowned idols, and a genealogy in the nation's greatest poem. Everything else — his character, his rites, his season — is inference, and this entry says so wherever inference is doing the work. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -303,7 +366,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of slavic religion and the place of Stribog within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Primary Chronicle / Povest' vremennykh let, s.a. 988</cite></li><li><cite>Slovo o polku Igoreve (The Tale of Igor's Campaign)</cite></li><li><cite>Gieysztor, Aleksander, Mitologia Słowian (1982)</cite></li><li><cite>Brückner, Aleksander, Mitologia słowiańska i polska (1924)</cite></li><li><cite>Łowmiański, Henryk, Religia Słowian i jej upadek (1979)</cite></li><li><cite>Vasmer, Max, Russisches etymologisches Wörterbuch</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/stribog_logomark.webp" type="image/webp"><img src="../../assets/stribog_logomark.webp" alt="Stribog logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/stribog_logomark.webp" type="image/webp"><img src="../../assets/stribog_logomark.webp" alt="Stribog logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

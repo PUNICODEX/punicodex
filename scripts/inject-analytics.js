@@ -160,6 +160,26 @@ function busyWait(ms) {
   while (Date.now() - start < ms) {}
 }
 
+// Truncating writes occasionally fail on Windows with errno UNKNOWN when the
+// indexer/AV has latched onto the file after a mass read pass; a temp-file
+// write + rename sidesteps the share conflict (rename retries like the store
+// generator's atomic write).
+function writeFileAtomic(filePath, content) {
+  try {
+    fs.writeFileSync(filePath, content, 'utf8');
+  } catch (err) {
+    if (err.code !== 'UNKNOWN' && err.code !== 'EPERM' && err.code !== 'EACCES') throw err;
+    const tmp = `${filePath}.tmp-${process.pid}`;
+    fs.writeFileSync(tmp, content, 'utf8');
+    try {
+      fs.renameSync(tmp, filePath);
+    } catch (renameErr) {
+      fs.unlinkSync(tmp);
+      throw renameErr;
+    }
+  }
+}
+
 function injectIntoFile(filePath) {
   let html = withRetry(() => fs.readFileSync(filePath, 'utf8'));
 
@@ -197,7 +217,7 @@ function injectIntoFile(filePath) {
     html = html.slice(0, insertPos) + snippetOut + html.slice(insertPos);
   }
 
-  withRetry(() => fs.writeFileSync(filePath, html, 'utf8'));
+  withRetry(() => writeFileAtomic(filePath, html));
   return true;
 }
 

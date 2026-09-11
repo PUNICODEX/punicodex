@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Pŷr — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Πῦρ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Pŷr.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,140 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Πῦρ</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Pŷr</strong> (Πῦρ) is attested in the source tradition — “Fire”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">pyr</p>
-                    <p class="card-body">Reduced to plain <strong>pyr</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Pŷr</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Pŷr</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Pŷr.com → xn--pr-hva.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Pŷr</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Pŷr</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Pŷr is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Πῦρ</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Pŷr is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Pŷr</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Pŷr</p>
-                    <p class="card-body">Restores <strong>Πῦρ</strong>. The live temple domain — <strong>pŷr.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">pyr</p>
-                    <p class="card-body">Flattens <strong>Πῦρ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Pŷr was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Pŷr</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/pŷːr/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Pŷr</span>
-        <span class="phoneme-desc">Unaspirated voiceless bilabial stop [p] plus long upsilon with acute/circumflex [ŷː], followed by rho. The whole word is one long, high-pitched syllable.</span>
-      </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'PYOOR' — one long, high-pitched syllable, like the sound of a flame catching.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> πῦρ (pŷr), fire</li><li><strong>PIE</strong> *péh₂ur, 'fire'; cognate with English 'fire' and Hittite pahhur</li><li><strong>English</strong> fire, pyre, pyrotechnic, pyromania</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Pŷr is Tier 1 because the Greek πῦρ contains both length (υ) and stress (acute/circumflex) on the same syllable. It is one of the oldest and most culturally charged words in Greek.</p></div>
+      <p class="lead-text">Pŷr is <strong>elemental and mythic at once</strong>. It is the stolen gift of <a href="/prometheus/" class="crosslink" data-crosslink="prometheus">Prometheus</a>, the cosmic arche of Heraclitus, the threshold-light of the mysteries, and the fire on Mount Oita that burned a mortal into a god.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 565–616</span>
+          <h3 class="myth-title">Prometheus Steals Fire</h3>
+          <p class="myth-text">At Mecone, Prometheus tricked <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> in the division of the sacrifice, wrapping the good meat in the ox's paunch and the bones in a layer of glistening fat; Zeus, seeing through the trick, chose the fat — and in anger withheld fire from mortals (Hesiod, Theogony 535–570). Prometheus stole it back, hiding the flame in a hollow fennel stalk and carrying it down to earth. Zeus answered with a two-fold punishment: he bound the thief to a crag in the Caucasus, where an eagle daily devoured his regenerating liver, and he had <a href="/hephaistos/" class="crosslink" data-crosslink="hephaistos">Hephaistos</a> mold the first woman, <a href="/pandora/" class="crosslink" data-crosslink="pandora">Pandora</a> — a 'beautiful evil' — whose jar released every affliction upon the human race (<a href="/texts/works-and-days/" class="crosslink citation-link" data-citation="works-and-days">Works and Days</a> 50–105). Aeschylus' Prometheus Bound dwells on the theft's aftermath and the catalogue of gifts — not fire alone but hope, medicine, number, and the arts. Fire is civilization's founding theft, and the myth prices it at an eagle's daily meal: every human warmth carries a debt somebody else is paying.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Heraclitus, DK 22 B30</span>
+          <h3 class="myth-title">Fire as Cosmic Arche</h3>
+          <p class="myth-text">Heraclitus of Ephesus declared that 'this ordered world, the same for all, no god made nor man, but it ever was and is and shall be ever-living fire, kindling in measures and going out in measures' (DK 22 B30). All things are an exchange for fire, and fire for all things, 'as goods for gold and gold for goods' (B90); even the sea is liquefied and measured fire. Strife, want, and surfeit are the measures by which the flame stays alive; the thunderbolt — purest fire — 'steers all things' (B64). Aristotle reports the doctrine at Metaphysics 983b and made fire one of his own four elements, while the Stoics converted Heraclitus' ever-living fire into the logos-pneuma that permeates and governs the cosmos, a conception Cleanthes hymns in his Hymn to Zeus. To call the world fire is to call it a verb: the only element that is pure process, whose identity is transformation itself.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to <a href="/demeter/" class="crosslink" data-crosslink="demeter">Demeter</a></span>
+          <h3 class="myth-title">Fire in Initiation</h3>
+          <p class="myth-text">When Demeter searched the world for her stolen daughter, the Homeric Hymn to Demeter (47–50) gives her burning torches, wrenched from the volcanoes of Aetna — fire as the grief that searches the dark. The mystery rites at <a href="/eleusis/" class="crosslink" data-crosslink="eleusis">Eleusis</a> built on that image: torchlit processions along the Sacred Way from Athens, lamps and blazing bowls in the night rites, and the fire that marked the boundary between the uninitiated and those who had seen. Plutarch compares the experience of the mysteries to the soul's passage at death, and Lucian's account of Alexander of Abonoteichus shows how cheap the imagery became when copied without awe. Fire at the threshold does not illuminate fully — that would profane — it marks the crossing: the initiate walks from torchlight into darkness and back, and the flame is the proof that someone carried light through on their behalf. The mystery made fire the syntax of secrecy: visible from far off, unreadable up close.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Sophocles, Trachiniae 1191–1278</span>
+          <h3 class="myth-title">The Pyre on Oita</h3>
+          <p class="myth-text">Heracles, poisoned by the blood of the <a href="/hydra/" class="crosslink" data-crosslink="hydra">Hydra</a> on the robe his wife Deianira sent him, commands his son to build his funeral pyre on the summit of Mount Oita (Sophocles, Trachiniae 1191–1278; Apollodorus, Library 2.7.7; Diodorus Siculus 4.38). The poison is burning him alive from within, and he longs for the fire to finish what the robe began — but no mortal dares light it. In the common version the archer <a href="/philoctetes/" class="crosslink" data-crosslink="philoctetes">Philoctetes</a> (in some accounts his father Poeas) kindles the pyre and receives the great bow in payment; as the flames rise, a cloud takes the hero up, and from the pyre's heart he is received among the gods on Olympus. Ovid tells it with terrible beauty at <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 9.229–272: 'I, who conquered a thousand monsters, am conquered by the poison I myself once conquered.' Fire is the only element that can do what the gods alone require — consume the mortal part and release the rest. The pyre turns death inside out: what it destroys is the body, what it saves is the man.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -372,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Fire</h2>
             <p class="section-subtitle">Transformation, Purification, Cosmic Process</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Pŷr is the <strong>Greek word for fire</strong>, an element that transforms, purifies, destroys, and illuminates. For Heraclitus it is the very substance of becoming; for cult it is the medium through which mortals communicate with gods.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Pŷr is the <strong>Greek word for fire</strong>, an element that transforms, purifies, destroys, and illuminates. For Heraclitus it is the very substance of becoming; for cult it is the medium through which mortals communicate with gods; for tragedy it is the price and the door of immortality.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 4L40 24H60L44 36L48 56L32 44L16 56L20 36L4 24H24L32 4Z"></path></svg></div>
@@ -413,55 +327,24 @@
         <span class="symbol-meaning">Carried fire, used in processions, war, and mystery rites</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name"><a href="/phoenix/" class="crosslink" data-crosslink="phoenix">Phoenix</a> pyre</span>
-        <span class="symbol-meaning">The fire of self-renewal and transformation</span>
+        <span class="symbol-name">The pyre on Oita</span>
+        <span class="symbol-meaning">The funeral fire that burned Heracles' mortality away and released the god</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The fennel stalk</span>
+        <span class="symbol-meaning">Prometheus' smuggling-device: stolen heaven hidden in a dry reed</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Pŷr</p>
-        </div>
-        
-      <p class="lead-text">Pŷr is <strong>elemental and mythic at once</strong>. It appears in the theft of fire by <a href="/prometheus/" class="crosslink" data-crosslink="prometheus">Prometheus</a>, the forge of <a href="/hephaistos/" class="crosslink" data-crosslink="hephaistos">Hephaistos</a>, and the philosophical cosmos of Heraclitus.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hesiod, Theogony</span>
-          <h3 class="myth-title">Prometheus Steals Fire</h3>
-          <p class="myth-text">Prometheus deceived <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> over the division of sacrifice and then stole fire from heaven, hiding it in a fennel stalk to give to mortals. Zeus punished him with the torment of the Caucasus and sent <a href="/pandora/" class="crosslink" data-crosslink="pandora">Pandora</a> as a counter-gift. Fire is thus the stolen technology that makes civilization possible.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Heraclitus</span>
-          <h3 class="myth-title">Fire as Cosmic Arche</h3>
-          <p class="myth-text">Heraclitus declared that 'all things are an exchange for fire, and fire for all things, as goods for gold and gold for goods.' Fire is the measure of transformation; it is war and peace, hunger and satiety. The cosmos is 'an ever-living fire, kindling in measures and going out in measures.'</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Mystery cult</span>
-          <h3 class="myth-title">Fire in Initiation</h3>
-          <p class="myth-text">In mysteries at <a href="/eleusis/" class="crosslink" data-crosslink="eleusis">Eleusis</a> and elsewhere, fire marked the boundary between the uninitiated and the initiated. Torches and lamps symbolized purification, vision, and the soul's passage through darkness into light.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -525,8 +408,142 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Πῦρ</p>
+                <p class="card-body">The name in its original Greek form. <strong>Pŷr</strong> (Πῦρ) is attested in the source tradition — “Fire”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">pyr</p>
+                <p class="card-body">Reduced to plain <strong>pyr</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Pŷr</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Pŷr</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Pŷr.com → xn--pr-hva.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Pŷr</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Pŷr</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Pŷr</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Pŷr</p>
+                    <p class="card-body">Restores <strong>Πῦρ</strong>. The live temple domain — <strong>pŷr.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">pyr</p>
+                    <p class="card-body">Flattens <strong>Πῦρ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Pŷr was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/pŷːr/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Pŷr</span>
+        <span class="phoneme-desc">Unaspirated voiceless bilabial stop [p] plus long upsilon with acute/circumflex [ŷː], followed by rho. The whole word is one long, high-pitched syllable.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'PYOOR' — one long, high-pitched syllable, like the sound of a flame catching.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Pŷr is Tier 1 because the Greek πῦρ contains both length (υ) and stress (acute/circumflex) on the same syllable. It is one of the oldest and most culturally charged words in Greek.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Pŷr is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Πῦρ</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Pŷr is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -535,7 +552,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Pŷr is the most alive of the elements. Earth rests, water flows, air moves, but fire consumes and transforms. It is never the same from moment to moment; it is pure becoming. Heraclitus saw in it the logos of the universe.</p>
+                <p class="pantheon-body">Pŷr is the most alive of the elements. Earth rests, water flows, air moves, but fire consumes and transforms; it is never the same from moment to moment, and that is its definition. Heraclitus saw in it the logos of the universe — not a substance but a rate, a measure, a way of burning. Fire also teaches danger and responsibility together. Prometheus was punished not for discovering fire but for giving it away without a warranty, and every technology since has repeated his dilemma: the gift warms the household that it might also burn. To honor pŷr is to respect both its generosity and its hunger — to use it without being consumed by it, and to remember that it is always exchanging us, in measures, for itself.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -544,7 +561,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/pyr_mascot.webp" type="image/webp"><img src="../assets/pyr_mascot.png" alt="Pŷr mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/pyr_mascot.webp" type="image/webp"><img src="../assets/pyr_mascot.png" alt="Pŷr mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -582,7 +599,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/pyr_logomark.webp" type="image/webp"><img src="../assets/pyr_logomark.webp" alt="Pŷr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/pyr_logomark.webp" type="image/webp"><img src="../assets/pyr_logomark.webp" alt="Pŷr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

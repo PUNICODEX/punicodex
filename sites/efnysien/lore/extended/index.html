@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Efnysien, Trouble, Mischief. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/efnysien/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Efnysien?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Efnysien is /ɛvˈnɪs.jɛn/ — approximately 'ev-NIS-yen' — the f sounds as v, the stress lands on the middle syllable, and the last syllable is a quick, light 'yen'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Efnysien mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Efnysien means Double enemy in the celtic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Efnysien?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Efnysien is associated with The mutilated horses (Pride made visible — an insult so literal that no payment could make the injured king forget it), The Cauldron of Rebirth (Pair Dadeni) (War stripped of death's limit — the gift that became a weapon, until the one who broke it broke himself), The flour-bags on the pillars (Treachery hidden in hospitality — seen through only by the man whose own mind worked that way), Gwern cast into the flames (The murder of the heir at the moment of his investiture — the point past which the tale permits no return), The broken heart (His only death-wound: he stretched himself inside the cauldron until it burst into four pieces, and his heart broke with it)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Efnysien in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Efnysien is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Efnysien?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Two Brothers” — Efnysien belongs to one tale and fills it: the Second Branch of the Mabinogi, Branwen ferch Llŷr. The branch is the story of a compensation that failed, and Efnysien is the reason — twice over the author of the injury, and at the end the author of the only sacrifice that stopped the ruin. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/efnysien_logolockup.webp" type="image/webp"><img src="../../assets/efnysien_logolockup.png" alt="Efnysien" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Efnysien</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Efnysien</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/efnysien_mascot.webp" type="image/webp"><img src="../../assets/efnysien_mascot.png" alt="Efnysien — Trouble, Mischief" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/efnysien_mascot.webp" type="image/webp"><img src="../../assets/efnysien_mascot.png" alt="Efnysien — Trouble, Mischief" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Efnysien</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Efnysien is Tier 2 by the mechanical rule: the Middle Welsh manuscript form is written in plain Latin letters, and normalized Welsh orthography attaches no diacritic to the name — there is nothing for the ASCII alphabet to lose. The capital alone distinguishes the temple form from the input; the figure's weight in the tradition is beside the point.</p>
+                <p class="etymology-note">The name <strong>Efnysien</strong> reaches the modern world through scholarly transliteration of the celtic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">E</td><td><code>U+0045</code></td><td>Latin Capital Letter E</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">f</td><td><code>U+0066</code></td><td>Latin Small Letter F</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">y</td><td><code>U+0079</code></td><td>Latin Small Letter Y</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">s</td><td><code>U+0073</code></td><td>Latin Small Letter S</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="560"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Efnysien</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Efnysien is the destroyer of the Mabinogi: the man the Second Branch introduces in a single balanced sentence — his brother Nisien could make peace between two armies at their most embittered; Efnysien could make two brothers quarrel when they loved each other best. One act of his, the maiming of the Irish king's horses, sets two kingdoms on the road to ruin; his last act, the breaking of the Cauldron of Rebirth, costs him his heart and ends the slaughter he began.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Efnysien in Later Traditions</h3><p class="cultural-card-body">The comparison that follows Efnysien everywhere is with [[loki|<a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>]]: the malice inside the house, the sworn kin whose mischief costs the gods their peace, the trickster the tale can neither spare nor save. MacKillop and the handbooks register the parallel as typological rather than genealogical — the Mabinogi's strife-maker is a human prince of the Children of Llŷr, not a god, and his story answers to Welsh concerns: the honour-price, the insult remembered, the compensation that fails. The truer Celtic company is the cauldron-complex: the Cauldron of Rebirth belongs to the same deep stock as the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a>'s cauldron from Murias in the Lebor Gabála Érenn, from which no company went away unsatisfied, and the branch itself gives the vessel an Irish provenance through the fugitive Llasar Llaes Gyfnewid. Within the corpus his closest kin are [[nisien|Nisien]], the brother he was written as the opposite of, and [[matholwch|<a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>]], the king his pride destroyed; [[manawydan|<a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a>]] and [[taliesin|<a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>]] are among the seven who carried Brân's head home.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried the Second Branch into the English-speaking world, and Efnysien's maiming of the horses and death in the cauldron became set-pieces of the Victorian Celtic revival. Evangeline Walton retold the branch at full length in The Children of Llyr (1971), the second volume of her Mabinogion tetralogy, and gave him the modern novel's inside view without softening him. His widest-reaching legacy is the cauldron itself: Lloyd Alexander drew the deathless cauldron-born warriors of his Prydain chronicles — The Black Cauldron (1965), filmed by Disney in 1985 — directly from the Welsh matter, where a cauldron that returns the slain to silent service is broken at terrible cost. In Welsh memory the branch left two landmarks: the proverb 'A fo ben, bid bont' — he who would be a leader, let him be a bridge — and Bedd Branwen, the grave by the Alaw where the tradition buried the sister his acts helped kill.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Efnysien</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Efnysien in Later Traditions</h3><p class="cultural-card-body">The comparison that follows Efnysien everywhere is with [[loki|<a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>]]: the malice inside the house, the sworn kin whose mischief costs the gods their peace, the trickster the tale can neither spare nor save. MacKillop and the handbooks register the parallel as typological rather than genealogical — the Mabinogi's strife-maker is a human prince of the Children of Llŷr, not a god, and his story answers to Welsh concerns: the honour-price, the insult remembered, the compensation that fails. The truer Celtic company is the cauldron-complex: the Cauldron of Rebirth belongs to the same deep stock as the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a>'s cauldron from Murias in the Lebor Gabála Érenn, from which no company went away unsatisfied, and the branch itself gives the vessel an Irish provenance through the fugitive Llasar Llaes Gyfnewid. Within the corpus his closest kin are [[nisien|Nisien]], the brother he was written as the opposite of, and [[matholwch|<a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>]], the king his pride destroyed; [[manawydan|<a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a>]] and [[taliesin|<a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>]] are among the seven who carried Brân's head home.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried the Second Branch into the English-speaking world, and Efnysien's maiming of the horses and death in the cauldron became set-pieces of the Victorian Celtic revival. Evangeline Walton retold the branch at full length in The Children of Llyr (1971), the second volume of her Mabinogion tetralogy, and gave him the modern novel's inside view without softening him. His widest-reaching legacy is the cauldron itself: Lloyd Alexander drew the deathless cauldron-born warriors of his Prydain chronicles — The Black Cauldron (1965), filmed by Disney in 1985 — directly from the Welsh matter, where a cauldron that returns the slain to silent service is broken at terrible cost. In Welsh memory the branch left two landmarks: the proverb 'A fo ben, bid bont' — he who would be a leader, let him be a bridge — and Bedd Branwen, the grave by the Alaw where the tradition buried the sister his acts helped kill.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Efnysien is an entirely literary figure: no inscription, cult site, or votive deposit names him, and the Welsh theonymic record of the period survives in literature rather than stone. His evidence is manuscript evidence — the Second Branch complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with the tales' composition argued to the later eleventh or early twelfth century. The geography of his story is real and walkable: Aberffraw, the royal court of Gwynedd where the horses were maimed; Harlech, where Brân's court sat; and the shore of Anglesey where the survivors landed. The tradition's one material anchor is Bedd Branwen, a cairn on the bank of the Afon Alaw in Anglesey identified since the Middle Ages with Branwen's 'four-sided grave' — excavated by Frances Lynch in 1969 and found to hold Early Bronze Age cremations, far older than any Mabinogi event: the identification is the folklore, not the archaeology, and it is precisely that honesty the record keeps.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Efnysien means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Efnysien is what a story looks like when it refuses to flatter anyone — including itself. The Second Branch never explains him. He is not possessed, not wronged first, not mad; the tale simply pairs him with Nisien and lets the contrast stand: what one brother binds, the other unbinds, and the world has both kinds of man in it. His evil is small in scale and total in consequence — a night with a knife in a stable, and two kingdoms bleed for a generation. That is the branch's hardest teaching about trouble: it does not need to be great, only timely, and no compensation is large enough to make an injured king forget.</p><p>And then the ending, which the Welsh text declines to call redemption. Efnysien sees what his mischief has cost — the speechless dead rising nightly from the cauldron — and lies down among the corpses of the enemy to be thrown in with them. No one forgives him in the text; no one praises him; the branch records only that the cauldron broke and his heart broke. The destroyer is allowed one act of destruction aimed at destruction itself, and it costs exactly everything he has. The Mabinogi does not promise that the man who sets the fire can put it out. It shows him choosing to burn with it.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Efnysien, Trouble, Mischief, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Efnysien?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Efnysien</strong> is /ɛvˈnɪs.jɛn/ — approximately 'ev-NIS-yen' — the f sounds as v, the stress lands on the middle syllable, and the last syllable is a quick, light 'yen'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Efnysien mean?</summary><div class="faq-answer"><p><strong>Efnysien</strong> means <strong>Double enemy</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Efnysien?</summary><div class="faq-answer"><p>Efnysien is associated with <strong>The mutilated horses</strong> (Pride made visible — an insult so literal that no payment could make the injured king forget it), <strong>The Cauldron of Rebirth (Pair Dadeni)</strong> (War stripped of death's limit — the gift that became a weapon, until the one who broke it broke himself), <strong>The flour-bags on the pillars</strong> (Treachery hidden in hospitality — seen through only by the man whose own mind worked that way), <strong>Gwern cast into the flames</strong> (The murder of the heir at the moment of his investiture — the point past which the tale permits no return), <strong>The broken heart</strong> (His only death-wound: he stretched himself inside the cauldron until it burst into four pieces, and his heart broke with it).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Efnysien in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>efnysien</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Efnysien?</summary><div class="faq-answer"><p>The tale introduces him by contrast. Penarddun ferch <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a>, mother of Brân the Blessed, Branwen, and Manawydan by Llŷr, bore two sons to Euroswydd: Nisien and Efnysien. Of Nisien the branch says he was a good man and a gentle youth, who could bring peace between two armies at their most embittered; of Efnysien it says he would set two brothers at strife when they loved each other most. The whole Second Branch is the working-out of that one sentence.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Efnysien?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Efnysien</strong> is /ɛvˈnɪs.jɛn/ — approximately 'ev-NIS-yen' — the f sounds as v, the stress lands on the middle syllable, and the last syllable is a quick, light 'yen'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Efnysien mean?</summary><div class="faq-answer"><p><strong>Efnysien</strong> means <strong>Double enemy</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Efnysien?</summary><div class="faq-answer"><p>Efnysien is associated with <strong>The mutilated horses</strong> (Pride made visible — an insult so literal that no payment could make the injured king forget it), <strong>The Cauldron of Rebirth (Pair Dadeni)</strong> (War stripped of death's limit — the gift that became a weapon, until the one who broke it broke himself), <strong>The flour-bags on the pillars</strong> (Treachery hidden in hospitality — seen through only by the man whose own mind worked that way), <strong>Gwern cast into the flames</strong> (The murder of the heir at the moment of his investiture — the point past which the tale permits no return), <strong>The broken heart</strong> (His only death-wound: he stretched himself inside the cauldron until it burst into four pieces, and his heart broke with it).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Efnysien in Unicode?</summary><div class="faq-answer"><p><strong>Efnysien</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Efnysien?</summary><div class="faq-answer"><p>“The Two Brothers” — Efnysien belongs to one tale and fills it: the Second Branch of the Mabinogi, Branwen ferch Llŷr. The branch is the story of a compensation that failed, and Efnysien is the reason — twice over the author of the injury, and at the end the author of the only sacrifice that stopped the ruin. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,13 +360,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Efnysien and related cults.</cite></li><li><cite>Efnysien is an entirely literary figure: no inscription, cult site, or votive deposit names him, and the Welsh theonymic record of the period survives in literature rather than stone. His evidence is manuscript evidence — the Second Branch complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with the tales' composition argued to the later eleventh or early twelfth century. The geography of his story is real and walkable: Aberffraw, the royal court of Gwynedd where the horses were maimed; Harlech, where Brân's court sat; and the shore of Anglesey where the survivors landed. The tradition's one material anchor is Bedd Branwen, a cairn on the bank of the Afon Alaw in Anglesey identified since the Middle Ages with Branwen's 'four-sided grave' — excavated by Frances Lynch in 1967–68 and found to hold Early Bronze Age cremations, far older than any Mabinogi event: the identification is the folklore, not the archaeology, and it is precisely that honesty the record keeps.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Efnysien and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The Mabinogi, Second Branch (Branwen ferch Llŷr), trans. Sioned Davies (Oxford, 2007); Welsh text ed. Ifor Williams, Pedeir Keinc y Mabinogi (1930) — the whole dossier: the two brothers, the horses, the bags, Gwern, the cauldron</cite></li><li><cite>The Mabinogion, trans. Lady Charlotte Guest, 3 vols. (London, 1838–49) — the first Englishing of the Second Branch</cite></li><li><cite>Mac Cana, Proinsias, Branwen Daughter of Llŷr: A Study of the Irish Affinities and of the Composition of the Second Branch of the Mabinogi (Cardiff, 1958)</cite></li><li><cite>Mac Cana, Proinsias, The Mabinogi, 2nd ed. (Cardiff: University of Wales Press, 1992)</cite></li><li><cite>Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.vv. Efnisien, Branwen ferch Llŷr, Mabinogi</cite></li><li><cite>MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Efnisien, Nisien, Pair Dadeni — the name's gloss and the cauldron-complex</cite></li><li><cite>Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (University of Wales Press), s.v. Efnisien</cite></li></ul>
+                    <ul class="source-list"><li><cite>The Mabinogi, Second Branch (Branwen ferch Llŷr), trans. Sioned Davies (Oxford, 2007); Welsh text ed. Ifor Williams, Pedeir Keinc y Mabinogi (1930) — the whole dossier: the two brothers, the horses, the bags, Gwern, the cauldron</cite></li><li><cite>The Mabinogion, trans. Lady Charlotte Guest, 3 vols. (London, 1838–49) — the first Englishing of the Second Branch</cite></li><li><cite>Mac Cana, Proinsias, Branwen Daughter of Llŷr: A Study of the Irish Affinities and of the Composition of the Second Branch of the Mabinogi (Cardiff, 1958), and The Mabinogi, 2nd ed. (Cardiff, 1992)</cite></li><li><cite>Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.vv. Efnisien, Branwen ferch Llŷr, Mabinogi</cite></li><li><cite>MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Efnisien, Nisien, Pair Dadeni — the name's gloss and the cauldron-complex</cite></li><li><cite>Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (University of Wales Press), s.v. Efnisien</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/efnysien_logomark.webp" type="image/webp"><img src="../../assets/efnysien_logomark.webp" alt="Efnysien logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/efnysien_logomark.webp" type="image/webp"><img src="../../assets/efnysien_logomark.webp" alt="Efnysien logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

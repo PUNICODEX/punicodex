@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Brigid — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Brigid</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Brigid</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,147 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Brigid</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Brigid</strong> is the standard Celtic romanisation, documented in academic sources — “The Exalted One (from Old Irish Brigit)”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">brigid</p>
-                    <p class="card-body">The plain <strong>brigid</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Brigid</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Brigid</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Brigid.com → brigid.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Brigid</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Brigid</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Brigid is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Brigid</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Brigid</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Brigid</p>
-                    <p class="card-body">The full Unicode restoration. <strong>brigid.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Brigid was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Brigid</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈbrʲiɣʲitʲ/</span>
-            <span class="ipa-label">Old Irish Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Br-</span>
-        <span class="phoneme-desc">Voiced bilabial stop [b] and slender (palatalized) trill [rʲ]; Old Irish r was always palatalized after an initial b in this name, as in modern Irish.</span>
+      <p class="lead-text">Irish tradition gives Brigit few long tales but a peculiar density of testimony: the great pseudohistory of the Lebor Gabála knows her genealogy, the battle-tale Cath Maige Tuired gives her the first keening heard in Ireland, and Cormac's Glossary preserves the triad that made her three goddesses in one name.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Lebor Gabála Érenn</span>
+          <h3 class="myth-title">The Dagda's Daughter</h3>
+          <p class="myth-text">The Book of Invasions places Brigit firmly in the family of the Túatha Dé Danann: Brigit the poetess, daughter of the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a>, the good god who owns the cauldron and the club. The same tradition marries her to Bres, the half-Fomorian king whose beautiful face and niggardly rule nearly undid the Túatha Dé Danann, and gives her three sons — Ruadán, Iuchar, and Iucharba — so that the exalted one stands, by marriage and blood, on both sides of the great conflict of Irish myth. The later tradition adopted her sons into another house entirely, making them the three sons of Tuireann for whose killing <a href="/lugh/" class="crosslink" data-crosslink="lugh">Lugh</a> exacted a blood-price. The Lebor Gabála is pseudohistory, written by Christian scholars ordering the gods into an ancestry, but its genealogies are the tradition's own filing system: Brigit belongs to the Dagda's house, and her griefs run through both armies.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-i-</span>
-        <span class="phoneme-desc">Short front [i], held brief; in the later language the vowel lengthened, giving modern Irish Bríd.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Sanas Cormaic</span>
+          <h3 class="myth-title">Three Sisters, One Name</h3>
+          <p class="myth-text">Cormac mac Cuilennáin's glossary, compiled around 900 by the bishop-king of Cashel, preserves the tradition's clearest statement of her triple nature. Brigit, it says, is the poetess, daughter of the Dagda — and she had two sisters, Brigits also: Brigit the woman of smithcraft and Brigit the female physician, from whose names all the Irish used to call a goddess Brigit. Three crafts, three sisters, one name: from this single entry comes the familiar picture of the triple goddess of poetry, smithcraft, and healing. No saga ever dramatizes the three sisters — their entire biography is this glossary entry and the keening of the Second Battle — which is itself a kind of testimony: Brigit's worship was a matter of crafts and calendar, not of story. Whether the triad records three genuinely distinct figures or one goddess's three provinces arranged in the Irish love of threes, the Glossary is the witness every later account follows.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-g-</span>
-        <span class="phoneme-desc">Voiced velar fricative [ɣ] between vowels — not a hard stop but a soft continuant, the sound Old Irish wrote g in medial position.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cath Maige Tuired</span>
+          <h3 class="myth-title">The First Keening in Ireland</h3>
+          <p class="myth-text">The Second Battle of Mag Tuired gives Brigit her one moment of action, and it is grief. Her son Ruadán, sent by his Fomorian kin to spy on the smith Goibniu — whose forge armed the Túatha Dé — hurled a spear at the smith; Goibniu drew it out of his own side and cast it back, and Ruadán went to his father's camp to die. Brigit came to the field and bewailed her son — and the text says she wept and shrieked over him, the first keening and the first whistling for grief that was heard in Ireland. The tradition sets her love against her blood: she was of the Túatha Dé, her son of the Fomorians, and the battle made her choose which grief to keep. The inventor of lamentation is a terrible dignity: the goddess of the word is the one who first taught Ireland what a mother says at a grave — and the saga sets poetry's darkest strain beside the forge it avenges.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-id</span>
-        <span class="phoneme-desc">Short front [i] and slender dental [dʲ]; the final d was devoiced and palatalized, surviving as the -d of modern Bríd /bʲrʲiːdʲ/.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Giraldus Cambrensis, Topographia Hiberniae</span>
+          <h3 class="myth-title">The Fire at Kildare</h3>
+          <p class="myth-text">Writing about 1188, Gerald of Wales describes the wonder of Kildare with a traveller's precision: a fire hedged round with a circular fence of brushwood, which no male may cross — any man who tries, he says, does not escape Brigid's vengeance. Nineteen nuns tend the flame, one each night, each adding fuel; on the twentieth night the last nun lays the wood and says, 'Brigid, guard your fire, it is yours.' In the morning the fire is found still burning, and its ashes, Gerald marvels, never increase though the wood is always consumed. The nuns themselves, he adds, hold that once the fire is out it can never be rekindled — so it is never allowed to go out. Half a millennium earlier, Cogitosus's Life of St Brigit (c. 650) already described the same hearth tended at Kildare. Gerald records it as a marvel of the saint's church; scholarship has never doubted that the hedge, the number nineteen, and the unashing flame belong to a far older hearth.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Sanas Cormaic · the quarter days</span>
+          <h3 class="myth-title">Imbolc, the Ewe's Milk</h3>
+          <p class="myth-text">Her feast stands at Imbolc, the first of February, one of the four great hinges of the Irish year beside Beltaine, Lugnasad, and Samain. Cormac's Glossary explains the word itself as oimelc, 'ewe's milk' — the season when the sheep come into milk and the year's hunger begins to turn. The old texts keep the day as Brigit's own; the keening, the forge, and the word all gather at the one date, when the light is just beginning to return and the flocks give their first milk. In the Scottish Highlands the eve was kept with the rhyme Carmichael recorded in the Carmina Gadelica: the serpent will come from its hole on Bride's morn, though it dreads the cold. It is the oldest continuously observed fact about her: whatever else changed, the first of February stayed hers.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'BRIJ-id' — like 'bridge' split in two, the g softened to a voiced fricative (a gargled g), both r and d slender; the modern Irish form Bríd is simply 'breed'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Old Irish</strong> Brigit (genitive Brigte), daughter of the <a href="/dagda/" class="crosslink" data-crosslink="dagda">Dagda</a> in the Mythological Cycle.</li><li><strong>Proto-Celtic</strong> *Brigantī, 'the Exalted One', source also of the tribal name Brigantes and the Romano-British goddess Brigantia.</li><li><strong>Modern Irish</strong> Bríd, /bʲrʲiːdʲ/, the living form of the name and of the saint.</li><li><strong>Scottish Gaelic and Manx</strong> Brìde and Breeshey, the name carried into the sister Gaelic languages.</li><li><strong>Watched form</strong> brigid.com — held outside the PuniCodex collection and watched for release; no form of the name is currently owned.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Brigid is Tier 2 by the mechanical rule: the normalized form is already plain ASCII — the Old Irish spelling Brigit carries no diacritic and no distinctive letter for the restoration to recover. Only the capital distinguishes the temple's form from the input; the name's fame, like <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s, vastly outruns its orthography.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -378,7 +293,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Exalted One</h2>
             <p class="section-subtitle">Poetry, Smithcraft, Healing — and the Undying Flame of Kildare</p>
         </div>
@@ -429,65 +344,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Brigid</p>
-        </div>
-        
-      <p class="lead-text">Irish tradition gives Brigit few long tales but a peculiar density of testimony: the great pseudohistory of the Lebor Gabála knows her genealogy, the battle-tale Cath Maige Tuired gives her the first keening heard in Ireland, and Cormac's Glossary preserves the triad that made her three goddesses in one name.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Lebor Gabála Érenn</span>
-          <h3 class="myth-title">The Dagda's Daughter</h3>
-          <p class="myth-text">The Book of Invasions places Brigit firmly in the family of the Túatha Dé Danann: Brigit the poetess, daughter of the Dagda, the good god who owns the cauldron and the club. The same tradition marries her to Bres, the half-Fomorian king whose beautiful face and niggardly rule nearly undid the Túatha Dé Danann, and gives her a son, Ruadán — so that the exalted one stands, by marriage and blood, on both sides of the great conflict of Irish myth. The Lebor Gabála is pseudohistory, written by Christian scholars ordering the gods into an ancestry, but its genealogies are the tradition's own filing system: Brigit belongs to the Dagda's house.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Sanas Cormaic</span>
-          <h3 class="myth-title">Three Sisters, One Name</h3>
-          <p class="myth-text">Cormac mac Cuilennáin's glossary, compiled around 900, preserves the tradition's clearest statement of her triple nature. Brigit, it says, is the poetess, daughter of the Dagda — and she had two sisters, Brigits also: Brigit the woman of smithcraft and Brigit the female physician, from whose names all the Irish used to call a goddess Brigit. Three crafts, three sisters, one name: from this single entry comes the familiar picture of the triple goddess of poetry, smithcraft, and healing. Whether the triad records three genuinely distinct figures or one goddess's three provinces arranged in the Irish love of threes, the Glossary is the witness every later account follows.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Cath Maige Tuired</span>
-          <h3 class="myth-title">The First Keening in Ireland</h3>
-          <p class="myth-text">The Second Battle of Mag Tuired gives Brigit her one moment of action, and it is grief. Her son Ruadán, sent by his Fomorian kin to spy on the Túatha Dé Danann, hurls a spear at the smith Goibniu; the smith draws it from his own wound and casts it back, and Ruadán goes to his father to die. Brigit comes to the field and bewails her son — and the text says she wept and shrieked over him, the first keening and the first whistling for grief that was heard in Ireland. The inventor of lamentation is a terrible dignity: the goddess of the word is the one who first taught Ireland what a mother says at a grave.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Giraldus Cambrensis, Topographia Hiberniae</span>
-          <h3 class="myth-title">The Fire at Kildare</h3>
-          <p class="myth-text">Writing about 1188, Gerald of Wales describes the wonder of Kildare with a traveller's precision: a fire hedged round with a circular fence of brushwood, which no male may cross — any man who tries, he says, does not escape Brigid's vengeance. Nineteen nuns tend the flame, one each night, each adding fuel; on the twentieth night the last nun lays the wood and says, 'Brigid, guard your fire, it is yours.' In the morning the fire is found still burning, and its ashes, Gerald marvels, never increase though the wood is always consumed. He records it as a marvel of the saint's church; scholarship has never doubted that the hedge, the number nineteen, and the unashing flame belong to a far older hearth.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Sanas Cormaic · the quarter days</span>
-          <h3 class="myth-title">Imbolc, the Ewe's Milk</h3>
-          <p class="myth-text">Her feast stands at Imbolc, the first of February, one of the four great hinges of the Irish year beside Beltaine, Lugnasad, and Samain. Cormac's Glossary explains the word itself as oimelc, 'ewe's milk' — the season when the sheep come into milk and the year's hunger begins to turn. The old texts keep the day as Brigit's own; the keening, the forge, and the word all gather at the one date, when the light is just beginning to return and the flocks give their first milk. It is the oldest continuously observed fact about her: whatever else changed, the first of February stayed hers.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -551,8 +415,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Brigid</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Brigid</strong> is the standard Celtic romanisation, documented in academic sources — “The Exalted One (from Old Irish Brigit)”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">brigid</p>
+                <p class="card-body">The plain <strong>brigid</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Brigid</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Brigid</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Brigid.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Brigid</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Brigid</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Brigid</p>
+                    <p class="card-body">The full Unicode restoration. <strong>brigid.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Brigid was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈbrʲiɣʲitʲ/</span>
+            <span class="ipa-label">Old Irish Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Br-</span>
+        <span class="phoneme-desc">Voiced bilabial stop [b] and slender (palatalized) trill [rʲ]; Old Irish r was always palatalized after an initial b in this name, as in modern Irish.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-i-</span>
+        <span class="phoneme-desc">Short front [i], held brief; in the later language the vowel lengthened, giving modern Irish Bríd.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-g-</span>
+        <span class="phoneme-desc">Voiced velar fricative [ɣ] between vowels — not a hard stop but a soft continuant, the sound Old Irish wrote g in medial position.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-id</span>
+        <span class="phoneme-desc">Short front [i] and slender dental [dʲ]; the final d was devoiced and palatalized, surviving as the -d of modern Bríd /bʲrʲiːdʲ/.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'BRIJ-id' — like 'bridge' split in two, the g softened to a voiced fricative (a gargled g), both r and d slender; the modern Irish form Bríd is simply 'breed'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Brigid is Tier 2 by the mechanical rule: the normalized form is already plain ASCII — the Old Irish spelling Brigit carries no diacritic and no distinctive letter for the restoration to recover. Only the capital distinguishes the temple's form from the input; the name's fame, like Baldr's, vastly outruns its orthography.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Brigid is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Brigid</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -570,7 +575,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/brigid_mascot.webp" type="image/webp"><img src="../assets/brigid_mascot.png" alt="Brigid mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/brigid_mascot.webp" type="image/webp"><img src="../assets/brigid_mascot.png" alt="Brigid mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -608,7 +613,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/brigid_logomark.webp" type="image/webp"><img src="../assets/brigid_logomark.webp" alt="Brigid logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/brigid_logomark.webp" type="image/webp"><img src="../assets/brigid_logomark.webp" alt="Brigid logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

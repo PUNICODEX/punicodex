@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Beli, Light, Sun. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/beli/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Beli?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Beli is /ˈbɛlɪ/ — approximately BEL-ee — two syllables, stress on the first; the e is the open e of 'bed', never the long ay of 'bailey'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Beli mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Beli means Bright, shining in the celtic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Beli?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Beli is associated with The Island of Britain (The single realm Beli held and his sons inherited — kingship imagined whole before it was ever divided), The family tree (The pedigrees of the Welsh dynasties growing back to one root — ancestry as the ground of legitimacy), The veil of illusion (Caswallawn's invisible cloak in Branwen — the house of Beli taking the crown unseen), The walled city (Lludd's rebuilding of London — Lud's town, the memory of the dynasty fixed in stone and street-names), The sun's brightness (The traditional gloss of the name — 'bright, shining' — carried from the Belenos inscriptions into the Welsh ancestor)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Beli in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Beli is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Beli?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Four Sons of Beli” — Beli has no adventure of his own: his story is his house. The Mabinogion knows him as the dead king whose four sons inherit Britain, France, and the quarrels of the next generation; the pedigrees know him as the root; and Geoffrey of Monmouth knows him as Heli, father of the builder of London. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/beli_logolockup.webp" type="image/webp"><img src="../../assets/beli_logolockup.png" alt="Beli" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Beli</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Beli</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/beli_mascot.webp" type="image/webp"><img src="../../assets/beli_mascot.png" alt="Beli — Light, Sun" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/beli_mascot.webp" type="image/webp"><img src="../../assets/beli_mascot.png" alt="Beli — Light, Sun" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Beli</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Middle Welsh Beli (Beli mawr uab Manogan, 'Beli the Great, son of Manogan') is already written in the Latin alphabet, so the ASCII form loses nothing: the name is Tier 2 by the mechanical rule, since the restoration preserves no diacritic or distinctive letter that ASCII drops. The traditional gloss 'bright, shining' reaches the name through its long-proposed connection with the Celtic god Belenos — conventionally derived from the root *bhel-, 'to shine' — but the etymology of Belenos itself is debated, and the handbooks record the link as a possibility, not a proof.</p>
+                <p class="etymology-note">The name <strong>Beli</strong> reaches the modern world through scholarly transliteration of the celtic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">B</td><td><code>U+0042</code></td><td>Latin Capital Letter B</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Beli</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Beli mawr — Beli the Great, son of Manogan — is the deep ancestor of British kingship: the king of the Island of Britain whom the Mabinogion sets at the head of its dynasties, father of Lludd, Caswallawn, Nynniaw, and Llefelys, and the name to which the medieval Welsh royal pedigrees climb. Behind the king, scholarship has long glimpsed a god — the continental Belenos, the 'bright, shining' one — but the texts give us the ancestor, and the ancestor is what the record can defend.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Beli in Later Traditions</h3><p class="cultural-card-body">Beli's whole cross-cultural argument is the Belenos question. The continental god is attested from Aquileia to Noricum, glossed by the ancients as a Celtic Apollo, and derived by tradition from *bhel-, 'to shine'. Welsh Beli Mawr matches the name nearly perfectly, and from O'Rahilly onward scholars have set the Irish ancestor-god Bile beside both, proposing a single Celtic 'bright one' dimmed into three literatures as three ancestors. Mac Cana and Koch record the comparison; neither certifies it. The distinction worth keeping is Geoffrey's other Belinus — the son of Dunvallo, brother of Brennius — a different figure who shares nothing with Beli Mawr but the name. Within the Welsh corpus, Beli's closest kin are the other fountainheads of dynasty: [[don|Dôn]], mother of the Children of Dôn, and Llŷr, father of the house of Llŷr, whose sons Brân and [[manawydan|<a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a>]] lose the island's crown to Beli's son Caswallawn in the Second Branch.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Beli's afterlife is genealogical before it is literary. The medieval pedigrees made descent from Beli Mawr the deepest claim a British dynasty could print, and the convention outlived the Middle Ages: Tudor and Stuart antiquaries, eager to trace the crown to British and Trojan roots, found Beli waiting at the root of the trees Geoffrey had Latinized. Through Geoffrey's Heli he fathered the legend of London itself — Lud's town, Lud's gate, the name written into the city's streets — and through his son Cassibelaunus he stands two generations above Shakespeare's Cymbeline, whose Britain is still Beli's island. In modern Wales the name persists quietly: Beli remains a Welsh personal name, and Beli Mawr keeps his place in the national memory as the grandfather of kings. Modern Celtic pagan and Druid practice honors the ancestral Belenus beside him, keeping the old question — king or bright god — alive rather than answered.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Beli</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Beli in Later Traditions</h3><p class="cultural-card-body">Beli's whole cross-cultural argument is the Belenos question. The continental god is attested from Aquileia to Noricum, glossed by the ancients as a Celtic Apollo, and derived by tradition from *bhel-, 'to shine'. Welsh Beli Mawr matches the name nearly perfectly, and from O'Rahilly onward scholars have set the Irish ancestor-god Bile beside both, proposing a single Celtic 'bright one' dimmed into three literatures as three ancestors. Mac Cana and Koch record the comparison; neither certifies it. The distinction worth keeping is Geoffrey's other Belinus — the son of Dunvallo, brother of Brennius — a different figure who shares nothing with Beli Mawr but the name. Within the Welsh corpus, Beli's closest kin are the other fountainheads of dynasty: [[don|Dôn]], mother of the Children of Dôn, and Llŷr, father of the house of Llŷr, whose sons Brân and [[manawydan|<a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a>]] lose the island's crown to Beli's son Caswallawn in the Second Branch.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Beli's afterlife is genealogical before it is literary. The medieval pedigrees made descent from Beli Mawr the deepest claim a British dynasty could print, and the convention outlived the Middle Ages: Tudor and Stuart antiquaries, eager to trace the crown to British and Trojan roots, found Beli waiting at the root of the trees Geoffrey had Latinized. Through Geoffrey's Heli he fathered the legend of London itself — Lud's town, Lud's gate, the name written into the city's streets — and through his son Cassibelaunus he stands two generations above Shakespeare's Cymbeline, whose Britain is still Beli's island. In modern Wales the name persists quietly: Beli remains a Welsh personal name, and Beli Mawr keeps his place in the national memory as the grandfather of kings. Modern Celtic pagan and Druid practice honors the ancestral Belenos beside him, keeping the old question — king or bright god — alive rather than answered.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Beli is a textual figure: no inscription, image, or votive object from Britain names him, and no cult site is his. His witnesses are codices — the White Book of Rhydderch (Aberystwyth, NLW Peniarth 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410) for the Mabinogion tales, and British Library Harley MS 3859 (c. 1100) for the genealogies that root the Welsh dynasties in him. The material evidence belongs to his proposed continental cognate: the dedications Belino Augusto sacrum from Aquileia and the eastern Alps are real stones with a real theonym — the strongest archaeological fact in the whole dossier, and the reason the 'bright, shining' gloss will not go away. Comparative evidence only: no altar can be read as addressed to the Welsh ancestor-king himself.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Beli means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Beli is the patron of everything that matters most and does least: the dead father, the founding reign, the name at the root of the tree. He fights no monster, wins no bride, casts no spell; the Mabinogion finishes him in a sentence, and then builds a world on him. His sons inherit his island and quarrel over it; his house takes the crown under a veil of illusion; the pedigrees spend a thousand years climbing back to him. That is how ancestry actually works — the founder is never the hero of the story, only its premise. Beli asks the genealogist's hard question of every institution and every family: not what have you done, but what are you descended from, and does the root still hold. And the name itself holds its own question: whether the bright one, the shining god of the continental altars, lies behind the sober Welsh king. Some roots run deeper than the record can follow. Beli is the place where Britain's goes dark.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Beli, Light, Sun, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Beli?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Beli</strong> is /ˈbɛlɪ/ — approximately BEL-ee — two syllables, stress on the first; the e is the open e of 'bed', never the long ay of 'bailey'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Beli mean?</summary><div class="faq-answer"><p><strong>Beli</strong> means <strong>Bright, shining</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Beli?</summary><div class="faq-answer"><p>Beli is associated with <strong>The Island of Britain</strong> (The single realm Beli held and his sons inherited — kingship imagined whole before it was ever divided), <strong>The family tree</strong> (The pedigrees of the Welsh dynasties growing back to one root — ancestry as the ground of legitimacy), <strong>The veil of illusion</strong> (Caswallawn's invisible cloak in Branwen — the house of Beli taking the crown unseen), <strong>The walled city</strong> (Lludd's rebuilding of London — Lud's town, the memory of the dynasty fixed in stone and street-names), <strong>The sun's brightness</strong> (The traditional gloss of the name — 'bright, shining' — carried from the Belenos inscriptions into the Welsh ancestor).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Beli in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>beli</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Beli?</summary><div class="faq-answer"><p>The tale of Lludd and Llefelys opens with the settlement of the island: Beli the Great, son of Manogan, was king of this island, and he had three sons — Lludd, Caswallawn, and Nynniaw — and, as the story tells, a fourth son called Llefelys. When Beli died, the kingdom of the Island of Britain fell to Lludd as the eldest, and Lludd ruled it prosperously, rebuilding the walls of London and living there for most of the year. Llefelys, the youngest, went to France, won the love of the old king's only daughter, and inherited that kingdom in his turn.What follows — the three plagues that fall on Britain, and Llefelys's counsel from the middle of the Channel — belongs to the sons' temples. Beli's part is finished in the opening lines, and that is precisely his function: he is the point from which legitimacy flows, the dead father whose reign makes his sons' divided world one family.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Beli?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Beli</strong> is /ˈbɛlɪ/ — approximately BEL-ee — two syllables, stress on the first; the e is the open e of 'bed', never the long ay of 'bailey'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Beli mean?</summary><div class="faq-answer"><p><strong>Beli</strong> means <strong>Bright, shining</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Beli?</summary><div class="faq-answer"><p>Beli is associated with <strong>The Island of Britain</strong> (The single realm Beli held and his sons inherited — kingship imagined whole before it was ever divided), <strong>The family tree</strong> (The pedigrees of the Welsh dynasties growing back to one root — ancestry as the ground of legitimacy), <strong>The veil of illusion</strong> (Caswallawn's invisible cloak in Branwen — the house of Beli taking the crown unseen), <strong>The walled city</strong> (Lludd's rebuilding of London — Lud's town, the memory of the dynasty fixed in stone and street-names), <strong>The sun's brightness</strong> (The traditional gloss of the name — 'bright, shining' — carried from the Belenos inscriptions into the Welsh ancestor).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Beli in Unicode?</summary><div class="faq-answer"><p><strong>Beli</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Beli?</summary><div class="faq-answer"><p>“The Four Sons of Beli” — Beli has no adventure of his own: his story is his house. The Mabinogion knows him as the dead king whose four sons inherit Britain, France, and the quarrels of the next generation; the pedigrees know him as the root; and Geoffrey of Monmouth knows him as Heli, father of the builder of London. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,7 +360,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Beli and related cults.</cite></li><li><cite>Beli is a textual figure: no inscription, image, or votive object from Britain names him, and no cult site is his. His witnesses are codices — the White Book of Rhydderch (Aberystwyth, NLW Peniarth 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410) for the Mabinogion tales, and British Library Harley MS 3859 (c. 1100) for the genealogies that root the Welsh dynasties in him. The material evidence belongs to his proposed continental cognate: the dedications Belino Augusto sacrum from Aquileia and the eastern Alps are real stones with a real theonym — the strongest archaeological fact in the whole dossier, and the reason the 'bright, shining' gloss will not go away. Comparative evidence only: no altar can be read as addressed to the Welsh ancestor-king himself.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Beli and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/beli_logomark.webp" type="image/webp"><img src="../../assets/beli_logomark.webp" alt="Beli logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/beli_logomark.webp" type="image/webp"><img src="../../assets/beli_logomark.webp" alt="Beli logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

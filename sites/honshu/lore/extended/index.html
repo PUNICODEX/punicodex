@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Honshū, Center, Mainland, Heart. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/honshu/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Honshū?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Honshū is /hon.ɕuː/ — approximately HON-shoo, with a long final ū."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Honshū mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Honshū means 'Main island' (本州) in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Honshū?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Honshū is associated with The three regalia (Mirror, sword, and jewel — enshrined on Honshū at Ise, Atsuta, and the palace), The rice paddy (The Yayoi inheritance: wet-rice civilization as the island's second foundation), The cedar avenue (The planted forests of the pilgrim roads and shrine precincts)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Honshū in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII honshu strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Honshū?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Islands from the Spear” — Honshū's mythology is the national charter itself: the Kojiki's island-birth, the sun goddess's gift of the land, and the descent of her grandson to rule it. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/honshu_logolockup.webp" type="image/webp"><img src="../../assets/honshu_logolockup.png" alt="Honshū" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Honshū</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Honshū.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/honshu_mascot.webp" type="image/webp"><img src="../../assets/honshu_mascot.png" alt="Honshū — Center, Mainland, Heart" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/honshu_mascot.webp" type="image/webp"><img src="../../assets/honshu_mascot.png" alt="Honshū — Center, Mainland, Heart" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Honshū 本州 — "Main Province" — closes with the long ū of shū, preserved in the macron. The name is descriptive geography elevated to a proper name: the largest of Japan's islands, holding <a href="/tokyo/" class="crosslink" data-crosslink="tokyo">Tokyo</a>, <a href="/kyoto/" class="crosslink" data-crosslink="kyoto">Kyōto</a>, <a href="/osaka/" class="crosslink" data-crosslink="osaka">Ōsaka</a>, and some three-quarters of the nation. Both syllables carry long vowels in kana (ほんしゅう); the macron on the final ū marks the doubled u.</p>
+                <p class="etymology-note">The name <strong>Honshū</strong> carries the orthographic signature of the japanese tradition: 本州. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Honshū is the island that became a civilization: largest of the Japanese archipelago, home of every historic capital from Nara to Kyōto to Edo-Tōkyō, and the ground on which the Jōmon, the Yayoi, and the Yamato state built the longest continuous imperial tradition on earth.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Honshū in Later Traditions</h3><p class="cultural-card-body">The island is the great syncretist of <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>: Buddhism arriving from Korea in the 6th century was fused with kami-worship into shinbutsu-shūgō — the dual-identity system that ran Japanese religion for a millennium; Zen and the tea culture of Kyōto fused with warrior aesthetics; and the Meiji restoration engineered State Shinto on top of it all. Honshū's mountains hold the shugendō tradition — Yamabushi ascetics practicing the oldest fusion of all: kami, buddha, and mountain as one path.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Honshū carries roughly 104 million people — the largest island population on earth — and its corridor from Tōkyō to Ōsaka is the most studied urban megalopolis in geography. Its cultural exports need no list: the world's first novel (The Tale of Genji) was written here, Zen gardens and ukiyo-e and kabuki were born here, and the shinkansen that shrank the island in 1964 taught the world high-speed rail.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Honshū</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Honshū in Later Traditions</h3><p class="cultural-card-body">The island is the great syncretist of <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>: Buddhism arriving from Korea in the 6th century was fused with kami-worship into shinbutsu-shūgō — the dual-identity system that ran Japanese religion for a millennium; Zen and the tea culture of <a href="/kyoto/" class="crosslink" data-crosslink="kyoto">Kyōto</a> fused with warrior aesthetics; and the Meiji restoration engineered State Shinto on top of it all. Honshū's mountains hold the shugendō tradition — Yamabushi ascetics practicing the oldest fusion of all: kami, buddha, and mountain as one path.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Honshū carries roughly 104 million people — the largest island population on earth — and its corridor from <a href="/tokyo/" class="crosslink" data-crosslink="tokyo">Tōkyō</a> to <a href="/osaka/" class="crosslink" data-crosslink="osaka">Ōsaka</a> is the most studied urban megalopolis in geography. Its cultural exports need no list: the world's first novel (The Tale of Genji) was written here, Zen gardens and ukiyo-e and kabuki were born here, and the shinkansen that shrank the island in 1964 taught the world high-speed rail.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Sannai-Maruyama near Aomori preserves a Jōmon city of 5,500 years ago — great cedar pillars, longhouses, and chestnut stores that rewrote the era's reputation from "primitive" to prosperous. The Yayoi's moated villages and the keyhole-shaped kofun tombs (Daisenryō in Ōsaka is among the largest tombs on earth by area) trace the state's rise. Nara's Tōdai-ji holds the world's largest bronze Buddha in the world's largest wooden building; Ise's shikinen sengū — the twenty-year rebuilding — is living archaeology, a Bronze Age rite performed on schedule into the present.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Honshū means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Honshū is the island that kept everything: the oldest pottery beside the fastest trains, the goddess's mirror beside the parliament. Its lesson is continuity as craft — the shrine rebuilt every twenty years so that it never ages and never changes. It asks the heartland's question: what in your tradition is worth rebuilding, exactly as it was, forever?</p><p>The twenty-year rebuilding of Ise is the island's deepest answer to modernity: continuity is not preservation but repetition — the shrine is never old and never new, the cypress always fresh, the craft always taught. Honshū holds its megacities and its mirror with the same hands, and its lesson to every anxious age is the carpenter's: what you rebuild on schedule, you never have to save.</p><p>And the island keeps answering in both registers at once: the shinkansen bows to the mountain as it passes; the morning news follows the shrine calendar; the world's largest city ends, an hour out, in cedar valleys where the kami-names predate the state. Honshū's genius was never to choose between the shrine and the station — it scheduled them. The heartland's final lesson is that depth and scale are not enemies: an island can hold a hundred million lives and still keep, at Ise, an empty plot waiting for the next rebuilding, exactly as it was.</p><p>Stand at Ise on a rebuilding year: two shrines, one old, one new, standing side by side for a season — the island's whole philosophy visible at a glance. The past is not kept by freezing it but by making it again, carefully, on schedule, forever.</p><p>The main island does not boast; it simply holds — the capitals, the shrines, the mountains, and the memory — the spine on which everything else hangs.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Honshū, Center, Mainland, Heart, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Honshū?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Honshū</strong> is /hon.ɕuː/ — approximately HON-shoo, with a long final ū..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Honshū mean?</summary><div class="faq-answer"><p><strong>Honshū</strong> means <strong>'Main island' (本州)</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Honshū?</summary><div class="faq-answer"><p>Honshū is associated with <strong>The three regalia</strong> (Mirror, sword, and jewel — enshrined on Honshū at Ise, Atsuta, and the palace), <strong>The rice paddy</strong> (The Yayoi inheritance: wet-rice civilization as the island's second foundation), <strong>The cedar avenue</strong> (The planted forests of the pilgrim roads and shrine precincts).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Honshū in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>honshu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Honshū?</summary><div class="faq-answer"><p>The Kojiki opens on the heavenly bridge: <a href="/izanagi/" class="crosslink" data-crosslink="izanagi">Izanagi</a> and <a href="/izanami/" class="crosslink" data-crosslink="izanami">Izanami</a> stir the ocean with the jewelled spear, and from the brine dripping from its point the first island coagulates. Descending, they wed and give birth to the islands of Japan — the "great eight islands" culminating in Ōyashima — and then to the kami of wind, sea, mountain, and tree. The archipelago is not created but born: the land is kin.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Honshū?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Honshū</strong> is /hon.ɕuː/ — approximately HON-shoo, with a long final ū.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Honshū mean?</summary><div class="faq-answer"><p><strong>Honshū</strong> means <strong>'Main island' (本州)</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Honshū?</summary><div class="faq-answer"><p>Honshū is associated with <strong>The three regalia</strong> (Mirror, sword, and jewel — enshrined on Honshū at Ise, Atsuta, and the palace), <strong>The rice paddy</strong> (The Yayoi inheritance: wet-rice civilization as the island's second foundation), <strong>The cedar avenue</strong> (The planted forests of the pilgrim roads and shrine precincts).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Honshū in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>honshu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Honshū?</summary><div class="faq-answer"><p>“The Islands from the Spear” — Honshū's mythology is the national charter itself: the <a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a>'s island-birth, the sun goddess's gift of the land, and the descent of her grandson to rule it. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,19 +349,19 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Nihon Shoki</cite></li><li><cite>Kokugo dictionaries</cite></li></ul>
+                    <ul class="source-list"><li><cite>Kokugo dictionaries</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a></cite></li><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Honshū and related cults.</cite></li><li><cite>Sannai-Maruyama near Aomori preserves a Jōmon city of 5,500 years ago — great cedar pillars, longhouses, and chestnut stores that rewrote the era's reputation from "primitive" to prosperous. The Yayoi's moated villages and the keyhole-shaped kofun tombs (Daisenryō in Ōsaka is among the largest tombs on earth by area) trace the state's rise. Nara's Tōdai-ji holds the world's largest bronze Buddha in the world's largest wooden building; Ise's shikinen sengū — the twenty-year rebuilding — is living archaeology, a Bronze Age rite performed on schedule into the present.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Honshū and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/honshu_logomark.webp" type="image/webp"><img src="../../assets/honshu_logomark.webp" alt="Honshū logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/honshu_logomark.webp" type="image/webp"><img src="../../assets/honshu_logomark.webp" alt="Honshū logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

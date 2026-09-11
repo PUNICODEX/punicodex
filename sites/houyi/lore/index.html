@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Hòuyì — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">后羿</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Hòuyì.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,144 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">后羿</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Hòuyì</strong> (后羿) is attested in the source tradition — “The divine archer who shot down nine suns”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">houyi</p>
-                    <p class="card-body">Reduced to plain <strong>houyi</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Hòuyì</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hòuyì</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Hòuyì.com → xn--huy-pma1a.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Hòuyì</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hòuyì</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Hòuyì is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">后羿</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Hòuyì is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hòuyì</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Hòuyì</p>
-                    <p class="card-body">Restores <strong>后羿</strong>. The live temple domain — <strong>hòuyì.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">houyi</p>
-                    <p class="card-body">Flattens <strong>后羿</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Hòuyì was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Hòuyì</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/xoʊ̯˥˩.i˥˩/</span>
-            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">hòu</span>
-        <span class="phoneme-desc">Syllable with voiceless velar fricative [x] (Pinyin 'h'), diphthongal final [oʊ̯] (Pinyin 'ou'), and Tone 4 (falling, ˥˩).</span>
+      <p class="lead-text">The cycle of Hòuyì is the great Chinese myth of cosmic correction: a heaven that gives too much, an earth that suffers for it, and one archer whose arrows restore the mean. Its episodes run from the scorched world of the ten suns to the cold moon where his wife still dwells — and to the darker coda in which the master dies by his student's hand.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Shanhaijing · Huainanzi</span>
+          <h3 class="myth-title">The Shooting of the Nine Suns</h3>
+          <p class="myth-text">In the reign of Emperor Yáo, the ten suns — three-legged crows roosting in the Fusang tree, sons of Dìjùn and the sun-mother Xīhé — abandoned their orderly rotation and rose together. The earth burned: rivers dried, crops withered, and the people starved. Yáo called on Hòuyì, the divine archer, who climbed to the heights and loosed his arrows. One by one nine suns fell from the sky in their crow forms, and the tenth — spared at Yáo's prayer, or the archer's own measure — resumed its solitary, lawful journey. The myth is told across the Shān Hǎi Jīng tradition, given its fullest early form in the Huáinánzǐ (139 BCE), and interrogated with wonderful skepticism in the Chǔ Cí poem <a href="/tian/" class="crosslink" data-crosslink="tian">Tiān</a> Wèn ('Why did Yì shoot down the suns? Why did the crows shed their feathers?'). The myth teaches that the world can be saved not by abolishing light but by restoring its measure — and that one well-aimed arrow can outweigh a cosmos of excess.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">yì</span>
-        <span class="phoneme-desc">Syllable with high front unrounded vowel [i] (Pinyin 'yi' writes a bare [i] with a glide onset), and Tone 4 (falling, ˥˩).</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Huainanzi</span>
+          <h3 class="myth-title">The Clearing of the Monsters</h3>
+          <p class="myth-text">The drought had loosed terrors on the world, and the Huáinánzǐ lists the archer's second labor in its characteristic catalogue: he slew Yàyǔ, the man-eating beast of the wilds; Záochǐ in the waters of Chouhua; Jiǔyīng, the nine-headed monster of the Xiong river; the great wind-bird Dàfēng in the marshes of Qingqiu; the giant serpent Xiūshé at Lake Dongting; and the monstrous boar Fēngxī in the mulberry groves of Sanglin. When the last beast fell, 'the people of all within the seas rejoiced, and the ten thousand things came to life.' Only then could the people plow in peace. The second labor teaches that the hero's work is never finished with the wonder: after the miracle, the ordinary world must still be made safe for ordinary life — and Chinese myth, unusually, gives us the inventory. Cosmic correction, the list insists, is mostly administration.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Huainanzi · later tradition</span>
+          <h3 class="myth-title">The Elixir and the Flight of Chángé</h3>
+          <p class="myth-text">For his service, <a href="/xiwangmu/" class="crosslink" data-crosslink="xiwangmu">Xīwángmǔ</a>, the Queen Mother of the West, granted Hòuyì the elixir of immortality. He brought it home — and there the story turns. His wife <a href="/change/" class="crosslink" data-crosslink="change">Chángé</a> took the elixir and rose to the moon, leaving the archer mortal and alone on the earth he had saved. The earliest tellings are strikingly spare about her motive; later tradition filled the silence with variants — she stole it, she drank it to keep it from the archer's treacherous disciple Féngméng, she swallowed both halves meant to be shared. On the moon she keeps company with the cassia tree and the jade rabbit, and the Huáinánzǐ already records that 'Chángé went to the moon' and became a toad. The Chángé sequel became the myth every Chinese child knows first, and the Mid-Autumn Festival still gathers families to look for her. The cycle's hinge is this: the archer who measured the suns could not measure his own household, and the elixir passed to the one he loved — heaven's justice arriving sideways.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Mengzi 7B.24</span>
+          <h3 class="myth-title">The Betrayal of Féngméng</h3>
+          <p class="myth-text">The darker strand of the cycle is preserved already in the <a href="/mencius/" class="crosslink" data-crosslink="mencius">Mèngzǐ</a>, which records that Féngméng (逢蒙) studied archery under Yì and, once he had learned all that Yì could teach, killed his master — in the fuller later accounts, clubbing him to death with a peachwood staff. The Mèngzǐ itself weighs how far Yì shared the blame for trusting such a man, and Chinese moralists have debated the lesson ever since. The student murders the teacher the moment the teaching is complete — and the cycle refuses to let its hero end on the pyre of his own glory. The tradition asks the harder question — what did the master teach, that the lesson could not survive its teacher? — and answers it unsparingly: mastery without loyalty unmakes both, and even the archer of the suns could not shoot his way out of a student's ambition. The gods gave him a bow for monsters; they gave him no defense against gratitude turned.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">HOH-yee — two crisp syllables, each spoken with a sharp falling tone, like a decisive command: 'HOE! YEE!'</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Traditional</strong> 后羿</li><li><strong>Simplified</strong> 后羿</li><li><strong>Wade-Giles</strong> Hou⁴-i⁴</li><li><strong>Cantonese (Jyutping)</strong> hau⁶ ji⁶</li><li><strong>Related terms</strong> 十日 shí rì (the ten suns); 后羿射日 Hòuyì shè rì (Yi shoots the suns); 嫦娥 <a href="/change/" class="crosslink" data-crosslink="change">Chángé</a> (his wife, the moon goddess)</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">后羿 names the divine archer: 后 is an archaic title meaning 'lord, sovereign' (not the later sense 'empress', for which 皇后 is used), and 羿 is the archer's given name. The Modern Standard Mandarin reading is Hòuyì (both syllables Tone 4), as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. Baxter &amp; Sagart (2014) reconstruct the Old Chinese reading of 羿 as *N-ŋ(r)ik-s. The tone-marked Pinyin restoration Hòuyì preserves the citation falling tone of both syllables; in connected speech the contour may be compressed, but the lexical tones remain Tone 4.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -376,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Archer of the Nine Fallen Suns</h2>
             <p class="section-subtitle">Precision, Deliverance, the Spared Light</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Hòuyì</strong> is the divine archer of Chinese myth, the hero who stood between heaven's excess and the earth's survival. In the age of the sage-emperor Yáo, the ten suns — three-legged crows, sons of Dìjùn and the sun-mother Xīhé — rose all at once instead of taking their appointed turns. Rivers dried, crops failed, and monsters crawled out of the scorched wilderness. Hòuyì drew his great bow and shot nine suns from the sky, sparing one so that day and night, sowing and harvest, could keep their order.</p><p class="lead-text">His story is a hinge between worlds: the same bow that cleared the earth of monsters also won him the elixir of immortality from <a href="/xiwangmu/" class="crosslink" data-crosslink="xiwangmu">Xīwángmǔ</a>, the Queen Mother of the West — the elixir his wife Chángé would ultimately take, fleeing to the moon. The archer who saved the earth lost heaven, and Chinese myth has never stopped telling both halves of that story.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Hòuyì</strong> is the divine archer of Chinese myth, the hero who stood between heaven's excess and the earth's survival. In the age of the sage-emperor Yáo, the ten suns — three-legged crows, sons of Dìjùn and the sun-mother Xīhé — rose all at once instead of taking their appointed turns. Rivers dried, crops failed, and monsters crawled out of the scorched wilderness. Hòuyì drew his great bow and shot nine suns from the sky, sparing one so that day and night, sowing and harvest, could keep their order.</p><p class="lead-text">His story is a hinge between worlds: the same bow that cleared the earth of monsters also won him the elixir of immortality from Xīwángmǔ, the Queen Mother of the West — the elixir his wife Chángé would ultimately take, fleeing to the moon. The archer who saved the earth lost heaven, and Chinese myth has never stopped telling both halves of that story.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 48C12 48 20 40 20 32C20 24 12 16 12 16M20 32H52M52 32L48 28M52 32L48 36"></path></svg></div>
@@ -427,57 +337,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Hòuyì</p>
-        </div>
-        
-      <p class="lead-text">The cycle of Hòuyì is the great Chinese myth of cosmic correction: a heaven that gives too much, an earth that suffers for it, and one archer whose arrows restore the mean. Its episodes run from the scorched world of the ten suns to the cold moon where his wife still dwells.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Shanhaijing / Huainanzi</span>
-          <h3 class="myth-title">The Shooting of the Nine Suns</h3>
-          <p class="myth-text">In the reign of Emperor Yáo, the ten suns — three-legged crows roosting in the Fusang tree, sons of Dìjùn and the sun-mother Xīhé — abandoned their orderly rotation and rose together. The earth burned: rivers dried, crops withered, and the people starved. Yáo called on <em>Hòuyì</em>, the divine archer, who climbed to the heights and loosed his arrows. One by one nine suns fell from the sky in their crow forms, and the tenth — spared — resumed its solitary, lawful journey. The myth is told across the <em>Shān Hǎi Jīng</em> tradition and given its fullest early form in the <em>Huáinánzǐ</em>.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Huainanzi</span>
-          <h3 class="myth-title">The Clearing of the Monsters</h3>
-          <p class="myth-text">The drought had loosed terrors on the world, and the <em>Huáinánzǐ</em> lists the archer's second labor: he slew <em>Yàyǔ</em>, the man-eating beast of the wilds; <em>Záochǐ</em> in the waters of Chouhua; <em>Jiǔyīng</em>, the nine-headed monster of the Xiong river; the great wind-bird <em>Dàfēng</em> in the marshes of Qingqiu; the giant serpent <em>Xiūshé</em> at Lake Dongting; and the monstrous boar <em>Fēngxī</em> in the mulberry groves of Sanglin. Only when the last beast fell could the people plow in peace.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Huainanzi</span>
-          <h3 class="myth-title">The Elixir and the Flight of Chángé</h3>
-          <p class="myth-text">For his service, <em>Xīwángmǔ</em>, Queen Mother of the West, granted Hòuyì the elixir of immortality. He brought it home — and there the story turns. His wife <em>Chángé</em> took the elixir and rose to the moon, leaving the archer mortal and alone on the earth he had saved. Early versions are spare about her motive; later tellers made her a thief, a fugitive, or a wife protecting the elixir from the archer's treacherous disciple. However it is told, this is the hinge of the cycle: the hero of the suns becomes the earthbound husband of the moon.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Mengzi and Later Tradition</span>
-          <h3 class="myth-title">The Betrayal of Féngméng</h3>
-          <p class="myth-text">The darker strand of the cycle is preserved already in the <em><a href="/mencius/" class="crosslink" data-crosslink="mencius">Mèngzǐ</a></em>, which records that <em>Féngméng</em> (逢蒙) studied archery under Yì and, once he had learned all that Yì could teach, killed his master — in the fuller later accounts, clubbing him to death with a peachwood staff. The student murders the teacher the moment the teaching is complete. The <em>Mèngzǐ</em> itself weighs how far Yì shared the blame for trusting such a man, and Chinese moralists have debated the lesson ever since: mastery without loyalty is the surest way to unmake a hero.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -541,8 +408,146 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">后羿</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Hòuyì</strong> (后羿) is attested in the source tradition — “The divine archer who shot down nine suns”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">houyi</p>
+                <p class="card-body">Reduced to plain <strong>houyi</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Hòuyì</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hòuyì</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Hòuyì.com → xn--huy-pma1a.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Hòuyì</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hòuyì</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hòuyì</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Hòuyì</p>
+                    <p class="card-body">Restores <strong>后羿</strong>. The live temple domain — <strong>hòuyì.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">houyi</p>
+                    <p class="card-body">Flattens <strong>后羿</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Hòuyì was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/xoʊ̯˥˩.i˥˩/</span>
+            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">hòu</span>
+        <span class="phoneme-desc">Syllable with voiceless velar fricative [x] (Pinyin 'h'), diphthongal final [oʊ̯] (Pinyin 'ou'), and Tone 4 (falling, ˥˩).</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">yì</span>
+        <span class="phoneme-desc">Syllable with high front unrounded vowel [i] (Pinyin 'yi' writes a bare [i] with a glide onset), and Tone 4 (falling, ˥˩).</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">HOH-yee — two crisp syllables, each spoken with a sharp falling tone, like a decisive command: 'HOE! YEE!'</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">后羿 names the divine archer: 后 is an archaic title meaning 'lord, sovereign' (not the later sense 'empress', for which 皇后 is used), and 羿 is the archer's given name. The Modern Standard Mandarin reading is Hòuyì (both syllables Tone 4), as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. Baxter &amp; Sagart (2014) reconstruct the Old Chinese reading of 羿 as *N-ŋ(r)ik-s. The tone-marked Pinyin restoration Hòuyì preserves the citation falling tone of both syllables; in connected speech the contour may be compressed, but the lexical tones remain Tone 4.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Hòuyì is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">后羿</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Hòuyì is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -560,7 +565,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/houyi_mascot.webp" type="image/webp"><img src="../assets/houyi_mascot.png" alt="Hòuyì mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/houyi_mascot.webp" type="image/webp"><img src="../assets/houyi_mascot.png" alt="Hòuyì mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -598,7 +603,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/houyi_logomark.webp" type="image/webp"><img src="../assets/houyi_logomark.webp" alt="Hòuyì logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/houyi_logomark.webp" type="image/webp"><img src="../assets/houyi_logomark.webp" alt="Hòuyì logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

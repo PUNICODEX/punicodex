@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Athēnai — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ἀθῆναι</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Athēnai.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,64 +236,304 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Athēnai</p>
+        </div>
+        
+      <p class="lead-text"><strong>Athēnai</strong> is not merely a city; it is a mythic body shaped by gods, kings, and heroes. Its foundation stories explain why <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>'s olive tree outranked <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidon</a>'s salt spring, why its earliest kings were said to be born from the earth itself, why one king's daughter saved the state at the cost of her life, and why the city's unification became the political myth of democracy's favorite ancestor.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Foundation</span>
+          <h3 class="myth-title">The Contest of Athena and Poseidon</h3>
+          <p class="myth-text">Both gods claimed the land of Cecrops. Poseidon struck the rock of the Acropolis with his trident and a salt spring welled up — Apollodorus (3.14.1) records that some said a horse sprang forth beside it. Athena struck her spear into the ground and an olive tree rose, the first the world had seen. Cecrops judged for the goddess: her tree gives fruit, oil, and wood, where the sea-god's spring is salt. Poseidon's wrath flooded the Thriasian plain, and for centuries the Athenians answered his lingering claim by withholding the third part of their tribute at Cape Sounion. But the city took Athena's name, and both gifts were kept forever in the Erechtheion, god's spring beside goddess's tree. Herodotus (8.55) preserves the proof of the contest in living memory: when Xerxes burned the sacred olive in 480 BCE, the Athenians swore it sprouted a cubit high the very next day. The charter myth chooses the patient abundance of craft over the spectacle of power — and builds the reconciliation into the temple floor.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Kingship</span>
+          <h3 class="myth-title">Cecrops and the Autochthonous Kings</h3>
+          <p class="myth-text">Cecrops, the first king of Athēnai, was said to be born from the earth itself — half-man, half-snake, a body that literally grew out of Attic soil (Apollodorus 3.14.1). His line kept the claim: Erichthonius, the child born from the earth where Hephaestus's seed fell on Athena's wool, whom the goddess herself entrusted to the daughters of Cecrops; and Erechtheus, sprung likewise from the ground and finally swallowed back into it. The autochthony myth is not quaint folklore but political technology. A people 'born from the soil' needs no conquest to justify its standing, no immigrant aristocracy to honor, no hereditary caste to prop up — and Thucydides (2.36.1) puts the claim in Pericles' own mouth: Attica has 'from the remotest times contained the same people', and for that reason alone could call itself a democracy of equals. The city that invented equality began by declaring everyone a native.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Sacrifice</span>
+          <h3 class="myth-title">Erechtheus and the War for Attica</h3>
+          <p class="myth-text">When Eumolpus, son of Poseidon, led the Eleusinians and a Thracian host against Attica, the oracle answered Erechtheus in Euripides' lost tragedy (<em>Erechtheus</em>, fr. 360 Nauck): the city would be saved only if one of his daughters died for it. The mother Praxithea's reply became the most quoted sentence of Athenian patriotism, preserved by Lycurgus (<em>Against Leocrates</em> 98–101): 'I hate women who prefer their children's survival to the common good.' The daughter — named Chthonia in later tradition — went to her death willingly, swearing the oath of the ephebes with her sisters beside her. Erechtheus won the war and was then destroyed by Poseidon's trident, swallowed into the earth beside the temple of Athena, becoming a hero-chthonic power of the city he saved. Athens kept quoting this play in every crisis for three centuries: the state that asked its families for their children and called the demand justice. The Parthenon frieze and the Erechtheion are, between them, the myth's monument — victory paid for in advance, by the house that agreed to pay.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Unification</span>
+          <h3 class="myth-title">Theseus and the Synoikismos</h3>
+          <p class="myth-text">Thucydides (2.15) tells the rationalized version without embarrassment: the villages and townships of Attica had long governed themselves, until <a href="/theseus/" class="crosslink" data-crosslink="theseus">Theseus</a> dissolved their councils and magistracies and concentrated everything at Athens — 'synoikismos', the dwelling-together. Plutarch (<em>Theseus</em> 24–25) keeps the mythic detail: Theseus went among the demes not as a conqueror but as an orator, persuading the independent towns to surrender their separate identities to a single <em>polis</em>, and the people, persuaded, celebrated the union with the festival of the Synoikia. It is the only city-foundation myth in Greece about consent — no twins suckled by a she-wolf, no armed exogamy, no fratricide marking the walls. A cluster of villages voluntarily joined into one body under Athena's protection, and the myth quietly mirrors the Assembly on the Pnyx: many voices, one decision, no king left standing over it. Democracy did not invent the ideal; it inherited the myth and built the machinery to match it.</p>
+        </div>
+      </div></div>
+    </div>
+</section>
+
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">The Violet-Crowned City</h2>
+            <p class="section-subtitle">Wisdom · Democracy · Sacred Polis</p>
+        </div>
+        
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Athēnai</strong> is not merely a place on the map; it is the city that gave the West the vocabulary of citizenship, philosophy, and ordered public speech. Nestled between the Acropolis and the Piraeus, it was a polis whose gods, assemblies, and festivals turned a limestone outcrop into the symbolic home of wisdom.</p></div>
+      <div class="domains-grid">
+      <div class="domain-card reveal-up">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8V32M20 20L32 8L44 20M16 36H48L32 28L16 36Z"></path></svg></div>
+        <h4 class="domain-name">Acropolis and Parthenon</h4>
+        <p class="domain-desc">Athena's sacred rock, crowned by the Parthenon, the treasury of the Delian League and a temple to the maiden goddess.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="100">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C22 12 14 20 14 32C14 44 22 52 32 52C42 52 50 44 50 32C50 20 42 12 32 12ZM24 24C24 20 26 18 28 18C30 18 32 20 32 24C32 28 30 30 28 30C26 30 24 28 24 24ZM40 24C40 20 38 18 36 18C34 18 32 20 32 24C32 28 34 30 36 30C38 30 40 28 40 24ZM32 38V44"></path></svg></div>
+        <h4 class="domain-name">Owl of Wisdom</h4>
+        <p class="domain-desc">Athena's bird, stamped on tetradrachms and carved into the city's identity, became an emblem of learning and vigilance.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="200">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 48H52M16 48V24M24 48V24M32 48V24M40 48V24M48 48V24M12 24H52M14 16H50L32 8L14 16Z"></path></svg></div>
+        <h4 class="domain-name">Agora and Assembly</h4>
+        <p class="domain-desc">The open square where citizens debated law, ostracized tyrants, and practiced the democracy that bore the city's name.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 40C16 32 24 36 32 40C40 36 48 32 56 40V48H8V40ZM32 24V40M20 28L32 24L44 28"></path></svg></div>
+        <h4 class="domain-name">Long Walls and Fleet</h4>
+        <p class="domain-desc">The fortified corridor to the Piraeus and the trireme fleet made Athēnai a maritime power and an imperial democracy.</p>
+      </div></div>
+      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
+      <div class="symbol-item">
+        <span class="symbol-name">Olive tree</span>
+        <span class="symbol-meaning">Athena's gift to the city, the source of wood, oil, and food, and the reason she won the contest with Poseidon</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Owl</span>
+        <span class="symbol-meaning">Athena's nocturnal bird, minted on coins and adopted as a symbol of wisdom and the city itself</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Panathenaic peplos</span>
+        <span class="symbol-meaning">The woven robe presented to Athena's statue every four years during the Great Panathenaia</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The salt spring</span>
+        <span class="symbol-meaning">Poseidon's trident-mark in the Erechtheion floor — the rejected gift kept forever beside Athena's olive as the memory of the contest (Herodotus 8.55)</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The ten tribal heroes</span>
+        <span class="symbol-meaning">Eponyms of Cleisthenes' ten tribes, whose statues grouped the notices, lawsuits, and dedications of the new democracy in the Agora</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The ship of Theseus</span>
+        <span class="symbol-meaning">The state trireme preserved at Phaleron, plank by plank renewed — the paradox Plutarch already made the standing question of whether a city remains itself (Theseus 23)</span>
+      </div></div></div>
+    </div>
+</section>
+
+    <!-- In the Texts & Everyday Words -->
+    
+
+    <!-- Related Names -->
+    <section class="section section-related" id="related">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Related Names</h2>
+            <p class="section-subtitle">Other figures in the greek-location pantheon</p>
+        </div>
+        <div class="related-grid reveal-up">
+            
+    <a href="/olympos/" class="related-card reveal-up">
+      <span class="related-name">Ólympos</span>
+      <span class="related-greek">Ὄλυμπος</span>
+      <span class="related-domain">Mountain of the Gods</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="/sparte/" class="related-card reveal-up">
+      <span class="related-name">Spártē</span>
+      <span class="related-greek">Σπάρτη</span>
+      <span class="related-domain">Warrior City</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="/delphoi/" class="related-card reveal-up">
+      <span class="related-name">Delphoí</span>
+      <span class="related-greek">Δελφοί</span>
+      <span class="related-domain">Oracle of Apollo</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="/korinthos/" class="related-card reveal-up">
+      <span class="related-name">Kórinthos</span>
+      <span class="related-greek">Κόρινθος</span>
+      <span class="related-domain">Wealthy Port City</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="/troia/" class="related-card reveal-up">
+      <span class="related-name">Troíā</span>
+      <span class="related-greek">Τροία</span>
+      <span class="related-domain">City of Priam</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+    <a href="/thebai/" class="related-card reveal-up">
+      <span class="related-name">Thêbai</span>
+      <span class="related-greek">Θῆβαι</span>
+      <span class="related-domain">City of Seven Gates</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
+      </div>
+    </a>
+        </div>
+    </div>
+</section>
+
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
     <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ἀθῆναι</p>
+                <p class="card-body">The name in its original Greek form. <strong>Athēnai</strong> (Ἀθῆναι) is attested in the source tradition — “Of Athena”. Its aspirated consonants, diphthongs, long vowels, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
             </div>
 
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ἀθῆναι</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Athēnai</strong> (Ἀθῆναι) is attested in the source tradition — “Of <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>”. Its aspirated consonants, diphthongs, long vowels, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
                 </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">athenai</p>
-                    <p class="card-body">Reduced to plain <strong>athenai</strong>, the name loses everything that made it specific: aspirated consonants, diphthongs, long vowels, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Athēnai</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Athēnai</strong> restores aspirated consonants, diphthongs, long vowels, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">athenai</p>
+                <p class="card-body">Reduced to plain <strong>athenai</strong>, the name loses everything that made it specific: aspirated consonants, diphthongs, long vowels, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
             </div>
 
-            <div class="punycode-explainer reveal-up">
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Athēnai</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Athēnai</strong> restores aspirated consonants, diphthongs, long vowels, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
                     <code class="explainer-code">Athēnai.com → xn--athnai-r3a.com</code>
                     <p class="explainer-note">The non-ASCII characters in <strong>Athēnai</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Athēnai</em>.</p>
                 </div>
             </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Athēnai</p>
         </div>
-    </section>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Athēnai</p>
+                    <p class="card-body">Restores <strong>Ἀθῆναι</strong>. The live temple domain — <strong>athēnai.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">athenai</p>
+                    <p class="card-body">Flattens <strong>Ἀθῆναι</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Athēnai was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/atʰɛ́ːnai/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">A-</span>
+        <span class="phoneme-desc">Short alpha [a] with smooth breathing, the open first syllable of the city's name.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-thē-</span>
+        <span class="phoneme-desc">Aspirated theta [tʰ] followed by long eta [ɛː] carrying the acute pitch stress; this length and stress make the name Tier 1.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-nai</span>
+        <span class="phoneme-desc">Nu [n] plus the diphthong alpha-iota [ai], the plural ending that marks the city as 'the place of Athena'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'ah-THAY-nahee' — aspirate the theta like an English 't-h', and hold the long vowel of the stressed syllable.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Athēnai is Tier 1 because the Greek Ἀθῆναι preserves both stress (acute on the long eta) and length.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
 
     <!-- Original Script Provenance -->
     
@@ -297,7 +542,7 @@
   <div class="section-bg-glow"></div>
   <div class="container">
     <div class="section-header reveal-up">
-      <span class="section-number">02</span>
+      <span class="section-number">07</span>
       <h2 class="section-title">Original Script &amp; Provenance</h2>
       <p class="section-subtitle">How Athēnai travels from ancient script to the modern URL</p>
     </div>
@@ -414,7 +659,7 @@
     </li></ul>
       <ul class="provenance-list">
     <li class="attestation-item">
-      <div class="attestation-text">Hesiod, Theogony</div>
+      <div class="attestation-text">Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a></div>
       <div class="attestation-meta">
         <span class="attestation-date">c. 700 BCE</span>
         <span class="attestation-location">Greece</span>
@@ -422,7 +667,7 @@
       </div>
     </li>
     <li class="attestation-item">
-      <div class="attestation-text">Homeric Hymns</div>
+      <div class="attestation-text"><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymns</a></div>
       <div class="attestation-meta">
         <span class="attestation-date">c. 700–500 BCE</span>
         <span class="attestation-location">Greece</span>
@@ -480,234 +725,6 @@
   </div>
 </section>
 
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Athēnai</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Athēnai</p>
-                    <p class="card-body">Restores <strong>Ἀθῆναι</strong>. The live temple domain — <strong>athēnai.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">athenai</p>
-                    <p class="card-body">Flattens <strong>Ἀθῆναι</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Athēnai was spoken</p>
-        </div>
-        
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/atʰɛ́ːnai/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">A-</span>
-        <span class="phoneme-desc">Short alpha [a] with smooth breathing, the open first syllable of the city's name.</span>
-      </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-thē-</span>
-        <span class="phoneme-desc">Aspirated theta [tʰ] followed by long eta [ɛː] carrying the acute pitch stress; this length and stress make the name Tier 1.</span>
-      </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-nai</span>
-        <span class="phoneme-desc">Nu [n] plus the diphthong alpha-iota [ai], the plural ending that marks the city as 'the place of Athena'.</span>
-      </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'ah-THAY-nahee' — aspirate the theta like an English 't-h', and hold the long vowel of the stressed syllable.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Ἀθήνη (Athḗnē), the goddess Athena, eponym of the city</li><li><strong>Mycenaean Greek</strong> a-ta-na-po-ti-ni-ja (Linear B), 'Lady Athena', the earliest written attestation</li><li><strong>Doric Greek</strong> Ἀθάνᾱ (Athā́nā), the long-alpha dialectal form preserved in some inscriptions</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Athēnai is Tier 1 because the Greek Ἀθῆναι preserves both stress (acute on the long eta) and length.</p></div>
-        </div>
-      </div>
-    </div>
-</section>
-
-    <!-- Domains & Sacred Symbols -->
-    <section class="section section-symbols" id="symbols">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">05</span>
-            <h2 class="section-title">The Violet-Crowned City</h2>
-            <p class="section-subtitle">Wisdom · Democracy · Sacred Polis</p>
-        </div>
-        
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Athēnai</strong> is not merely a place on the map; it is the city that gave the West the vocabulary of citizenship, philosophy, and ordered public speech. Nestled between the Acropolis and the Piraeus, it was a polis whose gods, assemblies, and festivals turned a limestone outcrop into the symbolic home of wisdom.</p></div>
-      <div class="domains-grid">
-      <div class="domain-card reveal-up">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8V32M20 20L32 8L44 20M16 36H48L32 28L16 36Z"></path></svg></div>
-        <h4 class="domain-name">Acropolis and Parthenon</h4>
-        <p class="domain-desc">Athena's sacred rock, crowned by the Parthenon, the treasury of the Delian League and a temple to the maiden goddess.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="100">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C22 12 14 20 14 32C14 44 22 52 32 52C42 52 50 44 50 32C50 20 42 12 32 12ZM24 24C24 20 26 18 28 18C30 18 32 20 32 24C32 28 30 30 28 30C26 30 24 28 24 24ZM40 24C40 20 38 18 36 18C34 18 32 20 32 24C32 28 34 30 36 30C38 30 40 28 40 24ZM32 38V44"></path></svg></div>
-        <h4 class="domain-name">Owl of Wisdom</h4>
-        <p class="domain-desc">Athena's bird, stamped on tetradrachms and carved into the city's identity, became an emblem of learning and vigilance.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="200">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 48H52M16 48V24M24 48V24M32 48V24M40 48V24M48 48V24M12 24H52M14 16H50L32 8L14 16Z"></path></svg></div>
-        <h4 class="domain-name">Agora and Assembly</h4>
-        <p class="domain-desc">The open square where citizens debated law, ostracized tyrants, and practiced the democracy that bore the city's name.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="300">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 40C16 32 24 36 32 40C40 36 48 32 56 40V48H8V40ZM32 24V40M20 28L32 24L44 28"></path></svg></div>
-        <h4 class="domain-name">Long Walls and Fleet</h4>
-        <p class="domain-desc">The fortified corridor to the Piraeus and the trireme fleet made Athēnai a maritime power and an imperial democracy.</p>
-      </div></div>
-      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
-      <div class="symbol-item">
-        <span class="symbol-name">Olive tree</span>
-        <span class="symbol-meaning">Athena's gift to the city, the source of wood, oil, and food, and the reason she won the contest with <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidon</a></span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Owl</span>
-        <span class="symbol-meaning">Athena's nocturnal bird, minted on coins and adopted as a symbol of wisdom and the city itself</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Panathenaic peplos</span>
-        <span class="symbol-meaning">The woven robe presented to Athena's statue every four years during the Great Panathenaia</span>
-      </div></div></div>
-    </div>
-</section>
-
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Athēnai</p>
-        </div>
-        
-      <p class="lead-text"><strong>Athenai</strong> is not merely a city; it is a mythic body shaped by gods, kings, and heroes. Its foundation stories explain why Athena's olive tree outranked Poseidon's salt spring, why its earliest kings were said to be born from the earth itself, and why the city became the seat of wisdom, craft, and collective rule.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Foundation</span>
-          <h3 class="myth-title">The Contest of Athena and Poseidon</h3>
-          <p class="myth-text">Athena and Poseidon both desired to become patron of the city. Poseidon struck the Acropolis with his trident and produced a salt spring; Athena planted the first olive tree. King Cecrops judged the contest in Athena's favour, for the olive gave wood, oil, and food. Poseidon raged and flooded the Thriasian plain, but the city took Athena's name and her tree was honoured on the citadel.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Kingship</span>
-          <h3 class="myth-title">Cecrops and the Autochthonous Kings</h3>
-          <p class="myth-text">Cecrops, the first king of Athenai, was said to be born from the earth itself — half-man, half-snake. His successors, including Erechtheus, continued the claim that the Athenians were autochthonous, sprung from their own soil rather than imported by conquest. This myth of native origin supported the city's pride in equality and civic continuity.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Sacrifice</span>
-          <h3 class="myth-title">Erechtheus and the War for Attica</h3>
-          <p class="myth-text">When Eumolpus and the Eleusinians threatened Attica, the oracle declared that Athenai would be saved only if King Erechtheus sacrificed one of his daughters. He did so, and the invaders were driven back. Erechtheus himself was destroyed by Poseidon's trident and was swallowed into the earth beside the temple of Athena, becoming a hero-chthonic power of the city.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Unification</span>
-          <h3 class="myth-title">Theseus and the Synoikismos</h3>
-          <p class="myth-text">The hero <a href="/theseus/" class="crosslink" data-crosslink="theseus">Theseus</a> unified the independent demes of Attica into a single political community centred on Athenai. This act, the <em>synoikismos</em>, transformed a cluster of villages into a city-state. In myth it mirrors the later democratic ideal: many parts voluntarily joined into one <em>polis</em> under the protection of Athena.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
-
-    <!-- Related Names -->
-    <section class="section section-related" id="related">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Related Names</h2>
-            <p class="section-subtitle">Other figures in the greek-location pantheon</p>
-        </div>
-        <div class="related-grid reveal-up">
-            
-    <a href="/olympos/" class="related-card reveal-up">
-      <span class="related-name">Ólympos</span>
-      <span class="related-greek">Ὄλυμπος</span>
-      <span class="related-domain">Mountain of the Gods</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 2</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
-      </div>
-    </a>
-    <a href="/sparte/" class="related-card reveal-up">
-      <span class="related-name">Spártē</span>
-      <span class="related-greek">Σπάρτη</span>
-      <span class="related-domain">Warrior City</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
-      </div>
-    </a>
-    <a href="/delphoi/" class="related-card reveal-up">
-      <span class="related-name">Delphoí</span>
-      <span class="related-greek">Δελφοί</span>
-      <span class="related-domain">Oracle of Apollo</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
-      </div>
-    </a>
-    <a href="/korinthos/" class="related-card reveal-up">
-      <span class="related-name">Kórinthos</span>
-      <span class="related-greek">Κόρινθος</span>
-      <span class="related-domain">Wealthy Port City</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 2</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
-      </div>
-    </a>
-    <a href="/troia/" class="related-card reveal-up">
-      <span class="related-name">Troíā</span>
-      <span class="related-greek">Τροία</span>
-      <span class="related-domain">City of Priam</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
-      </div>
-    </a>
-    <a href="/thebai/" class="related-card reveal-up">
-      <span class="related-name">Thêbai</span>
-      <span class="related-greek">Θῆβαι</span>
-      <span class="related-domain">City of Seven Gates</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Greek-location</span>
-      </div>
-    </a>
-        </div>
-    </div>
-</section>
-
-    <!-- In the Texts & Everyday Words -->
-    
-
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
     <div class="container">
@@ -715,7 +732,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">The lore you have read is the surface — the living myth. Beneath it lies the scholarship: etymology, reconstructed pronunciation, Unicode character breakdown, and the cultural legacy of <strong>Athēnai</strong>.</p>
+                <p class="pantheon-body">Athēnai is the name of an experiment that never quite ended. For a few generations on a small limestone hill, the city asked whether ordinary citizens — farmers, potters, rowers — could govern themselves, judge themselves, and write plays about themselves. The Assembly on the Pnyx, the jurors watching their water-clock, the choregoi funding tragedy: these were not decorations but the machinery of the idea. The city invented the vocabulary we still live in — politics, democracy, philosophy, history, rhetoric — and then demonstrated, in the Peloponnesian War, the price of the idea in hubris. Its own myths are honest about the cost: Erechtheus gives a daughter, Theseus dissolves the villages into one body, and the Parthenon marble is a tribute list. To restore the name Athēnai with its full Greek length is to remember that 'the city of Athena' was, before it was anything else, a decision — renewed at every assembly — to try.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -724,7 +741,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/athenai_mascot.webp" type="image/webp"><img src="../assets/athenai_mascot.png" alt="Athēnai mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/athenai_mascot.webp" type="image/webp"><img src="../assets/athenai_mascot.png" alt="Athēnai mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -762,7 +779,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/athenai_logomark.webp" type="image/webp"><img src="../assets/athenai_logomark.webp" alt="Athēnai logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/athenai_logomark.webp" type="image/webp"><img src="../assets/athenai_logomark.webp" alt="Athēnai logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

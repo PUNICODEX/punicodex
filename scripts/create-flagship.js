@@ -847,7 +847,110 @@ function buildCss(palette) {
   );
 
   const rootVars = buildRootVariables(palette);
-  return `${rootVars}\n${css}`;
+  return `${rootVars}\n${css}\n${eliteEditorialCss()}`;
+}
+
+// ─── Editorial elite layer ────────────────────────────────────────────────
+// Scoped to lore/extended-lore constructs only (chapter nav, myth cards,
+// meditation, screen cards) so home/gallery/patterns pages are untouched.
+function eliteEditorialCss() {
+  return `
+/* ── PUNICODEX editorial elite layer (generated) ─────────────────────── */
+.lore-chapters {
+  position: relative;
+  z-index: 5;
+  max-width: var(--container-max, 1200px);
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem 0;
+}
+.chapters-eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primary);
+  opacity: 0.85;
+  margin-bottom: 0.65rem;
+}
+.chapters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.chapter-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.chapter-link:hover {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.045);
+  transform: translateY(-1px);
+}
+.chapter-num {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+}
+.chapter-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--white-dim);
+}
+.chapter-link:hover .chapter-label { color: var(--white); }
+.chapter-link-extended { border-color: rgba(255, 255, 255, 0.14); }
+.chapter-link-extended .chapter-label { color: var(--primary-bright, var(--primary)); }
+
+/* Myth cards — measured, literary hover */
+#mythology .myth-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+#mythology .myth-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+#mythology .myth-tag {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#mythology .lead-text::first-letter,
+.meditation-body > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.1em;
+  line-height: 0.82;
+  float: left;
+  padding: 0.06em 0.14em 0 0;
+  color: var(--primary);
+}
+
+/* Meditation — essay typography */
+.meditation-body {
+  max-width: 46rem;
+  margin: 0 auto;
+  font-size: 1.06rem;
+  line-height: 1.9;
+  color: var(--white-dim);
+}
+.meditation-body p { margin: 0 0 1.2em; }
+.meditation-body p:last-child { margin-bottom: 0; }
+
+/* Extended subnav anchors */
+.extended-anchor { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.14em; }
+
+@media (max-width: 768px) {
+  .chapters-row { gap: 0.4rem; }
+  .chapter-link { padding: 0.35rem 0.7rem; }
+  .chapter-label { font-size: 0.74rem; }
+}
+`;
 }
 
 function buildScript(templeId, entry) {
@@ -1229,6 +1332,84 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+// ---------------------------------------------------------------------------
+// The Name section (lore page) — the consolidated orthography block: original
+// script vs ASCII constraint vs Unicode restoration, plus an honest Punycode
+// note. ASCII-only restorations get a truthful "no encoding required" variant
+// instead of the false "non-ASCII characters are encoded" copy.
+// ---------------------------------------------------------------------------
+
+function buildTheNameSection(entry, sectionNumber) {
+  const nameProse = buildNameProse(entry);
+  const asciiOnly = isAsciiOnlyUnicode(entry);
+  const explainer = asciiOnly
+    ? `<div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">${escapeHtml(entry.unicode)}.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>${escapeHtml(entry.unicode)}</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>`
+    : `<div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">${escapeHtml(getPunycodeExplainer(entry))}</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>${escapeHtml(entry.unicode)}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>${escapeHtml(entry.unicode)}</em>.</p>
+                </div>
+            </div>`;
+  return `<section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5"/>
+                        <path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">${getOriginalScriptLabel(entry)}</h3>
+                <p class="card-greek">${getOriginalScript(entry) || entry.unicode}</p>
+                <p class="card-body">${nameProse.original}</p>
+                ${buildOriginalScriptCardNote(entry)}
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">${escapeHtml(entry.ascii)}</p>
+                <p class="card-body">${nameProse.ascii}</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">${escapeHtml(entry.unicode)}</p>
+                <p class="card-body">${nameProse.unicode}</p>
+            </div>
+        </div>
+
+        ${explainer}
+    </div>
+</section>`;
+}
+
 function buildOriginalScriptCardNote(entry) {
   if (!hasOriginalScript(entry)) {
     return `<p class="card-note">${escapeHtml(getNoScriptNote(entry))}</p>`;
@@ -1311,8 +1492,8 @@ function buildPronunciationPanel(entry) {
     </section>`;
 }
 
-function buildOriginalScriptProvenanceSection(entry) {
-  return buildRichProvenanceSection(entry);
+function buildOriginalScriptProvenanceSection(entry, sectionNumber = 2) {
+  return buildRichProvenanceSection(entry, sectionNumber);
 }
 
 function _buildTierSection(entry, _sectionNumber) {
@@ -1730,7 +1911,7 @@ function getUnicodeInfo(char) {
   return { hex, name, block };
 }
 
-function buildQuickFactsSection(entry, catalogEntry) {
+function buildQuickFactsSection(entry, catalogEntry, sectionNumber = 1) {
   const greek = getOriginalScript(entry);
   const hasOriginal = hasOriginalScript(entry);
   const symbols = catalogEntry?.symbols || [];
@@ -1769,7 +1950,7 @@ function buildQuickFactsSection(entry, catalogEntry) {
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">01</span>
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Quick Facts</h2>
             <p class="section-subtitle">Essential information about ${entry.unicode}, ${entry.domain}</p>
         </div>
@@ -1780,7 +1961,7 @@ function buildQuickFactsSection(entry, catalogEntry) {
 </section>`;
 }
 
-function buildEtymologySection(entry, catalogEntry) {
+function buildEtymologySection(entry, catalogEntry, sectionNumber = 2) {
   const greek = getOriginalScript(entry);
   const hasOriginal = hasOriginalScript(entry);
   const etym = entry.etymology || {};
@@ -1802,7 +1983,9 @@ function buildEtymologySection(entry, catalogEntry) {
   steps.push({
     lang: 'Unicode Restoration',
     form: entry.unicode,
-    gloss: 'Restored stress, length, and script',
+    gloss: isAsciiOnlyUnicode(entry)
+      ? 'Canonical scholarly spelling — ASCII-identical'
+      : 'Restored stress, length, and script',
   });
   steps.push({ lang: 'Modern ASCII', form: entry.ascii, gloss: 'Plain-ASCII fallback' });
   const chain = steps
@@ -1817,10 +2000,12 @@ function buildEtymologySection(entry, catalogEntry) {
       return step;
     })
     .join('');
-  const etymNote = catalogEntry?.pronunciation?.note || etym.derivation || '';
+  const etymNote = etym.derivation || '';
   const note = etymNote
     ? `<p class="etymology-note">${etymNote}</p>`
-    : `<p class="etymology-note">The name <strong>${entry.unicode}</strong> carries the orthographic signature of the ${entry.pantheon} tradition: ${greek}. Unicode restoration recovers what ASCII flattens.</p>`;
+    : isAsciiOnlyUnicode(entry)
+      ? `<p class="etymology-note">The name <strong>${entry.unicode}</strong> reaches the modern world through scholarly transliteration of the ${entry.pantheon} tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>`
+      : `<p class="etymology-note">The name <strong>${entry.unicode}</strong> carries the orthographic signature of the ${entry.pantheon} tradition${hasOriginal ? `: ${greek}` : ''}. Unicode restoration recovers what ASCII flattens.</p>`;
   const kin = catalogEntry?.pronunciation?.kin ? catalogEntry.pronunciation.kin : [];
   const derivativeGroups = [];
   if (kin.length) {
@@ -1858,7 +2043,7 @@ function buildEtymologySection(entry, catalogEntry) {
   return `<section class="section section-victory" id="etymology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">02</span>
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Etymology & Word Family</h2>
             <p class="section-subtitle">From original script to Unicode restoration</p>
         </div>
@@ -1876,8 +2061,9 @@ function buildEtymologySection(entry, catalogEntry) {
 </section>`;
 }
 
-function buildUnicodeBreakdownSection(entry) {
+function buildUnicodeBreakdownSection(entry, sectionNumber = 3) {
   const breakdown = entry.breakdown || [];
+  const asciiOnly = isAsciiOnlyUnicode(entry);
   let rows = '';
   if (breakdown.length) {
     rows = breakdown
@@ -1891,6 +2077,7 @@ function buildUnicodeBreakdownSection(entry) {
           if (b.type === 'stress') role = 'Stress marker (acute/circumflex): pitch or emphasis';
           else if (b.type === 'length') role = 'Length marker (macron): long vowel';
           else if (b.type === 'breathing') role = 'Breathing mark: rough or smooth aspiration';
+          else if (asciiOnly) role = 'Already ASCII — no restoration needed';
           else role = 'Preserves the base letter';
         }
         return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell">${b.to}</td><td><code>${info.hex}</code></td><td>${info.name}</td><td>${info.block}</td><td>${role}</td></tr>`;
@@ -1901,18 +2088,19 @@ function buildUnicodeBreakdownSection(entry) {
       .split('')
       .map((ch, i) => {
         const info = getUnicodeInfo(ch);
-        return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell">${ch}</td><td><code>${info.hex}</code></td><td>${info.name}</td><td>${info.block}</td><td>Restored character</td></tr>`;
+        return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell">${ch}</td><td><code>${info.hex}</code></td><td>${info.name}</td><td>${info.block}</td><td>${asciiOnly ? 'Already ASCII — no restoration needed' : 'Restored character'}</td></tr>`;
       })
       .join('');
   }
-  const tierNote =
-    entry.tier === 'dual'
+  const tierNote = asciiOnly
+    ? `The <strong>${entry.tierLabel || `Tier ${entry.tier}`}</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>${entry.unicode}</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.`
+    : entry.tier === 'dual'
       ? `The <strong>dual-tier</strong> nature of ${entry.unicode} arises because the original carries both stress and vowel length and history has handed down more than one defensible Unicode spelling — each variant is a real, attested restoration, and both live as owned domains.`
       : `The <strong>${entry.tierLabel || `Tier ${entry.tier}`}</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.`;
   return `<section class="section section-pronunciation" id="unicode-breakdown">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Unicode Character Breakdown</h2>
             <p class="section-subtitle">Character-by-character philological analysis</p>
         </div>
@@ -1929,7 +2117,7 @@ function buildUnicodeBreakdownSection(entry) {
 </section>`;
 }
 
-function buildCulturalSignificanceSection(entry, catalogEntry) {
+function buildCulturalSignificanceSection(entry, catalogEntry, sectionNumber = 4) {
   const cards = [];
   if (catalogEntry?.syncretism) {
     cards.push({
@@ -1940,17 +2128,8 @@ function buildCulturalSignificanceSection(entry, catalogEntry) {
   if (catalogEntry?.culturalLegacy) {
     cards.push({ title: 'Modern Legacy', body: stripOuterPTag(catalogEntry.culturalLegacy) });
   }
-  cards.push({
-    title: 'Unicode Restoration as Cultural Act',
-    body: `Restoring <strong>${entry.unicode}</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.`,
-  });
-  if (catalogEntry?.domains?.title) {
-    cards.unshift({
-      title: 'Ancient Domain',
-      body:
-        stripOuterPTag(catalogEntry.domains.lead) ||
-        `In the ${entry.pantheon} tradition, ${entry.unicode} governed ${entry.domain.toLowerCase()}.`,
-    });
+  if (catalogEntry?.archaeology) {
+    cards.push({ title: 'In the Earth', body: stripOuterPTag(catalogEntry.archaeology) });
   }
   const grid = cards
     .map(
@@ -1962,11 +2141,31 @@ function buildCulturalSignificanceSection(entry, catalogEntry) {
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">04</span>
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
         <div class="cultural-grid">${grid}</div>
+    </div>
+</section>`;
+}
+
+// The Meditation — the catalog's extended essay, given its own stage on the
+// extended page instead of languishing as a single teaser paragraph in a CTA.
+function buildMeditationSection(entry, catalogEntry, sectionNumber = 5) {
+  const meditation = catalogEntry?.extendedMeditation;
+  if (!meditation) return '';
+  const body = meditation.trim().startsWith('<p')
+    ? meditation
+    : `<p class="lead-text">${meditation}</p>`;
+  return `<section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What ${entry.unicode} means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up">${body}</div>
     </div>
 </section>`;
 }
@@ -1981,11 +2180,11 @@ function stripOuterPTag(html) {
   return trimmed;
 }
 
-function buildFaqSection(entry, catalogEntry) {
+function buildFaqItems(entry, catalogEntry) {
   const greek = getOriginalScript(entry) || entry.unicode;
   const ipa = catalogEntry?.pronunciation?.ipa ? catalogEntry.pronunciation.ipa : '';
   const approximation = catalogEntry?.pronunciation?.approximation
-    ? catalogEntry.pronunciation.approximation
+    ? catalogEntry.pronunciation.approximation.replace(/[.\s]+$/, '')
     : '';
   const symbols = catalogEntry?.symbols || [];
   const variants = (entry.variants || []).filter((v) => v.type !== 'ascii');
@@ -2011,23 +2210,59 @@ function buildFaqSection(entry, catalogEntry) {
   }
   if (variants.length) {
     items.push({
-      q: `What is the difference between ${getDomainsText(entry).split(' \u00b7 ').join(' and ')}?`,
-      a: `Each is a historically defensible restoration. ${variants.map((v) => `<strong>${v.unicode}.com</strong> is the ${v.type} form${v.note ? `: ${v.note}` : ''}`).join('; ')}.`,
+      q: `Why are there different spellings of ${entry.unicode}?`,
+      a: `Each form is a historically attested restoration rather than a mistake: ${variants
+        .filter((v) => v.unicode)
+        .map(
+          (v) =>
+            `<strong>${v.unicode}</strong> is the ${v.type} form${v.note ? ` (${v.note})` : ''}`
+        )
+        .join(
+          '; '
+        )}. PUNICODEX registers the full set so the tradition is preserved under every defensible spelling.`,
     });
   }
   items.push({
     q: `Why restore ${entry.unicode} in Unicode?`,
-    a: `Plain ASCII <strong>${entry.ascii}</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.`,
+    a: isAsciiOnlyUnicode(entry)
+      ? `<strong>${entry.unicode}</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.`
+      : `Plain ASCII <strong>${entry.ascii}</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.`,
   });
   if (catalogEntry?.mythology?.myths?.length) {
     const m = catalogEntry.mythology.myths[0];
     items.push({
       q: `What is the most important myth about ${entry.unicode}?`,
-      a: stripOuterPTag(m.text)
-        .replace(/<p[^>]*>/g, '')
-        .replace(/<\/p>/g, ''),
+      a: `“${m.title}” — ${stripOuterPTag(catalogEntry.mythology.lead).replace(/<[^>]+>/g, '')} The full telling lives on <a href="../#mythology">the lore page</a>.`,
     });
   }
+  return items;
+}
+
+// FAQPage JSON-LD must mirror the visible FAQ exactly (rubric §4) — both are
+// built from the same item list.
+function faqJsonLd(items) {
+  const mainEntity = items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: it.a
+        .replace(/<[^>]+>/g, '')
+        .replace(/\s+/g, ' ')
+        .trim(),
+    },
+  }));
+  return `<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": ${JSON.stringify(mainEntity, null, 4).replace(/</g, '\\u003c')}
+}
+    </script>`;
+}
+
+function buildFaqSection(entry, catalogEntry, sectionNumber = 6) {
+  const items = buildFaqItems(entry, catalogEntry);
   const faqs = items
     .map(
       (it, i) =>
@@ -2037,7 +2272,7 @@ function buildFaqSection(entry, catalogEntry) {
   return `<section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about ${entry.unicode}, ${entry.domain}, and Unicode restoration</p>
         </div>
@@ -2046,7 +2281,7 @@ function buildFaqSection(entry, catalogEntry) {
 </section>`;
 }
 
-function buildSourcesSection(entry, catalogEntry) {
+function buildSourcesSection(entry, catalogEntry, sectionNumber = 7) {
   const sourceCitations = {
     LSJ: '<cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite>',
     'Pape-Benseler':
@@ -2270,11 +2505,19 @@ function buildSourcesSection(entry, catalogEntry) {
     /Mycenae/,
   ];
 
-  const lexItems = (entry.sources || []).map((s) => sourceCitations[s] || `<cite>${s}</cite>`);
+  const lexItems = [];
+  const primaryFromLex = [];
+  for (const s of entry.sources || []) {
+    const cite = sourceCitations[s] || `<cite>${s}</cite>`;
+    // Lexicon sources are not all lexicography — a primary text cited in the
+    // lexicon (e.g. the Kojiki for Amaterasu) belongs under Primary Texts.
+    if (primaryPatterns.some((p) => p.test(s))) primaryFromLex.push(cite);
+    else lexItems.push(cite);
+  }
   if (!lexItems.length)
     lexItems.push(`<cite>Lexical and philological sources for ${entry.unicode}.</cite>`);
 
-  const primaryItems = [];
+  const primaryItems = [...primaryFromLex];
   const archaeologyItems = [];
   const religiousItems = [];
 
@@ -2306,15 +2549,15 @@ function buildSourcesSection(entry, catalogEntry) {
     );
   }
 
-  if (catalogEntry?.archaeology) {
-    archaeologyItems.push(`<cite>${catalogEntry.archaeology}</cite>`);
-  }
-
   if (!religiousItems.length) {
     religiousItems.push(
       `<cite>Comparative studies of ${entry.pantheon} religion and the place of ${entry.unicode} within it.</cite>`
     );
   }
+
+  // NOTE: catalogEntry.archaeology is intentionally NOT rendered here — it has
+  // its own card in Cultural Significance ("In the Earth"). Duplicating it in
+  // both places wasted a per-deity asset.
 
   const sourceCategories = [
     { title: 'Lexicography & Philology', icon: '◈', items: lexItems },
@@ -2338,7 +2581,7 @@ function buildSourcesSection(entry, catalogEntry) {
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -2352,7 +2595,7 @@ function buildSourcesSection(entry, catalogEntry) {
 </section>`;
 }
 
-function buildScreenAppearancesSection(entry) {
+function buildScreenAppearancesSection(entry, sectionNumber = 6) {
   const productions = (SCREEN_INDEX.productions || []).filter((p) => p.entries.includes(entry.id));
   if (productions.length === 0) return '';
 
@@ -2372,6 +2615,7 @@ function buildScreenAppearancesSection(entry) {
                 <h3 class="screen-appearance-title">${escapeHtml(p.title)}</h3>
                 <span class="screen-appearance-type">${typeLabel(p.type)}</span>
                 <p class="screen-appearance-studio">${escapeHtml(p.studio || '')}</p>
+                ${p.summary ? `<p class="screen-appearance-summary">${escapeHtml(p.summary)}</p>` : ''}
             </a>`
     )
     .join('');
@@ -2380,9 +2624,9 @@ function buildScreenAppearancesSection(entry) {
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Screen Appearances</h2>
-            <p class="section-subtitle">Films, series, animations, and games featuring ${escapeHtml(entry.unicode)}</p>
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">Screen &amp; Culture</h2>
+            <p class="section-subtitle">Where ${escapeHtml(entry.unicode)} echoes through film, television, and games — and how</p>
         </div>
         <div class="screen-appearances-grid">${cards}</div>
     </div>
@@ -2898,7 +3142,8 @@ function buildPronunciationContent(entry, catalogEntry) {
       </div>`
       )
       .join('');
-    const kin = (p.kin || []).map((k) => `<li><strong>${k.label}</strong> ${k.form}</li>`).join('');
+    // Etymological kin lives on the extended page (Etymology & Word Family) —
+    // rendering it here too duplicated the two pages verbatim.
     return `
       <div class="pronunciation-grid">
         <div class="pronunciation-main reveal-up">
@@ -2912,7 +3157,7 @@ function buildPronunciationContent(entry, catalogEntry) {
           <div class="sidebar-card">
             <h3 class="sidebar-title">Modern Approximation</h3>
             <p class="sidebar-text">${p.approximation || ''}</p>
-            ${kin ? `<div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list">${kin}</ul>` : ''}
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
           </div>
           ${p.note ? `<div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">${p.note}</p></div>` : ''}
         </div>
@@ -2990,25 +3235,10 @@ function buildMythologyContent(entry, catalogEntry) {
   return LORE_STUBS.buildMythologyContent(entry);
 }
 
-function _buildSyncretismContent(entry, catalogEntry) {
-  if (catalogEntry?.syncretism) return catalogEntry.syncretism;
-  return cleanSectionContent(entry._loreSections?.syncretism) || '';
-}
-
-function _buildCulturalLegacyContent(entry, catalogEntry) {
-  if (catalogEntry?.culturalLegacy) return catalogEntry.culturalLegacy;
-  return `<p class="lead-text"><strong>${entry.unicode}</strong> survives in languages, place names, academic vocabulary, and contemporary media.</p>
-<p>From classical scholarship to modern translation and popular retellings, the name remains a marker of cultural continuity. Unicode restoration preserves that legacy in digital text.</p>`;
-}
-
 function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   const catalogEntry = catalog?.[entry.id];
   let html = fs.readFileSync(path.join(templateDir, 'lore', 'index.html'), 'utf8');
   const templeId = entry.id;
-  const nameProse = buildNameProse(entry);
-  // The rich provenance builder always emits section 02 (placeholder or
-  // curated); Name Variations takes 03 and the remaining sections follow.
-  const sectionOffset = 2;
   const vars = {
     BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Lore', path: 'lore/' }),
     BREADCRUMB_NAV: templeBreadcrumbNav(entry, { name: 'Lore', path: 'lore/' }),
@@ -3016,10 +3246,6 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     UNICODE: entry.unicode,
     ASCII: entry.ascii,
     GREEK: getOriginalScript(entry) || '—',
-    ORIGINAL_SCRIPT: getOriginalScript(entry) || entry.unicode,
-    ORIGINAL_SCRIPT_LABEL: getOriginalScriptLabel(entry),
-    ORIGINAL_SCRIPT_CARD_NOTE: buildOriginalScriptCardNote(entry),
-    ORIGINAL_SCRIPT_PROVENANCE_SECTION: buildOriginalScriptProvenanceSection(entry),
     DOMAIN: entry.domain,
     MEANING: entry.meaning || '',
     TAGLINE: heroTagline(entry),
@@ -3030,10 +3256,6 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
     EFFECT: getCanvasEffect(entry),
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
-    PUNYCODE: getPunycodeExplainer(entry),
-    NAME_ORIGINAL: nameProse.original,
-    NAME_ASCII: nameProse.ascii,
-    NAME_UNICODE: nameProse.unicode,
   };
 
   const hasCatalogMyth = catalogEntry?.mythology;
@@ -3073,25 +3295,40 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
       ? entry.domain
       : `Attributes of ${entry.unicode}`;
 
-  vars.PRONUNCIATION = wrapSection(
-    'pronunciation',
-    'Pronunciation',
-    `How ${entry.unicode} was spoken`,
-    pronunciation,
-    2 + sectionOffset
-  );
-  vars.SYMBOLS = wrapSection('symbols', symbolsTitle, symbolsSubtitle, symbols, 3 + sectionOffset);
+  // Lore-first ordering: myth → powers → echoes → kin → the name. Section
+  // numbers are assigned sequentially over the sections that actually render,
+  // so conditional bands never leave numbering gaps.
+  let n = 0;
+  const next = () => {
+    n += 1;
+    return n;
+  };
   vars.MYTHOLOGY = wrapSection(
     'mythology',
     'Mythology',
     `Stories of ${entry.unicode}`,
     mythology,
-    4 + sectionOffset
+    next()
   );
-  vars.RELATED_NAMES = buildRelatedNamesSection(entry, 5 + sectionOffset);
-  vars.NAME_VARIATIONS = buildNameVariationsSection(entry, 3);
-  vars.CROSS_LINK_BAND = buildCrossLinkBand(entry, 6 + sectionOffset);
+  vars.SYMBOLS = wrapSection('symbols', symbolsTitle, symbolsSubtitle, symbols, next());
+  vars.CROSS_LINK_BAND = buildCrossLinkBand(entry, next());
+  // buildCrossLinkBand returns '' when there is nothing to link; don't burn a
+  // number on a section that did not render.
+  if (!vars.CROSS_LINK_BAND) n -= 1;
+  vars.RELATED_NAMES = buildRelatedNamesSection(entry, next());
+  if (!vars.RELATED_NAMES) n -= 1;
+  vars.THE_NAME = buildTheNameSection(entry, next());
+  vars.NAME_VARIATIONS = buildNameVariationsSection(entry, next());
+  vars.PRONUNCIATION = wrapSection(
+    'pronunciation',
+    'Pronunciation',
+    `How ${entry.unicode} was spoken`,
+    pronunciation,
+    next()
+  );
+  vars.ORIGINAL_SCRIPT_PROVENANCE_SECTION = buildOriginalScriptProvenanceSection(entry, next());
   vars.EXTENDED_LORE_CTA = buildExtendedLoreCTA(entry, catalogEntry);
+  vars.CHAPTER_NAV = buildChapterNav(vars, entry);
   vars.FOOTER = buildZeusFooter(entry, '../');
   vars.EXTENDED_TAB = buildExtendedTab('lore', entry.id);
   vars.PATTERNS_TAB = buildPatternsTab('lore');
@@ -3100,6 +3337,35 @@ function generateLorePage(entry, palette, loreSections, templateDir, catalog) {
   html = applyBespokeCanvas(html, entry.id, palette.primary, palette.secondary);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
   return html;
+}
+
+// Editorial chapter bar for the lore page — a table of contents that mirrors
+// exactly the sections that rendered, with their assigned numbers.
+function buildChapterNav(vars, entry) {
+  const chapters = [];
+  const push = (key, anchor, label) => {
+    const num = (vars[key].match(/<span class="section-number">(\d+)/) || [])[1];
+    if (num) chapters.push([num, anchor, label]);
+  };
+  push('MYTHOLOGY', '#mythology', 'Mythology');
+  push('SYMBOLS', '#symbols', 'Powers & Symbols');
+  push('CROSS_LINK_BAND', '#texts-and-words', 'Texts & Words');
+  push('RELATED_NAMES', '#related', 'Kin');
+  push('THE_NAME', '#the-name', 'The Name');
+  push('NAME_VARIATIONS', '#name-variations', 'Variations');
+  push('PRONUNCIATION', '#pronunciation', 'Pronunciation');
+  push('ORIGINAL_SCRIPT_PROVENANCE_SECTION', '#provenance', 'Provenance');
+  if (!chapters.length) return '';
+  const links = chapters
+    .map(
+      ([num, anchor, label]) =>
+        `<a href="${anchor}" class="chapter-link"><span class="chapter-num">${num}</span><span class="chapter-label">${escapeHtml(label)}</span></a>`
+    )
+    .join('');
+  return `<nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">${escapeHtml(entry.unicode)} — Table of Contents</span>
+    <div class="chapters-row">${links}<a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>`;
 }
 
 function buildGalleryGrid(entry) {
@@ -3488,6 +3754,13 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
   let html = fs.readFileSync(path.join(templateDir, 'lore', 'extended', 'index.html'), 'utf8');
   const templeId = entry.id;
   const catalogEntry = catalog?.[entry.id];
+  // Sequential numbering over the sections that actually render — Screen &
+  // Culture and The Meditation are conditional and must never leave gaps.
+  let n = 0;
+  const next = () => {
+    n += 1;
+    return n;
+  };
   const vars = {
     BREADCRUMB_JSONLD: templeBreadcrumb(entry, { name: 'Extended Lore', path: 'lore/extended/' }),
     UNICODE: entry.unicode,
@@ -3504,19 +3777,49 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     PRIMARY: palette.primary,
     SECONDARY: palette.secondary,
     HERO_VISUAL: buildHeroVisualExtended(entry, '../../'),
-    QUICK_FACTS: buildQuickFactsSection(entry, catalogEntry),
-    ETYMOLOGY: buildEtymologySection(entry, catalogEntry),
-    UNICODE_BREAKDOWN: buildUnicodeBreakdownSection(entry),
-    CULTURAL_SIGNIFICANCE: buildCulturalSignificanceSection(entry, catalogEntry),
-    SCREEN_APPEARANCES: buildScreenAppearancesSection(entry),
-    FAQ: buildFaqSection(entry, catalogEntry),
-    SOURCES: buildSourcesSection(entry, catalogEntry),
-    FOOTER: buildZeusFooter(entry, '../../'),
+    QUICK_FACTS: buildQuickFactsSection(entry, catalogEntry, next()),
+    ETYMOLOGY: buildEtymologySection(entry, catalogEntry, next()),
+    UNICODE_BREAKDOWN: buildUnicodeBreakdownSection(entry, next()),
+    CULTURAL_SIGNIFICANCE: buildCulturalSignificanceSection(entry, catalogEntry, next()),
+    MEDITATION: '',
+    SCREEN_APPEARANCES: '',
+    FAQ: '',
+    SOURCES: '',
   };
+  vars.MEDITATION = buildMeditationSection(entry, catalogEntry, next());
+  if (!vars.MEDITATION) n -= 1;
+  vars.SCREEN_APPEARANCES = buildScreenAppearancesSection(entry, next());
+  if (!vars.SCREEN_APPEARANCES) n -= 1;
+  vars.FAQ = buildFaqSection(entry, catalogEntry, next());
+  vars.SOURCES = buildSourcesSection(entry, catalogEntry, next());
+  vars.FAQ_JSONLD = faqJsonLd(buildFaqItems(entry, catalogEntry));
+  vars.EXTENDED_NAV_LINKS = buildExtendedNavLinks(vars);
+  vars.FOOTER = buildZeusFooter(entry, '../../');
   html = replacePlaceholders(html, vars);
   html = applyBespokeCanvas(html, entry.id, palette.primary, palette.secondary);
   if (!hasRealGreek(entry)) html = stripPlaceholderGreek(html, entry.unicode);
   return html;
+}
+
+// Anchor links for the extended page's slim subnav — built from the sections
+// that actually rendered, so no dead links when Meditation or Screen & Culture
+// are absent.
+function buildExtendedNavLinks(vars) {
+  const links = [
+    ['#quick-facts', 'Facts'],
+    ['#etymology', 'Etymology'],
+    ['#unicode-breakdown', 'Orthography'],
+    ['#cultural-significance', 'Culture'],
+  ];
+  if (vars.MEDITATION) links.push(['#meditation', 'Meditation']);
+  if (vars.SCREEN_APPEARANCES) links.push(['#screen-appearances', 'Screen']);
+  links.push(['#faq', 'FAQ'], ['#sources', 'Sources']);
+  return links
+    .map(
+      ([href, label]) =>
+        `<a href="${href}" class="nav-link extended-anchor">${escapeHtml(label)}</a>`
+    )
+    .join('\n                ');
 }
 
 function buildLoreJson(entry, catalogEntry) {
@@ -3708,7 +4011,11 @@ function createFlagship(templeId, options = {}) {
 
     const finalContent =
       CROSSLINK_PATHS.has(relativePath) && relativePath.endsWith('.html')
-        ? autoLink(content, { selfId: templeId, allowAmbiguousAscii: true })
+        ? autoLink(content, {
+            selfId: templeId,
+            allowAmbiguousAscii: true,
+            linkCitations: true,
+          })
         : content;
 
     // Preserve lore.json timestamp when the meaningful content has not changed

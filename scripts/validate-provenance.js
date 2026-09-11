@@ -106,15 +106,19 @@ function main() {
     pass('create-flagship.js references buildRichProvenanceSection');
   }
 
-  // The lore page's section sequence is: 01 overview, 02 provenance
-  // (hard-coded in buildRichProvenanceSection), 03 Name Variations, then the
-  // remaining sections at 04+ via the offset. Guard the whole contract.
-  if (!/const sectionOffset = 2;/.test(createFlagship)) {
-    fail('create-flagship.js sectionOffset is not hard-coded to 2');
-  } else if (!/NAME_VARIATIONS = buildNameVariationsSection\(entry, 3\)/.test(createFlagship)) {
-    fail('create-flagship.js Name Variations section is not hard-coded to 03');
+  // The lore page's section sequence is lore-first: mythology (01) → symbols →
+  // texts/words → related names → the name → name variations → pronunciation →
+  // provenance (numbered dynamically in generateLorePage). Guard the contract.
+  if (!/vars\.MYTHOLOGY = wrapSection\(/.test(createFlagship)) {
+    fail('create-flagship.js lore page does not lead with the mythology section');
+  } else if (!/ORIGINAL_SCRIPT_PROVENANCE_SECTION = buildOriginalScriptProvenanceSection\(entry, next\(\)\)/.test(
+    createFlagship
+  )) {
+    fail('create-flagship.js provenance section is not wired into the dynamic numbering');
+  } else if (!/THE_NAME = buildTheNameSection\(entry, next\(\)\)/.test(createFlagship)) {
+    fail('create-flagship.js lore page is missing the consolidated The Name section');
   } else {
-    pass('create-flagship.js hard-codes sectionOffset = 2 (provenance 02, name variations 03)');
+    pass('create-flagship.js wires lore-first ordering with dynamic section numbering');
   }
 
   // 2. CSS checks

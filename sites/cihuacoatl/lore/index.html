@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Cihuacōātl — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Cihuacōātl</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Cihuacōātl.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,152 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Cihuacōātl</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Cihuacōātl</strong> is the standard Nahuatl romanisation, documented in academic sources — “Snake Woman”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">cihuacoatl</p>
-                    <p class="card-body">Reduced to plain <strong>cihuacoatl</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Cihuacōātl</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Cihuacōātl</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Cihuacōātl.com → xn--cihuactl-m7a37e.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Cihuacōātl</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Cihuacōātl</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Cihuacōātl is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Cihuacōātl</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Cihuacōātl</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Cihuacōātl</p>
-                    <p class="card-body">The live temple domain — <strong>cihuacōātl.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">cihuacoatl</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Cihuacōātl was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Cihuacōātl</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/si.waːˈkoː.aːtɬ/</span>
-            <span class="ipa-label">Classical Nahuatl Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Cih-</span>
-        <span class="phoneme-desc">Voiceless alveolar fricative [s] plus close front [i], a hissing opening that identifies the 'woman' element.</span>
+      <p class="lead-text">Cihuacōātl's mythology is preserved in the birth rituals recorded by Sahagún and in the widespread Mexican legend of the weeping woman. She is both a beneficent guardian and a terrifying ghost, a duality that reflects the high mortality of childbirth in the pre-modern world.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ritual myth</span>
+          <h3 class="myth-title">The Midwives’ Prayer</h3>
+          <p class="myth-text">Sahagún’s informants describe how the midwife received the newborn as a captive taken in sacred battle: the child, they said, had been chosen in the land of the dead by the gods and delivered into the midwife’s hands. She addressed the infant as a warrior arriving from the sky, invoked the divine protectresses of the birthing chamber — among them Cihuacōātl — cut the umbilicus over an open vessel, and buried the afterbirth in the corner of the house as an offering. The child was bathed, named, and ritually presented to the gods; the cord of a girl child was buried by the hearth, that of a boy by the fields, fixing each life to its future work. Cihuacōātl’s presence ensured the dangerous passage from womb to world ended in life rather than death (Florentine Codex, Book VI). The ritual means birth was classified as war: the mother a battlefield, the midwife a commander, and the goddess the power holding the door.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ua-</span>
-        <span class="phoneme-desc">Rounded [w] plus open [a], the glide linking cihua- 'woman' to the snake element.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ghost legend</span>
+          <h3 class="myth-title">The Cihuapipiltin and the Crossroads</h3>
+          <p class="myth-text">Women who died in childbirth — above all in a first labor — were believed to become cihuāpīpiltin, “noble women,” spirits of enormous and ambivalent power. They wandered at night dressed in white, faces chalked, hair loose, weeping at crossroads and waterways for the children they had lost; they could seize or strike men who mocked them, appear as omens of war, and visit fathers in dreams. Yet the same powers defended their communities: the spirits of women dead in childbirth were counted among the fierce dead who carried the sun from noon to setting, soldiers in the sky’s war. Over centuries this figure merged with Spanish colonial ghost-lore to produce La Llorona, the weeping woman of Mexican folklore. The transformation means a goddess of childbirth survived conquest by becoming a ghost — the cult suppressed, the grief irrepressible.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-cō-</span>
-        <span class="phoneme-desc">Voiceless velar stop [k] plus long back rounded [oː]; c before back vowels is /k/ in Classical Nahuatl.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">State office</span>
+          <h3 class="myth-title">The Cihuacōātl of Tenochtitlan</h3>
+          <p class="myth-text">The name was also the second-highest office of the Mexica state: Cihuacōātl, “Woman-Snake,” counselor and executor of the ruler’s will. Diego Durán and the Florentine Codex describe the office as “speaker of the city,” sometimes rendered vice-ruler, charged with internal order — the courts, the marketplace, the tribute rolls — while the tlātoāni managed war and diplomacy. Tlācaelel, the great architect of the Aztec state under Itzcōātl and Motēuczōma, held the title for decades and is credited with rebuilding the whole imperial ideology. That the state’s chief magistrate bore a goddess’s name — and a goddess of childbirth at that — suggests the office carried sacred as well as administrative authority: the state, like the birthing chamber, governed a threshold where death stood close by.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-ātl</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> open [aː] plus lateral affricate [tɬ]; final -tl is a single released sound.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Omens</span>
+          <h3 class="myth-title">The Woman Who Cried in the Night</h3>
+          <p class="myth-text">When the strangers from the east were coming, omens walked the land — and among them, the ancient ones. The Florentine Codex (Book 12) records that in the tenth year before the strangers’ arrival a woman’s voice was heard crying in the night: “My children, my children, we are lost! Where shall I take you? We are lost, we are doomed!” — the cry of a cihuāteōtl, one of the divine women who had died in childbirth, mourning the world that was ending. The same book lists the comet, the burning temple of <a href="/huitzilopochtli/" class="crosslink" data-crosslink="huitzilopochtli">Huitzilopochtli</a>, and the mirror that showed the armies marching. Read against her older cult, the wailing woman of the omens is Cihuacōātl herself turned prophetess of catastrophe. The myth means the goddess of birth had become the goddess of ending: the same threshold, walked the other way.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'see-wah-KOH-ahtl' — the first vowel is short, the 'c' is a hard 'k,' and the final -tl is one crisp tongue-stop.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Classical Nahuatl</strong> Cihuacōātl — from cihuātl 'woman' + cōātl 'snake, serpent'</li><li><strong>Title and office</strong> Cihuacōātl was also the title of a high-ranking Mexica official, 'Woman-Snake,' the second voice of the ruler</li><li><strong>Modern spelling</strong> Cihuacoatl, the conventional form that drops the macrons</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The name is a transparent compound of cihuātl ('woman') and cōātl ('snake'). The first vowel (i) is short; the long vowel the written compound leaves unmarked is the ā of cihuātl, shortened in the compound (compound-shortening). The same word was used as a political title, the Cihuacōātl or 'Woman-Snake,' a high official of the Mexica state. In religion, Cihuacōātl is a powerful goddess of childbirth, maternity, and the dangers that attend both. Tier 1: the macrons preserve vowel length, a distinctive feature the ASCII form loses.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -383,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Snake Woman</h2>
             <p class="section-subtitle">Childbirth, Midwifery, and the Fate of Mothers</p>
         </div>
@@ -430,49 +332,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Cihuacōātl</p>
-        </div>
-        
-      <p class="lead-text">Cihuacōātl's mythology is preserved in the birth rituals recorded by Sahagún and in the widespread Mexican legend of the weeping woman. She is both a beneficent guardian and a terrifying ghost, a duality that reflects the high mortality of childbirth in the pre-modern world.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Ritual myth</span>
-          <h3 class="myth-title">The Midwives' Prayer</h3>
-          <p class="myth-text">Sahagún's informants describe how midwives addressed the newborn as a captive taken in battle and invoked Cihuacōātl as the divine protectress of the birthing chamber. The afterbirth was buried as an offering, and the child was ritually presented to the gods. Cihuacōātl's presence ensured that the dangerous passage from womb to world ended in life rather than death. (Florentine Codex VI.)</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Ghost legend</span>
-          <h3 class="myth-title">The Cihuapipiltin and the Crossroads</h3>
-          <p class="myth-text">Women who died in childbirth were believed to become cihuapipiltin, 'noble women,' powerful spirits who wandered at night. They appeared at crossroads, weeping for their lost children, and could seize men or foretell disaster. Over time this figure merged with Spanish colonial lore to produce La Llorona, one of the most enduring figures of Mexican folklore.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">State office</span>
-          <h3 class="myth-title">The Cihuacōātl of Tenochtitlan</h3>
-          <p class="myth-text">The title Cihuacōātl was also borne by a senior Mexica official, sometimes described as a 'vice-ruler' or chief counselor. The title's association with a powerful female deity suggests that the office carried sacred as well as administrative authority, perhaps overseeing internal order and justice while the tlātoāni managed external affairs.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the nahuatl pantheon</p>
         </div>
@@ -536,8 +403,154 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Cihuacōātl</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Cihuacōātl</strong> is the standard Nahuatl romanisation, documented in academic sources — “Snake Woman”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">cihuacoatl</p>
+                <p class="card-body">Reduced to plain <strong>cihuacoatl</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Cihuacōātl</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Cihuacōātl</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Cihuacōātl.com → xn--cihuactl-m7a37e.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Cihuacōātl</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Cihuacōātl</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Cihuacōātl</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Cihuacōātl</p>
+                    <p class="card-body">The live temple domain — <strong>cihuacōātl.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">cihuacoatl</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Cihuacōātl was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/si.waːˈkoː.aːtɬ/</span>
+            <span class="ipa-label">Classical Nahuatl Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Cih-</span>
+        <span class="phoneme-desc">Voiceless alveolar fricative [s] plus close front [i], a hissing opening that identifies the 'woman' element.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ua-</span>
+        <span class="phoneme-desc">Rounded [w] plus open [a], the glide linking cihua- 'woman' to the snake element.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-cō-</span>
+        <span class="phoneme-desc">Voiceless velar stop [k] plus long back rounded [oː]; c before back vowels is /k/ in Classical Nahuatl.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-ātl</span>
+        <span class="phoneme-desc">Long open [aː] plus lateral affricate [tɬ]; final -tl is a single released sound.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'see-wah-KOH-ahtl' — the first vowel is short, the 'c' is a hard 'k,' and the final -tl is one crisp tongue-stop.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The name is a transparent compound of cihuātl ('woman') and cōātl ('snake'). The first vowel (i) is short; the long vowel the written compound leaves unmarked is the ā of cihuātl, shortened in the compound (compound-shortening). The same word was used as a political title, the Cihuacōātl or 'Woman-Snake,' a high official of the Mexica state. In religion, Cihuacōātl is a powerful goddess of childbirth, maternity, and the dangers that attend both. Tier 1: the macrons preserve vowel length, a distinctive feature the ASCII form loses.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Cihuacōātl is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Cihuacōātl</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -555,7 +568,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/cihuacoatl_mascot.webp" type="image/webp"><img src="../assets/cihuacoatl_mascot.png" alt="Cihuacōātl mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/cihuacoatl_mascot.webp" type="image/webp"><img src="../assets/cihuacoatl_mascot.png" alt="Cihuacōātl mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -593,7 +606,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/cihuacoatl_logomark.webp" type="image/webp"><img src="../assets/cihuacoatl_logomark.webp" alt="Cihuacōātl logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/cihuacoatl_logomark.webp" type="image/webp"><img src="../assets/cihuacoatl_logomark.webp" alt="Cihuacōātl logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

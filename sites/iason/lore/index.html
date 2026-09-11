@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Iásōn — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ἰάσων</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Iásōn.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,153 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ἰάσων</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Iásōn</strong> (Ἰάσων) is attested in the source tradition — “Healer”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">iason</p>
-                    <p class="card-body">Reduced to plain <strong>iason</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Iásōn</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Iásōn</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Iásōn.com → xn--isn-ela55c.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Iásōn</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Iásōn</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Iásōn is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ἰάσων</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Iásōn is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Iásōn</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Iásōn</p>
-                    <p class="card-body">Restores <strong>Ἰάσων</strong>. The live temple domain — <strong>iásōn.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Scholarly Convention</h3>
-                    <p class="card-unicode">Iāsōn</p>
-                    <p class="card-body">Restores <strong>Ἰάσων</strong>. Macron-only scholarly form (LSJ convention); the temple carries the full stress-marked restoration..</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">iason</p>
-                    <p class="card-body">Flattens <strong>Ἰάσων</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Iásōn was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Iásōn</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/i.áː.sɔːn/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">I-</span>
-        <span class="phoneme-desc">Short iota with smooth breathing — the name opens light and quick, without roughness.</span>
+      <p class="lead-text">The myth of Iásōn is the myth of the quest itself: an unjust king, an impossible errand, a band of heroes, and a prize won by cunning and love rather than by strength alone. Pindar sang it; Apollonius made it an epic; Euripides gave it its dark ending.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Oracle</span>
+          <h3 class="myth-title">The Man with One Sandal</h3>
+          <p class="myth-text">Pelias, who had seized the throne of Iolkos from Iásōn's father Aisōn, was warned by an oracle to beware the man wearing one sandal (Apollodorus, Bibliotheca 1.9.2). Iásōn came down from Mount Pelion, where the centaur Cheirōn had reared him, and fording the river Anauros he helped an old woman across — losing a sandal in the mud. The old woman was <strong><a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a></strong> in disguise, and her gratitude would shape the whole voyage to come. Pelias saw the sign and understood it: he could not kill the son of Aisōn outright, so he set the errand he thought would kill him instead — fetch the Golden Fleece from the edge of the world. 'Fetch the fleece' is thus not an adventure but an execution postponed, a death sentence disguised as a commission: the quest opens, as Greek quests do, with a usurper's fear wearing the mask of a king's command.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-á-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> alpha with acute pitch [áː] — the stressed peak of the name; the Ionic form Ἰήσων, with long eta, proves the vowel's length.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Voyage</span>
+          <h3 class="myth-title">The Argo and the Clashing Rocks</h3>
+          <p class="myth-text">The greatest heroes of the age answered the summons — Heraklēs, <a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a>, the Dioskouroi, and some fifty more — and the Argo, first of all ships, carried them out from Pagasai (Apollonius, Argonautica 1–2). The coasts of the voyage are a map of wonders and losses: Lemnos, the island of women; the spring of Hylas, where Heraklēs was lost to the expedition; the boxing of Polydeukēs with the brute Amykos. At the Bosphoros the blind seer <strong>Phineus</strong>, himself tormented by the Harpies, repaid his rescue with the passage every sailor dreaded: the Symplegades, the Clashing Rocks that crushed whatever sailed between. His counsel: loose a dove first. The bird slipped through and lost only its tail-feathers; the Argonauts rowed on the rebound, and the rocks, having missed, stood rooted forever — or so the grateful sea allowed (Argonautica 2.549–610). The myth's mechanism is faith tested at the narrowest point: no one passes the gates of the unknown intact, only minus a tail-feather.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-sōn</span>
-        <span class="phoneme-desc">Sigma followed by long omega [sɔːn] — the drawn-out final syllable that marks the name as long-voweled.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Trial</span>
+          <h3 class="myth-title">Medea and the Tasks of Aietēs</h3>
+          <p class="myth-text">In Colchis, King Aietēs set three labors: yoke the fire-breathing bulls, plow the field of <a href="/ares/" class="crosslink" data-crosslink="ares">Árēs</a>, and destroy the armed men sprung from a dragon's teeth (Apollodorus 1.9.23). Iásōn could no more do these than plow the sea — so the gods moved the other lever. Hera and <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> persuaded <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodite</a> to send <strong><a href="/eros/" class="crosslink" data-crosslink="eros">Eros</a></strong>, and <a href="/medea/" class="crosslink" data-crosslink="medea">Medea</a>, the king's daughter, a mistress of pharmaka devoted to <a href="/hekate/" class="crosslink" data-crosslink="hekate">Hekate</a> (Diodorus 4.45), fell in love with the stranger and put her art at his service (Apollonius 3.26–4). Her ointment made Iásōn proof against fire and iron for a single day; her counsel felled the dragon's brood by the stone-throwing trick <a href="/cadmus/" class="crosslink" data-crosslink="cadmus">Cadmus</a> had used; her charm sang the sleepless guardian serpent to sleep, and the Fleece was lifted in the night. The myth never lets us forget the true agent: every labor is Medea's, and Iásōn's role is to be loved by the right person at the right hour — the hero as beneficiary, not performer.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Return</span>
+          <h3 class="myth-title">The Price at Corinth</h3>
+          <p class="myth-text">The homecoming was shadowed from the start. At the river Ister, Medea lured her brother Apsyrtos into an ambush; in Apollonius's telling Iásōn struck the blow she had arranged (Argonautica 4.450–481), while the older tradition preserved in the scholia — citing Pherecydes — makes the dismemberment of the body and its scattering for the pursuing Colchians her own handiwork. At Iolkos she boiled an old ram and produced a lamb, then bade Pelias's daughters do the same for their father: the false rite of renewal cut the usurper to pieces (Apollodorus 1.9.27). Exiled to Corinth, Iásōn set Medea aside to marry the princess Glaukē — and Euripides' <em>Medea</em> tells the rest: the poisoned robe, the murdered children, the chariot of the Sun. Iásōn died as he had lived, by the Argo: as an old man he slept beneath the rotting hull, and its stern-beam fell and killed him (Apollodorus 1.9.28). The healer's name closes on the story's own diagnosis: everything he touched was cured except himself.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'ih-AH-sone' — the second syllable is pitched higher and held; the final 'ō' is long and closed, nothing like the English 'sun'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek verb</strong> ἰάομαι, 'to heal, to cure' — the root of the name</li><li><strong>Greek noun</strong> ἰατρός, 'physician', built on the same root</li><li><strong>Ionic Greek</strong> Ἰήσων (Iḗsōn), the Ionic form with long eta standing for Attic long alpha</li><li><strong>Latin</strong> Iāsōn, whence English 'Jason'</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Iásōn is Tier 1 because the Greek Ἰάσων contains both stress (acute on the long alpha) and length (the long ᾱ and the final ω). The restoration keeps both: the acute on á and the macron on ō. The name means 'healer' — a fact the quest story tends to forget.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -385,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Healer Who Sailed</h2>
             <p class="section-subtitle">Heroism, the Golden Fleece, and the First Great Voyage</p>
         </div>
@@ -395,22 +296,22 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 40C16 32 24 36 32 30C40 24 48 28 56 20M8 48C20 40 28 44 36 38C44 32 52 36 56 32M4 56H60"></path></svg></div>
         <h4 class="domain-name">The Argo</h4>
-        <p class="domain-desc">The first true ship, built by <a href="/argos/" class="crosslink" data-crosslink="argos">Argos</a> the shipwright under <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>'s direction; its prow held a beam from the speaking oak of Dodona.</p>
+        <p class="domain-desc">The first true ship, built by <a href="/argos/" class="crosslink" data-crosslink="argos">Argos</a> the shipwright under Athena's direction; its prow held a beam from the speaking oak of Dodona.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L38 24H54L42 34L46 50L32 42L18 50L22 34L10 24H26L32 8Z"></path></svg></div>
         <h4 class="domain-name">The Golden Fleece</h4>
-        <p class="domain-desc">The fleece of the flying ram that carried Phrixos to Colchis, hung in a grove of <a href="/ares/" class="crosslink" data-crosslink="ares">Árēs</a> and guarded by a sleepless dragon.</p>
+        <p class="domain-desc">The fleece of the flying ram that carried Phrixos to Colchis, hung in a grove of Árēs and guarded by a sleepless dragon.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C28 8 24 12 24 16C24 20 28 24 32 24C36 24 40 20 40 16C40 12 36 8 32 8ZM20 28C16 28 14 32 14 36C14 40 16 44 20 44C24 44 28 40 28 36C28 32 24 28 20 28ZM44 28C40 28 36 32 36 36C36 40 40 44 44 44C48 44 50 40 50 36C50 32 48 28 44 28Z"></path></svg></div>
         <h4 class="domain-name">The Argonauts</h4>
-        <p class="domain-desc">Some fifty heroes — Heraklēs, <a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a>, the Dioskouroi, <a href="/atalanta/" class="crosslink" data-crosslink="atalanta">Atalanta</a> in some tellings — the greatest muster before Troy.</p>
+        <p class="domain-desc">Some fifty heroes — Heraklēs, Orpheus, the Dioskouroi, <a href="/atalanta/" class="crosslink" data-crosslink="atalanta">Atalanta</a> in some tellings — the greatest muster before Troy.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 16 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 16 32 8Z"></path></svg></div>
         <h4 class="domain-name">The Healer's Name</h4>
-        <p class="domain-desc">From ἰάομαι, 'to heal' — the ironic name of a hero whose cures are worked by <a href="/medea/" class="crosslink" data-crosslink="medea">Medea</a>'s pharmaka, not his own hands.</p>
+        <p class="domain-desc">From ἰάομαι, 'to heal' — the ironic name of a hero whose cures are worked by Medea's pharmaka, not his own hands.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
@@ -436,57 +337,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Iásōn</p>
-        </div>
-        
-      <p class="lead-text">The myth of Iásōn is the myth of the quest itself: an unjust king, an impossible errand, a band of heroes, and a prize won by cunning and love rather than by strength alone. Pindar sang it; Apollonius made it an epic; Euripides gave it its dark ending.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Oracle</span>
-          <h3 class="myth-title">The Man with One Sandal</h3>
-          <p class="myth-text">Pelias, who had seized the throne of Iolkos from Iásōn's father Aisōn, was warned by an oracle to beware the man wearing one sandal. Iásōn came down from Mount Pelion, where the centaur Cheirōn had reared him, and lost a sandal fording the river Anauros — carrying, Apollodorus says, an old woman who was <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a> in disguise. Pelias saw the sign and set the errand he thought would kill him: fetch the Golden Fleece from the edge of the world.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Voyage</span>
-          <h3 class="myth-title">The Argo and the Clashing Rocks</h3>
-          <p class="myth-text">The greatest heroes of the age answered the summons. The Argo sailed from Pagasai through wonders and losses — Lemnos, the land of women; the death of Hylas, which cost them Heraklēs; the boxing of Polydeukēs with Amykos — until Phineus, the blind seer, told them how to pass the Symplegades, the rocks that clashed together. A dove was loosed first; when it lost only its tail-feathers, the Argonauts rowed through on the rebound, and the rocks stood still forever.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Trial</span>
-          <h3 class="myth-title">Medea and the Tasks of Aietēs</h3>
-          <p class="myth-text">In Colchis, King Aietēs set three labors: yoke the fire-breathing bulls, plow the field of Árēs, and slay the armed men sprung from a dragon's teeth. Hera and Athena persuaded <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodite</a> to send <a href="/eros/" class="crosslink" data-crosslink="eros">Eros</a>, and Medea, the king's daughter and a priestess of <a href="/hekate/" class="crosslink" data-crosslink="hekate">Hekate</a>, fell in love with the stranger. Her ointment made Iásōn proof against fire and iron for a day; her counsel felled the dragon's brood; her charm sang the sleepless guardian to sleep, and the Fleece was taken in the night.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Return</span>
-          <h3 class="myth-title">The Betrayal at Corinth</h3>
-          <p class="myth-text">The homecoming was shadowed from the start: in Apollodorus's telling Medea had dismembered her brother Apsyrtos to slow the pursuit, and at Iolkos she tricked Pelias's daughters into cutting their father to pieces in a false rite of renewal. Exiled to Corinth, Iásōn put Medea aside to marry the princess Glaukē. Euripides tells the rest — the poisoned robe, the murdered children, the chariot of the Sun. Iásōn died as he had lived, by the Argo: struck in old age by a beam of the rotting ship as he slept beneath it.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -550,8 +408,155 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ἰάσων</p>
+                <p class="card-body">The name in its original Greek form. <strong>Iásōn</strong> (Ἰάσων) is attested in the source tradition — “Healer”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">iason</p>
+                <p class="card-body">Reduced to plain <strong>iason</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Iásōn</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Iásōn</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Iásōn.com → xn--isn-ela55c.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Iásōn</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Iásōn</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Iásōn</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Iásōn</p>
+                    <p class="card-body">Restores <strong>Ἰάσων</strong>. The live temple domain — <strong>iásōn.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Scholarly Convention</h3>
+                    <p class="card-unicode">Iāsōn</p>
+                    <p class="card-body">Restores <strong>Ἰάσων</strong>. Macron-only scholarly form (LSJ convention); the temple carries the full stress-marked restoration..</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">iason</p>
+                    <p class="card-body">Flattens <strong>Ἰάσων</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Iásōn was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/i.áː.sɔːn/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">I-</span>
+        <span class="phoneme-desc">Short iota with smooth breathing — the name opens light and quick, without roughness.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-á-</span>
+        <span class="phoneme-desc">Long alpha with acute pitch [áː] — the stressed peak of the name; the Ionic form Ἰήσων, with long eta, proves the vowel's length.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-sōn</span>
+        <span class="phoneme-desc">Sigma followed by long omega [sɔːn] — the drawn-out final syllable that marks the name as long-voweled.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'ih-AH-sone' — the second syllable is pitched higher and held; the final 'ō' is long and closed, nothing like the English 'sun'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Iásōn is Tier 1 because the Greek Ἰάσων contains both stress (acute on the long alpha) and length (the long ᾱ and the final ω). The restoration keeps both: the acute on á and the macron on ō. The name means 'healer' — a fact the quest story tends to forget.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Iásōn is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ἰάσων</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Iásōn is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -569,7 +574,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/iason_mascot.webp" type="image/webp"><img src="../assets/iason_mascot.png" alt="Iásōn mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/iason_mascot.webp" type="image/webp"><img src="../assets/iason_mascot.png" alt="Iásōn mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -607,7 +612,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/iason_logomark.webp" type="image/webp"><img src="../assets/iason_logomark.webp" alt="Iásōn logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/iason_logomark.webp" type="image/webp"><img src="../assets/iason_logomark.webp" alt="Iásōn logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

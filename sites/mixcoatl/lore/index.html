@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Mixcōātl — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Mixcōātl</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Mixcōātl.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,136 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Mixcōātl</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Mixcōātl</strong> is the standard Nahuatl romanisation, documented in academic sources — “"Cloud Serpent" — god of the hunt, of clouds, and of the starry road”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">mixcoatl</p>
-                    <p class="card-body">Reduced to plain <strong>mixcoatl</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Mixcōātl</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Mixcōātl</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Mixcōātl.com → xn--mixctl-6za12d.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Mixcōātl</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Mixcōātl</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Mixcōātl is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Mixcōātl</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Mixcōātl</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Mixcōātl</p>
-                    <p class="card-body">The live temple domain — <strong>mixcōātl.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">mixcoatl</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Mixcōātl was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Mixcōātl</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/miʃ.ˈkoː.aː.tɬ/</span>
-            <span class="ipa-label">Classical Nahuatl</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">meesh-KOH-ahtl — long o, lateral finish.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Nahuatl</strong> Mixcōātl</li><li><strong>His other name</strong> Camaxtle</li><li><strong>Owned form</strong> Mixcōātl</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Mixcōātl is Nahuatl for "cloud serpent" (mixtli + cōātl); the macron on the ō marks the long vowel of the serpent-word, the same one in <a href="/quetzalcoatl/" class="crosslink" data-crosslink="quetzalcoatl">Quetzalcōātl</a> and <a href="/xolotl/" class="crosslink" data-crosslink="xolotl">Xōlōtl</a>. The restoration keeps it — the serpent is always long. The x of Nahuatl is the sh-sound, not ks: meesh, not mix — the single most misread letter in the language.</p></div>
+      <p class="lead-text">Mixcōātl's myths are the Aztec origin-story in one figure: the wilderness god who taught the city-builders how to hunt, whose star-road they followed south, and whose household quarrel is written nightly across his own body. The sources are colonial but faithful — Sahagún's informants, the indigenous annals, the picture-histories — and where they disagree, the disagreement is itself instructive.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Road</span>
+          <h3 class="myth-title">The Serpent of Stars</h3>
+          <p class="myth-text">The Chichimec tribes who became the Aztec nobility followed his road: the Milky Way, which the Nahuatl called Mixcōātl, the Cloud Serpent, slithering nightly across the sky. The migrating peoples read their path in his body — the desert crossed by the serpent's light — and when they founded Tenochtitlan they enthroned the wilderness-guide among the city's great gods, the god of where they had come from. The migration theology is the point: an empire founded by wanderers reads its own founding as a following, and the chronicle tradition keeps the memory of tribes who lived by the hunt before they had fields.</p><p class="myth-text">Mixcōātl's body across the sky is the oldest road-map of Mexican legitimacy — the empire's charter written in stars, followed long before it was written.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Gift</span>
+          <h3 class="myth-title">The Bow of the Chichimecs</h3>
+          <p class="myth-text">As Camaxtle, he gave the wandering tribes the bow and the fire-drill — the two tools of a life in motion. The city never forgot the debt: in the fourteenth month, Quecholli, 'the precious feather', the hunters' own liturgy filled the temple precinct — arrows, nets and deer brought to the god's altar, the rite of the hunt performed at the heart of the greatest city of the valley (Sahagún, Florentine Codex, Book 2). The coronation tradition dressed the new ruler in the insignia of war and the hunt, and the tlatoani's wars opened under the god's banners.</p><p class="myth-text">The weapons on the altar are the archaeology of gratitude: once a year the city laid down the tools that fed it before it had fields — an empire paying honest tribute to its own wilderness.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Father</span>
+          <h3 class="myth-title">Father of the Four Hundred</h3>
+          <p class="myth-text">In a tradition the later sources preserve, the Centzon Huitznāhua — the Four Hundred Southerners, the star-host — are the children of Mixcōātl with <a href="/coatlicue/" class="crosslink" data-crosslink="coatlicue">Coatlicue</a>; the mother then conceived <a href="/huitzilopochtli/" class="crosslink" data-crosslink="huitzilopochtli">Huitzilopochtli</a> from the ball of feathers, and the four hundred, led by <a href="/coyolxauhqui/" class="crosslink" data-crosslink="coyolxauhqui">Coyolxāuhqui</a>, came up the serpent mountain to kill her. The newborn god emerged fully armed and cut his sister to pieces on the slope of Coatepec (Florentine Codex; Leyenda de los Soles, Codex Chimalpopoca). The sources are not unanimous — the great codices name no father for the four hundred — but where the genealogy holds, its meaning is exact.</p><p class="myth-text">The god of the hunt is the father of both armies of the night sky: the war the Aztecs fought daily, dawn against stars, is in his household a family quarrel, written nightly across his own starry body.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Genealogy</span>
+          <h3 class="myth-title">Father of the Plumed One</h3>
+          <p class="myth-text">The genealogies of the high god are no tidier. In one line of early colonial accounts — the Historia de los Mexicanos por sus pinturas — the wandering hunter Camaxtli, Mixcōātl by another name, is made the father of Topiltzin Ce Ácatl <a href="/quetzalcoatl/" class="crosslink" data-crosslink="quetzalcoatl">Quetzalcōātl</a>, the priest-king of Tula: the wilderness god fathering the lord of civilization. The Anales de Cuauhtitlān names a different father, Totepeuh, and records the mother's name as Chimalmān. The disagreement is itself the evidence: the Mexica past was a negotiated archive, and each city and each chronicler tied the great names to its own charter. What recurs is the pairing — the hunter and the plumed priest — as if the tradition knew that civilization is always somebody's wandering, settled at last.</p><p class="myth-text">To stand as even the possible father of Quetzalcōātl is to anchor the entire Toltec inheritance in the hunt; the genealogy is less a family tree than a constitution.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -367,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Serpent in the Clouds</h2>
             <p class="section-subtitle">Hunting, Stars, and the Milky Way</p>
         </div>
@@ -377,22 +295,22 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L38 26L56 26L41 37L46 55L32 44L18 55L23 37L8 26L26 26Z"></path></svg></div>
         <h4 class="domain-name">The Milky Way</h4>
-        <p class="domain-desc">His body in the sky: the star-serpent, the road of the night.</p>
+        <p class="domain-desc">His body in the sky: the star-serpent, the road of the night that the migrating tribes read as their path south.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M36 4L20 36H30L26 60L44 26H34L36 4Z"></path></svg></div>
         <h4 class="domain-name">The Hunt</h4>
-        <p class="domain-desc">Patron of hunters — his bow and net, the Chichimec tool-kit.</p>
+        <p class="domain-desc">Patron of hunters — his bow, his net and his fire-drill, the Chichimec tool-kit of a people who lived by the road.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 24C16 16 24 16 32 24C40 32 48 32 56 24M8 40C16 32 24 32 32 40C40 48 48 48 56 40"></path></svg></div>
         <h4 class="domain-name">The Cloud</h4>
-        <p class="domain-desc">The weather-serpent: rain and sky in motion.</p>
+        <p class="domain-desc">The weather-serpent: rain and sky in motion — mixtli, the cloud that names him.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M14 46C22 38 42 38 50 46M20 32C28 24 36 24 44 32M27 18H37M32 18V10"></path></svg></div>
         <h4 class="domain-name">Camaxtle</h4>
-        <p class="domain-desc">His other name — the ancient hunting god of the Chichimecs.</p>
+        <p class="domain-desc">His other name — the ancient hunting god of the Chichimecs, remembered in the high god's genealogy.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
@@ -401,58 +319,31 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The star-serpent</span>
-        <span class="symbol-meaning">The Milky Way as a living road</span>
+        <span class="symbol-meaning">The Milky Way as a living road, his body across the night</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The white stripes</span>
-        <span class="symbol-meaning">His hunting-paint, cloud on dark sky</span>
+        <span class="symbol-meaning">His hunting-paint, cloud on dark sky, worn by his dancers at Quecholli</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The fire-drill</span>
+        <span class="symbol-meaning">Kindled beside the bow — the two technologies that made the wandering life possible</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The hunting net</span>
+        <span class="symbol-meaning">His snare and the badge of his hunters; a net full of stars is his sky</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Mixcōātl</p>
-        </div>
-        
-      <p class="lead-text">Mixcōātl's myths are the Aztec origin-story in one figure: the wilderness god who taught the city-builders how to hunt, and whose star-road they followed south.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Road</span>
-          <h3 class="myth-title">The Serpent of Stars</h3>
-          <p class="myth-text">The Chichimec tribes who became the Aztec nobility followed his road: the Milky Way, which the Nahuatl called Mixcōātl, the Cloud Serpent, slithering nightly across the sky. The migrating peoples read their path in his body — the desert crossed by the serpent's light — and when they founded Tenochtitlan, they enthroned the wilderness-guide among the city's great gods, the god of where they had come from.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Gift</span>
-          <h3 class="myth-title">The Bow of the Chichimecs</h3>
-          <p class="myth-text">As Camaxtle, he gave the wandering tribes the bow and the fire-drill — the two technologies of the road. The Aztec coronation rites remembered: the new Tlatoani dressed as Mixcōātl for the warrior's investiture, and the festival of Quecholli ("the precious feather") honored him with the hunt's own weapons laid on his altar — the city's annual thanks to the god who fed it before it had fields.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Father</span>
-          <h3 class="myth-title">Father of the Four Hundred</h3>
-          <p class="myth-text">The myth makes him father of the Centzon Huitznāhua — the Four Hundred Southerners, the star-host whom <a href="/coyolxauhqui/" class="crosslink" data-crosslink="coyolxauhqui">Coyolxāuhqui</a> led against their mother when she bore <a href="/huitzilopochtli/" class="crosslink" data-crosslink="huitzilopochtli">Huitzilopochtli</a>. The god of the hunt is thus also the father of the enemies of the sun: the Aztec sky-war between day and night is, in his household, a family quarrel, written nightly across his own starry body.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the nahuatl pantheon</p>
         </div>
@@ -516,8 +407,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Mixcōātl</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Mixcōātl</strong> is the standard Nahuatl romanisation, documented in academic sources — “"Cloud Serpent" — god of the hunt, of clouds, and of the starry road”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">mixcoatl</p>
+                <p class="card-body">Reduced to plain <strong>mixcoatl</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Mixcōātl</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Mixcōātl</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Mixcōātl.com → xn--mixctl-6za12d.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Mixcōātl</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Mixcōātl</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Mixcōātl</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Mixcōātl</p>
+                    <p class="card-body">The live temple domain — <strong>mixcōātl.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">mixcoatl</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Mixcōātl was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/miʃ.ˈkoː.aː.tɬ/</span>
+            <span class="ipa-label">Classical Nahuatl</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">meesh-KOH-ahtl — long o, lateral finish.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Mixcōātl is Nahuatl for "cloud serpent" (mixtli + cōātl); the macron on the ō marks the long vowel of the serpent-word, the same one in Quetzalcōātl and Xōlōtl. The restoration keeps it — the serpent is always long. The x of Nahuatl is the sh-sound, not ks: meesh, not mix — the single most misread letter in the language.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Mixcōātl is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Mixcōātl</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -535,7 +556,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/mixcoatl_mascot.webp" type="image/webp"><img src="../assets/mixcoatl_mascot.png" alt="Mixcōātl mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/mixcoatl_mascot.webp" type="image/webp"><img src="../assets/mixcoatl_mascot.png" alt="Mixcōātl mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -573,7 +594,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/mixcoatl_logomark.webp" type="image/webp"><img src="../assets/mixcoatl_logomark.webp" alt="Mixcōātl logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/mixcoatl_logomark.webp" type="image/webp"><img src="../assets/mixcoatl_logomark.webp" alt="Mixcōātl logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

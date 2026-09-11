@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Tagaloa, Creator, Ocean. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/tagaloa/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Tagaloa?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Tagaloa is /ta.ŋa.ˈlo.a/ — approximately 'tah-ngah-LO-ah' — stress falls on the third syllable, and the g is a soft 'ng,' never a hard English g."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Tagaloa mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tagaloa means The lord in the polynesian tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Tagaloa?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tagaloa is associated with The Vine of the Isles (The heavenly vine Tagaloa let down into the sea, whose parts became the islands of Samoa), The Layered Heavens (Lani-uli and the descending storeys of the sky, his dwelling above all clouds), The Coconut Palm (Born from the body of the eel Tuna in the Sina cycle that belongs to Tagaloa's household), The Star-Path (In the wayfinding revival, the ocean road by which his dispersed namesakes are rejoined)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Tagaloa in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tagaloa is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Tagaloa?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Vine Let Down into the Sea” — Tagaloa's mythology is cosmogony in the strict sense — stories of how land, people, and rank came to be. It survives not in epic but in creation chants recorded by nineteenth-century missionaries and ethnographers, whose accounts disagree in detail but agree that the world began when the Lord of the Heavens acted upon the sea. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/tagaloa_logolockup.webp" type="image/webp"><img src="../../assets/tagaloa_logolockup.png" alt="Tagaloa" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Tagaloa</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Tagaloa</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/tagaloa_mascot.webp" type="image/webp"><img src="../../assets/tagaloa_mascot.png" alt="Tagaloa — Creator, Ocean" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/tagaloa_mascot.webp" type="image/webp"><img src="../../assets/tagaloa_mascot.png" alt="Tagaloa — Creator, Ocean" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -175,7 +226,7 @@
             <p class="section-subtitle">Essential information about Tagaloa, Creator, Ocean</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Tagaloa</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Tagaloa</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/tagaloa/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Polynesian</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Creator, Ocean</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">The lord</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Tagaloa</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Name, Domain</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Tagaloa</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Tagaloa</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ta.ŋa.ˈlo.a/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Polynesian</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Creator, Ocean</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">The lord</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Tagaloa</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The Vine of the Isles, The Layered Heavens, The Coconut Palm, The Star-Path</span></div></div>
         </div>
     </div>
 </section>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Tagaloa</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,11 +260,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The ASCII form "tagaloa" is a DNS compromise; the restoration "Tagaloa" preserves the name's scholarly dignity.</p>
+                <p class="etymology-note">The name <strong>Tagaloa</strong> reaches the modern world through scholarly transliteration of the polynesian tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Modern Descendants</h4><ul><li><strong>tagaloa</strong> — Modern English / international usage</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Māori</strong> — <a href="/tangaroa/" class="crosslink" data-crosslink="tangaroa">Tangaroa</a>, god of the sea, son of <a href="/ranginui/" class="crosslink" data-crosslink="ranginui">Ranginui</a> and <a href="/papatuanuku/" class="crosslink" data-crosslink="papatuanuku">Papatūānuku</a> (Craig, Dictionary of Polynesian Mythology)</li><li><strong>Tahitian</strong> — Ta'aroa, the primordial creator who dwells within the shell of the world (Henry, Ancient Tahiti)</li><li><strong>Hawaiian</strong> — <a href="/kanaloa/" class="crosslink" data-crosslink="kanaloa">Kanaloa</a>, one of the four great akua, twin and companion of <a href="/kane/" class="crosslink" data-crosslink="kane">Kāne</a> (Beckwith, Hawaiian Mythology)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">T</td><td><code>U+0054</code></td><td>Latin Capital Letter T</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Tagaloa</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Tagaloa</strong> is creator, ocean. The name means "The lord" and belongs to the polynesian tradition.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Tagaloa remains a touchstone for understanding polynesian religion, art, and identity.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Tagaloa</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Tagaloa in Later Traditions</h3><p class="cultural-card-body">Christian missionaries arriving in Samoa in the 1830s found Tagaloa the principal rival of their God and absorbed rather than destroyed him: his title <strong>'Atua' became the generic word for the Christian deity</strong>, and his mythology was pushed into folklore, where it survived. The pan-Polynesian evidence suggests an older unity: Tangaroa of Aotearoa, Ta'aroa of Tahiti, and Kanaloa of Hawai'i are cognate names with divergent portfolios, a pattern linguists explain by the settlement of the Pacific out of the Samoa–Tonga region (Tregear's comparative dictionary; Craig 1989). In Hawai'i, Kanaloa survives as the twin and companion of Kāne, the two wandering the islands together as culture-bringers — a pairing that arguably preserves Tagaloa's original creative role. In the twentieth century the Polynesian Voyaging Society's revival of long-distance navigation deliberately re-enshrined these sea-gods: <strong>Hōkūleʻa's ocean road was, in the crews' own framing, Tangaroa's and Kanaloa's road again</strong>.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Tagaloa's most durable legacy is genealogical. Samoan orators trace chiefly lines (<em>gafa</em>) to divine ancestors of his household, and the sacred honorifics of chiefly oratory still invoke the sky's lordship. His daughter Sina gave her name to one of the most widespread of all Polynesian story-cycles — found from Samoa to Mangaia to Hawaii — and the proverbial Sina remains a figure of beauty and longing in Samoan speech. The god's name lives quietly in the landscape: villages, titles, and the old name <em>Savai'i</em>-region traditions. Since the 1970s the Pacific-wide voyaging renaissance has restored Tagaloa–Tangaroa–Kanaloa to active cultural memory: the canoe is again read as the sea-god's vehicle, and <strong>the navigator's art, once missionized into silence, is once more taught as his inheritance</strong>.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No cult image of Tagaloa is known — Samoan religion, like Polynesian religion generally, was essentially <strong>aniconic</strong>, and its temples were open-air malae and stone platforms rather than statue houses. The material landscape nevertheless preserves his world: <strong>Pulemelei mound on Savai'i</strong>, the largest prehistoric monument in Polynesia (roughly 60 × 50 m, dated by some researchers to the first millennium CE), served as a ceremonial platform, though which god it served is beyond proof. Scattered stone platforms, star mounds for pigeon-snaring (<em>tia seu lupe</em>), and chiefly burial sites across 'Upolu and Savai'i map the sacred geography the myths describe. The 'archaeology' of Tagaloa himself is documentary: the creation accounts recorded by Turner (1861), Stair (1897), Krämer (1902), and in the <em>Journal of the Polynesian Society</em> remain the primary evidence.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Tagaloa means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>What Tagaloa teaches is that creation can be an act of <strong>looking down</strong>. His world begins not with a battle or a body but with a lord in the highest heaven and an empty sea — and then a decision: to let something down. Polynesian cosmology is famously oceanic, yet its supreme god is a sky-dweller; the islands are the rope and bridge between the two. This is a theology suited to navigators: the world is made of layers — sky, sea, land, underworld — and authority flows along the vertical axis, from above downward, from the god to the chief to the people. Tagaloa is therefore less a 'god of' any one thing than the source of rank itself: where he acts, land appears; where his daughter descends, chiefs are born. To study him is to see how a non-literate society stored its constitution in cosmology, safe from conquest, until ethnographers wrote it down.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Tagaloa, Creator, Ocean, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Tagaloa?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Tagaloa</strong> is /tagaloa/ — approximately Say "tagaloa" with the stress and length implied by the scholarly restoration "Tagaloa"..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Tagaloa mean?</summary><div class="faq-answer"><p><strong>Tagaloa</strong> means <strong>The lord</strong> in the polynesian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Tagaloa?</summary><div class="faq-answer"><p>Tagaloa is associated with <strong>Name</strong> (The restored form Tagaloa, carrying scholarly and cultural weight.), <strong>Domain</strong> (Creator, Ocean).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Tagaloa in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>tagaloa</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Tagaloa?</summary><div class="faq-answer"><p>Tagaloa appears in polynesian tradition as creator, ocean. The name's meaning, "The lord", shapes the narratives told about this figure.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Tagaloa?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Tagaloa</strong> is /ta.ŋa.ˈlo.a/ — approximately 'tah-ngah-LO-ah' — stress falls on the third syllable, and the g is a soft 'ng,' never a hard English g.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Tagaloa mean?</summary><div class="faq-answer"><p><strong>Tagaloa</strong> means <strong>The lord</strong> in the polynesian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Tagaloa?</summary><div class="faq-answer"><p>Tagaloa is associated with <strong>The Vine of the Isles</strong> (The heavenly vine Tagaloa let down into the sea, whose parts became the islands of Samoa), <strong>The Layered Heavens</strong> (Lani-uli and the descending storeys of the sky, his dwelling above all clouds), <strong>The Coconut Palm</strong> (Born from the body of the eel Tuna in the Sina cycle that belongs to Tagaloa's household), <strong>The Star-Path</strong> (In the wayfinding revival, the ocean road by which his dispersed namesakes are rejoined).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Tagaloa in Unicode?</summary><div class="faq-answer"><p><strong>Tagaloa</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Tagaloa?</summary><div class="faq-answer"><p>“The Vine Let Down into the Sea” — Tagaloa's mythology is cosmogony in the strict sense — stories of how land, people, and rank came to be. It survives not in epic but in creation chants recorded by nineteenth-century missionaries and ethnographers, whose accounts disagree in detail but agree that the world began when the Lord of the Heavens acted upon the sea. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -303,7 +366,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of polynesian religion and the place of Tagaloa within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Stair, Old Samoa; or Flotsam and Jetsam from the Pacific Ocean (1897)</cite></li><li><cite>Krämer, The Samoa Islands (1902), vol. I</cite></li><li><cite>Turner, Nineteen Years in Polynesia (1861)</cite></li><li><cite>Grey, Polynesian Mythology (1855)</cite></li><li><cite>Craig, Dictionary of Polynesian Mythology (1989)</cite></li><li><cite>Beckwith, Hawaiian Mythology (1970)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/tagaloa_logomark.webp" type="image/webp"><img src="../../assets/tagaloa_logomark.webp" alt="Tagaloa logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/tagaloa_logomark.webp" type="image/webp"><img src="../../assets/tagaloa_logomark.webp" alt="Tagaloa logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

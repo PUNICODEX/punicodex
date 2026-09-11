@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Valhǫll, Hall of the Slain. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/valholl/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Valhǫll?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Valhǫll is /ˈwal.hɔlː/ — approximately 'VAHL-holl' — stress the first syllable, pronounce the 'a' as in 'father', and hold the final 'l' slightly longer than English usually allows."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Valhǫll mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Valhǫll means Hall of the slain warriors in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Valhǫll?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Valhǫll is associated with Golden shields on the roof (The hall's most famous feature: a roof thatched with war-shields, turning shelter into arsenal.), Spears and mail (Weapons hang on the walls; every einherjar is armed for the final day.), The boar Sæhrímnir (The ever-renewed feast, symbol of abundance sustained by sacrifice.), Heiðrún the goat (She chews the leaves of Læraðr and pours mead from her udders for the warriors.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Valhǫll in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII valholl strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Valhǫll?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Hall Described” — Valhǫll is less a single myth than a single place at the center of many myths. It is the destination of the valkyries, the home of the einherjar, and the staging ground for Ragnarök. Every battle death is implicitly a journey toward its doors. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,14 @@
                 <picture><source srcset="../../assets/valholl_logolockup.webp" type="image/webp"><img src="../../assets/valholl_logolockup.png" alt="Valhǫll" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +175,14 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +195,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Valhǫll</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Valhǫll.com</span>
@@ -157,7 +210,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/valholl_mascot.webp" type="image/webp"><img src="../../assets/valholl_mascot.png" alt="Valhǫll — Hall of the Slain" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/valholl_mascot.webp" type="image/webp"><img src="../../assets/valholl_mascot.png" alt="Valhǫll — Hall of the Slain" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +263,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Valhǫll is Tier 1: the ǫ (o with ogonek) preserves the distinctive short rounded back vowel of Old Norse — a distinctive feature the ASCII form loses. Modern editions often print Valhalla from the medieval Latinized form; Valhǫll restores the native Norse vowel.</p>
+                <p class="etymology-note">The name <strong>Valhǫll</strong> carries the orthographic signature of the norse tradition: ᚢᛅᛚᚼᚢᛚ. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,31 +300,45 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Valhǫll is the <strong>great hall of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, roofed with shields and crowded with the einherjar</strong> — warriors who died in battle and were chosen by the valkyries. It is not a quiet heaven but a warrior's training ground: by day the dead fight to the death, by night they rise whole and feast on the ever-renewing boar Sæhrímnir, while the she-goat Heiðrún pours mead from her udders.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Valhǫll in Later Traditions</h3><p class="cultural-card-body">Valhǫll has often been compared to the warrior paradises of other Indo-European peoples, such as the Celtic <em>Tech Duinn</em> (the House of Donn) or the Germanic comitatus ideal of the lord's hall continued after death. Some scholars have seen Christian influence in its structure — the hall of the divine king, the everlasting feast — while others argue that the lord's mead-hall was already the central social institution of Germanic life and needed no borrowing to become an afterlife. The Latinized form <em>Valhalla</em> entered English through 18th-century romantic translations and has become the standard popular term.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Valhalla has become one of the most recognizable names from Norse mythology, invoked by soldiers, athletes, musicians, and movements seeking a martial afterlife. In modern Heathenry it is honored as the destination of those who die with courage, though practitioners differ on whether it is reserved for battlefield death alone. The image of the warrior's paradise — feasting, fighting, and awaiting the final call — has shaped fantasy literature, heavy-metal imagery, and popular understandings of Viking belief. Yet the medieval sources present it as one among several afterlives, including Fólkvangr, Hel, and the local grave-mound.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Valhǫll</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Valhǫll in Later Traditions</h3><p class="cultural-card-body">Valhǫll has often been compared to the warrior destinations of other Indo-European peoples — the Celtic <em>Tech Duinn</em>, the House of Donn, or the Germanic comitatus ideal of the lord's hall continued after death. Some scholars have seen Christian influence in its structure — the hall of the divine king, the everlasting feast — while others argue that the lord's mead-hall was already the central social institution of Germanic life and needed no borrowing to become an afterlife. The Latinized form <em>Valhalla</em> entered English through 18th-century romantic translations and has become the standard popular term.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Valhalla has become one of the most recognizable names from Norse mythology, invoked by soldiers, athletes, musicians, and movements seeking a martial afterlife. In modern Heathenry it is honored as the destination of those who die with courage, though practitioners differ on whether it is reserved for battlefield death alone. The image of the warrior's paradise — feasting, fighting, and awaiting the final call — has shaped fantasy literature, heavy-metal imagery, and popular understandings of Viking belief. Yet the medieval sources present it as one among several afterlives, including Fólkvangr, Hel, and the local grave-mound.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No material structure can be identified with Valhǫll, but the lord's hall was the central monument of Scandinavian elite culture from the Iron Age through the Viking period. Excavated halls such as Lejre in Denmark, Borg in Lofoten, and Gamla <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a> in Sweden show the architectural reality behind the myth: long buildings with high roofs, central hearths, and feasting debris — animal bones and imported glass in quantities that speak of hundreds of guests. Weapon deposits in wetlands and warrior graves furnished with weapons, drinking vessels, and riding gear reflect the warrior ethos that Valhǫll mythologizes.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Valhǫll means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Valhǫll is the answer to a haunting question: what becomes of violence after death? The einherjar do not rest; they fight, die, and feast in an endless cycle, preparing for a war they know will consume the gods. It is paradise not as peace but as purpose.</p><p>There is something both noble and terrible in this vision. To die in battle is not an end but a promotion: the warrior becomes eternal. Yet the eternal is not leisure; it is rehearsal for apocalypse. Valhǫll asks what we do with the dead we call heroes — and whether glory is enough to justify the wounds that bring it.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     <section class="section section-name" id="screen-appearances">
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Screen Appearances</h2>
-            <p class="section-subtitle">Films, series, animations, and games featuring Valhǫll</p>
+            <span class="section-number">06</span>
+            <h2 class="section-title">Screen &amp; Culture</h2>
+            <p class="section-subtitle">Where Valhǫll echoes through film, television, and games — and how</p>
         </div>
         <div class="screen-appearances-grid"><a class="screen-appearance-card reveal-up" href="/screen/vikings-2013/">
                 <span class="screen-appearance-year">2013</span>
                 <h3 class="screen-appearance-title">Vikings</h3>
                 <span class="screen-appearance-type">Series</span>
                 <p class="screen-appearance-studio">History Channel / MGM Television</p>
+                <p class="screen-appearance-summary">A historical drama centered on Ragnar Lothbrok and his sons, with frequent visions of Odin, Valhalla, and Ragnarok.</p>
             </a><a class="screen-appearance-card reveal-up" href="/screen/the-northman-2022/">
                 <span class="screen-appearance-year">2022</span>
                 <h3 class="screen-appearance-title">The Northman</h3>
                 <span class="screen-appearance-type">Film</span>
                 <p class="screen-appearance-studio">A24 / Focus Features</p>
+                <p class="screen-appearance-summary">A Norse revenge saga directed by Robert Eggers, steeped in Odinic prophecy, Valhalla, and Viking ritual.</p>
             </a></div>
     </div>
 </section>
@@ -280,11 +347,11 @@
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Valhǫll, Hall of the Slain, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Valhǫll?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Valhǫll</strong> is /ˈwal.hɔlː/ — approximately 'VAHL-holl' — stress the first syllable, pronounce the 'a' as in 'father', and hold the final 'l' slightly longer than English usually allows..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Valhǫll mean?</summary><div class="faq-answer"><p><strong>Valhǫll</strong> means <strong>Hall of the slain warriors</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Valhǫll?</summary><div class="faq-answer"><p>Valhǫll is associated with <strong>Golden shields on the roof</strong> (The hall's most famous feature: a roof thatched with war-shields, turning shelter into arsenal.), <strong>Spears and mail</strong> (Weapons hang on the walls; every einherjar is armed for the final day.), <strong>The boar Sæhrímnir</strong> (The ever-renewed feast, symbol of abundance sustained by sacrifice.), <strong>Heiðrún the goat</strong> (She chews the leaves of Læraðr and pours mead from her udders for the warriors.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Valhǫll in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>valholl</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Valhǫll?</summary><div class="faq-answer"><p>In <em>Grímnismál</em>, Óðinn in disguise describes Valhǫll in detail: it has 540 doors, and through each door eight hundred warriors will march abreast at Ragnarök. Its roof is covered with golden shields, its benches are strewn with mail coats, and the hall itself is so vast that it contains enough space for all the chosen dead. The poem makes war into architecture.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Valhǫll?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Valhǫll</strong> is /ˈwal.hɔlː/ — approximately 'VAHL-holl' — stress the first syllable, pronounce the 'a' as in 'father', and hold the final 'l' slightly longer than English usually allows.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Valhǫll mean?</summary><div class="faq-answer"><p><strong>Valhǫll</strong> means <strong>Hall of the slain warriors</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Valhǫll?</summary><div class="faq-answer"><p>Valhǫll is associated with <strong>Golden shields on the roof</strong> (The hall's most famous feature: a roof thatched with war-shields, turning shelter into arsenal.), <strong>Spears and mail</strong> (Weapons hang on the walls; every einherjar is armed for the final day.), <strong>The boar Sæhrímnir</strong> (The ever-renewed feast, symbol of abundance sustained by sacrifice.), <strong>Heiðrún the goat</strong> (She chews the leaves of Læraðr and pours mead from her udders for the warriors.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Valhǫll in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>valholl</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Valhǫll?</summary><div class="faq-answer"><p>“The Hall Described” — Valhǫll is less a single myth than a single place at the center of many myths. It is the destination of the valkyries, the home of the einherjar, and the staging ground for Ragnarök. Every battle death is implicitly a journey toward its doors. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -293,7 +360,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">08</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -312,13 +379,13 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Grímnismál (description of Valhǫll's doors, shields, and host)</cite></li><li><cite>Poetic Edda: Völuspá (valkyries and the chosen slain)</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning (daily life of the einherjar)</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a>: <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a> 8–10, 14, 23 (description of Valhǫll's doors, shields, and host)</cite></li><li><cite>Poetic Edda: <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a> 30–31 (valkyries choosing and serving the slain)</cite></li><li><cite>Snorri Sturluson, <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a>: <a href="/texts/prose-edda/#gylfaginning-24" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 24</a>, 38–41, 51 (Fólkvangr; daily life of the einherjar; the ride to Vígríðr)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Valhǫll and related cults.</cite></li><li><cite>No material structure can be identified with Valhǫll, but the lord's hall was the central monument of Scandinavian elite culture from the Iron Age through the Viking period. Excavated halls such as Lejre in Denmark, Borg in Lofoten, and <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a> in Sweden show the architectural reality behind the myth: long buildings with high roofs, central hearths, and feasting debris. Weapon deposits in wetlands and warrior graves furnished with weapons, drinking vessels, and riding gear reflect the warrior ethos that Valhǫll mythologizes.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Valhǫll and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -385,7 +452,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/valholl_logomark.webp" type="image/webp"><img src="../../assets/valholl_logomark.webp" alt="Valhǫll logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/valholl_logomark.webp" type="image/webp"><img src="../../assets/valholl_logomark.webp" alt="Valhǫll logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

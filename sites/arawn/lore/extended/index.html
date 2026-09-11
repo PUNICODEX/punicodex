@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Arawn, Otherworld, Annwn. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/arawn/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Arawn?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Arawn is /aˈraʊn/ — approximately 'a-ROWN' — the aw sounds like the 'ow' of 'town', and the stress falls on the second syllable, the Welsh penult."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Arawn mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Arawn means Silver-tongued in the celtic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Arawn?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Arawn is associated with The white hounds with red ears (The colour of the Otherworld — a hunt that arrives from the far side of the boundary), The exchanged shape (Kingship as a trust held for another: the year Arawn's face ruled two realms), The single blow (Restraint as the condition of victory — strike once, or not at all), The untouched bed (Honor kept in the dark, where no one would ever have known), The ford (The meeting-place between realms, where debts are paid and blows are counted)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Arawn in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Arawn is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Arawn?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Wrong at Glyn Cuch” — Arawn's whole dossier is one story, and it is the opening movement of the Mabinogi: the hunting-debt at Glyn Cuch and the year-long exchange that turns an insult into the strongest friendship in Welsh prose. Every word of it is preserved in the First Branch, Pwyll Pendefig Dyfed. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/arawn_logolockup.webp" type="image/webp"><img src="../../assets/arawn_logolockup.png" alt="Arawn" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Arawn</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Arawn</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/arawn_mascot.webp" type="image/webp"><img src="../../assets/arawn_mascot.png" alt="Arawn — Otherworld, Annwn" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/arawn_mascot.webp" type="image/webp"><img src="../../assets/arawn_mascot.png" alt="Arawn — Otherworld, Annwn" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Arawn</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Arawn is Tier 2 by the mechanical rule: the Middle Welsh form is already plain ASCII — there is no diacritic and no distinctive letter for the restoration to recover, and only the capital distinguishes the restored form from the input. The lexicon's traditional gloss is 'silver-tongued', but the etymology is genuinely unsettled: scholars have proposed a learned borrowing of the biblical Aaron (a suggestion going back to Ifor Williams) as well as native Celtic derivations, and no derivation commands consensus (Koch; GPC, s.v. Arawn).</p>
+                <p class="etymology-note">The name <strong>Arawn</strong> reaches the modern world through scholarly transliteration of the celtic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">A</td><td><code>U+0041</code></td><td>Latin Capital Letter A</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">w</td><td><code>U+0077</code></td><td>Latin Small Letter W</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Arawn</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Arawn is the king of Annwn, the Welsh Otherworld: the lord whose white, red-eared hounds bring down a stag in Pwyll's hunting-ground at Glyn Cuch, and whose answer to the insult is the strangest exchange in the Mabinogi — a year and a day in which two kings trade faces, thrones, and beds, so that honor may be tested where no one is watching.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Arawn in Later Traditions</h3><p class="cultural-card-body">Arawn's comparisons are almost all inward, and the Welsh corpus itself supplies them. His clearest rival for the kingship of the Otherworld is Gwyn ap Nudd, whom Culhwch ac Olwen says God set over the demons of Annwn — a second king of Annwn in a second text, and the folklore gave Gwyn the hounds that the Mabinogi gave Arawn. The structural reading runs deeper: commentators since Mac Cana have read the Annwn adventure as the proving of Pwyll's character before the coming of [[rhiannon|<a href="/rhiannon/" class="crosslink" data-crosslink="rhiannon">Rhiannon</a>]] — the hero tested in honor and restraint in the Otherworld before the Otherworld's queen chooses him in this one. The name itself may be the tale's one foreign guest: Ifor Williams proposed that Arawn is a learned borrowing of the biblical Aaron, carried into Welsh by Latin learning, and the handbooks register the possibility without deciding it. No Gaulish or Irish counterpart of Arawn has ever been convincingly proposed; the exchange-of-kings motif is the Mabinogi's own.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried Arawn out of the White and Red Books and into English, and the white red-eared hounds entered the stock of Celtic imagery from that day. In the twentieth century the figure found his widest audience inverted: Lloyd Alexander's Chronicles of Prydain (1964–68) made 'Arawn Death-Lord of Annuvin' the arch-villain of five children's novels, and Disney's The Black Cauldron (1985) kept the dark-lord version on screen — a long way from the most honorable king in Welsh prose, but the reason the name is known worldwide. The Cŵn Annwn meanwhile never left Welsh folklore, still baying as a death-omen in folk memory into the modern period. Modern Druid and pagan practice honours Arawn as lord of the Otherworld and patron of kept faith, and the name survives in Wales as a rare living given name.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Arawn</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Arawn in Later Traditions</h3><p class="cultural-card-body">Arawn's comparisons are almost all inward, and the Welsh corpus itself supplies them. His clearest rival for the kingship of the Otherworld is Gwyn ap Nudd, whom Culhwch ac Olwen says God set over the demons of Annwn — a second king of Annwn in a second text, and the folklore gave Gwyn the hounds that the Mabinogi gave Arawn. The structural reading runs deeper: commentators since Mac Cana have read the Annwn adventure as the proving of Pwyll's character before the coming of <a href="/rhiannon/" class="crosslink" data-crosslink="rhiannon">Rhiannon</a> — the hero tested in honor and restraint in the Otherworld before the Otherworld's queen chooses him in this one. The name itself may be the tale's one foreign guest: Ifor Williams proposed that Arawn is a learned borrowing of the biblical Aaron, carried into Welsh by Latin learning, and the handbooks register the possibility without deciding it. No Gaulish or Irish counterpart of Arawn has ever been convincingly proposed; the exchange-of-kings motif is the Mabinogi's own.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried Arawn out of the White and Red Books and into English, and the white red-eared hounds entered the stock of Celtic imagery from that day. In the twentieth century the figure found his widest audience inverted: Lloyd Alexander's Chronicles of Prydain (1964–68) made 'Arawn Death-Lord of Annuvin' the arch-villain of five children's novels, and Disney's The Black Cauldron (1985) kept the dark-lord version on screen — a long way from the most honorable king in Welsh prose, but the reason the name is known worldwide. The Cŵn Annwn meanwhile never left Welsh folklore, still baying as a death-omen in folk memory into the modern period. Modern Druid and pagan practice honours Arawn as lord of the Otherworld and patron of kept faith, and the name survives in Wales as a rare living given name.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Arawn is a textual figure: no inscription, votive deposit, or cult site names him, and the epigraphic record of pre-Christian Wales — Latin and ogham memorial stones of roughly the fifth to seventh centuries — records personal names, not theonyms. His evidence is manuscript evidence. The Four Branches survive complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' date of composition is argued rather than documented — Ifor Williams placed them in the later eleventh century, and current scholarship generally holds a range around 1060–1120. The geography of the tale is real: Glyn Cuch, where the insult happens, is identified with the valley of the River Cych on the Pembrokeshire–Carmarthenshire border, inside the Dyfed the story governs. The nearest material echo of the Otherworld hunt is literary: the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>, the manuscript that preserves Preiddeu Annwfn, is a fourteenth-century Welsh codex (NLW Peniarth MS 2).</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Arawn means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Arawn sets the one test that cannot be cheated: he gives a stranger his face, his throne, and his bed, and waits a year to learn what the stranger is. Everything Pwyll does in Annwn is invisible — no one in either kingdom can tell the kings apart, and no one will ever know what passed in the bed unless the doer confesses it. That is exactly the point. Honor, the First Branch argues, is what a man does when the only witness is himself. The tale rewards it without sentimentality: the kept faith becomes an unbroken friendship, an otherworld alliance, the title Pen Annwfn, and a court that tells its lord he chose his friend well. Arawn's kingdom is the far side of the world, but his question is asked everywhere: who are you when no one is watching?</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Arawn, Otherworld, Annwn, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Arawn?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Arawn</strong> is /aˈraʊn/ — approximately 'a-ROWN' — the aw sounds like the 'ow' of 'town', and the stress falls on the second syllable, the Welsh penult..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Arawn mean?</summary><div class="faq-answer"><p><strong>Arawn</strong> means <strong>Silver-tongued</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Arawn?</summary><div class="faq-answer"><p>Arawn is associated with <strong>The white hounds with red ears</strong> (The colour of the Otherworld — a hunt that arrives from the far side of the boundary), <strong>The exchanged shape</strong> (Kingship as a trust held for another: the year Arawn's face ruled two realms), <strong>The single blow</strong> (Restraint as the condition of victory — strike once, or not at all), <strong>The untouched bed</strong> (Honor kept in the dark, where no one would ever have known), <strong>The ford</strong> (The meeting-place between realms, where debts are paid and blows are counted).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Arawn in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>arawn</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Arawn?</summary><div class="faq-answer"><p>Pwyll, lord of Dyfed, goes hunting at Glyn Cuch, and there he sees a sight he has never seen: a pack of hounds shining white with red ears bringing down a stag. He drives them off and sets his own hounds on the kill — and the stranger who rides up is Arawn, king of Annwn, and it was his hunt. Arawn names the discourtesy plainly: he will not take revenge, but a man who feeds his hounds on another's kill has wronged him, and Pwyll offers to buy back his friendship at whatever price. Arawn names it. He has a rival, Hafgan, king of the other realm of Annwn, who wars on him without end; let Pwyll take Arawn's shape and his place for a year and a day, and meet Hafgan at the ford at the year's turning.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Arawn?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Arawn</strong> is /aˈraʊn/ — approximately 'a-ROWN' — the aw sounds like the 'ow' of 'town', and the stress falls on the second syllable, the Welsh penult.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Arawn mean?</summary><div class="faq-answer"><p><strong>Arawn</strong> means <strong>Silver-tongued</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Arawn?</summary><div class="faq-answer"><p>Arawn is associated with <strong>The white hounds with red ears</strong> (The colour of the Otherworld — a hunt that arrives from the far side of the boundary), <strong>The exchanged shape</strong> (Kingship as a trust held for another: the year Arawn's face ruled two realms), <strong>The single blow</strong> (Restraint as the condition of victory — strike once, or not at all), <strong>The untouched bed</strong> (Honor kept in the dark, where no one would ever have known), <strong>The ford</strong> (The meeting-place between realms, where debts are paid and blows are counted).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Arawn in Unicode?</summary><div class="faq-answer"><p><strong>Arawn</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Arawn?</summary><div class="faq-answer"><p>“The Wrong at Glyn Cuch” — Arawn's whole dossier is one story, and it is the opening movement of the Mabinogi: the hunting-debt at Glyn Cuch and the year-long exchange that turns an insult into the strongest friendship in Welsh prose. Every word of it is preserved in the First Branch, Pwyll Pendefig Dyfed. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,13 +360,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Arawn and related cults.</cite></li><li><cite>Arawn is a textual figure: no inscription, votive deposit, or cult site names him, and the epigraphic record of pre-Christian Wales — Latin and ogham memorial stones of roughly the fifth to seventh centuries — records personal names, not theonyms. His evidence is manuscript evidence. The Four Branches survive complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' date of composition is argued rather than documented — Ifor Williams placed them in the later eleventh century, and current scholarship generally holds a range around 1060–1120. The geography of the tale is real: Glyn Cuch, where the insult happens, is identified with the valley of the River Cych on the Pembrokeshire–Carmarthenshire border, inside the Dyfed the story governs. The nearest material echo of the Otherworld hunt is literary: the Book of <a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>, the manuscript that preserves Preiddeu Annwfn, is a fourteenth-century Welsh codex (NLW Peniarth MS 2).</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Arawn and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The Mabinogi — First Branch (Pwyll Pendefig Dyfed): trans. Sioned Davies (Oxford, 2007); Welsh text ed. Ifor Williams, Pedeir Keinc y Mabinogi (1930)</cite></li><li><cite>The Mabinogion, trans. Lady Charlotte Guest (1838–49)</cite></li><li><cite>Preiddeu Annwfn ('The Spoils of Annwn'), Book of Taliesin — the cauldron of the Head of Annwfn</cite></li><li><cite>Mac Cana, Proinsias, The Mabinogi, 2nd ed. (University of Wales Press, 1992) — the First Branch as the proving of Pwyll</cite></li><li><cite>Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.vv. Arawn, Annwn</cite></li><li><cite>MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Arawn, Annwn, Cŵn Annwn</cite></li><li><cite>Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (GPC), s.v. Arawn</cite></li></ul>
+                    <ul class="source-list"><li><cite>The Mabinogi — First Branch (Pwyll Pendefig Dyfed): trans. Sioned Davies (Oxford, 2007); Welsh text ed. Ifor Williams, Pedeir Keinc y Mabinogi (1930)</cite></li><li><cite>The Mabinogion, trans. Lady Charlotte Guest (1838–49)</cite></li><li><cite>Preiddeu Annwfn ('The Spoils of Annwn'), Book of Taliesin — the cauldron of the Head of Annwfn</cite></li><li><cite>Mac Cana, Proinsias, The Mabinogi, 2nd ed. (University of Wales Press, 1992) — the First Branch as the proving of Pwyll</cite></li><li><cite>Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.vv. Arawn, Annwn</cite></li><li><cite>MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Arawn, Annwn, Cŵn Annwn; Geiriadur Prifysgol Cymru (GPC), s.v. Arawn</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/arawn_logomark.webp" type="image/webp"><img src="../../assets/arawn_logomark.webp" alt="Arawn logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/arawn_logomark.webp" type="image/webp"><img src="../../assets/arawn_logomark.webp" alt="Arawn logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

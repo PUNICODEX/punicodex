@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Garmr, Guardian, Underworld Hound. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/garmr/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Garmr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Garmr is /ˈɡɑrmr̩/ — approximately GAHRM-ur — nearly a single syllable: a hard g, a short open 'ah', the r and m run together, and the final nominative -r sounded as a light syllabic trill, as in Icelandic."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Garmr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Garmr means Howler in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Garmr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Garmr is associated with Gnipahellir (The overhanging cave at Hel's border — the fixed post of the watcher until the end of the world), The fetter (The binding that is only a postponement — every chain in the Edda is a clock), The thrice-sounded bay (The howl that punctuates Vǫluspá's collapse — the sound by which the seeress counts down the world's ending), The bloodied breast (The mark of the hound that comes out of Hel — death's evidence carried on the watcher's own body), The mutual death (Garmr and Týr killing each other — the Edda's justice, in which even Ragnarök's victories are paid for in kind)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Garmr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Garmr is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Garmr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Best of Hounds” — Garmr has no adventures and no childhood; he exists in the sources the way a bell exists — to sound at the appointed hour. Three poems and one prose chapter hold the whole dossier: the best-of-hounds catalogue, the thrice-sounded bay of Vǫluspá, the bloodied watcher on the Hel-road, and the last fight with Týr. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/garmr_logolockup.webp" type="image/webp"><img src="../../assets/garmr_logolockup.png" alt="Garmr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Garmr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Garmr</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/garmr_mascot.webp" type="image/webp"><img src="../../assets/garmr_mascot.png" alt="Garmr — Guardian, Underworld Hound" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/garmr_mascot.webp" type="image/webp"><img src="../../assets/garmr_mascot.png" alt="Garmr — Guardian, Underworld Hound" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Garmr</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Old Norse Garmr names the hound of the underworld and nothing else: Cleasby–Vigfusson record the word only as a mythological proper name, 'the dog of the nether world'. Its etymology is genuinely uncertain — de Vries lists it under the unsolved names — and the standing line connects it with a Germanic root for growling or hoarse crying, whence the traditional gloss 'Howler'. The normalized Old Norse form is already plain ASCII — no diacritic and no distinctive letter — so the name is Tier-2 by the mechanical rule: nothing is lost in transit, a statement about orthography, never about the hound.</p>
+                <p class="etymology-note">The name <strong>Garmr</strong> reaches the modern world through scholarly transliteration of the norse tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">G</td><td><code>U+0047</code></td><td>Latin Capital Letter G</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Garmr</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Garmr is the blood-bayed watchdog of Helheim: the hound bound before the cave of Gnipahellir whose howling, sounded three times in Vǫluspá, opens the world's last age. Grímnismál calls him simply the best of hounds; at Ragnarök he breaks his fetter and meets one-handed <a href="/tyr/" class="crosslink" data-crosslink="tyr">Týr</a>, and each is the other's death.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Garmr in Later Traditions</h3><p class="cultural-card-body">Garmr belongs to one of the oldest comparative dossiers in Indo-European studies: the hellhound. Greece keeps Kerberos, the many-headed hound of <a href="/hades/" class="crosslink" data-crosslink="hades">Hades</a> whom Hesiod names among the monstrous brood of Echidna; the Ṛgveda gives <a href="/yama/" class="crosslink" data-crosslink="yama">Yama</a>, the first of the dead, two four-eyed brindled hounds — the Sárameyas — who guard the path and watch over men; and Wales keeps the Cŵn <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>, the white, red-eared hounds of <a href="/arawn/" class="crosslink" data-crosslink="arawn">Arawn</a>'s otherworld pack in the First Branch of the Mabinogion. Linguists since the nineteenth century have connected Kerberos with Sanskrit śarvara-, the epithet of Yama's hounds, and Bruce Lincoln's classic study 'The Hellhound' traces the full complex — the watcher at death's border, the barred return, the dog that must be fed or fought by the crossing hero. The North's witness fits the pattern with one northern difference: where Kerberos guards the gate of a permanent kingdom, Garmr guards a gate that will not hold. He is the hellhound of a mythology whose underworld itself has an expiry date.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Garmr's afterlife runs on the two rails his sources laid down: the watchdog and the countdown. Victorian and modern retellings of Ragnarök keep the Vǫluspá refrain as the moment the end becomes audible — the howl before the fire. Tolkien gave the name, half in jest, to the talking dog Garm of Farmer Giles of Ham, a watchdog who cannot keep watch; and the modern games industry has restored the full terror, with God of War Ragnarök (2022) casting Garm as the giant unkillable wolf whose unbinding threatens the realms. In Iceland the name never left the kennels: Garmur remains an ordinary dog's name, which is perhaps the truest survival of all — the hound of Hel, brought home and given a bowl.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Garmr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Garmr in Later Traditions</h3><p class="cultural-card-body">Garmr belongs to one of the oldest comparative dossiers in Indo-European studies: the hellhound. Greece keeps Kerberos, the many-headed hound of <a href="/hades/" class="crosslink" data-crosslink="hades">Hades</a> whom Hesiod names among the monstrous brood of Echidna; the Ṛgveda gives <a href="/yama/" class="crosslink" data-crosslink="yama">Yama</a>, the first of the dead, two four-eyed brindled hounds — the Sárameyas — who guard the path and watch over men; and Wales keeps the Cŵn <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>, the white, red-eared hounds of <a href="/arawn/" class="crosslink" data-crosslink="arawn">Arawn</a>'s otherworld pack in the First Branch of the Mabinogion. Linguists since the nineteenth century have connected Kerberos with Sanskrit śarvara-, the epithet of Yama's hounds, and Bruce Lincoln's classic study 'The Hellhound' traces the full complex — the watcher at death's border, the barred return, the dog that must be fed or fought by the crossing hero. The North's witness fits the pattern with one northern difference: where Kerberos guards the gate of a permanent kingdom, Garmr guards a gate that will not hold. He is the hellhound of a mythology whose underworld itself has an expiry date.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Garmr's afterlife runs on the two rails his sources laid down: the watchdog and the countdown. Victorian and modern retellings of Ragnarök keep the Vǫluspá refrain as the moment the end becomes audible — the howl before the fire. Tolkien gave the name, half in jest, to the talking dog Garm of Farmer Giles of Ham, a watchdog who cannot keep watch; and the modern games industry has restored the full terror, with God of War Ragnarök (2022) casting Garm as the giant unkillable wolf whose unbinding threatens the realms. In Iceland the name never left the kennels: Garmur remains an ordinary dog's name, which is perhaps the truest survival of all — the hound of Hel, brought home and given a bowl.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Garmr is an entirely textual hound: no runestone names him, no votive deposit is his, and no image can be securely identified with him. The picture-stone corpus of Gotland preserves riders and beasts at the borders of the world, and the bloodied hound of <a href="/texts/poetic-edda/#baldrs-draumar" class="crosslink citation-link" data-citation="baldrs-draumar">Baldrs draumar</a> has occasionally been sought among the animal figures that attend the dead on stones such as Ardre VIII — but the stones carry no inscription, and the identifications remain suggestions. His witnesses are the manuscripts: the Codex Regius for Vǫluspá and <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a>, the fourteenth-century AM 748 I 4to for Baldrs draumar — the poem's sole medieval home — and the Codex Regius and Codex Wormianus of the <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> for Gylfaginning's Ragnarök chapter. The absence of cult is itself the record: Garmr was never prayed to, because he was never anyone's god. He was the North's watchdog, and a watchdog needs no temple — only a post, a chain, and the hour he is waiting for.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Garmr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Garmr is the guardian of a gate that is fated to open. Every element of his myth is a postponement: the fetter holds until Ragnarök, the cave holds the hound until the refrain is sounded, the border holds the dead until the last age. He does his duty perfectly and it changes nothing — the Edda's whole theology of duty in one animal. What the North saw in him is what it saw everywhere: that watching is not winning, that the fiercest fidelity serves a world already sentenced, and that the howl at Gnipahellir is not a warning anyone can act on. It is simply the sound the world makes when it keeps its appointments. Garmr bays because that is what the watch is for; the fetter breaks because that is what time is for. The guardian and the doom are the same fact, heard from two sides of the gate.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Garmr, Guardian, Underworld Hound, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Garmr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Garmr</strong> is /ˈɡɑrmr̩/ — approximately GAHRM-ur — nearly a single syllable: a hard g, a short open 'ah', the r and m run together, and the final nominative -r sounded as a light syllabic trill, as in Icelandic..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Garmr mean?</summary><div class="faq-answer"><p><strong>Garmr</strong> means <strong>Howler</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Garmr?</summary><div class="faq-answer"><p>Garmr is associated with <strong>Gnipahellir</strong> (The overhanging cave at Hel's border — the fixed post of the watcher until the end of the world), <strong>The fetter</strong> (The binding that is only a postponement — every chain in the Edda is a clock), <strong>The thrice-sounded bay</strong> (The howl that punctuates Vǫluspá's collapse — the sound by which the seeress counts down the world's ending), <strong>The bloodied breast</strong> (The mark of the hound that comes out of Hel — death's evidence carried on the watcher's own body), <strong>The mutual death</strong> (Garmr and Týr killing each other — the Edda's justice, in which even Ragnarök's victories are paid for in kind).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Garmr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>garmr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Garmr?</summary><div class="faq-answer"><p>Grímnismál closes its catalogue of the world's first things with a litany every Norse listener could recite: <a href="/yggdrasill/" class="crosslink" data-crosslink="yggdrasill">Yggdrasill</a> is the best of trees, Skíðblaðnir of ships, <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> of the Æsir, <a href="/sleipnir/" class="crosslink" data-crosslink="sleipnir">Sleipnir</a> of steeds, <a href="/bifrost/" class="crosslink" data-crosslink="bifrost">Bifrǫst</a> of bridges, <a href="/bragi/" class="crosslink" data-crosslink="bragi">Bragi</a> of skalds, Hábrók of hawks — and Garmr of hounds. The hound of Hel takes his place in the superlative order of the cosmos without explanation and without rival: whatever else the poets disagreed about, the office of watchdog at the world's border had one incumbent.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Garmr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Garmr</strong> is /ˈɡɑrmr̩/ — approximately GAHRM-ur — nearly a single syllable: a hard g, a short open 'ah', the r and m run together, and the final nominative -r sounded as a light syllabic trill, as in Icelandic.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Garmr mean?</summary><div class="faq-answer"><p><strong>Garmr</strong> means <strong>Howler</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Garmr?</summary><div class="faq-answer"><p>Garmr is associated with <strong>Gnipahellir</strong> (The overhanging cave at Hel's border — the fixed post of the watcher until the end of the world), <strong>The fetter</strong> (The binding that is only a postponement — every chain in the Edda is a clock), <strong>The thrice-sounded bay</strong> (The howl that punctuates Vǫluspá's collapse — the sound by which the seeress counts down the world's ending), <strong>The bloodied breast</strong> (The mark of the hound that comes out of Hel — death's evidence carried on the watcher's own body), <strong>The mutual death</strong> (Garmr and <a href="/tyr/" class="crosslink" data-crosslink="tyr">Týr</a> killing each other — the Edda's justice, in which even Ragnarök's victories are paid for in kind).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Garmr in Unicode?</summary><div class="faq-answer"><p><strong>Garmr</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Garmr?</summary><div class="faq-answer"><p>“The Best of Hounds” — Garmr has no adventures and no childhood; he exists in the sources the way a bell exists — to sound at the appointed hour. Three poems and one prose chapter hold the whole dossier: the best-of-hounds catalogue, the thrice-sounded bay of Vǫluspá, the bloodied watcher on the Hel-road, and the last fight with Týr. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,13 +355,13 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Vǫluspá 44, 49, 58 (the thrice-sounded refrain: Garmr bays before Gnipahellir); Grímnismál 44 (best of hounds); Baldrs draumar 2–3 (the bloodied hound on the Hel-road)</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 51 (Garmr breaks loose at Ragnarök and kills, and is killed by, Týr); Skáldskaparmál (kennings for Týr as one-handed god and feeder of the wolf)</cite></li><li><cite>Comparative witnesses: Hesiod, Theogony 310–312 (Kerberos); Ṛgveda 10.14 (Yama's hounds, the Sárameyas); Pwyll Pendeuic Dyuet, First Branch of the Mabinogion (the Cŵn Annwn); Lincoln, 'The Hellhound', Journal of Indo-European Studies 7 (1979)</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a>: Vǫluspá 44, 49, 58 (the thrice-sounded refrain: Garmr bays before Gnipahellir); Grímnismál 44 (best of hounds); Baldrs draumar 2–3 (the bloodied hound on the Hel-road)</cite></li><li><cite>Snorri Sturluson, Prose Edda: <a href="/texts/prose-edda/#gylfaginning-51" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 51</a> (Garmr breaks loose at Ragnarök and kills, and is killed by, Týr); <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál</a> (kennings for Týr as one-handed god and feeder of the wolf)</cite></li><li><cite>Comparative witnesses: Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 310–312 (Kerberos); <a href="/texts/rig-veda/#mandala-10" class="crosslink citation-link" data-citation="rig-veda">Ṛgveda 10.</a>14 (Yama's hounds, the Sárameyas); Pwyll Pendeuic Dyuet, First Branch of the Mabinogion (the Cŵn Annwn); Lincoln, 'The Hellhound', Journal of Indo-European Studies 7 (1979)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Garmr and related cults.</cite></li><li><cite>Garmr is an entirely textual hound: no runestone names him, no votive deposit is his, and no image can be securely identified with him. The picture-stone corpus of Gotland preserves riders and beasts at the borders of the world, and the bloodied hound of Baldrs draumar has occasionally been sought among the animal figures that attend the dead on stones such as Ardre VIII — but the stones carry no inscription, and the identifications remain suggestions. His witnesses are the manuscripts: the Codex Regius for Vǫluspá and Grímnismál, the fourteenth-century AM 748 I 4to for Baldrs draumar — the poem's sole medieval home — and the Codex Regius and Codex Wormianus of the Prose Edda for Gylfaginning's Ragnarök chapter. The absence of cult is itself the record: Garmr was never prayed to, because he was never anyone's god. He was the North's watchdog, and a watchdog needs no temple — only a post, a chain, and the hour he is waiting for.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Garmr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/garmr_logomark.webp" type="image/webp"><img src="../../assets/garmr_logomark.webp" alt="Garmr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/garmr_logomark.webp" type="image/webp"><img src="../../assets/garmr_logomark.webp" alt="Garmr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

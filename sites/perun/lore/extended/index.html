@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Perun, Thunder, Lightning, Oak. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/perun/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Perun?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Perun is /perun/ — approximately 'PER-un' with a rolled r; the name is an agent noun meaning 'Striker'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Perun mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Perun means Thunderer, striker in the slavic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Perun?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Perun is associated with Throwing axe / thunderbolt (His striking weapon, worn in miniature on amulets and incised on stones across the Slavic world), Oak and perpetual fire (The lightning-struck tree and the hilltop flame kept burning in his honor at open-air shrines), Thunderstone (gromovik) (Fossil belemnites kept in Slavic households against lightning, understood as his spent arrows), The sacred hill (Kyiv's shrine hill and Novgorod's Peryn' — high ground set apart for his unroofed cult), Elijah's fiery chariot (The Christian successor-image that inherited his storm: wheels of fire crossing the sky)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Perun in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Perun is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Perun?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Idols on the Hill” — The stories of Perun survive mostly at second hand, through the chronicles of his enemies and the reconstructions of modern philologists. From them emerges a thunderer who is at once war-god and covenant-god: he hurls the bolt, he guards the sworn word, and he wages an eternal feud with Veles, lord of the underworld and the herd. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/perun_logolockup.webp" type="image/webp"><img src="../../assets/perun_logolockup.png" alt="Perun" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Perun</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Perun</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/perun_mascot.webp" type="image/webp"><img src="../../assets/perun_mascot.png" alt="Perun — Thunder, Lightning, Oak" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/perun_mascot.webp" type="image/webp"><img src="../../assets/perun_mascot.png" alt="Perun — Thunder, Lightning, Oak" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -175,7 +226,7 @@
             <p class="section-subtitle">Essential information about Perun, Thunder, Lightning, Oak</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Perun</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Perun</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/perun/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Slavic</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Thunder, Lightning, Oak</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Thunderer, striker</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Perun</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Name, Domain</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Perun</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Perun</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/perun/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Slavic</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Thunder, Lightning, Oak</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Thunderer, striker</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Perun</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Throwing axe / thunderbolt, Oak and perpetual fire, Thunderstone (gromovik), The sacred hill, Elijah's fiery chariot</span></div></div>
         </div>
     </div>
 </section>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Perun</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,11 +260,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The ASCII form "perun" is a DNS compromise; the restoration "Perun" preserves the name's scholarly dignity.</p>
+                <p class="etymology-note">The name <strong>Perun</strong> reaches the modern world through scholarly transliteration of the slavic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Modern Descendants</h4><ul><li><strong>perun</strong> — Modern English / international usage</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>PIE</strong> — *per-/*perkw- 'to strike, to thunder'; the same root family behind Lithuanian <a href="/perkunas/" class="crosslink" data-crosslink="perkunas">Perkūnas</a> and Vedic Parjanya (Toporov; Mallory &amp; Adams)</li><li><strong>Baltic</strong> — Lithuanian Perkūnas, Latvian Pērkons — the Baltic thunderers, closest linguistic relatives of the name</li><li><strong>Proposed</strong> — Latin quercus 'oak' and Gothic fairguni 'mountain' have been compared to the *perkw- root; the connection is traditional but debated</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">P</td><td><code>U+0050</code></td><td>Latin Capital Letter P</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Perun</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Perun</strong> is thunder, lightning, oak. The name means "Thunderer, striker" and belongs to the slavic tradition.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Perun remains a touchstone for understanding slavic religion, art, and identity.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Perun</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Perun in Later Traditions</h3><p class="cultural-card-body">Christianization did not erase Perun; it reassigned him. His functions passed chiefly to the prophet <strong>Elijah</strong> — Il'ya — whose fiery chariot crosses the sky in Russian folklore, whose day kept the thunderer's weather, and whose icons still stand in village fields against storm and fire. Saint George absorbed something of the dragon-slaying warrior. Byzantine-educated writers performed the usual <em>interpretatio</em>, reading Perun as a Slavic <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>, while comparative scholarship has added <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a> and <a href="/indra/" class="crosslink" data-crosslink="indra">Indra</a> as cousins through the shared inheritance of the storm-combat myth. In the twentieth century Perun returned openly: Slavic Native Faith movements restored his name, his day, and his hilltop fires, and he now stands — as the chronicles always placed him — first among the gods. Of all the drowned pantheon, he alone kept a national audience.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Perun never left the languages. The word itself became the poetic Slavic name for thunder — Polish <em>piorun</em> is the everyday word for a thunderbolt, and Russian keeps <em>perun</em> in elevated speech — while Lithuanian <em>Perkūnas</em> keeps the cognate alive next door. Folklore preserved his attributes as 'thunderstones,' fossil belemnites (<em>gromovik</em>) hung in houses against lightning, and the epic hero Il'ya Muromets rides in his shadow with a mace that is really a bolt. In the modern period Perun has become an emblem of Slavic identity: he heads the pantheon of Rodnover and Native Faith communities from Ukraine to Poland, lends his name to military units, rockets, and football terraces, and appears wherever the question is asked what a pre-Christian Slavic civilization would have honored. The Church feared him for a reason: of all the Kyiv gods, his name proved the hardest to drown.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The clearest material footprint of Perun's cult is Peryn', a rounded hill at the bend of the Volkhov south of Novgorod, excavated by G. Lebedev's team in the 1950s: a circular ritual enclosure with a stone- and clay-lined platform, dated to the tenth–twelfth centuries, on a site whose very name derives from the god. No temple building was found — the open-air precinct fits the chronicle image of a hill shrine — but the enclosure's planned geometry and burnt deposits mark organized, funded cult practice. Across the Slavic world, miniature axe-amulets ('thunder-axes on chains') and axe-mark graffiti are read as Perun's weapon in miniature, though none is inscribed. The Kyiv hill of 988 has never been securely located archaeologically, and the enigmatic four-sided Zbruch idol is more often assigned to Svetovit than to the thunderer. Direct evidence is thin — but Peryn' proves the cult was real.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Perun means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Perun is the god of the strike — the moment when the sky asserts itself against the earth and the forest smells of split wood. Everything about him is vertical: the bolt falls, the oak points up, the oath rises to the witness who will enforce it. He is violent, but his violence is legal: he does not rage, he <strong>executes</strong>. That is why treaties trusted him and why rebels in 1071 invoked him against hoarding governors; he is the enforcer of an order older than any prince. To study Perun is to watch a society argue with its own thunder. The chroniclers beat his idol with sticks and threw it in the river, then preserved his name more carefully than any priest had — in oath-texts, in curses, in the weeping of the baptized. A god whose worshippers cry when he leaves has not been defeated; he has been internalized. Perun endures as the sound above the roof that still makes everyone, believer or not, look up.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Perun, Thunder, Lightning, Oak, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Perun?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Perun</strong> is /perun/ — approximately Say "perun" with the stress and length implied by the scholarly restoration "Perun"..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Perun mean?</summary><div class="faq-answer"><p><strong>Perun</strong> means <strong>Thunderer, striker</strong> in the slavic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Perun?</summary><div class="faq-answer"><p>Perun is associated with <strong>Name</strong> (The restored form Perun, carrying scholarly and cultural weight.), <strong>Domain</strong> (Thunder, Lightning, Oak).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Perun in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>perun</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Perun?</summary><div class="faq-answer"><p>Perun appears in slavic tradition as thunder, lightning, oak. The name's meaning, "Thunderer, striker", shapes the narratives told about this figure.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Perun?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Perun</strong> is /perun/ — approximately 'PER-un' with a rolled r; the name is an agent noun meaning 'Striker'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Perun mean?</summary><div class="faq-answer"><p><strong>Perun</strong> means <strong>Thunderer, striker</strong> in the slavic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Perun?</summary><div class="faq-answer"><p>Perun is associated with <strong>Throwing axe / thunderbolt</strong> (His striking weapon, worn in miniature on amulets and incised on stones across the Slavic world), <strong>Oak and perpetual fire</strong> (The lightning-struck tree and the hilltop flame kept burning in his honor at open-air shrines), <strong>Thunderstone (gromovik)</strong> (Fossil belemnites kept in Slavic households against lightning, understood as his spent arrows), <strong>The sacred hill</strong> (Kyiv's shrine hill and Novgorod's Peryn' — high ground set apart for his unroofed cult), <strong>Elijah's fiery chariot</strong> (The Christian successor-image that inherited his storm: wheels of fire crossing the sky).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Perun in Unicode?</summary><div class="faq-answer"><p><strong>Perun</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Perun?</summary><div class="faq-answer"><p>“The Idols on the Hill” — The stories of Perun survive mostly at second hand, through the chronicles of his enemies and the reconstructions of modern philologists. From them emerges a thunderer who is at once war-god and covenant-god: he hurls the bolt, he guards the sworn word, and he wages an eternal feud with <a href="/veles/" class="crosslink" data-crosslink="veles">Veles</a>, lord of the underworld and the herd. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -303,7 +366,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of slavic religion and the place of Perun within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Primary Chronicle / Povest' vremennykh let, s.a. 944, 971, 988, 1071</cite></li><li><cite>Procopius of Caesarea, Wars 7.14</cite></li><li><cite>Novgorod First Chronicle (1071 revolt)</cite></li><li><cite>Ivanov, Vyacheslav, and Vladimir Toporov, 'Le mythe indo-européen du dieu de l'orage poursuivant le serpent' (1974)</cite></li><li><cite>Ivanits, Linda J., Russian Folk Belief (1989)</cite></li><li><cite>Rybakov, B. A., Ancient Rus' (1987)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/perun_logomark.webp" type="image/webp"><img src="../../assets/perun_logomark.webp" alt="Perun logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/perun_logomark.webp" type="image/webp"><img src="../../assets/perun_logomark.webp" alt="Perun logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

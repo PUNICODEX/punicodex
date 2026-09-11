@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Máni — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">ᛘᛅᚾᛁ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Máni.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,64 +236,300 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Máni</p>
+        </div>
+        
+      <p class="lead-text">Máni's mythology is brief but exact: he has no hammer-duels and no disguises, only a course to keep and a hunter behind him. The Eddas give him four scenes — a father's fatal boast, the breeding of the wolf that hunts him, two children lifted from a well, and the swallowing that ends the sky — and together they explain both why the moon moves and why it keeps its human face.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/poetic-edda/#vafthruthnismol" class="crosslink citation-link" data-citation="vafthruthnismol">Vafþrúðnismál</a> / Gylfaginning</span>
+          <h3 class="myth-title">Mundilfari's Boast</h3>
+          <p class="myth-text">In the <em>Vafþrúðnismál</em>, the giant Vafþrúðnir tells <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> that Mundilfari is the father of Máni and of Sól alike. Snorri, in <em>Gylfaginning</em> (ch. 11), gives the story its edge: Mundilfari's two children were so fair that he named his son Máni, 'Moon', and his daughter Sól, 'Sun', and married Sól to a man named Glenr. The gods were angered by this <em>ofdramb</em> — this overweening pride — and took the siblings and set them in the heavens.</p><p class="myth-text">The punishment is an appointment. Sól is made to drive the horses of the sun, Árvakr and Alsviðr, while Máni is charged with steering the course of the moon and ruling its waxing and waning. What a father claimed in arrogance, the gods confirmed in office: the names became the duties, and the children became the sky. The myth is the Eddas' quiet essay on vanity — the one boast the gods could not leave unpunished was a claim of ownership over light.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Gylfaginning / <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a></span>
+          <h3 class="myth-title">The Iron-Wood Brood</h3>
+          <p class="myth-text">Why does the moon flee? Because something was bred to chase it. Snorri preserves the genealogy (<em>Gylfaginning</em>, ch. 12): east of Midgard, in the forest called Járnviðr — Iron Wood — a giantess in troll-woman's shape bore a brood of giant sons in wolf forms, and from that pack come the wolves that hunt the lights. Two of them the Æsir caught and set to their courses: <a href="/skoll/" class="crosslink" data-crosslink="skoll">Skǫll</a> runs after the sun, and <a href="/hati/" class="crosslink" data-crosslink="hati">Hati</a> Hróðvitnisson runs before the moon, and he will catch it — so it must be. The <em>Grímnismál</em> names them in verse: Skǫll follows the shining god, while Hati, Hróðvitnir's son, runs before the bright bride of heaven (st. 39). And the brood is not finished: from the same Iron Wood, Snorri says, will come the mightiest of all, Mánagarmr, the Moon-Hound, who feeds on the lives of the dead; the <em>Vǫluspá</em> laments the coming tormentor in a troll's shape (st. 40). The myth makes the night sky a battlefield of kinship: the lights of heaven are pursued by the children of the giantess, and Máni's speed is the speed of survival.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Grímnismál / Gylfaginning</span>
+          <h3 class="myth-title">The Wolf at the Moon's Heels</h3>
+          <p class="myth-text">The moon does not drift; it flees. Snorri explains the physics by the hunter: the wolves run with the lights of heaven, and Hati Hróðvitnisson is the one who runs before the moon and means to take it — and so it will come to pass (<em>Gylfaginning</em>, ch. 12). From earth, men watching the moon hurry across a winter sky believed the wolf was near; the chase is the Eddic explanation of lunar speed, and of eclipses, when the hound closed its jaws for a moment and the world held its breath.</p><p class="myth-text">The chase has an ending, and the Eddas do not flinch from it. At <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a> the Moon-Hound Mánagarmr — fed all his life on the blood of the dying — swallows the moon whole and spatters the sky and the air with blood, so that the sun itself loses its shining and the stars are shaken from the heavens. The image is exact and terrible: time, which Máni measures, is also time, which is eaten. Every month closes because the wolf behind it is a month closer.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Gylfaginning</span>
+          <h3 class="myth-title">Bil and Hjúki at the Well</h3>
+          <p class="myth-text">Snorri records that Máni took two children up from the earth, Bil and Hjúki, as they walked from the well called Byrgir, carrying on their shoulders the pail Sægr — often read as a mead-tub — slung from the pole Simul. Their father is named Viðfinnr. 'These children follow Máni,' Snorri adds, 'as can be seen from earth': look at the moon and you will find them there.</p><p class="myth-text">This is the Norse answer to the man in the moon — not a face but two small figures under a burden, fixed forever in mid-errand. The detail of the well, the pail, and the pole is too homely to be invented ornament; it reads as the residue of nursery-lore older than the manuscript, the kind of story told to children who had already been shown the markings in the moon. Scholars have sometimes linked the pair to the Jack and Jill of English rhyme, but that connection is modern speculation, not attestation. What the myth insists on is gentler: the moon-god's company is not warriors but errand-bearers, and the sky remembers two children on their way home from water.</p>
+        </div>
+      </div></div>
+    </div>
+</section>
+
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Moon, Night, Time</h2>
+            <p class="section-subtitle">The domain of Máni</p>
+        </div>
+        
+      <div class="domains-intro reveal-up"><p class="lead-text">In the Norse tradition, <strong>Máni</strong> is the moon itself made personal — the shining body that crosses the night sky, imagined as a god who steers it. Where Sól, his sister, drives the sun, Máni governs the gentler light: Snorri says he 'steers the course of the moon and rules the new and the waning moons,' the phases by which men first learned to count their days. Every month that turns is his signature: <em>mánaðr</em>, 'month', is his own word, and Monday is his day.</p></div>
+      <div class="domains-grid">
+      <div class="domain-card reveal-up">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 16 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 16 32 8Z"></path></svg></div>
+        <h4 class="domain-name">Mundilfari's Boast</h4>
+        <p class="domain-desc">A father's pride named his children Moon and Sun; the gods answered the boast by setting the pair to drive the lights of heaven.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="100">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C20 8 12 18 12 32C12 46 20 56 32 56C44 56 52 46 52 32C52 18 44 8 32 8ZM32 20V44M20 32H44"></path></svg></div>
+        <h4 class="domain-name">Hati's Pursuit</h4>
+        <p class="domain-desc">The wolf Hati Hróðvitnisson runs before the moon and will one day take it; at Ragnarǫk the Moon-Hound swallows the light and spatters the sky with blood.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="200">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 4C20 4 12 16 12 32C12 48 20 60 32 60C44 60 52 48 52 32C52 16 44 4 32 4ZM32 16V48M16 32H48"></path></svg></div>
+        <h4 class="domain-name">Bil and Hjúki</h4>
+        <p class="domain-desc">Two children with a pail on a pole, taken up from the well Byrgir; they follow Máni, Snorri says, 'as can be seen from earth' — the man in the moon.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C22 12 14 20 14 32C14 44 22 52 32 56C42 52 50 44 50 32C50 20 42 12 32 12ZM32 20V44M20 32H44"></path></svg></div>
+        <h4 class="domain-name">Measurer of Months</h4>
+        <p class="domain-desc">He rules the new and waning moons, the counting of time itself; mánaðr, 'month', is his word, and the calendar was his first temple.</p>
+      </div></div>
+      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
+      <div class="symbol-item">
+        <span class="symbol-name">Ný ok nið (new and waning moons)</span>
+        <span class="symbol-meaning">The phases over which Máni rules, the divine charge by which the gods ordained the counting of years for men</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Hati Hróðvitnisson</span>
+        <span class="symbol-meaning">The wolf who runs before the moon and gives its crossing its haste, the promise that even the lights of heaven are hunted</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Mánagarmr (Moon-Hound)</span>
+        <span class="symbol-meaning">The mightiest of the Iron-Wood brood, who fattens on the lives of the dying and swallows the moon at the world's end</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Sægr and Simul (pail and pole)</span>
+        <span class="symbol-meaning">The burden Bil and Hjúki carried from the well Byrgir, still legible as the markings on the moon's face</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The month-mark</span>
+        <span class="symbol-meaning">Mánaðr, the month — the unit of time that bears his name in every Germanic calendar</span>
+      </div></div></div>
+    </div>
+</section>
+
+    <!-- In the Texts & Everyday Words -->
+    
+
+    <!-- Related Names -->
+    <section class="section section-related" id="related">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Related Names</h2>
+            <p class="section-subtitle">Other figures in the norse pantheon</p>
+        </div>
+        <div class="related-grid reveal-up">
+            
+    <a href="/asgardr/" class="related-card reveal-up">
+      <span class="related-name">Ásgarðr</span>
+      
+      <span class="related-domain">Realm of the Æsir</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/valholl/" class="related-card reveal-up">
+      <span class="related-name">Valhǫll</span>
+      
+      <span class="related-domain">Hall of the Slain</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/ragnarok/" class="related-card reveal-up">
+      <span class="related-name">Ragnarǫk</span>
+      
+      <span class="related-domain">Doom of the Gods</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/midgardr/" class="related-card reveal-up">
+      <span class="related-name">Miðgarðr</span>
+      
+      <span class="related-domain">Middle Enclosure (Earth)</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/alfheimr/" class="related-card reveal-up">
+      <span class="related-name">Álfheimr</span>
+      
+      <span class="related-domain">Realm of the Light Elves</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+    <a href="/jotunheimr/" class="related-card reveal-up">
+      <span class="related-name">Jötunheimr</span>
+      
+      <span class="related-domain">Land of the Giants</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
+      </div>
+    </a>
+        </div>
+    </div>
+</section>
+
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
     <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">ᛘᛅᚾᛁ</p>
+                <p class="card-body">The name in its original Norse form. <strong>Máni</strong> (ᛘᛅᚾᛁ) is attested in the source tradition — “Moon (the personified moon, brother of Sól)”. Its acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
+                
             </div>
 
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">ᛘᛅᚾᛁ</p>
-                    <p class="card-body">The name in its original Norse form. <strong>Máni</strong> (ᛘᛅᚾᛁ) is attested in the source tradition — “Moon (the personified moon, brother of Sól)”. Its acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
                 </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">mani</p>
-                    <p class="card-body">Reduced to plain <strong>mani</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Máni</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Máni</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">mani</p>
+                <p class="card-body">Reduced to plain <strong>mani</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
             </div>
 
-            <div class="punycode-explainer reveal-up">
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Máni</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Máni</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
                     <code class="explainer-code">Máni.com → xn--mni-ela.com</code>
                     <p class="explainer-note">The non-ASCII characters in <strong>Máni</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Máni</em>.</p>
                 </div>
             </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Máni</p>
         </div>
-    </section>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Máni</p>
+                    <p class="card-body">Restores <strong>ᛘᛅᚾᛁ</strong>. The live temple domain — <strong>máni.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">mani</p>
+                    <p class="card-body">Flattens <strong>ᛘᛅᚾᛁ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Máni was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈmɑːni/</span>
+            <span class="ipa-label">Old Norse Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">M-</span>
+        <span class="phoneme-desc">Bilabial nasal [m], unchanged from Proto-Germanic *m to Old Norse; the name opens with the same consonant as English 'moon'</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-á-</span>
+        <span class="phoneme-desc">Long open back [ɑː] with the acute marking length; Old Norse stress falls on the first syllable by default</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ni</span>
+        <span class="phoneme-desc">Short alveolar nasal [n] and close front [i]; the light second syllable of the nominative singular</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'MAH-nee' — hold the first vowel long and open, as in 'father', with the weight squarely on the first syllable and a quick, light '-nee' to close.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Máni is Tier 1: the acute on á marks the long vowel [ɑː], a distinctive feature the ASCII form Mani loses; Old Norse initial stress is the default and needs no further mark. The name is simply the common noun máni, 'moon', raised to a person — the same word that gives mánaðr, 'month'. Attestation and reconstruction follow Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. máni; and Zoëga, A Concise Dictionary of Old Icelandic (1910), s.v. máni.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
 
     <!-- Original Script Provenance -->
     
@@ -297,7 +538,7 @@
   <div class="section-bg-glow"></div>
   <div class="container">
     <div class="section-header reveal-up">
-      <span class="section-number">02</span>
+      <span class="section-number">07</span>
       <h2 class="section-title">Original Script &amp; Provenance</h2>
       <p class="section-subtitle">How Máni travels from ancient script to the modern URL</p>
     </div>
@@ -391,11 +632,11 @@
     <div class="source-list">
       
           <div class="source-item">
-            <div class="source-title">Poetic Edda, Völuspá and Grímnismál<span class="source-tier tier-2">Tier 2</span></div>
+            <div class="source-title"><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a>, <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a> and Grímnismál<span class="source-tier tier-2">Tier 2</span></div>
             
           </div>
           <div class="source-item">
-            <div class="source-title">Prose Edda, Gylfaginning 11<span class="source-tier tier-2">Tier 2</span></div>
+            <div class="source-title"><a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a>, <a href="/texts/prose-edda/#gylfaginning-11" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 11</a><span class="source-tier tier-2">Tier 2</span></div>
             
           </div>
           <div class="source-item">
@@ -410,234 +651,6 @@
     </div>
   </div>
 </section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Máni</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Máni</p>
-                    <p class="card-body">Restores <strong>ᛘᛅᚾᛁ</strong>. The live temple domain — <strong>máni.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">mani</p>
-                    <p class="card-body">Flattens <strong>ᛘᛅᚾᛁ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Máni was spoken</p>
-        </div>
-        
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈmɑːni/</span>
-            <span class="ipa-label">Old Norse Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">M-</span>
-        <span class="phoneme-desc">Bilabial nasal [m], unchanged from Proto-Germanic *m to Old Norse; the name opens with the same consonant as English 'moon'</span>
-      </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-á-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> open back [ɑː] with the acute marking length; Old Norse stress falls on the first syllable by default</span>
-      </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-ni</span>
-        <span class="phoneme-desc">Short alveolar nasal [n] and close front [i]; the light second syllable of the nominative singular</span>
-      </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'MAH-nee' — hold the first vowel long and open, as in 'father', with the weight squarely on the first syllable and a quick, light '-nee' to close.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Old English</strong> Mōna, the masculine moon of the Anglo-Saxons, whose name survives in Monday (Mōnandæg)</li><li><strong>Old High German</strong> Māno, the continental Germanic moon, likewise masculine</li><li><strong>Proto-Germanic</strong> *Mēnô, 'moon', a masculine noun — an inheritance the Germanic languages kept where most Indo-European tongues made the moon feminine</li><li><strong>Modern Icelandic</strong> Máni, the living reflex, unchanged in form and gender</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Máni is Tier 1: the acute on á marks the long vowel [ɑː], a distinctive feature the ASCII form Mani loses; Old Norse initial stress is the default and needs no further mark. The name is simply the common noun máni, 'moon', raised to a person — the same word that gives mánaðr, 'month'. Attestation and reconstruction follow Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. máni; and Zoëga, A Concise Dictionary of Old Icelandic (1910), s.v. máni.</p></div>
-        </div>
-      </div>
-    </div>
-</section>
-
-    <!-- Domains & Sacred Symbols -->
-    <section class="section section-symbols" id="symbols">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">05</span>
-            <h2 class="section-title">Moon, Night, Time</h2>
-            <p class="section-subtitle">The domain of Máni</p>
-        </div>
-        
-      <div class="domains-intro reveal-up"><p class="lead-text">In the norse tradition, <strong>Máni</strong> is the moon itself made personal — the shining body that crosses the night sky, imagined as a god who steers it. Where Sól, his sister, drives the sun, Máni governs the gentler light: Snorri says he 'steers the course of the moon and rules the new and the waning moons,' the phases by which men first learned to count their days.</p><p class="lead-text">His is a charged quietness. The gods themselves assigned him his course, a wolf runs forever at his heels, and two earth-born children ride with him, their pail still visible on his face. Every month that turns is his signature: <em>mánaðr</em>, 'month', is his own word, and Monday is his day.</p></div>
-      <div class="domains-grid">
-      <div class="domain-card reveal-up">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 16 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 16 32 8Z"></path></svg></div>
-        <h4 class="domain-name">Mundilfari's Boast</h4>
-        <p class="domain-desc">A father's pride named his children Moon and Sun; the gods answered the boast by setting the pair to drive the lights of heaven.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="100">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C20 8 12 18 12 32C12 46 20 56 32 56C44 56 52 46 52 32C52 18 44 8 32 8ZM32 20V44M20 32H44"></path></svg></div>
-        <h4 class="domain-name">Hati's Pursuit</h4>
-        <p class="domain-desc">The wolf <a href="/hati/" class="crosslink" data-crosslink="hati">Hati</a> Hróðvitnisson runs before the moon and will one day take it; at <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a> the Moon-Hound swallows the light and spatters the sky with blood.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="200">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 4C20 4 12 16 12 32C12 48 20 60 32 60C44 60 52 48 52 32C52 16 44 4 32 4ZM32 16V48M16 32H48"></path></svg></div>
-        <h4 class="domain-name">Bil and Hjúki</h4>
-        <p class="domain-desc">Two children with a pail on a pole, taken up from the well Byrgir; they follow Máni, Snorri says, 'as can be seen from earth' — the man in the moon.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="300">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C22 12 14 20 14 32C14 44 22 52 32 56C42 52 50 44 50 32C50 20 42 12 32 12ZM32 20V44M20 32H44"></path></svg></div>
-        <h4 class="domain-name">Measurer of Months</h4>
-        <p class="domain-desc">He rules the new and waning moons, the counting of time itself; mánaðr, 'month', is his word, and the calendar was his first temple.</p>
-      </div></div>
-      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
-      <div class="symbol-item">
-        <span class="symbol-name">Ný ok nið (new and waning moons)</span>
-        <span class="symbol-meaning">The phases over which Máni rules, the divine charge by which the gods ordained the counting of years for men</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Hati Hróðvitnisson</span>
-        <span class="symbol-meaning">The wolf who runs before the moon and gives its crossing its haste, the promise that even the lights of heaven are hunted</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Mánagarmr (Moon-Hound)</span>
-        <span class="symbol-meaning">The mightiest of the Iron-Wood brood, who fattens on the lives of the dying and swallows the moon at the world's end</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Sægr and Simul (pail and pole)</span>
-        <span class="symbol-meaning">The burden Bil and Hjúki carried from the well Byrgir, still legible as the markings on the moon's face</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">The month-mark</span>
-        <span class="symbol-meaning">Mánaðr, the month — the unit of time that bears his name in every Germanic calendar</span>
-      </div></div></div>
-    </div>
-</section>
-
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Máni</p>
-        </div>
-        
-      <p class="lead-text">Máni's mythology is brief but exact: he has no hammer-duels and no disguises, only a course to keep and a hunter behind him. The Eddas give him three scenes — a father's fatal boast, a wolf's patient pursuit, and two children lifted from a well — and together they explain both why the moon moves and why it keeps its human face. Around those scenes gathers the quieter charge the <em>Vafþrúðnismál</em> records: the gods shaped the new and waning moons so that men could reckon their years.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Vafþrúðnismál / Gylfaginning</span>
-          <h3 class="myth-title">Mundilfari's Boast</h3>
-          <p class="myth-text">In the <em>Vafþrúðnismál</em>, the giant Vafþrúðnir tells <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> that Mundilfari is the father of Máni and of Sól alike. Snorri, in <em>Gylfaginning</em>, gives the story its edge: Mundilfari's two children were so fair that he named his son Máni, 'Moon', and his daughter Sól, 'Sun', and married Sól to a man named Glenr. The gods were angered by this <em>ofdramb</em> — this overweening pride — and took the siblings and set them in the heavens.</p><p class="myth-text">The punishment is an appointment. Sól is made to drive the horses of the sun, Árvakr and Alsviðr, while Máni is charged with steering the course of the moon and ruling its waxing and waning. What a father claimed in arrogance, the gods confirmed in office: the names became the duties, and the children became the sky.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Grímnismál / Gylfaginning</span>
-          <h3 class="myth-title">The Wolf at the Moon's Heels</h3>
-          <p class="myth-text">The moon does not drift; it flees. Snorri explains its speed by its hunter: two wolves run with the lights of heaven, and Hati Hróðvitnisson is the one who runs before the moon and means to take it — 'and so it will come to pass.' The <em>Grímnismál</em> knows the same pursuit, naming Hati as the son of Hróðvitnir who waits upon the bright bride of the sky.</p><p class="myth-text">The chase has an ending, and the Eddas do not flinch from it. From the Iron-Wood brood, Snorri says, will come the mightiest wolf of all, called Mánagarmr, the Moon-Hound: he fills himself with the lives of all who die, swallows the moon, and spatters heaven and air with blood, so that the sun loses its shining. The <em>Vǫluspá</em> names him the moon's devourer in a troll's skin. At Ragnarǫk the long pursuit is finished, and the calendar itself goes dark.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Gylfaginning</span>
-          <h3 class="myth-title">Bil and Hjúki at the Well</h3>
-          <p class="myth-text">Snorri records that Máni took two children up from the earth, Bil and Hjúki, as they walked from the well called Byrgir, carrying on their shoulders the pail Sægr — often read as a mead-tub — slung from the pole Simul. Their father is named Viðfinnr. 'These children follow Máni,' Snorri adds, 'as can be seen from earth': look at the moon and you will find them there.</p><p class="myth-text">This is the Norse answer to the man in the moon — not a face but two small figures under a burden, fixed forever in mid-errand. The detail of the well, the pail, and the pole is too homely to be invented ornament; it reads as the residue of nursery-lore older than the manuscript, the kind of story told to children who had already been shown the markings in the moon. Scholars have sometimes linked the pair to the Jack and Jill of English rhyme, but that connection is modern speculation, not attestation.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
-
-    <!-- Related Names -->
-    <section class="section section-related" id="related">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Related Names</h2>
-            <p class="section-subtitle">Other figures in the norse pantheon</p>
-        </div>
-        <div class="related-grid reveal-up">
-            
-    <a href="/asgardr/" class="related-card reveal-up">
-      <span class="related-name">Ásgarðr</span>
-      
-      <span class="related-domain">Realm of the Æsir</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/valholl/" class="related-card reveal-up">
-      <span class="related-name">Valhǫll</span>
-      
-      <span class="related-domain">Hall of the Slain</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/ragnarok/" class="related-card reveal-up">
-      <span class="related-name">Ragnarǫk</span>
-      
-      <span class="related-domain">Doom of the Gods</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/midgardr/" class="related-card reveal-up">
-      <span class="related-name">Miðgarðr</span>
-      
-      <span class="related-domain">Middle Enclosure (Earth)</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/alfheimr/" class="related-card reveal-up">
-      <span class="related-name">Álfheimr</span>
-      
-      <span class="related-domain">Realm of the Light Elves</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-    <a href="/jotunheimr/" class="related-card reveal-up">
-      <span class="related-name">Jötunheimr</span>
-      
-      <span class="related-domain">Land of the Giants</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Norse</span>
-      </div>
-    </a>
-        </div>
-    </div>
-</section>
-
-    <!-- In the Texts & Everyday Words -->
-    
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -655,7 +668,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/mani_mascot.webp" type="image/webp"><img src="../assets/mani_mascot.png" alt="Máni mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/mani_mascot.webp" type="image/webp"><img src="../assets/mani_mascot.png" alt="Máni mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -693,7 +706,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/mani_logomark.webp" type="image/webp"><img src="../assets/mani_logomark.webp" alt="Máni logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/mani_logomark.webp" type="image/webp"><img src="../assets/mani_logomark.webp" alt="Máni logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

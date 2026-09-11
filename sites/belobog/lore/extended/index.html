@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Belobog, Light, Good, Fortune. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/belobog/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Belobog?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Belobog is /ˈbʲɛ.lo.boɡ/ — approximately 'BYEH-loh-bohg' — literally 'White God,' the exact mirror of Chernobog, 'Black God.'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Belobog mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Belobog means White god in the slavic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Belobog?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Belobog is associated with White (Bělъ) (Light itself — the color-word at the root of his name and of Slavic words for dawn and brightness), The Harvest Wreath (The last-sheaf wreath called belobog in Polish and Russian folklore, kept till spring to house the field's fortune), The Waxing Light (The growing half of the year — the season attributed, in folk reconstruction, to his governance), The Honored Seat (The right-hand place at table and hearth — the 'white' side in Slavic custom, opposite the unclean left)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Belobog in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Belobog is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Belobog?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Zeloboch of the Czech Chronicle” — Belobog has no native mythology in the epic sense — no adventures, no genealogy, no cycle. What he has is an attestation, an opposite, and a folklore. His four 'myths' are therefore documents of how a name can carry an entire cosmology on almost no narrative at all. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/belobog_logolockup.webp" type="image/webp"><img src="../../assets/belobog_logolockup.png" alt="Belobog" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Belobog</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Belobog</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/belobog_mascot.webp" type="image/webp"><img src="../../assets/belobog_mascot.png" alt="Belobog — Light, Good, Fortune" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/belobog_mascot.webp" type="image/webp"><img src="../../assets/belobog_mascot.png" alt="Belobog — Light, Good, Fortune" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -175,7 +226,7 @@
             <p class="section-subtitle">Essential information about Belobog, Light, Good, Fortune</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Belobog</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Belobog</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/belobog/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Slavic</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Light, Good, Fortune</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">White god</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Belobog</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Name, Domain</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Belobog</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Belobog</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ˈbʲɛ.lo.boɡ/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Slavic</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Light, Good, Fortune</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">White god</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Belobog</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">White (Bělъ), The Harvest Wreath, The Waxing Light, The Honored Seat</span></div></div>
         </div>
     </div>
 </section>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Belobog</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,11 +260,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The ASCII form "belobog" is a DNS compromise; the restoration "Belobog" preserves the name's scholarly dignity.</p>
+                <p class="etymology-note">The name <strong>Belobog</strong> reaches the modern world through scholarly transliteration of the slavic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Modern Descendants</h4><ul><li><strong>belobog</strong> — Modern English / international usage</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>His opposite</strong> — <a href="/chernobog/" class="crosslink" data-crosslink="chernobog">Chernobog</a>, 'Black God' — the evil god named by Helmold of Bosau, Chronica Slavorum I.52</li><li><strong>First attestation</strong> — Zeloboch, the garbled form in Cosmas of Prague, Chronica Boemorum I.4 (c. 1125)</li><li><strong>Indo-European</strong> — From *bʰelH- 'white, shining': Lithuanian báltas, Sanskrit bhāla-, Greek phalós (Machek/Vasmer etymological dictionaries)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">B</td><td><code>U+0042</code></td><td>Latin Capital Letter B</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">b</td><td><code>U+0062</code></td><td>Latin Small Letter B</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Belobog</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Belobog</strong> is light, good, fortune. The name means "White god" and belongs to the slavic tradition.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Belobog remains a touchstone for understanding slavic religion, art, and identity.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Belobog</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Belobog in Later Traditions</h3><p class="cultural-card-body">Belobog's closest ancient analogue was noticed early: <strong>Iranian dualism</strong>, with its opposed Spenta Mainyu and Angra Mainyu, offers the famous parallel, and comparative works (Gieysztor; Eliade's surveys of Balkan and Slavic religion) discuss whether Slavic dualism is inherited Indo-European structure, Iranian contact in the Carpathian centuries, or Christian devil-cult projected backward. The honest answer is that the evidence cannot decide. Christianization certainly re-mapped the pair: <strong>Chernobog slid toward the Christian devil, while Belobog's light-office was absorbed by Christ</strong> — the harvest wreath survived longest precisely where it could pose as a Christian household charm. In the reverse direction, modern Rodnovery has reabsorbed Christian folk practice into the White God's cult. Belobog is thus a palimpsest: pagan name, Christian overlay, pagan revival — each layer legible.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Belobog's name lives wherever Slavic says 'white': in <strong>Bělehrad — Belgrade, 'the White City'</strong> — and in a family of names and words built on the same root. His cultural afterlife, though, belongs to the modern era. He is the emblem of Slavic pre-Christian heritage in schoolbooks, in Romantic poetry, and increasingly in popular culture — fantasy fiction and games have discovered the White God alongside Chernobog, exporting the pair to a global audience that rarely suspects how thin the medieval evidence is. For Slavic neopagans he is an actively worshiped deity of light and prosperity. The folklore core — the kept wreath, the honored right-hand seat, the luck of the household — persists in attenuated custom. <strong>A god of one chronicle line thus presides over a modern renaissance</strong>, his name a standing reminder that a civilization's bright self-image needs only a few words to survive.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">There is <strong>no archaeology of Belobog</strong>: no image, temple, or inscription bearing his name has been found, and no Slavic sanctuary excavated to date can be assigned to him. The great Slavic cult sites belong to other gods — <strong>Arkona's temple of Svetovid</strong> on Rügen (destroyed 1168, described by Saxo Grammaticus), the debated 'Rethra' of Helmold's Black God — and the famous carved idols (the Zbruch pillar) name no deity at all. Belobog's evidence is documentary (Cosmas, Helmold) and ethnographic (the harvest-wreath records). The absence is not trivial: it means the White God belongs to that large class of ancient deities known only through the words of their adversaries — a god whose temples were wooden, seasonal, and gone.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Belobog means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Belobog is a study in the birth of a god from a grammar of opposites. Nobody told a story about him — no wooing, no war, no journey — and yet the name alone did the work that myths do elsewhere: it told the Slavs what kind of universe they lived in, one with a bright side and a dark side and a word for each. There is a deep logic in deriving the god of good from the adjective 'white': goodness as <strong>visibility, cleanliness, daylight</strong> — the things a farming people could literally see. His Black counterpart completes the lesson: evil as the dark, the unclean, the left hand. Modern readers should hold the reconstruction lightly and the intuition firmly. The intuition — that fortune is a presence to be housed and fed, that light deserves a name of its own — is older than any chronicle, and it is what the White God genuinely guards.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Belobog, Light, Good, Fortune, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Belobog?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Belobog</strong> is /belobog/ — approximately Say "belobog" with the stress and length implied by the scholarly restoration "Belobog"..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Belobog mean?</summary><div class="faq-answer"><p><strong>Belobog</strong> means <strong>White god</strong> in the slavic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Belobog?</summary><div class="faq-answer"><p>Belobog is associated with <strong>Name</strong> (The restored form Belobog, carrying scholarly and cultural weight.), <strong>Domain</strong> (Light, Good, Fortune).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Belobog in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>belobog</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Belobog?</summary><div class="faq-answer"><p>Belobog appears in slavic tradition as light, good, fortune. The name's meaning, "White god", shapes the narratives told about this figure.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Belobog?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Belobog</strong> is /ˈbʲɛ.lo.boɡ/ — approximately 'BYEH-loh-bohg' — literally 'White God,' the exact mirror of Chernobog, 'Black God.'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Belobog mean?</summary><div class="faq-answer"><p><strong>Belobog</strong> means <strong>White god</strong> in the slavic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Belobog?</summary><div class="faq-answer"><p>Belobog is associated with <strong>White (Bělъ)</strong> (Light itself — the color-word at the root of his name and of Slavic words for dawn and brightness), <strong>The Harvest Wreath</strong> (The last-sheaf wreath called belobog in Polish and Russian folklore, kept till spring to house the field's fortune), <strong>The Waxing Light</strong> (The growing half of the year — the season attributed, in folk reconstruction, to his governance), <strong>The Honored Seat</strong> (The right-hand place at table and hearth — the 'white' side in Slavic custom, opposite the unclean left).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Belobog in Unicode?</summary><div class="faq-answer"><p><strong>Belobog</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Belobog?</summary><div class="faq-answer"><p>“Zeloboch of the Czech Chronicle” — Belobog has no native mythology in the epic sense — no adventures, no genealogy, no cycle. What he has is an attestation, an opposite, and a folklore. His four 'myths' are therefore documents of how a name can carry an entire cosmology on almost no narrative at all. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -303,7 +366,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of slavic religion and the place of Belobog within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cosmas of Prague, Chronica Boemorum I.4 (c. 1125)</cite></li><li><cite>Helmold of Bosau, Chronica Slavorum I.52 (c. 1172)</cite></li><li><cite>Gieysztor, Mitologia Słowian (1982)</cite></li><li><cite>Rosik, Białobóg na ziemiach słowiańskich (2013)</cite></li><li><cite>Ivanits, Russian Folk Belief (1989)</cite></li><li><cite>Máchal, Slavic Mythology (in Gray, The Mythology of All Races, 1918)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/belobog_logomark.webp" type="image/webp"><img src="../../assets/belobog_logomark.webp" alt="Belobog logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/belobog_logomark.webp" type="image/webp"><img src="../../assets/belobog_logomark.webp" alt="Belobog logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

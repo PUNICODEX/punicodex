@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Thánatos, Death. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/thanatos/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Thánatos?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Thánatos is /tʰá.na.tos/ — approximately 'THAH-nah-tos' — aspirate the first 'th' as in 'top-hat', stress the first syllable, and keep the final 'os' short."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Thánatos mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Thánatos means Death in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Thánatos?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Thánatos is associated with Inverted torch (Life extinguished, the flame turned downward.), Wings (The swiftness with which death arrives and departs.), Wreath (The honour due to the dead, especially warriors.), Butterfly or soul (The psȳché, soul, that leaves the body at death.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Thánatos in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII thanatos strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Thánatos?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Body of Sarpedon” — Thánatos appears in Greek myth most often as a function rather than a character — but when he steps onto the stage, the result is unforgettable: the twin who carries heroes home, the official who keeps his appointments, and the one opponent Heracles could throw. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,14 @@
                 <picture><source srcset="../../assets/thanatos_logolockup.webp" type="image/webp"><img src="../../assets/thanatos_logolockup.png" alt="Thánatos" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +175,14 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +195,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Thánatos</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Thánatos.com</span>
@@ -157,7 +210,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/thanatos_mascot.webp" type="image/webp"><img src="../../assets/thanatos_mascot.png" alt="Thánatos — Death" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/thanatos_mascot.webp" type="image/webp"><img src="../../assets/thanatos_mascot.png" alt="Thánatos — Death" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +263,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Thánatos is Tier 2: the Greek original carries acute stress but no long vowel. The restoration preserves the stress mark, distinguishing it from the flattened English 'Thanatos'.</p>
+                <p class="etymology-note">The name <strong>Thánatos</strong> carries the orthographic signature of the greek tradition: Θάνατος. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Θάνατος (Thánatos), personification of death.</li><li><strong>Roman</strong> — Mors, the Roman counterpart, less mythologically developed.</li><li><strong>Twin</strong> — <a href="/hypnos/" class="crosslink" data-crosslink="hypnos">Hýpnos</a> (Sleep), his twin brother in Hesiod's Theogony.</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Θάνατος (Thánatos), personification of death.</li><li><strong>Roman</strong> — Mors, the Roman counterpart, less mythologically developed.</li><li><strong>Twin</strong> — <a href="/hypnos/" class="crosslink" data-crosslink="hypnos">Hýpnos</a> (Sleep), his twin brother in Hesiod's <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a>.</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,26 +300,39 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Thánatos is the <strong>personification of death in Greek myth</strong>: not a terrifying destroyer but the quiet god who closes mortal eyes. He is the twin of Sleep, and the two are often shown together, winged youths lifting the dead from the battlefield with something like tenderness.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Thánatos in Later Traditions</h3><p class="cultural-card-body">Roman Mors never achieved the visual and literary richness of Greek Thánatos. In later European art, Thánatos merged with the Grim Reaper, the Christian angel of death, and allegorical figures of mortality. Psychoanalysis gave him a second life in Freud's 'death drive' (Thanatos), opposite <a href="/eros/" class="crosslink" data-crosslink="eros">Eros</a>. The Greek god thus became, by a long detour, a modern name for the destructive forces within the self.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Thánatos remains one of the most resonant names for death in Western culture. He appears in psychology, philosophy, and literature whenever the conversation turns to mortality not as event but as principle. The phrase 'thanatos and eros' still structures debates about human motivation. And in the quiet image of the winged youth carrying a fallen soldier, he preserves a dignity that later, more skeletal personifications often lose.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Thánatos</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Thánatos in Later Traditions</h3><p class="cultural-card-body">Roman <em>Mors</em> never achieved the visual or literary richness of Greek Thánatos; Latin poets mostly kept the Greek personification. In later European art the classical winged youth slowly converged with the Grim Reaper and the Christian angel of death — the skeleton with the scythe is not Thánatos, but it inherited his inevitability. The nineteenth century gave him a strange second career: in Freud's <em>Beyond the Pleasure Principle</em> (1920) 'Thanatos' names the death drive, twin and opponent of <a href="/eros/" class="crosslink" data-crosslink="eros">Eros</a> — Greek myth converted, almost without residue, into modern psychology. The god thus became a name for the destructive forces within the self, and the word <em>thanatology</em> now dignifies the scholarly study of death itself.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Thánatos remains one of the most resonant names for death in Western culture. He appears in psychology, philosophy, and literature whenever mortality is discussed not as an event but as a principle — the phrase 'Eros and Thanatos' still structures debates about human motivation. Hospice and grief literature repeatedly returns to the Homeric image of the winged brother lifting the fallen soldier: death not as enemy but as escort. And in the quiet personification of the gentle end — the twin of sleep rather than the horror of the grave — Greek myth preserved a dignity that later, more skeletal personifications often surrendered. His name is still invoked wherever people try to speak of death <strong>without hatred</strong>.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Thánatos received no known cult or temple in the Greek world — his existence is literary and visual. His most famous embodiment is the Euphronios krater (c. 515 BCE, Metropolitan Museum), on which Hýpnos and Thánatos, winged youths in full armor, lift the dead <a href="/sarpedon/" class="crosslink" data-crosslink="sarpedon">Sarpedon</a> — the very scene of Iliad 16 painted within a generation of the poem's fixation. Attic white-ground lekythoi repeatedly show the pair carrying dead warriors and women, and an anonymous Athenian painter of c. 440 BCE is known to scholarship simply as the <strong>Thanatos Painter</strong> after such a scene. The Kerameikos cemetery reliefs of fallen soldiers, though unnamed, give the civic frame: a city that buried its war dead with public honor, and imagined the last journey attended.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Thánatos means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Thánatos is the god we do not wish to meet, yet whose presence gives life its shape. Without him, every day would be endlessly postponable; no choice would be final, no love precious because it is brief. The Greeks understood this: death is not the enemy of meaning but its frame.</p><p>His twinship with Sleep is the deeper teaching. Every night we practice death; every morning we rehearse resurrection. Thánatos is the brother who, one day, does not let us wake. To name him is to admit that the condition of being alive is being temporary — and that this is not cruelty but definition.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     <section class="section section-name" id="screen-appearances">
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Screen Appearances</h2>
-            <p class="section-subtitle">Films, series, animations, and games featuring Thánatos</p>
+            <span class="section-number">06</span>
+            <h2 class="section-title">Screen &amp; Culture</h2>
+            <p class="section-subtitle">Where Thánatos echoes through film, television, and games — and how</p>
         </div>
         <div class="screen-appearances-grid"><a class="screen-appearance-card reveal-up" href="/screen/hades-2020/">
                 <span class="screen-appearance-year">2020</span>
                 <h3 class="screen-appearance-title">Hades</h3>
                 <span class="screen-appearance-type">Game</span>
                 <p class="screen-appearance-studio">Supergiant Games</p>
+                <p class="screen-appearance-summary">A roguelike action game in which Zagreus attempts to escape the Underworld, encountering most of the Olympian pantheon.</p>
             </a></div>
     </div>
 </section>
@@ -275,11 +341,11 @@
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Thánatos, Death, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Thánatos?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Thánatos</strong> is /tʰá.na.tos/ — approximately 'THAH-nah-tos' — aspirate the first 'th' as in 'top-hat', stress the first syllable, and keep the final 'os' short..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Thánatos mean?</summary><div class="faq-answer"><p><strong>Thánatos</strong> means <strong>Death</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Thánatos?</summary><div class="faq-answer"><p>Thánatos is associated with <strong>Inverted torch</strong> (Life extinguished, the flame turned downward.), <strong>Wings</strong> (The swiftness with which death arrives and departs.), <strong>Wreath</strong> (The honour due to the dead, especially warriors.), <strong>Butterfly or soul</strong> (The psȳché, soul, that leaves the body at death.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Thánatos in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>thanatos</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Thánatos?</summary><div class="faq-answer"><p>When the Lycian prince <a href="/sarpedon/" class="crosslink" data-crosslink="sarpedon">Sarpedon</a> fell before <a href="/patroclus/" class="crosslink" data-crosslink="patroclus">Patroclus</a>, <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> commanded Apollo to cleanse the body and summon Hýpnos and Thánatos to carry it home. The twin brothers lifted the hero in their arms and bore him through the air to Lycia, where his kin gave him funeral rites. It is one of the most moving images of death in Homer: not grim, but almost filial.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Thánatos?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Thánatos</strong> is /tʰá.na.tos/ — approximately 'THAH-nah-tos' — aspirate the first 'th' as in 'top-hat', stress the first syllable, and keep the final 'os' short.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Thánatos mean?</summary><div class="faq-answer"><p><strong>Thánatos</strong> means <strong>Death</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Thánatos?</summary><div class="faq-answer"><p>Thánatos is associated with <strong>Inverted torch</strong> (Life extinguished, the flame turned downward.), <strong>Wings</strong> (The swiftness with which death arrives and departs.), <strong>Wreath</strong> (The honour due to the dead, especially warriors.), <strong>Butterfly or soul</strong> (The psȳché, soul, that leaves the body at death.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Thánatos in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>thanatos</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Thánatos?</summary><div class="faq-answer"><p>“The Body of Sarpedon” — Thánatos appears in Greek myth most often as a function rather than a character — but when he steps onto the stage, the result is unforgettable: the twin who carries heroes home, the official who keeps his appointments, and the one opponent Heracles could throw. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -288,7 +354,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">08</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -301,13 +367,13 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod</cite></li><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod, Theogony</cite></li><li><cite>Homer, Iliad</cite></li><li><cite>Euripides, Alcestis</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod</cite></li><li><cite>Hesiod, Theogony 211–225, 756–766</cite></li><li><cite>Homer, Iliad 16.419–683 (the death of Sarpedon)</cite></li><li><cite>Euripides, Alcestis 29–92, 1029–1150</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -319,7 +385,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hyginus, Fabulae</cite></li><li><cite>LSJ (Liddell-Scott-Jones)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hyginus, Fabulae 251</cite></li><li><cite>Allen, Vox Graeca (on the theta)</cite></li><li><cite>LIMC, s.v. Thanatos (vase iconography)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -380,7 +446,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/thanatos_logomark.webp" type="image/webp"><img src="../../assets/thanatos_logomark.webp" alt="Thánatos logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/thanatos_logomark.webp" type="image/webp"><img src="../../assets/thanatos_logomark.webp" alt="Thánatos logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

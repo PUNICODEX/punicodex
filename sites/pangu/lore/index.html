@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Pángǔ — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">盤古</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Pángǔ.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">盤古</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Pángǔ</strong> (盤古) is attested in the source tradition — “'Coiled antiquity' (盤古), the giant who split heaven from earth”. Its acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">pangu</p>
-                    <p class="card-body">Reduced to plain <strong>pangu</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Pángǔ</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Pángǔ</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Pángǔ.com → xn--png-ela13j.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Pángǔ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Pángǔ</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Pángǔ is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">盤古</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Pángǔ is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Pángǔ</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Pángǔ</p>
-                    <p class="card-body">Restores <strong>盤古</strong>. The live temple domain — <strong>pángǔ.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">pangu</p>
-                    <p class="card-body">Flattens <strong>盤古</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Pángǔ was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Pángǔ</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/pʰa˧˥ ku˨˩˦/</span>
-            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">pahng-goo, rising tone on Pang, low-dipping on Gu.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Chinese</strong> 盤古</li><li><strong>Owned form</strong> Pángǔ</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Pángǔ 盘古 carries the rising tone on páng and the dipping third tone on gǔ ("antiquity"); the name pairs "coiling" with "ancient" — the coiled one of the primordial egg. Written 盤古 in traditional characters, it is Chinese myth's youngest great name: the giant is attested only from the 3rd century CE.</p></div>
+      <p class="lead-text">Pángǔ's myth exists in two sentences of immense consequence, recorded by Xú Zhěng in the 3rd century CE — and expanded by a civilization into its canonical account of how the world began.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Egg</span>
+          <h3 class="myth-title">Three-Five Calendar Record</h3>
+          <p class="myth-text">Xú Zhěng's Sānwǔ lìjì (3rd century CE, preserved in later encyclopedias) gives the founding text: 'Heaven and earth were chaos like a hen's egg, and Pángǔ was born within it. After eighteen thousand years, heaven and earth opened: the bright, light qì rose to become heaven; the dark, heavy qì sank to become earth. Pángǔ stood between them, changing nine times daily — heaven rising ten feet a day, earth thickening ten feet, and Pángǔ growing ten feet — for eighteen thousand years more, until heaven stood ninety thousand li above the earth.' The arithmetic is the myth's own poetry: the world is not spoken into being but pushed apart by increments, against a measurable resistance — creation as the first and longest labor, and the giant as the one who never stops growing because his work is never done.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Death</span>
+          <h3 class="myth-title">The Body Becomes the World</h3>
+          <p class="myth-text">When the separation was fixed, Pángǔ died — and the transformation began, in the same text's most famous lines: his breath became wind and cloud, his voice thunder, his left eye the sun and his right the moon, his four limbs the four sacred mountains, his blood the rivers, his veins the roads, his flesh the soil, his hair the stars, his skin and body-hair grass and trees, his sweat the rain — and, in the most anthropologically piquant line, the fleas and lice of his body, quickened by the wind, became the black-haired people. Nothing in the list is wasted and nothing is decorative: the myth insists that geography is biography — that every mountain is a limb and every river a vein — so that to wound the landscape is to wound the body one lives inside. It is the world's most complete statement of the sacredness of place.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Late Arrival</span>
+          <h3 class="myth-title">China's Youngest Creator</h3>
+          <p class="myth-text">The myth's strangest fact is its date: no pre-Han text mentions Pángǔ, and the Sānwǔ lìjì itself has to be reconstructed from quotations in medieval encyclopedias, for the original is lost. Scholars trace his entry through southern traditions — the Yao and Miao genealogies of the dog-ancestor <a href="/pan/" class="crosslink" data-crosslink="pan">Pán</a> Hù, phonetically adjacent, from the very region the later sources call Pángǔ country — absorbed and cosmicized in the Wei-Jin centuries, when the north's older creation-by-culture-hero had left a vacancy at the very beginning. China's canonical creation is thus a relative newcomer, adopted so completely that every schoolchild now learns it as the oldest story — a case of a myth winning by arriving last, exactly when the civilization needed a single name to put at the head of time.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Variants</span>
+          <h3 class="myth-title">Folk Versions and a Southern Country</h3>
+          <p class="myth-text">By the sixth century the giant had accumulated regional tellings, and Rèn Fáng's Shùyì jì ('Records of Strange Matters', c. 500 CE) preserves the collated harvest. The folk versions map his body onto the sacred mountains with cheerful disagreement: in one, his head became the Eastern Marchmount, his belly the Central, his limbs the Southern and Northern, his feet the Western; in another, his tears became the rivers, his breath the wind, his voice thunder, his pupils lightning — and his moods the weather, his gladness clearing the sky and his anger clouding it (Shùyì jì, quoting what it calls Qín-Hàn popular sayings). The most remarkable entry records that in the southern sea there was a Pángǔ country whose people bore Pángǔ as their surname — a whole people claiming descent from the giant. And in the Wú-Chǔ region south of the Yangtze, the tellers made him a married pair: Pángǔ and his wife, 'the beginning of yin and yang.' The creator was still growing new versions four centuries after his first written breath — evidence that China never finished deciding what its youngest god meant.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The First Giant</h2>
             <p class="section-subtitle">The Egg, the Eighteen Thousand Years, and the Body of the World</p>
         </div>
@@ -411,49 +329,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Pángǔ</p>
-        </div>
-        
-      <p class="lead-text">Pángǔ's myth exists in two sentences of immense consequence, recorded by Xú Zhěng in the 3rd century CE — and expanded by a civilization into its canonical account of how the world began.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Egg</span>
-          <h3 class="myth-title">Three-Five Calendar Record</h3>
-          <p class="myth-text">Xú Zhěng's Sānwǔ lìjì gives the founding text: "Heaven and earth were chaos like a hen's egg, and Pángǔ was born within it. After eighteen thousand years, heaven and earth opened: the bright, light qì rose to become heaven; the dark, heavy qì sank to become earth. Pángǔ stood between them, changing nine times daily — heaven rising ten feet a day, earth thickening ten feet, and Pángǔ growing ten feet — for eighteen thousand years more."</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Death</span>
-          <h3 class="myth-title">The Body Becomes the World</h3>
-          <p class="myth-text">When the separation was fixed, Pángǔ died — and the transformation began: his breath became wind and cloud, his voice thunder, his left eye the sun and his right the moon, his four limbs the four sacred mountains, his blood the rivers, his veins the roads, his flesh the soil, his hair the stars, his skin and body-hair grass and trees, his sweat rain — and, in the most anthropologically piquant line, his fleas and lice, quickened by the wind, became the black-haired people.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Late Arrival</span>
-          <h3 class="myth-title">China's Youngest Creator</h3>
-          <p class="myth-text">The myth's strangest fact is its date: no pre-Han text mentions Pángǔ, and scholars trace his entry through southern traditions — the Yao and Miao genealogies of the dog-ancestor <a href="/pan/" class="crosslink" data-crosslink="pan">Pán</a> Hù, phonetically adjacent — absorbed and cosmicized in the Wei-Jin centuries. China's canonical creation is thus a relative newcomer, adopted so completely that every schoolchild now learns it as the oldest story.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -517,8 +400,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">盤古</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Pángǔ</strong> (盤古) is attested in the source tradition — “'Coiled antiquity' (盤古), the giant who split heaven from earth”. Its acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">pangu</p>
+                <p class="card-body">Reduced to plain <strong>pangu</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Pángǔ</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Pángǔ</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Pángǔ.com → xn--png-ela13j.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Pángǔ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Pángǔ</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Pángǔ</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Pángǔ</p>
+                    <p class="card-body">Restores <strong>盤古</strong>. The live temple domain — <strong>pángǔ.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">pangu</p>
+                    <p class="card-body">Flattens <strong>盤古</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Pángǔ was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/pʰa˧˥ ku˨˩˦/</span>
+            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">pahng-goo, rising tone on Pang, low-dipping on Gu.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Pángǔ 盘古 carries the rising tone on páng and the dipping third tone on gǔ ("antiquity"); the name pairs "coiling" with "ancient" — the coiled one of the primordial egg. Written 盤古 in traditional characters, it is Chinese myth's youngest great name: the giant is attested only from the 3rd century CE.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Pángǔ is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">盤古</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Pángǔ is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -536,7 +549,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/pangu_mascot.webp" type="image/webp"><img src="../assets/pangu_mascot.png" alt="Pángǔ mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/pangu_mascot.webp" type="image/webp"><img src="../assets/pangu_mascot.png" alt="Pángǔ mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -574,7 +587,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/pangu_logomark.webp" type="image/webp"><img src="../assets/pangu_logomark.webp" alt="Pángǔ logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/pangu_logomark.webp" type="image/webp"><img src="../assets/pangu_logomark.webp" alt="Pángǔ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Hēméra, Day. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/hemera/lore/extended/">
 
@@ -72,6 +72,62 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Hēméra?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Hēméra is /hɛː.mé.raː/ — approximately \"hay-MEH-RAH\" — first syllable long and deep like 'hay'; middle syllable pitched high like 'MEH'; final 'rah' is held slightly longer than English usually allows."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Hēméra mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hēméra means Day in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Hēméra?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hēméra is associated with Rooster (The bird that announces her arrival and drives away Nyx), Torch (The pale flame that she carries as she leaves the house of Night), White robe or veil (The garment of diffused daylight), Chariot (The vehicle that bears her across the sky, paired with but distinct from Hēlios's solar car), The threshold (The bronze doors where Day and Night exchange places)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why are there different spellings of Hēméra?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each form is a historically attested restoration rather than a mistake: Hēmera is the macron-only form (Owned domain form: length only, no acute). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Hēméra in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII hemera strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Hēméra?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Born from Darkness” — Hēméra is a cosmogonic figure more than a narrative one. Her myths are genealogies and spatial arrangements: where she comes from, where she lives, and how she greets her mother at the door. Yet these arrangements are themselves a story — the story of how light separates from darkness without ever conquering it. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +165,13 @@
                 <picture><source srcset="../../assets/hemera_logolockup.webp" type="image/webp"><img src="../../assets/hemera_logolockup.png" alt="Hēméra" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +182,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +201,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Hēméra</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Hēmera.com</span>
@@ -157,7 +216,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/hemera_mascot.webp" type="image/webp"><img src="../../assets/hemera_mascot.png" alt="Hēméra — Day" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/hemera_mascot.webp" type="image/webp"><img src="../../assets/hemera_mascot.png" alt="Hēméra — Day" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +269,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Hēméra is Tier 1 because Attic Greek ἡμέρᾱ preserves both length (long η in the first syllable, long ᾱ in the last) and stress (acute on the penultimate epsilon). The registrable form Hēméra uses macrons for the long vowels and retains the acute, giving a form that is both philologically accurate and DNS-registrable. Reconstruction follows Allen, Vox Graeca, 3rd ed. (Cambridge, 1987); LSJ; and Beekes, Etymological Dictionary of Greek (Brill, 2010).</p>
+                <p class="etymology-note">The name <strong>Hēméra</strong> carries the orthographic signature of the greek tradition: Ἡμέρα. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +306,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Hēméra is the personification of daylight itself — not the sun, but the bright interval the sun creates. Born from the union of <a href="/erebus/" class="crosslink" data-crosslink="erebus">Érebos</a> and Nyx, she is the sister and counterpart of <a href="/aither/" class="crosslink" data-crosslink="aither">Aithḗr</a>, the upper air. <strong>While <a href="/helios/" class="crosslink" data-crosslink="helios">Hēlios</a> drives the chariot, Hēméra is the day.</strong> She is the goddess of beginnings, of visibility, and of the measured hours between two nights.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Hēméra in Later Traditions</h3><p class="cultural-card-body">The Romans personified the day as <em>Dies</em>, though she never achieved a developed mythic personality like the Greek Hēméra. Hēméra was often conflated in later thought with Eos/Aurora, the dawn, and with Hēlios/Sol, the sun, because all three bring light. In Orphic cosmogonies she appears as a partner of Aithḗr and sometimes as a mother or nurse of primordial powers. Neoplatonists read the Day-Night alternation as an image of cosmic sympathy and the return of opposites. Modern calendars preserve her name in the Greek word for day, <em>ἡμέρα</em>, and in derivatives such as <em>ephemeral</em>.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hēméra lives on in language rather than cult. The Greek word for day, <em>ἡμέρα</em>, underlies English <em>ephemeral</em> (lasting a single day) and <em>hemerology</em> (the study of calendars). The personification of Day appears in allegorical art from late antiquity through the Renaissance, usually as a pale woman with a torch or a rooster. In modern Neopagan and devotional practice she has been reclaimed as a goddess of morning intentions, of clarity, and of the sacred ordinary. Her name reminds us that the day itself was once felt to be a presence, not merely a measure on a clock.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Hēméra</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Hēméra in Later Traditions</h3><p class="cultural-card-body">The Romans personified the day as Dies, though she never achieved a developed mythic personality like the Greek Hēméra; Roman religion preferred the abstraction — dies fastus, nefastus — to the goddess. Hēméra was increasingly conflated in later thought with Eos/Aurora, the dawn, and with <a href="/helios/" class="crosslink" data-crosslink="helios">Hēlios</a>/Sol, the sun, because all three bring light; but Hesiod's grammar keeps them distinct — Eos is the morning's edge, Hēlios the sun's body, Hēméra the whole bright interval. Orphic cosmogonies elevated her and her brother, setting <a href="/aither/" class="crosslink" data-crosslink="aither">Aithḗr</a> and Hēméra among the first principles gathered about the world-egg, and the Neoplatonists read the Day-Night threshold-house as an image of cosmic alternation and the return of opposites. Modern Greek still says iméra for 'day,' and English keeps her in <em>ephemeral</em> — that which lasts but one of her hours — and in <em>hemerology</em>, the study of calendars.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hēméra lives on in language rather than cult — she never had a major sanctuary or festival, her worship dissolving into the day's own round of business and omen. The Greek word for day, ἡμέρα, underlies English <em>ephemeral</em> (lasting a single day) and <em>hemerology</em> (the science of calendars), and botany's Hemerocallis, the day-lily that opens and closes within her hours — 'beauty for a day'. In allegorical art from late antiquity through the Renaissance she appears as a pale woman with a torch or a rooster, usually paired with a veiled Nyx — the bronze threshold translated into marble, mosaic, and paint. Modern Hellenic and Neopagan devotion has reclaimed her as a goddess of morning intention, of clarity, and of the sacred ordinary. Her name reminds us that the day itself was once a presence with a genealogy — a daughter of Night, not a number on a dial, and a guest who always leaves on time.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No sanctuary of Hēméra is known and no inscription names her — the evidence is visual and literary. The LIMC (s.v. Hemera) catalogs her personification in Classical and South Italian vase-painting, where she appears as a woman in pale drapery alongside Night and Dawn. Roman and late-antique floor mosaics from North Africa and the eastern provinces pair a torch-bearing Day with a veiled Night as guardians of thresholds and seasons, and sarcophagus reliefs repeat the couple as an emblem of mortal time. The Orphic gold tablets from Thurii and elsewhere speak of the soul passing from night toward light — the same cosmography that Hesiod built into her bronze threshold. The most vivid 'excavation' of her house remains textual: the <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a>'s doorsill, where two goddesses still salute each other on every page, and where the one within waits for the one without, as she has waited since the poem was young.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Hēméra means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Hēméra is the goddess of the obvious made strange. We say "day" hundreds of times without thinking, but for the Greeks it was a being that rose from darkness, walked across the sky, and returned home at evening. To name Hēméra is to recover the sense that daylight is a gift, an interval, a borrowed radiance that must be given back each night.</p><p>Modern life has blurred her threshold. Electric light keeps us awake after she has gone; screens replace her with a lesser glow. Restoring <em>Hēméra</em> in Unicode is a small act of remembering that there is a difference between the sun and the day, between brightness and the time brightness makes. She is the measured day, the day that can be spent well or wasted — the original meaning of <em>ephemeral</em>.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Hēméra, Day, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hēméra?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hēméra</strong> is /hɛː.mé.raː/ — approximately "hay-MEH-RAH" — first syllable long and deep like 'hay'; middle syllable pitched high like 'MEH'; final 'rah' is held slightly longer than English usually allows..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hēméra mean?</summary><div class="faq-answer"><p><strong>Hēméra</strong> means <strong>Day</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hēméra?</summary><div class="faq-answer"><p>Hēméra is associated with <strong>Rooster</strong> (The bird that announces her arrival and drives away Nyx), <strong>Torch</strong> (The pale flame that she carries as she leaves the house of Night), <strong>White robe or veil</strong> (The garment of diffused daylight), <strong>Chariot</strong> (The vehicle that bears her across the sky, paired with but distinct from Hēlios's solar car), <strong>The threshold</strong> (The bronze doors where Day and Night exchange places).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>What is the difference between Hēmera.com?</summary><div class="faq-answer"><p>Each is a historically defensible restoration. <strong>Hēmera.com</strong> is the macron-only form: Owned domain form: length only, no acute.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Hēméra in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hemera</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Hēméra?</summary><div class="faq-answer"><p>Hesiod's <em>Theogony</em> (123–125) names Érebos and Nyx as the parents of Aithḗr and Hēméra. The genealogy is elegant: from the first gap (<a href="/chaos/" class="crosslink" data-crosslink="chaos">Cháos</a>) comes darkness, and from darkness comes both the bright upper air and the day. Hēméra is therefore two generations removed from the origin of things, a luminous daughter of the underworld.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hēméra?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hēméra</strong> is /hɛː.mé.raː/ — approximately "hay-MEH-RAH" — first syllable long and deep like 'hay'; middle syllable pitched high like 'MEH'; final 'rah' is held slightly longer than English usually allows.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hēméra mean?</summary><div class="faq-answer"><p><strong>Hēméra</strong> means <strong>Day</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hēméra?</summary><div class="faq-answer"><p>Hēméra is associated with <strong>Rooster</strong> (The bird that announces her arrival and drives away Nyx), <strong>Torch</strong> (The pale flame that she carries as she leaves the house of Night), <strong>White robe or veil</strong> (The garment of diffused daylight), <strong>Chariot</strong> (The vehicle that bears her across the sky, paired with but distinct from Hēlios's solar car), <strong>The threshold</strong> (The bronze doors where Day and Night exchange places).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why are there different spellings of Hēméra?</summary><div class="faq-answer"><p>Each form is a historically attested restoration rather than a mistake: <strong>Hēmera</strong> is the macron-only form (Owned domain form: length only, no acute). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Hēméra in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hemera</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Hēméra?</summary><div class="faq-answer"><p>“Born from Darkness” — Hēméra is a cosmogonic figure more than a narrative one. Her myths are genealogies and spatial arrangements: where she comes from, where she lives, and how she greets her mother at the door. Yet these arrangements are themselves a story — the story of how light separates from darkness without ever conquering it. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +344,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +357,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod</cite></li><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod, Theogony</cite></li><li><cite>Homeric Hymn to Helios</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod</cite></li><li><cite>Hesiod, Theogony 123–125 (birth of Aithḗr and Hēméra) and 744–757 (the bronze threshold of Night and Day)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hēméra and related cults.</cite></li><li><cite>Hēméra had no major independent cult, but she appears in cosmogonic art and allegorical decoration. Roman floor mosaics and sarcophagi personify Day as a woman with a torch or chariot, often paired with Night. Astronomical and astrological papyri from Egypt invoke the day as a personified power. The Orphic gold tablets describe the soul's journey through darkness toward light, reflecting the same Day-Night cosmography found in Hesiod.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hēméra and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Allen, Vox Graeca</cite></li><li><cite>Aristophanes, Birds</cite></li><li><cite>Orphic fragments</cite></li><li><cite>West, The Orphic Poems</cite></li></ul>
+                    <ul class="source-list"><li><cite>Aristophanes, Birds 693–703 (the birds' cosmogony)</cite></li><li><cite>Hyginus, Fabulae, preface (Caligo, <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>, Nox, Dies, <a href="/erebus/" class="crosslink" data-crosslink="erebus">Erebus</a>, Aether)</cite></li><li><cite>Allen, W. Sidney, Vox Graeca, 3rd ed., Cambridge, 1987; and Beekes, Robert, Etymological Dictionary of Greek, Brill, 2010, s.v. ἡμέρᾱ</cite></li><li><cite>Lexicon Iconographicum Mythologiae Classicae (LIMC), s.v. Hemera</cite></li><li><cite>West, M. L., The Orphic Poems, Oxford, 1983</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +436,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/hemera_logomark.webp" type="image/webp"><img src="../../assets/hemera_logomark.webp" alt="Hēméra logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/hemera_logomark.webp" type="image/webp"><img src="../../assets/hemera_logomark.webp" alt="Hēméra logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

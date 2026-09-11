@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Átropos — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ἄτροπος</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Átropos.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ἄτροπος</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Átropos</strong> (Ἄτροπος) is attested in the source tradition — “Inflexible, inevitable”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">atropos</p>
-                    <p class="card-body">Reduced to plain <strong>atropos</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Átropos</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Átropos</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Átropos.com → xn--tropos-ota.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Átropos</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Átropos</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Átropos is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ἄτροπος</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Átropos is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Átropos</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Átropos</p>
-                    <p class="card-body">Restores <strong>Ἄτροπος</strong>. The live temple domain — <strong>átropos.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">atropos</p>
-                    <p class="card-body">Flattens <strong>Ἄτροπος</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Átropos was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Átropos</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/á.tro.pos/</span>
-            <span class="ipa-label">Attic Greek</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">AH-tro-pos, stress on the first syllable; both o vowels short.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Ἄτροπος</li><li><strong>Latin</strong> Atropos</li><li><strong>Owned form</strong> Átropos</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Ἄτροπος carries the recessive accent of a feminine agent-noun on the first syllable — Átropos — from ἀ- ("not") plus τρέπω ("to turn"): the one who cannot be turned. The Latin form Atropos keeps the same stress, which is why the English "atropos" and the goddess sound alike. Latin kept both the word and the weight: Seneca's Atropos stresses the same first syllable as the Greek.</p></div>
+      <p class="lead-text">Hesiod names her with her sisters in the <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a>: <a href="/clotho/" class="crosslink" data-crosslink="clotho">Klōthṓ</a>, <a href="/lachesis/" class="crosslink" data-crosslink="lachesis">Láchesis</a>, and Átropos, “who give mortals good and evil when they are born.” Of the three, she alone never appears as a character with dialogue — she is the act, not the actor. Her myths are therefore told at one remove: in a log of firewood, a spindle of adamant, and the single bargain the gods ever drove with Necessity herself.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Genealogy</span>
+          <h3 class="myth-title">Daughters of Night</h3>
+          <p class="myth-text">Hesiod gives her two genealogies, and the doublet is the message. In the Theogony’s first account (217) the <a href="/moirai/" class="crosslink" data-crosslink="moirai">Moirai</a> — Klōthṓ, Láchesis, and Átropos, “who give mortals good and evil when they are born” — are fatherless daughters of Nyx, Night, sisters of Death and Sleep: older than <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>, bound to no one’s throne. In the second account (904–906) they are daughters of Zeús and <a href="/themis/" class="crosslink" data-crosslink="themis">Themis</a>, Law, born after the Titanomachy to give ordinance to the assemblies of gods and men. Greek literature never reconciled the two pedigrees, because it never could: Homer has Zeus himself complain that <a href="/moira/" class="crosslink" data-crosslink="moira">Moira</a> beside him has fixed what he would undo (Iliad 22.179), while Pindar and Aeschylus make even the immortals tread the path the Fates set. Átropos inherits both genealogies at once — necessity as the oldest thing in the universe, and necessity as Zeus’s own administration of it.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Warning</span>
+          <h3 class="myth-title">Méleagros and the Brand</h3>
+          <p class="myth-text">Seven days after Méleagros was born, the three sisters came to his mother Althaia in her chamber. Klōthṓ and Láchesis promised the child strength and daring; Átropos, pointing to the brand blazing on the hearth, pronounced that he would live only until it was wholly burned. Althaia snatched the log from the fire, quenched it, and hid it in a chest — and so the sentence hung suspended, for as long as wood keeps. Years later, when Méleagros killed his mother’s brothers in the quarrel over the Calydonian boar’s hide, grief turned Althaia vengeful: she drew the brand from its hiding place and fed it to the flames, and far away on the battlefield her son felt the fire take hold of his life. “By the threads of the Moirai and their implacable sister,” Ovid has him cry (<a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 8.451ff), the timetable written in firewood ran out. The myth gives the Fates a rare domestic form: destiny not as decree from heaven but as an object a grieving mother can hold in her hands.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Cosmos</span>
+          <h3 class="myth-title">The Future on the Spindle</h3>
+          <p class="myth-text">At the end of Plato’s Republic, Er the Pamphylian tells of the meadow where souls choose their next lives, and of what lies beyond it. There stands <a href="/ananke/" class="crosslink" data-crosslink="ananke">Anánkē</a>, Necessity herself, and her three daughters, the Moirai, “white-robed, with garlands on their heads,” seated on thrones around the spindle of heaven. Láchesis sings of the past, Klōthṓ of the present, Átropos of the future (Republic 617c–d) — and on the eight rings of the spindle the Sirens take up the song, one voice to each sphere, so that the whole cosmos turns to a single harmony. The daughters are not grudges of an old religion but the music of a machine: what was, what is, and what must be, sounded together on the same axis. To Plato’s generation, grown sceptical of ancestral gods, the spindle made necessity thinkable — and he gave the future its own voice. Her song is the last one: the one that cannot yet be argued with.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Bargain</span>
+          <h3 class="myth-title">Apollo and the Drunken Fates</h3>
+          <p class="myth-text">Apollo, sentenced to a mortal servitude, was bound to King <a href="/admetus/" class="crosslink" data-crosslink="admetus">Admetus</a> of Pherae and served him so well that he won from the Fates a concession “not to be believed” (Apollodorus, Bibliotheca 1.9.15): Admetus would be released from death itself if, at his appointed hour, someone else freely consented to die in his place — a boon Hyginus says the god extracted by getting the grey sisters drunk (Fabulae 50). The king’s aged parents refused; his wife Alcestis agreed. Yet when Heracles came to visit and found the house in mourning, he wrestled Death at the grave and forced the release — and even the Fates’ exemption, the myth insists, could be out-wrestled at the boundary. This is the only surviving Greek myth in which the Moirai are successfully bargained with, and it reads like Apolline propaganda: the god of Delphi, their great rival in foreknowledge, can make even Necessity tipsy. Átropos’s economy survives the anecdote untouched, though — what was granted was a transfer, never a cancellation.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Inflexible</h2>
             <p class="section-subtitle">Fate, Necessity, and the Cut Thread</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Átropos is the third of the three <a href="/moirai/" class="crosslink" data-crosslink="moirai">Moirai</a>: <a href="/clotho/" class="crosslink" data-crosslink="clotho">Klōthṓ</a> spins the thread, <a href="/lachesis/" class="crosslink" data-crosslink="lachesis">Láchesis</a> measures it, and Átropos cuts it. Her name is a verdict — "she who cannot be turned aside" — and Greek literature treats her not as a villain but as the grammar of endings itself.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Átropos is the third of the three Moirai: Klōthṓ spins the thread, Láchesis measures it, and Átropos cuts it. Her name is a verdict — "she who cannot be turned aside" — and Greek literature treats her not as a villain but as the grammar of endings itself.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 48C20 40 24 36 32 32C40 28 44 24 52 16M44 8C48 8 52 12 52 16M12 48C12 52 16 56 20 56M28 36L36 44"></path></svg></div>
@@ -383,7 +301,7 @@
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 14A18 18 0 1 0 32 50A18 18 0 1 0 32 14M32 14V50M14 32H50M19 19L45 45M45 19L19 45"></path></svg></div>
         <h4 class="domain-name">The Spindle of Necessity</h4>
-        <p class="domain-desc">In Plato's Republic she turns the future on the cosmic spindle her mother <a href="/ananke/" class="crosslink" data-crosslink="ananke">Anánkē</a> holds.</p>
+        <p class="domain-desc">In Plato's Republic she turns the future on the cosmic spindle her mother Anánkē holds.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C28 20 20 26 20 38C20 48 25 56 32 56C39 56 44 48 44 38C44 26 36 20 32 8Z"></path></svg></div>
@@ -407,53 +325,22 @@
       <div class="symbol-item">
         <span class="symbol-name">The scroll</span>
         <span class="symbol-meaning">In Roman art the Parcae write as well as spin — fate as record</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The spindle of Anánkē</span>
+        <span class="symbol-meaning">The cosmic axis whose turning she and her sisters sing — fate as the music of the spheres (Plato, Republic 617c)</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Átropos</p>
-        </div>
-        
-      <p class="lead-text">Hesiod names her with her sisters in the Theogony: Klōthṓ, Láchesis, and Átropos, "who give mortals good and evil." Of the three, she alone never appears as a character with dialogue — she is the act, not the actor.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Genealogy</span>
-          <h3 class="myth-title">Daughters of Night</h3>
-          <p class="myth-text">In the Theogony's first account the Moirai are fatherless daughters of Nyx, Night — older than <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> himself, and in some traditions even the king of gods bows to their decree. A second Hesiodic account makes them daughters of Zeús and <a href="/themis/" class="crosslink" data-crosslink="themis">Themis</a>, law-givers by birth: the tension between fate above Zeús and fate as his instrument runs through all Greek thought.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Warning</span>
-          <h3 class="myth-title">Méleagros and the Brand</h3>
-          <p class="myth-text">Seven days after Méleagros' birth the Moirai appeared to his mother Althaia and declared the child would live only until the log then burning on her hearth was consumed. She snatched it from the fire and kept it for years — until, enraged at her son for killing her brothers, she thrust it back into the flames, and Átropos' sentence completed itself at once.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Cosmos</span>
-          <h3 class="myth-title">The Future on the Spindle</h3>
-          <p class="myth-text">In the Myth of Er that closes Plato's Republic, the souls see the spindle of Anánkē, Necessity, around which all the spheres of heaven turn. Láchesis sings the past, Klōthṓ the present, and Átropos the future — the three sisters holding the music of the planets in their hands.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -517,8 +404,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ἄτροπος</p>
+                <p class="card-body">The name in its original Greek form. <strong>Átropos</strong> (Ἄτροπος) is attested in the source tradition — “Inflexible, inevitable”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">atropos</p>
+                <p class="card-body">Reduced to plain <strong>atropos</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Átropos</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Átropos</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Átropos.com → xn--tropos-ota.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Átropos</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Átropos</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Átropos</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Átropos</p>
+                    <p class="card-body">Restores <strong>Ἄτροπος</strong>. The live temple domain — <strong>átropos.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">atropos</p>
+                    <p class="card-body">Flattens <strong>Ἄτροπος</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Átropos was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/á.tro.pos/</span>
+            <span class="ipa-label">Attic Greek</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">AH-tro-pos, stress on the first syllable; both o vowels short.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Ἄτροπος carries the recessive accent of a feminine agent-noun on the first syllable — Átropos — from ἀ- ("not") plus τρέπω ("to turn"): the one who cannot be turned. The Latin form Atropos keeps the same stress, which is why the English "atropos" and the goddess sound alike. Latin kept both the word and the weight: Seneca's Atropos stresses the same first syllable as the Greek.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Átropos is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ἄτροπος</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Átropos is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -536,7 +553,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/atropos_mascot.webp" type="image/webp"><img src="../assets/atropos_mascot.png" alt="Átropos mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/atropos_mascot.webp" type="image/webp"><img src="../assets/atropos_mascot.png" alt="Átropos mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -574,7 +591,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/atropos_logomark.webp" type="image/webp"><img src="../assets/atropos_logomark.webp" alt="Átropos logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/atropos_logomark.webp" type="image/webp"><img src="../assets/atropos_logomark.webp" alt="Átropos logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

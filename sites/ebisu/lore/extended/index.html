@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Ebisu, Fishermen, Commerce, Luck. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/ebisu/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Ebisu?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Ebisu is /e.bi.sɯ/ — approximately 'EH-bee-soo' — light, even syllables; the final 'u' is barely voiced."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Ebisu mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ebisu means The foreigner, straggler in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Ebisu?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ebisu is associated with Fishing rod (His attribute as a fisher of fortune and daily sustenance), Sea bream (tai) (An auspicious fish whose name puns on 'medetai' (joyous, auspicious)), Tall hat (Courtly headwear marking his elevated status among fortune gods), Smiling face (His kindly expression makes him the most approachable of the Shichifukujin)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Ebisu in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ebisu is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Ebisu?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Hiruko, the Leech Child” — Ebisu has no single founding myth. He grew from several older figures — the castaway child Hiruko, the oracular Kotoshironushi, and deities of the foreign sea — into the cheerful merchant god of the Edo period. The sources disagree about which ancestor is truly his; the smile, the fishing rod, and the sea bream are the tradition's own answer. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/ebisu_logolockup.webp" type="image/webp"><img src="../../assets/ebisu_logolockup.png" alt="Ebisu" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Ebisu</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Ebisu</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/ebisu_mascot.webp" type="image/webp"><img src="../../assets/ebisu_mascot.png" alt="Ebisu — Fishermen, Commerce, Luck" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/ebisu_mascot.webp" type="image/webp"><img src="../../assets/ebisu_mascot.png" alt="Ebisu — Fishermen, Commerce, Luck" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Ebisu</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Ebisu is Tier 2: plain Hepburn. His name may derive from a word for 'foreigner' or 'straggler,' reflecting his origins as a deity associated with outsiders and the sea.</p>
+                <p class="etymology-note">The name <strong>Ebisu</strong> reaches the modern world through scholarly transliteration of the japanese tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Japanese</strong> — 恵比寿 (Ebisu), one of the Seven Gods of Fortune</li><li><strong>Older associations</strong> — <a href="/kotoshironushi/" class="crosslink" data-crosslink="kotoshironushi">Kotoshironushi</a>, Hiruko, and foreign-sea figures of the Kojiki</li><li><strong>Pairing</strong> — <a href="/benzaiten/" class="crosslink" data-crosslink="benzaiten">Benzaiten</a> and Daikokuten, fellow members of the Shichifukujin</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Japanese</strong> — 恵比寿 (Ebisu), one of the Seven Gods of Fortune</li><li><strong>Older associations</strong> — <a href="/kotoshironushi/" class="crosslink" data-crosslink="kotoshironushi">Kotoshironushi</a>, Hiruko, and foreign-sea figures of the <a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a></li><li><strong>Pairing</strong> — <a href="/benzaiten/" class="crosslink" data-crosslink="benzaiten">Benzaiten</a> and Daikokuten, fellow members of the Shichifukujin</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">E</td><td><code>U+0045</code></td><td>Latin Capital Letter E</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">b</td><td><code>U+0062</code></td><td>Latin Small Letter B</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">s</td><td><code>U+0073</code></td><td>Latin Small Letter S</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Ebisu</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Ebisu</strong> is the most approachable of Japan's fortune gods. With his fishing rod in one hand and a sea bream (<em>tai</em>) under the other arm, he smiles at merchants, fishermen, and anyone who earns a living by honest work. He is the only native Japanese member of the Seven Gods of Fortune (<em>Shichifukujin</em>).</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Ebisu in Later Traditions</h3><p class="cultural-card-body">Ebisu is a composite. His roots are in the Kojiki figures Hiruko and Kotoshironushi, but his popular form was shaped by merchant culture and the cult of the Seven Gods of Fortune. He is often paired with Daikokuten as a double patron of prosperity, and with Benzaiten as the couple who bless culture and commerce.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ebisu is everywhere in Japanese commercial life: shop signs, sake labels, New Year prints, and the Toka Ebisu festival in <a href="/osaka/" class="crosslink" data-crosslink="osaka">Ōsaka</a>. The Yebisu beer brand takes its name and logo from him. He is the god of small business, honest profit, and the daily labor that keeps society fed.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Ebisu</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ebisu in Later Traditions</h3><p class="cultural-card-body">Ebisu is the great combiner of Japanese religion. His roots are the Kojiki figures Hiruko and Kotoshironushi; his body is the medieval cult of the 'foreign' sea gods; his career is pure Edo merchant culture; and his congregation is the imported circle of the Shichifukujin, the Seven Gods of Fortune — six of whom arrived from China and India by way of Buddhism, while Ebisu alone is native. He is conventionally paired with Daikokuten as the twin patrons of prosperity, and the two sometimes appear as a single double-faced image. In the medieval Tendai scheme the Seven Gods were read as protective manifestations of the <a href="/texts/lotus-sutra/" class="crosslink citation-link" data-citation="lotus-sutra">Lotus Sutra</a>, Ebisu included. No other Japanese deity so neatly braids <strong>indigenous kami cult, Buddhist imports, and the everyday economics of the town</strong>.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ebisu is everywhere in Japanese commercial life: shop signs, menus, bank logos, New Year prints, and the great January crush at <a href="/osaka/" class="crosslink" data-crosslink="osaka">Osaka</a>'s Imamiya Ebisu and <a href="/kobe/" class="crosslink" data-crosslink="kobe">Kobe</a>'s Nishinomiya shrines. The Yebisu Beer brand (Sapporo, launched 1890) took both its name and its logo from the god, making his face one of the most reproduced in modern Japan. Railway stations, shopping districts, and baseball crowds invoke him; the shopkeeper balancing the day's ledger still murmurs 'Ebisu-sama.' He remains what the Edo townspeople made him: the <strong>patron of the ordinary miracle by which honest work becomes daily bread</strong>.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Ebisu is a cultic and commercial figure rather than an excavated one; his material record is the vast folk-art corpus of the Edo and Meiji periods. Votive tablets (<em>ema</em>) from Osaka and the fishing ports of the Inland Sea show the rod, the bream, and the tall court cap; woodblock New Year prints (<em>nishiki-e</em>) fixed his smiling face in the national imagination. The Tōka Ebisu festival at Imamiya Ebisu Shrine preserves the full apparatus of merchant devotion — lucky straw, fuku-musume, gold-leaf charms — as a living tradition centuries deep. The Kojiki's Hiruko narrative has no archaeological correlate; the god's 'evidence' is the continuing rite itself, performed each January in the lanes where the merchants still set out their first scales of the year.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Ebisu means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Ebisu teaches that prosperity is not reserved for the mighty. The fisherman, the shopkeeper, the noodle-stall cook — all have a fortune god, and he is smiling. In a religious landscape crowded with austere buddhas and clan ancestors, Ebisu stands for the sanctity of the everyday: the first sale of the year, the catch that pays the rent, the ledger that almost balances.</p><p>His smile is the doctrine. Other gods demand; Ebisu approves. His deafness — the folk detail that explains why he alone stayed behind when the kami went to Izumo — is a kind of perfection: he cannot hear the summons to leave, so he cannot leave. Prosperity, like the tide, is always somewhere; the trick is to be the god who stayed to receive it. To work honestly and smile about it is, in Ebisu's quiet theology, already a form of prayer.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Ebisu, Fishermen, Commerce, Luck, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ebisu?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ebisu</strong> is /e.bi.sɯ/ — approximately 'EH-bee-soo' — light, even syllables; the final 'u' is barely voiced..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ebisu mean?</summary><div class="faq-answer"><p><strong>Ebisu</strong> means <strong>The foreigner, straggler</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ebisu?</summary><div class="faq-answer"><p>Ebisu is associated with <strong>Fishing rod</strong> (His attribute as a fisher of fortune and daily sustenance), <strong>Sea bream (tai)</strong> (An auspicious fish whose name puns on 'medetai' (joyous, auspicious)), <strong>Tall hat</strong> (Courtly headwear marking his elevated status among fortune gods), <strong>Smiling face</strong> (His kindly expression makes him the most approachable of the Shichifukujin).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ebisu in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>ebisu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ebisu?</summary><div class="faq-answer"><p>The Kojiki tells that <a href="/izanagi/" class="crosslink" data-crosslink="izanagi">Izanagi</a> and <a href="/izanami/" class="crosslink" data-crosslink="izanami">Izanami</a>'s first child, Hiruko, was born malformed and set adrift in a boat of reeds. He grew up to become associated with the sea and with outsiders, and later tradition identified him with Ebisu. His survival from abandonment makes him a god of those who make their own way.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ebisu?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ebisu</strong> is /e.bi.sɯ/ — approximately 'EH-bee-soo' — light, even syllables; the final 'u' is barely voiced.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ebisu mean?</summary><div class="faq-answer"><p><strong>Ebisu</strong> means <strong>The foreigner, straggler</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ebisu?</summary><div class="faq-answer"><p>Ebisu is associated with <strong>Fishing rod</strong> (His attribute as a fisher of fortune and daily sustenance), <strong>Sea bream (tai)</strong> (An auspicious fish whose name puns on 'medetai' (joyous, auspicious)), <strong>Tall hat</strong> (Courtly headwear marking his elevated status among fortune gods), <strong>Smiling face</strong> (His kindly expression makes him the most approachable of the Shichifukujin).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ebisu in Unicode?</summary><div class="faq-answer"><p><strong>Ebisu</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ebisu?</summary><div class="faq-answer"><p>“Hiruko, the Leech Child” — Ebisu has no single founding myth. He grew from several older figures — the castaway child Hiruko, the oracular Kotoshironushi, and deities of the foreign sea — into the cheerful merchant god of the Edo period. The sources disagree about which ancestor is truly his; the smile, the fishing rod, and the sea bream are the tradition's own answer. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lexical and philological sources for Ebisu.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki (Hiruko and Kotoshironushi episodes)</cite></li><li><cite>Nihon Shoki (land-transfer narratives)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite><a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a></cite></li><li><cite>Kojiki (Hiruko episode; the land-transfer and Kotoshironushi)</cite></li><li><cite>Nihon Shoki (the land-transfer narrative)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ebisu and related cults.</cite></li><li><cite>Ebisu is primarily a cultic and commercial figure rather than an archaeological one. His imagery dominates Edo-period shop signs, votive prints (<em>ema</em>), and festival paraphernalia, especially in Ōsaka and fishing ports. The Toka Ebisu festival at Imamiya Ebisu Shrine preserves the material culture of merchant devotion.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ebisu and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Bocking, A Popular Dictionary of Shinto</cite></li></ul>
+                    <ul class="source-list"><li><cite>Bocking, A Popular Dictionary of Shinto, s.v. Ebisu</cite></li><li><cite>Encyclopedia of Shinto (Kokugakuin University), s.v. Ebisu</cite></li><li><cite>Reader &amp; Tanabe, Practically Religious: Worldly Benefits and the Common Religion of Japan (1998)</cite></li><li><cite>Imamiya Ebisu Shrine festival records, Osaka (the living Tōka Ebisu tradition)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/ebisu_logomark.webp" type="image/webp"><img src="../../assets/ebisu_logomark.webp" alt="Ebisu logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/ebisu_logomark.webp" type="image/webp"><img src="../../assets/ebisu_logomark.webp" alt="Ebisu logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

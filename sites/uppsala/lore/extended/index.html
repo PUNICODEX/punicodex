@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Uppsala, Temple, Freyr, Sacred Grove. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/uppsala/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Uppsala?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Uppsala is /ˈupː.sɑ.lir/ — approximately 'OOP-sah-lir' — three beats, the double p held a fraction long, the final r trilled; modern Swedish Uppsala ('OOP-sah-lah') has shed the old plural ending."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Uppsala mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uppsala means Upper halls in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Uppsala?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uppsala is associated with The gilded temple (The gold-decked hall where the triad sat enthroned — the sacral core of Swedish kingship, visible wealth offered to the gods), The enthroned triad (Þórr central with his sceptre, Wodan armed like Mars, Fricco shaped for peace and pleasure — sovereignty, war, and fertility enshrined in one room), The sacred grove (Trees made divine by sacrifice — the boundary where offering becomes landscape and the forest itself turns temple), The hanging offerings (Men, horses, and dogs suspended in the branches, nine of every kind — the commonwealth renewed at the price of nine-year blood), The royal mound (The barrow of kings and, by Snorri's account, of Freyr himself — dynasty made continuous with the god who endowed it)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Uppsala in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uppsala is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Uppsala?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Golden Temple” — Uppsala's dossier is not a god's biography but a sanctuary's record — and it is the fullest any Norse holy place receives. Adam of Bremen describes the temple and its rites from the testimony of the Danish court a generation before the old religion died in Sweden; Snorri gives the site its founding god and its dynasty; the saga of Hrólfr kraki sets a famous treasure-flight on the plain below it. Between the four witnesses, the Upper Halls emerge as the one place where the whole northern religion can be watched at prayer. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/uppsala_logolockup.webp" type="image/webp"><img src="../../assets/uppsala_logolockup.png" alt="Uppsala" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Uppsala</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Uppsala</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/uppsala_mascot.webp" type="image/webp"><img src="../../assets/uppsala_mascot.png" alt="Uppsala — Temple, Freyr, Sacred Grove" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/uppsala_mascot.webp" type="image/webp"><img src="../../assets/uppsala_mascot.png" alt="Uppsala — Temple, Freyr, Sacred Grove" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Uppsala</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Uppsala is Tier 2 by the mechanical rule: the normalized Old Norse form is already plain ASCII — no diacritic, no distinctive letter for the ASCII alphabet to lose. The holiest documented place in the Norse world carries a name of seven ordinary letters; only the capital distinguishes the restored form from the input.</p>
+                <p class="etymology-note">The name <strong>Uppsala</strong> reaches the modern world through scholarly transliteration of the norse tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">U</td><td><code>U+0055</code></td><td>Latin Capital Letter U</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">p</td><td><code>U+0070</code></td><td>Latin Small Letter P</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">p</td><td><code>U+0070</code></td><td>Latin Small Letter P</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">s</td><td><code>U+0073</code></td><td>Latin Small Letter S</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Uppsala</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Uppsalir — 'the Upper Halls' — is the one sanctuary of the Norse world the medieval record describes beam by beam and tree by tree. Adam of Bremen, writing about 1075 from the reports of the Danish court, gives us the golden temple where [[thor|<a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>]] sat enthroned between Wodan and Fricco; the sacred grove beside it, every tree made divine by the offerings hung in its branches; and the nine-day festival, renewed every ninth year, at which nine males of every living kind were given to the gods. Snorri's Ynglingasaga makes the place the seat of [[freyr|Freyr]] himself — the god who built the temple, endowed it with the Uppsala wealth, and lies in a mound beside it. Below the ridge the three royal mounds of Gamla Uppsala still stand, the largest barrows in Sweden, the graves of kings the poems call the Scylfings.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Uppsala in Later Traditions</h3><p class="cultural-card-body">Uppsala's closest kin are not gods but holy places. Thietmar of Merseburg, writing two generations before Adam, describes the nine-year sacrifice at Lejre in Denmark — ninety-nine men, horses, dogs and cocks offered to placate the gods — the Danish counterpart of the Uppsala rite and the proof that Adam's nine-year cycle was pan-Scandinavian grammar, not local invention. Behind both stands the deepest stratum: Tacitus' Germania records the sacred grove of the Semnones, entered bound and widened by human sacrifice, and the grove and wagon of Nerthus — the goddess whose name is the feminine counterpart of Njörðr, father of the Freyr whose seat was Uppsala. The enthroned triad itself has been read since Dumézil against the archaic Roman triad of Jupiter, <a href="/mars/" class="crosslink" data-crosslink="mars">Mars</a> and Quirinus — sovereignty, war, and the fertile commons — though Adam's own glosses (Thor as Jove, Wodan as Mars, Fricco as peace and pleasure) show the comparison began with the medieval churchman, not the modern comparatist. Modern handbooks urge the same caution they urge for Adam's secondhand testimony: Simek, Orchard, and Lindow treat the account as the fullest and most dangerous source for Norse cult — a Christian observer describing the rite he wanted abolished, through informants a kingdom away. What remains undisputed is the place: no other site in the North is so continuously written about, from the royal mounds' century to the last generation of the old religion.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Uppsala never stopped being the stage on which Sweden remembers itself. The old cult centre became the church's: Gamla Uppsala was the seat of Sweden's first archbishopric from 1164 until the see moved to Östra Aros — the modern city of Uppsala — in 1273, and the medieval church still stands on the artificial plateau where Adam's temple is sought. Nineteenth-century romantic nationalism made the mounds the nation's Westminster; their excavation in 1846–47, ordered to still public argument about what they contained, yielded the cremated kings of the Vendel era and made Old Uppsala the birthplace of Swedish archaeology. The university at Uppsala, founded in 1477, gave the name a second, learned fame that now outruns the temple's. For modern scholarship the site remains the test case for the union of cult and kingship in the North — Olof Sundqvist's Freyr's Offspring is built on its ground — and for modern Heathen and Ásatrú communities the grove and the mounds are the north's most numinous standing landscape, the one address where the old religion can still be visited rather than merely read about.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Uppsala</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Uppsala in Later Traditions</h3><p class="cultural-card-body">Uppsala's closest kin are not gods but holy places. Thietmar of Merseburg, writing two generations before Adam, describes the nine-year sacrifice at Lejre in Denmark — ninety-nine men, horses, dogs and cocks offered to placate the gods — the Danish counterpart of the Uppsala rite and the proof that Adam's nine-year cycle was pan-Scandinavian grammar, not local invention. Behind both stands the deepest stratum: Tacitus' Germania records the sacred grove of the Semnones, entered bound and widened by human sacrifice, and the grove and wagon of Nerthus — the goddess whose name is the feminine counterpart of Njörðr, father of the Freyr whose seat was Uppsala. The enthroned triad itself has been read since Dumézil against the archaic Roman triad of Jupiter, <a href="/mars/" class="crosslink" data-crosslink="mars">Mars</a> and Quirinus — sovereignty, war, and the fertile commons — though Adam's own glosses (<a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a> as Jove, Wodan as Mars, Fricco as peace and pleasure) show the comparison began with the medieval churchman, not the modern comparatist. Modern handbooks urge the same caution they urge for Adam's secondhand testimony: Simek, Orchard, and Lindow treat the account as the fullest and most dangerous source for Norse cult — a Christian observer describing the rite he wanted abolished, through informants a kingdom away. What remains undisputed is the place: no other site in the North is so continuously written about, from the royal mounds' century to the last generation of the old religion.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Uppsala never stopped being the stage on which Sweden remembers itself. The old cult centre became the church's: Gamla Uppsala was the seat of Sweden's first archbishopric from 1164 until the see moved to Östra Aros — the modern city of Uppsala — in 1273, and the medieval church still stands on the artificial plateau where Adam's temple is sought. Nineteenth-century romantic nationalism made the mounds the nation's Westminster; their excavation in 1846–47, ordered to still public argument about what they contained, yielded the cremated kings of the Vendel era and made Old Uppsala the birthplace of Swedish archaeology. The university at Uppsala, founded in 1477, gave the name a second, learned fame that now outruns the temple's. For modern scholarship the site remains the test case for the union of cult and kingship in the North — Olof Sundqvist's Freyr's Offspring is built on its ground — and for modern Heathen and Ásatrú communities the grove and the mounds are the north's most numinous standing landscape, the one address where the old religion can still be visited rather than merely read about.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Uppsala is the rare Norse holy place where the texts can be tested against the ground. The three royal mounds of Gamla Uppsala — the largest barrows in Sweden — were opened in 1846–47 under Bror Emil Hildebrand: beneath each lay a cremation of the sixth or seventh century, burned in its finery and sealed under birch bark, with weapons, game-boards, and sacrificed animals, the graves of the dynasty the poems call Ynglings or Scylfings. Beside them the medieval church — seat of Sweden's first archbishop from 1164 — stands on a great artificial plateau of levelled terraces, the one construction on the site that matches Adam's scale; Sune Lindqvist's excavation beneath the church floor in 1926 revealed the postholes of a very large wooden building, and the argument whether it was the pagan temple, a royal feasting hall, or both has run ever since — Olof Sundqvist's work on the Svea cult-and-kingship complex is the standard modern frame. The surrounding landscape is dense with the dynasty's furniture: boat-graves at Valsgärde a few miles north, the Vendel graves across the river, hundreds of smaller mounds on the Fyris plain. No runestone carves the place-name itself; the Younger Futhark rendering ᚢᛒᛒᛋᛅᛚᛅ (ubbsala) is a normalized reconstruction, though Uppland is the richest runestone province in Scandinavia.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Uppsala means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Every other sanctuary of the Norse world survives as a sentence or a stone; Uppsala survives as a chapter. Adam of Bremen, wanting it torn down, preserved it — the gold on the beams, the sceptre in Thor's fist, the disgraceful songs he would not quote, the seventy-two bodies a Christian eyewitness counted in the grove. Snorri, wanting kings, gave it a god for a founder and a mound for the god. The excavators, wanting proof, found postholes under the church floor and a hall where the temple should be. Each witness buries the last, and the place absorbs them all, as it absorbed its offerings. The Upper Halls are the North's one complete lesson in how a holy place works: the land, the wealth, the king, and the god are a single estate, renewed every ninth year in nine-day blood, and written down only at the moment of its ending. To read the Uppsala record is to watch a whole religion hold its last festival — and to find, eighteen centuries on, that the grove has not entirely stopped being visited.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Uppsala, Temple, Freyr, Sacred Grove, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Uppsala?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Uppsala</strong> is /ˈupː.sɑ.lir/ — approximately 'OOP-sah-lir' — three beats, the double p held a fraction long, the final r trilled; modern Swedish Uppsala ('OOP-sah-lah') has shed the old plural ending..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Uppsala mean?</summary><div class="faq-answer"><p><strong>Uppsala</strong> means <strong>Upper halls</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Uppsala?</summary><div class="faq-answer"><p>Uppsala is associated with <strong>The gilded temple</strong> (The gold-decked hall where the triad sat enthroned — the sacral core of Swedish kingship, visible wealth offered to the gods), <strong>The enthroned triad</strong> (Þórr central with his sceptre, Wodan armed like Mars, Fricco shaped for peace and pleasure — sovereignty, war, and fertility enshrined in one room), <strong>The sacred grove</strong> (Trees made divine by sacrifice — the boundary where offering becomes landscape and the forest itself turns temple), <strong>The hanging offerings</strong> (Men, horses, and dogs suspended in the branches, nine of every kind — the commonwealth renewed at the price of nine-year blood), <strong>The royal mound</strong> (The barrow of kings and, by Snorri's account, of Freyr himself — dynasty made continuous with the god who endowed it).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Uppsala in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>uppsala</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Uppsala?</summary><div class="faq-answer"><p>Adam of Bremen, archbishop's scholar at Hamburg-Bremen, sets down about 1075 the most exact account of Norse cult that survives. Near Sigtuna, he writes, stands a famous temple called Ubsola, entirely decked with gold, and in it the people worship the statues of three gods: the most powerful, Thor, occupies the throne in the middle of the hall; on either side stand Wodan and Fricco. Thor, Adam explains, governs the air, thunder, lightning, winds, rains, fair weather and crops, and holds his sceptre like Jove; Wodan, 'that is, Frenzy', rules war and gives men strength against enemies, carved in the likeness of an armed man as Mars is shown; Fricco, bestower of peace and pleasure on mortals, is shaped with an immense phallus. Each god has his priests, and the people's vows follow need: in plague or famine they sacrifice to Thor, for war to Wodan, for weddings to Fricco.Adam worked from the reports of the Danish king Sven Estridsen, 'who retained all these facts in his memory', and the scholia added to the text fill in further colour — the temple ringed by a golden chain hanging from the gable, the feasting within. What the account gives the record is irreplaceable: a working temple of the Æsir described in its last generation, by a churchman who wanted it abolished and could not help seeing it clearly.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Uppsala?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Uppsala</strong> is /ˈupː.sɑ.lir/ — approximately 'OOP-sah-lir' — three beats, the double p held a fraction long, the final r trilled; modern Swedish Uppsala ('OOP-sah-lah') has shed the old plural ending.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Uppsala mean?</summary><div class="faq-answer"><p><strong>Uppsala</strong> means <strong>Upper halls</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Uppsala?</summary><div class="faq-answer"><p>Uppsala is associated with <strong>The gilded temple</strong> (The gold-decked hall where the triad sat enthroned — the sacral core of Swedish kingship, visible wealth offered to the gods), <strong>The enthroned triad</strong> (Þórr central with his sceptre, Wodan armed like Mars, Fricco shaped for peace and pleasure — sovereignty, war, and fertility enshrined in one room), <strong>The sacred grove</strong> (Trees made divine by sacrifice — the boundary where offering becomes landscape and the forest itself turns temple), <strong>The hanging offerings</strong> (Men, horses, and dogs suspended in the branches, nine of every kind — the commonwealth renewed at the price of nine-year blood), <strong>The royal mound</strong> (The barrow of kings and, by Snorri's account, of Freyr himself — dynasty made continuous with the god who endowed it).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Uppsala in Unicode?</summary><div class="faq-answer"><p><strong>Uppsala</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Uppsala?</summary><div class="faq-answer"><p>“The Golden Temple” — Uppsala's dossier is not a god's biography but a sanctuary's record — and it is the fullest any Norse holy place receives. Adam of Bremen describes the temple and its rites from the testimony of the Danish court a generation before the old religion died in Sweden; Snorri gives the site its founding god and its dynasty; the saga of Hrólfr kraki sets a famous treasure-flight on the plain below it. Between the four witnesses, the Upper Halls emerge as the one place where the whole northern religion can be watched at prayer. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,19 +355,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Snorri Sturluson, Prose Edda, Skáldskaparmál (the kenning 'Kraki's seed' — the gold Hrólfr sowed on the Fyrisvellir below Uppsala), trans. Anthony Faulkes</cite></li></ul>
+                    <ul class="source-list"><li><cite>Snorri Sturluson, <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a>, <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál</a> (the kenning 'Kraki's seed' — the gold Hrólfr sowed on the Fyrisvellir below Uppsala), trans. Anthony Faulkes</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Uppsala and related cults.</cite></li><li><cite>Uppsala is the rare Norse holy place where the texts can be tested against the ground. The three royal mounds of Gamla Uppsala — the largest barrows in Sweden — were opened in 1846–47 under Bror Emil Hildebrand: beneath each lay a cremation of the sixth or seventh century, burned in its finery and sealed under birch bark, with weapons, game-boards, and sacrificed animals, the graves of the dynasty the poems call Ynglings or Scylfings. Beside them the medieval church — seat of Sweden's first archbishop from 1164 — stands on a great artificial plateau of levelled terraces, the one construction on the site that matches Adam's scale; Sune Lindqvist's excavation beneath the church floor in 1926 revealed the postholes of a very large wooden building, and the argument whether it was the pagan temple, a royal feasting hall, or both has run ever since — Olof Sundqvist's work on the Svea cult-and-kingship complex is the standard modern frame. The surrounding landscape is dense with the dynasty's furniture: boat-graves at Valsgärde a few miles north, the Vendel graves across the river, hundreds of smaller mounds on the Fyris plain. No runestone carves the place-name itself; the Younger Futhark rendering ᚢᛒᛒᛋᛅᛚᛅ (ubbsala) is a normalized reconstruction, though Uppland is the richest runestone province in Scandinavia.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Uppsala and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26–27 with scholia 134–139 (the temple at Ubsola, the enthroned triad, the nine-year festival, the sacred grove, and the spring), trans. Francis J. Tschan, rev. Timothy Reuter (Columbia University Press, 2002)</cite></li><li><cite>Snorri Sturluson, Heimskringla, Ynglingasaga 10 (Freyr builds the temple at Uppsalir, makes it his chief seat, endows the Uppsala wealth, and is buried in a mound there), trans. Lee M. Hollander</cite></li><li><cite>Hrólfs saga kraka (King Aðils at Uppsala, the flight of Hrólfr and the gold-sowing on the Fyrisvellir), trans. Jesse L. Byock</cite></li><li><cite>Thietmar of Merseburg, Chronicle 1.17 (the nine-year sacrifice at Lejre — the Danish parallel to the Uppsala rite), trans. <a href="/david/" class="crosslink" data-crosslink="david">David</a> A. Warner</cite></li><li><cite>Tacitus, Germania 39–40 (the sacred grove of the Semnones; the grove and procession of Nerthus — the Germanic sacred-grove complex behind the Uppsala grove)</cite></li><li><cite>Cleasby–Vigfusson, An Icelandic-English Dictionary, s.v. uppsalir; Zoëga, A Concise Dictionary of Old Icelandic, s.v. (upp + salir, 'the upper halls')</cite></li><li><cite>Simek, Dictionary of Northern Mythology; Orchard, Dictionary of Norse Myth and Legend; Lindow, Norse Mythology: A Guide — s.v. Uppsala; Olof Sundqvist, Freyr's Offspring: Rulers and Religion in Ancient Svea Society (Uppsala, 2002)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Adam of Bremen, Gesta Hammaburgensis ecclesiae pontificum 4.26–27 with scholia 134–139 (the temple at Ubsola, the enthroned triad, the nine-year festival, the sacred grove, and the spring), trans. Francis J. Tschan, rev. Timothy Reuter (Columbia University Press, 2002)</cite></li><li><cite>Snorri Sturluson, Heimskringla, Ynglingasaga 10 (Freyr builds the temple at Uppsalir, makes it his chief seat, endows the Uppsala wealth, and is buried in a mound there), trans. Lee M. Hollander</cite></li><li><cite>Hrólfs saga kraka (King Aðils at Uppsala, the flight of Hrólfr and the gold-sowing on the Fyrisvellir), trans. Jesse L. Byock</cite></li><li><cite>Thietmar of Merseburg, Chronicle 1.17 (the nine-year sacrifice at Lejre — the Danish parallel to the Uppsala rite), trans. <a href="/david/" class="crosslink" data-crosslink="david">David</a> A. Warner; Tacitus, Germania 39–40 (the sacred grove of the Semnones; the grove and procession of Nerthus — the Germanic sacred-grove complex behind the Uppsala grove)</cite></li><li><cite>Cleasby–Vigfusson, An Icelandic-English Dictionary, s.v. uppsalir (upp + salir, 'the upper halls'); Simek, Dictionary of Northern Mythology; Orchard, Dictionary of Norse Myth and Legend; Lindow, Norse Mythology: A Guide — s.v. Uppsala; Olof Sundqvist, Freyr's Offspring: Rulers and Religion in Ancient Svea Society (Uppsala, 2002)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/uppsala_logomark.webp" type="image/webp"><img src="../../assets/uppsala_logomark.webp" alt="Uppsala logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/uppsala_logomark.webp" type="image/webp"><img src="../../assets/uppsala_logomark.webp" alt="Uppsala logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

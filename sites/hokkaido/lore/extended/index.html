@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Hokkaidō, Northern Island. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/hokkaido/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Hokkaidō?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Hokkaidō is /hok.kai.doː/ — approximately hok-KAI-doh, with the long final ō."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Hokkaidō mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hokkaidō means Northern sea circuit in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Hokkaidō?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hokkaidō is associated with The bear (Kim-un-kamuy, the mountain god of the Ainu — honoured in the iomante ceremony), The drift ice (The winter sea that feeds the whole food chain of the north), The lavender field (Furano's summer signature — the cultivated frontier in bloom)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Hokkaidō in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII hokkaido strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Hokkaidō?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Ainu Mosir and Kamuy Mosir” — Hokkaidō's mythology is Ainu: a kamuy-cosmos where every animal, fire, and tool has a spirit-owner, and where the human world is maintained by right exchange with the unseen. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/hokkaido_logolockup.webp" type="image/webp"><img src="../../assets/hokkaido_logolockup.png" alt="Hokkaidō" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Hokkaidō</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Hokkaidō.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/hokkaido_mascot.webp" type="image/webp"><img src="../../assets/hokkaido_mascot.png" alt="Hokkaidō — Northern Island" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/hokkaido_mascot.webp" type="image/webp"><img src="../../assets/hokkaido_mascot.png" alt="Hokkaidō — Northern Island" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Hokkaidō 北海道 — "North Sea Road" — carries a long final ō, the doubled vowel the macron preserves. The name dates only from 1869, when the explorer Matsuura Takeshirō proposed it for the island the Ainu long called Ainu Mosir, "the quiet land of humans." The long ō of dō is a doubled vowel in kana (どう); the macron is the romanization of that extra beat.</p>
+                <p class="etymology-note">The name <strong>Hokkaidō</strong> carries the orthographic signature of the japanese tradition: 北海道. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Hokkaidō is Japan's youngest name on its oldest ground: an island inhabited for twenty thousand years, homeland of the Ainu, mapped into the Japanese state only in 1869 — a frontier whose ancient name, Ainu Mosir, still names the deeper country beneath the modern one.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Hokkaidō in Later Traditions</h3><p class="cultural-card-body">Ainu religion absorbed and resisted Japanese and Russian pressure in equal measure: Orthodox missions among the Kuril Ainu, Buddhist temples on the coasts, and the yukar epics — sung in an isolate language with no close relatives — keeping the older world intact in verse. The twentieth century added a third strand: the Ainu cultural revival, led by figures like the poet and legislator Kayano Shigeru, made the island's first culture a national conversation.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hokkaidō supplies a third of Japan's food from a tenth of its land; Sapporo beer, the Snow Festival's ice palaces, and the lavender of Furano are national brands. The 2020 opening of Upopoy, the National Ainu Museum and Park at Shiraoi, gave the island's first people their first national institution. In the history of colonialism, the Kaitakushi is studied worldwide as Japan's own frontier — the laboratory where it practiced the modernization it later exported.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Hokkaidō</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Hokkaidō in Later Traditions</h3><p class="cultural-card-body">Ainu religion absorbed and resisted Japanese and Russian pressure in equal measure: Orthodox missions among the Kuril Ainu, Buddhist temples on the coasts, and the yukar epics — sung in an isolate language with no close relatives — keeping the older world intact in verse. The twentieth century added a third strand: the Ainu cultural revival, led by figures like the poet and legislator Kayano Shigeru, made the island's first culture a national conversation.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hokkaidō supplies a third of Japan's food from a tenth of its land; Sapporo beer, the Snow Festival's ice palaces, and the lavender of Furano are national brands. The 2020 opening of Upopoy, the National Ainu Museum and Park at Shiraoi, gave the island's first people their first national institution. In the history of colonialism, the Kaitakushi is studied worldwide as Japan's own frontier — the laboratory where it practiced the modernization it later exported.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Hokkaidō holds some of the world's oldest pottery: Jōmon-period cord-marked vessels from sites like Taishō date beyond 14,000 years, among the earliest ceramic traditions on earth. The Shiretoko peninsula is a UNESCO World Heritage site for its marine-terrestrial food web; the Oshoro stone circles and the Ofuna shell middens mark the island's deep ritual past. Hakodate's Goryōkaku — the star fort of the last Tokugawa loyalists (1869) — is where the old Japan made its final stand on the new island.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Hokkaidō means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Hokkaidō is the island of two names — the one it was given and the one it had. It asks the frontier's hardest question, the one every settled map must answer: whose land was this before it was yours — and can the new name learn to carry the old one's meaning?</p><p>The island's two names have begun, at last, to speak to each other: the Ainu language taught in Upopoy's halls, the iomante explained rather than exoticized, the snow country marketed by its indigenous name's dignity. Frontiers are usually where names die; Hokkaidō is attempting the rarer thing — a map where the new name carries the old one's meaning. It is the experiment every settler society eventually must run, and the north island is running it in public.</p><p>And the snow keeps its own counsel over both names. Drift ice feeds the sea, the sea feeds the town, and the bear sleeps through the argument of maps — the kamuy-cosmos and the prefecture sharing one winter. The island's patience is its answer: the land outlasts every name it is given, and quietly teaches each new name what it means.</p><p>The drift ice still arrives each winter on schedule older than any name, feeding the bloom that feeds the sea — the island's oldest economy, unbranded. The Ainu ceremony sent the bear-spirit home with gifts so it would return; the modern island sends its food south with the same hope. Frontier or homeland, the north keeps its own account: what the land gives, the land can stop giving — and every name we call it is a promise to keep listening.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Hokkaidō, Northern Island, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hokkaidō?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hokkaidō</strong> is /hok.kai.doː/ — approximately hok-KAI-doh, with the long final ō..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hokkaidō mean?</summary><div class="faq-answer"><p><strong>Hokkaidō</strong> means <strong>Northern sea circuit</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hokkaidō?</summary><div class="faq-answer"><p>Hokkaidō is associated with <strong>The bear</strong> (Kim-un-kamuy, the mountain god of the Ainu — honoured in the iomante ceremony), <strong>The drift ice</strong> (The winter sea that feeds the whole food chain of the north), <strong>The lavender field</strong> (Furano's summer signature — the cultivated frontier in bloom).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hokkaidō in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hokkaido</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hokkaidō?</summary><div class="faq-answer"><p>Ainu oral tradition divides existence between Ainu Mosir, the land of humans, and Kamuy Mosir, the land of the spirits — and teaches that kamuy visit the human world wearing animal bodies as gifts. The bear is the mountain god's greatest visitation; the fire goddess, Ape-huci-kamuy, keeps every hearth and carries every prayer to the spirit world. The island itself is a borderland between the two realms.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hokkaidō?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hokkaidō</strong> is /hok.kai.doː/ — approximately hok-KAI-doh, with the long final ō.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hokkaidō mean?</summary><div class="faq-answer"><p><strong>Hokkaidō</strong> means <strong>Northern sea circuit</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hokkaidō?</summary><div class="faq-answer"><p>Hokkaidō is associated with <strong>The bear</strong> (Kim-un-kamuy, the mountain god of the Ainu — honoured in the iomante ceremony), <strong>The drift ice</strong> (The winter sea that feeds the whole food chain of the north), <strong>The lavender field</strong> (Furano's summer signature — the cultivated frontier in bloom).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hokkaidō in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hokkaido</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hokkaidō?</summary><div class="faq-answer"><p>“Ainu Mosir and Kamuy Mosir” — Hokkaidō's mythology is Ainu: a kamuy-cosmos where every animal, fire, and tool has a spirit-owner, and where the human world is maintained by right exchange with the unseen. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hepburn</cite></li><li><cite>Kojiki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hepburn</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a></cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hokkaidō and related cults.</cite></li><li><cite>Hokkaidō holds some of the world's oldest pottery: Jōmon-period cord-marked vessels from sites like Taishō date beyond 14,000 years, among the earliest ceramic traditions on earth. The Shiretoko peninsula is a UNESCO World Heritage site for its marine-terrestrial food web; the Oshoro stone circles and the Ofuna shell middens mark the island's deep ritual past. Hakodate's Goryōkaku — the star fort of the last Tokugawa loyalists (1869) — is where the old Japan made its final stand on the new island.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hokkaidō and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Japanese folklore</cite></li><li><cite>Kokugo dictionaries</cite></li><li><cite>Shinto</cite></li><li><cite>Cambridge</cite></li></ul>
+                    <ul class="source-list"><li><cite>Kayano Shigeru, Our Land Was a Forest: An Ainu Memoir (1994)</cite></li><li><cite>Brett L. Walker, The Conquest of Ainu Lands (2001)</cite></li><li><cite>William W. Fitzhugh &amp; Chisato O. Dubreuil (eds.), Ainu: Spirit of a Northern People (1999)</cite></li><li><cite>Kindaichi Kyōsuke, Kutune Shirka (1924); Donald L. Philippi, Songs of Gods, Songs of Humans (1979)</cite></li><li><cite>John Batchelor, The Ainu and Their Folk-Lore (1901)</cite></li><li><cite>Matsuura Takeshirō, diaries of the Ezochi surveys (1858–69)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/hokkaido_logomark.webp" type="image/webp"><img src="../../assets/hokkaido_logomark.webp" alt="Hokkaidō logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/hokkaido_logomark.webp" type="image/webp"><img src="../../assets/hokkaido_logomark.webp" alt="Hokkaidō logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

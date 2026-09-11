@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Pŷr, Fire. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/pyr/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Pŷr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Pŷr is /pŷːr/ — approximately 'PYOOR' — one long, high-pitched syllable, like the sound of a flame catching."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Pŷr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pŷr means Fire in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Pŷr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pŷr is associated with Flame (The visible, ever-moving form of fire itself), Hearth (hestia) (The sacred fire at the center of home and city), Torch (Carried fire, used in processions, war, and mystery rites), The pyre on Oita (The funeral fire that burned Heracles' mortality away and released the god), The fennel stalk (Prometheus' smuggling-device: stolen heaven hidden in a dry reed)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Pŷr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII pyr strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Pŷr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Prometheus Steals Fire” — Pŷr is elemental and mythic at once. It is the stolen gift of Prometheus, the cosmic arche of Heraclitus, the threshold-light of the mysteries, and the fire on Mount Oita that burned a mortal into a god. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/pyr_logolockup.webp" type="image/webp"><img src="../../assets/pyr_logolockup.png" alt="Pŷr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Pŷr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Pŷr.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/pyr_mascot.webp" type="image/webp"><img src="../../assets/pyr_mascot.png" alt="Pŷr — Fire" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/pyr_mascot.webp" type="image/webp"><img src="../../assets/pyr_mascot.png" alt="Pŷr — Fire" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Pŷr, Fire</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">Πῦρ</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Pŷr</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/pŷːr/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Fire</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Fire</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Pŷr.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Flame, Hearth (hestia), Torch, <a href="/phoenix/" class="crosslink" data-crosslink="phoenix">Phoenix</a> pyre</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">Πῦρ</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Pŷr</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/pŷːr/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Fire</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Fire</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Pŷr.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Flame, Hearth (hestia), Torch, The pyre on Oita, The fennel stalk</span></div></div>
         </div>
     </div>
 </section>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Pŷr is Tier 1 because the Greek πῦρ contains both length (υ) and stress (acute/circumflex) on the same syllable. It is one of the oldest and most culturally charged words in Greek.</p>
+                <p class="etymology-note">The name <strong>Pŷr</strong> carries the orthographic signature of the greek tradition: Πῦρ. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Pŷr is the <strong>Greek word for fire</strong>, an element that transforms, purifies, destroys, and illuminates. For Heraclitus it is the very substance of becoming; for cult it is the medium through which mortals communicate with gods.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Pŷr in Later Traditions</h3><p class="cultural-card-body">Pŷr became one of the four Aristotelian elements and the Stoic active principle (pneuma/fire). In Christian symbolism it represented the Holy Spirit, judgment, and hellfire. Zoroastrianism elevated fire as the purest symbol of Ahura Mazda. The word survives in English through 'fire,' 'pyre,' and scientific terms like 'pyrotechnics' and 'pyroclastic.' Modern chemistry identifies fire as rapid oxidation, but the cultural symbolism remains ancient.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Pŷr is the element that made us human: cooking, metalworking, ceramics, glass, engines, electricity, and rockets all begin with controlled fire. It is also the element we most fear: conflagration, war, cremation, and climate change. The Greek word thus names both the origin of civilization and its potential end.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Pŷr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Pŷr in Later Traditions</h3><p class="cultural-card-body">Pŷr became one of the four Aristotelian elements and the Stoic active principle (pneuma/fire). Zoroastrianism elevated fire as the purest symbol of Ahura Mazda, tended in temples where it must never be polluted. In Christian symbolism fire became the Holy Spirit at Pentecost, judgment at the end of time, and the refining flame of purgatory. The Greek word survives in English through 'fire' itself, 'pyre,' and the scientific family of 'pyro-' compounds — pyrotechnics, pyroclastic, pyromania — while modern chemistry defines fire as rapid oxidation and smiles at the metaphysicians. But the cultural symbolism remains ancient: every rocket, furnace, and candle still speaks Heraclitus' language, promising transformation at a measured cost.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Pŷr is the element that made us human: cooking, metalworking, ceramics, glass, steam, electricity, and rocketry are all chapters in the domestication of the flame. <a href="/prometheus/" class="crosslink" data-crosslink="prometheus">Prometheus</a>' theft is the founding myth of every technology — power taken from nature and turned against scarcity. Yet fire is also the element we most fear: conflagration, war, cremation, and the climate's slow burn. The Greeks kept both truths in one word. <a href="/hestia/" class="crosslink" data-crosslink="hestia">Hestia</a>'s hearth anchored the home and the state; the prytaneion's perpetual flame was the city's heartbeat; the Olympic flame still runs relay across the world as a moving fragment of that ancient fire. To hold pŷr is to hold the origin and the end of civilization in the same hand.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Fire was the organizing technology of Greek cult: every altar maintained a flame, and the ash-and-bone altars (escharai) of heroes and the great burned-offering deposits of the gods are among the most common finds at sanctuaries. The heroön at Lefkandi (Euboea, ca. 950 BCE) preserved a warrior's cremation on a pyre inside its great hall — archaeology's earliest witness to the pyre as a door. <a href="/hephaistos/" class="crosslink" data-crosslink="hephaistos">Hephaistos</a>' forge and Prometheus' theft were painted on hundreds of Attic vases; the eternal flame at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a> and the prytaneion hearths of cities like Athens were maintained by civic officials as the state's perpetual fire. Kilns, smelting furnaces, and domestic hearths mark nearly every excavated Greek site — fire was the first infrastructure.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Pŷr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Pŷr is the most alive of the elements. Earth rests, water flows, air moves, but fire consumes and transforms; it is never the same from moment to moment, and that is its definition. Heraclitus saw in it the logos of the universe — not a substance but a rate, a measure, a way of burning. Fire also teaches danger and responsibility together. Prometheus was punished not for discovering fire but for giving it away without a warranty, and every technology since has repeated his dilemma: the gift warms the household that it might also burn. To honor pŷr is to respect both its generosity and its hunger — to use it without being consumed by it, and to remember that it is always exchanging us, in measures, for itself.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Pŷr, Fire, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Pŷr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Pŷr</strong> is /pŷːr/ — approximately 'PYOOR' — one long, high-pitched syllable, like the sound of a flame catching..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Pŷr mean?</summary><div class="faq-answer"><p><strong>Pŷr</strong> means <strong>Fire</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Pŷr?</summary><div class="faq-answer"><p>Pŷr is associated with <strong>Flame</strong> (The visible, ever-moving form of fire itself), <strong>Hearth (hestia)</strong> (The sacred fire at the center of home and city), <strong>Torch</strong> (Carried fire, used in processions, war, and mystery rites), <strong>Phoenix pyre</strong> (The fire of self-renewal and transformation).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Pŷr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>pyr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Pŷr?</summary><div class="faq-answer"><p><a href="/prometheus/" class="crosslink" data-crosslink="prometheus">Prometheus</a> deceived <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> over the division of sacrifice and then stole fire from heaven, hiding it in a fennel stalk to give to mortals. Zeus punished him with the torment of the Caucasus and sent <a href="/pandora/" class="crosslink" data-crosslink="pandora">Pandora</a> as a counter-gift. Fire is thus the stolen technology that makes civilization possible.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Pŷr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Pŷr</strong> is /pŷːr/ — approximately 'PYOOR' — one long, high-pitched syllable, like the sound of a flame catching.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Pŷr mean?</summary><div class="faq-answer"><p><strong>Pŷr</strong> means <strong>Fire</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Pŷr?</summary><div class="faq-answer"><p>Pŷr is associated with <strong>Flame</strong> (The visible, ever-moving form of fire itself), <strong>Hearth (hestia)</strong> (The sacred fire at the center of home and city), <strong>Torch</strong> (Carried fire, used in processions, war, and mystery rites), <strong>The pyre on Oita</strong> (The funeral fire that burned Heracles' mortality away and released the god), <strong>The fennel stalk</strong> (Prometheus' smuggling-device: stolen heaven hidden in a dry reed).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Pŷr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>pyr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Pŷr?</summary><div class="faq-answer"><p>“Prometheus Steals Fire” — Pŷr is elemental and mythic at once. It is the stolen gift of Prometheus, the cosmic arche of Heraclitus, the threshold-light of the mysteries, and the fire on Mount Oita that burned a mortal into a god. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,19 +355,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod, Theogony and Works and Days</cite></li><li><cite>Aeschylus, Prometheus Bound</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 535–616 and <a href="/texts/works-and-days/" class="crosslink citation-link" data-citation="works-and-days">Works and Days</a> 50–105</cite></li><li><cite>Aeschylus, Prometheus Bound</cite></li><li><cite>Sophocles, Trachiniae 1191–1278</cite></li><li><cite><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to <a href="/demeter/" class="crosslink" data-crosslink="demeter">Demeter</a> 47–50</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Pŷr and related cults.</cite></li><li><cite>Fire was central to Greek sanctuaries: every altar maintained a sacred flame, and burnt offerings left ash and bone deposits. <a href="/hephaistos/" class="crosslink" data-crosslink="hephaistos">Hephaistos</a>'s forge and Prometheus's theft were depicted on vases. The eternal flame at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a> and the hearth fires of cities like Athens (the prytaneion) were maintained by civic officials. Fire-management structures — kilns, furnaces, hearths — are common in Greek archaeological sites.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Pŷr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Beekes, Etymological Dictionary of Greek</cite></li><li><cite>Heraclitus, fragments (DK 22 B30, B90)</cite></li><li><cite>Aristotle, On the Heavens</cite></li></ul>
+                    <ul class="source-list"><li><cite>Heraclitus, fragments DK 22 B30, B64, B90</cite></li><li><cite>LSJ and Beekes, Etymological Dictionary of Greek, s.v. πῦρ</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/pyr_logomark.webp" type="image/webp"><img src="../../assets/pyr_logomark.webp" alt="Pŷr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/pyr_logomark.webp" type="image/webp"><img src="../../assets/pyr_logomark.webp" alt="Pŷr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

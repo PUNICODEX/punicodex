@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Kleiṓ — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Κλειώ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Kleiṓ.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,148 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Κλειώ</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Kleiṓ</strong> (Κλειώ) is attested in the source tradition — “Proclaimer, glorifier”. Its diphthongs, long vowels, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">kleio</p>
-                    <p class="card-body">Reduced to plain <strong>kleio</strong>, the name loses everything that made it specific: diphthongs, long vowels, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Kleiṓ</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Kleiṓ</strong> restores diphthongs, long vowels, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Kleiṓ.com → xn--klei-3f5a.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Kleiṓ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Kleiṓ</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Kleiṓ is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Κλειώ</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Kleiṓ is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kleiṓ</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Kleiṓ</p>
-                    <p class="card-body">Restores <strong>Κλειώ</strong>. The live temple domain — <strong>kleiṓ.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">kleio</p>
-                    <p class="card-body">Flattens <strong>Κλειώ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Kleiṓ was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Kleiṓ</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/kleː.ɔ́ː/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Kl-</span>
-        <span class="phoneme-desc">[kl], a voiceless velar stop released straight into a clear lateral — a sharp, liquid onset.</span>
+      <p class="lead-text">Kleiṓ rarely acts in myths of her own; she is the authority behind them. Her province is not adventure but memory — the fame by which every other story survives, the proclamation that turns deed into κλέος and shields the past from erasure.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a></span>
+          <h3 class="myth-title">Daughter of Memory</h3>
+          <p class="myth-text">In the <em>Theogony</em> (53–62) Hesiod tells how <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> lay with <a href="/mnemosyne/" class="crosslink" data-crosslink="mnemosyne">Mnēmosýnē</a>, Memory, for nine nights, and how she bore nine daughters in Pieria 'of one mind, whose hearts are set upon song'. At 76–79 he names them, and Kleiṓ stands first in the roll: 'Kleiṓ and <a href="/euterpe/" class="crosslink" data-crosslink="euterpe">Eutérpē</a> and <a href="/thaleia/" class="crosslink" data-crosslink="thaleia">Tháleia</a>...'. Their purpose is stated plainly (Theogony 55): they were born to be 'forgetfulness of evils and rest from cares' — memory, paradoxically, as the cure of sorrow. Nine days, nine daughters, one gift: the voice that tells the past so that it need not be relived unshaped. The Muses' parentage is the whole theology in miniature — the king of heaven and the power of memory begetting song. It is worth pausing on the arithmetic: nine nights, nine daughters, one for each month of the Greek year — memory made cyclical, renewable, and plural.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ei-</span>
-        <span class="phoneme-desc">The digraph ει, by the classical period a close long [eː], held steady and bright.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Herodotus</span>
+          <h3 class="myth-title">The First History</h3>
+          <p class="myth-text">Kleiṓ's office becomes literature in the proem of <em>Herodotus</em> (1.1): he publishes his ἱστορίη — literally 'inquiry, research' — 'so that the deeds of men may not be erased by time, nor the great and wondrous works of Greeks and barbarians become <em>aklea</em>, without glory'. The word ἀκλεᾶ is her own name negated: history exists so that κλέος survives. Cicero would later call Herodotus the father of history (<em>De Legibus</em> 1.1.5), but the Greeks had already given history a Muse — and Herodotus' opening sentence is, in effect, her charter, the oldest surviving mission statement of the discipline that took her name. Later Greeks kept the connection literal: historians opened their works by invoking the Muses, and Thucydides' pointed refusal to do so was itself read as a manifesto. The discipline's badge was her face.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-ṓ</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> omega [ɔ́ː] bearing the acute accent: the voice rises on the final syllable and holds it long.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Mythography</span>
+          <h3 class="myth-title">The Mother of Hyacinthus</h3>
+          <p class="myth-text">Apollodorus (<em>Bibliotheca</em> 1.3.3) records that Pierus of Macedon begot Hyacinthus by Kleiṓ. The beautiful youth was loved by Apollo and killed by a ricocheting discus; from his blood sprang the flower marked with the cry of lamentation. The fuller telling is Ovid's (<em><a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a></em> 10.162–219), where the petals bear the god's grief written as AI AI. A late scholastic tradition adds that Kleiṓ had mocked <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodítē</a>'s passion for Adōnis and was repaid with this bitter love of her own — a rare, unhappy glimpse of the Muse drawn into a story rather than telling one, as if even she could not mock desire without becoming its subject. Whatever the scholion's value, the genealogy mattered: it tied the Muse of record to the most mourned flower in the Greek landscape, the hyacinth whose petals spell the cry of grief.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Orphic Hymns</span>
+          <h3 class="myth-title">The Invocation of the Nine</h3>
+          <p class="myth-text">The Orphic <em>Hymn to the Muses</em> (76) calls on Kleiṓ together with her eight sisters as daughters of Zeus and Mnēmosýnē, queens of the Pierian spring, and begs them to come to the initiates 'bringing the fine gifts of the Muses, fame and wisdom'. Here the sisterhood is one power: song, memory, and the glory that outlasts death. The hymn's pleading tone is worth noticing — these are gods one invites and flatters, because what they withhold cannot be compelled: a deed that no Muse records is a deed that time deletes, and even kings must ask. The hymn also fixes her retinue: the Muses are invoked as a single choir of nine, and it is as choir that they entered civic cult — at the Thespians' Mouseia the nine were worshipped together, Kleiṓ's individual name dissolved, as befits the servant of a collective memory.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'kleh-OH' — two syllables; keep the first short and bright, then rise and linger on the long final ō. Not the modern 'KLY-oh'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> κλέος (kleos), 'glory, fame, that which is heard of someone' — the noun behind the name; compare κλείω, 'to proclaim, celebrate'.</li><li><strong>PIE</strong> *ḱlew-, 'to hear' — the same root as Sanskrit śrávas ('fame') and, through Germanic, English loud.</li><li><strong>Latin</strong> Clio, adopted directly into Latin poetry without alteration.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kleiṓ is Tier 1: the Greek original Κλειώ carries both acute stress and the long vowel ω. The restoration preserves both features — the macron marking the long ō and the acute marking the accented syllable — which the ASCII form 'Kleio' loses.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -380,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Proclaimer of Glory</h2>
             <p class="section-subtitle">Muse of History · Memory, Fame, and the Written Record</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Kleiṓ is the <strong>Muse of history</strong> — in Greek terms, of ἱστορία, 'inquiry, research'. First-named of the nine daughters of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> and <a href="/mnemosyne/" class="crosslink" data-crosslink="mnemosyne">Mnēmosýnē</a>, her name is her office: from κλέος, 'glory', she is <strong>she who proclaims fame</strong>, the power that keeps great deeds from being erased by time. In art she sits with an open scroll or a chest of books — the archive made divine.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Kleiṓ is the <strong>Muse of history</strong> — in Greek terms, of ἱστορία, 'inquiry, research'. First-named of the nine daughters of Zeus and Mnēmosýnē, her name is her office: from κλέος, 'glory', she is <strong>she who proclaims fame</strong>, the power that keeps great deeds from being erased by time. In art she sits with an open scroll or a chest of books — the archive made divine.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 8L44 8L44 56L20 56L20 8M26 18L38 18M26 28L38 28M26 38L38 38"></path></svg></div>
@@ -401,6 +307,11 @@
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 22L56 22L56 50L8 50L8 22M32 22L32 50"></path></svg></div>
         <h4 class="domain-name">The Archive</h4>
         <p class="domain-desc">The book-chest at her feet: the memory of the world, stored, ordered, and retrievable.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 6L32 56M18 16L46 16M12 28L52 28M12 40L52 40M18 48L46 48"></path></svg></div>
+        <h4 class="domain-name">The Nine of Pieria</h4>
+        <p class="domain-desc">Born of Zeus and Mnēmosýnē in Pieria, she stands first in Hesiod's roll of the nine — the sisterhood whose song is memory itself.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
@@ -430,57 +341,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Kleiṓ</p>
-        </div>
-        
-      <p class="lead-text">Kleiṓ rarely acts in myths of her own; she is the authority behind them. Her province is not adventure but memory — the fame by which every other story survives.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Theogony</span>
-          <h3 class="myth-title">Daughter of Memory</h3>
-          <p class="myth-text">In the <em>Theogony</em> (53–62) Hesiod tells how Zeus lay with Mnēmosýnē, Memory, for nine nights, and how she bore nine daughters in Pieria 'of one mind, whose hearts are set upon song'. At 76–79 he names them, and Kleiṓ stands first: 'Κλειώ τ᾽ Εὐτέρπη τε…'. Their purpose is stated plainly (Theogony 55): they were born to be 'forgetfulness of evils and rest from cares' — memory, paradoxically, as the cure of sorrow.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Herodotus</span>
-          <h3 class="myth-title">The First History</h3>
-          <p class="myth-text">Kleiṓ's office becomes literature in the proem of <em>Herodotus</em> (1.1): he publishes his ἱστορίη — literally 'inquiry, research' — 'so that the deeds of men may not be erased by time, nor the great and wondrous works of Greeks and barbarians become <em>aklea</em>, without glory'. The word ἀκλεᾶ is her own name negated: history exists so that κλέος survives. Cicero would later call Herodotus the father of history (<em>De Legibus</em> 1.5), but the Greeks had already given history a Muse.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Mythography</span>
-          <h3 class="myth-title">The Mother of Hyacinthus</h3>
-          <p class="myth-text">Apollodorus (<em>Bibliotheca</em> 1.3.3) records that Pierus of Macedon begot Hyacinthus by Kleiṓ. The beautiful youth was loved by Apollo and killed by a ricocheting discus; from his blood sprang the flower marked with the cry of lamentation. The fuller telling is Ovid's (<em>Metamorphoses</em> 10.162–219). A late scholastic tradition adds that Kleiṓ had mocked <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodítē</a>'s passion for Adōnis and was repaid with this bitter love of her own — a rare, unhappy glimpse of the Muse drawn into a story rather than telling one.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Orphic Hymns</span>
-          <h3 class="myth-title">The Invocation of the Nine</h3>
-          <p class="myth-text">The Orphic <em>Hymn to the Muses</em> (76) calls on Kleiṓ together with her eight sisters as daughters of Zeus and Mnēmosýnē, queens of the Pierian spring, and begs them to come to the initiates bringing fame and wisdom. Here the sisterhood is one power: song, memory, and the glory that outlasts death.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -544,8 +412,150 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Κλειώ</p>
+                <p class="card-body">The name in its original Greek form. <strong>Kleiṓ</strong> (Κλειώ) is attested in the source tradition — “Proclaimer, glorifier”. Its diphthongs, long vowels, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">kleio</p>
+                <p class="card-body">Reduced to plain <strong>kleio</strong>, the name loses everything that made it specific: diphthongs, long vowels, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Kleiṓ</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Kleiṓ</strong> restores diphthongs, long vowels, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Kleiṓ.com → xn--klei-3f5a.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Kleiṓ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Kleiṓ</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kleiṓ</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Kleiṓ</p>
+                    <p class="card-body">Restores <strong>Κλειώ</strong>. The live temple domain — <strong>kleiṓ.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">kleio</p>
+                    <p class="card-body">Flattens <strong>Κλειώ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Kleiṓ was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/kleː.ɔ́ː/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Kl-</span>
+        <span class="phoneme-desc">[kl], a voiceless velar stop released straight into a clear lateral — a sharp, liquid onset.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ei-</span>
+        <span class="phoneme-desc">The digraph ει, by the classical period a close long [eː], held steady and bright.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ṓ</span>
+        <span class="phoneme-desc">Long omega [ɔ́ː] bearing the acute accent: the voice rises on the final syllable and holds it long.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'kleh-OH' — two syllables; keep the first short and bright, then rise and linger on the long final ō. Not the modern 'KLY-oh'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kleiṓ is Tier 1: the Greek original Κλειώ carries both acute stress and the long vowel ω. The restoration preserves both features — the macron marking the long ō and the acute marking the accented syllable — which the ASCII form 'Kleio' loses.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Kleiṓ is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Κλειώ</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Kleiṓ is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -563,7 +573,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/kleio_mascot.webp" type="image/webp"><img src="../assets/kleio_mascot.png" alt="Kleiṓ mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kleio_mascot.webp" type="image/webp"><img src="../assets/kleio_mascot.png" alt="Kleiṓ mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -601,7 +611,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/kleio_logomark.webp" type="image/webp"><img src="../assets/kleio_logomark.webp" alt="Kleiṓ logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kleio_logomark.webp" type="image/webp"><img src="../assets/kleio_logomark.webp" alt="Kleiṓ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

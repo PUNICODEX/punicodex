@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Hwanung, Son of Heaven, Descended. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/hwanung/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Hwanung?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Hwanung is /hwa.nuŋ/ — approximately 'HWAH-noong' — the second syllable ends in a velar nasal, like the 'ng' in 'song'. The capitalised form marks the heavenly prince as a proper noun."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Hwanung mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hwanung means Heavenly prince in the korean tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Hwanung?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hwanung is associated with Sandalwood tree (The axis at the descent place that links Hwanin's heaven to the Korean earth.), Three heavenly seals (Tokens of delegated sovereignty that authorise Hwanung to rule the human realm.), Wind, rain, clouds, grain (The cosmic departments over which Hwanung presides as culture-bringer.), Clouds and mist (The celestial medium through which the heavenly prince travels between realms.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Hwanung in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hwanung is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Hwanung?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Three Thousand Follow One Prince” — Hwanung's cycle, preserved in the Samguk Yusa, is the founding charter of Korean civilisation: a heavenly prince descends with seals of delegated authority, teaches law, medicine, and agriculture, and fathers Dangun, first king of the Korean people. The myth binds kingship to cosmic order and anchors the nation to a sacred mountain. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/hwanung_logolockup.webp" type="image/webp"><img src="../../assets/hwanung_logolockup.png" alt="Hwanung" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Hwanung</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Hwanung</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/hwanung_mascot.webp" type="image/webp"><img src="../../assets/hwanung_mascot.png" alt="Hwanung — Son of Heaven, Descended" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/hwanung_mascot.webp" type="image/webp"><img src="../../assets/hwanung_mascot.png" alt="Hwanung — Son of Heaven, Descended" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Hwanung</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The second syllable ends in a velar nasal, like the ‘ng’ in ‘song’. The capitalised form marks the heavenly prince as a proper noun.</p>
+                <p class="etymology-note">The name <strong>Hwanung</strong> reaches the modern world through scholarly transliteration of the korean tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Hangul</strong> — 환웅 — the Korean script form.</li><li><strong>Hanja</strong> — 桓雄 — the Sino-Korean character form.</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Hangul</strong> — 환웅 — the indigenous Korean alphabet form of the name.</li><li><strong>Hanja</strong> — 桓雄 (hwan 'majestic, spreading' + ung 'hero, male') — the Sino-Korean character form.</li><li><strong>Relatives</strong> — Hwanin 桓因 ('Lord of Heaven'), his father, and <a href="/dangun/" class="crosslink" data-crosslink="dangun">Dangun</a> 檀君, his son — all three named in the Samguk Yusa.</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">H</td><td><code>U+0048</code></td><td>Latin Capital Letter H</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">w</td><td><code>U+0077</code></td><td>Latin Small Letter W</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Hwanung</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Hwanung</strong> is the heavenly prince who descends from the court of Hwanin to bring law, agriculture, and the arts of civilisation to earth in Korean tradition. The name means "Heavenly prince" and belongs to the domain "Son of Heaven, Descended." Hwanung is the son of Hwanin and the father of <a href="/dangun/" class="crosslink" data-crosslink="dangun">Dangun</a> in the founding myth cycle recorded in the Samguk Yusa. He descends to earth beneath a sandalwood tree on a high mountain, bringing three heavenly seals and three thousand retainers.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Hwanung in Later Traditions</h3><p class="cultural-card-body">Hwanung functions as a culture-hero in the Korean mythic system, comparable to other East Asian figures who descend from heaven to teach agriculture and law. The story has been read through Confucian, Buddhist, and Daoist lenses, each tradition finding in it a model of virtuous rule or cosmic harmony. In modern Korean nationalism, Hwanung represents the heavenly origin of Korean civilisation, while in shamanic ritual he is remembered as one of the high spirits of the celestial pantheon.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hwanung appears in national foundation pageants, school textbooks, museum displays, and cultural diplomacy. The myth of his descent is dramatised at the annual Dangun memorial rites and in television dramas that retell the founding story. The figure also informs Korean environmental thought: the mountain of descent, often identified with Baekdu or Taebaek, remains a sacred landscape. In digital spaces, Hwanung is invoked by those who see Korean civilisation as uniquely endowed with a heaven-granted mandate.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Hwanung</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Hwanung in Later Traditions</h3><p class="cultural-card-body">Confucian readers of the Joseon era found in Hwanung a model of <em>hyo</em> — the son who serves his father's will by governing well — and the Samguk Yusa itself, written by the monk Iryeon, frames the descent through Buddhist eyes as a bodhisattva-like mission of compassion toward suffering beings. Daoist parallels came easily: an immortal descending to a sacred mountain and founding a city of gods reads like the Korean cousin of the Queen Mother of the West's mountain courts. Under the twentieth century the story was nationalised: the religion of Daejonggyo, founded in 1909, worships Hwanin, Hwanung, and Dangun as a trinity, and Korean nationalists dated events by the Dangun calendar; in North Korea the reconstructed tomb of Dangun at Kangdong (1994) claims the lineage for the state. What began as a monk's charter became a modern identity.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hwanung's legacy is celebrated every 3 October, Gaecheonjeol — 'Festival of the Opening of Heaven' — when the descent is reenacted at the Chamseongdan altars, most famously on Taebaeksan, the traditional landing site, and at the Manisan Chamseongdan on Ganghwa Island, where Joseon kings once offered prayer. The myth anchors Korean educational culture: foundation pageants, museum dioramas, and school curricula from Seoul to Pyongyang stage the bear's transformation and the descent beneath the sandalwood. The name lives on in institutions — universities, mountain lodges, cultural foundations — and in the phrase 'Dangun minjok', the Dangun nation, still current in identity discourse. Few foundation myths anywhere remain so busy: thirteen centuries after Iryeon wrote it down, the story of the prince who asked to come down still organises how Koreans imagine where they come from.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No artefact names Hwanung: the myth's only early witness is textual, in Iryeon's Samguk Yusa of 1281, which preserves older oral and ritual material. The material anchor is the ritual landscape. The Chamseongdan — 'altar of the heavenly deity' — on Taebaeksan, rebuilt in stone in later centuries, marks the traditional descent site, and the great Chamseongdan on Manisan, Ganghwa Island, where Joseon kings performed the state sacrifices, stands in the same cultic geography. In 1993–94 North Korea reconstructed the supposed mausoleum of Dangun at Kangdong near Pyongyang as a monumental shrine. Modern reenactments at Taebaeksan each Gaecheonjeol give the myth a living present: the mountain itself, not any object, is the evidence Koreans point to.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Hwanung means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Hwanung is the ruler who asked permission to rule. Other founding myths in the neighbourhood begin with conquest, theft, or disaster; the Korean charter begins with a request. The prince sees the suffering world below, petitions his father, and descends not as master but as delegate — carrying seals, not a sword. His myth quietly proposes a theory of government: authority is legitimate only when it is asked for on behalf of others, and it is proven only by service — rain prayed down in drought, medicine taught, law spoken. Even his marriage to the bear-woman follows the same grammar: he answers a prayer. The myth thus remembers civilisation itself as a response to need. In an age that too often treats power as a prize, the heavenly prince who knelt to be sent is a quietly radical ancestor.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Hwanung, Son of Heaven, Descended, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hwanung?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hwanung</strong> is /hwa.nuŋ/ — approximately 'HWAH-noong' — The second syllable ends in a velar nasal, like the ‘ng’ in ‘song’. The capitalised form marks the heavenly prince as a proper noun..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hwanung mean?</summary><div class="faq-answer"><p><strong>Hwanung</strong> means <strong>Heavenly prince</strong> in the korean tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hwanung?</summary><div class="faq-answer"><p>Hwanung is associated with <strong>Sandalwood tree</strong> (The axis at the descent place that links Hwanin's heaven to the Korean earth.), <strong>Three heavenly seals</strong> (Tokens of delegated sovereignty that authorise Hwanung to rule the human realm.), <strong>Wind, rain, clouds, grain</strong> (The cosmic departments over which Hwanung presides as culture-bringer.), <strong>Clouds and mist</strong> (The celestial medium through which the heavenly prince travels between realms.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hwanung in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hwanung</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hwanung?</summary><div class="faq-answer"><p>Yearning to rule the world below, Hwanung asked his father Hwanin to send him to earth. Hwanin granted him three heavenly seals and three thousand retainers, and Hwanung descended to a sandalwood tree on the slopes of a high mountain.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hwanung?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hwanung</strong> is /hwa.nuŋ/ — approximately 'HWAH-noong' — the second syllable ends in a velar nasal, like the 'ng' in 'song'. The capitalised form marks the heavenly prince as a proper noun.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hwanung mean?</summary><div class="faq-answer"><p><strong>Hwanung</strong> means <strong>Heavenly prince</strong> in the korean tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hwanung?</summary><div class="faq-answer"><p>Hwanung is associated with <strong>Sandalwood tree</strong> (The axis at the descent place that links Hwanin's heaven to the Korean earth.), <strong>Three heavenly seals</strong> (Tokens of delegated sovereignty that authorise Hwanung to rule the human realm.), <strong>Wind, rain, clouds, grain</strong> (The cosmic departments over which Hwanung presides as culture-bringer.), <strong>Clouds and mist</strong> (The celestial medium through which the heavenly prince travels between realms.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hwanung in Unicode?</summary><div class="faq-answer"><p><strong>Hwanung</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hwanung?</summary><div class="faq-answer"><p>“Three Thousand Follow One Prince” — Hwanung's cycle, preserved in the Samguk Yusa, is the founding charter of Korean civilisation: a heavenly prince descends with seals of delegated authority, teaches law, medicine, and agriculture, and fathers Dangun, first king of the Korean people. The myth binds kingship to cosmic order and anchors the nation to a sacred mountain. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/hwanung_logomark.webp" type="image/webp"><img src="../../assets/hwanung_logomark.webp" alt="Hwanung logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/hwanung_logomark.webp" type="image/webp"><img src="../../assets/hwanung_logomark.webp" alt="Hwanung logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

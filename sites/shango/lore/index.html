@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Ṣàngó — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Ṣàngó</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Ṣàngó.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,148 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Ṣàngó</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Ṣàngó</strong> is the standard Yoruba romanisation, documented in academic sources — “He who strikes”. Its emphatic consonants and acute stress marks preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">shango</p>
-                    <p class="card-body">Reduced to plain <strong>shango</strong>, the name loses everything that made it specific: emphatic consonants and acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Ṣàngó</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ṣàngó</strong> restores emphatic consonants and acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Ṣàngó.com → xn--ng-iia2fq79p.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Ṣàngó</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ṣàngó</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Ṣàngó is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ṣàngó</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ṣàngó</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Ṣàngó</p>
-                    <p class="card-body">The live temple domain — <strong>ṣàngó.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">shango</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Ṣàngó was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Ṣàngó</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ʃà.ŋɡó/</span>
-            <span class="ipa-label">Yoruba Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Ṣ-</span>
-        <span class="phoneme-desc">Voiceless postalveolar fricative [ʃ] with a dot below in Yoruba orthography; the dot below marks the phoneme /ʃ/, distinct from /s/.</span>
+      <p class="lead-text">Ṣàngó's mythology moves between the palace and the sky. He is a king who could not govern his own household, a husband of powerful and dangerous wives, and a storm whose justice is as dramatic as its noise.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Royal History</span>
+          <h3 class="myth-title">The Fourth Aláàfin of Ọ̀yọ́</h3>
+          <p class="myth-text">Ṣàngó was the fourth Aláàfin — king — of Ọ̀yọ́, and the traditions collected by Samuel Johnson (<em>The History of the Yorubas</em>, 1921), checked against the chronicles analysed by Robin Law (<em>The Oyo Empire</em>, 1977), make him a historical ruler later wrapped in divinity. His capital was at Koso, and his cult grew from the worship of a deified king: subsequent Aláàfins ruled as his heirs, and the Ṣàngó festival at Ọ̀yọ́ remains an act of state as much as of religion. The sources disagree about his end — some say he hanged himself in defeat, others that his own fire consumed him and he ascended bodily — and the people of Koso answered the shameful version with a proud folk etymology: Koso, they said, means 'he did not hang'. Whatever happened in history, mythology turned a failed king into an eternal verdict from the sky.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-à-</span>
-        <span class="phoneme-desc">Open central vowel [a] with low tone.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Legend</span>
+          <h3 class="myth-title">The Fire That Consumed the Palace</h3>
+          <p class="myth-text">Johnson's chronicle credits Ṣàngó with a fearful sorcery: charms that breathed fire on his enemies. In the most told episode, his own overreaching turned the weapon inward — the fire that burned his foes spread through his palace and his household, and the king who had terrorised Ọ̀yọ́ with thunder-magic died, or fled, by the same element (Johnson 1921; Law 1977 treats the traditions with scholarly reserve). Later Ifá verses and praise-chants amplify the tale into cosmic register: Ṣàngó did not merely wield fire, he was fire, and he left the earth by immolating himself into the storm. The palace fires of the chronicle became, in worship, the lightning of the sky. The legend reads like a parable of charisma — the force that makes a king irresistible is the force that finally consumes him, and only deification survives the burning.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-ŋgó</span>
-        <span class="phoneme-desc">Velar nasal [ŋ] followed by voiced velar stop [g] and close back rounded vowel [o] with high tone; the syllable is nasalised.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Marriage</span>
+          <h3 class="myth-title">Three Wives of Thunder</h3>
+          <p class="myth-text">Ṣàngó's household is a small pantheon, and its myths are the corpus's sharpest studies of desire and power. <a href="/oba/" class="crosslink" data-crosslink="oba">Ọbà</a>, his first wife, tried to win back his wandering love by cutting off her ear to season his stew — the myth's warning is against sacrificing identity for affection. <a href="/oshun/" class="crosslink" data-crosslink="oshun">Ọṣun</a> won him with honey, brass, and laughter, becoming the one being who can calm his rage. <a href="/oya/" class="crosslink" data-crosslink="oya">Ọya</a>, his favourite in war, learned the secret of fire and lightning from him and did not abandon him in disgrace. His children by them inherit his fire; his cult inherits their lessons. The stories, told across Ifá verses, praise-songs, and diaspora liturgies (Verger 1981; Mason), make the thunderer's marriage bed the site where three kinds of female power — devotion, sweetness, and fury — each take the measure of male force and outlast it.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Justice</span>
+          <h3 class="myth-title">The Thunder That Hears Oaths</h3>
+          <p class="myth-text">In Yoruba courts and shrines, oaths sworn in Ṣàngó's name were binding because the thunder-god was believed to strike perjurers — and the fear was not merely supernatural. Law notes that royal authority in Ọ̀yọ́ leaned on the cult: the king who could call the storm to witness promises made his own word unbreakable, and his priests kept the thunderstones (prehistoric celts) that proved the strikes were real (Law 1977; Bascom 1969). Even today, devotees say that a liar who swears falsely by Ṣàngó will be found out by fire. Even where courts have replaced oaths, devotees still decline to swear falsely by his name, and lightning still makes honest witnesses of the frightened. His justice is swift, public, and terrifying — the sky itself made a witness to human promises, and a penalty no wall could delay.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Worship</span>
+          <h3 class="myth-title">The Drum That Calls the King Down</h3>
+          <p class="myth-text">Priestly tradition holds that the bàtá drum was Ṣàngó's before it was anyone's: the hourglass drum whose pitch bends under the player's arm speaks a language the thunder-king cannot refuse, and at his festivals the drummers 'talk' him down into the dancers (Mason, <em>Four New World Yoruba Rituals</em>; Drewal 1992). Possession by Ṣàngó begins in the shoulders and feet — the stamping, whirling dance of a warrior — and the possessed speak with his voice, rendering judgment and greeting the crowd as a king greets subjects. The mythology completes itself here: the king who died left no tomb to visit, so his people built a throne of rhythm. The drummers themselves are minor royalty of the cult, addressed with titles and fed before the crowd. When the bàtá plays, Ọ̀yọ́ has a king again, and the storm walks in human form.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">SHAH-ngoh — low 'sha', then a sharp high 'ngoh' with the final syllable slightly nasal.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Yoruba</strong> Ṣàngó, the deified fourth king of Oyo and orixá of thunder and fire.</li><li><strong>Brazilian Candomblé</strong> Xangô, the just king who wields the double-headed axe and judges disputes.</li><li><strong>Cuban Santería</strong> Changó, the dancer, drummer, and lord of lightning.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ṣàngó is Tier 1: the dot below ṣ and the acute accent on ó are distinctive features the ASCII form loses, the acute preserving the high tone of the final syllable. The dot below ṣ marks the historical/orthographic distinction of the Yoruba 's' series.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -379,12 +293,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Thunder and Justice</h2>
             <p class="section-subtitle">Fire, Royalty, and the Drum</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Ṣàngó</strong> is the thunder-god and the deified fourth king of the Oyo Empire. In life he was a warrior-king; in death he became the storm itself, the fire that strikes from heaven and the drumbeat that makes the possessed dance. He is justice without bureaucracy, punishment without delay, and charisma so intense that it can kill.</p><p class="lead-text">His mythology is inseparable from history. The kings of Oyo traced their legitimacy to him, and his priests kept the sacred stones said to be thunderbolts he had hurled to earth.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Ṣàngó</strong> is the thunder-god and the deified fourth king of the Ọ̀yọ́ Empire — the fire that strikes from heaven and the drumbeat that brings the possessed to their feet. His justice is public and swift: the oath-breaker, the thief, and the liar hear him before they see him. In life a warrior-king, in death he became the storm itself.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L40 28H56L44 40L48 56L32 48L16 56L20 40L8 28H24L32 8Z"></path></svg></div>
@@ -409,58 +323,39 @@
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">Thunderstones (ẹ̀dùn àrá)</span>
-        <span class="symbol-meaning">'Thunder stones' — Neolithic celts believed to be the thunderbolts Ṣàngó hurled to earth.</span>
+        <span class="symbol-meaning">'Thunder stones' — prehistoric stone axes kept in his shrines as the thunderbolts he hurled to earth; collecting one is collecting his signature.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Double-headed axe (ọ̀ṣẹ́ Ṣàngó)</span>
-        <span class="symbol-meaning">The emblem of his kingship and his power to render judgment.</span>
+        <span class="symbol-meaning">The emblem of his kingship and his power to render judgment; carved dance wands of it are carried by the possessed.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Bàtá drum</span>
-        <span class="symbol-meaning">The drum language that summons him and encodes Yoruba history.</span>
+        <span class="symbol-meaning">The hourglass drum whose pitch bends under the arm — the drum language that summons him and encodes the history of Ọ̀yọ́.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Red and white beads</span>
-        <span class="symbol-meaning">The colours of fire, blood, and royal authority.</span>
+        <span class="symbol-meaning">The colours of fire, blood, and royal authority; his initiates wear them in double strands.</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Ṣàngó</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Ṣàngó lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Ṣàngó's mythology moves between the palace and the sky. He is a king who could not govern his own household, a husband of multiple orishas, and a storm whose justice is as dramatic as its noise.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Royal History</span>
-          <h3 class="myth-title">The Fourth King of Oyo</h3>
-          <p class="myth-text">Ṣàngó was the fourth <em>Aláàfin</em> (king) of Oyo. The traditions disagree about his end: some say he hanged himself after a political defeat, others that he was consumed by his own fire and ascended to heaven. What is consistent is that after his death he was deified, and subsequent Oyo kings ruled as his descendants. His capital at Koso became a major cult centre.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/nigerian-studies/" class="source-badge">Nigerian Studies — The Orisha Myths</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Marriage</span>
-          <h3 class="myth-title">Ṣàngó and his Wives</h3>
-          <p class="myth-text">Ṣàngó is linked to several powerful female orishas. <a href="/oya/" class="crosslink" data-crosslink="oya">Ọya</a> is said to have been his favourite companion in war, learning the secrets of fire from him. <a href="/oshun/" class="crosslink" data-crosslink="oshun">Ọṣun</a> won his heart with honey and brass. <a href="/oba/" class="crosslink" data-crosslink="oba">Ọbà</a>, his first wife, tried to win him back by cutting off her ear to make a stew, a myth that warns against sacrificing identity for love. These stories make Ṣàngó's mythology a theatre of desire, jealousy, and power.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Justice</span>
-          <h3 class="myth-title">The Thunder That Hears Oaths</h3>
-          <p class="myth-text">In Yoruba courts and shrines, oaths sworn in Ṣàngó's name were binding because the thunder-god was believed to strike perjurers. The fear was not merely supernatural: it reinforced social order by making the sky itself a witness to human promises. His justice is swift, public, and terrifying.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -468,7 +363,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the yoruba pantheon</p>
         </div>
@@ -532,23 +427,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Ṣàngó lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/nigerian-studies/" class="source-badge">Nigerian Studies — The Orisha Myths</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Ṣàngó</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Ṣàngó</strong> is the standard Yoruba romanisation, documented in academic sources — “He who strikes”. Its emphatic consonants and acute stress marks preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">shango</p>
+                <p class="card-body">Reduced to plain <strong>shango</strong>, the name loses everything that made it specific: emphatic consonants and acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Ṣàngó</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ṣàngó</strong> restores emphatic consonants and acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Ṣàngó.com → xn--ng-iia2fq79p.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Ṣàngó</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ṣàngó</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ṣàngó</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Ṣàngó</p>
+                    <p class="card-body">The live temple domain — <strong>ṣàngó.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">shango</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Ṣàngó was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ʃà.ŋɡó/</span>
+            <span class="ipa-label">Yoruba Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Ṣ-</span>
+        <span class="phoneme-desc">Voiceless postalveolar fricative [ʃ] with a dot below in Yoruba orthography; the dot below marks the phoneme /ʃ/, distinct from /s/.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-à-</span>
+        <span class="phoneme-desc">Open central vowel [a] with low tone.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ŋgó</span>
+        <span class="phoneme-desc">Velar nasal [ŋ] followed by voiced velar stop [g] and close back rounded vowel [o] with high tone; the syllable is nasalised.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">SHAH-ngoh — low 'sha', then a sharp high 'ngoh' with the final syllable slightly nasal.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ṣàngó is Tier 1: the dot below ṣ and the acute accent on ó are distinctive features the ASCII form loses, the acute preserving the high tone of the final syllable. The dot below ṣ marks the historical/orthographic distinction of the Yoruba 's' series.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Ṣàngó is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ṣàngó</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -567,7 +588,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/shango_mascot.webp" type="image/webp"><img src="../assets/shango_mascot.png" alt="Ṣàngó mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/shango_mascot.webp" type="image/webp"><img src="../assets/shango_mascot.png" alt="Ṣàngó mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -605,7 +626,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/shango_logomark.webp" type="image/webp"><img src="../assets/shango_logomark.webp" alt="Ṣàngó logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/shango_logomark.webp" type="image/webp"><img src="../assets/shango_logomark.webp" alt="Ṣàngó logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Týr, War, Law, Oaths. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/tyr/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Týr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Týr is /tyːr/ — approximately 'TEWR' — start with a crisp 't', say the rounded 'ew' of 'few' while pursing the lips, hold it long, and finish with a light trilled r."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Týr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Týr means God (cognate with Greek Zeus, Latin Jove) in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Týr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Týr is associated with Sword (The weapon of the warrior and the symbol of lawful violence; Týr is called 'sword-god' in kennings.), Missing right hand (The visible cost of the pledge given to Fenrir; integrity made flesh.), Wolf (Fenrir, the bound beast whose capture defines Týr's myth.), Spear (The divine weapon shared with Óðinn, marking his older role as a war god.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Týr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII tyr strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Týr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Binding of Fenrir” — Týr's mythology is narrower than that of Óðinn or Þórr, but it turns on a single, unforgettable scene: a god who pays for the common good with his own body. His stories are stories of pledges kept, monsters bound, and the law that outlasts the hand that swore it. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,14 @@
                 <picture><source srcset="../../assets/tyr_logolockup.webp" type="image/webp"><img src="../../assets/tyr_logolockup.png" alt="Týr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +175,14 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +195,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Týr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Týr.com</span>
@@ -157,7 +210,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/tyr_mascot.webp" type="image/webp"><img src="../../assets/tyr_mascot.png" alt="Týr — War, Law, Oaths" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/tyr_mascot.webp" type="image/webp"><img src="../../assets/tyr_mascot.png" alt="Týr — War, Law, Oaths" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +263,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Týr is Tier 1: the acute on ý marks stress on a distinctive long front rounded vowel — a diacritic the ASCII form loses. The registrable form preserves the Old Norse vowel quality and the god's name as recorded in the Eddas and skaldic verse.</p>
+                <p class="etymology-note">God (cognate with Greek Zeus, Latin Jove)</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Proto-Germanic</strong> — *Tīwaz, the celestial god from whom Týr descends</li><li><strong>Old English</strong> — Tīw, the Anglo-Saxon war god whose name survives in Tuesday</li><li><strong>Latin inscription</strong> — <a href="/mars/" class="crosslink" data-crosslink="mars">Mars</a> Thingsus, the Roman-identified god of the Germanic thing assembly</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>PIE</strong> — *dyēw- 'sky, day' — the root behind Greek Zeús, Latin <a href="/iuppiter/" class="crosslink" data-crosslink="iuppiter">Iuppiter</a>, Sanskrit Dyáuṣ, and Germanic *Tīwaz; Týr's very name is the old Germanic word for 'god'</li><li><strong>Proto-Germanic</strong> — *Tīwaz, the celestial god from whom Týr descends</li><li><strong>Old English</strong> — Tīw, the Anglo-Saxon war god whose name survives in Tuesday</li><li><strong>Latin inscription</strong> — <a href="/mars/" class="crosslink" data-crosslink="mars">Mars</a> Thingsus, the Roman-identified god of the Germanic thing assembly</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,26 +300,39 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Týr is the <strong>god who keeps his word even when it costs him his hand</strong>. In a pantheon famous for cunning and force, he stands for something older: the binding power of oath and law. Once among the most prominent gods of the Germanic peoples, he is remembered in the Norse sources chiefly for the binding of <a href="/fenrir/" class="crosslink" data-crosslink="fenrir">Fenrir</a>, the great wolf who will devour <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> at Ragnarök.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Týr in Later Traditions</h3><p class="cultural-card-body">Roman writers equated the Germanic war god with Mars, especially as <em>Mars Thingsus</em>, the patron of the thing assembly. The Romano-Germanic altar at Housesteads on Hadrian's Wall invokes 'Mars Thincsus' alongside the Alaisiagae, a pair of Germanic goddesses. In the interpretatio romana of Tacitus, the highest Germanic god was Mercury (Óðinn), but Mars remained the god of war and the assembly. The Anglo-Saxon name <em>Tīw</em> and the day-name Tuesday preserve Týr's memory in English. Some scholars see him as the original chief god of early Germanic religion, later eclipsed by Óðinn and <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Týr survives most visibly in the English word <em>Tuesday</em> ('Tīw's day'), a faint echo of a once-major deity. In modern Heathenry and Norse-inspired fantasy, he is honored as the god of law, honor, and self-sacrifice — the deity who keeps oaths even at terrible cost. His one-handed image has become a symbol of integrity, and the binding of Fenrir remains one of the most retold scenes in the entire Norse corpus. For military ethicists and legal historians, Týr represents the idea that law requires sacrifice and that the guarantor of order must sometimes pay the price personally.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Týr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Týr in Later Traditions</h3><p class="cultural-card-body">Roman writers equated the Germanic war god with Mars, especially as <em>Mars Thingsus</em>, the patron of the thing assembly. The Romano-Germanic altar at Housesteads on Hadrian's Wall invokes 'Mars Thincsus' alongside the Alaisiagae, a pair of Germanic goddesses. In the interpretatio romana of Tacitus, the highest Germanic god was Mercury (<a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>), but Mars remained the god of war and the assembly. The Anglo-Saxon name <em>Tīw</em> and the day-name Tuesday preserve Týr's memory in English. His name — cognate with Zeús, Iuppiter, and Sanskrit Dyáuṣ — is the old Indo-European word for the sky god, and some scholars argue that *Tīwaz, not Óðinn, was the original chief god of early Germanic religion, later eclipsed in the literary record. If so, the one-handed god of the Edda is the last, diminished portrait of a deity who once stood at the head of the pantheon.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Týr survives most visibly in the English word <em>Tuesday</em> ('Tīw's day'), a faint echo of a once-major deity. In modern Heathenry and Norse-inspired fantasy, he is honored as the god of law, honor, and self-sacrifice — the deity who keeps oaths even at terrible cost. His one-handed image has become a symbol of integrity, and the binding of <a href="/fenrir/" class="crosslink" data-crosslink="fenrir">Fenrir</a> remains one of the most retold scenes in the entire Norse corpus. For military ethicists and legal historians, Týr represents the idea that law requires sacrifice and that the guarantor of order must sometimes pay the price personally.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The name Týr is attested in runic inscriptions, including the early Viking-Age Ribe skull fragment. The Romano-Germanic altar at Housesteads (Vercovicium) on Hadrian's Wall names Mars Thincsus, the interpretatio romana of Týr as god of the thing. Place-names such as Týrsbergi in Sweden and the widespread Scandinavian Tis-/Tir- names suggest a cultic footprint broader than the literary record implies.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Týr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Týr is the god of the kept word. In a world of shifting alliances and clever speech, he stands for the promise that cannot be broken without breaking the promiser. His hand is not lost in battle; it is lost in diplomacy, in the necessary lie that binds a monster for the good of all.</p><p>There is something austere about Týr. He does not joke like <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>, scheme like Óðinn, or thunder like <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>. He simply does what must be done and accepts the cost. In an age of broken contracts and disposable commitments, his mutilated hand is a quiet rebuke: the law is only as strong as those willing to suffer for it.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     <section class="section section-name" id="screen-appearances">
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Screen Appearances</h2>
-            <p class="section-subtitle">Films, series, animations, and games featuring Týr</p>
+            <span class="section-number">06</span>
+            <h2 class="section-title">Screen &amp; Culture</h2>
+            <p class="section-subtitle">Where Týr echoes through film, television, and games — and how</p>
         </div>
         <div class="screen-appearances-grid"><a class="screen-appearance-card reveal-up" href="/screen/god-of-war-ragnarok-2022/">
                 <span class="screen-appearance-year">2022</span>
                 <h3 class="screen-appearance-title">God of War Ragnarök</h3>
                 <span class="screen-appearance-type">Game</span>
                 <p class="screen-appearance-studio">Santa Monica Studio</p>
+                <p class="screen-appearance-summary">Kratos and Atreus journey through the Nine Realms during Fimbulwinter, confronting figures from Norse apocalyptic myth.</p>
             </a></div>
     </div>
 </section>
@@ -275,11 +341,11 @@
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Týr, War, Law, Oaths, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Týr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Týr</strong> is /tyːr/ — approximately 'TEWR' — start with a crisp 't', say the rounded 'ew' of 'few' while pursing the lips, hold it long, and finish with a light trilled r..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Týr mean?</summary><div class="faq-answer"><p><strong>Týr</strong> means <strong>God (cognate with Greek Zeus, Latin Jove)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Týr?</summary><div class="faq-answer"><p>Týr is associated with <strong>Sword</strong> (The weapon of the warrior and the symbol of lawful violence; Týr is called 'sword-god' in kennings.), <strong>Missing right hand</strong> (The visible cost of the pledge given to Fenrir; integrity made flesh.), <strong>Wolf</strong> (Fenrir, the bound beast whose capture defines Týr's myth.), <strong>Spear</strong> (The divine weapon shared with Óðinn, marking his older role as a war god.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Týr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>tyr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Týr?</summary><div class="faq-answer"><p>The wolf Fenrir grew among the gods, and only Týr dared feed him. When the gods forged the fetter Gleipnir — made of six impossible things such as the roots of a mountain and the breath of a fish — they invited Fenrir to test his strength against it. Suspecting treachery, Fenrir demanded that one god place a hand in his mouth as pledge. Týr stepped forward. The wolf was bound, and Týr lost his hand. The gods laughed; only Týr did not.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Týr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Týr</strong> is /tyːr/ — approximately 'TEWR' — start with a crisp 't', say the rounded 'ew' of 'few' while pursing the lips, hold it long, and finish with a light trilled r.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Týr mean?</summary><div class="faq-answer"><p><strong>Týr</strong> means <strong>God (cognate with Greek Zeus, Latin Jove)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Týr?</summary><div class="faq-answer"><p>Týr is associated with <strong>Sword</strong> (The weapon of the warrior and the symbol of lawful violence; Týr is called 'sword-god' in kennings.), <strong>Missing right hand</strong> (The visible cost of the pledge given to Fenrir; integrity made flesh.), <strong>Wolf</strong> (Fenrir, the bound beast whose capture defines Týr's myth.), <strong>Spear</strong> (The divine weapon shared with Óðinn, marking his older role as a war god.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Týr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>tyr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Týr?</summary><div class="faq-answer"><p>“The Binding of Fenrir” — Týr's mythology is narrower than that of Óðinn or Þórr, but it turns on a single, unforgettable scene: a god who pays for the common good with his own body. His stories are stories of pledges kept, monsters bound, and the law that outlasts the hand that swore it. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -288,7 +354,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">08</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -307,19 +373,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning (the binding of Fenrir and Týr's lost hand)</cite></li><li><cite>Poetic Edda: Lokasenna (<a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>'s taunt and Týr's reply)</cite></li><li><cite>Poetic Edda: Hymiskviða (Týr as son of <a href="/hymir/" class="crosslink" data-crosslink="hymir">Hymir</a>)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Snorri Sturluson, <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a>: <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning</a> (the binding of Fenrir; the death of Týr and <a href="/garmr/" class="crosslink" data-crosslink="garmr">Garmr</a>)</cite></li><li><cite><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a>: <a href="/texts/poetic-edda/#lokasenna" class="crosslink citation-link" data-citation="lokasenna">Lokasenna</a> (Loki's taunt and Týr's reply)</cite></li><li><cite>Poetic Edda: <a href="/texts/poetic-edda/#hymiskvitha" class="crosslink citation-link" data-citation="hymiskvitha">Hymiskviða</a> (Týr as son of <a href="/hymir/" class="crosslink" data-crosslink="hymir">Hymir</a>)</cite></li><li><cite>Poetic Edda: <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a> (the world renewed)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Týr and related cults.</cite></li><li><cite>The name Týr is attested in runic inscriptions, including the early Viking-Age Ribe skull fragment. The Romano-Germanic altar at Housesteads (Vercovicium) on Hadrian's Wall names Mars Thincsus, the interpretatio romana of Týr as god of the thing. Place-names such as Týrsbergi in Sweden and the widespread Scandinavian Tis-/Tir- names suggest a cultic footprint broader than the literary record implies.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Týr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Tacitus, Germania (interpretatio romana of Germanic gods)</cite></li><li><cite>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. Týr</cite></li><li><cite>Zoëga, A Concise Dictionary of Old Icelandic (1910), s.v. Týr</cite></li><li><cite>de Vries, Jan, Altgermanische Religionsgeschichte</cite></li><li><cite>Simek, Rudolf, Dictionary of Northern Mythology</cite></li><li><cite>Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs</cite></li></ul>
+                    <ul class="source-list"><li><cite>Tacitus, Germania (interpretatio romana of Germanic gods)</cite></li><li><cite>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. Týr</cite></li><li><cite>de Vries, Jan, Altgermanische Religionsgeschichte</cite></li><li><cite>Simek, Rudolf, Dictionary of Northern Mythology</cite></li><li><cite>Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -380,7 +446,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/tyr_logomark.webp" type="image/webp"><img src="../../assets/tyr_logomark.webp" alt="Týr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/tyr_logomark.webp" type="image/webp"><img src="../../assets/tyr_logomark.webp" alt="Týr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

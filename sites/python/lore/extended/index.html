@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Pýthōn, Serpent, Delphi, Slain by Apollo. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/python/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Pýthōn?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Pýthōn is /pý.tʰɔːn/ — approximately 'PYOO-thohn' — round the lips for 'pyoo', then aspirate the 'th' as in 'top-hon', and hold the final vowel long."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Pýthōn mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pýthōn means To rot, decay in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Pýthōn?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pýthōn is associated with Serpent/dragon (The chthonic power that must be subdued before Apollo can rule Delphi.), Omphalos (The navel-stone of the world around which she coiled.), Laurel (The plant sacred to Apollo, whose victory over Pýthōn established Delphi's laurel cult.), Tripod (The seat of the Pythia priestess who inherited Pýthōn's prophetic voice.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Pýthōn in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII python strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Pýthōn?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Born from the Deluge's Slime” — The myth of Pýthōn is the myth of Apollo's coming-of-age: a young god must kill the ancient serpent to claim his prophetic throne — and then, characteristically, must explain the killing away. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/python_logolockup.webp" type="image/webp"><img src="../../assets/python_logolockup.png" alt="Pýthōn" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Pýthōn</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Pýthōn.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/python_mascot.webp" type="image/webp"><img src="../../assets/python_mascot.png" alt="Pýthōn — Serpent, Delphi, Slain by Apollo" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/python_mascot.webp" type="image/webp"><img src="../../assets/python_mascot.png" alt="Pýthōn — Serpent, Delphi, Slain by Apollo" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Pýthōn is Tier 1: the Greek original carries both acute stress and a long vowel (ō). The English 'Python' flattens both features.</p>
+                <p class="etymology-note">The name <strong>Pýthōn</strong> carries the orthographic signature of the greek tradition: Πύθων. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Πύθων (Pýthōn), the serpent of Delphi and the name of the place itself.</li><li><strong>Delphi</strong> — Pythō, an old name for the sanctuary, from the verb pýthō, 'to rot'.</li><li><strong>Modern confusion</strong> — The name was later borrowed for a programming language; the deity has no connection to it.</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Πύθων (Pýthōn), the serpent of Delphi and the name of the place itself.</li><li><strong>Delphi</strong> — Pythō, an old name for the sanctuary, from the verb pýthein, 'to rot'.</li><li><strong>Modern confusion</strong> — The name was later borrowed for a programming language via Monty Python's Flying Circus; the deity has no connection to it.</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Pýthōn is the <strong>primeval she-serpent who guarded the oracular sanctuary at Delphi</strong>. Born from the slime after the flood, she coiled around the omphalos, the navel-stone of the world, until the young Apollo descended from Olympus and slew her. From her corpse the Pythia priestess took her name.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Pýthōn in Later Traditions</h3><p class="cultural-card-body">Pýthōn belongs to a widespread Indo-European and Near Eastern motif: the young storm or sun god who defeats a primordial dragon to establish cosmic order. The Greek version preserves a specifically Delphic local myth, but echoes of <a href="/tiamat/" class="crosslink" data-crosslink="tiamat">Tiamat</a>, Vṛtra, and the biblical <a href="/leviathan/" class="crosslink" data-crosslink="leviathan">Leviathan</a> are unmistakable. Later Christian writers sometimes identified the Pythian serpent with the devil, though the original Pýthōn was a child of <a href="/gaia/" class="crosslink" data-crosslink="gaia">Gaia</a>, not a tempter of humanity.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Pýthōn lives on in the Pythian Games, the Pythagorean fascination with Delphi, and the very word 'python'—borrowed, somewhat absurdly, for a programming language whose logo is two snakes. More seriously, the myth remains a foundational text for understanding how Apollo's rational prophecy superseded older, chthonic forms of divination. Every oracle of Delphi, ancient or modern, still stands in the shadow of the serpent he killed.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Pýthōn</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Pýthōn in Later Traditions</h3><p class="cultural-card-body">Pýthōn belongs to the oldest stratum of myth: the dragon of the deep waters slain by the newcomer god, a pattern running from <a href="/tiamat/" class="crosslink" data-crosslink="tiamat">Tiamat</a> through Vṛtra to <a href="/leviathan/" class="crosslink" data-crosslink="leviathan">Leviathan</a> — the chaos-battle the comparatists mapped, here shrunk to a single gorge in Phocis. Her gender was disputed even in antiquity — female (<em>drakaina</em>) in the <em>Homeric Hymn</em>, male in Hyginus and Ovid — and the wavering suits her: earth-mother's child and storm-god's victim, oracle and obstacle, the power that must be defeated before truth can speak. Christian writers, less ambivalent, read her as the devil's kin, and the serpent guarding the shrine became, in their telling, the serpent of Eden in local dress.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Pýthōn lives on in the Pythian Games, the Pythia priestess, and the very word 'python' — borrowed first by a British comedy troupe and then by a programming language that took its name from the circus, not the serpent, though its two-snake logo restores the reptile by the back door. More seriously, the myth remains a foundational text for understanding how Apollo's rational prophecy superseded older, chthonic forms of divination: every oracle of Delphi still stands in the shadow of the serpent he killed. The Christian centuries kept her too — the slave-girl of Philippi possessed by a 'spirit of Python' (Acts 16:16) gave the languages of <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a> the word <em>pythoness</em> for any woman who tells fortunes.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The site itself is the monument: French excavations at Delphi (from 1892) uncovered the successive temples of Apollo, the great altar, the Castalian spring, and the omphalos, whose carved net-pattern marks the 'navel-stone' the serpent was said to guard. The myth had a long life in art: sixth- and fifth-century Attic vases — lekythoi and drinking cups especially — show the coiled drakaina taking Apollo's arrows beside the tripod, making the slaying one of the most repeated monster scenes of the Archaic repertoire. Every ancient map of Greece silently carried her corpse, for the sanctuary's name, Pythô, preserves the verb for rotting — the dragon written into the geography itself.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Pýthōn means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Pýthōn is the past that must be killed before the future can speak. She is the old oracle, the earth's own voice, the serpent wisdom that predates Olympus. Apollo does not deny her power; he inherits it. The Pythia sits where the serpent coiled; the tripod replaces the coils.</p><p>There is something honest in this myth. New institutions rarely arise from empty ground. They come by confronting, incorporating, and renaming what came before. To remember Pýthōn is to remember that every 'new' revelation has an older voice behind it, and that the name of the defeated often outlasts the name of the victor — the sanctuary is called Pythô after her, and her title became her killer's priestess.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Pýthōn, Serpent, Delphi, Slain by Apollo, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Pýthōn?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Pýthōn</strong> is /pý.tʰɔːn/ — approximately 'PYOO-thohn' — round the lips for 'pyoo', then aspirate the 'th' as in 'top-hon', and hold the final vowel long..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Pýthōn mean?</summary><div class="faq-answer"><p><strong>Pýthōn</strong> means <strong>To rot, decay</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Pýthōn?</summary><div class="faq-answer"><p>Pýthōn is associated with <strong>Serpent/dragon</strong> (The chthonic power that must be subdued before Apollo can rule Delphi.), <strong>Omphalos</strong> (The navel-stone of the world around which she coiled.), <strong>Laurel</strong> (The plant sacred to Apollo, whose victory over Pýthōn established Delphi's laurel cult.), <strong>Tripod</strong> (The seat of the Pythia priestess who inherited Pýthōn's prophetic voice.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Pýthōn in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>python</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Pýthōn?</summary><div class="faq-answer"><p>After <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> destroyed the earth with a flood, the world was covered in slime. From that decaying mud Gaia produced Pýthōn, a monstrous she-serpent. She made her lair at the foot of Mount Parnassus, where an oracular fissure breathed vapours of prophecy. There she guarded the sanctuary before any Olympian had claimed it.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Pýthōn?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Pýthōn</strong> is /pý.tʰɔːn/ — approximately 'PYOO-thohn' — round the lips for 'pyoo', then aspirate the 'th' as in 'top-hon', and hold the final vowel long.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Pýthōn mean?</summary><div class="faq-answer"><p><strong>Pýthōn</strong> means <strong>To rot, decay</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Pýthōn?</summary><div class="faq-answer"><p>Pýthōn is associated with <strong>Serpent/dragon</strong> (The chthonic power that must be subdued before Apollo can rule Delphi.), <strong>Omphalos</strong> (The navel-stone of the world around which she coiled.), <strong>Laurel</strong> (The plant sacred to Apollo, whose victory over Pýthōn established Delphi's laurel cult.), <strong>Tripod</strong> (The seat of the Pythia priestess who inherited Pýthōn's prophetic voice.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Pýthōn in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>python</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Pýthōn?</summary><div class="faq-answer"><p>“Born from the Deluge's Slime” — The myth of Pýthōn is the myth of Apollo's coming-of-age: a young god must kill the ancient serpent to claim his prophetic throne — and then, characteristically, must explain the killing away. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,7 +355,7 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homeric Hymn to Apollo</cite></li><li><cite>Hesiod, Theogony</cite></li><li><cite>Pindar, Pythian Odes</cite></li><li><cite>Aeschylus, Eumenides</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to Apollo</cite></li><li><cite>Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a></cite></li><li><cite>Aeschylus, Eumenides 1–8</cite></li><li><cite>Ovid, <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 1.438–451</cite></li><li><cite>Plutarch, On the Obsolescence of Oracles</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -304,7 +367,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>LSJ (Liddell-Scott-Jones)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hyginus, Fabulae 140</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/python_logomark.webp" type="image/webp"><img src="../../assets/python_logomark.webp" alt="Pýthōn logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/python_logomark.webp" type="image/webp"><img src="../../assets/python_logomark.webp" alt="Pýthōn logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

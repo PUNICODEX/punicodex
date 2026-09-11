@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Auðhumla, Primeval Cow, Nourisher of Creation. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/audhumla/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Auðhumla?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Auðhumla is /ˈɔuðˌhum.la/ — approximately 'OWTH-hoom-la' — the first syllable has a diphthong like 'cow' followed by the soft 'th' of 'this'; stress falls on the first syllable."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Auðhumla mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Auðhumla means Wealth-humla (primeval cow) in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Auðhumla?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Auðhumla is associated with The primeval cow (The first animal, whose milk is the original nourishment of the cosmos), Salt rime-stones (The ice she licks for three days until Búri is freed), Four milk-streams (The rivers from her udders that sustain Ymir), The tongue that shapes (Her licking is the first creative act after the melting of ice — not speech, but patient touch)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Auðhumla in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII audhumla strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Auðhumla?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Cow in the Void” — Auðhumla has only one extended scene in Norse mythology, preserved in a single chapter of Snorri's Prose Edda — but it is the scene from which everything else follows: the void's first feast, and the patient tongue that frees the first god. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/audhumla_logolockup.webp" type="image/webp"><img src="../../assets/audhumla_logolockup.png" alt="Auðhumla" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Auðhumla</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Auðhumla.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/audhumla_mascot.webp" type="image/webp"><img src="../../assets/audhumla_mascot.png" alt="Auðhumla — Primeval Cow, Nourisher of Creation" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/audhumla_mascot.webp" type="image/webp"><img src="../../assets/audhumla_mascot.png" alt="Auðhumla — Primeval Cow, Nourisher of Creation" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Auðhumla is Tier 1 because the restored form preserves the distinctive ð (eth) and the diphthong auð — letters and sounds the ASCII form audhumla loses.</p>
+                <p class="etymology-note">Old Norse Auðhumla, the primeval cow that licked the salt blocks and revealed <a href="/buri/" class="crosslink" data-crosslink="buri">Búri</a>, ancestor of the gods.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Auðhumla</strong> is the first being with a body of plenty in the Norse cosmos. While the frost giant <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a> feeds from her four streams of milk, she licks the salty rime-stones of <a href="/ginnungagap/" class="crosslink" data-crosslink="ginnungagap">Ginnungagap</a> and frees <a href="/buri/" class="crosslink" data-crosslink="buri">Búri</a>, the first of the gods. She is not a goddess in the usual sense but the living source from which the two lineages of the world — giant and god — draw their beginning.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Auðhumla in Later Traditions</h3><p class="cultural-card-body">Auðhumla has no direct foreign counterpart, but she belongs to a broad Indo-European motif: the primeval bovine whose milk or body nourishes the world. The Vedic cow Surabhi yields the ocean of milk; the Iranian Gōšūrun and the bovid figure of the Zoroastrian creation myth play analogous roles; and the Egyptian cow-goddess <a href="/hathor/" class="crosslink" data-crosslink="hathor">Hathor</a> and Greek Io have sometimes been compared, though these are typological, not genealogical, parallels. Within Norse studies she is read as the female counterpart to Ymir — the nourishing body that balances his monstrous growth.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Auðhumla survives in every retelling of the Norse creation myth, from the Victorian Eddas to contemporary comics, games, and Heathen cosmology. Her image — a cow standing in the void, licking the first god out of ice — is one of the most vivid in the Norse corpus. Modern Ásatrú and Norse-pagan reconstruction often honor her as the first mother, the abundance that precedes every order. Restoring <em>Auðhumla</em> preserves the eth and diphthong that make her name sound like the cold, rich world she inhabits.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Auðhumla</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Auðhumla in Later Traditions</h3><p class="cultural-card-body">Auðhumla has no direct foreign counterpart, but she belongs to a broad Indo-European motif: the primeval bovine whose milk or body nourishes the world. The Vedic cow Surabhi yields the ocean of milk; the Iranian Gōšūrun and the bovid figure of the Zoroastrian creation myth play analogous roles; and the Egyptian cow-goddess <a href="/hathor/" class="crosslink" data-crosslink="hathor">Hathor</a> and Greek Io have sometimes been compared, though these are typological, not genealogical, parallels. Within Norse studies she is read as the female counterpart to <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a> — the nourishing body that balances his monstrous growth.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Auðhumla survives in every retelling of the Norse creation myth, from the Victorian Eddas to contemporary comics, games, and Heathen cosmology. Her image — a cow standing in the void, licking the first god out of ice — is one of the most vivid in the Norse corpus. Modern Ásatrú and Norse-pagan reconstruction often honor her as the first mother, the abundance that precedes every order. Restoring <em>Auðhumla</em> preserves the eth and diphthong that make her name sound like the cold, rich world she inhabits.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Auðhumla is an entirely textual figure. No runestone, image, or place-name can be securely identified with her. Her witness is the manuscript tradition of Snorri's <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> — Codex Regius (GKS 2367 4to), Codex Wormianus, Codex Trajectinus, and the <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a> Edda — which preserve <a href="/texts/prose-edda/#gylfaginning-05" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 5</a>. The scene has, however, left a strong trace in later Scandinavian folk art and modern Norse-revival iconography.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Auðhumla means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Auðhumla is patience made flesh. She does not speak, she does not fight, she does not scheme; she simply gives milk and licks stone. Out of that patient repetition the whole world arrives: the giant fed, the god freed, the genealogies that will end in fire. She is the first example of Norse wisdom — that power often looks like persistence.</p><p>Her name carries wealth, and her body is abundance, but her real gift is attention. She notices the rime, she returns to it, and on the third day a man stands free. In a culture that values eloquence and violence, Auðhumla is the silent one who makes both possible.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Auðhumla, Primeval Cow, Nourisher of Creation, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Auðhumla?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Auðhumla</strong> is /ˈɔuðˌhum.la/ — approximately 'OWTH-hoom-la' — the first syllable has a diphthong like 'cow' followed by the soft 'th' of 'this'; stress falls on the first syllable..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Auðhumla mean?</summary><div class="faq-answer"><p><strong>Auðhumla</strong> means <strong>Wealth-humla (primeval cow)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Auðhumla?</summary><div class="faq-answer"><p>Auðhumla is associated with <strong>The primeval cow</strong> (The first animal, whose milk is the original nourishment of the cosmos), <strong>Salt rime-stones</strong> (The ice she licks for three days until Búri is freed), <strong>Four milk-streams</strong> (The rivers from her udders that sustain Ymir), <strong>The tongue that shapes</strong> (Her licking is the first creative act after the melting of ice — not speech, but patient touch).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Auðhumla in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>audhumla</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Auðhumla?</summary><div class="faq-answer"><p>Snorri tells how the rivers of Élivágar, flowing out of Niflheim, hardened into ice in Ginnungagap. When the heat of Múspell met that ice, it melted and dripped; from the drips came Ymir, the first frost giant. A second dripping formed the cow Auðhumla. She fed Ymir with her milk, and she herself fed by licking the salty, hoar-frost-covered stones.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Auðhumla?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Auðhumla</strong> is /ˈɔuðˌhum.la/ — approximately 'OWTH-hoom-la' — the first syllable has a diphthong like 'cow' followed by the soft 'th' of 'this'; stress falls on the first syllable.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Auðhumla mean?</summary><div class="faq-answer"><p><strong>Auðhumla</strong> means <strong>Wealth-humla (primeval cow)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Auðhumla?</summary><div class="faq-answer"><p>Auðhumla is associated with <strong>The primeval cow</strong> (The first animal, whose milk is the original nourishment of the cosmos), <strong>Salt rime-stones</strong> (The ice she licks for three days until Búri is freed), <strong>Four milk-streams</strong> (The rivers from her udders that sustain Ymir), <strong>The tongue that shapes</strong> (Her licking is the first creative act after the melting of ice — not speech, but patient touch).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Auðhumla in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>audhumla</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Auðhumla?</summary><div class="faq-answer"><p>“The Cow in the Void” — Auðhumla has only one extended scene in Norse mythology, preserved in a single chapter of Snorri's Prose Edda — but it is the scene from which everything else follows: the void's first feast, and the patient tongue that frees the first god. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,19 +349,19 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li><li><cite>Zoëga</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li><li><cite>Zoëga</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 5 (the primeval cow, Ymir, and the emergence of Búri)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 5 (the primeval cow, Ymir, and the emergence of Búri)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Auðhumla and related cults.</cite></li><li><cite>Auðhumla is an entirely textual figure. No runestone, image, or place-name can be securely identified with her. Her witness is the manuscript tradition of Snorri's Prose Edda — Codex Regius (GKS 2367 4to), Codex Wormianus, Codex Trajectinus, and the <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a> Edda — which preserve Gylfaginning 5. The scene has, however, left a strong trace in later Scandinavian folk art and modern Norse-revival iconography.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Auðhumla and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/audhumla_logomark.webp" type="image/webp"><img src="../../assets/audhumla_logomark.webp" alt="Auðhumla logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/audhumla_logomark.webp" type="image/webp"><img src="../../assets/audhumla_logomark.webp" alt="Auðhumla logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

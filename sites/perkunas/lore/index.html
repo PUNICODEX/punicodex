@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Perkūnas — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Perkūnas</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Perkūnas.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,156 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Perkūnas</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Perkūnas</strong> is the standard Baltic romanisation, documented in academic sources — “Lithuanian/Baltic thunder deity, cognate with Slavic <a href="/perun/" class="crosslink" data-crosslink="perun">Perun</a> and Indo-Iranian Parjanya.”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual baltic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">perkunas</p>
-                    <p class="card-body">Reduced to plain <strong>perkunas</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Perkūnas</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Perkūnas</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Perkūnas.com → xn--perknas-3sb.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Perkūnas</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Perkūnas</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Perkūnas is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Perkūnas</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual baltic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Perkūnas</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Perkūnas</p>
-                    <p class="card-body">The live temple domain — <strong>perkūnas.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">perkunas</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Perkūnas was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Perkūnas</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/pʲɛrˈkuːnɐs/</span>
-            <span class="ipa-label">Lithuanian/Baltic Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">P</span>
-        <span class="phoneme-desc">Voiceless bilabial plosive [p], slightly palatalized before the front vowel</span>
+      <p class="lead-text">Perkūnas's mythology is preserved largely in Lithuanian and Latvian folklore recorded in the nineteenth and early twentieth centuries, after the medieval church had suppressed his cult. The peasants remembered him as the thunderer who defended the moral order against devils, witches, and the chaos of the wilderness — and the recorders wrote it down just in time.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Baltic Folklore</span>
+          <h3 class="myth-title">Perkūnas and the Oak</h3>
+          <p class="myth-text">In Lithuanian folklore Perkūnas's tree is the <strong>oak</strong>, and the lightning-struck oak is his signature. Jonas Basanavičius and the nineteenth-century collectors recorded what the peasantry still practiced: when his bolt split a tree, the fire that remained was gathered as sacred and carried home without letting it die, to kindle the hearth anew; splinters of the struck wood were kept against lightning and illness, and offerings were left at the lightning-stones at the roots. The oak grove itself was his temple — an open-air sanctuary needing no roof, since its congregation met under thunderheads. Folklore adds the companion image of his forge: in the deep of the storm the god hammers his bolts on the anvil of the sky, and the long rolling after-clap is the echo of his work. The theology is exact: the tree that stands highest takes the blow, and the fire that kills the tree feeds the house. What strikes the sacred thing becomes the sacred thing.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">e</span>
-        <span class="phoneme-desc">Open-mid front unrounded vowel [ɛ], like English 'bet'</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Latvian Dainas</span>
+          <h3 class="myth-title">Pērkons Judges the Liar</h3>
+          <p class="myth-text">The Latvian <em>dainas</em> — the hundreds of thousands of short folk songs gathered by Krišjānis Barons in the nineteenth century — give Pērkons his juridical office. Thunder, the dainas say, does not strike at random: it searches out the <strong>perjurer</strong>, the thief whose theft was never confessed, the master who cheated his laborers, the miser who turned the beggar from his door. One strain has Pērkons striking the oath-breaker's barns; another has the thunder god walking the roads in human disguise, asking shelter and rewarding or punishing what he finds. A clap of thunder during a quarrel or a lawsuit was heard as his verdict entering the record. The tradition is not naive about this: some dainas admit the bolt sometimes falls on the innocent cottage, and the people's answer is that hidden guilt must have been there. In a land without effective courts for the poor, the thunderer's roll was the appeal that always found a judge — the sky, unlike the manor, could not be bribed.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">r</span>
-        <span class="phoneme-desc">Alveolar trill or tap [r], rolled more distinctly than in most English dialects</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Baltic Cosmology</span>
+          <h3 class="myth-title">The Battle with Velnias</h3>
+          <p class="myth-text">Perkūnas's standing antagonist is <strong>Velnias</strong> — the devil of Christianized folklore, but underneath the borrowed horns the old opponent of the sky: the power of the forest, the deep earth, and the night. The Lithuanian tale-cycles collected by Basanavičius and analyzed by Algirdas Julien Greimas send the two into endless combat. Velnias hides the sun and moon, steals the celestial cattle, floods the fields, or simply hides behind a tree until Perkūnas's bolt roots him out; sometimes, in the strangest layer of the tradition, Velnias is the thunderer's own <strong>smith</strong>, hammering bolts in a mountain forge for a master who will not pay him fairly. The dual is among the oldest structures in Indo-European myth — bright sky against dark earth — but in the Baltic it stayed personal and comic at once: two neighbors of the cosmos, forever stealing from and chasing one another across the woods. The storm is the sound of their feud, and the peasant under the rafters its amused audience.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">kū</span>
-        <span class="phoneme-desc">Voiceless velar plosive [k] plus long close back rounded vowel [uː], the thunder-syllable</span>
-      </div>
-      <div class="phoneme" style="--delay:400ms">
-        <span class="phoneme-symbol">nas</span>
-        <span class="phoneme-desc">Alveolar nasal [n] plus reduced vowel [ɐ] and alveolar fricative [s], the old masculine nominative ending</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Lithuanian Legend</span>
+          <h3 class="myth-title">The Amber Palace of Jūratė</h3>
+          <p class="myth-text">The most beloved Lithuanian thunder legend is late and literary, but it has carried Perkūnas's name farther than any hymn. The mortal fisherman <strong>Kastytis</strong> dared to set his nets in the sea-queen <strong>Jūratė's</strong> domain — the undersea palace of amber at the bottom of the Baltic — and the goddess, instead of punishing him, loved him and kept him in her coral halls. Perkūnas, enforcer of every boundary, struck the palace with his bolt and shattered it into a thousand pieces; Jūratė was chained to the ruins, Kastytis was drowned, and the storm-broken fragments of the amber palace still wash ashore after every thunderstorm. The tale is recorded from folk tellers in the nineteenth century, not from medieval sources — but its geology is true to the coast, where amber appears in the sand most plentifully after autumn gales. The god's role is unchanged from the oldest layer of his myth: desire that crosses the border between worlds is exactly what thunder is for.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">pyair-KOO-nuss — roll the 'r,' make the 'oo' long, and give the final syllable a light hiss.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Lithuanian</strong> Perkūnas, the thunder god preserved in folklore and theonymy</li><li><strong>Latvian</strong> Pērkons, the Latvian thunder deity</li><li><strong>Old Prussian</strong> Percunis, attested in the sixteenth-century Catechisms</li><li><strong>Slavic</strong> Perun, the cognate Slavic thunder god</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Perkūnas is Tier-1: the macron on the long ū is a distinctive feature the ASCII form loses. The name descends from Proto-Baltic *Perkūnas and is cognate with Slavic Perun, reflecting a common Indo-European thunder deity.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -387,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Thunder on the Oak</h2>
             <p class="section-subtitle">Storms, Justice, and the Baltic Sky-Father</p>
         </div>
@@ -424,8 +322,8 @@
         <span class="symbol-meaning">His sacred tree, struck by lightning and used for offerings</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Flaming chariot or goat-drawn cart</span>
-        <span class="symbol-meaning">His vehicle as he travels the sky</span>
+        <span class="symbol-name">Flaming chariot or cart</span>
+        <span class="symbol-meaning">His vehicle as he rumbles across the sky in Lithuanian songs</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Fire and spark</span>
@@ -434,49 +332,164 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Perkūnas</p>
-        </div>
-        
-      <p class="lead-text">Perkūnas's mythology is preserved largely in Lithuanian and Latvian folklore recorded in the nineteenth and early twentieth centuries. The medieval church had suppressed his cult, but the peasants remembered him as the thunderer who defended the moral order against devils, witches, and the chaos of the wilderness.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Baltic Folklore</span>
-          <h3 class="myth-title">Perkūnas and the Oak</h3>
-          <p class="myth-text">In Lithuanian folklore, Perkūnas strikes the oak with lightning, and the fire that results is sacred. Oak groves were his temples, and people would kindle new fire from a tree hit by his bolt. The oak's hardness and height made it the natural home of the sky-god's power, and acorns were gathered as protective amulets.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Latvian Dainas</span>
-          <h3 class="myth-title">Pērkons Judges the Liar</h3>
-          <p class="myth-text">Latvian dainas (folk songs) sing of Pērkons striking the homes of those who swear false oaths or cheat their neighbors. The thunder god is not indifferent weather; he is a moral agent who punishes hidden crimes that human courts cannot reach. A clap of thunder during a dispute was read as his verdict.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Baltic Cosmology</span>
-          <h3 class="myth-title">The Battle with Velnias</h3>
-          <p class="myth-text">Perkūnas frequently battles Velnias, a devil-like figure associated with the forest, cattle, and the underworld. In some tales Velnias steals the celestial cows or hides the sun; Perkūnas pursues him with thunder and lightning. The combat re-enacts the Indo-European opposition between the bright sky and the dark earth.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Perkūnas</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Perkūnas</strong> is the standard Baltic romanisation, documented in academic sources — “Lithuanian/Baltic thunder deity, cognate with Slavic <a href="/perun/" class="crosslink" data-crosslink="perun">Perun</a> and Indo-Iranian Parjanya.”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual baltic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">perkunas</p>
+                <p class="card-body">Reduced to plain <strong>perkunas</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Perkūnas</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Perkūnas</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Perkūnas.com → xn--perknas-3sb.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Perkūnas</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Perkūnas</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Perkūnas</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Perkūnas</p>
+                    <p class="card-body">The live temple domain — <strong>perkūnas.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">perkunas</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Perkūnas was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/pʲɛrˈkuːnɐs/</span>
+            <span class="ipa-label">Lithuanian/Baltic Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">P</span>
+        <span class="phoneme-desc">Voiceless bilabial plosive [p], slightly palatalized before the front vowel</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">e</span>
+        <span class="phoneme-desc">Open-mid front unrounded vowel [ɛ], like English 'bet'</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">r</span>
+        <span class="phoneme-desc">Alveolar trill or tap [r], rolled more distinctly than in most English dialects</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">kū</span>
+        <span class="phoneme-desc">Voiceless velar plosive [k] plus long close back rounded vowel [uː], the thunder-syllable</span>
+      </div>
+      <div class="phoneme" style="--delay:400ms">
+        <span class="phoneme-symbol">nas</span>
+        <span class="phoneme-desc">Alveolar nasal [n] plus reduced vowel [ɐ] and alveolar fricative [s], the old masculine nominative ending</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">pyair-KOO-nuss — roll the 'r,' make the 'oo' long, and give the final syllable a light hiss.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Perkūnas is Tier-1: the macron on the long ū is a distinctive feature the ASCII form loses. The name descends from Proto-Baltic *Perkūnas and is cognate with Slavic Perun, reflecting a common Indo-European thunder deity.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">06</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Perkūnas is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Perkūnas</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual baltic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -485,7 +498,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Perkūnas is the sky's conscience. His thunder is not random noise but a voice that says: there is a limit to what can be hidden. In an age of corporate crime and political lies, his mythology still resonates — the belief that some justice arrives not from human courts but from the sheer force of nature. To remember Perkūnas is to remember that the sky is watching, and that oaths once mattered enough to call down lightning.</p>
+                <p class="pantheon-body">Perkūnas is the sky's conscience. His thunder is not random noise but a voice that says: there is a limit to what can be hidden. In an age of corporate crime and political lies, his mythology still resonates — the belief that some justice arrives not from human courts but from the sheer force of nature. To remember Perkūnas is to remember that the sky is watching, and that oaths once mattered enough to call down lightning. Yet the folklore is wiser than the moral slogan: it also knows the bolt sometimes hits the innocent cottage, and it answers with stubborn faith rather than doubt. That double vision — justice that must be believed in even when it miscarries — is what makes the Baltic thunderer more than a storm in a costume. He is the oldest European image of a law above the law.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -494,7 +507,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/perkunas_mascot.webp" type="image/webp"><img src="../assets/perkunas_mascot.png" alt="Perkūnas mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/perkunas_mascot.webp" type="image/webp"><img src="../assets/perkunas_mascot.png" alt="Perkūnas mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -532,7 +545,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/perkunas_logomark.webp" type="image/webp"><img src="../assets/perkunas_logomark.webp" alt="Perkūnas logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/perkunas_logomark.webp" type="image/webp"><img src="../assets/perkunas_logomark.webp" alt="Perkūnas logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

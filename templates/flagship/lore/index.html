@@ -10,7 +10,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -127,6 +127,8 @@
 
     {{BREADCRUMB_NAV}}
 
+    {{CHAPTER_NAV}}
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
         <a href="../" class="nav-link">Home</a>
@@ -144,7 +146,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">{{GREEK}}</span>
                     <span class="title-divider"></span>
@@ -156,8 +158,8 @@
                     <span class="meta-domain">{{DOMAINS_TEXT}}</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"/>
                         </svg>
@@ -174,67 +176,20 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
+    <!-- Mythology — the heart of the lore page -->
+    {{MYTHOLOGY}}
 
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">{{ORIGINAL_SCRIPT_LABEL}}</h3>
-                    <p class="card-greek">{{ORIGINAL_SCRIPT}}</p>
-                    <p class="card-body">{{NAME_ORIGINAL}}</p>
-                    {{ORIGINAL_SCRIPT_CARD_NOTE}}
-                </div>
+    <!-- Domains & Sacred Symbols -->
+    {{SYMBOLS}}
 
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"/>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">{{ASCII}}</p>
-                    <p class="card-body">{{NAME_ASCII}}</p>
-                </div>
+    <!-- In the Texts & Everyday Words -->
+    {{CROSS_LINK_BAND}}
 
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">{{UNICODE}}</p>
-                    <p class="card-body">{{NAME_UNICODE}}</p>
-                </div>
-            </div>
+    <!-- Related Names -->
+    {{RELATED_NAMES}}
 
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">{{PUNYCODE}}</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>{{UNICODE}}</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>{{UNICODE}}</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    {{ORIGINAL_SCRIPT_PROVENANCE_SECTION}}
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    {{THE_NAME}}
 
     <!-- Name Variations -->
     {{NAME_VARIATIONS}}
@@ -242,17 +197,8 @@
     <!-- Pronunciation -->
     {{PRONUNCIATION}}
 
-    <!-- Domains & Sacred Symbols -->
-    {{SYMBOLS}}
-
-    <!-- Mythology -->
-    {{MYTHOLOGY}}
-
-    <!-- Related Names -->
-    {{RELATED_NAMES}}
-
-    <!-- In the Texts & Everyday Words -->
-    {{CROSS_LINK_BAND}}
+    <!-- Original Script Provenance -->
+    {{ORIGINAL_SCRIPT_PROVENANCE_SECTION}}
 
     <!-- Extended Lore CTA -->
     {{EXTENDED_LORE_CTA}}

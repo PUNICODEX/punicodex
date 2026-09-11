@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Stýx — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Στύξ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Stýx.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Στύξ</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Stýx</strong> (Στύξ) is attested in the source tradition — “Hateful”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">styx</p>
-                    <p class="card-body">Reduced to plain <strong>styx</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Stýx</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Stýx</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Stýx.com → xn--stx-moa.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Stýx</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Stýx</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Stýx is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Στύξ</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Stýx is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Stýx</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Stýx</p>
-                    <p class="card-body">Restores <strong>Στύξ</strong>. The live temple domain — <strong>stýx.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">styx</p>
-                    <p class="card-body">Flattens <strong>Στύξ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Stýx was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Stýx</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/stýks/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">STEEX — one syllable, acute on the only vowel there is.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Στύξ</li><li><strong>Latin</strong> Styx</li><li><strong>Her children</strong> Bía, Zêlos, <a href="/kratos/" class="crosslink" data-crosslink="kratos">Krátos</a>, <a href="/nike/" class="crosslink" data-crosslink="nike">Níkē</a></li><li><strong>Owned form</strong> Stýx</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Στύξ is monosyllabic — and Greek monosyllables carry the acute on their vowel in modern editions (as Πῦρ carries its circumflex, and φῶς its own). The restoration Stýx keeps that acute: the stress of the single syllable, the only mark the name can bear, exactly where the tradition places it.</p></div>
+      <p class="lead-text">Stýx's myths are about the one thing stronger than the gods: the word that cannot be taken back. She is eldest daughter of the Ocean, mother of the powers that prop <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a>' throne, boundary of the dead — and the water that makes even Olympus keep its promises.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Oath</span>
+          <h3 class="myth-title">The Water the Gods Swear By</h3>
+          <p class="myth-text">The Iliad's formula runs through the epic: when Zeus wishes to make an oath unanswerable, he swears 'by the earth and the broad heaven above and the down-flowing water of Styx' (Iliad 15.36–38). <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a>, buying the cooperation of Sleep, swears by 'the inviolable water of Styx, which is the greatest and most dread oath for the blessed gods', and pledges him one of the Graces in marriage (Iliad 14.271–279). No epic shows the penalty ever collected — the oath exists precisely so that it need never be. Hesiod's <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> (793–806) sets the penalty for perjury: the god who pours her water in libation and forswears lies breathless for a full year, cut off from the gods' counsils and feasts for nine more, and returns only in the tenth. Even heaven polices itself — and its police is a river.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Lineage</span>
+          <h3 class="myth-title">The Mother of the Reign</h3>
+          <p class="myth-text">Hesiod's Theogony (383–403) makes her the hinge of Zeus' kingdom. Styx, eldest daughter of Ocean and <a href="/tethys/" class="crosslink" data-crosslink="tethys">Tethys</a>, joined herself to the Titan <a href="/pallas/" class="crosslink" data-crosslink="pallas">Pallas</a> and bore four children — Zelos (Rivalry), <a href="/nike/" class="crosslink" data-crosslink="nike">Nike</a> (Victory), <a href="/kratos/" class="crosslink" data-crosslink="kratos">Kratos</a> (Power), and Bia (Force). When the war against the Titans began, she was the first of the immortals to bring her children to Zeus' side, remembering how her father Ocean had suffered under the old dispensation — an eldest daughter's memory of the old regime deciding the new. Zeus rewarded her above all: her children were granted to dwell forever beside him, and the oath by Styx was established as the supreme bond of the gods. The king's throne, the poets say, is propped by a river and her brood — rivalry and victory, power and force, the whole grammar of rule, born of the boundary itself.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Water</span>
+          <h3 class="myth-title">The Stream of the Under</h3>
+          <p class="myth-text">Her water is the underworld's own. Homer sends <a href="/odysseus/" class="crosslink" data-crosslink="odysseus">Odysseus</a> across Ocean to the land of the Cimmerians, where 'the streams of the river Ocean flow' beside the gates of the sun (Odyssey 10.508–515), and the later tradition fixed Styx among the rivers of the dead, with Charon ferrying the unburied across her dark flood (Virgil, Aeneid 6.295–330). Hesiod (Theogony 775–806) makes her a tenth part of Ocean's whole flow, falling from a cliff far beneath the earth, where Night and Day pass each other at the threshold. The dead drink nothing from her, but she fences them: Styx is not a place you cross so much as a condition you accept. In the Orphic gold tablets her name is already there, one of the guardians of the boundary between the living and the company below.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Earthly River</span>
+          <h3 class="myth-title">Nonakris and the Poison Spring</h3>
+          <p class="myth-text">The Greeks placed her on earth in Arcadia. Near the forsaken city of Nonakris in the northern Peloponnese, Pausanias reports (8.17.6–18.6), a water called Styx drips from a high cliff — black, cold beyond any other water, said to destroy whatever vessel it touches. Herodotus (6.74) records the Arcadians' claim that the water can be held in no vessel but a horse's hoof, and links it with the strange end of the Spartan king Kleomenes, who died raving in Arcadian exile. Whether poison spring or simply meltwater of terrible cold, the identification made the divine oath locally tangible: an oath sworn 'by Styx' at Nonakris could point downhill at the thing itself. Later geographers repeat the Arcadian notice, and modern travelers have matched the description to the waterfall above the Krathis gorge. It is the rare case where a goddess's material trace outlasted her cult.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The River of the Oath</h2>
             <p class="section-subtitle">The Boundary, the Vow, and the Water the Gods Fear</p>
         </div>
@@ -378,7 +296,7 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 24C16 16 24 16 32 24C40 32 48 32 56 24M8 40C16 32 24 32 32 40C40 48 48 48 56 40"></path></svg></div>
         <h4 class="domain-name">The Oath Water</h4>
-        <p class="domain-desc">Swear on her and the vow is iron — <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> himself cannot break it.</p>
+        <p class="domain-desc">Swear on her and the vow is iron — Zeús himself cannot break it.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 52V22C12 14 20 8 32 8C44 8 52 14 52 22V52M24 52V26M40 52V26"></path></svg></div>
@@ -401,51 +319,42 @@
         <span class="symbol-meaning">The stream that chills even gods — oaths made absolute</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">The waterfall</span>
-        <span class="symbol-meaning">Her plunge from the underworld cliff, seen by few and sworn by all</span>
+        <span class="symbol-name">The libation cup</span>
+        <span class="symbol-meaning">The poured offering that accompanies every divine oath — her water drunk, not merely named</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The four children</span>
         <span class="symbol-meaning">Force, Rivalry, Power, Victory — the engines of Zeús' reign, born of a river</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The cliff of Nonakris</span>
+        <span class="symbol-meaning">The Arcadian waterfall identified with her — the one earthly place where the oath-river could be seen and touched</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Stýx</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Stýx lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Stýx's myths are about the one thing stronger than the gods: the word you cannot take back — and the water that enforces it.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Oath</span>
-          <h3 class="myth-title">The Water the Gods Swear By</h3>
-          <p class="myth-text">The Iliad's formula runs through the epic: "let this now be my inviolable oath, by the water of Stýx" — and even Zeús trembles at the breaking. When <a href="/hera/" class="crosslink" data-crosslink="hera">Hēra</a> swears to <a href="/hypnos/" class="crosslink" data-crosslink="hypnos">Hypnos</a> by that same water — promising him the Grace Pasithea in marriage for lulling Zeús to sleep (Il. 14.271) — the oath is the unbreakable currency between gods. Hesiod's Theogony (793–804) sets the penalty: a god who pours her water in libation and forswears lies one full year breathless, then nine years cut off from the gods' feasts, restored only in the tenth: the river punishes heaven itself.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+                </div>
+            </div>
+            <div class="reveal-up">
+                <h3 class="symbols-title">Words Descended from This Name</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/everyday/#stygian" class="source-badge" title="black as the underworld river">stygian</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Lineage</span>
-          <h3 class="myth-title">The Mother of the Reign</h3>
-          <p class="myth-text">Hesiod's Theogony makes her the hinge of Zeús' kingdom: Stýx, eldest daughter of Ōkeanos, brought her four children — Bía (Force), Zêlos (Rivalry), Krátos (Power), Níkē (Victory) — to Olympos at the start of the war with the Titans, the first immortal to side with Zeús. For this he honored her above all waters and set her children at his side forever. The king's throne, the poets say, is propped by a river and her brood.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Water</span>
-          <h3 class="myth-title">The Stream of the Under</h3>
-          <p class="myth-text">Her water is the underworld's own: a cold plunge from a high cliff, a tenth part of Ōkeanos' whole flow, circling the land of the dead nine times in the later tellings. The dead drink nothing, but the river is there anyway — the boundary that needs no ferryman because it is the law itself in liquid form. Styx is not a place you cross; she is a condition you agree to.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -453,7 +362,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -517,29 +426,137 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Stýx lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Στύξ</p>
+                <p class="card-body">The name in its original Greek form. <strong>Stýx</strong> (Στύξ) is attested in the source tradition — “Hateful”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">styx</p>
+                <p class="card-body">Reduced to plain <strong>styx</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Stýx</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Stýx</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Stýx.com → xn--stx-moa.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Stýx</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Stýx</em>.</p>
                 </div>
             </div>
-            <div class="reveal-up">
-                <h3 class="symbols-title">Words Descended from This Name</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/everyday/#stygian" class="source-badge" title="black as the underworld river">stygian</a>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Stýx</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Stýx</p>
+                    <p class="card-body">Restores <strong>Στύξ</strong>. The live temple domain — <strong>stýx.com</strong>.</p>
                 </div>
-            </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">styx</p>
+                    <p class="card-body">Flattens <strong>Στύξ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
         </div>
     </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Stýx was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/stýks/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">STEEX — one syllable, acute on the only vowel there is.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Στύξ is monosyllabic — and Greek monosyllables carry the acute on their vowel in modern editions (as Πῦρ carries its circumflex, and φῶς its own). The restoration Stýx keeps that acute: the stress of the single syllable, the only mark the name can bear, exactly where the tradition places it.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Stýx is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Στύξ</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Stýx is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -549,7 +566,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Stýx is the god of the word that costs something. Every contract, every vow, every "I promise" works because somewhere the tradition decided that speaking must bind — and her water is that decision made into a river. She asks the question every oath answers: what are you willing to swear on, and what will it cost you to keep it?</p>
+                <p class="pantheon-body">Stýx is the god of the word that costs something. Contracts, vows, marriage promises, courtroom oaths — all of them work because somewhere, at some depth, a culture decided that speech must bind, and her water is that decision made into a river. She asks the question every oath answers: what are you willing to swear on, and what will it cost you to keep?</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -558,7 +575,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/styx_mascot.webp" type="image/webp"><img src="../assets/styx_mascot.png" alt="Stýx mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/styx_mascot.webp" type="image/webp"><img src="../assets/styx_mascot.png" alt="Stýx mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -596,7 +613,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/styx_logomark.webp" type="image/webp"><img src="../assets/styx_logomark.webp" alt="Stýx logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/styx_logomark.webp" type="image/webp"><img src="../assets/styx_logomark.webp" alt="Stýx logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

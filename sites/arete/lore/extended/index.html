@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Arete, Excellence, Virtue. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/arete/lore/extended/">
 
@@ -72,6 +72,62 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Arete?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Arete is /a.rɛː.tɛː/ — approximately 'ah-ray-TAY' — the final syllable carries the pitch and is long; the middle vowel is also long."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Arete mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Arete means Excellence, virtue in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Arete?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Arete is associated with Laurel wreath (The prize of victory and the sign that excellence has been publicly recognised.), Steep mountain path (From Prodicus' allegory: the hard road of Arete versus the easy road of Kakia.), Arms and athletic gear (The equipment of the warrior and athlete, the two primary arenas of Homeric arete.), The scale or balance (The measured judgement that keeps excellence from becoming excess.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why are there different spellings of Arete?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each form is a historically attested restoration rather than a mistake: Aretḗ is the ideal form (Stacked macron+acute on the stressed long vowel, matching Greek Ἀρετή; philologically ideal but often untypeable on phones.). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Arete in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Arete is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Arete?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Heracles at the Crossroads” — Arete is more concept than character, but Greek mythology dramatised her in one famous scene: Prodicus' allegory of Heracles at the crossroads. There the young hero must choose between two women, one representing Arete and the other Kakia (Vice). The choice shaped every later Western telling of the hero's education. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +165,13 @@
                 <picture><source srcset="../../assets/arete_logolockup.webp" type="image/webp"><img src="../../assets/arete_logolockup.png" alt="Arete" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +182,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +201,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Arete</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Arete</span>
@@ -157,7 +216,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/arete_mascot.webp" type="image/webp"><img src="../../assets/arete_mascot.png" alt="Arete — Excellence, Virtue" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/arete_mascot.webp" type="image/webp"><img src="../../assets/arete_mascot.png" alt="Arete — Excellence, Virtue" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +260,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Arete</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +269,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The Greek Ἀρετή contains both stress (acute on the final eta) and length (both middle and final vowels are long eta), making it a Tier 1 restoration. The plain ASCII arete loses both the accent and the vowel length.</p>
+                <p class="etymology-note">The name <strong>Arete</strong> reaches the modern world through scholarly transliteration of the greek tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Ἀρετή (Arete), excellence, virtue, the fulfilment of a thing's proper function</li><li><strong>Latin equivalent</strong> — virtus, manly courage and moral excellence</li></ul></div><div class="derivative-group"><h4>Unicode Variants</h4><ul><li><strong>Aretḗ</strong> — ideal (Stacked macron+acute on the stressed long vowel, matching Greek Ἀρετή; philologically ideal but often untypeable on phones.)</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Ἀρετή (Arete), excellence, virtue, the fulfilment of a thing’s proper function</li><li><strong>Latin equivalent</strong> — virtus, manly courage and moral excellence</li><li><strong>PIE (disputed)</strong> — Traditionally connected with *h₂er- “to fit together” — Greek ἄρτιος “fitting,” Latin ars “skill,” English art; Beekes judges the prehistory uncertain.</li></ul></div><div class="derivative-group"><h4>Unicode Variants</h4><ul><li><strong>Aretḗ</strong> — ideal (Stacked macron+acute on the stressed long vowel, matching Greek Ἀρετή; philologically ideal but often untypeable on phones.)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +294,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">A</td><td><code>U+0041</code></td><td>Latin Capital Letter A</td><td>Basic Latin</td><td>A uppercase</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>r same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>e same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">t</td><td><code>U+0074</code></td><td>Latin Small Letter T</td><td>Basic Latin</td><td>t same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>e same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 1</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 1</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Arete</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +306,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Arete</strong> is the Greek personification and concept of excellence, virtue, and the fulfilment of a thing's proper function. For a knife, arete is sharpness; for a horse, speed; for a human being, the full development of mind, body, and character. The word carries no single English equivalent: it means virtue, but also skill, courage, moral goodness, and simply being the best version of what one is.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Arete in Later Traditions</h3><p class="cultural-card-body">The Greek Arete was identified by Romans with <a href="/virtus/" class="crosslink" data-crosslink="virtus">Virtus</a>, the masculine personification of courage and moral excellence. In Christian thought the concept was absorbed into the cardinal and theological virtues. The English word 'arete' is now used mainly by philosophers and mountain climbers: the latter borrowed it for the sharp ridge of a mountain, a fitting image of the narrow, difficult path to excellence.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Arete remains one of the most influential Greek words in Western ethics. Aristotle's *Nicomachean Ethics* is essentially a study of arete, and modern virtue ethics continues to use the concept. In sports, business, and education, 'excellence' is still the dominant ideal, even if the Greek context — that excellence is tied to function and community — is often forgotten. The mountain-climbing term 'arête' preserves the metaphor of the steep, narrow path. Arete is the word the Greeks used for what it means to be good at being human.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Arete</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Arete in Later Traditions</h3><p class="cultural-card-body">The Greek Arete was identified by Romans with <a href="/virtus/" class="crosslink" data-crosslink="virtus">Virtus</a>, the masculine personification of courage and moral excellence. In Christian thought the concept was absorbed into the cardinal and theological virtues. The English word 'arete' is now used mainly by philosophers and mountain climbers: the latter borrowed it for the sharp ridge of a mountain, a fitting image of the narrow, difficult path to excellence.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Arete remains one of the most influential Greek words in Western ethics. Aristotle's *Nicomachean Ethics* is essentially a study of arete, and modern virtue ethics continues to use the concept. In sports, business, and education, 'excellence' is still the dominant ideal, even if the Greek context — that excellence is tied to function and community — is often forgotten. The mountain-climbing term 'arête' preserves the metaphor of the steep, narrow path. Arete is the word the Greeks used for what it means to be good at being human.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Personified Arete enters Greek art in the later fifth century BCE — a draped woman labelled ΑΡΕΤΗ on Attic and South Italian vases — and the Romans minted her counterpart Virtus on imperial coinage, the standing female with spear and shield. The Choice of Heracles became a favorite of Roman floor mosaicists: surviving examples from Antioch and the western empire (second–third century CE) show the two women flanking the hero, Arete with her hand raised in argument — the sophist’s debate staged in household stone. On the Greek mainland the word itself is the monument: honorific decrees and epitaphs across the Aegean praise individuals “for their aretē,” so the abstraction survives less in temples than in thousands of inscribed stones. Arete’s civic shrine is lexical — the culture agreed with Aristotle that the city exists to make excellence possible.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Arete means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Arete asks us what we are for. The question sounds strange to modern ears, because we tend to think of human beings as self-creating rather than as having a function. But the Greek concept is more flexible than it first appears: arete is not a single recipe but the question of how this person, in this situation, can act excellently.</p><p>To pursue arete is to accept that excellence has a cost. The road is steep, the training is long, and the temptations of ease are constant. Yet the alternative is not freedom but a failure to become what one could have been.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Arete, Excellence, Virtue, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Arete?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Arete</strong> is /a.rɛː.tɛː/ — approximately 'ah-ray-TAY' — the final syllable carries the pitch and is long; the middle vowel is also long..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Arete mean?</summary><div class="faq-answer"><p><strong>Arete</strong> means <strong>Excellence, virtue</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Arete?</summary><div class="faq-answer"><p>Arete is associated with <strong>Laurel wreath</strong> (The prize of victory and the sign that excellence has been publicly recognised.), <strong>Steep mountain path</strong> (From Prodicus' allegory: the hard road of Arete versus the easy road of Kakia.), <strong>Arms and athletic gear</strong> (The equipment of the warrior and athlete, the two primary arenas of Homeric arete.), <strong>The scale or balance</strong> (The measured judgement that keeps excellence from becoming excess.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>What is the difference between Arete?</summary><div class="faq-answer"><p>Each is a historically defensible restoration. <strong>Aretḗ.com</strong> is the ideal form: Stacked macron+acute on the stressed long vowel, matching Greek Ἀρετή; philologically ideal but often untypeable on phones..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Arete in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>arete</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Arete?</summary><div class="faq-answer"><p>In the sophist Prodicus' tale, preserved by Xenophon, the young Heracles meets two women. One is beautiful, modest, and dressed in white: Arete. The other is alluring, overdressed, and easy: Kakia (Vice). Arete promises Heracles a life of toil, honour, and lasting fame; Kakia promises pleasure without effort. Heracles chooses Arete, and so becomes the greatest of Greek heroes.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Arete?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Arete</strong> is /a.rɛː.tɛː/ — approximately 'ah-ray-TAY' — the final syllable carries the pitch and is long; the middle vowel is also long.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Arete mean?</summary><div class="faq-answer"><p><strong>Arete</strong> means <strong>Excellence, virtue</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Arete?</summary><div class="faq-answer"><p>Arete is associated with <strong>Laurel wreath</strong> (The prize of victory and the sign that excellence has been publicly recognised.), <strong>Steep mountain path</strong> (From Prodicus' allegory: the hard road of Arete versus the easy road of Kakia.), <strong>Arms and athletic gear</strong> (The equipment of the warrior and athlete, the two primary arenas of Homeric arete.), <strong>The scale or balance</strong> (The measured judgement that keeps excellence from becoming excess.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why are there different spellings of Arete?</summary><div class="faq-answer"><p>Each form is a historically attested restoration rather than a mistake: <strong>Aretḗ</strong> is the ideal form (Stacked macron+acute on the stressed long vowel, matching Greek Ἀρετή; philologically ideal but often untypeable on phones.). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Arete in Unicode?</summary><div class="faq-answer"><p><strong>Arete</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Arete?</summary><div class="faq-answer"><p>“Heracles at the Crossroads” — Arete is more concept than character, but Greek mythology dramatised her in one famous scene: Prodicus' allegory of Heracles at the crossroads. There the young hero must choose between two women, one representing Arete and the other Kakia (Vice). The choice shaped every later Western telling of the hero's education. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +344,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,13 +357,13 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homer</cite></li><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homer, Odyssey 7.53-77 (Arete, queen of the Phaeacians)</cite></li><li><cite>Plato, Republic (arete of the soul and the city)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Homer</cite></li><li><cite>Homer, Odyssey 7.53-77 (Arete, queen of the Phaeacians)</cite></li><li><cite>Plato, Republic (arete of the soul and the city)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -365,7 +436,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/arete_logomark.webp" type="image/webp"><img src="../../assets/arete_logomark.webp" alt="Arete logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/arete_logomark.webp" type="image/webp"><img src="../../assets/arete_logomark.webp" alt="Arete logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

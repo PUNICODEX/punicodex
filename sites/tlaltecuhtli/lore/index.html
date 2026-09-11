@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Tlāltēcuhtli — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Tlāltēcuhtli</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Tlāltēcuhtli</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,148 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Tlāltēcuhtli</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Tlāltēcuhtli</strong> is the standard Nahuatl romanisation, documented in academic sources — “Lord of the earth”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">tlaltecuhtli</p>
-                    <p class="card-body">Reduced to plain <strong>tlaltecuhtli</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Tlāltēcuhtli</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tlāltēcuhtli</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Tlāltēcuhtli.com → xn--tlltcuhtli-vfb2t.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Tlāltēcuhtli</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tlāltēcuhtli</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Tlāltēcuhtli is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Tlāltēcuhtli</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tlāltēcuhtli</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Tlāltēcuhtli</p>
-                    <p class="card-body">The full Unicode restoration. <strong>tlāltēcuhtli.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">tlaltecuhtli</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Tlāltēcuhtli was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Tlāltēcuhtli</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/tɬaːɬˈteː.kʷet͡ɬi/</span>
-            <span class="ipa-label">Classical Nahuatl Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Tlāl-</span>
-        <span class="phoneme-desc">Lateral affricate [tɬ] plus long open [aː]; tl- is a single Nahuatl initial, and ā marks vowel length.</span>
+      <p class="lead-text">Tlāltēcuhtli appears in several Mesoamerican creation accounts as the earth monster who must be defeated and dismembered before the present world can exist. The most detailed Nahuatl version survives in the <em>Histoyre du Méchique</em>, a sixteenth-century colonial manuscript; the <em>Leyenda de los Soles</em> and the Florentine Codex supply parallel doctrines. These sources are fragmentary and written after the conquest — the tradition itself says so, and this temple reports them as such.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Creation myth</span>
+          <h3 class="myth-title">The Dismemberment of the Earth Monster</h3>
+          <p class="myth-text">Our fullest Nahua creation account survives in a sixteenth-century French manuscript, the <em>Histoyre du Méchique</em> (associated with the cosmographer André Thevet) — colonial, fragmentary, and precious for exactly that reason. It tells that the gods <a href="/quetzalcoatl/" class="crosslink" data-crosslink="quetzalcoatl">Quetzalcōātl</a> and <a href="/tezcatlipoca/" class="crosslink" data-crosslink="tezcatlipoca">Tēzcatlīpōca</a>, seeing a great monster in the form of a caiman called Tlāltēcuhtli floating on the primordial waters, transformed themselves into two great serpents and seized her, one by the right hand and foot, one by the left, and tore her in two. From one half they made the earth, from the other the sky; from her hair they made trees, plants, and flowers, from her eyes wells and springs, from her nose rivers and valleys, from her shoulders mountains. The victim did not die quietly: she cried out in the night for the hearts of men, and the gods consented to feed her. The <em>Leyenda de los Soles</em> tells a parallel creation. The myth's meaning is contract, not conquest: the world exists because a being was broken, and it keeps existing only while the debt of flesh is paid.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-tē-</span>
-        <span class="phoneme-desc">Voiceless alveolar stop [t] plus long close-mid [eː], the honorific or lordly element.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Solar myth</span>
+          <h3 class="myth-title">The Sun's Nightly Journey</h3>
+          <p class="myth-text">The Florentine Codex — the encyclopedia compiled under Bernardino de Sahagún from Nahua elders in the 1540s–1570s — describes the sun's nightly passage in the plainest physical terms: at evening the sun enters the gaping mouth of the earth in the west, passes through the body of Tlāltēcuhtli, and is delivered again at dawn in the east. To the sources this is no metaphor: the earth has a mouth, jaws, and hunger, and the day itself is a meal it cannot be allowed to refuse. Nahuatl vocabulary underwrites the image — the earth is <em>tlālli</em>, and Tlāltēcuhtli is that land made lord. The doctrine that night is the sun passing through a body made every evening an act of digestion and every morning a birth: in this cosmology time does not flow above the world but through it, and the calendar keeps its count in the gut of the ground.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-cuhtli</span>
-        <span class="phoneme-desc">Voiceless velar stop [k] plus rounded [we], then lateral affricate [tɬ] plus close front [i]; -cuhtli is the reverential suffix meaning 'lord.'</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ritual foundation</span>
+          <h3 class="myth-title">Offerings to the Hungry Earth</h3>
+          <p class="myth-text">Sahagún's informants describe a relationship of payment. Before a house was built, a field planted, or a body buried, the earth was addressed and fed — food, flowers, copal incense, and in the highest rites blood — because unfed earth refuses its function (Florentine Codex, Books 1 and 11; Durán, <em>Book of the Gods and Rites</em>). The Codex Magliabechiano illustrates precisely such offerings set before a crouching earth figure. The archaeological correlate is overwhelming: the Templo Mayor excavations have recovered dedicatory caches buried as gifts to the earth at every stage of construction, some containing the remains of sacrifice. Colonial friars read this as devil-worship; the Nahua informants present it as ordinary courtesy. Both testify to the same theology: the ground under Mexico City was never inert — it was a creditor holding the mortgage on every foundation stone.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Modern discovery</span>
+          <h3 class="myth-title">The Red Monolith Beneath the Cathedral</h3>
+          <p class="myth-text">On 2 October 2006, in a trench at the foot of the Templo Mayor, Leonardo López Luján's team uncovered a slab that made international news: a monolithic Tlāltēcuhtli more than four metres across, carved crouching with claws extended, a skull at the waist-buckle, death's eyes in its sockets, and traces of red and yellow pigment still in the stone. López Luján associated the monument with the nearby cremation deposits of Mexica rulers — above all Ahuitzotl, who died in 1502 — reading it as the earth lord summoned to receive a king. The find completed a five-hundred-year symmetry: the colonial city was built over the earth's face, its cathedral stones cut from the temples of the precinct; the excavation put the face back into the light. The earth, the Aztecs said, always gets what it is owed — even if payment comes in the currency of archaeology, and five centuries late.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'TLAH-lteh-KWEH-tlee' — begin with the single 'tl' sound, hold the first and second vowels long, and treat the final -tl as one release.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Classical Nahuatl</strong> Tlāltēcuhtli — from tlālli 'earth, land' + tēcuhtli 'lord'</li><li><strong>Nahuatl earth powers</strong> <a href="/coatlicue/" class="crosslink" data-crosslink="coatlicue">Cōātlīcue</a>, Tōnantzin, and <a href="/tlaloc/" class="crosslink" data-crosslink="tlaloc">Tlāloc</a> share overlapping chthonic and agricultural domains</li><li><strong>Modern spelling</strong> Tlaltecuhtli, the conventional form without vowel-length marking</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The name is a straightforward compound of tlālli ('earth') and tēcuhtli ('lord'). The honorific suffix is not gender-exclusive in Nahuatl; Tlāltēcuhtli is depicted as both male and female, and sometimes as a toad-like being. Tier 1: the macrons on ā and ē preserve reconstructed vowel length.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -379,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Lord of the Earth</h2>
             <p class="section-subtitle">Chthonic Power and Cosmic Sustenance</p>
         </div>
@@ -426,49 +332,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Tlāltēcuhtli</p>
-        </div>
-        
-      <p class="lead-text">Tlāltēcuhtli appears in several Mesoamerican creation accounts as the earth monster who must be defeated and dismembered before the present world can exist. The most detailed Nahuatl version is the <em>Histoyre du Méchique</em>, in which <a href="/quetzalcoatl/" class="crosslink" data-crosslink="quetzalcoatl">Quetzalcōātl</a> and <a href="/tezcatlipoca/" class="crosslink" data-crosslink="tezcatlipoca">Tēzcatlīpōca</a> split the earth monster in two; the K'iche' <a href="/maya/" class="crosslink" data-crosslink="maya">Maya</a> <em>Popol Vuh</em> preserves a cognate tradition.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Creation myth</span>
-          <h3 class="myth-title">The Dismemberment of the Earth Monster</h3>
-          <p class="myth-text">In the Nahua cosmogony preserved by colonial sources, the gods created the present earth from the body of a great monster. In some versions Quetzalcōātl and Tēzcatlīpōca seized Tlāltēcuhtli or a crocodilian earth-being and tore it in two: one half became the sky, the other the earth. From its body the mountains, rivers, and valleys were formed, and its hair became trees and plants. The story is cognate with K'iche' Maya accounts of the Hero Twins defeating the false sun Vucub-Caquix and his earth-giant sons Zipacna and Cabrakan. (Histoyre du Méchique; Leyenda de los Soles; Popol Vuh parallels.)</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Solar myth</span>
-          <h3 class="myth-title">The Sun's Nightly Journey</h3>
-          <p class="myth-text">Each evening the sun descends into the gaping mouth of Tlāltēcuhtli in the west. The earth devours the luminary, holds it through the night, and gives birth to it again in the east. This daily swallowing and rebirth mirrors the agricultural cycle and the human journey from death to afterlife.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Ritual foundation</span>
-          <h3 class="myth-title">Offerings to the Earth</h3>
-          <p class="myth-text">The Florentine Codex records that before any building, planting, or burial, the Nahua made offerings to Tlāltēcuhtli: food, flowers, incense, and sometimes blood. Without this payment the earth would refuse to receive or sustain. The practice expressed a contractual relationship between humans and the ground they walked upon.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the nahuatl pantheon</p>
         </div>
@@ -532,8 +403,150 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Tlāltēcuhtli</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Tlāltēcuhtli</strong> is the standard Nahuatl romanisation, documented in academic sources — “Lord of the earth”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">tlaltecuhtli</p>
+                <p class="card-body">Reduced to plain <strong>tlaltecuhtli</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Tlāltēcuhtli</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tlāltēcuhtli</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Tlāltēcuhtli.com → xn--tlltcuhtli-vfb2t.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Tlāltēcuhtli</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tlāltēcuhtli</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tlāltēcuhtli</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Tlāltēcuhtli</p>
+                    <p class="card-body">The full Unicode restoration. <strong>tlāltēcuhtli.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">tlaltecuhtli</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Tlāltēcuhtli was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/tɬaːɬˈteː.kʷet͡ɬi/</span>
+            <span class="ipa-label">Classical Nahuatl Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Tlāl-</span>
+        <span class="phoneme-desc">Lateral affricate [tɬ] plus long open [aː]; tl- is a single Nahuatl initial, and ā marks vowel length.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-tē-</span>
+        <span class="phoneme-desc">Voiceless alveolar stop [t] plus long close-mid [eː], the honorific or lordly element.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-cuhtli</span>
+        <span class="phoneme-desc">Voiceless velar stop [k] plus rounded [we], then lateral affricate [tɬ] plus close front [i]; -cuhtli is the reverential suffix meaning 'lord.'</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'TLAH-lteh-KWEH-tlee' — begin with the single 'tl' sound, hold the first and second vowels long, and treat the final -tl as one release.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The name is a straightforward compound of tlālli ('earth') and tēcuhtli ('lord'). The honorific suffix is not gender-exclusive in Nahuatl; Tlāltēcuhtli is depicted as both male and female, and sometimes as a toad-like being. Tier 1: the macrons on ā and ē preserve reconstructed vowel length.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Tlāltēcuhtli is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Tlāltēcuhtli</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -551,7 +564,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/tlaltecuhtli_mascot.webp" type="image/webp"><img src="../assets/tlaltecuhtli_mascot.png" alt="Tlāltēcuhtli mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tlaltecuhtli_mascot.webp" type="image/webp"><img src="../assets/tlaltecuhtli_mascot.png" alt="Tlāltēcuhtli mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -589,7 +602,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/tlaltecuhtli_logomark.webp" type="image/webp"><img src="../assets/tlaltecuhtli_logomark.webp" alt="Tlāltēcuhtli logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tlaltecuhtli_logomark.webp" type="image/webp"><img src="../assets/tlaltecuhtli_logomark.webp" alt="Tlāltēcuhtli logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

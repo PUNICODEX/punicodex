@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Tjinimin — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Tjinimin</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Tjinimin</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,143 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Tjinimin</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Tjinimin</strong> is the standard Aboriginal romanisation, documented in academic sources — “The moth man”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">tjinimin</p>
-                    <p class="card-body">The plain <strong>tjinimin</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Tjinimin</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Tjinimin</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Tjinimin.com → tjinimin.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Tjinimin</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tjinimin</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Tjinimin is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Tjinimin</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tjinimin</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Tjinimin</p>
-                    <p class="card-body">The full Unicode restoration. <strong>tjinimin.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Tjinimin was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Tjinimin</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/tʃɪnɪmɪn/</span>
-            <span class="ipa-label">Practical Murrinh-Patha Approximation</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Tj-</span>
-        <span class="phoneme-desc">Palato-alveolar affricate [tʃ], as in English 'chin'. The initial cluster is a common Murrinh-Patha orthographic convention for a single consonant sound.</span>
+      <p class="lead-text">The principal Murrinh-Patha narrative of Tjinimin, recorded by W. E. H. Stanner from the Daly River country, is a compact myth of boundary-crossing and transformation. It explains kinship, animal form, and the moral order through a single ancestral episode — and its fuller ritual meanings remain with the custodians who still keep it.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Murrinh-Patha Dreaming</span>
+          <h3 class="myth-title">The Quarrel with Kunmanggur</h3>
+          <p class="myth-text">In the beginning-time, when the ancestral beings walked in their first forms, Tjinimin set his desire against Kunmanggur, the great Rainbow Serpent, the water-being whose body made the rivers and whose authority ordered the relations between all the ancestral peoples. He coveted Kunmanggur's consorts, the Green Parrot-Girls, and pressed his claim in the quarrel that the old men still tell. Stanner recorded the narrative in the mid-twentieth century from Murrinh-Patha speakers at Port Keats (Wadeye), and it must be said that the published account is the publicly speakable layer of the story: senior custodians hold fuller versions that ethnography does not print. What the published telling makes plain is the myth's charge — desire aimed at what is not one's own, aimed, moreover, at the possessions of the most powerful law-giver in the country. The quarrel defines the boundary of the permissible by showing what it costs to cross it.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ini-</span>
-        <span class="phoneme-desc">Short vowels [i] and [ɪ] alternating in an unstressed syllable sequence; Murrinh-Patha is stress-timed, with vowel quality governed by syllable position.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Murrinh-Patha Dreaming</span>
+          <h3 class="myth-title">The Vow beneath the Stars</h3>
+          <p class="myth-text">Defeated in the quarrel, Tjinimin withdrew from the world in the most literal way the country allows: he hung himself upside down in a tree, head toward the earth, feet toward the sky, and there he gazed at the stars. In that suspension, between the ground of the living and the camp of the dead, he made a vow that the Murrinh-Patha tell as absolute: he would never lie with a woman again. No council imposed this sentence and no serpent demanded it — the old men emphasize that Tjinimin pronounced it himself, and that such a vow, once spoken beneath the stars, binds the speaker past recall. He hung there through the nights, looking down at the world he had forfeited and up at the order he could no longer join. The myth makes law interesting: its deepest form is not punishment from above but sentence passed on oneself, self-exile from the ordinary human sentence of desire and consequence.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-min</span>
-        <span class="phoneme-desc">Final [m] and [n] are plain bilabial and alveolar nasals; the name ends in a closed syllable common in Murrinh-Patha proper names.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Murrinh-Patha Dreaming</span>
+          <h3 class="myth-title">The Short Nose of the Bat</h3>
+          <p class="myth-text">Soon after the vow, the story says, Tjinimin's nose fell off. The detail is the myth's signature: it is the reason, the old men explain, that the bats of the Daly country have short noses — the ancestral being's bodily transformation became the permanent anatomy of the animal with which he is thereafter identified. In Murrinh-Patha understanding this is not merely an etiological curiosity. The bat, the flying fox that camps in the river trees, is kin: its face is the visible record of an ancestral choice, read every evening as the colonies rise at dusk. Tjinimin's punishment and his animal form are the same event — to be changed into the bat is both the consequence of the transgression and its memorial. The myth means that ancestral law is not written anywhere but on the bodies of the country: in the short nose of the bat, in the course of the river, any child can read what happens to those who reach for what the law withholds.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Transmission</span>
+          <h3 class="myth-title">The Keeping of the Story</h3>
+          <p class="myth-text">The final episode of the Tjinimin narrative is its modern history. W. E. H. Stanner, the Australian anthropologist, worked among the Murrinh-Patha of the Daly River from the 1930s and set down the Tjinimin cycle in his studies of Aboriginal religion (published in the 1950s–60s), moved by what he famously called the 'metaphysical pity' of a tradition that endures against enormous pressure. The story continues to be kept the older way as well: senior men teach it in initiation, holding the restricted meanings close, and recordings sit with AIATSIS in Canberra as the people's own archive. The sources are therefore honest about their limits — what is printed is what may be printed — and the myth's custodians, not its ethnographers, remain its authors. This afterlife completes the story's meaning: a tale about the cost of taking what is not yours is itself handled under a law of custodianship, passed hand to hand, never simply taken.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'CHIN-ih-min' — stress the first syllable, keep the vowels short and clear, and pronounce the initial 'tj' as English 'ch'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Murrinh-Patha</strong> Tjinimin — the ancestral being who appears in Murrinh-Patha Dreaming narratives collected by W. E. H. Stanner.</li><li><strong>English gloss</strong> No transparent English etymology; the name is treated as a proper noun for an ancestral figure.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The PuniCodex lexicon classifies Tjinimin as 'Trickster, Moth Man', but the published Murrinh-Patha sources associate the figure with the bat (flying fox) and the Rainbow Serpent Kunmanggur. The 'moth' label is not attested in the scholarly record and should be treated as provisional. Because the name is already written in basic Latin letters, the Unicode restoration capitalizes the initial letter only; no diacritic or original-script mark is recovered. The entry is therefore Tier 2.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -374,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Ancestor of the Peoples</h2>
             <p class="section-subtitle">Bat, Rainbow Serpent, and Ancestral Law</p>
         </div>
@@ -421,49 +332,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Tjinimin</p>
-        </div>
-        
-      <p class="lead-text">The principal Murrinh-Patha narrative of Tjinimin, recorded by W. E. H. Stanner, is a compact myth of boundary-crossing and transformation. It explains kinship, animal form, and the moral order through a single ancestral episode.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Murrinh-Patha Dreaming</span>
-          <h3 class="myth-title">The Quarrel with Kunmanggur</h3>
-          <p class="myth-text">Tjinimin quarrelled with Kunmanggur, the great Rainbow Serpent. He desired Kunmanggur's consorts, the Green Parrot-Girls, and sought to take them for himself. The dispute set the ancestral being against the authority of the Rainbow Serpent, testing the limits of proper relationship and social order.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Murrinh-Patha Dreaming</span>
-          <h3 class="myth-title">The Vow beneath the Stars</h3>
-          <p class="myth-text">Defeated in the quarrel, Tjinimin hung himself upside down in a tree. There he gazed at the stars and made a solemn vow: he would never have sex again. The posture of suspension and the vow of abstinence mark a radical withdrawal from the social and reproductive world.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Murrinh-Patha Dreaming</span>
-          <h3 class="myth-title">The Short Nose of the Bat</h3>
-          <p class="myth-text">Soon after his vow, Tjinimin's nose fell off. The myth explains this as the reason bats in the region have short noses: the ancestral being's bodily transformation became the permanent form of the animal with which he is associated. What began as social conflict ended as biological signature.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the aboriginal pantheon</p>
         </div>
@@ -527,8 +403,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Tjinimin</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Tjinimin</strong> is the standard Aboriginal romanisation, documented in academic sources — “The moth man”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">tjinimin</p>
+                <p class="card-body">The plain <strong>tjinimin</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Tjinimin</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Tjinimin</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Tjinimin.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Tjinimin</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tjinimin</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Tjinimin</p>
+                    <p class="card-body">The full Unicode restoration. <strong>tjinimin.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Tjinimin was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/tʃɪnɪmɪn/</span>
+            <span class="ipa-label">Practical Murrinh-Patha Approximation</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Tj-</span>
+        <span class="phoneme-desc">Palato-alveolar affricate [tʃ], as in English 'chin'. The initial cluster is a common Murrinh-Patha orthographic convention for a single consonant sound.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ini-</span>
+        <span class="phoneme-desc">Short vowels [i] and [ɪ] alternating in an unstressed syllable sequence; Murrinh-Patha is stress-timed, with vowel quality governed by syllable position.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-min</span>
+        <span class="phoneme-desc">Final [m] and [n] are plain bilabial and alveolar nasals; the name ends in a closed syllable common in Murrinh-Patha proper names.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'CHIN-ih-min' — stress the first syllable, keep the vowels short and clear, and pronounce the initial 'tj' as English 'ch'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The PuniCodex lexicon classifies Tjinimin as 'Trickster, Moth Man', but the published Murrinh-Patha sources associate the figure with the bat (flying fox) and the Rainbow Serpent Kunmanggur. The 'moth' label is not attested in the scholarly record and should be treated as provisional. Because the name is already written in basic Latin letters, the Unicode restoration capitalizes the initial letter only; no diacritic or original-script mark is recovered. The entry is therefore Tier 2.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Tjinimin is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Tjinimin</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -546,7 +559,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/tjinimin_mascot.webp" type="image/webp"><img src="../assets/tjinimin_mascot.png" alt="Tjinimin mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tjinimin_mascot.webp" type="image/webp"><img src="../assets/tjinimin_mascot.png" alt="Tjinimin mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -584,7 +597,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/tjinimin_logomark.webp" type="image/webp"><img src="../assets/tjinimin_logomark.webp" alt="Tjinimin logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tjinimin_logomark.webp" type="image/webp"><img src="../assets/tjinimin_logomark.webp" alt="Tjinimin logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

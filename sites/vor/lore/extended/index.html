@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Vǫr, Wisdom, Oaths, Knowledge. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/vor/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Vǫr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Vǫr is /vɔːr/ — approximately 'VORE' — one long syllable, the vowel held like the 'o' in 'more' but rounded and drawn out."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Vǫr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vǫr means The careful one, oath-goddess in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Vǫr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vǫr is associated with The seeing eye (Nothing hidden escapes her notice), Scales or balance (The weighing of oaths and the justice of remembered words), Mirror (Reflection and self-knowledge; she shows things as they are), The open book (The record of oaths, laws, and hidden truths), The listening ear (Snorri calls her in spyrjanda, 'the questioning one' — her wisdom asks before it judges; truth is inquired after, not merely waited on)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Vǫr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII vor strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Vǫr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Tenth of the Ásynjur” — Vǫr's dossier is one of the thinnest in the Edda — a single entry in Snorri's catalogue of the Ásynjur, her name in the poets' name-lists, and nothing else. But the one thing the sources do say is striking: nothing can be hidden from her. She is the goddess of careful attention, and her whole surviving mythology is the study of what it means to truly notice. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/vor_logolockup.webp" type="image/webp"><img src="../../assets/vor_logolockup.png" alt="Vǫr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Vǫr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Vǫr.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/vor_mascot.webp" type="image/webp"><img src="../../assets/vor_mascot.png" alt="Vǫr — Wisdom, Oaths, Knowledge" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/vor_mascot.webp" type="image/webp"><img src="../../assets/vor_mascot.png" alt="Vǫr — Wisdom, Oaths, Knowledge" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Vǫr, Wisdom, Oaths, Knowledge</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">ᚢᚢᚱ</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Vǫr</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/vɔːr/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Norse</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Wisdom, Oaths, Knowledge</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">The careful one, oath-goddess</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Vǫr.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The seeing eye, Scales or balance, Mirror, The open book</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">ᚢᚢᚱ</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Vǫr</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/vɔːr/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Norse</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Wisdom, Oaths, Knowledge</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">The careful one, oath-goddess</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Vǫr.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The seeing eye, Scales or balance, Mirror, The open book, The listening ear</span></div></div>
         </div>
     </div>
 </section>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Vǫr is Tier 1 because the restored form preserves the distinctive ǫ with length — a vowel quality the ASCII form vor loses.</p>
+                <p class="etymology-note">Old Norse Vǫr, goddess associated with wisdom and oaths; her name is related to vörðr "pledge, vow".</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Vǫr</strong> is one of the Ásynjur, the goddesses who attend <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> in <a href="/asgardr/" class="crosslink" data-crosslink="asgardr">Ásgarðr</a>. Her name means "the careful one" or "the aware one," and Snorri says that nothing can be hidden from her. She is the goddess who sees through deception, remembers oaths, and knows the truth that others try to conceal.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Vǫr in Later Traditions</h3><p class="cultural-card-body">Vǫr has no clear foreign equivalent, but her function — the all-seeing goddess of oaths and truth — overlaps with several figures. The Greek <a href="/themis/" class="crosslink" data-crosslink="themis">Themis</a> and Roman <a href="/fides/" class="crosslink" data-crosslink="fides">Fides</a> both watch over sworn agreements; the Egyptian <a href="/maat/" class="crosslink" data-crosslink="maat">Maat</a> personifies truth and cosmic order. Within Norse tradition she is close to <a href="/saga/" class="crosslink" data-crosslink="saga">Sága</a>, who also knows hidden things, and to Frigg herself, whose knowledge is said to rival <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s. The comparison is functional, not historical: Vǫr is the minor goddess who makes the major virtue visible.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Vǫr is rarely a central figure in modern retellings, but her name and attribute persist in discussions of Norse goddess-lore. She is sometimes invoked in Heathen practice for matters of truth-telling, oath-keeping, and discernment. The restoration <em>Vǫr</em> preserves the long ǫ that distinguishes the Old Norse careful one from the modern English homophone. Her legacy is the reminder that knowledge begins with attention.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Vǫr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Vǫr in Later Traditions</h3><p class="cultural-card-body">No interpretatio romana ever found Vǫr a Latin name: the classical authors who mapped the northern gods left her unmentioned, and the medieval Icelanders who knew her wrote no equation. Functionally, though, she has ready company. The Greek <a href="/themis/" class="crosslink" data-crosslink="themis">Themis</a> and the Roman <a href="/fides/" class="crosslink" data-crosslink="fides">Fides</a> both watch over sworn agreements; the Egyptian <a href="/maat/" class="crosslink" data-crosslink="maat">Maat</a> personifies truth itself; within the Edda her closest kin are <a href="/var/" class="crosslink" data-crosslink="var">Vár</a>, who hears oaths, and <a href="/saga/" class="crosslink" data-crosslink="saga">Sága</a> and <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a>, whose knowledge rivals even <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s. The comparison is of office, not of origin — the name vǫrr is transparently native, the common adjective for watchfulness, and the North grew its attention-goddess out of its own vocabulary. In modern Heathen practice the same functionalism operates in reverse: where oaths are sworn at vé and frith is kept, Vǫr is invoked not as a borrowed virtue but as the native one — the goddess who was simply there when the tradition needed a name for not being deceived.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Vǫr is rarely a central figure in modern retellings, but her name and attribute persist wherever Norse goddess-lore is studied. She appears in the handbooks precisely as the Edda presents her: the example that proves the catalogue contains a deity of pure attentiveness, an abstract virtue given a seat among the Ásynjur rather than a cult. In modern Heathen and Ásatrú practice she is invoked for matters of truth-telling, oath-keeping, and discernment — the offices Snorri assigned her — and in fiction and games she drifts between the healer's retinue and the wise woman's, always in a watching role. Her real legacy is lexical and conceptual: the Old Norse word vǫrr, 'watchful, aware,' survived into Icelandic prose, and the goddess remains the personified reminder that knowledge begins with attention — that the cheapest and most neglected instrument of wisdom is simply refusing to look away.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Vǫr is a purely textual figure: no runestone, image, or place-name is securely hers. Her witnesses are manuscripts — above all the Codex Regius of the <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> (GKS 2367 4to, c. 1300) and its sister codices carrying <a href="/texts/prose-edda/#gylfaginning-35" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 35</a>, and the þulur lists transmitted with the grammatical and skaldic apparatus. For a goddess of attention there is a fitting irony in the evidence: everything we know of her survives because medieval readers kept noticing and copying a three-line entry — the watchful goddess is attested, in the end, only by the watchfulness of scribes.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Vǫr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Vǫr is the goddess who pays attention. In a world of masks and boasts, she is the one who notices the small contradiction, the slipped word, the glance that does not match the smile. Her wisdom is not the wisdom of the runes or the mead of poetry; it is the older and less glamorous wisdom of simply seeing what is there — and Snorri, in a characteristically practical aside, makes her the source of the very word for it.</p><p>To invoke Vǫr is to invoke honesty, first of all with oneself. She cannot be deceived because she does not deceive herself; her inquiry is tireless because it is innocent of vanity. The Edda offers her no story because attention has no plot — it is the condition of plots, the thing that lets everything else be seen. In an age engineered for distraction, she is the goddess most needed and most neglected: the one who asks, who watches, and who knows.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Vǫr, Wisdom, Oaths, Knowledge, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Vǫr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Vǫr</strong> is /vɔːr/ — approximately 'VORE' — one long syllable, the vowel held like the 'o' in 'more' but rounded and drawn out..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Vǫr mean?</summary><div class="faq-answer"><p><strong>Vǫr</strong> means <strong>The careful one, oath-goddess</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Vǫr?</summary><div class="faq-answer"><p>Vǫr is associated with <strong>The seeing eye</strong> (Nothing hidden escapes her notice), <strong>Scales or balance</strong> (The weighing of oaths and the justice of remembered words), <strong>Mirror</strong> (Reflection and self-knowledge; she shows things as they are), <strong>The open book</strong> (The record of oaths, laws, and hidden truths).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Vǫr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>vor</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Vǫr?</summary><div class="faq-answer"><p>In Snorri's list of goddesses, Vǫr is described as wise and inquiring: "She is wise and enquiring, so that nothing can be concealed from her." Her name is given as the source of the adjective vǫrr, "careful, aware." The brief entry makes her a personification of attentiveness — the quality that turns mere seeing into knowledge.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Vǫr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Vǫr</strong> is /vɔːr/ — approximately 'VORE' — one long syllable, the vowel held like the 'o' in 'more' but rounded and drawn out.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Vǫr mean?</summary><div class="faq-answer"><p><strong>Vǫr</strong> means <strong>The careful one, oath-goddess</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Vǫr?</summary><div class="faq-answer"><p>Vǫr is associated with <strong>The seeing eye</strong> (Nothing hidden escapes her notice), <strong>Scales or balance</strong> (The weighing of oaths and the justice of remembered words), <strong>Mirror</strong> (Reflection and self-knowledge; she shows things as they are), <strong>The open book</strong> (The record of oaths, laws, and hidden truths), <strong>The listening ear</strong> (Snorri calls her in spyrjanda, 'the questioning one' — her wisdom asks before it judges; truth is inquired after, not merely waited on).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Vǫr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>vor</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Vǫr?</summary><div class="faq-answer"><p>“The Tenth of the Ásynjur” — Vǫr's dossier is one of the thinnest in the Edda — a single entry in Snorri's catalogue of the Ásynjur, her name in the poets' name-lists, and nothing else. But the one thing the sources do say is striking: nothing can be hidden from her. She is the goddess of careful attention, and her whole surviving mythology is the study of what it means to truly notice. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 35 (Vǫr among the Ásynjur)</cite></li><li><cite>Prose Edda, þulur (Vǫr in the goddess name-lists)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 35 (Vǫr tenth among the Ásynjur, 'wise and the questioning one'; the vǫrr etymology; Vár beside her)</cite></li><li><cite>Prose Edda, þulur (Vǫr in the goddess and valkyrie name-lists)</cite></li><li><cite><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a>: <a href="/texts/poetic-edda/#hovamol" class="crosslink citation-link" data-citation="hovamol">Hávamál</a> 138–139 (the paid-for wisdom of Óðinn, by contrast)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Vǫr and related cults.</cite></li><li><cite>Vǫr is a purely textual figure. No runestone, image, or place-name is securely hers. Her only witnesses are the manuscripts of Snorri's Prose Edda and the associated þulur.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Vǫr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cleasby–Vigfusson, An Icelandic-English Dictionary, s.v. Vǫr, vǫrr</cite></li><li><cite>Zoëga, A Concise Dictionary of Old Icelandic, s.v. Vǫr</cite></li><li><cite>Simek, Dictionary of Northern Mythology, s.v. Vǫr</cite></li><li><cite>Lindow, Norse Mythology: A Guide, s.v. Vǫr</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby–Vigfusson, An Icelandic-English Dictionary, s.v. Vǫr, vǫrr</cite></li><li><cite>Zoëga, A Concise Dictionary of Old Icelandic, s.v. Vǫr</cite></li><li><cite>Simek, Dictionary of Northern Mythology, s.v. Vǫr; Lindow, Norse Mythology: A Guide, s.v. Vǫr</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/vor_logomark.webp" type="image/webp"><img src="../../assets/vor_logomark.webp" alt="Vǫr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/vor_logomark.webp" type="image/webp"><img src="../../assets/vor_logomark.webp" alt="Vǫr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

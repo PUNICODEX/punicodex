@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Anima, Soul, Breath, Life Force. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/anima/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Anima?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Anima is /ˈa.nɪ.ma/ — approximately 'AH-nih-mah' — stress the first syllable; the middle vowel is short and light."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Anima mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Anima means Breath, air, soul in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Anima?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Anima is associated with Breath or wind (The invisible current that enters at birth and departs at death.), Bird (A widespread symbol for the soul as something light, winged, and capable of leaving the body.), Blood or pulse (The physiological sign that anima is at work in the living body.), Flame (The small fire of individual life, easily extinguished and often identified with the soul's spark.), The World-Soul (anima mundi) (The breath of the cosmos itself — the Stoic and Platonic doctrine that the universe is a living being, its body the world and its soul the divine air.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Anima in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Anima is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Anima?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Breath of Life” — Anima is not a mythological character in the Greek or Roman sense; it is a concept that acquired a long philosophical and theological history. Its 'mythology' is therefore the story of how breath became soul, and how soul became one of the foundation stones of Western psychology. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/anima_logolockup.webp" type="image/webp"><img src="../../assets/anima_logolockup.png" alt="Anima" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Anima</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Anima</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/anima_mascot.webp" type="image/webp"><img src="../../assets/anima_mascot.png" alt="Anima — Soul, Breath, Life Force" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/anima_mascot.webp" type="image/webp"><img src="../../assets/anima_mascot.png" alt="Anima — Soul, Breath, Life Force" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Anima, Soul, Breath, Life Force</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">ANIMA</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Anima</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ˈa.nɪ.ma/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Soul, Breath, Life Force</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Breath, air, soul</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Anima</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Breath or wind, Bird, Blood or pulse, Flame</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">ANIMA</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Anima</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ˈa.nɪ.ma/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Soul, Breath, Life Force</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Breath, air, soul</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Anima</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Breath or wind, Bird, Blood or pulse, Flame, The World-Soul (anima mundi)</span></div></div>
         </div>
     </div>
 </section>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Anima</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Anima is a Latin word, not a Greek proper name. It has no indigenous alphabetic 'original script' other than the Latin alphabet. The ASCII form anima is already the Latin spelling; the restoration capitalises the proper-noun form as a scholarly citation. Because no distinctive diacritic or special letter is added, the entry is Tier 2.</p>
+                <p class="etymology-note">The name <strong>Anima</strong> reaches the modern world through scholarly transliteration of the greek tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">A</td><td><code>U+0041</code></td><td>Latin Capital Letter A</td><td>Basic Latin</td><td>A uppercase</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>n same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>i same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>m same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>a same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Anima</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Anima</strong> is the Latin word for breath, air, and — by extension — the soul or life-force that animates a living body. It names one of the most ancient equations in Western thought: that the difference between a corpse and a living person is the presence of breath. From this simple observation Latin developed a rich vocabulary of animation, soul, and spirit that still shapes modern psychology, religion, and biology.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Anima in Later Traditions</h3><p class="cultural-card-body">The Latin anima overlaps with Greek psychē, Hebrew nephesh, Sanskrit ātman, and Greek pneuma. All of these terms begin with breath or wind and develop into concepts of soul, spirit, or self. In medieval philosophy anima became the bridge between Aristotelian biology and Christian theology, a development that shaped European thought until the early modern period. In modern psychology it survives as Jung's anima and as the root of 'animation,' the art of giving apparent life to images.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Anima is one of the most quietly influential words in Western languages. It underlies 'animal' (a being that has breath), 'animate' (to give life), 'animation' (the illusion of life in images), and 'animism' (the attribution of soul to natural objects). In Jungian psychology the anima is a central archetype, and in contemporary spirituality it names the feminine soul-principle. The word's persistence shows that the ancient equation of breath with life has never really been replaced.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Anima</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Anima in Later Traditions</h3><p class="cultural-card-body">The Latin anima overlaps with Greek psychē, Hebrew nephesh, Sanskrit ātman, and Greek pneuma. All of these terms begin with breath or wind and develop into concepts of soul, spirit, or self. In medieval philosophy anima became the bridge between Aristotelian biology and Christian theology, a development that shaped European thought until the early modern period. In modern psychology it survives as Jung's anima and as the root of 'animation,' the art of giving apparent life to images.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Anima is one of the most quietly influential words in Western languages. It underlies 'animal' (a being that has breath), 'animate' (to give life), 'animation' (the illusion of life in images), and 'animism' (the attribution of soul to natural objects). In Jungian psychology the anima is a central archetype, and in contemporary spirituality it names the feminine soul-principle. The word's persistence shows that the ancient equation of breath with life has never really been replaced.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">A concept has no tombs, but it has manuscripts, and the material trail of <em>anima</em> is among the most dramatic in Latin literature. Lucretius' <em>De rerum natura</em> — the greatest ancient book of the soul's materiality — survives through a single early medieval lineage, crowned by the ninth-century codex Oblongus (Leiden, Bibliotheek der Rijksuniversiteit, Vossianus Latinus F 30); the poem's recovery in 1417, when Poggio Bracciolini's agents pulled a copy from a German monastery shelf, detonated the Renaissance debate over atom and soul. Augustine's <em>De quantitate animae</em> and the scholastic summae travelled in hundreds of copies across medieval <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a>. Jung's twentieth-century revival rests on printed editions and the working library at Küsnacht — archaeology of a different kind.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Anima means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>To meditate on Anima is to meditate on the boundary between body and whatever we call the self. Breath is the one physiological process that can be voluntary or automatic; it links the conscious will to the autonomic body. The Latin word reminds us that the soul was not originally imagined as a ghost in a machine but as the very fact of being alive.</p><p>In a digital age, when consciousness is often modelled as computation, Anima asks a simpler question: what is it that makes a living thing living? The answer may not be a substance but a process — the continuous exchange of inner and outer, self and world, that breath so perfectly symbolizes.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Anima, Soul, Breath, Life Force, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Anima?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Anima</strong> is /ˈa.nɪ.ma/ — approximately 'AH-nih-mah' — stress the first syllable; the middle vowel is short and light..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Anima mean?</summary><div class="faq-answer"><p><strong>Anima</strong> means <strong>Breath, air, soul</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Anima?</summary><div class="faq-answer"><p>Anima is associated with <strong>Breath or wind</strong> (The invisible current that enters at birth and departs at death.), <strong>Bird</strong> (A widespread symbol for the soul as something light, winged, and capable of leaving the body.), <strong>Blood or pulse</strong> (The physiological sign that anima is at work in the living body.), <strong>Flame</strong> (The small fire of individual life, easily extinguished and often identified with the soul's spark.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Anima in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>anima</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Anima?</summary><div class="faq-answer"><p>In Classical Latin anima first means breath, air, or breeze. Cicero uses it for the vital breath that sustains life, and Lucretius describes the soul as a subtle, airy stuff mixed with blood and heat, dispersed at death. The word thus begins as a physical fact and only gradually becomes a metaphysical principle.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Anima?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Anima</strong> is /ˈa.nɪ.ma/ — approximately 'AH-nih-mah' — stress the first syllable; the middle vowel is short and light.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Anima mean?</summary><div class="faq-answer"><p><strong>Anima</strong> means <strong>Breath, air, soul</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Anima?</summary><div class="faq-answer"><p>Anima is associated with <strong>Breath or wind</strong> (The invisible current that enters at birth and departs at death.), <strong>Bird</strong> (A widespread symbol for the soul as something light, winged, and capable of leaving the body.), <strong>Blood or pulse</strong> (The physiological sign that anima is at work in the living body.), <strong>Flame</strong> (The small fire of individual life, easily extinguished and often identified with the soul's spark.), <strong>The World-Soul (anima mundi)</strong> (The breath of the cosmos itself — the Stoic and Platonic doctrine that the universe is a living being, its body the world and its soul the divine air.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Anima in Unicode?</summary><div class="faq-answer"><p><strong>Anima</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Anima?</summary><div class="faq-answer"><p>“The Breath of Life” — Anima is not a mythological character in the Greek or Roman sense; it is a concept that acquired a long philosophical and theological history. Its 'mythology' is therefore the story of how breath became soul, and how soul became one of the foundation stones of Western psychology. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,13 +349,13 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cicero</cite></li><li><cite>Lewis-Short</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lewis-Short</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cicero, De natura deorum and Tusculanae disputationes</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cicero</cite></li><li><cite>Cicero, Tusculanae disputationes 1</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -304,7 +367,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Oxford Latin Dictionary, s.v. anima</cite></li><li><cite>Lewis and Short, A Latin Dictionary, s.v. anima</cite></li><li><cite>Lucretius, De rerum natura 3</cite></li><li><cite>Augustine, De anima et eius origine and De quantitate animae</cite></li><li><cite>Jung, C. G., The Relations between the Ego and the Unconscious (1928)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Oxford Latin Dictionary, s.v. anima</cite></li><li><cite>Lewis and Short, A Latin Dictionary, s.v. anima</cite></li><li><cite>Lucretius, De rerum natura 3</cite></li><li><cite>Thomas Aquinas, Summa Theologiae I.75–76; Council of Vienne (1312)</cite></li><li><cite>Jung, C. G., Aion (CW 9ii) and The Relations between the Ego and the Unconscious (1928)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/anima_logomark.webp" type="image/webp"><img src="../../assets/anima_logomark.webp" alt="Anima logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/anima_logomark.webp" type="image/webp"><img src="../../assets/anima_logomark.webp" alt="Anima logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Altjira, The Dreaming, Eternal. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/altjira/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Altjira?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Altjira is /ˈaltjɪrə/ — approximately 'AHLT-chi-ruh' — stress the first syllable, pronounce the 'tj' as the 'ch' in 'church', and let the final syllable relax."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Altjira mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Altjira means The dreamtime in the aboriginal tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Altjira?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Altjira is associated with The sky (The eternal canopy where Altjira dwells and from which creation descended.), Emu footprints (His feet are likened to those of an emu, a sign of his other-than-human nature and his connection to the Australian land.), The Milky Way (In Arrernte cosmology the sky river is camp and road for ancestral beings, linking earth and heaven.), Waterholes and ranges (Features of country created during the Dreaming and maintained through ceremony today.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Altjira in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Altjira is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Altjira?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Uncreated Creator” — The mythology of Altjira comes to us through Arrernte oral tradition and the early ethnographies of Spencer and Gillen, Carl Strehlow, and later scholars. The stories are not entertainment; they are title deeds to country, instructions for ceremony, and maps of moral responsibility. Some details are held by initiated custodians and are not shared in public space. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/altjira_logolockup.webp" type="image/webp"><img src="../../assets/altjira_logolockup.png" alt="Altjira" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Altjira</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Altjira</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/altjira_mascot.webp" type="image/webp"><img src="../../assets/altjira_mascot.png" alt="Altjira — The Dreaming, Eternal" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/altjira_mascot.webp" type="image/webp"><img src="../../assets/altjira_mascot.png" alt="Altjira — The Dreaming, Eternal" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Altjira</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The name is Arrernte, not Greek or Sanskrit, so it has no 'original script' in the classical sense. The ASCII form altjira flattens the distinctive palatal cluster and removes the capital that marks a proper name; the restoration Altjira is the scholarly citation form.</p>
+                <p class="etymology-note">The name <strong>Altjira</strong> reaches the modern world through scholarly transliteration of the aboriginal tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">A</td><td><code>U+0041</code></td><td>Latin Capital Letter A</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">t</td><td><code>U+0074</code></td><td>Latin Small Letter T</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">j</td><td><code>U+006A</code></td><td>Latin Small Letter J</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Altjira</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Altjira</strong> is the eternal sky being of the Arrernte peoples of Central Australia. In the early ethnographic record he is described as the uncreated creator: he made the earth, shaped its first features, and then withdrew to dwell forever in the sky. His feet are said to be like those of an emu, and he never needs to bend, because the sky is high and he is eternal. Behind the figure lies the deeper Arrernte concept of <em>altjira</em> — the Dreaming — the timeless ground of law, country, and ancestral identity.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Altjira in Later Traditions</h3><p class="cultural-card-body">Altjira entered Western scholarly discourse chiefly through the ethnographies of Spencer and Gillen and the Lutheran missionary Carl Strehlow. Early accounts tended to present Altjira as a 'high god' or creator, an interpretation that later Arrernte custodians and scholars have revised. T. G. H. Strehlow argued that <em>altjira</em> is better understood as the Dreaming itself — the eternal, sacred order — and not as an anthropomorphic deity comparable to the God of biblical monotheism. In popular and esoteric literature the term 'Alcheringa' has been borrowed widely, sometimes detached from its Arrernte roots. PuniCodex follows the scholarly consensus that respects both the early record and the later corrections offered by Arrernte tradition-bearers.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The word <em>Alcheringa</em> — the Dreaming — has become one of the most widely recognised Aboriginal English terms in the world. It names not only a cosmology but a legal, artistic, and environmental framework that continues to shape Aboriginal identity in Central Australia and beyond. The concept influenced Australian art movements, land-rights discourse, and interfaith dialogue. Altjira also appears as the name of an Aboriginal art centre (Altjira Aboriginal Art) and in creative works that draw on Arrernte themes. Its importance lies less in personal cult than in the enduring idea that the land is a living record of sacred law.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Altjira</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Altjira in Later Traditions</h3><p class="cultural-card-body">Altjira entered Western scholarly discourse chiefly through the ethnographies of Spencer and Gillen and the Lutheran missionary Carl Strehlow. Early accounts tended to present Altjira as a 'high god' or creator, an interpretation that later Arrernte custodians and scholars have revised. T. G. H. Strehlow argued that <em>altjira</em> is better understood as the Dreaming itself — the eternal, sacred order — and not as an anthropomorphic deity comparable to the God of biblical monotheism. In popular and esoteric literature the term 'Alcheringa' has been borrowed widely, sometimes detached from its Arrernte roots. PuniCodex follows the scholarly consensus that respects both the early record and the later corrections offered by Arrernte tradition-bearers.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The word <em>Alcheringa</em> — the Dreaming — has become one of the most widely recognised Aboriginal English terms in the world. It names not only a cosmology but a legal, artistic, and environmental framework that continues to shape Aboriginal identity in Central Australia and beyond. The concept influenced Australian art movements, land-rights discourse, and interfaith dialogue. Altjira also appears as the name of an Aboriginal art centre (Altjira Aboriginal Art) and in creative works that draw on Arrernte themes. Its importance lies less in personal cult than in the enduring idea that the land is a living record of sacred law.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Altjira left no inscriptions — Arrernte tradition is oral and its durable art is ground drawing, body design, and carved wooden implements rather than monument. The material record closest to the sky being is ceremonial and ethnographic: tjurunga (churinga) stones and boards of Central Australia, incised with designs that are title-deeds of ancestral country and handled only by initiated custodians; Spencer and Gillen collected and photographed them in the 1890s, and many have since been repatriated to their communities. Rock art across the Arrernte homelands records the ancestral beings’ tracks that the Dreaming narratives map, though no panel can be labelled ‘Altjira’ with certainty. The ethnographic collections of the Strehlow estate — recordings, objects, and photographs made across 1907–1960 — are themselves the principal archaeological archive of the tradition, and their gradual return to Arrernte custody is part of the story this temple tells.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Altjira means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Altjira asks us to think about time differently. The Dreaming is not a long-ago past; it is the continuing ground of the present. The ancestors did their work, but the work is not finished — it is renewed every time a song is sung, a design is painted, or a custodian walks country.</p><p>To meditate on Altjira is to meditate on the relationship between sky and land, eternity and responsibility. The sky being withdraws but does not abandon; he leaves the world in the care of those who come after. That is the moral heart of the Dreaming: the land is a gift and a trust, and those who hold it are answerable to the ancestors and to the future.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Altjira, The Dreaming, Eternal, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Altjira?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Altjira</strong> is /ˈaltjɪrə/ — approximately 'AHLT-chi-ruh' — stress the first syllable, pronounce the 'tj' as the 'ch' in 'church', and let the final syllable relax..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Altjira mean?</summary><div class="faq-answer"><p><strong>Altjira</strong> means <strong>The dreamtime</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Altjira?</summary><div class="faq-answer"><p>Altjira is associated with <strong>The sky</strong> (The eternal canopy where Altjira dwells and from which creation descended.), <strong>Emu footprints</strong> (His feet are likened to those of an emu, a sign of his other-than-human nature and his connection to the Australian land.), <strong>The Milky Way</strong> (In Arrernte cosmology the sky river is camp and road for ancestral beings, linking earth and heaven.), <strong>Waterholes and ranges</strong> (Features of country created during the Dreaming and maintained through ceremony today.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Altjira in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>altjira</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Altjira?</summary><div class="faq-answer"><p>In the account recorded by Spencer and Gillen, Altjira is eternal: he was not born and will not die. In the beginning he made the earth and all that it contains — its hills, waterholes, plants, and animals — and then he rose into the sky, where he remains with his two sons. The earth was left for the ancestors who followed and for the human beings who would inherit their law.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Altjira?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Altjira</strong> is /ˈaltjɪrə/ — approximately 'AHLT-chi-ruh' — stress the first syllable, pronounce the 'tj' as the 'ch' in 'church', and let the final syllable relax.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Altjira mean?</summary><div class="faq-answer"><p><strong>Altjira</strong> means <strong>The dreamtime</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Altjira?</summary><div class="faq-answer"><p>Altjira is associated with <strong>The sky</strong> (The eternal canopy where Altjira dwells and from which creation descended.), <strong>Emu footprints</strong> (His feet are likened to those of an emu, a sign of his other-than-human nature and his connection to the Australian land.), <strong>The Milky Way</strong> (In Arrernte cosmology the sky river is camp and road for ancestral beings, linking earth and heaven.), <strong>Waterholes and ranges</strong> (Features of country created during the Dreaming and maintained through ceremony today.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Altjira in Unicode?</summary><div class="faq-answer"><p><strong>Altjira</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Altjira?</summary><div class="faq-answer"><p>“The Uncreated Creator” — The mythology of Altjira comes to us through Arrernte oral tradition and the early ethnographies of Spencer and Gillen, Carl Strehlow, and later scholars. The stories are not entertainment; they are title deeds to country, instructions for ceremony, and maps of moral responsibility. Some details are held by initiated custodians and are not shared in public space. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/altjira_logomark.webp" type="image/webp"><img src="../../assets/altjira_logomark.webp" alt="Altjira logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/altjira_logomark.webp" type="image/webp"><img src="../../assets/altjira_logomark.webp" alt="Altjira logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

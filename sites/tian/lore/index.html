@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Tiān — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">天</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Tiān.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,156 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">天</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Tiān</strong> (天) is attested in the source tradition — “The supreme celestial force and moral order of the cosmos”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">tian</p>
-                    <p class="card-body">Reduced to plain <strong>tian</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Tiān</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tiān</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Tiān.com → xn--tin-2oa.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Tiān</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tiān</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Tiān is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">天</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Tiān is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tiān</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Tiān</p>
-                    <p class="card-body">Restores <strong>天</strong>. The live temple domain — <strong>tiān.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">tian</p>
-                    <p class="card-body">Flattens <strong>天</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Tiān was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Tiān</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/tʰjɛn˥/</span>
-            <span class="ipa-label">Modern Standard Chinese / Old Chinese Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">tʰ-</span>
-        <span class="phoneme-desc">Aspirated voiceless alveolar stop, like English 't' with a puff of air.</span>
+      <p class="lead-text">The mythology of Tiān is inseparable from the history of Chinese kingship: less a corpus of tales than a cosmology in which Heaven speaks through weather, eclipse, dynasty, and the virtue of the ruler. Its central text is political — the Mandate of Heaven (tiānmìng 天命), which made every reign a moral verdict.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cosmogony</span>
+          <h3 class="myth-title">From Shàngdì to Tiān</h3>
+          <p class="myth-text">In Shang times the supreme power was <a href="/shangdi/" class="crosslink" data-crosslink="shangdi">Shàngdì</a> 上帝, the High Lord or high ancestor-deity above, who commanded wind and rain and received the Shang king's sacrifices in person. The oracle bones of Anyang are his archive: diviners cracked turtle shell and ox bone to learn his will on harvest, war, and the royal health. When the Zhou — a western people — overthrew the Shang at Mùyě c. 1046 BCE, they faced a theological problem: how could a lesser house displace the anointed? Their answer, canonized in the Shàngshū 尚書 (Book of Documents) and the Dà Yǎ odes of the Shījīng 詩經, reframed supreme authority as Tiān 天, 'Heaven' — a moral order rather than a clan ancestor. The Zhou king ruled as tiānzǐ 天子, Son of Heaven, because Heaven's Mandate (tiānmìng 天命) had passed from the dissolute Shang.</p><p class="myth-text">Victory was thereby rewritten as verdict: Heaven does not favour blood, it favours virtue. The conquest myth of China is a change of pronouns — from 'my ancestor' to 'the sky' — and three millennia of Chinese politics lived inside that change.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-j-</span>
-        <span class="phoneme-desc">Palatal glide; the tongue rises toward the hard palate after the initial.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">History</span>
+          <h3 class="myth-title">The Duke of Zhou and the Mandate</h3>
+          <p class="myth-text">The Duke of Zhou, brother of the conquering King Wu and regent for the boy King Cheng, is credited with formulating the Mandate as a check on arbitrary power — the tradition makes the statesman a theologian. When rebellion shook the young dynasty, the Duke's response in the documents preserved in the Shàngshū (the 'Great Announcement' 大誥 and 'Establishment of Government' 立政) is consistent: Heaven's charge is hard to keep, won by the virtue of former kings and lost through drunkenness and cruelty. The Shǐjì 史記 of Sima Qian adds the human drama: the Duke is slandered into exile, and returns only when a great storm uproots the royal grain and the frightened king opens the sealed archive that proves his loyalty beyond doubt.</p><p class="myth-text">The story fixed the Mandate's logic for three millennia: Heaven speaks through portent — storm, eclipse, flood, defeat — and portent demands moral repair, not merely ritual repair. No figure in Chinese tradition did more to make the sky a constitutional court.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-ɛ-</span>
-        <span class="phoneme-desc">Open-mid front vowel, close to 'eh' in 'bed'.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ritual</span>
+          <h3 class="myth-title">The Border Sacrifice</h3>
+          <p class="myth-text">At the winter solstice the emperor performed the jiàojì 郊祭, the border sacrifice to Heaven, the rite that hinged the imperial year. From the Ming Yongle emperor's rebuilding of Beijing (from 1420) its stage was the Temple of Heaven complex in the southern suburbs: the emperor fasted three days in the Palace of Abstinence, then alone — the one man in the empire permitted to worship Heaven directly — ascended the round, three-tiered Altar of Heaven beneath the open sky, bearing jade bi disks, silk, and a bull. Heaven alone received the sacrifice; the emperor's own ancestors were honoured separately, at the rectangular Imperial Vault. Round altar, square city: the architecture enacted the cosmology of the round sky above the square earth.</p><p class="myth-text">The rite's exclusivity was its meaning. Where every subject worshipped through the emperor, the emperor worshipped through no one — and even he approached as a supplicant, barefoot on a night of solstice cold.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-n</span>
-        <span class="phoneme-desc">Alveolar nasal, soft 'n' closing the syllable.</span>
-      </div>
-      <div class="phoneme" style="--delay:400ms">
-        <span class="phoneme-symbol">˥</span>
-        <span class="phoneme-desc">High level tone (Mandarin first tone), rendered here by the macron over the vowel.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Philosophy</span>
+          <h3 class="myth-title">Heaven Sees as the People See</h3>
+          <p class="myth-text">The most radical development of the Mandate came from the philosophers. <a href="/mozi/" class="crosslink" data-crosslink="mozi">Mozi</a>, in his three 'Will of Heaven' (Tiānzhì 天志) chapters, made Heaven an explicit moral agent that rewards the just and punishes the cruel — and argued that Heaven's will is known through the people's will. <a href="/mencius/" class="crosslink" data-crosslink="mencius">Mencius</a> pushed the logic further: asked how Heaven grants the empire, he answers that Heaven gives no audible charge but shows it through deeds and their reception — 'Heaven sees as my people see; Heaven hears as my people hear' (Mèngzǐ 孟子 5A.5). A ruler whose people starve has, whatever the altars say, already lost the Mandate.</p><p class="myth-text">The conclusion was incendiary: if Heaven's judgement is legible in the people's condition, then revolt can be obedience — the very argument that legitimated every later dynastic founder from Liu Bang to the Ming Hongwu emperor. Tiān became the supreme court of the Chinese constitution, sitting in the sky and reachable by rebellion.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'tyehn' — say 't-yeh-n' in one crisp syllable, on a high, level pitch like a sustained musical note.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Chinese</strong> 天 (Tiān), the oldest attested graph for Heaven; oracle-bone forms show a person or a dome above.</li><li><strong>Old Chinese</strong> Reconstructed *qʰl'iːn or *l̥ˤi[n], debated; the word links sky, supreme deity, and the ritual centre.</li><li><strong>Sino-Japanese</strong> 天 (ten), as in tennō 天皇, 'Heavenly Sovereign'.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tiān is Tier 1: the macron preserves Mandarin first tone, a distinctive diacritic the ASCII form loses. The registrable form uses the standard Pinyin macron.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -388,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Heaven and the Mandate</h2>
             <p class="section-subtitle">Cosmic Sovereignty and Moral Order</p>
         </div>
@@ -408,7 +306,7 @@
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C20 12 12 24 12 36C12 48 20 56 32 56C44 56 52 48 52 36C52 24 44 12 32 12Z"></path></svg></div>
         <h4 class="domain-name">High Di</h4>
-        <p class="domain-desc">Successor to the Shang supreme deity <a href="/shangdi/" class="crosslink" data-crosslink="shangdi">Shàngdì</a> 上帝, the celestial ancestor who receives royal sacrifice.</p>
+        <p class="domain-desc">Successor to the Shang supreme deity Shàngdì 上帝, the celestial ancestor who receives royal sacrifice.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 48H48L32 16L16 48ZM32 24V40"></path></svg></div>
@@ -435,41 +333,22 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Tiān</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Tiān lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">The mythology of Tiān is inseparable from the history of Chinese kingship. It is less a corpus of stories than a cosmology: Heaven speaks through weather, dynasty, and the virtue of the ruler.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Cosmogony</span>
-          <h3 class="myth-title">From Shàngdì to Tiān</h3>
-          <p class="myth-text">In Shang times the supreme power was Shàngdì 上帝, the high ancestor-deity above. The Zhou, after overthrowing the Shang, reframed supreme authority as Tiān 天, 'Heaven', making the king the 'Son of Heaven' (tiānzǐ 天子). This theological shift turned victory into moral verdict: the Zhou ruled because Heaven's Mandate (tiānmìng 天命) had passed from the dissolute Shang.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/tao-te-ching/" class="source-badge">Tao Te Ching</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">History</span>
-          <h3 class="myth-title">The Duke of Zhou and the Mandate</h3>
-          <p class="myth-text">The Duke of Zhou, regent for the young King Cheng, is credited with formulating the Mandate of Heaven as a check on arbitrary power. Rebellion, eclipse, and natural disaster were read as warnings from Heaven; ritual reform and moral renewal could restore the Mandate. The idea endured for three millennia.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Ritual</span>
-          <h3 class="myth-title">The Border Sacrifice</h3>
-          <p class="myth-text">At the winter solstice the emperor performed the jiànjì 郊祭, the border sacrifice, at the Temple of Heaven in Beijing. Alone before the circular Altar of Heaven, he offered jade, silk, and a bull, renewing the covenant between the Son of Heaven and the sky. The rite was the hinge of the imperial year.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -477,7 +356,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -541,23 +420,157 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Tiān lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/tao-te-ching/" class="source-badge">Tao Te Ching</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">天</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Tiān</strong> (天) is attested in the source tradition — “The supreme celestial force and moral order of the cosmos”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">tian</p>
+                <p class="card-body">Reduced to plain <strong>tian</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Tiān</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tiān</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Tiān.com → xn--tin-2oa.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Tiān</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tiān</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tiān</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Tiān</p>
+                    <p class="card-body">Restores <strong>天</strong>. The live temple domain — <strong>tiān.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">tian</p>
+                    <p class="card-body">Flattens <strong>天</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Tiān was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/tʰjɛn˥/</span>
+            <span class="ipa-label">Modern Standard Chinese / Old Chinese Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">tʰ-</span>
+        <span class="phoneme-desc">Aspirated voiceless alveolar stop, like English 't' with a puff of air.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-j-</span>
+        <span class="phoneme-desc">Palatal glide; the tongue rises toward the hard palate after the initial.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ɛ-</span>
+        <span class="phoneme-desc">Open-mid front vowel, close to 'eh' in 'bed'.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-n</span>
+        <span class="phoneme-desc">Alveolar nasal, soft 'n' closing the syllable.</span>
+      </div>
+      <div class="phoneme" style="--delay:400ms">
+        <span class="phoneme-symbol">˥</span>
+        <span class="phoneme-desc">High level tone (Mandarin first tone), rendered here by the macron over the vowel.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'tyehn' — say 't-yeh-n' in one crisp syllable, on a high, level pitch like a sustained musical note.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tiān is Tier 1: the macron preserves Mandarin first tone, a distinctive diacritic the ASCII form loses. The registrable form uses the standard Pinyin macron.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Tiān is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">天</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Tiān is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -576,7 +589,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/tian_mascot.webp" type="image/webp"><img src="../assets/tian_mascot.png" alt="Tiān mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tian_mascot.webp" type="image/webp"><img src="../assets/tian_mascot.png" alt="Tiān mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -614,7 +627,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/tian_logomark.webp" type="image/webp"><img src="../assets/tian_logomark.webp" alt="Tiān logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tian_logomark.webp" type="image/webp"><img src="../assets/tian_logomark.webp" alt="Tiān logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

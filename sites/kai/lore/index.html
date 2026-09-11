@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Kai — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Kai</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Kai</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,139 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Kai</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Kai</strong> is the standard Celtic romanisation, documented in academic sources — “Unknown”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">kai</p>
-                    <p class="card-body">The plain <strong>kai</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Kai</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Kai</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Kai.com → kai.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Kai</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Kai</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Kai is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Kai</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kai</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Kai</p>
-                    <p class="card-body">The full Unicode restoration. <strong>kai.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Kai was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Kai</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/kəi/</span>
-            <span class="ipa-label">Middle Welsh Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">K-</span>
-        <span class="phoneme-desc">Voiceless velar stop [k], as in English 'keep'; Middle Welsh writes it with either c or k, and the manuscripts vary between Cei and Kei.</span>
+      <p class="lead-text">Kai's mythology lives in the oldest stratum of Welsh Arthurian tradition: Culhwch ac Olwen gives him the tale's largest dossier after Arthur himself, and the fragmentary dialogue poem Pa Gur remembers exploits the prose never told. The later Latin and French traditions kept the man and quietly spent the magic.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Culhwch ac Olwen</span>
+          <h3 class="myth-title">The First Companion</h3>
+          <p class="myth-text">When Culhwch comes to Arthur's court to win Olwen daughter of Ysbaddaden Chief Giant, Arthur grants him help, and the first companion named is Cei son of Cynyr. The warrior-list fixes his peculiarities in one breath: nine nights and nine days he could be under water; nine nights and nine days he could go without sleep; a wound from Cei's sword no physician could heal. Cei the Tall — when it pleased him he could make himself as tall as the tallest tree in the forest. And the list adds the attribute the whole fellowship depended on: when the rain was heaviest, whatever he carried in his hand stayed dry for a handbreadth above and below, so great was his heat; and when the cold was hardest on his companions, he was fuel to them to light their fire. The list also preserves his mother's prophecy that his heart would be cold — the oldest trace of the coldness the later romances turned to mockery.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ai</span>
-        <span class="phoneme-desc">The falling diphthong [əi] — a neutral first element gliding to [i], exactly the sound of Modern Welsh ei as in 'Cai', and of the English name Kay.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Culhwch ac Olwen</span>
+          <h3 class="myth-title">The Salmon and the Sword</h3>
+          <p class="myth-text">Two of the hardest anoethau — the 'things hard to get' that Ysbaddaden sets as the bride-price — fall to Cei. To free Mabon son of Modron from his prison at Caer Loyw, the company follows the oldest animals to the Salmon of Llyn Llyw, and Cei and <a href="/bedwyr/" class="crosslink" data-crosslink="bedwyr">Bedwyr</a> ride up the Severn on the salmon's shoulders; while Arthur's men assault the fort from the front, Cei carries Mabon away on the salmon's back. And when Arthur's band comes to the hall of Wrnach the giant, whose sword is needed to hunt the boar Twrch Trwyth — no guest had ever left that hall alive — Cei claims to be a master polisher of swords. Admitted, he burnishes the giant's blade, asks to hold it to test the work, and strikes Wrnach's head off with his own sword; the company destroys the fortress. The wonder-hero's greatest feats in the tale are won with a craftsman's hands, not a charge of horse — a hint of how the tradition will later make him the man who keeps the tools, not the one who swings them.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Culhwch ac Olwen</span>
+          <h3 class="myth-title">The Beard of Dillus and the Englyn</h3>
+          <p class="myth-text">The beard of Dillus the Bearded was wanted to make a leash for the whelp Drudwyn, and Cei and Bedwyr found the giant alone. Cei dug a pit, tricked Dillus into it, plucked his beard out with wooden tweezers, and killed him afterward — and Arthur, watching, sang an englyn mocking Cei for making a leash from a living beard he could never have taken from a healthy man. Cei answered nothing, but the tale records the consequence in a line: because of that englyn there was enmity between Cei and Arthur ever after. The tale gives him no further feat of note; the fellowship's first companion becomes its first estrangement. The closing tally keeps the ending: Gwyddog son of Menestyr slew Cei, and Arthur slew Gwyddog and his brothers to avenge him — the rift repaired only in vengeance, and too late for either of them to enjoy it. It is the oldest Arthurian story about how a court breaks: not by siege, but by a joke aimed at the wrong man's pride.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Pa Gur / The Welsh Triads</span>
+          <h3 class="myth-title">Nine Witches and the Cat of Anglesey</h3>
+          <p class="myth-text">The fragmentary dialogue poem Pa Gur yv y Porthaur?, preserved in the Black Book of Carmarthen, shows Arthur and the gatekeeper Glewlwyd Mighty-grasp trading boasts, and the boasts are Cei's: Cei pierced nine witches, and Cei the Fair went to Anglesey to destroy the monster the Welsh called Cath Palug — the gigantic cat that the triads say was born of the sow Henwen and raised by the sons of Palug as one of the island's plagues. The poem breaks off in the middle of that account, and scholars read the torn ending as the oldest trace of Cei's own death-fight. The early verse remembers him where the prose does not: as the champion sent against the things no one else would face — witches in their coven, a cat the size of a calf on an island shore. Behind the steward of the romances stands this older figure, the one whose dossier needed only a fragment to prove it: where the road was worst, the tall man went first.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Historia Regum Britanniae</span>
+          <h3 class="myth-title">Caius Dapifer</h3>
+          <p class="myth-text">Geoffrey of Monmouth, writing about 1136, Latinizes him as Caius dapifer — Kay the steward — and gives him the seneschal's office and the province of Anjou at Arthur's plenary court at Caerleon, while Bedwerus the cupbearer receives Normandy. In Geoffrey's Roman war Kay fights as duke, is killed in the great battle against Lucius, and dies; Geoffrey says he was buried at Chinon, the castle he himself had built, mourned by the whole army. The magic is gone — no nine days' breath, no fire in the hands — but the office Geoffrey fixed to the name proved more durable than any peculiarity: from this book onward, Kay is the steward of Arthur's court in every language that tells the story. What the Welsh gave as a wonder, the Normans received as a job title — and the job title is what survived, in French, English, German, and every retelling since, a thousand years of comic stewards standing on the shoulders of the tall man who kept the fire.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'KAY' — one syllable, exactly the English name Kay; the diphthong glides from a neutral 'uh' to 'ee' inside a single beat.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Cei, also written Kei and Kai in the manuscripts; Cei mab Kynyr, 'Cei son of Cynyr'; the epithet Cei Hir, 'the Tall'</li><li><strong>Latin (Geoffrey of Monmouth)</strong> Caius — 'Caius dapifer', Kay the steward</li><li><strong>Old French (Chrétien de Troyes)</strong> Keu, also Kex — the sharp-tongued seneschal</li><li><strong>English (Malory)</strong> Kay — Sir Kay the seneschal, Arthur's foster-brother</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kai is Tier 2 by the mechanical rule: Middle Welsh writes the name in plain Latin letters, so there is no diacritic and no distinctive letter for the ASCII alphabet to lose. The capital alone distinguishes the temple form from the input; the hero's standing in the tradition is beside the point.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -370,7 +293,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Steward of Arthur's Hall</h2>
             <p class="section-subtitle">The Nine Days' Breath, the Fire in His Hands, and the Sword No Physician Can Heal</p>
         </div>
@@ -421,65 +344,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Kai</p>
-        </div>
-        
-      <p class="lead-text">Kai's mythology lives in the oldest stratum of Welsh Arthurian tradition: Culhwch ac Olwen gives him the tale's largest dossier after Arthur himself, and the fragmentary dialogue poem Pa Gur remembers exploits the prose never told. The later Latin and French traditions kept the man and quietly spent the magic.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Culhwch ac Olwen</span>
-          <h3 class="myth-title">The First Companion</h3>
-          <p class="myth-text">When Culhwch comes to Arthur's court to win Olwen daughter of Ysbaddaden Chief Giant, Arthur grants him help, and the first companion named is Cei son of Cynyr. The warrior-list fixes his peculiarities in one breath: nine nights and nine days he could be under water; nine nights and nine days he could go without sleep; a wound from Cei's sword no physician could heal. Cei the Tall — when it pleased him he could make himself as tall as the tallest tree in the forest. And the list adds the attribute the whole fellowship depended on: when the rain was heaviest, whatever he carried in his hand stayed dry for a handbreadth above and below, so great was his heat; and when the cold was hardest on his companions, he was fuel to them to light their fire. The list also preserves his mother's prophecy that his heart would be cold — the oldest trace of the coldness the later romances turned to mockery.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Culhwch ac Olwen</span>
-          <h3 class="myth-title">The Salmon and the Sword</h3>
-          <p class="myth-text">Two of the hardest anoethau — the 'things hard to get' that Ysbaddaden sets as the bride-price — fall to Cei. To free Mabon son of Modron from his prison at Caer Loyw, the company follows the oldest animals to the Salmon of Llyn Llyw, and Cei and <a href="/bedwyr/" class="crosslink" data-crosslink="bedwyr">Bedwyr</a> ride up the Severn on the salmon's shoulders; while Arthur's men assault the fort from the front, Cei carries Mabon away on the salmon's back. And when Arthur's band comes to the hall of Wrnach the giant, whose sword is needed to hunt the boar Twrch Trwyth — no guest had ever left that hall alive — Cei claims to be a master polisher of swords. Admitted, he burnishes the giant's blade, asks to hold it to test the work, and strikes Wrnach's head off with his own sword; the company destroys the fortress. The wonder-hero's greatest feats in the tale are won with a craftsman's hands, not a charge of horse.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Culhwch ac Olwen</span>
-          <h3 class="myth-title">The Beard of Dillus and the Englyn</h3>
-          <p class="myth-text">The beard of Dillus the Bearded was wanted to make a leash for the whelp Drudwyn, and Cei and Bedwyr found the giant alone. Cei dug a pit, tricked Dillus into it, plucked his beard out with wooden tweezers, and killed him afterward — and Arthur, watching, sang an englyn mocking Cei for making a leash from a living beard he could never have taken from a healthy man. Cei answered nothing, but the tale records the consequence in a line: because of that englyn there was enmity between Cei and Arthur ever after, and Cei took no part in the hunt of Twrch Trwyth. The tale's closing tally keeps the ending: Gwyddog son of Menestyr slew Cei, and Arthur slew Gwyddog and his brothers to avenge him — the rift repaired only in vengeance.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Pa Gur / The Welsh Triads</span>
-          <h3 class="myth-title">Nine Witches and the Cat of Anglesey</h3>
-          <p class="myth-text">The fragmentary dialogue poem Pa Gur yv y Porthaur?, preserved in the Black Book of Carmarthen, shows Arthur and the gatekeeper Glewlwyd Mighty-grasp trading boasts, and the boasts are Cei's: Cei pierced nine witches, and Cei the Fair went to Anglesey to destroy the monster the Welsh called Cath Palug — the gigantic cat that the triads say was born of the sow Henwen and raised by the sons of Palug as one of the island's plagues. The poem breaks off in the middle of that account, and scholars read the torn ending as the oldest trace of Cei's own death-fight. The early verse remembers him where the prose does not: as the champion sent against the things no one else would face.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Historia Regum Britanniae</span>
-          <h3 class="myth-title">Caius Dapifer</h3>
-          <p class="myth-text">Geoffrey of Monmouth, writing about 1136, Latinizes him as Caius dapifer — Kay the steward — and gives him the seneschal's office and the province of Anjou at Arthur's plenary court at Caerleon, while Bedwerus the cupbearer receives Normandy. In Geoffrey's Roman war Kay fights as duke, is mortally wounded in the great battle against Lucius, and dies; Geoffrey says he was buried at Chinon, the castle he himself had built, mourned by the whole army. The magic is gone — no nine days' breath, no fire in the hands — but the office Geoffrey fixed to the name proved more durable than any peculiarity: from this book onward, Kay is the steward of Arthur's court in every language that tells the story.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -543,8 +415,141 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Kai</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Kai</strong> is the standard Celtic romanisation, documented in academic sources — “Unknown”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">kai</p>
+                <p class="card-body">The plain <strong>kai</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Kai</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Kai</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Kai.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Kai</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kai</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Kai</p>
+                    <p class="card-body">The full Unicode restoration. <strong>kai.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Kai was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/kəi/</span>
+            <span class="ipa-label">Middle Welsh Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">K-</span>
+        <span class="phoneme-desc">Voiceless velar stop [k], as in English 'keep'; Middle Welsh writes it with either c or k, and the manuscripts vary between Cei and Kei.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ai</span>
+        <span class="phoneme-desc">The falling diphthong [əi] — a neutral first element gliding to [i], exactly the sound of Modern Welsh ei as in 'Cai', and of the English name Kay.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'KAY' — one syllable, exactly the English name Kay; the diphthong glides from a neutral 'uh' to 'ee' inside a single beat.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kai is Tier 2 by the mechanical rule: Middle Welsh writes the name in plain Latin letters, so there is no diacritic and no distinctive letter for the ASCII alphabet to lose. The capital alone distinguishes the temple form from the input; the hero's standing in the tradition is beside the point.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Kai is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Kai</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -562,7 +567,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/kai_mascot.webp" type="image/webp"><img src="../assets/kai_mascot.png" alt="Kai mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kai_mascot.webp" type="image/webp"><img src="../assets/kai_mascot.png" alt="Kai mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -600,7 +605,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/kai_logomark.webp" type="image/webp"><img src="../assets/kai_logomark.webp" alt="Kai logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kai_logomark.webp" type="image/webp"><img src="../assets/kai_logomark.webp" alt="Kai logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

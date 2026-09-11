@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Ngalyod, Rainbow Serpent. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/ngalyod/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Ngalyod?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Ngalyod is /ˈŋa.ljɔd/ — approximately 'NGAL-yod' — start with the 'ng' of 'sing' followed by 'al', then a light 'yod' rhyming roughly with 'yod' in Hebrew scholarship."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Ngalyod mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ngalyod means The rainbow in the aboriginal tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Ngalyod?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ngalyod is associated with Rainbow (The serpent's visible body arching across the sky after rain), Waterhole (The resting place and dwelling of Ngalyod in the dry season), Stone spear-points (Sacred objects sometimes identified as the serpent's teeth or gifts), Lightning (The flash that accompanies the serpent's movement and the breaking of wet-season storms)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Ngalyod in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ngalyod is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Ngalyod?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Carving the Country” — Ngalyod's stories are told in rock art galleries, song cycles, and ceremonial narratives across western Arnhem Land. The serpent is not a single fixed character but a continuum of powers: creator, law-giver, healer, and avenger. The myths explain why certain waterholes never dry, why the wet season returns, and why human beings must respect the boundaries between clans and countries. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/ngalyod_logolockup.webp" type="image/webp"><img src="../../assets/ngalyod_logolockup.png" alt="Ngalyod" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Ngalyod</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Ngalyod</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/ngalyod_mascot.webp" type="image/webp"><img src="../../assets/ngalyod_mascot.png" alt="Ngalyod — Rainbow Serpent" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/ngalyod_mascot.webp" type="image/webp"><img src="../../assets/ngalyod_mascot.png" alt="Ngalyod — Rainbow Serpent" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Ngalyod</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The restoration capitalizes the initial N as a proper name, but the ASCII form *ngalyod* is otherwise identical. Because the distinctive phoneme ŋ is not representable in the basic ASCII set and because the name preserves no further diacritic or special letter, PuniCodex places the restored form **Ngalyod** in Tier 2: the capitalization signals scholarly citation form, while the underlying phonemic content remains the same. The plain ASCII form is a DNS compromise, not a misspelling.</p>
+                <p class="etymology-note">The name <strong>Ngalyod</strong> reaches the modern world through scholarly transliteration of the aboriginal tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">N</td><td><code>U+004E</code></td><td>Latin Capital Letter N</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">y</td><td><code>U+0079</code></td><td>Latin Small Letter Y</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">d</td><td><code>U+0064</code></td><td>Latin Small Letter D</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Ngalyod</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Ngalyod</strong> is the great Rainbow Serpent of the Kunwinjku-speaking peoples of western Arnhem Land. In the wet season she — or he, for gender shifts with country and ceremony — arcs across the sky as the rainbow; in the dry she sleeps beneath the earth in waterholes, springs, and rocky escarpments. She is not merely a weather spirit: she is a <strong>creator being</strong> who carved out the rivers, stocked them with fish and waterlilies, and laid down the law that still governs the relationship between people, country, and kin.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Ngalyod in Later Traditions</h3><p class="cultural-card-body">The Rainbow Serpent is one of the most widely distributed figures in Aboriginal Australia, yet it is <strong>not a single deity under many names</strong>. Each language group knows a distinct serpent with its own country, kinship, and ceremonies: Yurlungur in Yolŋu country, Wagyl in Noongar country, Julunggul among some north-eastern groups, and Ngalyod among the Kunwinjku. Anthropologists and art historians have long debated whether these figures share a common origin or whether the rainbow-serpent concept is a convergence of regional powers onto a similar natural sign. What is clear is that Ngalyod must be understood on Kunwinjku terms first, before any wider comparison is attempted.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ngalyod survives most visibly in the <strong>x-ray rock art</strong> of western Arnhem Land, where the serpent is painted with internal organs, ribs, and backbone showing — a visual convention that identifies the figure as both animal and ancestor. These galleries, some thousands of years old, are now part of a living heritage managed by traditional owners in partnership with archaeologists and park authorities. In contemporary Australia the Rainbow Serpent has also become a national symbol of Indigenous ecological knowledge, appearing in public art, children's books, and environmental education. That wider fame brings a risk: the specific clan-owned meanings of Ngalyod can be flattened into a generic 'Aboriginal' icon. The restoration of the Kunwinjku name is a small act of precision against that flattening.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Ngalyod</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ngalyod in Later Traditions</h3><p class="cultural-card-body">The Rainbow Serpent is one of the most widely distributed figures in Aboriginal Australia, yet it is <strong>not a single deity under many names</strong>. Each language group knows a distinct serpent with its own country, kinship, and ceremonies: Yurlungur in Yolŋu country, Wagyl in Noongar country, Julunggul among some north-eastern groups, and Ngalyod among the Kunwinjku. Anthropologists and art historians have long debated whether these figures share a common origin or whether the rainbow-serpent concept is a convergence of regional powers onto a similar natural sign. What is clear is that Ngalyod must be understood on Kunwinjku terms first, before any wider comparison is attempted.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ngalyod survives most visibly in the <strong>x-ray rock art</strong> of western Arnhem Land, where the serpent is painted with internal organs, ribs, and backbone showing — a visual convention that identifies the figure as both animal and ancestor. These galleries, some thousands of years old, are now part of a living heritage managed by traditional owners in partnership with archaeologists and park authorities. In contemporary Australia the Rainbow Serpent has also become a national symbol of Indigenous ecological knowledge, appearing in public art, children's books, and environmental education. That wider fame brings a risk: the specific clan-owned meanings of Ngalyod can be flattened into a generic 'Aboriginal' icon. The restoration of the Kunwinjku name is a small act of precision against that flattening.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The primary material witnesses to Ngalyod are the rock-art galleries of western Arnhem Land — the Kakadu escarpment sites such as Ubirr and Nourlangie, the plateau country, and the Kuninjku heartland around Maningrida, Mumeka, and the Mann and Liverpool Rivers — where Rainbow Serpent figures appear in both naturalistic and x-ray styles across millennia of painting, some of the oldest continuously maintained sacred art in the world. Excavated occupation deposits, stone tool scatters, and fish-trap complexes document the long-term human use of the waterholes and wetlands associated with the serpent; dating of mud-wasp nests over painted figures has pushed the antiquity of some Arnhem Land art well past ten thousand years. These places remain under the custodianship of their traditional-owner clans; access and reproduction of designs are regulated by Indigenous cultural authority, and the 'archive' of Ngalyod is alive in a way no museum can replicate.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Ngalyod means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Ngalyod is not a god in the sense of a being who stands outside the world and rules it. She is <strong>country itself in serpent form</strong>: the water that does not forget, the law that does not sleep, the rainbow that returns after every drought. To speak her name is to acknowledge that the land is not inert backdrop but a living body with memory.</p><p>The name also asks something of the people who use it. In a colonial country where many Aboriginal languages were suppressed, to restore <em>Ngalyod</em> rather than settle for the generic English 'Rainbow Serpent' is to recognise a specific intellectual tradition. The ASCII form *ngalyod* keeps the letters but loses the capital that marks a proper name; more importantly, it loses the social fact that the name belongs to a language and a people. Unicode cannot carry the whole of that inheritance, but it can at least make the name visible as a name.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Ngalyod, Rainbow Serpent, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ngalyod?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ngalyod</strong> is /ˈŋa.ljɔd/ — approximately 'NGAL-yod' — start with the 'ng' of 'sing' followed by 'al', then a light 'yod' rhyming roughly with 'yod' in Hebrew scholarship..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ngalyod mean?</summary><div class="faq-answer"><p><strong>Ngalyod</strong> means <strong>The rainbow</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ngalyod?</summary><div class="faq-answer"><p>Ngalyod is associated with <strong>Rainbow</strong> (The serpent's visible body arching across the sky after rain), <strong>Waterhole</strong> (The resting place and dwelling of Ngalyod in the dry season), <strong>Stone spear-points</strong> (Sacred objects sometimes identified as the serpent's teeth or gifts), <strong>Lightning</strong> (The flash that accompanies the serpent's movement and the breaking of wet-season storms).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ngalyod in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>ngalyod</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ngalyod?</summary><div class="faq-answer"><p>In the Dreaming, Ngalyod travelled across a flat and featureless land. Where she raised her body, ridges and escarpments rose; where she lay down, waterholes and rivers formed. Her tracks are the deep channels that still carry floodwater in the wet. Every permanent waterhole is remembered as a place where the serpent paused, and each is owned and cared for by the clan whose ancestors witnessed her passage.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ngalyod?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ngalyod</strong> is /ˈŋa.ljɔd/ — approximately 'NGAL-yod' — start with the 'ng' of 'sing' followed by 'al', then a light 'yod' rhyming roughly with 'yod' in Hebrew scholarship.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ngalyod mean?</summary><div class="faq-answer"><p><strong>Ngalyod</strong> means <strong>The rainbow</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ngalyod?</summary><div class="faq-answer"><p>Ngalyod is associated with <strong>Rainbow</strong> (The serpent's visible body arching across the sky after rain), <strong>Waterhole</strong> (The resting place and dwelling of Ngalyod in the dry season), <strong>Stone spear-points</strong> (Sacred objects sometimes identified as the serpent's teeth or gifts), <strong>Lightning</strong> (The flash that accompanies the serpent's movement and the breaking of wet-season storms).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ngalyod in Unicode?</summary><div class="faq-answer"><p><strong>Ngalyod</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ngalyod?</summary><div class="faq-answer"><p>“Carving the Country” — Ngalyod's stories are told in rock art galleries, song cycles, and ceremonial narratives across western Arnhem Land. The serpent is not a single fixed character but a continuum of powers: creator, law-giver, healer, and avenger. The myths explain why certain waterholes never dry, why the wet season returns, and why human beings must respect the boundaries between clans and countries. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,13 +360,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ngalyod and related cults.</cite></li><li><cite>The primary material witnesses to Ngalyod are the rock-art galleries of western Arnhem Land, notably at sites such as Ubirr, Nourlangie, and the Arnhem Land plateau, where Rainbow Serpent figures appear in both naturalistic and x-ray styles across millennia of painting. Excavated occupation deposits, stone tool scatters, and fish-trap complexes document the long-term human use of the waterholes and wetlands associated with the serpent. These places remain under the custodianship of their traditional-owner clans; access and reproduction of designs are regulated by Indigenous cultural authority.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ngalyod and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Berndt, Ronald M. and Catherine H. Berndt, The Speaking Land: Myth and Story in Aboriginal Australia, Penguin, 1989</cite></li><li><cite>Berndt, Ronald M., Kunwinjku (Gunwinggu) religious texts and field recordings, AIATSIS</cite></li><li><cite>AIATSIS (Australian Institute of Aboriginal and Torres Strait Islander Studies), subject guides and language resources</cite></li><li><cite>Taylor, Luke, 'Seeing the Inside: Bark Painting in Western Arnhem Land', Clarendon Press, 1996</cite></li><li><cite>Chaloupka, George, 'Journey in Time: The World's Longest Continuing Art Tradition', Reed Books, 1993</cite></li></ul>
+                    <ul class="source-list"><li><cite>Berndt, Ronald M. and Catherine H. Berndt, The Speaking Land: Myth and Story in Aboriginal Australia, Penguin, 1989</cite></li><li><cite>Berndt, Ronald M., Kunwinjku (Gunwinggu) religious texts and field recordings, AIATSIS</cite></li><li><cite>AIATSIS (Australian Institute of Aboriginal and Torres Strait Islander Studies), subject guides and language resources</cite></li><li><cite>Taylor, Luke, 'Seeing the Inside: Bark Painting in Western Arnhem Land', Clarendon Press, 1996</cite></li><li><cite>Chaloupka, George, 'Journey in Time: The World's Longest Continuing Art Tradition', Reed Books, 1993</cite></li><li><cite>Morphy, Howard, Ancestral Connections: Art and an Aboriginal System of Knowledge (University of Chicago Press, 1991)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/ngalyod_logomark.webp" type="image/webp"><img src="../../assets/ngalyod_logomark.webp" alt="Ngalyod logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/ngalyod_logomark.webp" type="image/webp"><img src="../../assets/ngalyod_logomark.webp" alt="Ngalyod logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

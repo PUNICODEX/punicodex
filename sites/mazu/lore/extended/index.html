@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Māzǔ, Sea, Protection, Seafaring. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/mazu/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Māzǔ?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Māzǔ is /ma˥ tsu˨˩˦/ — approximately MAH-tsoo — level tone, then a dip-and-rise."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Māzǔ mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Māzǔ means Mother ancestor in the chinese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Māzǔ?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Māzǔ is associated with The red robe (Her temple color — protection worn bright against the grey sea), The lantern (The guide-light of the storm-tossed), The two generals (Sight and hearing deified — vigilance in both directions)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Māzǔ in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII mazu strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Māzǔ?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Silent Girl of Meizhou” — Māzǔ's myth is a life, not a legend-cycle: the historical Lín Mòniáng of 10th-century Meizhou, whose silence, visions, and early death became the sea's own religion — a canon written not in scripture but in rescue-stories kept at harbors, and crowned by twelve centuries of imperial gratitude. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/mazu_logolockup.webp" type="image/webp"><img src="../../assets/mazu_logolockup.png" alt="Māzǔ" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Māzǔ</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Māzǔ.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/mazu_mascot.webp" type="image/webp"><img src="../../assets/mazu_mascot.png" alt="Māzǔ — Sea, Protection, Seafaring" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/mazu_mascot.webp" type="image/webp"><img src="../../assets/mazu_mascot.png" alt="Māzǔ — Sea, Protection, Seafaring" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Māzǔ 媽祖 — "Maternal Ancestor" — carries the first tone on mā and the dipping third tone on zǔ; the restoration keeps both tone marks. Her personal name was Lín Mòniáng ("Silent Maiden"), but the world prays to the title: Grandmother of the sea. The third tone on zǔ dips and rises — the small valley in the name that Mandarin speakers sing without noticing.</p>
+                <p class="etymology-note">The name <strong>Māzǔ</strong> carries the orthographic signature of the chinese tradition: 媽祖. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -233,7 +284,7 @@
                 <thead>
                     <tr><th>Character</th><th>Unicode</th><th>Name</th><th>Block</th><th>Phonetic Role</th></tr>
                 </thead>
-                <tbody><tr class="reveal-up"><td class="char-cell">M</td><td><code>U+004D</code></td><td>Latin Capital Letter M</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">ā</td><td><code>U+0101</code></td><td>Latin Small Letter A with Macron</td><td>Latin Extended-A</td><td><a href="/long/" class="crosslink" data-crosslink="long">Long</a> vowel</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">z</td><td><code>U+007A</code></td><td>Latin Small Letter Z</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">ǔ</td><td><code>U+01D4</code></td><td>Latin Small Letter U with Caron</td><td>Latin Extended-B</td><td>Special character</td></tr></tbody>
+                <tbody><tr class="reveal-up"><td class="char-cell">M</td><td><code>U+004D</code></td><td>Latin Capital Letter M</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">ā</td><td><code>U+0101</code></td><td>Latin Small Letter A with Macron</td><td>Latin Extended-A</td><td>Long vowel</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">z</td><td><code>U+007A</code></td><td>Latin Small Letter Z</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">ǔ</td><td><code>U+01D4</code></td><td>Latin Small Letter U with Caron</td><td>Latin Extended-B</td><td>Special character</td></tr></tbody>
             </table>
             <p class="breakdown-note">The <strong>Tier 1</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
         </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Māzǔ is the most-worshipped sea goddess on earth: the fisherman's daughter who became the guardian of everyone who works the water, whose temples line every coast of the Chinese world, and whose red lanterns guide sailors home through a thousand years of storms.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Māzǔ in Later Traditions</h3><p class="cultural-card-body">She absorbs the coast's other sea-powers: associated with <a href="/guanyin/" class="crosslink" data-crosslink="guanyin">Guānyīn</a> (who is sometimes her patron in the legends), honored in Daoist and Buddhist temples alike, and worshipped as Tin Hau in Hong Kong and A-Ma in Macau — whose very name, some say, comes from her ("A-Ma-Gau," Bay of A-Ma). The diaspora carried her to every Chinese port from San Francisco to Sydney: wherever junks and container ships anchor, her shrine overlooks the harbor.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Her temples number in the thousands — over 1,500 in Taiwan alone; her birthday (23rd of the 3rd lunar month) shuts down the island's coasts; her Dajia procession is a national institution watched by millions more online. Fishermen, sailors, the navy, and migrants all claim her: the goddess who was once a girl watching the sea is now the sea's own government, elected annually by the crowds who walk behind her statue.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Māzǔ</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Māzǔ in Later Traditions</h3><p class="cultural-card-body">She absorbs the coast's other sea-powers: associated with <a href="/guanyin/" class="crosslink" data-crosslink="guanyin">Guānyīn</a> (who is sometimes her patron in the legends), honored in Daoist and Buddhist temples alike, and worshipped as Tin Hau in Hong Kong and A-Ma in Macau — whose very name, some say, comes from her ("A-Ma-Gau," Bay of A-Ma). The diaspora carried her to every Chinese port from San Francisco to Sydney: wherever junks and container ships anchor, her shrine overlooks the harbor.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Her temples number in the thousands — over 1,500 in Taiwan alone; her birthday (23rd of the 3rd lunar month) shuts down the island's coasts; her Dajia procession is a national institution watched by millions more online. Fishermen, sailors, the navy, and migrants all claim her: the goddess who was once a girl watching the sea is now the sea's own government, elected annually by the crowds who walk behind her statue.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Meizhou Ancestral Temple on her home island — rebuilt repeatedly from the Song original, crowded with imperial plaques — is her Nazareth; the Dajia Jenn Lann Temple and Taipei's grand Tianhou temples are her living capitals. Macau's A-Ma Temple (15th c., older than the Portuguese) marks her oldest colonial-era shore, and the Mazu statues of the Taiwan Strait's temples document eight centuries of her iconography.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Māzǔ means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Māzǔ is the goddess of being watched for. Not of the sea — of the people on it: the daughter who never stopped standing on the shore. She asks the question every sailor, parent, and lighthouse-keeper knows: who is watching the water for you — and for whom, tonight, are you the lantern?</p><p>Watch the procession and you see the whole theology: no priest lectures, no scripture is read — the statue simply walks, and a million people walk after it. The sea-faith never needed a doctrine; it needed a mother on the shore. Every year she makes the circuit, and every year the coast remembers that someone is watching the water.</p><p>The two generals at her flanks are the liturgy in one image: see far, hear far. Everything else — the titles, the temples, the processions — is commentary.</p><p>Her sea is the busiest water in human history — the straits that carried tea, silk, migrants, and war — and her temples face it still, unmoved by cargo schedules. The junks are gone; the lantern remains. Every container ship passing the Taiwan Strait sails through the parish of a fisherman's daughter, whether it knows it or not.</p><p>She is proof that the largest religions are made of gratitude, not doctrine. Nobody was ever converted to Māzǔ. They were simply rescued, and remembered.</p><p>The generals' statues unsettle children and reassure sailors: ugliness conscripted into vigilance, the demons made watchmen. It is the sea's whole covenant in two figures — the dangers are not banished but put on guard duty. Her temples teach it without a single sermon: what you cannot calm, you can still set to watching.</p><p>Her economy is miracles per capita, and her ledger is full: every coastal family keeps one — the grandfather guided home, the net that held, the storm that turned. Gratitude at that scale stops being sentiment and becomes infrastructure, the sea's own safety service, funded by incense, staffed by a daughter of Fujian, open every hour of every storm.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Māzǔ, Sea, Protection, Seafaring, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Māzǔ?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Māzǔ</strong> is /ma˥ tsu˨˩˦/ — approximately MAH-tsoo — level tone, then a dip-and-rise..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Māzǔ mean?</summary><div class="faq-answer"><p><strong>Māzǔ</strong> means <strong>Mother ancestor</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Māzǔ?</summary><div class="faq-answer"><p>Māzǔ is associated with <strong>The red robe</strong> (Her temple color — protection worn bright against the grey sea), <strong>The lantern</strong> (The guide-light of the storm-tossed), <strong>The two generals</strong> (Sight and hearing deified — vigilance in both directions).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Māzǔ in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mazu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Māzǔ?</summary><div class="faq-answer"><p>Lín Mòniáng was born on Meizhou island in 960 CE, and tradition says she did not cry at birth — hence "Silent Maiden." She learned to read the weather on her father's fishing boat, stood on the shore watching for lost sails, and was seen in dreams guiding drowning sailors home. Dead by twenty-eight, she rose, the fishermen said, straight to the sky on a cloud of incense — and the sea was never without her again.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Māzǔ?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Māzǔ</strong> is /ma˥ tsu˨˩˦/ — approximately MAH-tsoo — level tone, then a dip-and-rise.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Māzǔ mean?</summary><div class="faq-answer"><p><strong>Māzǔ</strong> means <strong>Mother ancestor</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Māzǔ?</summary><div class="faq-answer"><p>Māzǔ is associated with <strong>The red robe</strong> (Her temple color — protection worn bright against the grey sea), <strong>The lantern</strong> (The guide-light of the storm-tossed), <strong>The two generals</strong> (Sight and hearing deified — vigilance in both directions).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Māzǔ in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mazu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Māzǔ?</summary><div class="faq-answer"><p>“The Silent Girl of Meizhou” — Māzǔ's myth is a life, not a legend-cycle: the historical Lín Mòniáng of 10th-century Meizhou, whose silence, visions, and early death became the sea's own religion — a canon written not in scripture but in rescue-stories kept at harbors, and crowned by twelve centuries of imperial gratitude. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,13 +361,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Māzǔ and related cults.</cite></li><li><cite>The Meizhou Ancestral Temple on her home island — rebuilt repeatedly from the Song original, crowded with imperial plaques — is her Nazareth; the Dajia Jenn Lann Temple and Taipei's grand Tianhou temples are her living capitals. Macau's A-Ma Temple (15th c., older than the Portuguese) marks her oldest colonial-era shore, and the Mazu statues of the Taiwan Strait's temples document eight centuries of her iconography.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Māzǔ and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Chinese folk religion</cite></li><li><cite>Chinese folklore</cite></li><li><cite>Birrell</cite></li><li><cite>Chinese Buddhist texts</cite></li><li><cite>Cambridge</cite></li><li><cite>Oxford</cite></li></ul>
+                    <ul class="source-list"><li><cite>Tianfei xiansheng lu (Records of the Heavenly Consort's Efficacious Manifestations), Ming miracle-gazetteer</cite></li><li><cite>Chifeng Tianhou zhi (Imperially Commissioned Gazetteer of the Empress of Heaven), 1817</cite></li><li><cite>Zhèng Hè's Liújiāgǎng and Changle steles (1413, 1431)</cite></li><li><cite>James L. Watson, "Standardizing the Gods" (1985)</cite></li><li><cite>Chinese Text Project</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/mazu_logomark.webp" type="image/webp"><img src="../../assets/mazu_logomark.webp" alt="Māzǔ logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/mazu_logomark.webp" type="image/webp"><img src="../../assets/mazu_logomark.webp" alt="Māzǔ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

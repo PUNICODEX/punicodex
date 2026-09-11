@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Eingana — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Eingana</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Eingana</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,143 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Eingana</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Eingana</strong> is the standard Aboriginal romanisation, documented in academic sources — “The mother”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">eingana</p>
-                    <p class="card-body">The plain <strong>eingana</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Eingana</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Eingana</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Eingana.com → eingana.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Eingana</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Eingana</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Eingana is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Eingana</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Eingana</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Eingana</p>
-                    <p class="card-body">The full Unicode restoration. <strong>eingana.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Eingana was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Eingana</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/aɪˈŋɑːnə/</span>
-            <span class="ipa-label">Jawoyn/Aboriginal Australian Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Ei-</span>
-        <span class="phoneme-desc">Diphthong [aɪ] or [ei] — the name opens with a rising vowel that echoes across language groups of western Arnhem Land.</span>
+      <p class="lead-text">Eingana's mythology belongs to the oral traditions of the stone country and adjacent regions of western Arnhem Land. It is not a single fixed narrative but a corpus of songs, dances, and designs held by senior custodians. The common threads are her primordial motherhood, her shaping of the country, and the enduring obligation of human beings to care for the land she made.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Creation</span>
+          <h3 class="myth-title">The Mother Who Made the World</h3>
+          <p class="myth-text">The fullest published accounts of Eingana come from twentieth-century ethnographers working in western Arnhem Land — Mountford's Arnhem Land expedition records, the Berndts' studies, Elkin's syntheses — and from custodians of the stone country who have spoken for their country in more recent decades. The shared core is immense and simple: in the Creation Time, Eingana lay beneath the surface of the world, huge and pregnant with all life. She moved through the darkness, and where she pushed upward the land rose into ranges and escarpments; where she rested, water pooled into billabongs and rivers. She gave birth to the animals, the plants, and the first people, each carrying a portion of her law, and then — in most tellings — withdrew into the deep waterholes to sleep. The country is therefore her descendant and her body: every rock and spring a memory of her movement, every songline a tracing of her track. Details belong to particular custodians and are properly withheld from publication; what can be said publicly is the architecture — a creation that is not an event of the past but the permanent structure of the present land.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ŋa-</span>
-        <span class="phoneme-desc">Velar nasal [ŋ] followed by open [a] — the 'ng' is a single sound, as in English 'sing,' not a sequence of n+g.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Birth and Danger</span>
+          <h3 class="myth-title">The Snake Who Swallows and Regenerates</h3>
+          <p class="myth-text">Eingana's power is life-giving but not safe, and the tradition is honest about both halves. Stories recorded in the Arnhem Land literature tell of her swallowing the dead, or those who transgress her law, and of her power to restore or transform what she has taken. This double nature — mother and devourer — is characteristic of the Rainbow Serpent family across Australia, from the Murngin's Yurlunggur to the Noongar's Wagyl: the same being who creates the world punishes those who forget their obligations to it. The danger is not malice; it is law. A waterhole where she rests must not be fouled; a site of her story must not be spoken of by the wrong people; resources must be taken with the proper observances and in season. Those who keep the law receive her abundance; those who break it meet her body. Modern commentators sometimes soften the swallowing into symbolism, but the older accounts present it plainly — the mother who made every life remains sovereign over each, and sovereignty includes the taking back.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-na</span>
-        <span class="phoneme-desc">Alveolar nasal [n] plus open final [a]; stress falls on the second syllable in most English renderings.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Seasonal Cycle</span>
+          <h3 class="myth-title">The Wet and the Dry</h3>
+          <p class="myth-text">Eingana is read in the annual transformation of Arnhem Land itself. Through the long dry she sleeps in the deep waterholes, her presence contracting to those few surviving pools where life clusters; when the first storms of the wet break, she stirs — and the thunder is her voice, the flooding rivers her movement, the green explosion of the country her waking body. The monsoon's violence is not a disruption of creation but its renewal: the land dies back each year and is born again when the great snake moves. Ceremonies at the turning of the seasons re-enact this cycle and re-commit the human community to its part — proper burning of the country, care of the waterplaces, observance of the right songs. Stanner named the underlying ontology the Dreaming: a time that is not past but continuous, in which the ancestors' acts remain available to the present. Eingana's breathing — dry sleep, wet waking — is the Dreaming's clearest annual signature, written across a third of the continent each year in fire, smoke, rain, and green.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Custodianship</span>
+          <h3 class="myth-title">The Law of Country</h3>
+          <p class="myth-text">The stories of Eingana are not entertainment and not antiquarian record; they are the charter under which her country is looked after. Specific clans, families, and individuals hold the right to speak for particular sites, songs, and designs — a system anthropologists have described as a marriage of land tenure, intellectual property, and liturgy. To sing her name without authority, to damage her waterholes, to take resources out of season or without observance is to break a living relationship, and the tradition is explicit that the consequences are real: the water fails, the law's keepers sicken, the country itself suffers. Because the most sacred dimensions are restricted to initiated custodians, the public record — books, museums, even this entry — holds only the outer layer of a much deeper corpus; the centre is deliberately not published. The mythology therefore encodes land management, kinship, and ethics in a single narrative field, and its modern force has been proven: Aboriginal land-rights claims across Australia have succeeded precisely by demonstrating this continuous custodianship, with the old songs and sites as evidence that the relationship with country never lapsed.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'eye-NGAH-nuh' — begin with the vowel of 'eye,' add the 'ng' of 'sing,' and end softly. Avoid breaking the 'ng' into two consonants.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Jawoyn</strong> Eingana — the great Mother Snake of the Creation Time, recorded in the stone country of western Arnhem Land</li><li><strong>Related Arnhem Land figures</strong> Yurlunggur, the great copper snake of the Murngin (Yolŋu); the Rainbow Serpent complex across northern Australia</li><li><strong>Wider Australian tradition</strong> The Rainbow Serpent / Wanampi — a continent-wide family of creator-snake beings whose local names belong to specific countries and languages</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The spelling Eingana is an English-language transcription of an oral name. Indigenous Australian languages did not traditionally use the Latin alphabet, and pronunciations vary by language group and song cycle. The PuniCodex restoration capitalises the conventional scholarly form; no diacritic or special letter is added, so the name is Tier 2.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -374,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Mother Snake of the First Time</h2>
             <p class="section-subtitle">Creation, Water, Fertility, and the Law of Country</p>
         </div>
@@ -421,57 +332,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Eingana</p>
-        </div>
-        
-      <p class="lead-text">Eingana's mythology belongs to the oral traditions of the stone country and adjacent regions of western Arnhem Land. It is not a single fixed narrative but a corpus of songs, dances, and designs held by senior custodians. The common threads are her primordial motherhood, her shaping of the country, and the enduring obligation of human beings to care for the land she made.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Creation</span>
-          <h3 class="myth-title">The Mother Who Made the World</h3>
-          <p class="myth-text">In the beginning Eingana lay beneath the surface of the world, huge and pregnant with all life. She moved through the darkness, and where she pushed upward the land rose into hills and escarpments; where she rested, water pooled into billabongs and rivers. One by one she gave birth to the animals, the plants, and the first people, each of whom carried a portion of her law. The country itself is therefore her descendant: every rock, waterhole, and plant is a memory of her body.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Birth and Danger</span>
-          <h3 class="myth-title">The Snake Who Swallows and Regenerates</h3>
-          <p class="myth-text">Eingana's power is life-giving but not safe. Stories tell that she swallows the dead or those who transgress her law, and that she can restore them or transform them into new forms. This double nature — mother and devourer — is characteristic of Rainbow Serpent figures across Australia: the same being who creates the world also punishes those who forget their obligations to it. The myth is less a tale of horror than a statement of moral ecology.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Seasonal Cycle</span>
-          <h3 class="myth-title">The Wet and the Dry</h3>
-          <p class="myth-text">Eingana is present in the seasonal transformation of Arnhem Land. During the dry she sleeps in deep waterholes; when the wet returns she stirs, the rains fall, and the country is renewed. This annual rhythm is read as her breathing, her movement, and her continued attention to the land. Ceremonies performed at the turning of the seasons re-enact and re-commit the human community to her law.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Custodianship</span>
-          <h3 class="myth-title">The Law of Country</h3>
-          <p class="myth-text">The stories of Eingana are not entertainment or antiquarian record: they are the charter for how her country is to be looked after. Specific clans and individuals hold the right to speak for particular sites, songs, and designs. To sing her name without authority, to damage her waterholes, or to take resources without the proper observances is to break a living relationship. The mythology therefore encodes land management, kinship, and ethics in a single narrative field.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the aboriginal pantheon</p>
         </div>
@@ -535,8 +403,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Eingana</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Eingana</strong> is the standard Aboriginal romanisation, documented in academic sources — “The mother”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">eingana</p>
+                <p class="card-body">The plain <strong>eingana</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Eingana</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Eingana</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Eingana.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Eingana</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Eingana</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Eingana</p>
+                    <p class="card-body">The full Unicode restoration. <strong>eingana.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Eingana was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/aɪˈŋɑːnə/</span>
+            <span class="ipa-label">Jawoyn/Aboriginal Australian Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Ei-</span>
+        <span class="phoneme-desc">Diphthong [aɪ] or [ei] — the name opens with a rising vowel that echoes across language groups of western Arnhem Land.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ŋa-</span>
+        <span class="phoneme-desc">Velar nasal [ŋ] followed by open [a] — the 'ng' is a single sound, as in English 'sing,' not a sequence of n+g.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-na</span>
+        <span class="phoneme-desc">Alveolar nasal [n] plus open final [a]; stress falls on the second syllable in most English renderings.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'eye-NGAH-nuh' — begin with the vowel of 'eye,' add the 'ng' of 'sing,' and end softly. Avoid breaking the 'ng' into two consonants.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The spelling Eingana is an English-language transcription of an oral name. Indigenous Australian languages did not traditionally use the Latin alphabet, and pronunciations vary by language group and song cycle. The PuniCodex restoration capitalises the conventional scholarly form; no diacritic or special letter is added, so the name is Tier 2.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Eingana is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Eingana</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -554,7 +559,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/eingana_mascot.webp" type="image/webp"><img src="../assets/eingana_mascot.png" alt="Eingana mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/eingana_mascot.webp" type="image/webp"><img src="../assets/eingana_mascot.png" alt="Eingana mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -592,7 +597,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/eingana_logomark.webp" type="image/webp"><img src="../assets/eingana_logomark.webp" alt="Eingana logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/eingana_logomark.webp" type="image/webp"><img src="../assets/eingana_logomark.webp" alt="Eingana logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

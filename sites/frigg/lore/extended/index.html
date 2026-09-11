@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Frigg, Marriage, Motherhood, Queenship. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/frigg/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Frigg?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Frigg is /ˈfriɡː/ — approximately 'FRIG' with the g held long — rhymes with 'big', the r lightly trilled, and the double-g pressed and released like the 'dg' said twice over, as in modern Icelandic Frigg."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Frigg mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Frigg means Beloved (from *frijjō) in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Frigg?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Frigg is associated with Fensalir (The fen-halls where the queen keeps her knowledge and her grief — the Edda's only named home for her), The unsworn mistletoe (The one shoot too young for the oath — the single gap through which all her foresight could not reach), Fulla's casket (The kept counsel of the queen: secrets carried, never spoken), The linen robe from Hel (Nanna's gift sent back with Hermóðr — a wife's token to the mother-in-law, carried out of the land of the dead), Frigga's distaff (Orion's belt in northern folk tradition — the later ages giving the queen the spindle the Eddas forgot)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Frigg in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Frigg is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Frigg?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Oath of All Things” — Frigg is the foremost of the ásynjur: daughter of Fjörgynn, wife of Óðinn, mother of Baldr. Her hall is Fensalir, the fen-halls, where she wept for her slain son; her gift is the heaviest in the Edda — she knows all fate, and says none of it. Around those two facts, the almost-complete oath and the kept silence, the tradition builds its portrait of the queen who governs the household of the gods. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/frigg_logolockup.webp" type="image/webp"><img src="../../assets/frigg_logolockup.png" alt="Frigg" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Frigg</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Frigg</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/frigg_mascot.webp" type="image/webp"><img src="../../assets/frigg_mascot.png" alt="Frigg — Marriage, Motherhood, Queenship" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/frigg_mascot.webp" type="image/webp"><img src="../../assets/frigg_mascot.png" alt="Frigg — Marriage, Motherhood, Queenship" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -207,7 +258,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Frigg</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="4" data-delay="300">
       <div class="etym-step-content">
@@ -216,7 +267,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Frigg is Tier 2 by the mechanical rule: the normalized Old Norse form is already plain ASCII — there is no diacritic and no distinctive letter for the ASCII alphabet to lose. The queen of the gods carries a name so plain that only the capital distinguishes the restored form from the input.</p>
+                <p class="etymology-note">Beloved (from *frijjō)</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -241,7 +292,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">F</td><td><code>U+0046</code></td><td>Latin Capital Letter F</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Frigg</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -253,24 +304,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Frigg is the foremost of the ásynjur: daughter of Fjörgynn, wife of Óðinn, mother of <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>. Her hall is Fensalir, the fen-halls, where she wept for her slain son; her gift is the heaviest in the Edda — she knows all fate, and says none of it.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Frigg in Later Traditions</h3><p class="cultural-card-body">The Roman interpretatio fixed Frigg's identity for all posterity through the calendar: when the Germanic peoples translated the seven-day week, dies Veneris — <a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a>'s day — became Frigg's day, Old English Frīgedæg, Old Norse frjádagr, whence Friday. The equation is Venus-as-consort: the wife of the chief god takes the day of the goddess of love. Greek comparison runs to <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a>, the queen and goddess of marriage, but the structural fit is imperfect — Frigg keeps a seeress's knowledge Hera never claims. The deepest syncretic debate is internal: since Grimm, scholars have asked whether Frigg and <a href="/freyja/" class="crosslink" data-crosslink="freyja">Freyja</a> were originally one goddess — both ride falcon-cloaks, both are sought by giants, both weep for absent mates — and the handbooks (Simek, Orchard, Lindow) still print the question open. Her one firm continental witness is Langobardic Frea in Paul the Deacon; Saxo, euhemerizing, gives a Frigga who strips gold from Óðinn's statue and disgraces herself — a scandal-story that belongs to Saxo's literary workshop, not to cult.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Frigg's most durable legacy is the fifth weekday: Friday carries her name in every Germanic language, the Germanic answer to the day of Venus. The Victorian revival made her the weeping mother of the North — Matthew Arnold's 'Balder Dead' gives her long grieving speeches the Eddas only imply — and the same century's folklore collectors recorded 'Frigga's distaff' (Friggerock) as the folk name of Orion's belt, from which the romantic image of the cloud-weaving queen descends; the Eddas themselves never give her a loom. Wagner recast her as Fricka, the severe guardian of marriage in the Ring, the operatic portrait most moderns know first. Modern Heathenry honors her as the goddess of hearth, household, and the keeper of frith, and modern fantasy keeps her at Óðinn's side. Her name never needed restoring — it never left the week.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Frigg</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Frigg in Later Traditions</h3><p class="cultural-card-body">The Roman interpretatio fixed Frigg's identity for all posterity through the calendar: when the Germanic peoples translated the seven-day week, dies Veneris — <a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a>'s day — became Frigg's day, Old English Frīgedæg, Old Norse frjádagr, whence Friday. The equation is Venus-as-consort: the wife of the chief god takes the day of the goddess of love. Greek comparison runs to <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a>, the queen and goddess of marriage, but the structural fit is imperfect — Frigg keeps a seeress's knowledge Hera never claims. The deepest syncretic debate is internal: since Grimm, scholars have asked whether Frigg and <a href="/freyja/" class="crosslink" data-crosslink="freyja">Freyja</a> were originally one goddess — both ride falcon-cloaks, both are sought by giants, both weep for absent mates — and the handbooks (Simek, Orchard, Lindow) still print the question open. Her one firm continental witness is Langobardic Frea in Paul the Deacon; Saxo, euhemerizing, gives a Frigga who strips gold from Óðinn's statue and disgraces herself — a scandal-story that belongs to Saxo's literary workshop, not to cult.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Frigg's most durable legacy is the fifth weekday: Friday carries her name in every Germanic language, the Germanic answer to the day of Venus. The Victorian revival made her the weeping mother of the North — Matthew Arnold's 'Balder Dead' gives her long grieving speeches the Eddas only imply — and the same century's folklore collectors recorded 'Frigga's distaff' (Friggerock) as the folk name of Orion's belt, from which the romantic image of the cloud-weaving queen descends; the Eddas themselves never give her a loom. Wagner recast her as Fricka, the severe guardian of marriage in the Ring, the operatic portrait most moderns know first. Modern Heathenry honors her as the goddess of hearth, household, and the keeper of frith, and modern fantasy keeps her at Óðinn's side. Her name never needed restoring — it never left the week.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Frigg is an essentially textual goddess: no runestone invokes her, no votive deposit names her, and the place-name evidence sometimes claimed for her in Sweden and Denmark is contested by the place-name scholars. Her material footprint is calendrical and linguistic — the weekday itself: the substitution of Frigg for Venus in the Germanic translation of the seven-day week (Old English Frīgedæg, Old Norse frjádagr) is the fossil of the interpretatio romana, preserved in every modern Germanic language. The narrative witnesses are the Codex Regius of the <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a> and the Codex Regius and <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a> manuscripts of Snorri's Edda; her continental attestation, Paul the Deacon's Historia Langobardorum, survives in a rich manuscript tradition descending from the eighth-century original. Scandinavian folk astronomy, recorded by nineteenth-century collectors and noted by Grimm, kept the name Friggerock — 'Frigga's distaff' — for the three stars of Orion's belt, the nearest thing to a living material tradition attached to her.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Frigg means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Frigg is the patron of the knowledge that cannot be used. She knows all fate and speaks none of it — not from coldness, but because the Edda understands what foresight costs: she sees the mistletoe coming and still must live the days before it falls. Her one permitted weapon is thoroughness, and she wields it to the limit of the world — fire, water, iron, stone, sickness, serpent, all sworn — and the future enters through the single twig too young to swear. What the tradition leaves her is not failure but a harder thing: the discipline of the one who knows. Every keeper of unwelcome certainty — the parent who sees, the friend who cannot say, the expert whose warning would only spread the panic — works in Fensalir, keeping counsel with a knowledge that has nowhere to go.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Frigg, Marriage, Motherhood, Queenship, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Frigg?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Frigg</strong> is /ˈfriɡː/ — approximately 'FRIG' with the g held long — rhymes with 'big', the r lightly trilled, and the double-g pressed and released like the 'dg' said twice over, as in modern Icelandic Frigg..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Frigg mean?</summary><div class="faq-answer"><p><strong>Frigg</strong> means <strong>Beloved (from *frijjō)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Frigg?</summary><div class="faq-answer"><p>Frigg is associated with <strong>Fensalir</strong> (The fen-halls where the queen keeps her knowledge and her grief — the Edda's only named home for her), <strong>The unsworn mistletoe</strong> (The one shoot too young for the oath — the single gap through which all her foresight could not reach), <strong>Fulla's casket</strong> (The kept counsel of the queen: secrets carried, never spoken), <strong>The linen robe from Hel</strong> (<a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s gift sent back with <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a> — a wife's token to the mother-in-law, carried out of the land of the dead), <strong>Frigga's distaff</strong> (Orion's belt in northern folk tradition — the later ages giving the queen the spindle the Eddas forgot).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Frigg in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>frigg</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Frigg?</summary><div class="faq-answer"><p>When Baldr dreams baleful dreams for his life, Frigg does the one thing foresight permits: she fights the future with an oath. She travels the world and exacts from all things — fire and water, iron and every metal, stones, earth, trees, sicknesses, beasts, birds, poison, serpents — the promise that they will not harm Baldr. Only the mistletoe, growing west of Valhöll, seemed too young to demand the oath of. The completeness of the list is the point: Snorri enumerates creation itself, and the myth hangs its whole catastrophe on the one category a mother's thoroughness could not imagine mattering — a plant too young to swear.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Frigg?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Frigg</strong> is /ˈfriɡː/ — approximately 'FRIG' with the g held long — rhymes with 'big', the r lightly trilled, and the double-g pressed and released like the 'dg' said twice over, as in modern Icelandic Frigg.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Frigg mean?</summary><div class="faq-answer"><p><strong>Frigg</strong> means <strong>Beloved (from *frijjō)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Frigg?</summary><div class="faq-answer"><p>Frigg is associated with <strong>Fensalir</strong> (The fen-halls where the queen keeps her knowledge and her grief — the Edda's only named home for her), <strong>The unsworn mistletoe</strong> (The one shoot too young for the oath — the single gap through which all her foresight could not reach), <strong>Fulla's casket</strong> (The kept counsel of the queen: secrets carried, never spoken), <strong>The linen robe from Hel</strong> (<a href="/nanna/" class="crosslink" data-crosslink="nanna">Nanna</a>'s gift sent back with <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a> — a wife's token to the mother-in-law, carried out of the land of the dead), <strong>Frigga's distaff</strong> (Orion's belt in northern folk tradition — the later ages giving the queen the spindle the Eddas forgot).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Frigg in Unicode?</summary><div class="faq-answer"><p><strong>Frigg</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Frigg?</summary><div class="faq-answer"><p>“The Oath of All Things” — Frigg is the foremost of the ásynjur: daughter of Fjörgynn, wife of Óðinn, mother of <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>. Her hall is Fensalir, the fen-halls, where she wept for her slain son; her gift is the heaviest in the Edda — she knows all fate, and says none of it. Around those two facts, the almost-complete oath and the kept silence, the tradition builds its portrait of the queen who governs the household of the gods. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -279,7 +342,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,13 +361,13 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Völuspá 33 (Frigg weeps in Fensalir), 53 (the second grief at Óðinn's fall); Grímnismál, prose prologue (the fostering and the wager); Lokasenna 26–30 (the flyting; 'she knows all fate')</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 20 (she knows the fates of men, though she prophesies nothing), 35 (foremost of the ásynjur; Fensalir; Fulla, <a href="/gna/" class="crosslink" data-crosslink="gna">Gná</a>, Hlín), 49 (the oath, the mistletoe, the question of ransom, Nanna's gifts); Skáldskaparmál (kennings for Frigg)</cite></li><li><cite>Saxo Grammaticus, Gesta Danorum, Book 1 (Frigga and the statue of Óðinn), trans. Peter Fisher, ed. Hilda Ellis Davidson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Poetic Edda: <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a> 33 (Frigg weeps in Fensalir), 53 (the second grief at Óðinn's fall); <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a>, prose prologue (the fostering and the wager); <a href="/texts/poetic-edda/#lokasenna" class="crosslink citation-link" data-citation="lokasenna">Lokasenna</a> 26–30 (the flyting; 'she knows all fate')</cite></li><li><cite>Snorri Sturluson, <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a>: <a href="/texts/prose-edda/#gylfaginning-20" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 20</a> (she knows the fates of men, though she prophesies nothing), 35 (foremost of the ásynjur; Fensalir; Fulla, <a href="/gna/" class="crosslink" data-crosslink="gna">Gná</a>, Hlín), 49 (the oath, the mistletoe, the question of ransom, Nanna's gifts); <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál</a> (kennings for Frigg)</cite></li><li><cite>Saxo Grammaticus, Gesta Danorum, Book 1 (Frigga and the statue of Óðinn), trans. Peter Fisher, ed. Hilda Ellis Davidson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Frigg and related cults.</cite></li><li><cite>Frigg is an essentially textual goddess: no runestone invokes her, no votive deposit names her, and the place-name evidence sometimes claimed for her in Sweden and Denmark is contested by the place-name scholars. Her material footprint is calendrical and linguistic — the weekday itself: the substitution of Frigg for Venus in the Germanic translation of the seven-day week (Old English Frīgedæg, Old Norse frjádagr) is the fossil of the interpretatio romana, preserved in every modern Germanic language. The narrative witnesses are the Codex Regius of the Poetic Edda and the Codex Regius and <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a> manuscripts of Snorri's Edda; her continental attestation, Paul the Deacon's Historia Langobardorum, survives in a rich manuscript tradition descending from the eighth-century original. Scandinavian folk astronomy, recorded by nineteenth-century collectors and noted by Grimm, kept the name Friggerock — 'Frigga's distaff' — for the three stars of Orion's belt, the nearest thing to a living material tradition attached to her.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Frigg and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -371,7 +434,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/frigg_logomark.webp" type="image/webp"><img src="../../assets/frigg_logomark.webp" alt="Frigg logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/frigg_logomark.webp" type="image/webp"><img src="../../assets/frigg_logomark.webp" alt="Frigg logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

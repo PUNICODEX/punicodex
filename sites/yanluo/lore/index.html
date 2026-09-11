@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Yánluó — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">閻羅王</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Yánluó.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">閻羅王</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Yánluó</strong> (閻羅王) is attested in the source tradition — “'King Yan' (閻羅, from <a href="/yama/" class="crosslink" data-crosslink="yama">Yama</a>), the judge of the dead”. Its acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">yanluo</p>
-                    <p class="card-body">Reduced to plain <strong>yanluo</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Yánluó</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Yánluó</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Yánluó.com → xn--ynlu-5na5i.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Yánluó</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Yánluó</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Yánluó is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">閻羅王</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Yánluó is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Yánluó</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Yánluó</p>
-                    <p class="card-body">Restores <strong>閻羅王</strong>. The live temple domain — <strong>yánluó.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">yanluo</p>
-                    <p class="card-body">Flattens <strong>閻羅王</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Yánluó was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Yánluó</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/jɛn˧˥ lwo˧˥/</span>
-            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">yen-lwoh, rising tone on both syllables.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Chinese</strong> 閻羅</li><li><strong>Full title</strong> 閻羅王 (Yánluó Wáng)</li><li><strong>Sanskrit</strong> Yama</li><li><strong>Japanese</strong> Enma</li><li><strong>Owned form</strong> Yánluó</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Yánluó 阎罗 abbreviates Yánluówáng 阎罗王, "King Yama" — the Sanskrit Yamarāja worn down by two millennia of Chinese speech. The second tone on yán and the rising luó are fixed by tradition; the full Sanskrit form survives in Buddhist ritual language beside the everyday king.</p></div>
+      <p class="lead-text">Yánluó's mythology is procedural: not adventures but cases. His stories are judgments — and the judgments are always, the texts insist, simply the soul's own deeds read back to it.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Origin</span>
+          <h3 class="myth-title">Yama, the First Mortal</h3>
+          <p class="myth-text">Before he was a king of hell, <a href="/yama/" class="crosslink" data-crosslink="yama">Yama</a> was the first human to die. The <a href="/texts/rig-veda/" class="crosslink citation-link" data-citation="rig-veda">Ṛgveda</a> (10.14) calls him the one who found the road away from the world of the fathers; he became the gatherer of the dead, honoured with offerings as the king who presides over the ancestors. Buddhism inherited him and sharpened him: in the Devadūta Sutta (Majjhima Nikāya 130) the newly dead stand before King Yama, who asks why they ignored the three divine messengers — an old person, a sick person, a corpse — sent to every house as warnings. Yánluó's court thus rests on an Indian foundation two millennia deep: judgment begins with mortality itself, and the first judge is the first man who had to die.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Court</span>
+          <h3 class="myth-title">The Fifth Tribunal</h3>
+          <p class="myth-text">The Chinese Ten Kings system, documented from the Tang dynasty onward, receives the dead at set intervals — the seventh day after death, the hundredth day, the first and third anniversaries — distributing them among ten courts (The Scripture of the Ten Kings; trans. Teiser, 1994; the sūtra's Dunhuang manuscripts). Yánluó presides over the fifth, the great reckoning after the first four screenings. There the record books of each life are opened and the karma-mirror raised — it shows every deed as it was done, neither argued nor appealed — and the sentence is assigned: paradise, rebirth, or the numbered hells. One legend demoted him from the first court for undue leniency: even the king of the dead is audited, and mercy itself must answer to the ledger.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Mercy</span>
+          <h3 class="myth-title">Bao Zheng on the Bench</h3>
+          <p class="myth-text">Chinese folklore kept electing incorruptible mortals to Yánluó's office. The greatest is Bao Zheng, the Song-dynasty magistrate — Justice Bao of a hundred operas and countless storytellings — said to judge the living by day and the dead by night as Yánluó's incarnation, identifiable by the crescent on his forehead and the iron face that fears no noble house. The tradition is a compliment to the office, not a doctrine: the perfect magistrate is already doing the underworld's work, which means the underworld is only the courtroom made honest. Yuan and Ming drama spread the identification across China until the borrowed god and the historical judge fused in the popular imagination — a god's office filled, repeatedly, by men.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Descent</span>
+          <h3 class="myth-title">Mulian Crosses the Underworld</h3>
+          <p class="myth-text">The Yü-lan-p'en sūtra (Taishō 685), composed in Chinese from the seventh century, sends the monk Mulian down through the courts to find his mother starving among the hungry ghosts, and discovers that even a Buddha's disciple cannot buy her release — only the united offerings of the whole sangha on the fifteenth day of the seventh month can. The tale, performed in Dunhuang transformation texts and still staged today, is Yánluó's bureaucracy seen from below: the filial son walks past the mirror and the ledgers and finds that love, like law, needs an institution to reach the dead. The Ghost Festival it founded remains East <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>'s greatest rite for the dead — judgment softened, once a year, by family.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Judge of the Dead</h2>
             <p class="section-subtitle">The Ten Courts, the Record Books, and the Mirror of Deeds</p>
         </div>
@@ -407,53 +325,26 @@
       <div class="symbol-item">
         <span class="symbol-name">The ox-head and horse-face</span>
         <span class="symbol-meaning">His bailiffs: the two wardens who fetch the souls of the dead</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The golden bridge and silver path</span>
+        <span class="symbol-meaning">The crossings of the third court: the good walk a golden bridge, the middling a silver path, the wicked fall to the blood-pool below — the geography of the verdict.</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Mèngpō's tea</span>
+        <span class="symbol-meaning">The old woman's soup of oblivion at the Bridge of Sighs: rebirth requires forgetfulness — the court's last, merciful erasure of every file.</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Yánluó</p>
-        </div>
-        
-      <p class="lead-text">Yánluó's mythology is procedural: not adventures but cases. His stories are judgments — and the judgments are always, the texts insist, simply the soul's own deeds read back to it.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Origin</span>
-          <h3 class="myth-title">Yama, the First Mortal</h3>
-          <p class="myth-text">Before he was a king of hell he was the first man to die: the Ṛgveda's Yama chose mortality, found the road to the other world, and became the guide and host of the fathers — honoured with songs and offerings. Buddhism inherited him as the dharma-king who interrogates the dead: the three messengers — old age, sickness, death — are his summonses, sent to every house.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Court</span>
-          <h3 class="myth-title">The Fifth Tribunal</h3>
-          <p class="myth-text">The Chinese Ten Kings system, formed by the Tang, stations Yánluó in the fifth court — the great reckoning after the first four screenings. There the record books are opened, the mirror of deeds is raised, and the verdict is assigned: paradise, rebirth, or the numbered hells. One legend says he once held the first court but was demoted for leniency — even the king of the dead is audited.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Mercy</span>
-          <h3 class="myth-title">Bao Zheng on the Bench</h3>
-          <p class="myth-text">Chinese folklore kept electing incorruptible mortals to his office: the Song-dynasty judge Bao Zheng — "Justice Bao" of a hundred operas — was said to judge the living by day and the dead by night as Yánluó's incarnation. The identification is the myth's message: the perfect magistrate is already doing the underworld's work, and the underworld is only the courtroom made honest.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -517,8 +408,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">閻羅王</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Yánluó</strong> (閻羅王) is attested in the source tradition — “'King Yan' (閻羅, from Yama), the judge of the dead”. Its acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">yanluo</p>
+                <p class="card-body">Reduced to plain <strong>yanluo</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Yánluó</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Yánluó</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Yánluó.com → xn--ynlu-5na5i.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Yánluó</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Yánluó</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Yánluó</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Yánluó</p>
+                    <p class="card-body">Restores <strong>閻羅王</strong>. The live temple domain — <strong>yánluó.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">yanluo</p>
+                    <p class="card-body">Flattens <strong>閻羅王</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Yánluó was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/jɛn˧˥ lwo˧˥/</span>
+            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">yen-lwoh, rising tone on both syllables.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Yánluó 阎罗 abbreviates Yánluówáng 阎罗王, "King Yama" — the Sanskrit Yamarāja worn down by two millennia of Chinese speech. The second tone on yán and the rising luó are fixed by tradition; the full Sanskrit form survives in Buddhist ritual language beside the everyday king.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Yánluó is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">閻羅王</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Yánluó is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -536,7 +557,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/yanluo_mascot.webp" type="image/webp"><img src="../assets/yanluo_mascot.png" alt="Yánluó mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/yanluo_mascot.webp" type="image/webp"><img src="../assets/yanluo_mascot.png" alt="Yánluó mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -574,7 +595,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/yanluo_logomark.webp" type="image/webp"><img src="../assets/yanluo_logomark.webp" alt="Yánluó logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/yanluo_logomark.webp" type="image/webp"><img src="../assets/yanluo_logomark.webp" alt="Yánluó logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

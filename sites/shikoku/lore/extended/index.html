@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Shikoku, Smallest Main Island. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/shikoku/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Shikoku?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Shikoku is /ɕi.ko.kɯ/ — approximately 'SHEE-koh-koo' — three crisp syllables."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Shikoku mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shikoku means Four provinces in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Shikoku?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shikoku is associated with Pilgrim's staff and sedge hat (The kongō-zue staff rings for the dead who walk with the henro, and the sugegasa shades the white-robed pilgrim.), Osettai (The free food, lodging, and small gifts islanders offer walkers — the gift economy that sustains the circuit.), Eighty-eight temples (The sacred circuit that defines Shikoku's spiritual geography, one temple for each of the bonnō.), Naruto whirlpools (The famous tidal whirlpools at the island's eastern edge, where the Seto Inland Sea meets the Pacific.), The white robe (byakue) (The pilgrim's garment, worn as a funeral shroud for the self — the walker dies to ordinary life at temple one.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Shikoku in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shikoku is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Shikoku?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Kūkai: The Boy of Zentsū-ji” — Shikoku's mythology is the mythology of Kūkai and the Buddhist pilgrimage that bears his memory — documented history, medieval hagiography, and mountain legend fused into a single sacred geography that thousands of pilgrims in white still walk each year, temple by temple, around the island. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/shikoku_logolockup.webp" type="image/webp"><img src="../../assets/shikoku_logolockup.png" alt="Shikoku" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Shikoku</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Shikoku</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/shikoku_mascot.webp" type="image/webp"><img src="../../assets/shikoku_mascot.png" alt="Shikoku — Smallest Main Island" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/shikoku_mascot.webp" type="image/webp"><img src="../../assets/shikoku_mascot.png" alt="Shikoku — Smallest Main Island" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Shikoku, Smallest Main Island</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">四国</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Shikoku</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ɕi.ko.kɯ/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Japanese</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Smallest Main Island</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Four provinces</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Shikoku</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Pilgrim's staff and sedge hat, Kūya statue, Eighty-eight temples, Naruto whirlpools</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">四国</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Shikoku</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ɕi.ko.kɯ/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Japanese</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Smallest Main Island</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Four provinces</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Shikoku</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Pilgrim's staff and sedge hat, Osettai, Eighty-eight temples, Naruto whirlpools, The white robe (byakue)</span></div></div>
         </div>
     </div>
 </section>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Shikoku</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Shikoku is Tier 2: plain Hepburn. Its significance is geographic and pilgrimage-based.</p>
+                <p class="etymology-note">The name <strong>Shikoku</strong> reaches the modern world through scholarly transliteration of the japanese tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">S</td><td><code>U+0053</code></td><td>Latin Capital Letter S</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">h</td><td><code>U+0068</code></td><td>Latin Small Letter H</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">k</td><td><code>U+006B</code></td><td>Latin Small Letter K</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">k</td><td><code>U+006B</code></td><td>Latin Small Letter K</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Shikoku</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Shikoku</strong> is Japan's smallest main island, a place of mountains, coast, and rural quiet. For more than a thousand years it has been walked by pilgrims on the <em>henro</em>, the 88-temple circuit associated with Kūkai, the founder of Shingon Buddhism. Shikoku means 'four provinces,' and its identity is inseparable from the spiritual geography of the pilgrimage.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Shikoku in Later Traditions</h3><p class="cultural-card-body">Shikoku blends Buddhism, Shinto, and folk religion along the pilgrimage route. Shinto shrines sit beside Buddhist temples, and local kami are honored as manifestations of Buddhist figures. The island's identity is so bound up with Kūkai and the henro that pilgrimage and place are nearly synonymous.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The Shikoku Henro remains one of Japan's most important pilgrimages, attracting walkers from across the country and abroad. The island's rural culture, udon noodles, and natural scenery are celebrated in travel writing and media. Shikoku represents a slower, more contemplative Japan.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Shikoku</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Shikoku in Later Traditions</h3><p class="cultural-card-body">Shikoku's religious landscape is layered rather than replaced. Buddhist temples and Shinto shrines share precincts along the henro, and the island's kami — the mountain powers of Ishizuchi, the sea deities of the whirlpool coast — are read through the honji-suijaku logic as local manifestations of buddhas and bodhisattvas. The pilgrimage itself absorbed folk religion: osettai is a village institution older than any temple guild, and the Daishi is at once a historical monk, an incarnation of a cosmic buddha, and a helpful stranger on the road. In the modern era the henro has been recast for international walkers, secular hikers, and 'power spot' tourists without losing its ritual grammar, and churches and new religions appear among the givers of osettai. Syncretism here is not a single historical event but the island's permanent condition: every age walks the same road and calls the companion by a different name.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The Shikoku Henro remains one of Japan's most important pilgrimages, walked by tens of thousands each year — on foot, by bus, in section over a lifetime — and studied worldwide as a model of living religious practice (Statler, Japanese Pilgrimage, 1983; Reader &amp; Tanabe, Practically Religious, 1998). The island's rural culture, its udon, its vine bridges and thatched Iya villages are celebrated as the 'hidden Japan' of slow travel. Kūkai's bequest runs beyond religion: tradition credits him with perfecting the kana syllabaries and founding Japan's first school open to commoners, and the Daishi's name opens esoteric rites across the country. Shikoku has become the national emblem of a counter-rhythm — the island where the answer to speed is not nostalgia but a walking staff.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The material record of the island's sacred culture is continuous and visible. Zentsū-ji (temple 75) preserves the Kūkai birth precinct, the Miedō hall with the birth room still shown to pilgrims, and Tairyū-ji (temple 21) on its eastern ridge guards the vajra said to have flown there when the young Kūkai prayed for a sign. Henro temples from Ryōzen-ji (temple 1, early 9th c.) onward preserve Daishi halls where food is offered daily to Kūkai as one still present — because he is believed to be. On Ishizuchi-san, the summit shrine and the chained final ascent mark the Shugendō layer of the cult. Across the water, the Okunoin of Kōya-san — Kūkai's mausoleum, part of the UNESCO World Heritage 'Sacred Sites and Pilgrimage Routes in the Kii Mountain Range' (2004) — is the circuit's gravitational center, where the lanterns before the master are said to have burned for twelve centuries.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Shikoku means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Shikoku teaches that a place can become sacred through walking. The island is not merely the setting of the pilgrimage; the pilgrimage is the island's true form. Every mountain pass, fishing hamlet, and henro trail between the temples is part of the rite, and the islanders' osettai makes the whole population liturgists. To walk the henro is to let the land shape the soul at walking pace — the pace at which things actually change. The circuit also makes an audacious claim about numbers: eighty-eight is not a route length but a diagnosis, one temple for each delusion of the human heart. You do not walk the island to see Kūkai's sites; you walk it so that the walking, repeated daily for weeks, wears the self down to something lighter. In an age of acceleration, Shikoku's quiet insistence is that the shortest distance to the sacred is the long way round.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Shikoku, Smallest Main Island, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Shikoku?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Shikoku</strong> is /ɕi.ko.kɯ/ — approximately 'SHEE-koh-koo' — three crisp syllables..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Shikoku mean?</summary><div class="faq-answer"><p><strong>Shikoku</strong> means <strong>Four provinces</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Shikoku?</summary><div class="faq-answer"><p>Shikoku is associated with <strong>Pilgrim's staff and sedge hat</strong> (The traditional gear of the Shikoku henro), <strong>Kūya statue</strong> (The image of the itinerant saint Kūya, associated with the pilgrimage), <strong>Eighty-eight temples</strong> (The sacred circuit that defines Shikoku's spiritual geography), <strong>Naruto whirlpools</strong> (The famous tidal whirlpools at the island's eastern edge).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Shikoku in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>shikoku</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Shikoku?</summary><div class="faq-answer"><p>Kūkai (774–835), posthumously known as Kōbō Daishi, was born in Sanuki province on Shikoku. He founded the Shingon school of esoteric Buddhism, established the monastery on Mount Kōya, and is credited with countless legends. After his death, he was believed to remain in eternal meditation, guiding pilgrims who walk the 88 temples.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Shikoku?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Shikoku</strong> is /ɕi.ko.kɯ/ — approximately 'SHEE-koh-koo' — three crisp syllables.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Shikoku mean?</summary><div class="faq-answer"><p><strong>Shikoku</strong> means <strong>Four provinces</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Shikoku?</summary><div class="faq-answer"><p>Shikoku is associated with <strong>Pilgrim's staff and sedge hat</strong> (The kongō-zue staff rings for the dead who walk with the henro, and the sugegasa shades the white-robed pilgrim.), <strong>Osettai</strong> (The free food, lodging, and small gifts islanders offer walkers — the gift economy that sustains the circuit.), <strong>Eighty-eight temples</strong> (The sacred circuit that defines Shikoku's spiritual geography, one temple for each of the bonnō.), <strong>Naruto whirlpools</strong> (The famous tidal whirlpools at the island's eastern edge, where the Seto Inland Sea meets the Pacific.), <strong>The white robe (byakue)</strong> (The pilgrim's garment, worn as a funeral shroud for the self — the walker dies to ordinary life at temple one.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Shikoku in Unicode?</summary><div class="faq-answer"><p><strong>Shikoku</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Shikoku?</summary><div class="faq-answer"><p>“Kūkai: The Boy of Zentsū-ji” — Shikoku's mythology is the mythology of Kūkai and the Buddhist pilgrimage that bears his memory — documented history, medieval hagiography, and mountain legend fused into a single sacred geography that thousands of pilgrims in white still walk each year, temple by temple, around the island. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hepburn</cite></li><li><cite>Kojiki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hepburn</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The <em>Kojiki</em>; the <em>Nihon Shoki</em>; shrine ritual records.</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a></cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Shikoku and related cults.</cite></li><li><cite>The Shikoku Henro circuit preserves temples from the Heian period to the present, many associated with Kūkai's legend. Mount Kōya, though technically in Wakayama, is the spiritual center of the Shingon tradition and a UNESCO World Heritage site linked to Shikoku's pilgrimage culture.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Shikoku and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kūkai's writings and hagiography</cite></li><li><cite>Shikoku Henro pilgrimage records</cite></li><li><cite>Reader, Making Pilgrimages: Meaning and Practice in Shikoku</cite></li></ul>
+                    <ul class="source-list"><li><cite>Kūkai, Sango Shiiki (797) and Shōrai Mokuroku (806).</cite></li><li><cite>Statler, Oliver, Japanese Pilgrimage (Morrow, 1983).</cite></li><li><cite>Reader, Ian, and George J. Tanabe Jr., Practically Religious: Worldly Benefits and the Common Religion of Japan (University of Hawai'i Press, 1998).</cite></li><li><cite>Shikoku Reijōki and Edo-period henro guidebooks.</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/shikoku_logomark.webp" type="image/webp"><img src="../../assets/shikoku_logomark.webp" alt="Shikoku logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/shikoku_logomark.webp" type="image/webp"><img src="../../assets/shikoku_logomark.webp" alt="Shikoku logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

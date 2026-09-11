@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Inanna, Love, War, Venus. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/inanna/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Inanna?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Inanna is /iˈnan.na/ — approximately 'ee-NAHN-nah' — stress the second syllable, keep the vowels bright, and let the double n sound like a held tongue against the ridge."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Inanna mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inanna means Lady of heaven in the mesopotamian tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Inanna?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inanna is associated with Eight-pointed star (The sign of Venus, her planet; the star disk crowns her tiara and writes her name in cuneiform.), Lion (Her warlike aspect and royal mount; she stands upon lions as mistress of battle.), Reed bundle (The cuneiform sign 𒈹 that writes her name, a stylised bundle of reeds linking her to the marshes of Sumer.), Rosette (The fertility emblem attached to her cult from the Uruk-period cylinder seals onward.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Inanna in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inanna is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Inanna?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Inanna's Descent to the Netherworld” — Inanna's myths are stories of extremity and transformation. She descends into the underworld, demands the impossible, and returns from death. She chooses a shepherd-king as her bridegroom and then sends him to the realm of the dead for half the year. Her narratives are not morality tales; they are meditations on sovereignty, desire, death, and the price of rebirth. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/inanna_logolockup.webp" type="image/webp"><img src="../../assets/inanna_logolockup.png" alt="Inanna" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Inanna</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Inanna</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/inanna_mascot.webp" type="image/webp"><img src="../../assets/inanna_mascot.png" alt="Inanna — Love, War, Venus" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/inanna_mascot.webp" type="image/webp"><img src="../../assets/inanna_mascot.png" alt="Inanna — Love, War, Venus" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Inanna</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The Sumerian name is written in cuneiform as 𒀭𒈹. The ASCII form inanna flattens the name to lowercase and removes the proper-noun marking; the restoration Inanna recovers the standard scholarly citation form. Because the restoration adds only the conventional capital of a proper name, the entry is placed in Tier 2.</p>
+                <p class="etymology-note">The name <strong>Inanna</strong> reaches the modern world through scholarly transliteration of the mesopotamian tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">I</td><td><code>U+0049</code></td><td>Latin Capital Letter I</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Inanna</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Inanna</strong> is the Sumerian great goddess whose domain stretches across the heavens and the human heart. She is the planet Venus as both morning and evening star, the force of sexual desire and fertility, the frenzy of battle, and the sovereign power that legitimises kings. No other deity of ancient Mesopotamia so thoroughly refuses to be one thing: she is the lover and the warrior, the bride and the conqueror, the star that crosses from the eastern to the western horizon and back again.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Inanna in Later Traditions</h3><p class="cultural-card-body">Inanna was so thoroughly identified with the Akkadian Ištar from the Old Akkadian period onward that the two are now treated as a single deity across most of Mesopotamian history. Through Ištar she was equated with the West Semitic Astarte, the Hurrian Šauška, and the Egyptian Qudshu, and she contributed features to the Iranian goddess <a href="/anahita/" class="crosslink" data-crosslink="anahita">Anāhitā</a>. The Greeks identified her with <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodítē</a> in her eastern, armed form. In the Hebrew Bible, her star and cult shadow the 'Queen of Heaven' denounced by Jeremiah.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Inanna's afterlife is inseparable from that of Ištar/Astarte. Her eight-pointed star persists in Near Eastern and occult symbolism, and her Descent has been read as a precursor to later underworld journeys from <a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a> to Christ. In modern scholarship she has become a central figure in feminist re-readings of ancient religion, admired for her autonomous sexuality and her refusal to accept the limits imposed by gods or mortals. Her sacred-marriage hymns, some of the earliest love poetry known, continue to be translated and performed.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Inanna</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Inanna in Later Traditions</h3><p class="cultural-card-body">Inanna was so thoroughly identified with the Akkadian Ištar from the Old Akkadian period onward that the two are now treated as a single deity across most of Mesopotamian history. Through Ištar she was equated with the West Semitic Astarte, the Hurrian Šauška, and the Egyptian Qudshu, and she contributed features to the Iranian goddess <a href="/anahita/" class="crosslink" data-crosslink="anahita">Anāhitā</a>. The Greeks identified her with <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodítē</a> in her eastern, armed form. In the Hebrew Bible, her star and cult shadow the 'Queen of Heaven' denounced by Jeremiah.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Inanna's afterlife is inseparable from that of Ištar/Astarte. Her eight-pointed star persists in Near Eastern and occult symbolism, and her Descent has been read as a precursor to later underworld journeys from <a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a> to Christ. In modern scholarship she has become a central figure in feminist re-readings of ancient religion, admired for her autonomous sexuality and her refusal to accept the limits imposed by gods or mortals. Her sacred-marriage hymns, some of the earliest love poetry known, continue to be translated and performed.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Eanna precinct at Uruk — 'House of Heaven' — preserves the sequence of Inanna temples from the Uruk period onward, source of the archaic cylinder seals that first display her star, lion, and rosette. Thousands of personal names, royal inscriptions, and incantations attest her presence in daily religion from the third millennium to the last generations of cuneiform scribes.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Inanna means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Inanna asks us to hold opposites together. She is the morning star and the evening star, the bride and the warrior, the goddess who descends into death and returns clothed in her own power. In a world that likes its deities sorted by function, she is a reminder that the most ancient sacred forces were polymorphous: desire and violence, fertility and mourning, all braided into a single brilliant light.</p><p>To restore the name Inanna is to refuse the flattening of the feminine divine into mere beauty or mere nurturing. She is the terror of the battlefield and the tenderness of the bridal chamber; the goddess who weeps for the flood's victims and sends the Bull of Heaven to avenge her pride. Her star still rises.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Inanna, Love, War, Venus, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Inanna?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Inanna</strong> is /iˈnan.na/ — approximately 'ee-NAHN-nah' — stress the second syllable, keep the vowels bright, and let the double n sound like a held tongue against the ridge..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Inanna mean?</summary><div class="faq-answer"><p><strong>Inanna</strong> means <strong>Lady of heaven</strong> in the mesopotamian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Inanna?</summary><div class="faq-answer"><p>Inanna is associated with <strong>Eight-pointed star</strong> (The sign of Venus, her planet; the star disk crowns her tiara and writes her name in cuneiform.), <strong>Lion</strong> (Her warlike aspect and royal mount; she stands upon lions as mistress of battle.), <strong>Reed bundle</strong> (The cuneiform sign 𒈹 that writes her name, a stylised bundle of reeds linking her to the marshes of Sumer.), <strong>Rosette</strong> (The fertility emblem attached to her cult from the Uruk-period cylinder seals onward.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Inanna in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>inanna</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Inanna?</summary><div class="faq-answer"><p>In the Sumerian <em>Descent of Inanna</em>, the goddess abandons heaven and earth to descend to the netherworld ruled by her sister <a href="/ereshkigal/" class="crosslink" data-crosslink="ereshkigal">Ereškigal</a>. At each of the seven gates she is stripped of a garment or ornament until she stands naked before the throne of the dead. She is killed and hung on a hook. Her faithful servant Ninšubur persuades Enki to create two sexless beings who revive her with the food and water of life. The myth is a meditation on death, sovereignty, and the price of rebirth.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Inanna?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Inanna</strong> is /iˈnan.na/ — approximately 'ee-NAHN-nah' — stress the second syllable, keep the vowels bright, and let the double n sound like a held tongue against the ridge.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Inanna mean?</summary><div class="faq-answer"><p><strong>Inanna</strong> means <strong>Lady of heaven</strong> in the mesopotamian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Inanna?</summary><div class="faq-answer"><p>Inanna is associated with <strong>Eight-pointed star</strong> (The sign of Venus, her planet; the star disk crowns her tiara and writes her name in cuneiform.), <strong>Lion</strong> (Her warlike aspect and royal mount; she stands upon lions as mistress of battle.), <strong>Reed bundle</strong> (The cuneiform sign 𒈹 that writes her name, a stylised bundle of reeds linking her to the marshes of Sumer.), <strong>Rosette</strong> (The fertility emblem attached to her cult from the Uruk-period cylinder seals onward.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Inanna in Unicode?</summary><div class="faq-answer"><p><strong>Inanna</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Inanna?</summary><div class="faq-answer"><p>“Inanna's Descent to the Netherworld” — Inanna's myths are stories of extremity and transformation. She descends into the underworld, demands the impossible, and returns from death. She chooses a shepherd-king as her bridegroom and then sends him to the realm of the dead for half the year. Her narratives are not morality tales; they are meditations on sovereignty, desire, death, and the price of rebirth. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,19 +355,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The Epic of <a href="/gilgamesh/" class="crosslink" data-crosslink="gilgamesh">Gilgamesh</a>; Sumerian temple hymns and Akkadian ritual texts.</cite></li></ul>
+                    <ul class="source-list"><li><cite>The <a href="/texts/gilgamesh/" class="crosslink citation-link" data-citation="gilgamesh-text">Epic of Gilgamesh</a>; Sumerian temple hymns and Akkadian ritual texts.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Inanna and related cults.</cite></li><li><cite>The Eanna precinct at Uruk — 'House of Heaven' — preserves the sequence of Inanna temples from the Uruk period onward, source of the archaic cylinder seals that first display her star, lion, and rosette. Thousands of personal names, royal inscriptions, and incantations attest her presence in daily religion from the third millennium to the last generations of cuneiform scribes.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Inanna and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998.</cite></li><li><cite>Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</cite></li><li><cite>Jacobsen, The Treasures of Darkness: A History of Mesopotamian Religion.</cite></li><li><cite>Kramer, The Sumerians.</cite></li><li><cite>George, The Babylonian Gilgamesh Epic: Introduction, Critical Edition and Cuneiform Texts.</cite></li><li><cite>Wolkstein &amp; Kramer, Inanna: Queen of Heaven and Earth.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Electronic Text Corpus of Sumerian Literature, Oxford Oriental Institute, 1998.</cite></li><li><cite>Black &amp; Green, Gods, Demons and Symbols of Ancient Mesopotamia.</cite></li><li><cite>Jacobsen, The Treasures of Darkness: A History of Mesopotamian Religion.</cite></li><li><cite>Kramer, The Sumerians.</cite></li><li><cite>George, The Babylonian <a href="/gilgamesh/" class="crosslink" data-crosslink="gilgamesh">Gilgamesh</a> Epic: Introduction, Critical Edition and Cuneiform Texts.</cite></li><li><cite>Wolkstein &amp; Kramer, Inanna: Queen of Heaven and Earth.</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/inanna_logomark.webp" type="image/webp"><img src="../../assets/inanna_logomark.webp" alt="Inanna logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/inanna_logomark.webp" type="image/webp"><img src="../../assets/inanna_logomark.webp" alt="Inanna logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

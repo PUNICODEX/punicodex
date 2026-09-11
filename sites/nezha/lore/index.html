@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Nézhā — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">哪吒</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Nézhā.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,144 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">哪吒</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Nézhā</strong> (哪吒) is attested in the source tradition — “Nezha (from Sanskrit Nalakuvara)”. Its macron-length vowels and acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">nezha</p>
-                    <p class="card-body">Reduced to plain <strong>nezha</strong>, the name loses everything that made it specific: macron-length vowels and acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Nézhā</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Nézhā</strong> restores macron-length vowels and acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Nézhā.com → xn--nzh-bma6j.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Nézhā</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Nézhā</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Nézhā is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">哪吒</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Nézhā is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Nézhā</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Nézhā</p>
-                    <p class="card-body">Restores <strong>哪吒</strong>. The live temple domain — <strong>nézhā.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">nezha</p>
-                    <p class="card-body">Flattens <strong>哪吒</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Nézhā was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Nézhā</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/nɤ˧˥ ʈʂa˥/</span>
-            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Né-</span>
-        <span class="phoneme-desc">Voiced alveolar nasal [n] plus the unrounded close-mid back vowel [ɤ], with Tone 2 (rising, ˧˥). 哪 carries this reading only in the theophoric name; its ordinary interrogative reading is nǎ (Tone 3).</span>
+      <p class="lead-text">The Nézhā cycle is the great Chinese myth of the filial rebel — a story in which the most radical act of disobedience and the most extreme act of filial piety turn out to be the same act. Its canonical form was fixed by the Ming dynasty's two great novels, the <em>Investiture of the Gods</em> and <em>Journey to the West</em>; its oldest motifs are Buddhist, carried into China along the Silk Road.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Birth</span>
+          <h3 class="myth-title">The Flesh Ball</h3>
+          <p class="myth-text">In the <em>Investiture of the Gods</em> (ch. 12), Lady Yin, wife of the garrison commander Li Jing, has carried her third child for three years and six months when the birth finally comes — and what emerges is not an infant but a ball of flesh, glowing like a lantern. Certain he faces a demon, Li Jing strikes it with his sword, and the ball splits: inside stands a boy already able to walk and speak. The immortal Taiyi Zhenren arrives to claim the child as his destined disciple, names him Nézhā, and arms him beyond all reason — the Universe Ring (Qiánkūnquān) and the seven-chi Red Armillary Sash (Hùntiānlíng). The boy grows at supernatural speed; at seven he is already the terror of the riverbanks, his two treasures humming with borrowed cosmic power. The wrongness of the birth is the myth's point. Nézhā enters the world not owed to ordinary nature — a disciple sent down from above, whose "parents" receive him rather than make him.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-zhā</span>
-        <span class="phoneme-desc">Voiceless unaspirated retroflex affricate [ʈʂ] plus open central vowel [a], with Tone 1 (high level, ˥). Pinyin 'zh' denotes the retroflex series, not the English 'zh' of 'measure'.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">East Sea</span>
+          <h3 class="myth-title">The Dragon King's Third Son</h3>
+          <p class="myth-text">Bathing one summer day in the Nine-Bend River where it meets the East Sea, the seven-year-old dips his Red Armillary Sash into the water — and the cosmic instrument does what it is for: it churns the sea until the crystal palace of the Dragon King Āo Guǎng trembles on its foundations (<em>Fēngshén Yǎnyì</em>, ch. 12–13). Āo Guǎng sends his yaksha enforcer Lǐ Gèn to seize the offender; Nézhā kills him with a single cast of the Universe Ring. Then the third prince, Āo Bǐng, rises from the waves on his beast of the deep, and Nézhā kills him too, stripping out his sinews to make a belt. A child has bloodied the oldest bureaucracy in heaven — the ancient administration of the waters — and the Dragon King, robbed of an heir, will have justice or drown Chéntāngguān. The myth stages a collision it never resolves: ungovernable youth against an institution that mistakes its palace for the world.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Sacrifice</span>
+          <h3 class="myth-title">Flesh to Father, Bone to Mother</h3>
+          <p class="myth-text">Āo Guǎng comes to Li Jing in dragon form with an ultimatum: the culprit's life, or an impeachment before the <a href="/yuhuang/" class="crosslink" data-crosslink="yuhuang">Jade Emperor</a> and a flood over Chéntāngguān. Nézhā answers with the most shocking sentence in Chinese popular mythology — <em>I return my flesh to my father and my bones to my mother</em> (削骨還父，削肉還母) — and cuts his own throat, so that the debt of his crime dies with him and cannot be collected from his house (<em>Fēngshén Yǎnyì</em>, ch. 14). The gesture has older roots than the novel: Song-dynasty Chan transmission literature already tells of Nézhā rending his flesh and bone to repay his parents. Filial piety, pushed to its absolute limit, inverts into annihilation — the debt of the body paid back in full. The myth refuses comfort. His sacrifice is genuinely filial and genuinely self-erasing, and no later glory quite forgives the parents who let the sea demand it.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Rebirth</span>
+          <h3 class="myth-title">The Lotus Incarnation</h3>
+          <p class="myth-text">Taiyi Zhenren gathers the wandering soul and rebuilds it — lotus roots for limbs, lotus petals for flesh — a body owed to no womb (<em>Fēngshén Yǎnyì</em>, ch. 14). Remade, Nézhā takes up the Fire-Tipped Spear and Wind Fire Wheels and does what the cycle has been building toward: he hunts his father. Li Jing flees until the immortal Randeng Daoren hands him a golden treasure-pagoda whose flames compel the son's submission; the pagoda becomes his permanent attribute. <em>Journey to the West</em> (ch. 83) retells the same quarrel but changes the paperwork — there the pagoda is a gift of the Buddha, which is itself evidence of how the tale migrated between Daoist and Buddhist retelling. The rebirth completes the cycle: a body with no debt of flesh, and a son whose obedience must be engineered by fire. Freedom from the womb, it turns out, requires a new master.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">NUH-jah — the first syllable rises like a question, the second stays high and level; keep the 'zh' retroflex, tongue curled back, closer to 'dr' than to 'j'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Traditional</strong> 哪吒</li><li><strong>Simplified</strong> 哪吒</li><li><strong>Wade-Giles</strong> No²-cha¹</li><li><strong>Older transcriptions</strong> 那吒 Nàzhā / Nata, the earlier Buddhist transcription of Sanskrit Nalakūvara</li><li><strong>Religious title</strong> 中壇元帥 Zhōngtán Yuánshuài (Marshal of the Central Altar)</li><li><strong>Related terms</strong> 乾坤圈 Qiánkūnquān (Universe Ring); 混天綾 Hùntiānlíng (Red Armillary Sash); 風火輪 Fēnghuǒlún (Wind Fire Wheels)</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">哪吒 is the settled transcription of a name that entered Chinese through Buddhist transmission from Sanskrit Nalakūvara, son of the guardian king Vaiśravaṇa. The Modern Standard Mandarin reading is Nézhā: 吒 zhā (Tone 1) is the value recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard dictionaries, while 哪 carries here its special proper-name reading né (Tone 2), preserved only in this name and recorded as such in the standard dictionaries (Xiandai Hanyu Cidian, Hanyu Da Cidian); its ordinary interrogative reading is nǎ (Tone 3), the value given under kMandarin in the Unihan Database. Because the name is a medieval transcription of a foreign theonym rather than a native Chinese word, Old Chinese reconstruction does not apply.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -376,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Lotus-Born Rebel</h2>
             <p class="section-subtitle">Filial Sacrifice, Divine Weaponry, Unconquerable Youth</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Nézhā</strong> is the child who would not stay born. Third son of the garrison commander Li Jing, he came into the world after three and a half years of pregnancy — not as an infant but as a ball of flesh, which his father split with a sword to reveal a walking, talking boy. The immortal Taiyi Zhenren took him as a disciple and armed him as no child has ever been armed: the Universe Ring, the Red Armillary Sash, the Fire-Tipped Spear, and the Wind Fire Wheels on which he rides the sky.</p><p class="lead-text">What follows is one of the most harrowing arcs in Chinese myth: a boy who kills the Dragon King's son, returns his flesh to his father and his bones to his mother to spare them heaven's vengeance, and is rebuilt from lotus roots and blossoms — a body owed to no one. From there he becomes the vanguard of Jiāng Zǐyá's Zhou army in the <em>Investiture of the Gods</em> and, in <em>Journey to the West</em>, the celestial marshal sent to battle Sūn Wùkōng.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Nézhā</strong> is the child who would not stay born: third son of the garrison commander Li Jing, armed by the immortal Taiyi Zhenren with ring, sash, spear, and wind-fire wheels — and destined to repay the debt of his own body to his parents in the most harrowing act of filial sacrifice in Chinese myth, before heaven rebuilt him from lotus.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C20 12 12 22 12 34C12 46 20 56 32 56C44 56 52 46 52 34C52 22 44 12 32 12Z"></path></svg></div>
@@ -427,57 +337,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Nézhā</p>
-        </div>
-        
-      <p class="lead-text">The Nézhā cycle is the great Chinese myth of the filial rebel — a story in which the most radical act of disobedience and the most extreme act of filial piety turn out to be the same act. Its canonical form was fixed in the Ming dynasty, above all in the <em>Investiture of the Gods</em>.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Birth</span>
-          <h3 class="myth-title">The Flesh Ball</h3>
-          <p class="myth-text">Lady Yīn carries her third child for three years and six months. When the birth finally comes, what emerges is not an infant but a ball of flesh, and Li Jing, garrison commander of Chéntānguān, strikes at it with his sword, certain it is a demon. The ball splits open — and out steps a boy already able to walk and speak, a divine embryo sent down as the disciple of the immortal <em>Taiyi Zhenren</em>. The wrongness of the birth is the point: Nézhā enters the world already owing nothing to ordinary nature.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">East Sea</span>
-          <h3 class="myth-title">The Dragon King's Third Son</h3>
-          <p class="myth-text">Bathing in the Nine-Bend River where it meets the East Sea, the boy dips his <em>Red Armillary Sash</em> in the water — and the sash, an instrument of cosmic order, churns the sea until the palace of the Dragon King <em>Āo Guǎng</em> trembles on its foundations. When the Dragon King's third son, <em>Āo Bǐng</em>, rises to punish the offender, Nézhā kills him. A child has bloodied the bureaucracy of the waters, and the Dragon King of the East Sea will have justice from heaven itself.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Sacrifice</span>
-          <h3 class="myth-title">Flesh to Father, Bone to Mother</h3>
-          <p class="myth-text">To spare his parents the Dragon King's vengeance, Nézhā takes his own life — and frames the deed as an accounting: <em>he returns his flesh to his father and his bones to his mother</em>, paying back the body they gave him so that his crime dies with him and no debt remains to be collected from his house. It is the most shocking sentence in Chinese popular mythology, filial piety pressed so hard it becomes separation. The motif is old — Chan Buddhist texts of the Song dynasty already speak of Nézhā rending flesh and bone to repay his parents.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Rebirth</span>
-          <h3 class="myth-title">The Lotus Incarnation</h3>
-          <p class="myth-text">His wandering soul is gathered by Taiyi Zhenren, who rebuilds him from lotus roots for limbs and lotus blossoms for flesh — the <em>lotus rebirth</em>. Remade, Nézhā becomes what the old body never could be: a warrior free of the debt of birth. In the <em>Investiture of the Gods</em> he rides his Wind Fire Wheels as vanguard of Jiāng Zǐyá's Zhou army in the overthrow of the Shang; in <em>Journey to the West</em> he serves heaven as a celestial marshal, sent down to do battle with Sūn Wùkōng — one rebel conscripted against another.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -541,8 +408,146 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">哪吒</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Nézhā</strong> (哪吒) is attested in the source tradition — “Nezha (from Sanskrit Nalakuvara)”. Its macron-length vowels and acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">nezha</p>
+                <p class="card-body">Reduced to plain <strong>nezha</strong>, the name loses everything that made it specific: macron-length vowels and acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Nézhā</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Nézhā</strong> restores macron-length vowels and acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Nézhā.com → xn--nzh-bma6j.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Nézhā</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Nézhā</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Nézhā</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Nézhā</p>
+                    <p class="card-body">Restores <strong>哪吒</strong>. The live temple domain — <strong>nézhā.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">nezha</p>
+                    <p class="card-body">Flattens <strong>哪吒</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Nézhā was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/nɤ˧˥ ʈʂa˥/</span>
+            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Né-</span>
+        <span class="phoneme-desc">Voiced alveolar nasal [n] plus the unrounded close-mid back vowel [ɤ], with Tone 2 (rising, ˧˥). 哪 carries this reading only in the theophoric name; its ordinary interrogative reading is nǎ (Tone 3).</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-zhā</span>
+        <span class="phoneme-desc">Voiceless unaspirated retroflex affricate [ʈʂ] plus open central vowel [a], with Tone 1 (high level, ˥). Pinyin 'zh' denotes the retroflex series, not the English 'zh' of 'measure'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">NUH-jah — the first syllable rises like a question, the second stays high and level; keep the 'zh' retroflex, tongue curled back, closer to 'dr' than to 'j'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">哪吒 is the settled transcription of a name that entered Chinese through Buddhist transmission from Sanskrit Nalakūvara, son of the guardian king Vaiśravaṇa. The Modern Standard Mandarin reading is Nézhā: 吒 zhā (Tone 1) is the value recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard dictionaries, while 哪 carries here its special proper-name reading né (Tone 2), preserved only in this name and recorded as such in the standard dictionaries (Xiandai Hanyu Cidian, Hanyu Da Cidian); its ordinary interrogative reading is nǎ (Tone 3), the value given under kMandarin in the Unihan Database. Because the name is a medieval transcription of a foreign theonym rather than a native Chinese word, Old Chinese reconstruction does not apply.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Nézhā is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">哪吒</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Nézhā is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -560,7 +565,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/nezha_mascot.webp" type="image/webp"><img src="../assets/nezha_mascot.png" alt="Nézhā mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/nezha_mascot.webp" type="image/webp"><img src="../assets/nezha_mascot.png" alt="Nézhā mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -598,7 +603,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/nezha_logomark.webp" type="image/webp"><img src="../assets/nezha_logomark.webp" alt="Nézhā logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/nezha_logomark.webp" type="image/webp"><img src="../assets/nezha_logomark.webp" alt="Nézhā logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

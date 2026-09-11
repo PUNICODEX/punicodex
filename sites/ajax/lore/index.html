@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Aías — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Αἴας</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Aías</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,144 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Αἴας</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Aías</strong> (Αἴας) is attested in the source tradition — “Of the earth”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">ajax</p>
-                    <p class="card-body">Reduced to plain <strong>ajax</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Aías</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Aías</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Aías.com → xn--aas-rma.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Aías</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Aías</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Aías is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Αἴας</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Aías is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Aías</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Aías</p>
-                    <p class="card-body">Restores <strong>Αἴας</strong>. The full Unicode restoration. <strong>aías.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">ajax</p>
-                    <p class="card-body">Flattens <strong>Αἴας</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Aías was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Aías</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/aí̯.aːs/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Ai-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> diphthong αι [ai̯] carrying the acute pitch accent; the alpha is open and the iota forms an off-glide.</span>
+      <p class="lead-text">The myths of Aias are told in the <em>Iliad</em>, the lost Epic Cycle, and above all in Sophocles' tragedy <em>Aias</em>. They turn on a single quality: the absolute, unbending commitment of the warrior. That quality makes him the Greeks' greatest defender and, when it is slighted, their most terrible casualty.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Iliad</span>
+          <h3 class="myth-title">The Defence of the Ships</h3>
+          <p class="myth-text">When the Trojans broke the Greek wall and reached the beached ships, fire was set to <em><a href="/protesilaus/" class="crosslink" data-crosslink="protesilaus">Protesilaus</a></em>' vessel, and the whole Achaean cause hung on a deck. There Homer stations <strong>Aias</strong>: striding from prow to stern behind his seven-fold oxhide shield, a pike twenty-two cubits long, holding the Trojans off while men rallied behind him (<em>Iliad</em> 15.674–746). Earlier, as <a href="/hector/" class="crosslink" data-crosslink="hector">Hector</a> cut through the ranks, the poet had compared him to a donkey that boys cannot drive from a cornfield — stubborn, scorned, immovable (<em>Iliad</em> 11.558–562). When even Aias must yield at last, he does so grudgingly, calling the retreat a disaster (<em>Iliad</em> 16.101–111). The Defence of the Ships is the <em>Iliad</em>'s hymn to the unglamorous virtue: <strong>endurance</strong>. Achilles wins the poem's glory; Aias saves its army. Homer seems to know that civilizations stand less on brilliance than on the man who refuses, step by bloody step, to move.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-as</span>
-        <span class="phoneme-desc">Long alpha [aː] followed by voiceless sibilant [s], the nominal ending of the hero's name.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Iliad</span>
+          <h3 class="myth-title">Duel with Hector</h3>
+          <p class="myth-text">Hector challenges the Greeks to single combat, and the lots fall to Telamonian Aias — the biggest man among them, Homer says, save Achilles (<em>Iliad</em> 7.206–312). The duel fills a book: spear-casts stopped on shield and breastplate, a stone that spins Hector like a top, nightfall parting them at last. Neither yields; each wins honor, and they exchange gifts — Hector's sword and scabbard for Aias's scarlet belt. Homer comments in one terrible line: <strong>'bad gifts'</strong> — for Aias will one day fall on Hector's sword, and Hector's corpse will be dragged behind Achilles' chariot by the very belt Aias gave. The duel is the <em>Iliad</em>'s picture of war's fairness: two men of equal worth meet, measure each other, and part with respect — while the narrator, who knows how both die, lets us feel the courtesy and the doom in a single gesture. Equality is real; so is what comes after.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Epic Cycle</span>
+          <h3 class="myth-title">The Rescue of Achilles' Body</h3>
+          <p class="myth-text">Achilles fell at the Scaean gates, struck down by Paris with Apollo's help. The Greeks' greatest corpse became the day's greatest battle. <strong>Aias</strong> and <strong>Odysseus</strong> fought through to the body — <a href="/odysseus/" class="crosslink" data-crosslink="odysseus">Odysseus</a> holding the Trojans at bay while Aias heaved the dead hero onto his shoulders and carried him from the field, Achilles' armor in his other arm (Aethiopis, in Proclus' summary; Quintus of Smyrna, <em>Posthomerica</em> 3). It was the last and largest of Aias's labors for the army that would soon betray him: the strong man carrying what the army could not afford to lose, doing the work glory forgot to record. Homer remembers the end — Achilles' ashes mingled with <a href="/patroclus/" class="crosslink" data-crosslink="patroclus">Patroclus</a>' in a golden urn for 'the best of the Achaeans' (<em>Odyssey</em> 24.43–84) — but does not say who bore him there. The silence is the point: Aias's loyalty needed no witness, and asked for none.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Sophocles</span>
+          <h3 class="myth-title">The Madness and Suicide</h3>
+          <p class="myth-text">The armor of Achilles was the prize of the war, and the Greeks awarded it — by the army's shouting, Sophocles says — to <strong>Odysseus</strong>. Aias, broken by the judgment, was driven mad by <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>: by night he fell upon the flocks, butchering sheep he took for the sons of <a href="/atreus/" class="crosslink" data-crosslink="atreus">Atreus</a>. Sanity returned to the sight of his own disgrace (<em>Ajax</em> 1–133, 284–330). 'A glorious death or a life of shame,' he cried, and chose: planting Hector's gifted sword upright in the sand of the seashore, he fell upon it — the only hero of the Trojan war to die by his own hand, and the first great suicide in Western literature. Sophocles lets the army debate his burial: <a href="/menelaus/" class="crosslink" data-crosslink="menelaus">Menelaus</a> would leave him to the dogs; Odysseus, of all people, argues for honor — 'I hated him while it was honorable to hate' (<em>Ajax</em> 1355–1361). The play that preserves Aias is also the earliest portrait of <strong>combat trauma</strong>: the wound not in the body but in the code, honor turned inward until it kills. Modern armies still stage it for their soldiers, and it still explains what it was written to explain.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'AH-yahs' — the first syllable is long and carries the ancient pitch rise; the final syllable is open and sustained.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Αἴας (Aias), the bulwark of the Achaeans in the Iliad</li><li><strong>Latin</strong> Ajax, the Roman rendering adopted into English and many modern languages</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The Greek Αἴας contains both stress (acute on the diphthong) and length (long alpha in the diphthong and final syllable), making it a Tier 1 restoration. The Latin-derived English form Ajax is a secondary spelling, not the original Greek.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -376,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Bulwark of the Achaeans</h2>
             <p class="section-subtitle">Warrior, Defender, and Unyielding Will</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Aias</strong> is the great defensive warrior of the Greek army at Troy. In the <em>Iliad</em> he is second only to Achilles in strength and courage, a tower of bronze and stubbornness who saves the Greek ships from fire, duels <a href="/hector/" class="crosslink" data-crosslink="hector">Hector</a> to a standstill, and carries the dead Achilles from the field. Where Achilles is speed and wrath, Aias is mass, endurance, and absolute loyalty. His name became a byword for the soldier who holds the line when everything else breaks.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Aias</strong> is the great defensive warrior of the Greek army at Troy. In the <em>Iliad</em> he is second only to Achilles in strength and courage, a tower of bronze and stubbornness who saves the Greek ships from fire, duels Hector to a standstill, and carries the dead Achilles from the field. Where Achilles is speed and wrath, Aias is mass, endurance, and absolute loyalty. His name became a byword for the soldier who holds the line when everything else breaks.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 48H20V16H12V48ZM36 48H44V16H36V48ZM8 12H48V20H8V12Z"></path></svg></div>
@@ -396,7 +306,7 @@
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C20 8 12 16 12 28C12 44 32 56 32 56C32 56 52 44 52 28C52 16 44 8 32 8ZM32 16C36 16 40 20 40 24H24C24 20 28 16 32 16Z"></path></svg></div>
         <h4 class="domain-name">Rescue of Achilles</h4>
-        <p class="domain-desc">After <a href="/patroclus/" class="crosslink" data-crosslink="patroclus">Patroclus</a> falls, Aias stands over the body and bears Achilles' corpse from the battlefield.</p>
+        <p class="domain-desc">After Achilles falls, Aias stands over the body and bears Achilles' corpse from the battlefield.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 48L24 24L32 40L40 20L48 48H16Z"></path></svg></div>
@@ -423,57 +333,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Aías</p>
-        </div>
-        
-      <p class="lead-text">The myths of Aias are told in the <em>Iliad</em>, the lost Epic Cycle, and above all in Sophocles' tragedy <em>Aias</em>. They turn on a single quality: the absolute, unbending commitment of the warrior. That quality makes him the Greeks' greatest defender and, when it is slighted, their most terrible casualty.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Iliad</span>
-          <h3 class="myth-title">The Defence of the Ships</h3>
-          <p class="myth-text">When the Trojans break through to the Greek ships and set a ship ablaze, Aias holds the line alone. He plants himself on the decks with his great shield and drives back the attackers while the Greeks rally behind him. Homer compares him to a donkey that children cannot move from a cornfield: ugly to mock, impossible to shift.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Iliad</span>
-          <h3 class="myth-title">Duel with Hector</h3>
-          <p class="myth-text">After Hector challenges the Greeks to single combat, Aias is chosen by lot. The two champions fight until nightfall, exchanging blows so heavy that the earth shakes. Neither wins; they exchange gifts and part with mutual respect. It is the closest the <em>Iliad</em> comes to showing Hector matched by equal honour.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Epic Cycle</span>
-          <h3 class="myth-title">The Rescue of Achilles' Body</h3>
-          <p class="myth-text">When Achilles is killed by Paris and Apollo at the Scaean Gate, Aias and <a href="/odysseus/" class="crosslink" data-crosslink="odysseus">Odysseus</a> fight through the Trojans to recover the corpse. Aias lifts the body onto his shoulders and carries it from the field while Odysseus drives off the attackers. The rescue proves Aias' strength and his devotion to his comrades.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Sophocles</span>
-          <h3 class="myth-title">The Madness and Suicide</h3>
-          <p class="myth-text">After Achilles' death, the Greeks award his armour to Odysseus rather than Aias. Maddened by <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>, Aias attacks a flock of sheep believing them to be his enemies. When he returns to sanity and sees what he has done, shame overwhelms him. He falls on his sword, and the debate over whether to bury him honourably divides the Greek commanders.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -537,8 +404,146 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Αἴας</p>
+                <p class="card-body">The name in its original Greek form. <strong>Aías</strong> (Αἴας) is attested in the source tradition — “Of the earth”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">ajax</p>
+                <p class="card-body">Reduced to plain <strong>ajax</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Aías</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Aías</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Aías.com → xn--aas-rma.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Aías</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Aías</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Aías</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Aías</p>
+                    <p class="card-body">Restores <strong>Αἴας</strong>. The full Unicode restoration. <strong>aías.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">ajax</p>
+                    <p class="card-body">Flattens <strong>Αἴας</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Aías was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/aí̯.aːs/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Ai-</span>
+        <span class="phoneme-desc">Long diphthong αι [ai̯] carrying the acute pitch accent; the alpha is open and the iota forms an off-glide.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-as</span>
+        <span class="phoneme-desc">Long alpha [aː] followed by voiceless sibilant [s], the nominal ending of the hero's name.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'AH-yahs' — the first syllable is long and carries the ancient pitch rise; the final syllable is open and sustained.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The Greek Αἴας contains both stress (acute on the diphthong) and length (long alpha in the diphthong and final syllable), making it a Tier 1 restoration. The Latin-derived English form Ajax is a secondary spelling, not the original Greek.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Aías is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Αἴας</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Aías is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -556,7 +561,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/ajax_mascot.webp" type="image/webp"><img src="../assets/ajax_mascot.png" alt="Aías mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ajax_mascot.webp" type="image/webp"><img src="../assets/ajax_mascot.png" alt="Aías mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -594,7 +599,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/ajax_logomark.webp" type="image/webp"><img src="../assets/ajax_logomark.webp" alt="Aías logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ajax_logomark.webp" type="image/webp"><img src="../assets/ajax_logomark.webp" alt="Aías logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

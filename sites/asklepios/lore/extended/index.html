@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Asklēpiós, Medicine, Healing, Renewal. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/asklepios/lore/extended/">
 
@@ -72,6 +72,62 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Asklēpiós?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Asklēpiós is /a.skliː.pi.ós/ — approximately ah-SKLAY-pee-OSS, with the stress on the ultima and a long ē."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Asklēpiós mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Asklēpiós means Uncertain; possibly related to ἀσκαλαβώτης (lizard) or a pre-Greek healing root in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Asklēpiós?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Asklēpiós is associated with The serpent (Renewal through the shed skin; the chthonic knowledge of roots and venoms), The staff (The physician's walking stick; authority without weaponry), The dog (The wound-licking guardian of the sanctuary floor), The cock (The vigil-bird sacrificed to him — Sócrates' famous last debt)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why are there different spellings of Asklēpiós?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each form is a historically attested restoration rather than a mistake: Asklēpios is the macron-only form (LSJ convention: length only, no stress mark). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Asklēpiós in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII asklepios strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Asklēpiós?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Child of the Pyre” — Born from catastrophe — cut from the womb of the dying Korōnis by his father Apóllōn — Asklēpiós was raised by the centaur Cheirōn, who taught him the pharmaka of roots and the surgery of the knife. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +165,13 @@
                 <picture><source srcset="../../assets/asklepios_logolockup.webp" type="image/webp"><img src="../../assets/asklepios_logolockup.png" alt="Asklēpiós" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +182,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +201,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Asklēpiós</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Asklēpiós.com</span>
@@ -157,7 +216,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/asklepios_mascot.webp" type="image/webp"><img src="../../assets/asklepios_mascot.png" alt="Asklēpiós — Medicine, Healing, Renewal" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/asklepios_mascot.webp" type="image/webp"><img src="../../assets/asklepios_mascot.png" alt="Asklēpiós — Medicine, Healing, Renewal" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +269,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Attic Ἀσκληπιός places the acute on the final syllable; the η is unambiguously long, so the stacked macron-acute of the ideal form ḗ is philologically defensible. The owned form Asklēpiós follows the house rule against stacked marks while preserving both features across two characters.</p>
+                <p class="etymology-note">The name <strong>Asklēpiós</strong> carries the orthographic signature of the greek tradition: Ἀσκληπιός. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Ἀσκληπιός</li><li><strong>Latin</strong> — Aesculapius</li><li><strong>English</strong> — Asclepius</li><li><strong>Owned form</strong> — Asklēpiós</li></ul></div><div class="derivative-group"><h4>Unicode Variants</h4><ul><li><strong>Asklēpios</strong> — macron-only (LSJ convention: length only, no stress mark)</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Ἀσκληπιός — the Attic form; Ionic Ἀσκλαπιός (LSJ).</li><li><strong>Latin</strong> — Aesculapius — Roman adaptation of the god’s name (Lewis &amp; Short).</li><li><strong>Egyptian equation</strong> — Imhotep, the deified vizier worshipped as ‘the Egyptian Asklēpiós’ at Saqqāra and Memphis.</li></ul></div><div class="derivative-group"><h4>Unicode Variants</h4><ul><li><strong>Asklēpios</strong> — macron-only (LSJ convention: length only, no stress mark)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +306,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Asklēpiós is the only hero whose skill frightened the gods: the surgeon-son of <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a> who healed so well that <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> destroyed him for emptying the underworld. His sanctuaries were the hospitals of the ancient world, and his snake-entwined staff still hangs over every pharmacy on earth.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Asklēpiós in Later Traditions</h3><p class="cultural-card-body">Rome imported him wholesale in 293–291 BCE: the Sibylline Books prescribed his cult during a plague, an embassy fetched a sacred snake from Epidaurus, and the snake swam ashore on the Tiber Island — where a temple of Aesculapius, shaped in memory like a ship, stood within the year. In Ptolemaic Egypt he merged with the deified vizier Imhotep, whose own healing cult at Saqqara and Memphis Greeks openly called "the Egyptian Asklēpiós."</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The Rod of Asklēpiós — one snake, one staff — is the emblem of the World Health Organization, the American Medical Association, and thousands of medical schools, endlessly confused with the caduceus of <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermês</a> (commerce and negotiation). The Hippocratic tradition at Kos inherited his sanctuary; Galen began his career as a physician to gladiators at Pergamon's Asklepieion. "Asklepios" remains the living name of hospitals, journals, and medical AI projects alike.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Asklēpiós</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Asklēpiós in Later Traditions</h3><p class="cultural-card-body">Rome imported him wholesale during the plague of 293 BCE: the Sibylline Books prescribed his cult, an embassy sailed to Epidaurus, and the god came as a snake — boarding the Roman ship at Antium, coiling on the mast, and gliding ashore on the Tiber Island, where his temple rose within the year in the shape of a ship (Livy 10.47; Ovid, <em><a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a></em> 15.622–744, makes the snake’s journey the centrepiece of his Roman aetiology). The identification stuck for a millennium: the island still serves the sick. In Egypt the traffic ran the other way — Greeks identified the deified vizier Imhotep, whose healing cult flourished at Saqqāra and Memphis, as ‘the Egyptian Asklēpiós’, and Ptolemaic pilgrims left Greek dedications in his galleries. Through every translation the god kept his instrument: the single snake on the single staff, medicine’s signature in two civilizations.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">His Rod — one snake, one staff — is the emblem of the World Health Organization, the American Medical Association, and thousands of medical schools, endlessly confused with the two-snaked caduceus of <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermês</a>, a confusion institutionalized when the United States Army Medical Corps adopted the wrong staff in 1902. His sanctuary line ran unbroken into medicine’s institutions: the Hippocratic school grew up inside his temple at Kos, Galen served his cult at Pergamon before writing the ancient world’s greatest medical corpus, and the Hippocratic Oath itself opens by swearing ‘by <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a> the physician and Asklēpiós’ — the healer’s name is the second word of the profession’s oldest contract. His name still titles hospitals, journals, and medical software the world over. If any pagan god can be said never to have died, it is the son of Apóllōn: every pharmacy sign on earth is his votive offering, renewed nightly in neon.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Epidaurus is the crown: a UNESCO World Heritage sanctuary preserving the abaton, the great theatre, and the circular tholos — the labyrinthine building Pausanias (2.27.3) attributes to Polykleitos the Younger, possibly the god’s ritual ‘dance floor’. The iamata stelai (IG IV² 1, 121–124) are the largest surviving archive of ancient patient testimony. At Kos the terraced Asklepieion climbs the hill behind the plane tree said to shade Hippocrates; at Pergamon, Galen’s home sanctuary, the great altar overlooked the healing terraces. In Rome the Tiber Island temple is gone, but its memory is carved in travertine: the island’s embankment still wears the relief prow of the ship that brought the god. Across all his shrines, the humblest artifacts speak loudest — thousands of terracotta votives shaped like the body parts the god had healed, hung on his walls like a catalogue of gratitude in clay.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Asklēpiós means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Asklēpiós is the god of the second opinion. He stands at the exact border between what may be cured and what must be accepted, and the thunderbolt that killed him marks medicine’s eternal question — not whether we can, but whether we should. Every healer who has ever weighed a risk against a hope has stood inside his sanctuary; every patient who has slept waiting for an answer has kept the old vigil under other names.</p><p>His instruments are modest for a deity: a stick, a snake, a dog, a dream. No lightning, no trident — the tools of walking, shedding, watching, sleeping, the four ordinary miracles on which all healing secretly depends. The iamata taught the ancient world to record outcomes; the cock teaches the modern one that gratitude has a price, small and exact, and that it should be paid.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Asklēpiós, Medicine, Healing, Renewal, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Asklēpiós?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Asklēpiós</strong> is /a.skliː.pi.ós/ — approximately ah-SKLAY-pee-OSS, with the stress on the ultima and a long ē..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Asklēpiós mean?</summary><div class="faq-answer"><p><strong>Asklēpiós</strong> means <strong>Uncertain; possibly related to ἀσκαλαβώτης (lizard) or a pre-Greek healing root</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Asklēpiós?</summary><div class="faq-answer"><p>Asklēpiós is associated with <strong>The serpent</strong> (Renewal through the shed skin; the chthonic knowledge of roots and venoms), <strong>The staff</strong> (The physician's walking stick; authority without weaponry), <strong>The dog</strong> (The wound-licking guardian of the sanctuary floor), <strong>The cock</strong> (The vigil-bird sacrificed to him — Sócrates' famous last debt).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>What is the difference between Asklēpiós.com?</summary><div class="faq-answer"><p>Each is a historically defensible restoration. <strong>Asklēpios.com</strong> is the macron-only form: LSJ convention: length only, no stress mark.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Asklēpiós in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>asklepios</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Asklēpiós?</summary><div class="faq-answer"><p>Apóllōn, having killed Korōnis for her infidelity, snatched the unborn child from her funeral fire and gave him to Cheirōn. The healing god thus begins between death and rescue: Pindar sings that the centaur taught him to cure "those suffering from nature's wounds."</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Asklēpiós?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Asklēpiós</strong> is /a.skliː.pi.ós/ — approximately ah-SKLAY-pee-OSS, with the stress on the ultima and a long ē.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Asklēpiós mean?</summary><div class="faq-answer"><p><strong>Asklēpiós</strong> means <strong>Uncertain; possibly related to ἀσκαλαβώτης (lizard) or a pre-Greek healing root</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Asklēpiós?</summary><div class="faq-answer"><p>Asklēpiós is associated with <strong>The serpent</strong> (Renewal through the shed skin; the chthonic knowledge of roots and venoms), <strong>The staff</strong> (The physician's walking stick; authority without weaponry), <strong>The dog</strong> (The wound-licking guardian of the sanctuary floor), <strong>The cock</strong> (The vigil-bird sacrificed to him — Sócrates' famous last debt).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why are there different spellings of Asklēpiós?</summary><div class="faq-answer"><p>Each form is a historically attested restoration rather than a mistake: <strong>Asklēpios</strong> is the macron-only form (LSJ convention: length only, no stress mark). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Asklēpiós in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>asklepios</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Asklēpiós?</summary><div class="faq-answer"><p>“The Child of the Pyre” — Born from catastrophe — cut from the womb of the dying Korōnis by his father Apóllōn — Asklēpiós was raised by the centaur Cheirōn, who taught him the pharmaka of roots and the surgery of the knife. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +344,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +357,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li><li><cite>Homeric Hymns</cite></li><li><cite>Pausanias</cite></li></ul>
+                    <ul class="source-list"><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homeric Hymns</cite></li><li><cite>Pindar</cite></li><li><cite>Pausanias</cite></li><li><cite>Plato</cite></li><li><cite>Apollodorus</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymns</a></cite></li><li><cite>Pausanias</cite></li><li><cite>Pindar, Pythian 3</cite></li><li><cite>Pausanias 2.26–27</cite></li><li><cite>Plato, Phaedo 118a</cite></li><li><cite>Apollodorus 3.10.3–4; Diodorus 4.71</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Asklēpiós and related cults.</cite></li><li><cite>The sanctuary at Epidaurus — a UNESCO World Heritage site — preserves the abaton, the circular tholos (possibly the god's labyrinthine "dance floor" designed by Polykleitos), and the theatre where healed patients watched drama as therapy. The iamata stelai (IG IV².1 121–124), the surviving late-4th-century-BCE originals, list some seventy cures. At Kos, the terraced Asklepieion adjoins the Hippocratic plane tree's descendants; at Rome the Tiber Island temple's travertine snake-prow survives.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Asklēpiós and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cambridge</cite></li></ul>
+                    <ul class="source-list"><li><cite>Edelstein, Asclepius: Collection and Interpretation of the Testimonies (1945)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +436,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/asklepios_logomark.webp" type="image/webp"><img src="../../assets/asklepios_logomark.webp" alt="Asklēpiós logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/asklepios_logomark.webp" type="image/webp"><img src="../../assets/asklepios_logomark.webp" alt="Asklēpiós logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

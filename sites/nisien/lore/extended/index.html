@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Nisien, Peace, Brother of Efnysien. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/nisien/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Nisien?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Nisien is /ˈnɪsɪɛn/ — approximately 'NISS-yen' — stress the middle syllable, keep every vowel short, and never let the s soften into a z."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Nisien mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nisien means Peaceful one in the celtic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Nisien?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nisien is associated with The paired sentence (The Second Branch's balanced character note — peace and strife defined as twin brothers, one clause each), The twin's shadow (Efnysien's cruelty measured against Nisien's gentleness — each brother the other's definition), The house of Euroswydd (The second father-line of Penarddun's children — the gentler inheritance beside the children of Llŷr), The mutilated horses (His brother's unprovoked outrage against Matholwch's team — the act of strife that no peace in the tale can undo), The silent presence (The peace-maker carried with the host to Ireland and given no scene — the might-have-been that haunts the branch)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Nisien in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nisien is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Nisien?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Two Sons of Euroswydd” — Nisien has the smallest dossier in the Mabinogi and the clearest definition: he exists as one half of an antithesis. The Second Branch of the Mabinogi, Branwen ferch Llŷr, names him exactly once as a character and then spends its whole length on the war his brother kindles. What survives of him is a sentence, a lineage, and a presence — and the Welsh tradition built an entire moral pole out of that spareness. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/nisien_logolockup.webp" type="image/webp"><img src="../../assets/nisien_logolockup.png" alt="Nisien" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Nisien</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Nisien</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/nisien_mascot.webp" type="image/webp"><img src="../../assets/nisien_mascot.png" alt="Nisien — Peace, Brother of Efnysien" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/nisien_mascot.webp" type="image/webp"><img src="../../assets/nisien_mascot.png" alt="Nisien — Peace, Brother of Efnysien" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Nisien</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Nisien is Tier 2 by the mechanical rule: the normalized Middle Welsh form is already plain ASCII — there is no diacritic and no distinctive letter for the ASCII alphabet to lose. The manuscripts write Nissyen; the modern standard writes Nisien; only the capital distinguishes the temple form from the input. The traditional gloss 'peaceful one' suits the character exactly, but the philology behind the name is honestly uncertain, and the handbooks record rather than resolve it.</p>
+                <p class="etymology-note">The name <strong>Nisien</strong> reaches the modern world through scholarly transliteration of the celtic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">N</td><td><code>U+004E</code></td><td>Latin Capital Letter N</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">s</td><td><code>U+0073</code></td><td>Latin Small Letter S</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Nisien</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Nisien is one half of the strangest doublet in the Mabinogi: twin brothers, sons of Euroswydd, whom the Second Branch introduces with a single matched sentence — Nisien, the good man who would make peace between two armies when they were most furious; Efnysien, who would set two loving brothers fighting to the death. The tale then gives the whole war to the cruel twin and keeps the gentle one as its standing might-have-been: peace personified, present at the court that marches to Ireland, and never once allowed to prevail.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Nisien in Later Traditions</h3><p class="cultural-card-body">Nisien has no counterpart anywhere, and the honesty of that fact is part of his record. No Irish figure bears his name or his office: the Irish cycles know war-goddesses and peace-breaking satirists in abundance, but no personified peace-twin, and Sims-Williams's survey of Irish influence on Welsh literature — which finds deep Irish strata in the Second Branch itself, from the giant king who wades the sea to the cauldron of revival — supplies no Irish original for the sons of Euroswydd. The twins look like the Welsh redactor's own construction. The nearest comparisons are structural, drawn from inside the lexicon: his brother [[efnysien|Efnysien]], the necessary other half of the antithesis; [[manawydan|Manawydan]], his half-brother, whose own branch turns on patience and forbearance rather than force; and [[matholwch|<a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>]], the wronged king whose horses his brother maimed. Beyond the Mabinogi the antithesis device has famous analogues — the paired forces of other traditions — but the Welsh pair needs no borrowing to explain: peace and strife as twin brothers is the sort of idea a mature prose tradition can invent in a single sentence, and the Second Branch is exactly that tradition.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Nisien's afterlife is as quiet as his dossier. Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried the twins into English, and every retelling of Branwen since has kept the paired sentence — it is the one line of the Second Branch that anthologies quote whole. The scholarly tradition made the antithesis canonical: Mac Cana's study of the Mabinogi and MacKillop's dictionary fixed the reading of the twins as personified peace and strife, and the pair now serves Celtic studies as the standard example of the Welsh redactor's art of definition-by-contrast. Nisien himself never became a cult figure, a comic-book antihero, or a given name in the way louder Mabinogi figures did — Efnysien, the interesting twin, took all of that. The gentle brother's legacy is the sentence itself: in a tale about a war no one could stop, Welsh literature wrote its peace-maker in one clause and let the silence around him say the rest.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Nisien</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Nisien in Later Traditions</h3><p class="cultural-card-body">Nisien has no counterpart anywhere, and the honesty of that fact is part of his record. No Irish figure bears his name or his office: the Irish cycles know war-goddesses and peace-breaking satirists in abundance, but no personified peace-twin, and Sims-Williams's survey of Irish influence on Welsh literature — which finds deep Irish strata in the Second Branch itself, from the giant king who wades the sea to the cauldron of revival — supplies no Irish original for the sons of Euroswydd. The twins look like the Welsh redactor's own construction. The nearest comparisons are structural, drawn from inside the lexicon: his brother [[efnysien|Efnysien]], the necessary other half of the antithesis; [[manawydan|Manawydan]], his half-brother, whose own branch turns on patience and forbearance rather than force; and [[matholwch|<a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>]], the wronged king whose horses his brother maimed. Beyond the Mabinogi the antithesis device has famous analogues — the paired forces of other traditions — but the Welsh pair needs no borrowing to explain: peace and strife as twin brothers is the sort of idea a mature prose tradition can invent in a single sentence, and the Second Branch is exactly that tradition.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Nisien's afterlife is as quiet as his dossier. Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried the twins into English, and every retelling of Branwen since has kept the paired sentence — it is the one line of the Second Branch that anthologies quote whole. The scholarly tradition made the antithesis canonical: Mac Cana's study of the Mabinogi and MacKillop's dictionary fixed the reading of the twins as personified peace and strife, and the pair now serves Celtic studies as the standard example of the Welsh redactor's art of definition-by-contrast. Nisien himself never became a cult figure, a comic-book antihero, or a given name in the way louder Mabinogi figures did — Efnysien, the interesting twin, took all of that. The gentle brother's legacy is the sentence itself: in a tale about a war no one could stop, Welsh literature wrote its peace-maker in one clause and let the silence around him say the rest.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Nisien is a purely textual figure: no inscription, votive deposit, or cult site names him, and the early inscribed stones of Wales — the Latin and ogham memorials of roughly the fifth to seventh centuries — record personal names in funerary formulae, not theonyms or tale-figures. His evidence is manuscript evidence. The Four Branches survive complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' date of composition is argued rather than documented, with current scholarship generally holding a range around 1060–1120. The geography of his branch is real: Aberffraw, where the wedding and the outrage are set, was the historic principal seat of the kings and later princes of Gwynedd on Anglesey, and the Alaw, where Branwen dies of her broken heart, is an Anglesey river. The giant who wades the sea and the cauldron of revival belong to the tale's mythic furniture; the courts and the crossings are drawn from the Welsh world the redactor knew.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Nisien means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Nisien is the proof that a figure can be made of almost nothing and still be one of the most exact things in his tradition. One sentence, one lineage, no deeds — and from that the Second Branch draws a whole theology of peace: that it exists, that it lives in the same house as strife, that it can be kin to the war-makers and married into every court, and that a host can carry it over the sea and never once take it out. The tragedy of Branwen is often told as Efnysien's story, but it is just as much Nisien's: the war happens in the presence of the one man whose nature is to end it, and the text makes sure we notice by telling us his nature first and his absence always.</p><p>There is a further quietness the restoration makes visible. The name is plain ASCII — no accent to rescue, no letter to put back — because Middle Welsh wrote Nissyen and modern Welsh writes Nisien, and the keyboard never lost anything. Tier 2 says only that. The tradition said the rest nine centuries ago: the gentle twin, defined once, standing at the shoulder of the war for its whole length, the road the house of Llŷr did not take. Every court has a Nisien. The Mabinogi's question is why he is so seldom asked.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Nisien, Peace, Brother of Efnysien, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Nisien?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Nisien</strong> is /ˈnɪsɪɛn/ — approximately 'NISS-yen' — stress the middle syllable, keep every vowel short, and never let the s soften into a z..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Nisien mean?</summary><div class="faq-answer"><p><strong>Nisien</strong> means <strong>Peaceful one</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Nisien?</summary><div class="faq-answer"><p>Nisien is associated with <strong>The paired sentence</strong> (The Second Branch's balanced character note — peace and strife defined as twin brothers, one clause each), <strong>The twin's shadow</strong> (Efnysien's cruelty measured against Nisien's gentleness — each brother the other's definition), <strong>The house of Euroswydd</strong> (The second father-line of Penarddun's children — the gentler inheritance beside the children of Llŷr), <strong>The mutilated horses</strong> (His brother's unprovoked outrage against Matholwch's team — the act of strife that no peace in the tale can undo), <strong>The silent presence</strong> (The peace-maker carried with the host to Ireland and given no scene — the might-have-been that haunts the branch).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Nisien in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>nisien</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Nisien?</summary><div class="faq-answer"><p>The Second Branch introduces the twins in a single balanced construction, the most quoted sentence either brother ever gets. Nisien, the tale says, was a good man: he would bring about peace between two armies when they were at the height of their fury. Efnysien would bring about a quarrel between two brothers when they loved each other most. They are twins, sons of Euroswydd by Penarddun — and so half-brothers to Brân the Blessed, Branwen, and Manawydan, Penarddun's children by Llŷr.The construction is the whole point: Welsh prose has no other pair like it. The tradition does not describe two temperaments; it defines two forces — peace and strife — as brothers born in one hour, and then sets them loose in the same household. Every reader of the branch knows, before the horses are harmed, exactly which twin will act and which will stand by.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Nisien?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Nisien</strong> is /ˈnɪsɪɛn/ — approximately 'NISS-yen' — stress the middle syllable, keep every vowel short, and never let the s soften into a z.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Nisien mean?</summary><div class="faq-answer"><p><strong>Nisien</strong> means <strong>Peaceful one</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Nisien?</summary><div class="faq-answer"><p>Nisien is associated with <strong>The paired sentence</strong> (The Second Branch's balanced character note — peace and strife defined as twin brothers, one clause each), <strong>The twin's shadow</strong> (Efnysien's cruelty measured against Nisien's gentleness — each brother the other's definition), <strong>The house of Euroswydd</strong> (The second father-line of Penarddun's children — the gentler inheritance beside the children of Llŷr), <strong>The mutilated horses</strong> (His brother's unprovoked outrage against Matholwch's team — the act of strife that no peace in the tale can undo), <strong>The silent presence</strong> (The peace-maker carried with the host to Ireland and given no scene — the might-have-been that haunts the branch).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Nisien in Unicode?</summary><div class="faq-answer"><p><strong>Nisien</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Nisien?</summary><div class="faq-answer"><p>“The Two Sons of Euroswydd” — Nisien has the smallest dossier in the Mabinogi and the clearest definition: he exists as one half of an antithesis. The Second Branch of the Mabinogi, Branwen ferch Llŷr, names him exactly once as a character and then spends its whole length on the war his brother kindles. What survives of him is a sentence, a lineage, and a presence — and the Welsh tradition built an entire moral pole out of that spareness. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,7 +360,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Nisien and related cults.</cite></li><li><cite>Nisien is a purely textual figure: no inscription, votive deposit, or cult site names him, and the early inscribed stones of Wales — the Latin and ogham memorials of roughly the fifth to seventh centuries — record personal names in funerary formulae, not theonyms or tale-figures. His evidence is manuscript evidence. The Four Branches survive complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' date of composition is argued rather than documented, with current scholarship generally holding a range around 1060–1120. The geography of his branch is real: Aberffraw, where the wedding and the outrage are set, was the historic principal seat of the kings and later princes of Gwynedd on Anglesey, and the Alaw, where Branwen dies of her broken heart, is an Anglesey river. The giant who wades the sea and the cauldron of revival belong to the tale's mythic furniture; the courts and the crossings are drawn from the Welsh world the redactor knew.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Nisien and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/nisien_logomark.webp" type="image/webp"><img src="../../assets/nisien_logomark.webp" alt="Nisien logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/nisien_logomark.webp" type="image/webp"><img src="../../assets/nisien_logomark.webp" alt="Nisien logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

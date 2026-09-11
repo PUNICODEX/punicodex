@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Yánluó, Judgment, Underworld, Order. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/yanluo/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Yánluó?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Yánluó is /jɛn˧˥ lwo˧˥/ — approximately yen-lwoh, rising tone on both syllables."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Yánluó mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yánluó means 'King Yan' (閻羅, from Yama), the judge of the dead in the chinese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Yánluó?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yánluó is associated with The judge's cap (The Chinese magistrate's hat on an Indian god — the Silk Road in one image), The brush (The instrument of the verdict — deaths recorded, sentences written), The ox-head and horse-face (His bailiffs: the two wardens who fetch the souls of the dead), The golden bridge and silver path (The crossings of the third court: the good walk a golden bridge, the middling a silver path, the wicked fall to the blood-pool below — the geography of the verdict.), Mèngpō's tea (The old woman's soup of oblivion at the Bridge of Sighs: rebirth requires forgetfulness — the court's last, merciful erasure of every file.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Yánluó in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII yanluo strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Yánluó?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Yama, the First Mortal” — Yánluó's mythology is procedural: not adventures but cases. His stories are judgments — and the judgments are always, the texts insist, simply the soul's own deeds read back to it. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/yanluo_logolockup.webp" type="image/webp"><img src="../../assets/yanluo_logolockup.png" alt="Yánluó" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Yánluó</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Yánluó.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/yanluo_mascot.webp" type="image/webp"><img src="../../assets/yanluo_mascot.png" alt="Yánluó — Judgment, Underworld, Order" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/yanluo_mascot.webp" type="image/webp"><img src="../../assets/yanluo_mascot.png" alt="Yánluó — Judgment, Underworld, Order" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Yánluó, Judgment, Underworld, Order</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">閻羅王</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Yánluó</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/jɛn˧˥ lwo˧˥/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Chinese</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Judgment, Underworld, Order</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">'King Yan' (閻羅, from <a href="/yama/" class="crosslink" data-crosslink="yama">Yama</a>), the judge of the dead</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Yánluó.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The judge's cap, The brush, The ox-head and horse-face</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">閻羅王</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Yánluó</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/jɛn˧˥ lwo˧˥/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Chinese</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Judgment, Underworld, Order</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">'King Yan' (閻羅, from <a href="/yama/" class="crosslink" data-crosslink="yama">Yama</a>), the judge of the dead</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Yánluó.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The judge's cap, The brush, The ox-head and horse-face, The golden bridge and silver path, Mèngpō's tea</span></div></div>
         </div>
     </div>
 </section>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Yánluó 阎罗 abbreviates Yánluówáng 阎罗王, "King Yama" — the Sanskrit Yamarāja worn down by two millennia of Chinese speech. The second tone on yán and the rising luó are fixed by tradition; the full Sanskrit form survives in Buddhist ritual language beside the everyday king.</p>
+                <p class="etymology-note">The name <strong>Yánluó</strong> carries the orthographic signature of the chinese tradition: 閻羅王. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Yánluó is the magistrate at the centre of the Chinese afterlife: the Indian god Yama enthroned in a Chinese courtroom, judging the dead from their own record books. Before him, the myth insists, wealth and rank are nothing — the only evidence is what you did.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Yánluó in Later Traditions</h3><p class="cultural-card-body">He is the supreme case of Buddhist localization: Yama became Yánluó in China, Enma in Japan (with his own mirror and the red-faced scowl of a thousand temple gates), Yeomna in Korea, and the judges of Vietnamese and Central Asian afterlives. Daoism staffed his courts with its own celestial bureaucrats; folk religion added <a href="/mengpo/" class="crosslink" data-crosslink="mengpo">Mèngpó</a>'s tea and the City God as his local deputies. The whole edifice — Indian god, Chinese paperwork, village morality — is East <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>'s most successful religious import.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">"Meeting Yánluó" (见阎罗) remains the everyday Chinese idiom for dying; "Yánwáng ye" names any pitiless authority. Japanese Enma anchors a thousand festivals and anime (Jigoku Shōjo's Enma Ai made him a household name to a new century). The judgment imagery — mirror, ledger, no bribes — shaped East Asian ethics as deeply as any scripture: a whole civilization's conscience, staffed by one borrowed god.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Yánluó</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Yánluó in Later Traditions</h3><p class="cultural-card-body">He is the supreme case of Buddhist localization: Yama became Yánluó in China, Enma in Japan (with his own mirror and the red-faced scowl of a thousand temple gates), Yeomna in Korea, and the judges of Vietnamese and Central Asian afterlives. Daoism staffed his courts with its own celestial bureaucrats; folk religion added <a href="/mengpo/" class="crosslink" data-crosslink="mengpo">Mèngpó</a>'s tea and the City God as his local deputies. The whole edifice — Indian god, Chinese paperwork, village morality — is East <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>'s most successful religious import.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">"Meeting Yánluó" (见阎罗) remains the everyday Chinese idiom for dying; "Yánwáng ye" names any pitiless authority. Japanese Enma anchors a thousand festivals and anime (Jigoku Shōjo's Enma Ai made him a household name to a new century). The judgment imagery — mirror, ledger, no bribes — shaped East Asian ethics as deeply as any scripture: a whole civilization's conscience, staffed by one borrowed god.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Ten Kings paintings — sets of hanging scrolls showing each court — survive from the Ningbo workshops of the 12th–13th centuries (the finest sets in Nara and the Metropolitan Museum), with Yánluó's tribunal at their dramatic centre. Fengdu ghost city's temples stage the full bureaucratic underworld in statuary. Dunhuang documents preserve the Sūtra of the Ten Kings, the charter-text of the whole system, copied in tens of thousands for the dead's benefit.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Yánluó means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Yánluó is the god of the life review. His court invents nothing and forgives nothing; it only reads — and the terror and the comfort are the same: the record is exact. He asks the question his mirror has posed for two thousand years: if the book of your deeds were opened tonight, would you need a lawyer — or only a witness?</p><p>The records, the mirror, the brush: his court is bureaucracy sanctified, and East Asia read it as a promise as much as a threat — that somewhere, the ledger is accurate and the judge cannot be bought. In a world of imperfect courts, the fifth tribunal stands as the conscience's final appeal: not that punishment will come, but that the truth is on file.</p><p>It is fitting that a borrowed god became the conscience of three civilizations: judgment, the myth insists, is not native to anyone — it arrives, it is translated, and it sits down to read the file. The mirror of deeds needs no faith to function; it only needs the one thing every tradition agrees on, that the record should be exact.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Yánluó, Judgment, Underworld, Order, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Yánluó?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Yánluó</strong> is /jɛn˧˥ lwo˧˥/ — approximately yen-lwoh, rising tone on both syllables..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Yánluó mean?</summary><div class="faq-answer"><p><strong>Yánluó</strong> means <strong>'King Yan' (閻羅, from Yama), the judge of the dead</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Yánluó?</summary><div class="faq-answer"><p>Yánluó is associated with <strong>The judge's cap</strong> (The Chinese magistrate's hat on an Indian god — the Silk Road in one image), <strong>The brush</strong> (The instrument of the verdict — deaths recorded, sentences written), <strong>The ox-head and horse-face</strong> (His bailiffs: the two wardens who fetch the souls of the dead).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Yánluó in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>yanluo</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Yánluó?</summary><div class="faq-answer"><p>Before he was a king of hell he was the first man to die: the Ṛgveda's Yama chose mortality, found the road to the other world, and became the guide and host of the fathers — honoured with songs and offerings. Buddhism inherited him as the dharma-king who interrogates the dead: the three messengers — old age, sickness, death — are his summonses, sent to every house.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Yánluó?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Yánluó</strong> is /jɛn˧˥ lwo˧˥/ — approximately yen-lwoh, rising tone on both syllables.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Yánluó mean?</summary><div class="faq-answer"><p><strong>Yánluó</strong> means <strong>'King Yan' (閻羅, from Yama), the judge of the dead</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Yánluó?</summary><div class="faq-answer"><p>Yánluó is associated with <strong>The judge's cap</strong> (The Chinese magistrate's hat on an Indian god — the Silk Road in one image), <strong>The brush</strong> (The instrument of the verdict — deaths recorded, sentences written), <strong>The ox-head and horse-face</strong> (His bailiffs: the two wardens who fetch the souls of the dead), <strong>The golden bridge and silver path</strong> (The crossings of the third court: the good walk a golden bridge, the middling a silver path, the wicked fall to the blood-pool below — the geography of the verdict.), <strong>Mèngpō's tea</strong> (The old woman's soup of oblivion at the Bridge of Sighs: rebirth requires forgetfulness — the court's last, merciful erasure of every file.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Yánluó in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>yanluo</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Yánluó?</summary><div class="faq-answer"><p>“Yama, the First Mortal” — Yánluó's mythology is procedural: not adventures but cases. His stories are judgments — and the judgments are always, the texts insist, simply the soul's own deeds read back to it. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,19 +355,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Rigveda</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/rig-veda/#mandala-10" class="crosslink citation-link" data-citation="rig-veda">Ṛgveda 10.</a>14 — Yama, the first mortal and king of the fathers</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Yánluó and related cults.</cite></li><li><cite>The Ten Kings paintings — sets of hanging scrolls showing each court — survive from the Ningbo workshops of the 12th–13th centuries (the finest sets in Nara and the Metropolitan Museum), with Yánluó's tribunal at their dramatic centre. Fengdu ghost city's temples stage the full bureaucratic underworld in statuary. Dunhuang documents preserve the Sūtra of the Ten Kings, the charter-text of the whole system, copied in tens of thousands for the dead's benefit.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Yánluó and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Chinese Buddhist canon</cite></li><li><cite>Teiser</cite></li><li><cite>Chinese folk religion</cite></li><li><cite>Chinese Buddhist texts</cite></li><li><cite>Buddhist texts</cite></li></ul>
+                    <ul class="source-list"><li><cite>Majjhima Nikāya 130 (Devadūta Sutta) — King Yama and the three divine messengers</cite></li><li><cite>The Scripture of the Ten Kings (十王經), Dunhuang manuscripts; trans. Stephen F. Teiser (1994)</cite></li><li><cite>Yü-lan-p'en sūtra (盂蘭盆經), Taishō no. 685</cite></li><li><cite>Stephen F. Teiser, The Ghost Festival in Medieval China (1988)</cite></li><li><cite>Chinese folklore and Yuan–Ming drama on Bao Zheng (the 16th-c. Cases of Judge Bao and the opera tradition)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/yanluo_logomark.webp" type="image/webp"><img src="../../assets/yanluo_logomark.webp" alt="Yánluó logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/yanluo_logomark.webp" type="image/webp"><img src="../../assets/yanluo_logomark.webp" alt="Yánluó logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

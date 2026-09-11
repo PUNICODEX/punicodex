@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Kyūshū, South, Volcanoes, Origins. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/kyushu/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Kyūshū?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Kyūshū is /kjɯː.ɕɯː/ — approximately KYOO-shoo, with the compressed ky- onset and long vowels."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Kyūshū mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kyūshū means 'Nine provinces' (九州) in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Kyūshū?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kyūshū is associated with The kamikaze banner (The storm as protector — weather enlisted in the national myth), The Aso caldera (One of the world's great volcanic craters — the island's fiery heart), The Dejima fan (The tiny artificial island that carried Europe into Japan for 200 years)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Kyūshū in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII kyushu strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Kyūshū?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Ninigi on Takachiho” — Kyūshū claims the mythology of beginnings: the chronicles land the sun goddess's grandson on its peaks, send the first emperor out from its shores, and let its storms write themselves into the national soul. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/kyushu_logolockup.webp" type="image/webp"><img src="../../assets/kyushu_logolockup.png" alt="Kyūshū" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Kyūshū</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Kyūshū.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/kyushu_mascot.webp" type="image/webp"><img src="../../assets/kyushu_mascot.png" alt="Kyūshū — South, Volcanoes, Origins" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/kyushu_mascot.webp" type="image/webp"><img src="../../assets/kyushu_mascot.png" alt="Kyūshū — South, Volcanoes, Origins" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Kyūshū 九州 — "Nine Provinces" — carries the long ū in both syllables, both preserved in the restoration. The name remembers the island's ancient division into nine provinces; its older name, Tsukushi, appears in the earliest chronicles as the gateway of the gods' descent. Both syllables are long in kana (きゅうしゅう); the two macrons of the restoration are the two doubled vowels.</p>
+                <p class="etymology-note">The name <strong>Kyūshū</strong> carries the orthographic signature of the japanese tradition: 九州. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Kyūshū is Japan's front door: the island facing Korea and China across the narrowest straits, where the continent's rice, Buddhism, and iron first arrived — and where the Mongol fleets, the Portuguese traders, and the Jesuit fathers all made their landfall. The gateway of Japan has always stood open on this shore, even when the country tried to shut it.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Kyūshū in Later Traditions</h3><p class="cultural-card-body">Kyūshū is Japan's syncretic laboratory: Korean potters founding Arita porcelain, Chinese merchant quarters at Nagasaki, Portuguese words entering the language (pan, tempura, kappa), Dutch learning (Rangaku) flowing through Dejima into Japanese science — anatomy, astronomy, and artillery smuggled in translation. The island's cuisine, dialects, and crafts all carry the gateway's mark: everything Japanese that came from outside came here first.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The kamikaze of 1281 gave the 20th century its most terrible word; Nagasaki's 1945 atomic bombing made the island a symbol of the nuclear age's cost, and its peace park one of the world's pilgrimage sites of memory. Arita and Imari porcelain conquered European markets and imitators for three centuries. Today the island's universities and semiconductor fabs continue the oldest pattern: the gateway as Japan's technology shore.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Kyūshū</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Kyūshū in Later Traditions</h3><p class="cultural-card-body">Kyūshū is Japan's syncretic laboratory: Korean potters founding Arita porcelain, Chinese merchant quarters at Nagasaki, Portuguese words entering the language (pan, tempura, kappa), Dutch learning (Rangaku) flowing through Dejima into Japanese science — anatomy, astronomy, and artillery smuggled in translation. The island's cuisine, dialects, and crafts all carry the gateway's mark: everything Japanese that came from outside came here first.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The kamikaze of 1281 gave the 20th century its most terrible word; Nagasaki's 1945 atomic bombing made the island a symbol of the nuclear age's cost, and its peace park one of the world's pilgrimage sites of memory. Arita and Imari porcelain conquered European markets and imitators for three centuries. Today the island's universities and semiconductor fabs continue the oldest pattern: the gateway as Japan's technology shore.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Yoshinogari, in <a href="/saga/" class="crosslink" data-crosslink="saga">Saga</a>, is East <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>'s great Yayoi site: a moated, towered settlement of two thousand years ago, with mass jar-burials and bronze-weapon caches — the archaeological face of the Wa people whom Chinese chronicles describe. The underwater archaeology of Takashima's Mongol wrecks — anchor stones, bombs, and hulls preserved in Imari Bay — has recovered the kamikaze fleets themselves. The hidden Christian sites of the Amakusa islands and Nagasaki's Ōura Cathedral (1864, built for the returned faith) are UNESCO-listed as the "Hidden Christian Sites in the Nagasaki Region."</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Kyūshū means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Kyūshū is the island that opens. Rice, writing, Buddhism, gunpowder, Christianity, Western science — all knocked on this shore, and Japan answered differently each time: embrace, storm, secrecy, translation. It asks the gateway's question, which is every border's question: what do you let in — and what does the letting-in make of you?</p><p>The gateway's pattern persists in silicon: the island that took in rice, iron, scripture, and surgery now takes in the semiconductor supply chain, and Kumamoto's fabs are Tsukushi's old role in new matter. Every borderland knows its double exposure — first to the gift, first to the invasion — and Kyūshū's answer has been constant for two thousand years: translate everything, fear nothing twice, and keep the door's hinges oiled.</p><p>And the island's two great memories — the divine wind and the atomic one — face each other across eight centuries: the storm that saved and the bomb that burned, both arriving from the same sky over the same coast. Kyūshū carries them without resolving them, which is the gateway's last lesson: the shore that opens to the world must be ready for everything the world brings, the sutra and the cannonball, the virus and the vaccine, the answer arriving, as always, by sea.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Kyūshū, South, Volcanoes, Origins, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Kyūshū?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Kyūshū</strong> is /kjɯː.ɕɯː/ — approximately KYOO-shoo, with the compressed ky- onset and long vowels..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Kyūshū mean?</summary><div class="faq-answer"><p><strong>Kyūshū</strong> means <strong>'Nine provinces' (九州)</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Kyūshū?</summary><div class="faq-answer"><p>Kyūshū is associated with <strong>The kamikaze banner</strong> (The storm as protector — weather enlisted in the national myth), <strong>The Aso caldera</strong> (One of the world's great volcanic craters — the island's fiery heart), <strong>The Dejima fan</strong> (The tiny artificial island that carried <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a> into Japan for 200 years).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Kyūshū in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>kyushu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Kyūshū?</summary><div class="faq-answer"><p>The Kojiki and Nihon Shoki bring the heavenly grandson <a href="/ninigi/" class="crosslink" data-crosslink="ninigi">Ninigi</a> down to earth on the peak of <a href="/takachiho/" class="crosslink" data-crosslink="takachiho">Takachiho</a> — placed by tradition in Kyūshū's mountains — where he marries the blossom-princess Konohanasakuya-hime. She proves her divine conception by setting fire to the birthing hut and delivering three sons amid the flames; their line leads to Jimmu, the first emperor. The imperial charter myth is, geographically, a Kyūshū story.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Kyūshū?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Kyūshū</strong> is /kjɯː.ɕɯː/ — approximately KYOO-shoo, with the compressed ky- onset and long vowels.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Kyūshū mean?</summary><div class="faq-answer"><p><strong>Kyūshū</strong> means <strong>'Nine provinces' (九州)</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Kyūshū?</summary><div class="faq-answer"><p>Kyūshū is associated with <strong>The kamikaze banner</strong> (The storm as protector — weather enlisted in the national myth), <strong>The Aso caldera</strong> (One of the world's great volcanic craters — the island's fiery heart), <strong>The Dejima fan</strong> (The tiny artificial island that carried <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a> into Japan for 200 years).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Kyūshū in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>kyushu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Kyūshū?</summary><div class="faq-answer"><p>“<a href="/ninigi/" class="crosslink" data-crosslink="ninigi">Ninigi</a> on <a href="/takachiho/" class="crosslink" data-crosslink="takachiho">Takachiho</a>” — Kyūshū claims the mythology of beginnings: the chronicles land the sun goddess's grandson on its peaks, send the first emperor out from its shores, and let its storms write themselves into the national soul. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Nihon Shoki</cite></li><li><cite>Kokugo dictionaries</cite></li></ul>
+                    <ul class="source-list"><li><cite>Kokugo dictionaries</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a></cite></li><li><cite><a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a> (Age of the Gods; Ninigi's descent; Jimmu's eastern expedition)</cite></li><li><cite>Nihon Shoki (the kamikaze of 1274 and 1281; the founding chronology)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Kyūshū and related cults.</cite></li><li><cite>Yoshinogari, in <a href="/saga/" class="crosslink" data-crosslink="saga">Saga</a>, is East <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>'s great Yayoi site: a moated, towered settlement of two thousand years ago, with mass jar-burials and bronze-weapon caches — the archaeological face of the Wa people whom Chinese chronicles describe. The underwater archaeology of Takashima's Mongol wrecks — anchor stones, bombs, and hulls preserved in Imari Bay — has recovered the kamikaze fleets themselves. The hidden Christian sites of the Amakusa islands and Nagasaki's Ōura Cathedral (1864, built for the returned faith) are UNESCO-listed as the "Hidden Christian Sites in the Nagasaki Region."</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Kyūshū and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Shinto</cite></li><li><cite>Kokugo dictionaries</cite></li><li><cite>Japanese folklore</cite></li><li><cite>Cambridge</cite></li></ul>
+                    <ul class="source-list"><li><cite>Sansom, George, A History of Japan to 1334 (1958)</cite></li><li><cite>Boxer, C. R., The Christian Century in Japan, 1549–1650 (1951)</cite></li><li><cite>Turnbull, Stephen, The Mongol Invasions of Japan 1274 and 1281 (2010)</cite></li><li><cite>UNESCO, 'Hidden Christian Sites in the Nagasaki Region' (World Heritage listing)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/kyushu_logomark.webp" type="image/webp"><img src="../../assets/kyushu_logomark.webp" alt="Kyūshū logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/kyushu_logomark.webp" type="image/webp"><img src="../../assets/kyushu_logomark.webp" alt="Kyūshū logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

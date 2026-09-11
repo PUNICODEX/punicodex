@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Xōlōtl — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Xōlōtl</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Xōlōtl.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,136 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Xōlōtl</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Xōlōtl</strong> is the standard Nahuatl romanisation, documented in academic sources — “The double, the monster”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">xolotl</p>
-                    <p class="card-body">Reduced to plain <strong>xolotl</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Xōlōtl</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Xōlōtl</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Xōlōtl.com → xn--xltl-l3ab.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Xōlōtl</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Xōlōtl</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Xōlōtl is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Xōlōtl</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Xōlōtl</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Xōlōtl</p>
-                    <p class="card-body">The live temple domain — <strong>xōlōtl.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">xolotl</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Xōlōtl was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Xōlōtl</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈʃoː.loːtɬ/</span>
-            <span class="ipa-label">Classical Nahuatl</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">SHOH-lotl, long ō on both syllables.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Nahuatl</strong> Xōlōtl</li><li><strong>His animal</strong> axolotl</li><li><strong>Owned form</strong> Xōlōtl</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Xōlōtl carries two long ō vowels, both preserved in the restoration; the final -tl is Nahuatl's signature consonant cluster, released laterally — the sound every visitor learns on the name of the water-monster, the axolotl, that shares his name and, in myth, his skin. The final -tl is Nahuatl's lateral affricate, released to the side of the tongue — the sound that ends axolotl too.</p></div>
+      <p class="lead-text">Xōlōtl's myths run on twoness: twin of the morning star, guide of the dying sun, the god who is always the second of a pair — and always the one who goes down into the dark.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Guide</span>
+          <h3 class="myth-title">Across the Nine Waters</h3>
+          <p class="myth-text">The Aztec dead journeyed four years through Mictlān's nine levels, and at the deep river it was the dog — Xōlōtl's creature — who swam them across: a soul whose family had mistreated dogs in life found no ferryman, while one buried with his red dog had a guide already in the grave (Sahagún, Florentine Codex, trans. Anderson &amp; Dibble — the funeral rites of the dead's journey). The funeral rite killed a dog 'the color of fire' and laid it with the dead to carry its master home. Among the world's psychopomps, he is the only one who comes as a pet — the escort you raised from a pup, not a paid professional of the crossing, and the myth's quiet claim is that loyalty outlasts the life that earned it.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Sacrifice</span>
+          <h3 class="myth-title">The God Who Hid</h3>
+          <p class="myth-text">At the creation of the fifth sun the gods gathered at Teotihuacan to sacrifice themselves and set the new sun moving (Leyenda de los Soles, Codex Chimalpopoca). Xōlōtl refused to die: he fled, weeping so hard his eyes fell from their sockets, and hid — as the twin-stalked maize, as the doubled maguey, and at last as the axolotl in the lake. They found him even there, and he died like the rest. The myth is the Aztec anatomy of the price of survival — and of the god who begged to live and serves death anyway: the one who ran is precisely the one the dead meet at the river, as if the underworld drafted its guide from the only god who had tried, with everything he had, to stay on this side of it.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Twins</span>
+          <h3 class="myth-title">Venus Split in Two</h3>
+          <p class="myth-text"><a href="/quetzalcoatl/" class="crosslink" data-crosslink="quetzalcoatl">Quetzalcōātl</a> is <a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a> as morning star, herald of the light; Xōlōtl is Venus as evening star, which follows the sun into darkness (Sahagún, Florentine Codex, Book 7 — the star cycles and the binding of the years). The astronomy is exact — one planet, two appearances — and the myth makes it biography: one twin leads the dawn out of the night, the other escorts the day into it. Together they keep the star's whole circuit, and the world's whole hope: nothing in the Aztec sky set unaccompanied, and no light went down into the dark without the god of guides riding it.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Descent</span>
+          <h3 class="myth-title">The Bones of the Fathers</h3>
+          <p class="myth-text">When the fifth age needed people, Quetzalcōātl descended to Mictlān for the bones of the dead, and the later tellings send Xōlōtl with him as the one who knows the road — past <a href="/mictlantecutli/" class="crosslink" data-crosslink="mictlantecutli">Mictlāntēcutli</a>'s traps to the underworld council, where the lord of the dead set impossible conditions: sound my conch, which no breath will blow, and circle my realm four times without setting the burden down (Leyenda de los Soles; cf. the Histoyre du Mechique). The bones, ground in a bowl and sprinkled with the gods' own blood, became humankind — every Aztec child made of the dead, carried up past the watchful lord by knowledge of the road back. That the tellings choose the dog-brother for the escort is the myth's own logic: who better to know Mictlān's way than the god who ferries it daily?</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -367,12 +285,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Twin in the Dark</h2>
-            <p class="section-subtitle"><a href="/venus/" class="crosslink" data-crosslink="venus">Venus</a>'s Evening Star, the Dog-Guide, and the Last Transformation</p>
+            <p class="section-subtitle">Venus's Evening Star, the Dog-Guide, and the Last Transformation</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Xōlōtl is the twin who goes down with the sun: brother of <a href="/quetzalcoatl/" class="crosslink" data-crosslink="quetzalcoatl">Quetzalcōātl</a>, guide of the dead across the underworld's river, and the god who turned himself into maize, maguey, and finally the axolotl rather than be sacrificed. He is the Aztec soul's ferryman — and the lake that still bears his name.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Xōlōtl is the twin who goes down with the sun: brother of Quetzalcōātl, guide of the dead across the underworld's river, and the god who turned himself into maize, maguey, and finally the axolotl rather than be sacrificed. He is the Aztec soul's ferryman — and the lake that still bears his name.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M14 48L18 32L14 18L24 24L36 22L48 10L46 24L48 38L38 48H14Z"></path></svg></div>
@@ -401,7 +319,7 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The conch and crossbones</span>
-        <span class="symbol-meaning">His lordship of death's roads, shared with <a href="/mictlantecutli/" class="crosslink" data-crosslink="mictlantecutli">Mictlāntēcutli</a></span>
+        <span class="symbol-meaning">His lordship of death's roads, shared with Mictlāntēcutli</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The maize stalk</span>
@@ -410,57 +328,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Xōlōtl</p>
-        </div>
-        
-      <p class="lead-text">Xōlōtl's myths run on twoness: twin of the morning star, guide of the dying sun, the god who is always the second of a pair — and always the one who goes down into the dark.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Guide</span>
-          <h3 class="myth-title">Across the Nine Waters</h3>
-          <p class="myth-text">The Aztec dead journeyed four years through Mictlān's nine levels, and at the deep river it was the dog — Xōlōtl's creature — who swam them across; a soul whose family had mistreated dogs in life found no ferryman. The funeral rite buried a red dog with the dead: the god's own form, sacrificed to carry its master home. Among the world's psychopomps, he is the only one who comes as a pet.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Sacrifice</span>
-          <h3 class="myth-title">The God Who Hid</h3>
-          <p class="myth-text">At the creation of the fifth sun the gods gathered at Teotihuacan to sacrifice themselves and set the new sun moving. Xōlōtl refused to die: he fled, weeping so hard his eyes fell from their sockets, and hid — as the twin-stalked maize, as the doubled maguey, and at last as the axolotl in the lake. They found him even there, and he died like the rest: the myth of the price of survival, and of the god who begged to live and serves death anyway.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Twins</span>
-          <h3 class="myth-title">Venus Split in Two</h3>
-          <p class="myth-text">Quetzalcōātl is Venus as morning star, herald of the light; Xōlōtl is Venus as evening star, which follows the sun into darkness. The astronomy is exact — one planet, two appearances — and the myth makes it biography: one twin leads the dawn out of the night, the other escorts the day into it. Together they keep the star's whole circuit, and the world's whole hope.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Descent</span>
-          <h3 class="myth-title">The Bones of the Fathers</h3>
-          <p class="myth-text">When the fifth age needed people, Quetzalcōātl descended to Mictlān for the bones of the dead — and Xōlōtl went with him as guide through the underworld's traps. The bones, ground and sprinkled with the gods' own blood, became humankind: every Aztec child was thus made of the dead, carried up by the dog-god's knowledge of the road back.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the nahuatl pantheon</p>
         </div>
@@ -524,8 +399,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Xōlōtl</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Xōlōtl</strong> is the standard Nahuatl romanisation, documented in academic sources — “The double, the monster”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">xolotl</p>
+                <p class="card-body">Reduced to plain <strong>xolotl</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Xōlōtl</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Xōlōtl</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Xōlōtl.com → xn--xltl-l3ab.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Xōlōtl</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Xōlōtl</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Xōlōtl</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Xōlōtl</p>
+                    <p class="card-body">The live temple domain — <strong>xōlōtl.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">xolotl</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Xōlōtl was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈʃoː.loːtɬ/</span>
+            <span class="ipa-label">Classical Nahuatl</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">SHOH-lotl, long ō on both syllables.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Xōlōtl carries two long ō vowels, both preserved in the restoration; the final -tl is Nahuatl's signature consonant cluster, released laterally — the sound every visitor learns on the name of the axolotl, the water-monster that shares his name and, in myth, his skin.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Xōlōtl is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Xōlōtl</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -543,7 +548,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/xolotl_mascot.webp" type="image/webp"><img src="../assets/xolotl_mascot.png" alt="Xōlōtl mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/xolotl_mascot.webp" type="image/webp"><img src="../assets/xolotl_mascot.png" alt="Xōlōtl mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -581,7 +586,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/xolotl_logomark.webp" type="image/webp"><img src="../assets/xolotl_logomark.webp" alt="Xōlōtl logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/xolotl_logomark.webp" type="image/webp"><img src="../assets/xolotl_logomark.webp" alt="Xōlōtl logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

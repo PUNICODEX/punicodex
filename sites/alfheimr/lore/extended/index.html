@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Álfheimr, Realm of the Light Elves. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/alfheimr/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Álfheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Álfheimr is /ˈɑːlvˌhɛi̯mr/ — approximately 'AHLV-haymr' — stress the first syllable like 'owl' without the w, then a quick 'lv-haymer' with a rolled final r."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Álfheimr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Álfheimr means Elf-home (from álfr + heimr) in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Álfheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Álfheimr is associated with Freyr's boar Gullinbursti (The golden-bristled beast linking elven prosperity to Vanir fertility), Sun-disc above a meadow (Light-elves are 'fairer than the sun'; the disc marks their radiant world), Elf-mound (álfhóll) (The grass-covered howe where álfar dwell at the edge of human farms), Sheaf of grain (Agricultural blessing attributed to Freyr and the elven powers of growth), Silver branch with bells (The Otherworld token granting passage to the luminous realms)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Álfheimr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII alfheimr strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Álfheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Tooth-Gift of the Gods” — Álfheimr enters the record as a gift, a place-name, and a people. The eddic poems and Snorri's prose agree that the light elves hold a realm of their own, ruled by Freyr; beyond that the sources grow deliberately blurry, and scholars still argue whether the 'dark elves' are dwarfs, death-folk, or a tidying invention of Snorri's Christian-era system. The realm's mythology is mostly threshold lore: what stands at the bright edge of the human world, and what it asks of us. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/alfheimr_logolockup.webp" type="image/webp"><img src="../../assets/alfheimr_logolockup.png" alt="Álfheimr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Álfheimr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Álfheimr.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/alfheimr_mascot.webp" type="image/webp"><img src="../../assets/alfheimr_mascot.png" alt="Álfheimr — Realm of the Light Elves" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/alfheimr_mascot.webp" type="image/webp"><img src="../../assets/alfheimr_mascot.png" alt="Álfheimr — Realm of the Light Elves" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -216,11 +267,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Old Norse á is a long back vowel, and ei is a diphthong; the acute accent on Á marks stress and length together. The form Álfheimr is Tier 1 because it preserves the acute accent on Á — a distinctive diacritic the ASCII form loses.</p>
+                <p class="etymology-note">PGmc *albaz "elf" + *haimaz "home". The world of the light elves.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old English</strong> — elfhām, the Anglo-Saxon compound for an elf-home or fairy dwelling</li><li><strong>German</strong> — Alptraum, literally 'elf-dream', a distant echo of elf-influenced sleep</li><li><strong>Old Norse</strong> — álfar, the light elves themselves, fairer than the sun to look upon</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old English</strong> — ælf, 'elf' — the same Germanic word as Old Norse álfr, as in the compound ælfscíene, 'elf-beautiful'</li><li><strong>German</strong> — Alptraum, literally 'elf-dream', a distant echo of elf-influenced sleep</li><li><strong>Old Norse</strong> — álfar, the light elves themselves, fairer than the sun to look upon</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -253,24 +304,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">In the norse tradition, <strong>Álfheimr</strong> governed realm of the light elves. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Álfheimr in Later Traditions</h3><p class="cultural-card-body">Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Álfheimr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII. Álfheimr has become a touchstone in fantasy literature, role-playing games, and neopagan reconstructions of Norse cosmology. The Unicode restoration of the name reminds readers that the elf-realm was once as real to medieval Scandinavians as any earthly landscape.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Álfheimr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Álfheimr in Later Traditions</h3><p class="cultural-card-body">Álfheimr's afterlife is a study in survival through renaming. As Christianity took hold, the álfar were never formally condemned — they slipped sideways into the folklore of the <em>landvættir</em> and, in Iceland, the <em>huldufólk</em>, the 'hidden people', whose dwellings were respected into the modern age; later saga tradition muddled Snorri's dark elves with dwarfs until the categories nearly merged. The nineteenth-century folklore collectors restored the record — Jón Árnason's <em>Íslenzkar þjóðsögur</em> (1862–64) gathered the elf-legends of Iceland wholesale — and the Romantic movement made the elf a symbol of national landscape. The twentieth century returned the name to its Eddic glory: Tolkien, who lectured on <em><a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a></em> and said his elves owed much to the álfar of the <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Elder Edda</a>, built Quenya and Sindarin around the word. Modern Heathenry has revived the álfablót itself. Through every transformation the pattern holds: the luminous realm migrates, but it never vanishes.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Álfheimr today lives a double life. In Iceland, belief-adjacent respect for the huldufólk remains culturally legible — road projects have been rerouted around suspected elf-rocks, and the hidden people still surface in polls and news copy as a way of talking about the land's claims. In modern Heathen and neopagan practice, the álfablót has been reconstructed as a festival of the elves and ancestors. And the realm has conquered global fantasy: Tolkien's debt to the Eddas is explicit, and Álfheimr — under its own name — recurs in comics, games, and novels as the stock 'elf-world' of Norse-flavored cosmologies. The Unicode restoration of the name is a small act of precision in that traffic: <em>Álfheimr</em> is not a generic fairyland but a specific medieval Scandinavian idea of where the beautiful neighbors live.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No artifact bears the label 'Álfheimr'; the realm's material traces are indirect. The documentary bedrock is the skaldic stanza — Sigvatr's account of an álfablót performed around 1018 — which establishes the cult a century and more after conversion. Onomastics preserves the footprint: Álf- compound farm and place-names in Norway and Iceland (álfhóll, 'elf-hill', is a recurring element) mark remembered elf-territory. The high-status boat burials of Oseberg (c. 834 CE) and Gokstad preserve the aristocratic culture in which álfar beliefs circulated, and small finds — amulets and figurines variously read as valkyries, gods, or landvættir — show the population of the spirit world, though none can be pinned to the light elves specifically. The most persistent 'site' is folkloric: elf-hows, elf-stones, and elf-fields catalogued by nineteenth-century collectors, still pointed out in Scandinavian and Icelandic landscapes.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Álfheimr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Álfheimr is the geography of the near-neighbor. Every culture has an Otherworld, but the Norse one is strikingly local: not a heaven far overhead but a bright country just past the ridge, close enough that a housewife can turn a poet away from its festival. The elf-home condenses a whole theory of how the world is furnished — that nature is populated, that beauty is political, that the boundary of the farm is also the boundary of the human. To restore the acute accent on Á is to mark the name as Old Norse and not generic; but the deeper restoration is the reminder that Álfheimr was once part of a working cosmology, with sacrifices, taboos, and neighbours. We have flattened the elves into mascots. The Eddas remember them as a nation.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Álfheimr, Realm of the Light Elves, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Álfheimr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Álfheimr</strong> is /ˈɑːlvˌhɛi̯mr/ — approximately 'AHLV-haymr' — stress the first syllable like 'owl' without the w, then a quick 'lv-haymer' with a rolled final r..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Álfheimr mean?</summary><div class="faq-answer"><p><strong>Álfheimr</strong> means <strong>Elf-home (from álfr + heimr)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Álfheimr?</summary><div class="faq-answer"><p>Álfheimr is associated with <strong>Freyr's boar Gullinbursti</strong> (The golden-bristled beast linking elven prosperity to Vanir fertility), <strong>Sun-disc above a meadow</strong> (Light-elves are 'fairer than the sun'; the disc marks their radiant world), <strong>Elf-mound (álfhóll)</strong> (The grass-covered howe where álfar dwell at the edge of human farms), <strong>Sheaf of grain</strong> (Agricultural blessing attributed to Freyr and the elven powers of growth), <strong>Silver branch with bells</strong> (The Otherworld token granting passage to the luminous realms).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Álfheimr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>alfheimr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Álfheimr?</summary><div class="faq-answer"><p>In <em>Gylfaginning</em>, the gods give Álfheimr to Freyr when he cuts his first tooth. This infant gift becomes a sovereign realm, binding the fertility god to the elven world and making him lord of Álfheimr (<em>Grímnismál</em> 5). The gift marks Freyr's transition from divine child to lord of a distinct cosmic territory, and it places Álfheimr within the Vanir sphere of influence.The passage hints at an older stratum of belief in which elves were not merely minor spirits but a people with their own homeland and political standing among the gods. Freyr's ownership also explains why later Scandinavian folk tradition so often links elves with agricultural prosperity: the same god who blesses fields also governs their realm.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Álfheimr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Álfheimr</strong> is /ˈɑːlvˌhɛi̯mr/ — approximately 'AHLV-haymr' — stress the first syllable like 'owl' without the w, then a quick 'lv-haymer' with a rolled final r.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Álfheimr mean?</summary><div class="faq-answer"><p><strong>Álfheimr</strong> means <strong>Elf-home (from álfr + heimr)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Álfheimr?</summary><div class="faq-answer"><p>Álfheimr is associated with <strong>Freyr's boar Gullinbursti</strong> (The golden-bristled beast linking elven prosperity to Vanir fertility), <strong>Sun-disc above a meadow</strong> (Light-elves are 'fairer than the sun'; the disc marks their radiant world), <strong>Elf-mound (álfhóll)</strong> (The grass-covered howe where álfar dwell at the edge of human farms), <strong>Sheaf of grain</strong> (Agricultural blessing attributed to Freyr and the elven powers of growth), <strong>Silver branch with bells</strong> (The Otherworld token granting passage to the luminous realms).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Álfheimr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>alfheimr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Álfheimr?</summary><div class="faq-answer"><p>“The Tooth-Gift of the Gods” — Álfheimr enters the record as a gift, a place-name, and a people. The eddic poems and Snorri's prose agree that the light elves hold a realm of their own, ruled by Freyr; beyond that the sources grow deliberately blurry, and scholars still argue whether the 'dark elves' are dwarfs, death-folk, or a tidying invention of Snorri's Christian-era system. The realm's mythology is mostly threshold lore: what stands at the bright edge of the human world, and what it asks of us. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -279,7 +342,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,19 +361,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.</cite></li><li><cite>Poetic Edda: Völuspá (cosmogonic stanzas on the ordering of worlds and peoples)</cite></li><li><cite>Poetic Edda: Alvíssmál (the dwarf Alvíss names things as they are called among gods, men, giants, and elves)</cite></li><li><cite>Snorri Sturluson, Edda: Skáldskaparmál (kennings for Freyr as lord of the álfar)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Poetic Edda: <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a> 5 (Álfheim given to Freyr as tannfé); <a href="/texts/poetic-edda/#alvissmol" class="crosslink citation-link" data-citation="alvissmol">Alvíssmál</a> 9–35 (the elves' names for the world); trans. Carolyne Larrington (Oxford, 2014).</cite></li><li><cite>Snorri Sturluson, Edda: <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning</a> ch. 8 (the light and dark elves of Álfheim), trans. Anthony Faulkes (Everyman, 1987).</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Álfheimr and related cults.</cite></li><li><cite>The Álfheimr concept is indexed materially by Álf- place-names in Norway and Iceland, by elven and landvættir amulets, and by high-status boat graves. The Oseberg ship burial (c. 834 CE) and the Gokstad ship preserve the aristocratic world in which álfar beliefs circulated, while later folklore keeps the elf tradition alive in Scandinavian landscape and memory.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Álfheimr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.</cite></li><li><cite>Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Sigvatr Þórðarson, Austrfarvísur sts. 4–6 (the álfablót), in <a href="/diana/" class="crosslink" data-crosslink="diana">Diana</a> Whaley (ed.), Poetry from the Kings' Sagas 1 (Skaldic Poetry of the Scandinavian Middle Ages I, 2012).</cite></li><li><cite>Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs (Oxford, 2001), s.v. elves.</cite></li><li><cite>Gunnell, Terry, 'How Elvish Were the Álfar?' in The Nordic Storyteller: Essays in Honour of Knut Liestøl (Costerus New Series, 2007).</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -371,7 +434,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/alfheimr_logomark.webp" type="image/webp"><img src="../../assets/alfheimr_logomark.webp" alt="Álfheimr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/alfheimr_logomark.webp" type="image/webp"><img src="../../assets/alfheimr_logomark.webp" alt="Álfheimr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

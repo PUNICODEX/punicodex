@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Stḫ, Desert, Storm, Strength. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/seth/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Stḫ?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Stḫ is /ˈsɛː.tɛx/ — approximately 'SEH-tek' — ending in a dry back-of-the-throat 'kh'; Greeks smoothed it to Σήθ (Seth)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Stḫ mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stḫ means The god Seth/Setekh; etymology disputed, possibly \"the one who separates\" in the egyptian tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Stḫ?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stḫ is associated with The Set animal (The unidentifiable beast — ambiguity made heraldry), The red crown's opposite (Lord of the red desert, against Horus of the black land), The iron ('The iron of Set' — the Egyptians' name for meteoric metal and hardness), The storm cloud (Thunder and the desert wind; in the New Kingdom he is 'the thunderer in the sky', the weather that arrives uninvited), The foreign lands (The nine bows — every country beyond the frontier — are his flocks, and his protection extends over them)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Stḫ in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII seth strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Stḫ?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Drowning at Nedyet” — No Egyptian god has a stranger career: royal patron of the Second Dynasty, villain of the Osiris cycle, defender of the sun, and finally — in the Greco-Roman dusk — demonized as Typhon. stḫ is all of them at once, and the texts refuse to choose. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,14 @@
                 <picture><source srcset="../../assets/seth_logolockup.webp" type="image/webp"><img src="../../assets/seth_logolockup.png" alt="Stḫ" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +175,14 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +195,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Stḫ</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Stḫ.com</span>
@@ -157,7 +210,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/seth_mascot.webp" type="image/webp"><img src="../../assets/seth_mascot.png" alt="Stḫ — Desert, Storm, Strength" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/seth_mascot.webp" type="image/webp"><img src="../../assets/seth_mascot.png" alt="Stḫ — Desert, Storm, Strength" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +229,7 @@
             <p class="section-subtitle">Essential information about Stḫ, Desert, Storm, Strength</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">𓋴𓏏𓐍</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Stḫ</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ˈsɛː.tɛx/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Egyptian</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Desert, Storm, Strength</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">The god Seth/Setekh; etymology disputed, possibly "the one who separates"</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Stḫ.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The Set animal, The red crown's opposite, The iron</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">𓋴𓏏𓐍</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Stḫ</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ˈsɛː.tɛx/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Egyptian</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Desert, Storm, Strength</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">The god Seth/Setekh; etymology disputed, possibly "the one who separates"</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Stḫ.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The Set animal, The red crown's opposite, The iron, The storm cloud, The foreign lands</span></div></div>
         </div>
     </div>
 </section>
@@ -210,11 +263,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The consonantal skeleton stḫ (also written stš in earlier orthography) is conventionally vocalized "Setekh" or "Setesh"; the Greek Seth and Coptic Sēt preserve the shell. The breve-marked ḫ is the voiceless velar fricative [x] — the ch of Scottish "loch" — not the pharyngeal ḥ; the restoration keeps the Egyptological transliteration rather than the familiar but softened "Seth."</p>
+                <p class="etymology-note">The name <strong>Stḫ</strong> carries the orthographic signature of the egyptian tradition: 𓋴𓏏𓐍. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Egyptian</strong> — stḫ</li><li><strong>Greek</strong> — Σήθ (Seth)</li><li><strong>Owned form</strong> — stḫ</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Egyptian</strong> — stḫ, earlier stš; etymology disputed — 'he who separates/dazzles' has been proposed but not proven (Te Velde 1967)</li><li><strong>Greek</strong> — Σήθ (Sēth), the rendering used by Herodotus and later writers</li><li><strong>Coptic</strong> — ⲥⲏⲧ (Sēt), the name's last Egyptian generation</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,31 +300,45 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">stḫ is the god Egypt could neither worship comfortably nor live without: lord of the red desert, the storm, and the foreign lands — the murderer of <a href="/osiris/" class="crosslink" data-crosslink="osiris">Osiris</a>, and also the only god strong enough to stand at the prow of Ra's barque and spear the serpent of chaos, night after night.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Stḫ in Later Traditions</h3><p class="cultural-card-body">The New Kingdom identified him with <a href="/baal/" class="crosslink" data-crosslink="baal">Baal</a>, the Syrian storm god — an equation made by warriors, for warriors. The Greeks, reading the Osiris cycle, identified him with <a href="/typhon/" class="crosslink" data-crosslink="typhon">Typhōn</a>, the hundred-headed enemy of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a>, and as Egypt's religion closed, the identification became damnation: Set-Typhon absorbed all evil, his animal was hacked from the reliefs, his name excised. Te Velde's classic study calls the process "the demonization of a god" — the first documented case of a deity becoming a devil.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">He is the ancestor of every "god of the enemy" in Western imagination — the Typhonian tradition runs from Plutarch through modern occultism. Egyptology's rehabilitation of him (as the necessary opposite, strength without which order is defenceless) is one of the field's signature achievements. The Set animal remains the standard icon of ambiguity itself, and "Sethian" survives as a scholarly label for Gnostic sects who saw the world as his kind of storm.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Stḫ</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Stḫ in Later Traditions</h3><p class="cultural-card-body">The New Kingdom identified him with <a href="/baal/" class="crosslink" data-crosslink="baal">Baal</a>, the Syrian storm god — an equation made by warriors, for warriors. The Greeks, reading the <a href="/osiris/" class="crosslink" data-crosslink="osiris">Osiris</a> cycle, identified him with <a href="/typhon/" class="crosslink" data-crosslink="typhon">Typhōn</a>, the hundred-headed enemy of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a>, and as Egypt's religion closed, the identification became damnation: Set-Typhon absorbed all evil, his animal was hacked from the reliefs, his name excised. Te Velde's classic study calls the process 'the demonization of a god' — the first documented case of a deity becoming a devil.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">He is the ancestor of every 'god of the enemy' in Western imagination — the Typhonian tradition runs from Plutarch through modern occultism. Egyptology's rehabilitation of him (as the necessary opposite, strength without which order is defenceless) is one of the field's signature achievements. The Set animal remains the standard icon of ambiguity itself, and 'Sethian' survives as a scholarly label for Gnostic sects who saw the world as his kind of storm.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">His cult centre was Nubt (Ombos, near modern Naqada), the 'gold town,' where temple remains and the predynastic votives tie him to Egypt's earliest strata; Set-animal standards appear on the Scorpion macehead and the Narmer palette's war context. The sha-beast's erasure is itself archaeological: reliefs at <a href="/karnak/" class="crosslink" data-crosslink="karnak">Karnak</a> and elsewhere show the animal chiseled out in the Late Period and restored by modern epigraphy. The Edfu temple texts preserve the fullest dramatic liturgy of the <a href="/horus/" class="crosslink" data-crosslink="horus">Horus</a>-Set conflict, performed as temple drama.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Stḫ means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>stḫ is the god of the strength you hope never to need. Egypt's answer to evil was not to banish it but to post it at the prow: the desert's violence pointed outward, against the true nothing. He asks every ordered world the question it least likes: what, in you, is strong enough to fight the serpent — and where will you let it stand?</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     <section class="section section-name" id="screen-appearances">
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Screen Appearances</h2>
-            <p class="section-subtitle">Films, series, animations, and games featuring Stḫ</p>
+            <span class="section-number">06</span>
+            <h2 class="section-title">Screen &amp; Culture</h2>
+            <p class="section-subtitle">Where Stḫ echoes through film, television, and games — and how</p>
         </div>
         <div class="screen-appearances-grid"><a class="screen-appearance-card reveal-up" href="/screen/the-mummy-1999/">
                 <span class="screen-appearance-year">1999</span>
                 <h3 class="screen-appearance-title">The Mummy</h3>
                 <span class="screen-appearance-type">Film</span>
                 <p class="screen-appearance-studio">Universal Pictures</p>
+                <p class="screen-appearance-summary">A swashbuckling horror-adventure revolving around Imhotep's curse, with heavy Egyptian funerary and deity imagery.</p>
             </a><a class="screen-appearance-card reveal-up" href="/screen/gods-of-egypt-2016/">
                 <span class="screen-appearance-year">2016</span>
                 <h3 class="screen-appearance-title">Gods of Egypt</h3>
                 <span class="screen-appearance-type">Film</span>
                 <p class="screen-appearance-studio">Summit Entertainment / Lionsgate</p>
+                <p class="screen-appearance-summary">A fantasy action film depicting the conflict between Horus and Set for the throne of Egypt, with Ra's solar barge at stake.</p>
             </a></div>
     </div>
 </section>
@@ -280,11 +347,11 @@
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Stḫ, Desert, Storm, Strength, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Stḫ?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Stḫ</strong> is /ˈsɛː.tɛx/ — approximately The name ends in the cheth (ḫ), a strong h-sound; Greeks rendered him as Σήθ (Seth)..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Stḫ mean?</summary><div class="faq-answer"><p><strong>Stḫ</strong> means <strong>The god Seth/Setekh; etymology disputed, possibly "the one who separates"</strong> in the egyptian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Stḫ?</summary><div class="faq-answer"><p>Stḫ is associated with <strong>The Set animal</strong> (The unidentifiable beast — ambiguity made heraldry), <strong>The red crown's opposite</strong> (Lord of the red desert, against <a href="/horus/" class="crosslink" data-crosslink="horus">Horus</a> of the black land), <strong>The iron</strong> ("The iron of Set" — the Egyptians' name for meteoric metal and hardness).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Stḫ in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>seth</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Stḫ?</summary><div class="faq-answer"><p>The centre of his infamy: stḫ kills his brother Osiris — by trickery in the chest episode Plutarch records, by violence in the Egyptian litanies — scatters the body through Egypt, and claims the throne. <a href="/isis/" class="crosslink" data-crosslink="isis">Isis</a> and <a href="/nephthys/" class="crosslink" data-crosslink="nephthys">Nephthys</a> gather the pieces; <a href="/anubis/" class="crosslink" data-crosslink="anubis">ꜣnpw</a> wraps them; and the god of chaos becomes, unwillingly, the reason the world has resurrection.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Stḫ?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Stḫ</strong> is /ˈsɛː.tɛx/ — approximately 'SEH-tek' — ending in a dry back-of-the-throat 'kh'; Greeks smoothed it to Σήθ (Seth).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Stḫ mean?</summary><div class="faq-answer"><p><strong>Stḫ</strong> means <strong>The god Seth/Setekh; etymology disputed, possibly "the one who separates"</strong> in the egyptian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Stḫ?</summary><div class="faq-answer"><p>Stḫ is associated with <strong>The Set animal</strong> (The unidentifiable beast — ambiguity made heraldry), <strong>The red crown's opposite</strong> (Lord of the red desert, against Horus of the black land), <strong>The iron</strong> ('The iron of Set' — the Egyptians' name for meteoric metal and hardness), <strong>The storm cloud</strong> (Thunder and the desert wind; in the New Kingdom he is 'the thunderer in the sky', the weather that arrives uninvited), <strong>The foreign lands</strong> (The nine bows — every country beyond the frontier — are his flocks, and his protection extends over them).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Stḫ in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>seth</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Stḫ?</summary><div class="faq-answer"><p>“The Drowning at Nedyet” — No Egyptian god has a stranger career: royal patron of the Second Dynasty, villain of the Osiris cycle, defender of the sun, and finally — in the Greco-Roman dusk — demonized as Typhon. stḫ is all of them at once, and the texts refuse to choose. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -293,7 +360,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">08</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -312,19 +379,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The Pyramid Texts; The Coffin Texts; The Book of the Dead.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Pyramid Texts (Osiris drowned at Nedyet)</cite></li><li><cite>Papyrus Jumilhac (Ptolemaic anti-Seth theology)</cite></li><li><cite>Plutarch, On <a href="/isis/" class="crosslink" data-crosslink="isis">Isis</a> and Osiris 12–20</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Stḫ and related cults.</cite></li><li><cite>His cult centre was Nubt (Ombos, near modern Naqada), the "gold town," where temple remains and the predynastic votives tie him to Egypt's earliest strata; Set-animal standards appear on the Scorpion macehead and the Narmer palette's war context. The sha-beast's erasure is itself archaeological: reliefs at <a href="/karnak/" class="crosslink" data-crosslink="karnak">Karnak</a> and elsewhere show the animal chiseled out in the Late Period and restored by modern epigraphy. The Edfu temple texts preserve the fullest dramatic liturgy of the Horus-Set conflict, performed as temple drama.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Stḫ and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Te Velde</cite></li><li><cite>Gardiner</cite></li><li><cite>Allen, Middle Egyptian</cite></li><li><cite>Bonneau</cite></li><li><cite>Egyptology</cite></li></ul>
+                    <ul class="source-list"><li><cite>Te Velde, Seth, God of Confusion (1967)</cite></li><li><cite>The Contendings of Horus and Set (Papyrus Chester Beatty I)</cite></li><li><cite>Amduat, Hours 1–12</cite></li><li><cite>Allen, Middle Egyptian</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -385,7 +452,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/seth_logomark.webp" type="image/webp"><img src="../../assets/seth_logomark.webp" alt="Stḫ logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/seth_logomark.webp" type="image/webp"><img src="../../assets/seth_logomark.webp" alt="Stḫ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

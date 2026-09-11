@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Pān — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Πάν</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Pān.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,158 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Πάν</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Pān</strong> (Πάν) is attested in the source tradition — “God of shepherds, flocks, mountain wilds, and the panic that strikes lonely places; his name was popularly derived from Greek πᾶν ("all") but likely originated in Arcadian Πάων ("shepherd")”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">pan</p>
-                    <p class="card-body">Reduced to plain <strong>pan</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Pān</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Pān</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Pān.com → xn--pn-dla.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Pān</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Pān</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Pān is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Πάν</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Pān is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Pān</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Pān</p>
-                    <p class="card-body">Restores <strong>Πάν</strong>. The live temple domain — <strong>pān.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Ideal Form</h3>
-                    <p class="card-unicode">Pán</p>
-                    <p class="card-body">Restores <strong>Πάν</strong>. Stress-preserved ideal form; currently registered/unavailable. Not in the PuniCodex collection.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Ideal Form</h3>
-                    <p class="card-unicode">Pā́n</p>
-                    <p class="card-body">Restores <strong>Πάν</strong>. Stacked macron+acute on the stressed long vowel, matching Greek Πάν; philologically ideal but often untypeable on phones.. Not in the PuniCodex collection.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">pan</p>
-                    <p class="card-body">Flattens <strong>Πάν</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Pān was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Pān</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/pán/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Π-</span>
-        <span class="phoneme-desc">unaspirated voiceless bilabial stop [p], like the p of English 'spin' — Attic π carried no burst of breath</span>
+      <p class="lead-text">Pān is late to Olympus and always half outside it: a god of the threshold between pasture and wilderness, music and dread, whose stories are told by shepherds, runners, and sailors — never by kings.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Pipes</span>
+          <h3 class="myth-title">Syrinx</h3>
+          <p class="myth-text">In <em><a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a></em> 1.689–712 Ovid tells how Pān pursued the Arcadian nymph Syrinx to the river Ladōn, where — her sisters’ prayers granted at the last instant — she changed into marsh reeds just as his arms closed on her. His sigh stirred the reeds into answering music, and vowing that he and she should speak together so, he bound reeds of unequal length with wax and made the pipe that keeps her name. Longus would later give the story a gentler turn in <em>Daphnis and Chloe</em>, and the pastoral tradition never let it rest — but Ovid’s version is the one that stuck, because it makes the instrument an elegy. The syrinx is not an object Pān owns but a beloved he could not hold: its breathy voice is the sound of desire outlasting transformation, and every shepherd who has ever played it has replayed the pursuit and the loss.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ά-</span>
-        <span class="phoneme-desc">short open [a] bearing the acute accent — a rising pitch, not an English stress-beat; the Arcadian by-form Πάων lengthens this vowel to ā</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Marathon</span>
+          <h3 class="myth-title">The Runner on Mount Parthenion</h3>
+          <p class="myth-text">Herodotus (6.105–106) records that when the runner Pheidippides was sent from Athens to Sparta before Marathon — some 140 miles over the mountains in two days — Pān met him on Mount Parthenion above Tegea, called him by name, and asked why Athens paid no honors to a god well-disposed to the city, who had often helped it and would again. After the victory the Athenians believed him: they founded his shrine in the cave on the Acropolis’ north slope and honored him with annual sacrifices and a torch-race. Pausanias (1.28.4) saw the cave still sacred in the second century CE. Few gods enter the historical record so precisely — a named mountain, a named witness, a cult whose founding can be dated to 490 BCE — and the encounter reads exactly like what it may have been: an exhausted ultrarunner’s vision on a lonely pass, retrospectively honored by a grateful city. Pān is the god who runs beside the runner; the long race’s patron had already given his name to the terror and the music of empty places.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-ν</span>
-        <span class="phoneme-desc">dental nasal [n], tongue on the teeth, closing the single syllable</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Birth</span>
+          <h3 class="myth-title">Born on the Hills, Carried to Olympus</h3>
+          <p class="myth-text">The <em><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to Pan</em> (19.35–47) makes him the son of <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermēs</a> and Dryōpē, an Arcadian nymph: born on the hills goat-legged, horned, bearded, and laughing, so alarming that his nurse fled. Hermēs, delighted, wrapped him in hare-skins and carried him to Olympus, where the immortals were gladdened — and so, the hymn puns, he was named Pan, from <em>pántes</em>, ‘all’. The joke is ancient and serious at once: even his birth hymn derives his name from πᾶν, the folk-etymology Plato would tease in the <em>Cratylus</em> (408b–d). But the sources disagree about his mother — the hymn says Dryōpē, Pausanias (8.38.3) records an Arcadian tradition making <a href="/penelope/" class="crosslink" data-crosslink="penelope">Penelope</a> his mother, and later writers assign him a score of nymphs. The Arcadian by-form Páōn, ‘shepherd’, may preserve the older truth beneath all the genealogies. It is fitting that the god of disorderly places should have a disorderly birth: no two authorities give him the same mother, and the hymn itself seems to wink at the confusion.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Last Cry</span>
+          <h3 class="myth-title">Great Pan is Dead</h3>
+          <p class="myth-text">Plutarch, in <em>On the Obsolescence of Oracles</em> 17 (<em>Moralia</em> 419c–d), tells that in the reign of Tiberius a ship sailing off the Echinades heard a voice from the sea call the Egyptian pilot Thamus by name, bidding him proclaim off Palodes: ‘The great Pān is dead.’ When the reluctant pilot finally shouted the words to the empty shore, a great groaning rose from the land — of wonder, Plutarch says, not of grief. Early Christian writers seized the tale as the death-knell of the old gods; since the nineteenth century scholars have suspected a garbled ritual cry — ‘the all-great Tammuz is dead’, an eastern dying-god lament misheard by Greek ears — and Plutarch himself offers the story only as a puzzle. Either way it remains the strangest afterlife of the most earthly of gods: the shepherd who haunted noonday silences exits the world in a shipboard rumor, announced to an empty beach, and answered by a sound no one could quite name.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'PAHN' — one clean syllable; let the pitch lift on the á rather than hammering it, and keep the vowel open and pure.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> πᾶν (pan), 'all, everything' — the popular ancient derivation, already jested with by Plato (Cratylus 408b–d)</li><li><strong>Arcadian</strong> Πάων (Pāōn), 'shepherd' — the likelier true form behind the Attic Πάν</li><li><strong>PIE</strong> often traced to *peh₂-, 'to guard, to pasture' (Latin pāscere, pastor); the old comparison with Vedic Pūṣáṇ, god of herds, is doubtful — Beekes urges caution</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tier 2 — a single preserved feature. The Attic name Πάν carries only an acute accent on a short alpha (stress without length); the long ā belongs to the Arcadian by-form Πάων, 'shepherd', which the restoration Pān honors instead. Either way the name keeps one distinctive mark, never both, which is exactly what Tier 2 certifies.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -390,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Shepherd of the Wilds</h2>
             <p class="section-subtitle">Shepherds, flocks, the mountain solitudes, and the fear that walks at noon</p>
         </div>
@@ -431,7 +327,7 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The hare</span>
-        <span class="symbol-meaning">His quarry and his swaddling: <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermes</a> carried the infant Pān to Olympus wrapped in hare-skins (Homeric Hymn to Pan 19.41–42), and the god still holds the hare in Arcadian images.</span>
+        <span class="symbol-meaning">His quarry and his swaddling: Hermes carried the infant Pān to Olympus wrapped in hare-skins (Homeric Hymn to Pan 19.41–42), and the god still holds the hare in Arcadian images.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The cave</span>
@@ -440,49 +336,22 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Pān</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Pān lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Pān is late to Olympus and always half outside it: a god of the threshold between pasture and wilderness, music and dread, whose stories are told by shepherds, runners, and sailors — never by kings.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Pipes</span>
-          <h3 class="myth-title">Syrinx</h3>
-          <p class="myth-text">In <em>Metamorphoses</em> 1 (689–712), Ovid tells how Pān pursued the Arcadian nymph Syrinx to the river Ladon, where her sisters' prayers changed her into marsh reeds just as his arms closed around her. His sigh stirred the reeds into music, and, vowing that he and she would speak together so, he bound reeds of unequal length with wax and made the pipe that keeps her name. The syrinx is therefore not an instrument Pān owns but a beloved he could not hold — and its breathy voice is the sound of desire outlasting transformation.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">Words Descended from This Name</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/everyday/#panic" class="source-badge" title="sudden, contagious fear">panic</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Marathon</span>
-          <h3 class="myth-title">The Runner on Mount Parthenion</h3>
-          <p class="myth-text">Herodotus (6.105) records that when the Athenian messenger Pheidippides was sent to Sparta before Marathon, Pān met him on Mount Parthenion above Tegea, called him by name, and asked why Athens paid no honors to a god well-disposed toward the city, who had often helped it and would again. After the victory the Athenians believed him: they founded his shrine in the cave on the north slope of the Acropolis and honored him with annual sacrifices and a torch-race (6.106). Few gods enter the historical record so precisely — a named mountain, a named witness, and a cult whose founding can be dated to 490 BCE.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Birth</span>
-          <h3 class="myth-title">Born on the Hills, Carried to Olympus</h3>
-          <p class="myth-text">The <em>Homeric Hymn to Pan</em> (19.35–47) makes him the son of Hermes and an Arcadian nymph, born goat-legged, horned, and laughing; his nurse took one look and fled. Hermes, delighted, wrapped him in hare-skins and carried him to Olympus, where all the immortals were gladdened by him — and so, the hymn puns, they named him Pan because he charmed them all (πάντες). The joke is ancient and serious at once: even his birth hymn derives his name from πᾶν, the very folk-etymology Plato would tease in the <em>Cratylus</em>.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Last Cry</span>
-          <h3 class="myth-title">Great Pan is Dead</h3>
-          <p class="myth-text">Plutarch, in <em>On the Obsolescence of Oracles</em> 17 (Moralia 419c–d), tells that in the reign of Tiberius a ship drifting off the Echinades heard a voice from shore calling the Egyptian pilot Thamus by name, bidding him proclaim off Palodes: 'The great Pān is dead' (Πὰν ὁ μέγας τέθνηκε). When he obeyed, a great groaning rose from the land. Early Christian writers seized on the tale as the death-knell of the old gods; modern scholars are less certain what Thamus heard — some detect a garbled ritual lament for a dying eastern god — and Plutarch himself offers it only as a puzzle. It remains the strangest afterlife of the most earthly of gods.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -490,7 +359,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -554,23 +423,159 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Pān lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">Words Descended from This Name</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/everyday/#panic" class="source-badge" title="sudden, contagious fear">panic</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Πάν</p>
+                <p class="card-body">The name in its original Greek form. <strong>Pān</strong> (Πάν) is attested in the source tradition — “God of shepherds, flocks, mountain wilds, and the panic that strikes lonely places; his name was popularly derived from Greek πᾶν ("all") but likely originated in Arcadian Πάων ("shepherd")”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">pan</p>
+                <p class="card-body">Reduced to plain <strong>pan</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Pān</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Pān</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Pān.com → xn--pn-dla.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Pān</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Pān</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Pān</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Pān</p>
+                    <p class="card-body">Restores <strong>Πάν</strong>. The live temple domain — <strong>pān.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Ideal Form</h3>
+                    <p class="card-unicode">Pán</p>
+                    <p class="card-body">Restores <strong>Πάν</strong>. Stress-preserved ideal form; currently registered/unavailable. Not in the PuniCodex collection.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Ideal Form</h3>
+                    <p class="card-unicode">Pā́n</p>
+                    <p class="card-body">Restores <strong>Πάν</strong>. Stacked macron+acute on the stressed long vowel, matching Greek Πάν; philologically ideal but often untypeable on phones.. Not in the PuniCodex collection.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">pan</p>
+                    <p class="card-body">Flattens <strong>Πάν</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Pān was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/pán/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Π-</span>
+        <span class="phoneme-desc">unaspirated voiceless bilabial stop [p], like the p of English 'spin' — Attic π carried no burst of breath</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ά-</span>
+        <span class="phoneme-desc">short open [a] bearing the acute accent — a rising pitch, not an English stress-beat; the Arcadian by-form Πάων lengthens this vowel to ā</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ν</span>
+        <span class="phoneme-desc">dental nasal [n], tongue on the teeth, closing the single syllable</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'PAHN' — one clean syllable; let the pitch lift on the á rather than hammering it, and keep the vowel open and pure.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tier 2 — a single preserved feature. The Attic name Πάν carries only an acute accent on a short alpha (stress without length); the long ā belongs to the Arcadian by-form Πάων, 'shepherd', which the restoration Pān honors instead. Either way the name keeps one distinctive mark, never both, which is exactly what Tier 2 certifies.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Pān is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Πάν</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Pān is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -589,7 +594,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/pan_mascot.webp" type="image/webp"><img src="../assets/pan_mascot.png" alt="Pān mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/pan_mascot.webp" type="image/webp"><img src="../assets/pan_mascot.png" alt="Pān mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -627,7 +632,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/pan_logomark.webp" type="image/webp"><img src="../assets/pan_logomark.webp" alt="Pān logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/pan_logomark.webp" type="image/webp"><img src="../assets/pan_logomark.webp" alt="Pān logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

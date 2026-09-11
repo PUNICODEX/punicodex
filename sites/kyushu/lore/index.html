@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Kyūshū — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">九州</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Kyūshū.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">九州</p>
-                    <p class="card-body">The name in its original Japanese form. <strong>Kyūshū</strong> (九州) is attested in the source tradition — “'Nine provinces' (九州)”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">kyushu</p>
-                    <p class="card-body">Reduced to plain <strong>kyushu</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Kyūshū</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Kyūshū</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Kyūshū.com → xn--kysh-w7ac.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Kyūshū</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Kyūshū</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Kyūshū is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">九州</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Kyūshū is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kyūshū</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Kyūshū</p>
-                    <p class="card-body">Restores <strong>九州</strong>. The live temple domain — <strong>kyūshū.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">kyushu</p>
-                    <p class="card-body">Flattens <strong>九州</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Kyūshū was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Kyūshū</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/kjɯː.ɕɯː/</span>
-            <span class="ipa-label">Japanese (Hepburn)</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">KYOO-shoo, with the compressed ky- onset and long vowels.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Japanese</strong> 九州</li><li><strong>Ancient name</strong> Tsukushi</li><li><strong>Owned form</strong> Kyūshū</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kyūshū 九州 — "Nine Provinces" — carries the long ū in both syllables, both preserved in the restoration. The name remembers the island's ancient division into nine provinces; its older name, Tsukushi, appears in the earliest chronicles as the gateway of the gods' descent. Both syllables are long in kana (きゅうしゅう); the two macrons of the restoration are the two doubled vowels.</p></div>
+      <p class="lead-text">Kyūshū claims the mythology of beginnings: the chronicles land the sun goddess's grandson on its peaks, send the first emperor out from its shores, and let its storms write themselves into the national soul.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Descent</span>
+          <h3 class="myth-title">Ninigi on Takachiho</h3>
+          <p class="myth-text">The <em><a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a></em> and <em><a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a></em> bring the heavenly grandson <a href="/ninigi/" class="crosslink" data-crosslink="ninigi">Ninigi</a> down to earth on the peak of <a href="/takachiho/" class="crosslink" data-crosslink="takachiho">Takachiho</a> — placed by tradition in Kyūshū's mountains — where he marries the blossom-princess Konohanasakuya-hime. She proves her divine conception by setting fire to the birthing hut and delivering three sons amid the flames; their line leads to Jimmu, the first emperor. The imperial charter myth is, geographically, a Kyūshū story. The shrine at Takachiho still marks the descent-spot, and the Ama-no-iwato cave in the gorge beside it — where the sun goddess <a href="/amaterasu/" class="crosslink" data-crosslink="amaterasu">Amaterasu</a> once hid — anchors the whole island as the stage of the Age of the Gods. The myth means Japan's sacred geography begins not at the capital but at the gateway: the gods landed where the continent first appears.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Founding</span>
+          <h3 class="myth-title">Jimmu's Departure</h3>
+          <p class="myth-text">The chronicles begin Japan's history on this island. Jimmu, the great-grandson of Ninigi, tired of ruling only the Hyūga coast and resolved on the eastern expedition to Yamato: 'the land to the east is fair... let us go to the land of the rising sun.' His first fleet was wrecked, his brother Itsuse died of a wound, and the way was cleared only after the vanishing sacrifice of the empress — but the divine crow Yatagarasu, three-legged, was sent to guide him, and after the mountain campaign against Nagasunehiko he founded the dynasty at Kashihara, in 660 BCE by the chronicles' reckoning. Myth means history here in the full sense: Japan's imperial charter is a Kyūshū story of leaving Kyūshū. The gateway completes its service by producing the one who crosses it.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Storm</span>
+          <h3 class="myth-title">The Divine Wind</h3>
+          <p class="myth-text">Twice the Mongol-Chinese fleets of Kublai Khan reached Kyūshū — 1274 and 1281, the second numbering thousands of ships — and twice, after hard fighting on the Hakata beaches, typhoons destroyed the armadas. The shrines had prayed for deliverance, and the nation named the storm <em>kamikaze</em>, 'divine wind': weather as providence, and the coast of Hakata Bay as the sacrificial altar of the largest seaborne invasions the world had yet seen. Later tradition credited the prayers of Iwashimizu and Hakozaki shrines, and modern underwater archaeology at Takashima has raised the fleets' own testimony — anchor stones, ceramic bombs, and hulls preserved in Imari Bay. The myth means providence has a shoreline: the same straits that carried every gift from the continent also carried the storm that saved the island from it.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Hidden Faith</span>
+          <h3 class="myth-title">The Kirishitan Century</h3>
+          <p class="myth-text">Francis Xavier landed at Kagoshima in 1549; within decades Kyūshū had a quarter-million Christians, daimyō baptized with their domains, and seminaries at Arima and Azuchi. Then came the turn: persecution, the crucifixions at Nagasaki, the Shimabara-Amakusa rising of 1637 — and 250 years of hidden Christians keeping Latin prayers in corrupted Japanese, baptizing in secret, venerating statues of <a href="/kannon/" class="crosslink" data-crosslink="kannon">Kannon</a> as the Virgin. Their revelation in 1865, when farmers of Urakami knelt before a French priest at the Ōura Cathedral overlooking the harbor, stunned the mission world. The Ōura church still stands, and the villages of the Amakusa islands and the Nagasaki coast are UNESCO-listed as the 'Hidden Christian Sites in the Nagasaki Region.' The myth means the gateway keeps what it takes in even when the door is slammed: a faith survived two and a half centuries on this shore purely by being hidden in plain sight.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Nine Provinces</h2>
             <p class="section-subtitle">The Gateway, the Kamikaze, and the Christian Century</p>
         </div>
@@ -411,41 +329,23 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Kyūshū</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Kyūshū lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Kyūshū claims the mythology of beginnings: the chronicles land the sun goddess's grandson on its peaks, and its storms wrote themselves into the national soul.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Descent</span>
-          <h3 class="myth-title">Ninigi on Takachiho</h3>
-          <p class="myth-text">The Kojiki and Nihon Shoki bring the heavenly grandson <a href="/ninigi/" class="crosslink" data-crosslink="ninigi">Ninigi</a> down to earth on the peak of <a href="/takachiho/" class="crosslink" data-crosslink="takachiho">Takachiho</a> — placed by tradition in Kyūshū's mountains — where he marries the blossom-princess Konohanasakuya-hime. She proves her divine conception by setting fire to the birthing hut and delivering three sons amid the flames; their line leads to Jimmu, the first emperor. The imperial charter myth is, geographically, a Kyūshū story.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/kojiki/" class="source-badge">Kojiki</a>
+                    <a href="https://punicodex.com/texts/nihon-shoki/" class="source-badge">Nihon Shoki</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Storm</span>
-          <h3 class="myth-title">The Divine Wind</h3>
-          <p class="myth-text">Twice the Mongol-Chinese fleets of Kublai Khan reached Kyūshū — 1274 and 1281, the second numbering thousands of ships — and twice, after hard fighting on the Hakata beaches, typhoons destroyed the armadas. The shrines had prayed for deliverance, and the nation named the storm kamikaze, "divine wind": weather as providence, and the coast of Hakata Bay as the sacrificial altar of the world's largest seaborne invasions.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Hidden Faith</span>
-          <h3 class="myth-title">The Kirishitan Century</h3>
-          <p class="myth-text">Francis Xavier landed at Kagoshima in 1549; within decades Kyūshū had a quarter-million Christians, daimyō baptized with their domains, and seminaries at Arima and Azuchi. Then came the turn: persecution, crucifixions at Nagasaki, the Shimabara-Amakusa rising of 1637 — and 250 years of hidden Christians keeping Latin prayers in corrupted Japanese, baptizing in secret, venerating statues of <a href="/kannon/" class="crosslink" data-crosslink="kannon">Kannon</a> as Maria. Their revelation in 1865, when farmers of Urakami knelt before a French priest, stunned the mission world.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -453,7 +353,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the japanese pantheon</p>
         </div>
@@ -517,24 +417,153 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Kyūshū lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/kojiki/" class="source-badge">Kojiki</a>
-                    <a href="https://punicodex.com/texts/nihon-shoki/" class="source-badge">Nihon Shoki</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">九州</p>
+                <p class="card-body">The name in its original Japanese form. <strong>Kyūshū</strong> (九州) is attested in the source tradition — “'Nine provinces' (九州)”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">kyushu</p>
+                <p class="card-body">Reduced to plain <strong>kyushu</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Kyūshū</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Kyūshū</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Kyūshū.com → xn--kysh-w7ac.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Kyūshū</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Kyūshū</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kyūshū</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Kyūshū</p>
+                    <p class="card-body">Restores <strong>九州</strong>. The live temple domain — <strong>kyūshū.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">kyushu</p>
+                    <p class="card-body">Flattens <strong>九州</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Kyūshū was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/kjɯː.ɕɯː/</span>
+            <span class="ipa-label">Japanese (Hepburn)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Ky-</span>
+        <span class="phoneme-desc">Palatalized [kʲ] with a short close back [ɯ] — the compressed 'ky' of きゅ, two morae folded into one onset</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ū-</span>
+        <span class="phoneme-desc">Long close back unrounded [ɯː] — kana ゅう marks the doubled vowel; the first macron of the restoration</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">Sh-</span>
+        <span class="phoneme-desc">Voiceless alveolo-palatal [ɕ] — the 'sh' of English 'she'</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-ū</span>
+        <span class="phoneme-desc">Long close back unrounded [ɯː] again — the second macron; both long vowels are fully drawn out</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">KYOO-shoo, with the compressed ky- onset and long vowels.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kyūshū 九州 — "Nine Provinces" — carries the long ū in both syllables, both preserved in the restoration. The name remembers the island's ancient division into nine provinces; its older name, Tsukushi, appears in the earliest chronicles as the gateway of the gods' descent. Both syllables are long in kana (きゅうしゅう); the two macrons of the restoration are the two doubled vowels.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Kyūshū is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">九州</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Kyūshū is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -553,7 +582,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/kyushu_mascot.webp" type="image/webp"><img src="../assets/kyushu_mascot.png" alt="Kyūshū mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kyushu_mascot.webp" type="image/webp"><img src="../assets/kyushu_mascot.png" alt="Kyūshū mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -591,7 +620,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/kyushu_logomark.webp" type="image/webp"><img src="../assets/kyushu_logomark.webp" alt="Kyūshū logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kyushu_logomark.webp" type="image/webp"><img src="../assets/kyushu_logomark.webp" alt="Kyūshū logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

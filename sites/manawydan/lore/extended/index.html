@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Manawydan, Sea, Craftsmanship. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/manawydan/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Manawydan?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Manawydan is /manaˈwɨdan/ — approximately 'man-ah-WIH-dan' — stress the third syllable (the Welsh penult); the w is a quick glide and the y is the Welsh central vowel [ɨ], a sound with no English equivalent, closest to a tight, short 'ih'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Manawydan mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Manawydan means Manannán (Welsh form) in the celtic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Manawydan?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Manawydan is associated with The golden bowl (The enchanted vessel on the marble slab — the snare that took Pryderi and Rhiannon by their own reaching), The white boar (The Otherworld lure that leads men out of the world they know, shining and wrong), The mouse on the gallows (Patience armed with procedure — the smallest catch that bought back a kingdom), The shoemaker's last (Craft as survival: the trades a dispossessed prince practiced better than the guildsmen), Gorsedd Arberth (The mound of wonders, where sitting is never safe and where the case was finally tried)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Manawydan in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Manawydan is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Manawydan?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Seven Who Brought the Head Home” — Manawydan's dossier is the Second and Third Branches of the Mabinogi: Branwen ferch Llŷr, where he is one of the seven who bring the head home, and Manawydan fab Llŷr, the branch that bears his name — the quietest and most perfectly built of the Four, a tale in which an entire kingdom is stolen by silence and won back by patience. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/manawydan_logolockup.webp" type="image/webp"><img src="../../assets/manawydan_logolockup.png" alt="Manawydan" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Manawydan</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Manawydan</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/manawydan_mascot.webp" type="image/webp"><img src="../../assets/manawydan_mascot.png" alt="Manawydan — Sea, Craftsmanship" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/manawydan_mascot.webp" type="image/webp"><img src="../../assets/manawydan_mascot.png" alt="Manawydan — Sea, Craftsmanship" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Manawydan</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Manawydan is Tier 2 by the mechanical rule: the Middle Welsh form is already plain ASCII — there is no diacritic and no distinctive letter for the restoration to recover, and only the capital distinguishes the restored form from the input. The lexicon's gloss is 'Manannán (Welsh form)', and that is the defensible line: Ifor Williams derived the name from Manaw, the Welsh name of the Isle of Man, and the Old Irish Manannán is its cognate. The brief that sometimes floats around — *man-, 'mind' — is not the derivation the handbooks print, and this temple does not use it.</p>
+                <p class="etymology-note">The name <strong>Manawydan</strong> reaches the modern world through scholarly transliteration of the celtic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">M</td><td><code>U+004D</code></td><td>Latin Capital Letter M</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">w</td><td><code>U+0077</code></td><td>Latin Small Letter W</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">y</td><td><code>U+0079</code></td><td>Latin Small Letter Y</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">d</td><td><code>U+0064</code></td><td>Latin Small Letter D</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="560"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="640"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Manawydan</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Manawydan fab Llŷr is the Mabinogi's counselor and craftsman: a son of the sea-named Llŷr and brother of Brân the Blessed, one of the seven who came home from Ireland with the wondrous head — and the man who, when Dyfed was stripped bare by enchantment, kept his patience, took up the saddler's, the shield-maker's, and the shoemaker's trades, and unmade the spell without a sword-stroke, by hanging a mouse and refusing three ransoms.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Manawydan in Later Traditions</h3><p class="cultural-card-body">Manawydan's one great comparison is also the deepest fact about him: he is the Welsh form of the figure Ireland knows as [[manannan|Manannán mac Lir]], the sea god and guardian of the Otherworld. The names are cognates — Ifor Williams derived both from Manaw, the Welsh name of the Isle of Man, so that 'Manawydan' and 'Manannán' each mean, in effect, the Manxman — and the fathers match exactly, Welsh Llŷr against Irish Lir, each a personification of the sea. What the Welsh tradition did with the inheritance is the interesting part: where Manannán strides through Irish myth as a god of mist, ships, and wonder-working treasure, the Mabinogi keeps only the sea-kinship and the uncanny craft, and makes its Manawydan mortal, patient, and wise — a euhemerized sea god filed down to a counselor. Whether the Welsh figure is descended from the Irish, or both from a lost common sea god, is debated (Mac Cana; Koch); the handbooks register the kinship and leave the direction open. In Manx folklore the same figure survived as Mannan beg mac y Leir, first man of the island, and gave the Isle of Man its name. No Gaulish counterpart has ever been convincingly proposed; the comparison is an insular affair, Irish Sea water on both sides of it.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried Manawydan into English, and the Third Branch has held a special place ever since: critics from Ifor Williams onward have called it the most perfectly constructed of the Four Branches, and the trial of the mouse — the courtly ransomers, the miniature gallows, the terms exacted one by one — is the anthology piece of Welsh prose comedy and wisdom in one. Scholarship gave the name its modern standing: Williams's Pedeir Keinc y Mabinogi (1930) fixed the text and the Manaw etymology, and Mac Cana's The Mabinogi made the branch's architecture a set text of Celtic studies. Modern Druid and pagan practice honors Manawydan as a patron of craft, patience, and the sea-kinship; in Wales the name survives as a rare literary given name, carried less by folk memory than by the sheer durability of the Third Branch, which has never gone out of print since Guest.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Manawydan</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Manawydan in Later Traditions</h3><p class="cultural-card-body">Manawydan's one great comparison is also the deepest fact about him: he is the Welsh form of the figure Ireland knows as [[manannan|Manannán mac Lir]], the sea god and guardian of the Otherworld. The names are cognates — Ifor Williams derived both from Manaw, the Welsh name of the Isle of Man, so that 'Manawydan' and 'Manannán' each mean, in effect, the Manxman — and the fathers match exactly, Welsh Llŷr against Irish Lir, each a personification of the sea. What the Welsh tradition did with the inheritance is the interesting part: where Manannán strides through Irish myth as a god of mist, ships, and wonder-working treasure, the Mabinogi keeps only the sea-kinship and the uncanny craft, and makes its Manawydan mortal, patient, and wise — a euhemerized sea god filed down to a counselor. Whether the Welsh figure is descended from the Irish, or both from a lost common sea god, is debated (Mac Cana; Koch); the handbooks register the kinship and leave the direction open. In Manx folklore the same figure survived as Mannan beg mac y Leir, first man of the island, and gave the Isle of Man its name. No Gaulish counterpart has ever been convincingly proposed; the comparison is an insular affair, Irish Sea water on both sides of it.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried Manawydan into English, and the Third Branch has held a special place ever since: critics from Ifor Williams onward have called it the most perfectly constructed of the Four Branches, and the trial of the mouse — the courtly ransomers, the miniature gallows, the terms exacted one by one — is the anthology piece of Welsh prose comedy and wisdom in one. Scholarship gave the name its modern standing: Williams's Pedeir Keinc y Mabinogi (1930) fixed the text and the Manaw etymology, and Mac Cana's The Mabinogi made the branch's architecture a set text of Celtic studies. Modern Druid and pagan practice honors Manawydan as a patron of craft, patience, and the sea-kinship; in Wales the name survives as a rare literary given name, carried less by folk memory than by the sheer durability of the Third Branch, which has never gone out of print since Guest.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Manawydan is a textual figure: no inscription, votive deposit, or cult site names him, and the epigraphic record of pre-Christian Wales — Latin and ogham memorial stones of roughly the fifth to seventh centuries — records personal names, not theonyms. His evidence is manuscript evidence. The Four Branches survive complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' date of composition is argued rather than documented — Ifor Williams placed them in the later eleventh century, and current scholarship generally holds a range around 1060–1120. The geography of the Third Branch is real and visitable: Dyfed is the historic kingdom of southwest Wales; Arberth is Narberth in Pembrokeshire, and the gorsedd is traditionally located on the hill above it; the seven cantrefs of Dyfed were still an administrative reality when the tales were written. The nearest linguistic trace of the sea-kinship is onomastic rather than archaeological: Manaw survives in the Welsh name of the Isle of Man and in Manaw Gododdin, the district of the old North remembered in place-names such as Clackmannan and Slamannan.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Manawydan means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Manawydan is the Mabinogi's argument that wisdom is a kind of patience. Every test the tale sets him, he passes by declining the heroic option: when Caswallawn usurps the crown, he counts the cost of war and stays his hand; when Dyfed is emptied, he hunts, endures, and waits; when his companions are taken, he does not storm the fortress — he learns three trades and practices them beautifully in exile. Even his victory is procedural: a watch kept, a mouse caught, a gallows built, three ransoms refused, and terms — release, restoration, amnesty, guarantee — exacted one by one before the noose is loosened. He is the only hero in the Four Branches who wins everything he wants and kills nothing to get it. The sea-named son of Llŷr spends his great story on land, but the sea is in the method: he outlasts what he cannot fight, and the tide turns. The question the branch leaves is uncomfortable and exact — how much of what we call courage is only impatience wearing armor?</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Manawydan, Sea, Craftsmanship, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Manawydan?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Manawydan</strong> is /manaˈwɨdan/ — approximately 'man-ah-WIH-dan' — stress the third syllable (the Welsh penult); the w is a quick glide and the y is the Welsh central vowel [ɨ], a sound with no English equivalent, closest to a tight, short 'ih'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Manawydan mean?</summary><div class="faq-answer"><p><strong>Manawydan</strong> means <strong>Manannán (Welsh form)</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Manawydan?</summary><div class="faq-answer"><p>Manawydan is associated with <strong>The golden bowl</strong> (The enchanted vessel on the marble slab — the snare that took <a href="/pryderi/" class="crosslink" data-crosslink="pryderi">Pryderi</a> and <a href="/rhiannon/" class="crosslink" data-crosslink="rhiannon">Rhiannon</a> by their own reaching), <strong>The white boar</strong> (The Otherworld lure that leads men out of the world they know, shining and wrong), <strong>The mouse on the gallows</strong> (Patience armed with procedure — the smallest catch that bought back a kingdom), <strong>The shoemaker's last</strong> (Craft as survival: the trades a dispossessed prince practiced better than the guildsmen), <strong>Gorsedd Arberth</strong> (The mound of wonders, where sitting is never safe and where the case was finally tried).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Manawydan in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>manawydan</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Manawydan?</summary><div class="faq-answer"><p>Manawydan stands beside his brother Brân — Bendigeidfran, the Blessed — when [[matholwch|<a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>]], king of Ireland, comes to Harlech to ask for their sister Branwen, and he counsels the marriage that begins the whole catastrophe. When the insult of the mutilated horses has festered into war, Brân wades the sea to Ireland, and the host that crosses with him comes home as seven men: Pryderi, Manawydan, Glifieu Eil Taran, [[taliesin|<a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>]], Ynawg, Gruddieu fab Muriel, and Heilyn fab Gwyn — bearing the head of Brân, struck by a poisoned spear, which talks with them and is better company than ever it was in life.At Harlech they feast seven years with the head, the three songs of the birds of Rhiannon singing to them, and time does not move. At Gwales in Penfro they find a royal hall with two doors open and one shut — toward Cornwall — and there they pass eighty years in the Assembly of the Wondrous Head, forgetting every sorrow, until Heilyn fab Gwyn says 'shame on my beard if I do not open the door' — and opens it, and all their losses come back at once like a tide. Then they do as the head had commanded: they carry it to London and bury it in the White Mount, facing France, and the triads count that burial among the Three Fortunate Concealments of the Island of Britain. Manawydan, who had counseled the wedding, survives its end — the pattern of his whole life in one branch.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Manawydan?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Manawydan</strong> is /manaˈwɨdan/ — approximately 'man-ah-WIH-dan' — stress the third syllable (the Welsh penult); the w is a quick glide and the y is the Welsh central vowel [ɨ], a sound with no English equivalent, closest to a tight, short 'ih'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Manawydan mean?</summary><div class="faq-answer"><p><strong>Manawydan</strong> means <strong>Manannán (Welsh form)</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Manawydan?</summary><div class="faq-answer"><p>Manawydan is associated with <strong>The golden bowl</strong> (The enchanted vessel on the marble slab — the snare that took <a href="/pryderi/" class="crosslink" data-crosslink="pryderi">Pryderi</a> and <a href="/rhiannon/" class="crosslink" data-crosslink="rhiannon">Rhiannon</a> by their own reaching), <strong>The white boar</strong> (The Otherworld lure that leads men out of the world they know, shining and wrong), <strong>The mouse on the gallows</strong> (Patience armed with procedure — the smallest catch that bought back a kingdom), <strong>The shoemaker's last</strong> (Craft as survival: the trades a dispossessed prince practiced better than the guildsmen), <strong>Gorsedd Arberth</strong> (The mound of wonders, where sitting is never safe and where the case was finally tried).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Manawydan in Unicode?</summary><div class="faq-answer"><p><strong>Manawydan</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Manawydan?</summary><div class="faq-answer"><p>“The Seven Who Brought the Head Home” — Manawydan's dossier is the Second and Third Branches of the Mabinogi: Branwen ferch Llŷr, where he is one of the seven who bring the head home, and Manawydan fab Llŷr, the branch that bears his name — the quietest and most perfectly built of the Four, a tale in which an entire kingdom is stolen by silence and won back by patience. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,7 +360,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Manawydan and related cults.</cite></li><li><cite>Manawydan is a textual figure: no inscription, votive deposit, or cult site names him, and the epigraphic record of pre-Christian Wales — Latin and ogham memorial stones of roughly the fifth to seventh centuries — records personal names, not theonyms. His evidence is manuscript evidence. The Four Branches survive complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' date of composition is argued rather than documented — Ifor Williams placed them in the later eleventh century, and current scholarship generally holds a range around 1060–1120. The geography of the Third Branch is real and visitable: Dyfed is the historic kingdom of southwest Wales; Arberth is Narberth in Pembrokeshire, and the gorsedd is traditionally located on the hill above it; the seven cantrefs of Dyfed were still an administrative reality when the tales were written. The nearest linguistic trace of the sea-kinship is onomastic rather than archaeological: Manaw survives in the Welsh name of the Isle of Man and in Manaw Gododdin, the district of the old North remembered in place-names such as Clackmannan and Slamannan.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Manawydan and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/manawydan_logomark.webp" type="image/webp"><img src="../../assets/manawydan_logomark.webp" alt="Manawydan logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/manawydan_logomark.webp" type="image/webp"><img src="../../assets/manawydan_logomark.webp" alt="Manawydan logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

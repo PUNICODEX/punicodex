@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Tūmatauenga — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Tūmatauenga</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Tūmatauenga.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,136 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Tūmatauenga</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Tūmatauenga</strong> is the standard Polynesian romanisation, documented in academic sources — “'The man of furious face' (tū + mata + ēngā), god of war and of humankind”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">tumatauenga</p>
-                    <p class="card-body">Reduced to plain <strong>tumatauenga</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Tūmatauenga</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tūmatauenga</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Tūmatauenga.com → xn--tmatauenga-5dc.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Tūmatauenga</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tūmatauenga</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Tūmatauenga is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Tūmatauenga</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tūmatauenga</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Tūmatauenga</p>
-                    <p class="card-body">The live temple domain — <strong>tūmatauenga.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">tumatauenga</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Tūmatauenga was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Tūmatauenga</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/tuː.ma.taʊ.ˈe.ŋa/</span>
-            <span class="ipa-label">Māori</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">TOO-mah-tow-ENG-ah, long ū on the first syllable.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Māori</strong> Tūmatauenga</li><li><strong>Hawaiian twin</strong> <a href="/ku/" class="crosslink" data-crosslink="ku">Kū</a></li><li><strong>NZ Army</strong> Ngāti Tūmatauenga</li><li><strong>Owned form</strong> Tūmatauenga</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tūmatauenga is pronounced with the long ū of the first syllable — the macron the restoration keeps — and the name means "<a href="/tu/" class="crosslink" data-crosslink="tu">Tū</a> of the angry face": tū (to stand, and the god's name) plus mata (face) plus anga (the -ing of appearance). He is the Māori war-god, and his name is a face set for war.</p></div>
+      <p class="lead-text">Tūmatauenga's cycle is the Polynesian account of how humanity got its arts: not by gift but by conquest — the war-god subduing his elemental brothers and distributing the spoils to his mortal children.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Separation</span>
+          <h3 class="myth-title">The Sons of Ranginui and Papatūānuku</h3>
+          <p class="myth-text">In the beginning the Sky Father <a href="/ranginui/" class="crosslink" data-crosslink="ranginui">Ranginui</a> and the Earth Mother <a href="/papatuanuku/" class="crosslink" data-crosslink="papatuanuku">Papatūānuku</a> lay locked together in an embrace, and their children lived crushed in darkness between them. Among the sons was <strong>Tūmatauenga</strong>, fiercest of them all. When the brothers debated what to do, it was <a href="/tu/" class="crosslink" data-crosslink="tu">Tū</a> who urged the final solution — kill the parents and have done. The others recoiled at the thought of slaying their own father and mother, and the gentler counsel of <a href="/tane/" class="crosslink" data-crosslink="tane">Tāne</a> prevailed: the parents would be forced apart, not slain (Grey, <em>Polynesian Mythology</em>, the legend of the children of Rangi and Papa). <a href="/rongo/" class="crosslink" data-crosslink="rongo">Rongo</a>, <a href="/tangaroa/" class="crosslink" data-crosslink="tangaroa">Tangaroa</a>, Haumia, and Tū himself tried to push the parents and failed; then Tāne set his head on the earth, his feet against the sky, and tore the parents open. Light came into the world — and <a href="/tawhirimatea/" class="crosslink" data-crosslink="tawhirimatea">Tāwhirimātea</a>, who had loved the darkness, went to war over it. The myth is exact about its genealogy of war: strife is not an intruder into creation but a sibling of the light itself, born the moment separation was chosen.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Storm</span>
+          <h3 class="myth-title">The One Who Stood</h3>
+          <p class="myth-text">Tāwhirimātea, god of winds and storms, had opposed the separation of his parents, and now he took war to his brothers in revenge, riding the weapon-winds of his storm-army. Tangaroa fled to the sea; Tāne withdrew into the forests; Rongo and Haumia thrust themselves into the earth — but <strong>Tūmatauenga alone stood fast on the open plain</strong>, unbowed under the tempest (Grey, <em>Polynesian Mythology</em>). When the storm at last spent itself, the standing one turned on his fleeing brothers and made their domains his own: he wove nets and took Tangaroa's fish, set snares for Tāne's birds, and dug into the earth for Rongo's kūmara and Haumia's fern-root. His name is the doctrine: <em>tū</em> means 'to stand'. War, in the Māori telling, is first of all a posture — the refusal to move when everything else runs — and only secondly a weapon; the whole later tradition of the haka, the pūkana, and the pa is that posture made communal.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Spoils</span>
+          <h3 class="myth-title">The Arts Won by Conquest</h3>
+          <p class="myth-text">By subduing his brothers, Tūmatauenga made their realms <em>noa</em> — common, usable — and so gave humankind its technologies: the net and hook for the sea, the snare for the forest, the digging-stick for the garden. The karakia of planting, fishing, fowling, and war all carry his name, for every tapu those arts break was broken first by him; Best and Tregear record his invocation where food is made safe to eat. The cycle thus makes the fiercest god the culture-bringer: not Tāne the gentle separator but Tū the stander, who gathered what the storm scattered and portioned it out. The distribution is the myth's second doctrine. What war wins must be handed on; the conqueror who keeps everything for himself defeats the purpose of standing, and the tribe that forgets how to feed itself has lost the spoils twice.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Descent</span>
+          <h3 class="myth-title">The Children of Tū</h3>
+          <p class="myth-text">The tradition gives the war-god a family larger than any brotherhood: humankind itself. Tregear records the phrase <em>he tamaiti nā Tū</em> — 'a child of Tū' — as a way of naming a human being (<em>The Maori-Polynesian Comparative Dictionary</em>, s.v. Tu), and the southern branches of the family tell the same descent as genealogy: in Tahiti, Tū is not only the war-god but the first ancestor, the root of the human line (Henry, <em>Ancient Tahiti</em>). The Māori cycles draw the moral plainly. The brothers who fled or hid left their domains to be taken; the one who stood gave humans his own nature — fierceness, endurance, and the habit of war. To be human, in this theology, is to have inherited the furious face; the arts of peace, Rongo's garden and Tangaroa's sea, are the domains of humankind's gentler uncles, conquered and kept only because their fierce brother stands guard over them.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -367,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Standing One</h2>
             <p class="section-subtitle">War, the Angry Face, and the Taming of the Brothers</p>
         </div>
@@ -387,7 +305,7 @@
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 24C16 16 24 16 32 24C40 32 48 32 56 24M8 40C16 32 24 32 32 40C40 48 48 48 56 40"></path></svg></div>
         <h4 class="domain-name">The Nets and Hooks</h4>
-        <p class="domain-desc">He snared his brother <a href="/tangaroa/" class="crosslink" data-crosslink="tangaroa">Tangaroa</a>'s fish: the arts of fishing, won by war and given to man.</p>
+        <p class="domain-desc">He snared his brother Tangaroa's fish: the arts of fishing, won by war and given to man.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 52L24 20L32 34L40 16L56 52Z"></path></svg></div>
@@ -401,50 +319,36 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The haka</span>
-        <span class="symbol-meaning">The war-dance: the body made into the angry face of the god</span>
+        <span class="symbol-meaning">The war-dance: the body made into the angry face of the god, rehearsed before every contest of the tribe</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The pūkana</span>
+        <span class="symbol-meaning">The widened eyes and out-thrust tongue of the war-face — the literal mata of his name, worn by every performer</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The feather cloak</span>
-        <span class="symbol-meaning">The kahu huruhuru of the war-chief — honour worn on the shoulders</span>
+        <span class="symbol-meaning">The kahu huruhuru of the war-chief — honour worn on the shoulders, ransom and glory in one garment</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Tūmatauenga</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Tūmatauenga lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Tūmatauenga's cycle is the Polynesian account of how humanity got its arts: not by gift but by conquest — the war-god subduing his elemental brothers and distributing the spoils to his mortal children.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Separation</span>
-          <h3 class="myth-title">The Sons of Rangi and Papa</h3>
-          <p class="myth-text">In the beginning the Sky Father (<a href="/ranginui/" class="crosslink" data-crosslink="ranginui">Ranginui</a>) and the Earth Mother (<a href="/papatuanuku/" class="crosslink" data-crosslink="papatuanuku">Papatūānuku</a>) lay locked together, and their sons lived crushed in darkness between them. Tūmatauenga, fiercest of the brothers, urged that the parents be killed; the gentler counsel of <a href="/tane/" class="crosslink" data-crosslink="tane">Tāne</a> prevailed — they would be forced apart. <a href="/rongo/" class="crosslink" data-crosslink="rongo">Rongo</a>, Tangaroa, Haumia, and Tāne each tried and failed to push them; then Tāne set his head on the earth, his feet against the sky, and tore the parents open. Light came into the world — and war came with it.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/kumulipo/" class="source-badge">Kumulipo</a>
+                    <a href="https://punicodex.com/texts/polynesian-mythology/" class="source-badge">Polynesian Mythology</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Storm</span>
-          <h3 class="myth-title">The One Who Stood</h3>
-          <p class="myth-text"><a href="/tawhirimatea/" class="crosslink" data-crosslink="tawhirimatea">Tāwhirimātea</a>, god of winds and storms, had opposed the separation, and now he attacked his brothers in revenge: Tangaroa fled to the sea, the gods of food hid in the earth and the forest — but Tūmatauenga alone stood fast against the storm, unbowed on the open plain. When the tempest spent itself, the war-god turned on his fleeing brothers: he made nets and took Tangaroa's fish, snared Tāne's birds, and dug up Rongo's and Haumia's crops. His standing made humanity heir to every domain.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Inheritance</span>
-          <h3 class="myth-title">The Arts of War and Peace</h3>
-          <p class="myth-text">By subduing his brothers, Tūmatauenga made their realms noa — common, usable — and so gave humankind its technologies: net and hook for the sea, snare for the forest, the digging-stick for the garden. The karakia of planting, fishing, and war all carry his name; the Māori tradition is explicit that the fierce god is also the culture-bringer. His children — humanity, in the southern traditions — inherited both the standing and the storm.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -452,7 +356,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the polynesian pantheon</p>
         </div>
@@ -516,24 +420,137 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Tūmatauenga lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/kumulipo/" class="source-badge">Kumulipo</a>
-                    <a href="https://punicodex.com/texts/polynesian-mythology/" class="source-badge">Polynesian Mythology</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Tūmatauenga</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Tūmatauenga</strong> is the standard Polynesian romanisation, documented in academic sources — “'The man of furious face' (tū + mata + ēngā), god of war and of humankind”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">tumatauenga</p>
+                <p class="card-body">Reduced to plain <strong>tumatauenga</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Tūmatauenga</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tūmatauenga</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Tūmatauenga.com → xn--tmatauenga-5dc.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Tūmatauenga</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tūmatauenga</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tūmatauenga</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Tūmatauenga</p>
+                    <p class="card-body">The live temple domain — <strong>tūmatauenga.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">tumatauenga</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Tūmatauenga was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/tuː.ma.taʊ.ˈe.ŋa/</span>
+            <span class="ipa-label">Māori</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">TOO-mah-tow-ENG-ah, long ū on the first syllable.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tūmatauenga is pronounced with the long ū of the first syllable — the macron the restoration keeps — and the name means 'Tū of the furious face': tū (to stand — also the god's own name) plus mata (face) plus ēngā/anga (fury, the making of an appearance). He is the Māori war-god and the father of humankind, and his name is a face set for war.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Tūmatauenga is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Tūmatauenga</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -552,7 +569,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/tumatauenga_mascot.webp" type="image/webp"><img src="../assets/tumatauenga_mascot.png" alt="Tūmatauenga mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tumatauenga_mascot.webp" type="image/webp"><img src="../assets/tumatauenga_mascot.png" alt="Tūmatauenga mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -590,7 +607,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/tumatauenga_logomark.webp" type="image/webp"><img src="../assets/tumatauenga_logomark.webp" alt="Tūmatauenga logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tumatauenga_logomark.webp" type="image/webp"><img src="../assets/tumatauenga_logomark.webp" alt="Tūmatauenga logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

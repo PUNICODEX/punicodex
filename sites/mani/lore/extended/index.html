@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Máni, Moon, Night, Time. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/mani/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Máni?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Máni is /ˈmɑːni/ — approximately 'MAH-nee' — hold the first vowel long and open, as in 'father', with the weight squarely on the first syllable and a quick, light '-nee' to close."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Máni mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Máni means Moon (the personified moon, brother of Sól) in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Máni?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Máni is associated with Ný ok nið (new and waning moons) (The phases over which Máni rules, the divine charge by which the gods ordained the counting of years for men), Hati Hróðvitnisson (The wolf who runs before the moon and gives its crossing its haste, the promise that even the lights of heaven are hunted), Mánagarmr (Moon-Hound) (The mightiest of the Iron-Wood brood, who fattens on the lives of the dying and swallows the moon at the world's end), Sægr and Simul (pail and pole) (The burden Bil and Hjúki carried from the well Byrgir, still legible as the markings on the moon's face), The month-mark (Mánaðr, the month — the unit of time that bears his name in every Germanic calendar)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Máni in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII mani strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Máni?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Mundilfari's Boast” — Máni's mythology is brief but exact: he has no hammer-duels and no disguises, only a course to keep and a hunter behind him. The Eddas give him four scenes — a father's fatal boast, the breeding of the wolf that hunts him, two children lifted from a well, and the swallowing that ends the sky — and together they explain both why the moon moves and why it keeps its human face. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/mani_logolockup.webp" type="image/webp"><img src="../../assets/mani_logolockup.png" alt="Máni" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Máni</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Máni.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/mani_mascot.webp" type="image/webp"><img src="../../assets/mani_mascot.png" alt="Máni — Moon, Night, Time" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/mani_mascot.webp" type="image/webp"><img src="../../assets/mani_mascot.png" alt="Máni — Moon, Night, Time" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Máni is Tier 1: the acute on á marks the long vowel [ɑː], a distinctive feature the ASCII form Mani loses; Old Norse initial stress is the default and needs no further mark. The name is simply the common noun máni, 'moon', raised to a person — the same word that gives mánaðr, 'month'. Attestation and reconstruction follow Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. máni; and Zoëga, A Concise Dictionary of Old Icelandic (1910), s.v. máni.</p>
+                <p class="etymology-note">The name <strong>Máni</strong> carries the orthographic signature of the norse tradition: ᛘᛅᚾᛁ. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">In the norse tradition, <strong>Máni</strong> is the moon itself made personal — the shining body that crosses the night sky, imagined as a god who steers it. Where Sól, his sister, drives the sun, Máni governs the gentler light: Snorri says he 'steers the course of the moon and rules the new and the waning moons,' the phases by which men first learned to count their days.</p><p class="lead-text">His is a charged quietness. The gods themselves assigned him his course, a wolf runs forever at his heels, and two earth-born children ride with him, their pail still visible on his face. Every month that turns is his signature: <em>mánaðr</em>, 'month', is his own word, and Monday is his day.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Máni in Later Traditions</h3><p class="cultural-card-body">Máni belongs to the common Germanic inheritance in which the moon is grammatically and mythologically <strong>masculine</strong> — Old English <em>Mōna</em>, Old High German <em>Māno</em>, Gothic <em>mēna</em> — a striking counterweight to the feminine moons of the classical world, Greek <em>Selēnē</em> and Latin <em>Luna</em>. The word itself runs deeper: Proto-Indo-European <em>*mḗh₁nōt-</em> / <em>*mḗh₁n̥s</em> meant both 'moon' and 'month', the double sense Máni still carries in <em>mánaðr</em>, so that his personification is the personification of time-reckoning itself. The pairing of a moon-god with a sun-goddess, brother and sister, is the Germanic reversal of the Greek <a href="/selene/" class="crosslink" data-crosslink="selene">Selene</a> and <a href="/helios/" class="crosslink" data-crosslink="helios">Helios</a> pattern, though the daily celestial chase — light pursued by devourer — has echoes from the wolves of <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a> back to the eclipse-monsters of other traditions. The liveliest survival is folkloric: the Norse reading of the moon's markings as two children with a pail stands at the head of the whole northern 'man in the moon' tradition that later fills English ballads and nursery rhymes, and the tempting equation of Hjúki and Bil with Jack and Jill has been argued since the nineteenth century — as speculation, never as proof.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Máni's deepest legacy is calendrical: every <strong>month</strong> and every <strong>Monday</strong> in the Germanic-speaking world is his, for Mōnandæg and its Norse kin are simply the moon's day, and the words descend from his name. In literature his clearest heir is Tolkien's Tilion, the Maia who steers the vessel of the moon across the sky — the personified moon-driver of the Eddas translated into a new mythology. Notably, Wagner left him out: the <em>Ring</em> runs on gold, fire, and Wotan's will, and the moon-driver never steps onto that stage, a measure of how thin Máni's high-cultural afterlife is beside <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s or <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s. The chase around him fares better: the pursuing wolves <a href="/skoll/" class="crosslink" data-crosslink="skoll">Skǫll</a> and Hati stalk recent retellings, including <em>God of War Ragnarök</em> (2022), where the stolen moon and its hunters drive a whole arc of the story. And the oldest survival is still the most democratic — the face and figures people point out to children in the full moon, which Snorri already explained by Bil and Hjúki eight centuries ago. In modern heathenry Máni is honored quietly, at the turning of the months he still measures.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Máni</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Máni in Later Traditions</h3><p class="cultural-card-body">Máni belongs to the common Germanic inheritance in which the moon is grammatically and mythologically <strong>masculine</strong> — Old English <em>Mōna</em>, Old High German <em>Māno</em>, Gothic <em>mēna</em> — a striking counterweight to the feminine moons of the classical world, Greek <em>Selēnē</em> and Latin <em>Luna</em>. The word itself runs deeper: Proto-Indo-European <em>*mḗh₁nōt-</em> / <em>*mḗh₁n̥s</em> meant both 'moon' and 'month', the double sense Máni still carries in <em>mánaðr</em>, so that his personification is the personification of time-reckoning itself. The pairing of a moon-god with a sun-goddess, brother and sister, is the Germanic reversal of the Greek <a href="/selene/" class="crosslink" data-crosslink="selene">Selene</a> and <a href="/helios/" class="crosslink" data-crosslink="helios">Helios</a> pattern, though the daily celestial chase — light pursued by devourer — has echoes from the wolves of <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a> back to the eclipse-monsters of other traditions. The liveliest survival is folkloric: the Norse reading of the moon's markings as two children with a pail stands at the head of the whole northern 'man in the moon' tradition that later fills English ballads and nursery rhymes, and the tempting equation of Hjúki and Bil with Jack and Jill has been argued since the nineteenth century — as speculation, never as proof.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Máni's deepest legacy is calendrical: every <strong>month</strong> and every <strong>Monday</strong> in the Germanic-speaking world is his, for Mōnandæg and its Norse kin are simply the moon's day, and the words descend from his name. In literature his clearest heir is Tolkien's Tilion, the Maia who steers the vessel of the moon across the sky — the personified moon-driver of the Eddas translated into a new mythology. Notably, Wagner left him out: the <em>Ring</em> runs on gold, fire, and Wotan's will, and the moon-driver never steps onto that stage, a measure of how thin Máni's high-cultural afterlife is beside <a href="/thor/" class="crosslink" data-crosslink="thor">Þórr</a>'s or <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s. The chase around him fares better: the pursuing wolves <a href="/skoll/" class="crosslink" data-crosslink="skoll">Skǫll</a> and Hati stalk recent retellings, including <em>God of War Ragnarök</em> (2022), where the stolen moon and its hunters drive a whole arc of the story. And the oldest survival is still the most democratic — the face and figures people point out to children in the full moon, which Snorri already explained by Bil and Hjúki eight centuries ago. In modern heathenry Máni is honored quietly, at the turning of the months he still measures.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Máni has no secure iconography: no picture stone, runestone, or amulet has been convincingly identified as his image, and his attestation is essentially textual. The <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a> poems that name him — <a href="/texts/poetic-edda/#vafthruthnismol" class="crosslink citation-link" data-citation="vafthruthnismol">Vafþrúðnismál</a>, <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a>, and Vǫluspá — survive chiefly in the Codex Regius (GKS 2365 4to, c. 1270), with Vǫluspá also in the Hauksbók; Snorri's account in <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning</a> is transmitted by the main Snorra Edda manuscripts. The older strata of Scandinavian sky-religion are, however, material: the Bronze Age Trundholm sun chariot (c. 1400 BC) proves a native tradition of a heavenly body drawn by horse across the sky, and wheel- and disc-marked Gotland picture stones show the sun and moon as enduring cultic signs. The runic record knows the common noun máni and the month-names descended from it, but no runic inscription names the god directly.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Máni means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Names are not merely labels; they are compressed worlds. <strong>Máni</strong> compresses the oldest technology there is: the counting of time by a light that reliably changes. Before calendars were written they were watched, and the watcher-god is the moon — not its conqueror, like Þórr riding out, but its keeper, driving a course he did not choose, with a wolf behind him and two lost children for company. His myth is the honest one about time: it moves because it is pursued, it is beautiful because it is borrowed, and it will one day be swallowed. Yet the word he leaves behind — <em>mánaðr</em>, the month — is how every farmer, sailor, and poet after him held the dark at bay. Unicode restoration returns that world to readable form: the acute on <em>á</em> is the long vowel the whole calendar leans on.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Máni, Moon, Night, Time, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Máni?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Máni</strong> is /ˈmɑːni/ — approximately 'MAH-nee' — hold the first vowel long and open, as in 'father', with the weight squarely on the first syllable and a quick, light '-nee' to close..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Máni mean?</summary><div class="faq-answer"><p><strong>Máni</strong> means <strong>Moon (the personified moon, brother of Sól)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Máni?</summary><div class="faq-answer"><p>Máni is associated with <strong>Ný ok nið (new and waning moons)</strong> (The phases over which Máni rules, the divine charge by which the gods ordained the counting of years for men), <strong>Hati Hróðvitnisson</strong> (The wolf who runs before the moon and gives its crossing its haste, the promise that even the lights of heaven are hunted), <strong>Mánagarmr (Moon-Hound)</strong> (The mightiest of the Iron-Wood brood, who fattens on the lives of the dying and swallows the moon at the world's end), <strong>Sægr and Simul (pail and pole)</strong> (The burden Bil and Hjúki carried from the well Byrgir, still legible as the markings on the moon's face), <strong>The month-mark</strong> (Mánaðr, the month — the unit of time that bears his name in every Germanic calendar).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Máni in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mani</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Máni?</summary><div class="faq-answer"><p>In the <em>Vafþrúðnismál</em>, the giant Vafþrúðnir tells Óðinn that Mundilfari is the father of Máni and of Sól alike. Snorri, in <em>Gylfaginning</em>, gives the story its edge: Mundilfari's two children were so fair that he named his son Máni, 'Moon', and his daughter Sól, 'Sun', and married Sól to a man named Glenr. The gods were angered by this <em>ofdramb</em> — this overweening pride — and took the siblings and set them in the heavens.The punishment is an appointment. Sól is made to drive the horses of the sun, Árvakr and Alsviðr, while Máni is charged with steering the course of the moon and ruling its waxing and waning. What a father claimed in arrogance, the gods confirmed in office: the names became the duties, and the children became the sky.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Máni?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Máni</strong> is /ˈmɑːni/ — approximately 'MAH-nee' — hold the first vowel long and open, as in 'father', with the weight squarely on the first syllable and a quick, light '-nee' to close.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Máni mean?</summary><div class="faq-answer"><p><strong>Máni</strong> means <strong>Moon (the personified moon, brother of Sól)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Máni?</summary><div class="faq-answer"><p>Máni is associated with <strong>Ný ok nið (new and waning moons)</strong> (The phases over which Máni rules, the divine charge by which the gods ordained the counting of years for men), <strong>Hati Hróðvitnisson</strong> (The wolf who runs before the moon and gives its crossing its haste, the promise that even the lights of heaven are hunted), <strong>Mánagarmr (Moon-Hound)</strong> (The mightiest of the Iron-Wood brood, who fattens on the lives of the dying and swallows the moon at the world's end), <strong>Sægr and Simul (pail and pole)</strong> (The burden Bil and Hjúki carried from the well Byrgir, still legible as the markings on the moon's face), <strong>The month-mark</strong> (Mánaðr, the month — the unit of time that bears his name in every Germanic calendar).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Máni in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mani</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Máni?</summary><div class="faq-answer"><p>“Mundilfari's Boast” — Máni's mythology is brief but exact: he has no hammer-duels and no disguises, only a course to keep and a hunter behind him. The Eddas give him four scenes — a father's fatal boast, the breeding of the wolf that hunts him, two children lifted from a well, and the swallowing that ends the sky — and together they explain both why the moon moves and why it keeps its human face. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Prose Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li><li><cite>Zoëga</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li><li><cite>Zoëga</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Vafþrúðnismál (Mundilfari as father of Máni and Sól; Bellows translation)</cite></li><li><cite>Poetic Edda: Grímnismál (Hati's pursuit of the heavenly lights; Bellows translation)</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning (Mundilfari's boast, Bil and Hjúki, the wolves; Brodeur translation)</cite></li><li><cite>Gylfaginning, Old Norse text (Guðni Jónsson edition), chs. 11–12: Frá Sól ok Mána; Frá úlfakreppu Sólar</cite></li><li><cite>Völuspá, Old Norse text (the tungls tjúgari stanza on the moon's devourer)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite><a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a></cite></li><li><cite>Poetic Edda: Vafþrúðnismál (Mundilfari as father of Máni and Sól; Bellows translation)</cite></li><li><cite>Poetic Edda: Grímnismál (Skǫll and Hati's pursuit of the heavenly lights; Bellows translation)</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning chs. 11–12 (Mundilfari's boast, the wolves, Bil and Hjúki; Brodeur translation)</cite></li><li><cite>Gylfaginning, Old Norse text (Guðni Jónsson edition), chs. 11–12: Frá Sól ok Mána; Frá úlfakreppu Sólar</cite></li><li><cite><a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a>, Old Norse text (the tungls tjúgari stanza on the moon's devourer)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Máni and related cults.</cite></li><li><cite>Máni has no secure iconography: no picture stone, runestone, or amulet has been convincingly identified as his image, and his attestation is essentially textual. The Poetic Edda poems that name him — Vafþrúðnismál, Grímnismál, and Vǫluspá — survive chiefly in the Codex Regius (GKS 2365 4to, c. 1270), with Vǫluspá also in the Hauksbók; Snorri's account in Gylfaginning is transmitted by the main Snorra Edda manuscripts (GKS 2367 4to, Codex Upsaliensis, Codex Wormianus). The older strata of Scandinavian sky-religion are, however, material: the Bronze Age Trundholm sun chariot (c. 1400 BC) proves a native tradition of a heavenly body drawn by horse across the sky, and wheel- and disc-marked Gotland picture stones show the sun and moon as enduring cultic signs. The runic record knows the common noun máni and the month-names descended from it, but no runic inscription names the god directly.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Máni and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. máni, mánaðr</cite></li><li><cite>Zoëga, A Concise Dictionary of Old Icelandic (1910), s.v. máni</cite></li><li><cite>Máni — overview of attestations and scholarship</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. máni, mánaðr</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/mani_logomark.webp" type="image/webp"><img src="../../assets/mani_logomark.webp" alt="Máni logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/mani_logomark.webp" type="image/webp"><img src="../../assets/mani_logomark.webp" alt="Máni logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

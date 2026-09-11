@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Kanaloa — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Kanaloa</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Kānāloa.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,152 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Kanaloa</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Kanaloa</strong> is the standard Polynesian romanisation, documented in academic sources — “Hawaiian god symbolized by the squid or by the octopus, typically associated with <a href="/kane/" class="crosslink" data-crosslink="kane">Kāne</a>”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">kanaloa</p>
-                    <p class="card-body">The plain <strong>kanaloa</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Kanaloa</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Kanaloa</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Kanaloa.com → kanaloa.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Kanaloa</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Kanaloa</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Kanaloa is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Kanaloa</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kanaloa</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Kānāloa</p>
-                    <p class="card-body">The live temple domain — <strong>kānāloa.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">kanaloa</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Kanaloa was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Kanaloa</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/kaːˈnaːloa/</span>
-            <span class="ipa-label">Hawaiian Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">K-</span>
-        <span class="phoneme-desc">Voiceless velar stop [k], without aspiration.</span>
+      <p class="lead-text">Hawaiian myths present Kānāloa as a complementary power to <a href="/kane/" class="crosslink" data-crosslink="kane">Kāne</a>, the creator. Their partnership structures much of traditional cosmology: one god of fresh water and daylight, one of salt sea and depth, together covering the whole of the living world.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Creation</span>
+          <h3 class="myth-title">Kāne and Kānāloa</h3>
+          <p class="myth-text">In Hawaiian cosmogony, Kāne and Kānāloa are paired creator gods. Beckwith's <em>Hawaiian Mythology</em> preserves the tradition that the two traveled together across the primordial ocean, striking the earth with their staffs to open springs of fresh water — Kāne's gift of life in the midst of Kānāloa's salt realm — and calling forth the plants and creatures of the islands. Kāne is the fresh water and the sunlight; Kānāloa is the salt sea that surrounds and sustains the land. Their partnership is not hierarchy but dynamic balance: no island exists without both the spring and the surrounding ocean, and the two gods are invoked together so often that the pairing itself became a formula of blessing. The myth encodes an ecological truth the Hawaiians lived by — life on an island is a negotiation between land and sea, and neither partner can be dispensed with.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ā-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> open back unrounded vowel [aː], macron marking length.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Healing</span>
+          <h3 class="myth-title">The Discovery of Medicine</h3>
+          <p class="myth-text">The healing tradition, recorded by Kamakau and Malo, begins with Kānāloa himself falling ill, and no remedy in the world able to help him. Kāne prayed and was shown the healing plants of the forest and shore; after Kānāloa was cured, the two gods shared this knowledge with humankind, establishing the practice of lāʻau lapaʻau, traditional Hawaiian herbal medicine, and ordaining the kahuna lāʻau lapaʻau who guarded the recipes — which plant for fever, which for broken bone, which for the sickness of the soul — as a sacred trust handed down within families. Illness and cure both belong to Kānāloa's watery realm — the same depths that take life also restore it. The story makes the underworld-god the founder of medicine: only the power that rules decay understands how to reverse it.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-na-</span>
-        <span class="phoneme-desc">Alveolar nasal [n] followed by long [aː].</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ocean</span>
+          <h3 class="myth-title">The Octopus Reaches the Land of Kāne</h3>
+          <p class="myth-text"><a href="/david/" class="crosslink" data-crosslink="david">David</a> Malo's <em>Hawaiian Antiquities</em> records a famous contention between the gods: the octopus — Kānāloa's kin — reaching into the islands, stretching its arms ashore and into the fresh waters that belong to Kāne. Kāne objects that the realm of land and fresh water is his; the octopus, and so Kānāloa, must keep to the sea. In the version Malo preserves, the octopus is ultimately driven back into the deep, the boundary between the brothers' domains drawn along the waterline itself. The story is told as a boundary dispute, but its subject is the frailty of every line humans draw between sea and shore — a line the tides and the heʻe's arms are always quietly redrawing. Kānāloa stays in the deep, but the deep, the myth insists, is never far.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-loa</span>
-        <span class="phoneme-desc">[loa], 'vast' or 'far'; the name evokes the broad ocean.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Underworld</span>
+          <h3 class="myth-title">The Dark Realm</h3>
+          <p class="myth-text">Kānāloa is also lord of the underworld, the realm beneath the earth and sea where souls journey after death — a kingdom often imagined, as Beckwith notes, as a great house of coral and shell at the bottom of the sea. Unlike the Christian hell, this realm is not primarily punitive; it is the mysterious mirror of the living world, governed by the same god whose waters feed the land above. The kahuna, in the tradition recorded by Kamakau, addressed prayers to Kānāloa when illness dragged a soul toward that dark kingdom, asking the god who rules both healing and the deep to give the sick back to the sunlit world. Death, in his keeping, is less an ending than a change of address — from the island of Kāne to the house of Kānāloa.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'kah-NAH-loh-ah' — both 'a' vowels are long, and the name flows like a slow wave.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Hawaiian</strong> Kānāloa, god of the ocean, the underworld, and healing.</li><li><strong>Polynesian</strong> <a href="/tangaroa/" class="crosslink" data-crosslink="tangaroa">Tangaroa</a> / Taʻaroa, the pan-Polynesian sea deity.</li><li><strong>Symbol</strong> The octopus or squid (heʻe), his bodily form or kin.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kānāloa is Tier 1: the Hawaiian macrons on both ā's mark long vowels, the distinctive prosodic feature of the language. Without them the name collapses into a different rhythmic shape.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -383,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Lord of the Vast Ocean</h2>
             <p class="section-subtitle">Sea, Underworld, and Healing</p>
         </div>
@@ -430,41 +332,22 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Kanaloa</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Kanaloa lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Hawaiian myths present Kānāloa as a complementary power to Kāne, the creator. Their partnership structures much of traditional cosmology.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Creation</span>
-          <h3 class="myth-title">Kāne and Kānāloa</h3>
-          <p class="myth-text">In Hawaiian cosmogony, Kāne and Kānāloa are paired creator gods. Together they travel across the primordial ocean, striking the earth with their staffs to create springs and bring forth life. Kāne is the fresh water and the sunlight; Kānāloa is the salt sea that surrounds and sustains the islands. Their partnership is not hierarchy but dynamic balance.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/kumulipo/" class="source-badge">Kumulipo</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Healing</span>
-          <h3 class="myth-title">The Discovery of Medicine</h3>
-          <p class="myth-text">Kānāloa fell ill, and no remedy could be found. Kāne prayed and was shown the healing plants of the forest and shore. After Kānāloa was cured, the two gods shared this knowledge with humankind, establishing the practice of lāʻau lapaʻau, traditional Hawaiian herbal medicine. Illness and cure both belong to Kānāloa's watery realm.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Underworld</span>
-          <h3 class="myth-title">The Dark Realm</h3>
-          <p class="myth-text">Kānāloa is also the lord of the underworld, the realm beneath the earth and sea where souls journey after death. Unlike the Christian hell, this realm is not primarily punitive; it is the mysterious mirror of the living world, governed by the same god whose waters feed the land above.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -472,7 +355,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the polynesian pantheon</p>
         </div>
@@ -536,23 +419,153 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Kanaloa lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/kumulipo/" class="source-badge">Kumulipo</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Kanaloa</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Kanaloa</strong> is the standard Polynesian romanisation, documented in academic sources — “Hawaiian god symbolized by the squid or by the octopus, typically associated with Kāne”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">kanaloa</p>
+                <p class="card-body">The plain <strong>kanaloa</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Kanaloa</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Kanaloa</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Kanaloa.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Kanaloa</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kanaloa</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Kānāloa</p>
+                    <p class="card-body">The live temple domain — <strong>kānāloa.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">kanaloa</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Kanaloa was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/kaːˈnaːloa/</span>
+            <span class="ipa-label">Hawaiian Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">K-</span>
+        <span class="phoneme-desc">Voiceless velar stop [k], without aspiration.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ā-</span>
+        <span class="phoneme-desc">Long open back unrounded vowel [aː], macron marking length.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-na-</span>
+        <span class="phoneme-desc">Alveolar nasal [n] followed by long [aː].</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-loa</span>
+        <span class="phoneme-desc">[loa], 'vast' or 'far'; the name evokes the broad ocean.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'kah-NAH-loh-ah' — both 'a' vowels are long, and the name flows like a slow wave.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kānāloa keeps the Hawaiian macrons that mark vowel length — a phonemic feature of the language, and one the ASCII form loses. The lexicon nevertheless classifies the name Tier 2: the macron marks quantity, and the name carries no distinctive non-Latin letter or mark such as the glottal ʻokina (which would have changed the consonants themselves). The rhythm of the long vowels is the name's dignity, but by the mechanical rule it stays Tier 2.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Kanaloa is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Kanaloa</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -571,7 +584,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/kanaloa_mascot.webp" type="image/webp"><img src="../assets/kanaloa_mascot.png" alt="Kanaloa mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kanaloa_mascot.webp" type="image/webp"><img src="../assets/kanaloa_mascot.png" alt="Kanaloa mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -609,7 +622,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/kanaloa_logomark.webp" type="image/webp"><img src="../assets/kanaloa_logomark.webp" alt="Kanaloa logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kanaloa_logomark.webp" type="image/webp"><img src="../assets/kanaloa_logomark.webp" alt="Kanaloa logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

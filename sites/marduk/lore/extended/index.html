@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Marduk, Creation, Babylon, Storms. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/marduk/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Marduk?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Marduk is /marˈduk/ — approximately 'mar-DOOK' — stress the second syllable; the final vowel is short in the everyday transliteration, though some scholars posit an original long /uː/."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Marduk mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marduk means Solar calf (Akkadian Marduk) in the mesopotamian tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Marduk?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marduk is associated with Winged sun-disc (The emblem of solar kingship and Marduk's link to the sun-god Šamaš), Spade or triangular hoe (šaruḫu) (Marduk's primary attribute, the tool with which he shapes land and clears the primordial waters), Mušḫuššu dragon (The snake-dragon hybrid that serves as Marduk's sacred animal, seen on the Ishtar Gate), Four winds (The winds Marduk deploys as weapons and messengers in the chaos-battle), Ziggurat / cosmic mountain (Etemenanki as the axis between heaven and earth, the material form of Marduk's ordered cosmos)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Marduk in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marduk is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Marduk?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Marduk Slays Tiāmat and Builds the World” — Marduk's mythology is the mythology of cosmic sovereignty. It is not enough for him to be powerful; he must be chosen by the gods, prove himself in combat, build the world, and then receive the legal instrument of kingship. His stories are therefore political theology in narrative form: they explain why Babylon, and by extension its god, stands at the center of the world. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/marduk_logolockup.webp" type="image/webp"><img src="../../assets/marduk_logolockup.png" alt="Marduk" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Marduk</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Marduk</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/marduk_mascot.webp" type="image/webp"><img src="../../assets/marduk_mascot.png" alt="Marduk — Creation, Babylon, Storms" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/marduk_mascot.webp" type="image/webp"><img src="../../assets/marduk_mascot.png" alt="Marduk — Creation, Babylon, Storms" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Marduk</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Marduk is Tier 2: the canonical Unicode restoration is the plain Latin form Marduk, which preserves no diacritic, long-vowel mark, or distinctive non-ASCII letter. A scholarly variant Mardūk with a final macron is sometimes used to mark a posited long vowel, but PuniCodex follows the lexicon's attested conventional form. The tier classification therefore reflects the name's ASCII-canonicality, not its religious or mythological importance.</p>
+                <p class="etymology-note">The name <strong>Marduk</strong> reaches the modern world through scholarly transliteration of the mesopotamian tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">M</td><td><code>U+004D</code></td><td>Latin Capital Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">d</td><td><code>U+0064</code></td><td>Latin Small Letter D</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">k</td><td><code>U+006B</code></td><td>Latin Small Letter K</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Marduk</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Marduk began as a local storm-god of Babylon and rose, by the first millennium BCE, to become the <strong>supreme head of the Mesopotamian pantheon</strong>. His name, written 𒀭𒀫𒌓 (<em>dAMAR.UTU</em>), means 'calf of the sun' — a theophoric compound that binds the young animal to the solar god Šamaš. In the Babylonian <em>Enuma Elish</em>, Marduk defeats the primordial sea <a href="/tiamat/" class="crosslink" data-crosslink="tiamat">Tiamat</a>, splits her body to fashion heaven and earth, and receives from the assembled gods the kingship of the cosmos. This temple treats him as the <strong>paradigm of legitimate sovereignty</strong>: the deity who turns chaos into order by decree, combat, and architecture.</p><p class="lead-text">His city, <strong>Babylon</strong>, was both a political capital and a theological statement. Its ziggurat <strong>Etemenanki</strong> ('Temple of the Foundation of Heaven and Earth') and its temple complex <strong>Esagila</strong> were understood as the axis where Marduk's cosmic order touched the ground. Kings from Hammurabi to Nebuchadnezzar II ruled by his mandate, and the king's first duty was to maintain Marduk's cult. Justice, law, and the measured world were therefore extensions of his domain.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Marduk in Later Traditions</h3><p class="cultural-card-body">Marduk absorbed functions from <strong><a href="/enlil/" class="crosslink" data-crosslink="enlil">Enlil</a></strong> (kingship and the decree of destinies), <strong>Ea/Enki</strong> (wisdom and water), and <strong>Šamaš</strong> (justice and solar radiance). His rise parallels the political rise of Babylon: when Babylon was small, he was a local storm-god; when Babylon became an imperial capital, he became king of the gods. The Greeks identified him with <em><a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> Belos</em> (Bel = <a href="/baal/" class="crosslink" data-crosslink="baal">Baal</a> = 'Lord'), and Berossus transmitted Marduk-Bel to the Hellenistic world as the civic god of Babylon. In Jewish and early Christian exegesis, the figure of Bel and the dragon (Daniel 14) preserves a polemical memory of Marduk's cult statue and animal. No later deity exactly reproduces Marduk's combination of storm-combat, cosmic architecture, and urban kingship.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Marduk's most visible survival is architectural: the <strong><a href="/ishtar/" class="crosslink" data-crosslink="ishtar">Ishtar</a> Gate</strong> of Babylon, now in the Pergamon Museum, is glazed in the deep lapis-blue and gold associated with his city, and its processional way is lined with mušḫuššu dragons and aurochs. The tower of Babel narrative in Genesis 11 almost certainly reflects the memory of <strong>Etemenanki</strong>. In modern fantasy and games, Marduk appears as a dragon-slaying storm-god and as the namesake of Babylonian magic. The name still means: <strong>the sovereign who turns chaos into a city.</strong></p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Marduk</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Marduk in Later Traditions</h3><p class="cultural-card-body">Marduk absorbed functions from <strong><a href="/enlil/" class="crosslink" data-crosslink="enlil">Enlil</a></strong> (kingship and the decree of destinies), <strong>Ea/Enki</strong> (wisdom and water), and <strong>Šamaš</strong> (justice and solar radiance). His rise parallels the political rise of Babylon: when Babylon was small, he was a local storm-god; when Babylon became an imperial capital, he became king of the gods. The Greeks identified him with <em><a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> Belos</em> (Bel = <a href="/baal/" class="crosslink" data-crosslink="baal">Baal</a> = 'Lord'), and Berossus transmitted Marduk-Bel to the Hellenistic world as the civic god of Babylon. In Jewish and early Christian exegesis, the figure of Bel and the dragon (Daniel 14) preserves a polemical memory of Marduk's cult statue and animal. No later deity exactly reproduces Marduk's combination of storm-combat, cosmic architecture, and urban kingship.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Marduk's most visible survival is architectural: the <strong><a href="/ishtar/" class="crosslink" data-crosslink="ishtar">Ishtar</a> Gate</strong> of Babylon, now in the Pergamon Museum, is glazed in the deep lapis-blue and gold associated with his city, and its processional way is lined with mušḫuššu dragons and aurochs. The tower of Babel narrative in Genesis 11 almost certainly reflects the memory of <strong>Etemenanki</strong>. In modern fantasy and games, Marduk appears as a dragon-slaying storm-god and as the namesake of Babylonian magic. The name still means: <strong>the sovereign who turns chaos into a city.</strong></p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Babylon's Esagila and Etemenanki, excavated by Robert Koldewey's German expedition (1899–1917), anchor Marduk's cult topographically: the ziggurat's baked-brick core still rises above the mound of Tell Amran ibn Ali near Hillah, and the Processional Way's glazed lions and mušḫuššu-dragons — Marduk's own animal — are divided between Berlin's Pergamon Museum and the reconstructed gate at the site. The barrel-cylinder inscriptions of Nebuchadnezzar II describing the rebuilding of both sanctuaries — the London and Philadelphia cylinders — are among the largest royal inscriptions ever found. Copies of the <a href="/texts/enuma-elish/" class="crosslink citation-link" data-citation="enuma-elish">Enuma Elish</a> from Ashurbanipal's library at Nineveh (c. 650 BCE) and from Seleucid-era Babylon preserve his theology a thousand years after Hammurabi, and New Year festival texts from Uruk and Babylon record the ritual recitation of his epic before the assembled gods.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Marduk means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Marduk is the god of the city as cosmos. Where Enlil rules the wind and Ea rules the sweetwater deep, Marduk rules the <strong>assembly that decides what order is</strong>. His power is not merely physical; it is constitutional. The gods vote him kingship, name him into authority, and then witness his exercise of it. This is Mesopotamian political theory rendered as myth: legitimacy comes not from strength alone but from a recognized procedure, a public mandate, and the capacity to deliver the goods — in this case, a habitable world.</p><p>To name Marduk is to remember that creation is not a single event but an ongoing administrative project. The cosmos must be maintained: the calendar kept, the temple repaired, the king watchful, the law enforced. The <em>Enuma Elish</em> does not end with the making of the world; it ends with the establishment of the cult that sustains it. Every ziggurat is a promise that chaos has been defeated once and can be defeated again, provided the proper rites continue. The plain Latin spelling of his name — Marduk, Tier 2 — is itself a kind of stability: no diacritic to argue over, no reconstruction to dispute, just the conventional form by which two and a half millennia of readers have known the king of Babylon.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Marduk, Creation, Babylon, Storms, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Marduk?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Marduk</strong> is /marˈduk/ — approximately 'mar-DOOK' — stress the second syllable; the final vowel is short in the everyday transliteration, though some scholars posit an original long /uː/..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Marduk mean?</summary><div class="faq-answer"><p><strong>Marduk</strong> means <strong>Solar calf (Akkadian Marduk)</strong> in the mesopotamian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Marduk?</summary><div class="faq-answer"><p>Marduk is associated with <strong>Winged sun-disc</strong> (The emblem of solar kingship and Marduk's link to the sun-god Šamaš), <strong>Spade or triangular hoe (šaruḫu)</strong> (Marduk's primary attribute, the tool with which he shapes land and clears the primordial waters), <strong>Mušḫuššu dragon</strong> (The snake-dragon hybrid that serves as Marduk's sacred animal, seen on the Ishtar Gate), <strong>Four winds</strong> (The winds Marduk deploys as weapons and messengers in the chaos-battle), <strong>Ziggurat / cosmic mountain</strong> (Etemenanki as the axis between heaven and earth, the material form of Marduk's ordered cosmos).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Marduk in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>marduk</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Marduk?</summary><div class="faq-answer"><p>In the Babylonian <em>Enuma Elish</em> ('When on High'), the younger gods disturb the primordial <a href="/apsu/" class="crosslink" data-crosslink="apsu">Apsu</a> and Tiamat. After Apsu is killed, Tiamat raises an army of monsters to avenge him. Marduk alone accepts the challenge, on condition that the gods grant him supreme kingship. He rides into battle in a storm-chariot drawn by four fearful creatures, surrounds Tiamat with the four winds, and splits her body with his bow and mace. From one half he makes the sky; from the other, the earth. He fixes the stars, the moon, and the calendar, then creates humankind from the blood of the slain god <a href="/kingu/" class="crosslink" data-crosslink="kingu">Kingu</a> to serve the gods. The poem is both creation myth and charter for Marduk's cult in Babylon.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Marduk?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Marduk</strong> is /marˈduk/ — approximately 'mar-DOOK' — stress the second syllable; the final vowel is short in the everyday transliteration, though some scholars posit an original long /uː/.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Marduk mean?</summary><div class="faq-answer"><p><strong>Marduk</strong> means <strong>Solar calf (Akkadian Marduk)</strong> in the mesopotamian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Marduk?</summary><div class="faq-answer"><p>Marduk is associated with <strong>Winged sun-disc</strong> (The emblem of solar kingship and Marduk's link to the sun-god Šamaš), <strong>Spade or triangular hoe (šaruḫu)</strong> (Marduk's primary attribute, the tool with which he shapes land and clears the primordial waters), <strong>Mušḫuššu dragon</strong> (The snake-dragon hybrid that serves as Marduk's sacred animal, seen on the Ishtar Gate), <strong>Four winds</strong> (The winds Marduk deploys as weapons and messengers in the chaos-battle), <strong>Ziggurat / cosmic mountain</strong> (Etemenanki as the axis between heaven and earth, the material form of Marduk's ordered cosmos).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Marduk in Unicode?</summary><div class="faq-answer"><p><strong>Marduk</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Marduk?</summary><div class="faq-answer"><p>“Marduk Slays <a href="/tiamat/" class="crosslink" data-crosslink="tiamat">Tiāmat</a> and Builds the World” — Marduk's mythology is the mythology of cosmic sovereignty. It is not enough for him to be powerful; he must be chosen by the gods, prove himself in combat, build the world, and then receive the legal instrument of kingship. His stories are therefore political theology in narrative form: they explain why Babylon, and by extension its god, stands at the center of the world. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,7 +355,7 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The Epic of <a href="/gilgamesh/" class="crosslink" data-crosslink="gilgamesh">Gilgamesh</a>; Sumerian temple hymns and Akkadian ritual texts.</cite></li></ul>
+                    <ul class="source-list"><li><cite>The <a href="/texts/gilgamesh/" class="crosslink citation-link" data-citation="gilgamesh-text">Epic of Gilgamesh</a>; Sumerian temple hymns and Akkadian ritual texts.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/marduk_logomark.webp" type="image/webp"><img src="../../assets/marduk_logomark.webp" alt="Marduk logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/marduk_logomark.webp" type="image/webp"><img src="../../assets/marduk_logomark.webp" alt="Marduk logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

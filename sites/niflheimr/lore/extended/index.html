@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Niflheimr, Mist World, Realm of Ice. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/niflheimr/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Niflheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Niflheimr is /ˈnivlˌhɛimr̩/ — approximately NIVL-haym-r — the f is soft, sounding as v; the second element glides like 'aim' with an h in front; end with a light trilled r that carries its own syllable."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Niflheimr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Niflheimr means Mist-home in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Niflheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Niflheimr is associated with Hvergelmir, the roaring kettle (The source beneath all sources: every river in the world is one of its children), The Élivágar (The ice-waves older than the earth — water carrying the venom that froze into the first flesh), The rime fog (Cold as a substance, not an absence: the raw material the warm south breathed on until it lived)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Niflheimr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Niflheimr is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Niflheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The World That Came First” — Niflheimr's mythology is the mythology of before: it stars in no adventure and houses no hero, because its story is over before the gods' stories begin — and yet every river, every frost giant, and every corpse that sinks past Hel is still paying its tribute to the mist-world. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/niflheimr_logolockup.webp" type="image/webp"><img src="../../assets/niflheimr_logolockup.png" alt="Niflheimr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Niflheimr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Niflheimr</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/niflheimr_mascot.webp" type="image/webp"><img src="../../assets/niflheimr_mascot.png" alt="Niflheimr — Mist World, Realm of Ice" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/niflheimr_mascot.webp" type="image/webp"><img src="../../assets/niflheimr_mascot.png" alt="Niflheimr — Mist World, Realm of Ice" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Niflheimr</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Niflheimr is Tier 2 by the mechanical rule: the normalized Old Norse form is already plain ASCII — no diacritic and no distinctive letter for the ASCII alphabet to lose. Only the capital distinguishes the restored form from the input; the mist-world was never hard to type, only hard to imagine.</p>
+                <p class="etymology-note">The name <strong>Niflheimr</strong> reaches the modern world through scholarly transliteration of the norse tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — niflheimr, the masculine compound 'mist-world'; the manuscript form, unchanged since the Eddas.</li><li><strong>Modern Icelandic</strong> — Niflheimur, the learned word for the primordial mist-world, kept alive from the medieval corpus.</li><li><strong>Old Norse near-kin</strong> — niflhel 'mist-Hel', the poetic word for the world below Hel — Vafþrúðnismál 43 and Baldrs draumar 2 use it where the prose says Niflheimr.</li><li><strong>Indo-European kin</strong> — Latin nebula, Greek nephélē 'cloud', Sanskrit nábhas 'cloud, mist' — the first element descends from the inherited root *nebh- 'cloud, fog'.</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — niflheimr, the masculine compound 'mist-world'; the manuscript form, unchanged since the Eddas.</li><li><strong>Modern Icelandic</strong> — Niflheimur, the learned word for the primordial mist-world, kept alive from the medieval corpus.</li><li><strong>Old Norse near-kin</strong> — niflhel 'mist-Hel', the poetic word for the world below Hel — <a href="/texts/poetic-edda/#vafthruthnismol" class="crosslink citation-link" data-citation="vafthruthnismol">Vafþrúðnismál</a> 43 and <a href="/texts/poetic-edda/#baldrs-draumar" class="crosslink citation-link" data-citation="baldrs-draumar">Baldrs draumar</a> 2 use it where the prose says Niflheimr.</li><li><strong>Indo-European kin</strong> — Latin nebula, Greek nephélē 'cloud', Sanskrit nábhas 'cloud, mist' — the first element descends from the inherited root *nebh- 'cloud, fog'.</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">N</td><td><code>U+004E</code></td><td>Latin Capital Letter N</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">f</td><td><code>U+0066</code></td><td>Latin Small Letter F</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">h</td><td><code>U+0068</code></td><td>Latin Small Letter H</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="560"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="640"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Niflheimr</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Niflheimr is the oldest address in the Norse cosmos: the world of fog and rime that existed, Snorri says, many ages before the earth was made — the cold northern pole of the yawning gap, from whose roaring well every river in creation flows and from whose poisoned ice the first living thing quickened.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Niflheimr in Later Traditions</h3><p class="cultural-card-body">Niflheimr needs no borrowing to be explained: its first element is one of the most securely inherited words in the Germanic vocabulary, the same mist that Greek keeps in nephélē, Latin in nebula, and Sanskrit in nábhas — three daughter languages and the North all descended from the same cloud. The genuine scholarly argument is internal. Niflheimr is a prose word: the poems overwhelmingly know niflhel, mist-Hel, and several handbooks treat Snorri's fully mapped Niflheimr — with its well, its eleven rivers, and its place opposite Muspellsheimr — as a thirteenth-century systematization raised on genuinely older material, since Hvergelmir and the Élivágar are Eddic and attested in Grímnismál and Vafþrúðnismál centuries before the Prose Edda. The comparative pattern is common enough: a pole of cold set against a pole of fire at the beginning of things — but the Norse version is unusual in making the cold not merely older than the gods but older than the earth itself.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The mist-world's afterlife runs through every retelling that needs a bottom floor for the cosmos. Wagner rebuilt it as Nibelheim, the smoke-filled subterranean forge-realm of Alberich in Das Rheingold — a conflation of Niflheimr with the Nibelung dwarf-lore that no saga ever made, and one of the most consequential mistranslations in myth reception. Modern fantasy keeps the map: Marvel's comics and films count 'Niffleheim' among their Nine Realms, and games from the God of War series to a dozen smaller titles send players trudging through its fog as the endgame of cold. In Iceland the word never needed reviving — Niflheimur is simply the old word, still in service. What survives beneath every adaptation is the Edda's strangest idea: that the first thing was not light but fog, and that everything warm is a late arrival.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Niflheimr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Niflheimr in Later Traditions</h3><p class="cultural-card-body">Niflheimr needs no borrowing to be explained: its first element is one of the most securely inherited words in the Germanic vocabulary, the same mist that Greek keeps in nephélē, Latin in nebula, and Sanskrit in nábhas — three daughter languages and the North all descended from the same cloud. The genuine scholarly argument is internal. Niflheimr is a prose word: the poems overwhelmingly know niflhel, mist-Hel, and several handbooks treat Snorri's fully mapped Niflheimr — with its well, its eleven rivers, and its place opposite Muspellsheimr — as a thirteenth-century systematization raised on genuinely older material, since Hvergelmir and the Élivágar are Eddic and attested in <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a> and Vafþrúðnismál centuries before the <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a>. The comparative pattern is common enough: a pole of cold set against a pole of fire at the beginning of things — but the Norse version is unusual in making the cold not merely older than the gods but older than the earth itself.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The mist-world's afterlife runs through every retelling that needs a bottom floor for the cosmos. Wagner rebuilt it as Nibelheim, the smoke-filled subterranean forge-realm of Alberich in Das Rheingold — a conflation of Niflheimr with the Nibelung dwarf-lore that no saga ever made, and one of the most consequential mistranslations in myth reception. Modern fantasy keeps the map: Marvel's comics and films count 'Niffleheim' among their Nine Realms, and games from the God of War series to a dozen smaller titles send players trudging through its fog as the endgame of cold. In Iceland the word never needed reviving — Niflheimur is simply the old word, still in service. What survives beneath every adaptation is the Edda's strangest idea: that the first thing was not light but fog, and that everything warm is a late arrival.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Niflheimr is a textual world: it has no cult, no toponym, and no carved witness — unsurprising for a cosmographical term rather than a deity. Its attestation is manuscriptal: Grímnismál and Vafþrúðnismál in the Codex Regius of the <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a> (c. 1270) preserve Hvergelmir and the Élivágar; Baldrs draumar, with its ride down to Niflhel, hangs by the single thread of AM 748 I 4to (early 14th c.); and the fully mapped Niflheimr of Gylfaginning survives in the thirteenth- and fourteenth-century codices of the Prose Edda. No runic inscription records the word, and the image tradition is indirect at most: scholars have been tempted to see the world-tree's serpent-gnawed roots on Scandinavian picture stones and church carvings, but nothing is labelled, and the mist-world itself — a climate, not a figure — was never the kind of thing a Viking Age carver set in stone.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Niflheimr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Niflheimr is the patron of what was here first. Before the gods, before the giants, before the earth itself, there was a world of mist with a well in the middle of it, and rivers already running. The Norse imagination refused to let creation begin with a decree; it began with weather — with frost accumulating in a silence no one had yet named, thawed, at last, by a warmth it never asked for. Every river still runs from that well, which is the myth's way of saying that every living thing is downstream of the cold it rose from.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Niflheimr, Mist World, Realm of Ice, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Niflheimr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Niflheimr</strong> is /ˈnivlˌhɛimr̩/ — approximately NIVL-haym-r — the f is soft, sounding as v; the second element glides like 'aim' with an h in front; end with a light trilled r that carries its own syllable..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Niflheimr mean?</summary><div class="faq-answer"><p><strong>Niflheimr</strong> means <strong>Mist-home</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Niflheimr?</summary><div class="faq-answer"><p>Niflheimr is associated with <strong>Hvergelmir, the roaring kettle</strong> (The source beneath all sources: every river in the world is one of its children), <strong>The Élivágar</strong> (The ice-waves older than the earth — water carrying the venom that froze into the first flesh), <strong>The rime fog</strong> (Cold as a substance, not an absence: the raw material the warm south breathed on until it lived).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Niflheimr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>niflheimr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Niflheimr?</summary><div class="faq-answer"><p>Snorri's chronology begins not with a god but with a climate. Niflheimr, he says, was made many ages before the earth was created, and in its middle is the well called Hvergelmir, from which flow the rivers: Svöl the cool, Gunnþrá the battle-defiant, Fjörm the swift, Fimbulþul the loud-babbling, Slíðr the fearsome and Hríð the storming, Sylgr and Ylgr, Víð the broad, and Leiptr the flashing — and Gjöll, the resounding, which runs nearest the gate of Hel. Before there was a world to water, the mist-world already had its watershed.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Niflheimr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Niflheimr</strong> is /ˈnivlˌhɛimr̩/ — approximately NIVL-haym-r — the f is soft, sounding as v; the second element glides like 'aim' with an h in front; end with a light trilled r that carries its own syllable.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Niflheimr mean?</summary><div class="faq-answer"><p><strong>Niflheimr</strong> means <strong>Mist-home</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Niflheimr?</summary><div class="faq-answer"><p>Niflheimr is associated with <strong>Hvergelmir, the roaring kettle</strong> (The source beneath all sources: every river in the world is one of its children), <strong>The Élivágar</strong> (The ice-waves older than the earth — water carrying the venom that froze into the first flesh), <strong>The rime fog</strong> (Cold as a substance, not an absence: the raw material the warm south breathed on until it lived).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Niflheimr in Unicode?</summary><div class="faq-answer"><p><strong>Niflheimr</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Niflheimr?</summary><div class="faq-answer"><p>“The World That Came First” — Niflheimr's mythology is the mythology of before: it stars in no adventure and houses no hero, because its story is over before the gods' stories begin — and yet every river, every frost giant, and every corpse that sinks past Hel is still paying its tribute to the mist-world. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,19 +349,19 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Vafþrúðnismál 20–21 (the Élivágar and the venom-drops that grew into <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>), 31 (Aurgelmir), 43 (nine worlds below Niflhel); Grímnismál 26 (Eikþyrnir dripping into Hvergelmir, whence all waters flow), 27–29 (the river lists), 34–35 (the serpents under <a href="/yggdrasill/" class="crosslink" data-crosslink="yggdrasill">Yggdrasill</a>, Níðhöggr); Baldrs draumar 2 (<a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s ride down to Niflhel)</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 3 (evil men go to Hel, thence to Niflhel in the ninth world), 4 (Niflheimr made before the earth; Hvergelmir; the eleven rivers), 5–8 (Muspellsheimr; the rime and the quickening of Ymir), 15–16 (the third root over Niflheimr, Hvergelmir beneath, Níðhöggr gnawing)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Poetic Edda: Vafþrúðnismál 20–21 (the Élivágar and the venom-drops that grew into <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>), 31 (Aurgelmir), 43 (nine worlds below Niflhel); Grímnismál 26 (Eikþyrnir dripping into Hvergelmir, whence all waters flow), 27–29 (the river lists), 34–35 (the serpents under <a href="/yggdrasill/" class="crosslink" data-crosslink="yggdrasill">Yggdrasill</a>, Níðhöggr); Baldrs draumar 2 (<a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s ride down to Niflhel)</cite></li><li><cite>Snorri Sturluson, Prose Edda: <a href="/texts/prose-edda/#gylfaginning-03" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 3</a> (evil men go to Hel, thence to Niflhel in the ninth world), 4 (Niflheimr made before the earth; Hvergelmir; the eleven rivers), 5–8 (Muspellsheimr; the rime and the quickening of Ymir), 15–16 (the third root over Niflheimr, Hvergelmir beneath, Níðhöggr gnawing)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Niflheimr and related cults.</cite></li><li><cite>Niflheimr is a textual world: it has no cult, no toponym, and no carved witness — unsurprising for a cosmographical term rather than a deity. Its attestation is manuscriptal: Grímnismál and Vafþrúðnismál in the Codex Regius of the Poetic Edda (c. 1270) preserve Hvergelmir and the Élivágar; Baldrs draumar, with its ride down to Niflhel, hangs by the single thread of AM 748 I 4to (early 14th c.); and the fully mapped Niflheimr of Gylfaginning survives in the thirteenth- and fourteenth-century codices of the Prose Edda. No runic inscription records the word, and the image tradition is indirect at most: scholars have been tempted to see the world-tree's serpent-gnawed roots on Scandinavian picture stones and church carvings, but nothing is labelled, and the mist-world itself — a climate, not a figure — was never the kind of thing a Viking Age carver set in stone.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Niflheimr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/niflheimr_logomark.webp" type="image/webp"><img src="../../assets/niflheimr_logomark.webp" alt="Niflheimr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/niflheimr_logomark.webp" type="image/webp"><img src="../../assets/niflheimr_logomark.webp" alt="Niflheimr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

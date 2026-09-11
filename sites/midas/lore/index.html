@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Mídas — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Μίδας</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Mídas.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,148 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Μίδας</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Mídas</strong> (Μίδας) is attested in the source tradition — “Phrygian royal name”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">midas</p>
-                    <p class="card-body">Reduced to plain <strong>midas</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Mídas</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Mídas</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Mídas.com → xn--mdas-vpa.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Mídas</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Mídas</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Mídas is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Μίδας</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Mídas is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Mídas</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Mídas</p>
-                    <p class="card-body">Restores <strong>Μίδας</strong>. The live temple domain — <strong>mídas.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">midas</p>
-                    <p class="card-body">Flattens <strong>Μίδας</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Mídas was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Mídas</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/mí.das/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Mí-</span>
-        <span class="phoneme-desc">Bilabial nasal opening into acute-pitched iota [mí] — the name's single mark, pitched high.</span>
+      <p class="lead-text">The Greeks attached two great fables to Mídas — the touch and the ears — and one genuine history: the wealthy Phrygian king whose gifts reached Delphi and whose wars reached Assyria. Ovid gives the fables their classic form; Herodotus keeps the history.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ovid, Met. 11.85–102</span>
+          <h3 class="myth-title">Silenos Returned</h3>
+          <p class="myth-text">In Ovid's telling, the satyr Silenos — foster-father and perpetual companion of <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a> — strayed from the god's train in Phrygia, drunken and lost, and was found by countrymen who bound him with garlands of flowers and brought him to King Midas. The king knew at once what he had: ten days and ten nights of feasting and storytelling, and then he restored the old satyr to the Bacchic host with honor. Dionysos offered any gift in return, and Midas answered like a treasurer: let everything I touch become gold. The god, who grants what is asked, granted it — 'nor did the god rejoice,' Ovid adds, for the wish told him exactly what its wisher was.</p><p class="myth-text">The episode is the guest-gift inverted: hospitality toward the god's companion earns not wisdom but a confirmation of appetite, and the golden touch begins as a reading of the host's character.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-d-</span>
-        <span class="phoneme-desc">Voiced dental stop [d] — plain and firm.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ovid, Met. 11.103–126</span>
+          <h3 class="myth-title">All He Touches Turns to Gold</h3>
+          <p class="myth-text">The gift revealed itself at table: the bread hardened under his fingers, the wine ran molten from his lips and would not wet them, the rose he plucked glittered stiff and leafless. Rich, and starving in a palace of metal, Midas lifted his arms to heaven — 'Dionysos, father, forgive me; I have sinned' — and the god, relenting, sent him to wash in the spring at the source of the Pactolus near Sardis. The power left his body and entered the river, whose sands have run gold ever after — the aition ancient geographers repeated of Lydia's wealth. Later retellings, from scholia to Nathaniel Hawthorne, add the gilded daughter; antiquity needed no child to make the point.</p><p class="myth-text">The myth measures the exact distance between having gold and being fed by it: one wish, granted literally, is a famine in a treasury.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-as</span>
-        <span class="phoneme-desc">Short alpha and final sigma [as] — the common ending of Anatolian royal names.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ovid, Met. 11.146–193 · Hyginus, Fab. 191</span>
+          <h3 class="myth-title">The Ears of an Ass</h3>
+          <p class="myth-text">The second fable is a music-contest: the piping Pan dared the lyre of Apollo, and the mountain-god Tmolos judged for the lyre. Midas alone clapped for the pipes, and Apollo's punishment was exact — 'why not,' the god says, 'since your ears are so dull, lengthen them to a donkey's measure?' Under the Phrygian cap the secret grew, but the king's barber saw, and the barber, forbidden to tell, dug a hole in the riverbank and whispered it into the earth. Reeds rose from that ground, and ever after, when the wind combs them, they murmur the truth: King Midas has ass's ears.</p><p class="myth-text">The story is a parable of criticism as hearing: the judge of song becomes the judged of ears, and nature itself is recruited as the gossip a court tried to suppress.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Herodotus 1.14 · 8.138</span>
+          <h3 class="myth-title">Mitâ of Muški</h3>
+          <p class="myth-text">Behind both fables stands a king historians can date. The annals of Sargon II of Assyria record Mitâ, king of Muški — the Assyrian name for the Phrygians — who raided the empire's western marches around 718–709 BCE and then sued for alliance, sending tribute and an embassy to Nineveh. Herodotus preserves his splendor: Midas was the first foreigner known to have sent gifts to Delphi, dedicating the royal throne on which suppliants sat, and his name still meant wealth to fifth-century Greeks. Herodotus adds the family memory: the roses below Mount Bermion in Macedon were Midas's gardens, where Silenos was said to have been captured, and the Macedonian royal house counted his gardeners among its ancestors.</p><p class="myth-text">The historical Midas thus glitters in three archives — Assyrian, Greek, and Phrygian — and the fable of the golden touch reads, in this light, as a caricature of a man whose wealth was already proverbial.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'MEE-dass' — stress forward, the first syllable bright and the second clipped; the English 'MY-das' flattens both.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Assyrian</strong> Mitâ, king of Muški, in the annals of Sargon II — the same historical king the Greeks called Mídas</li><li><strong>Phrygian</strong> Midas in the Old Phrygian inscriptions of Gordion and Midas City — a royal name borne by more than one Phrygian king</li><li><strong>Greek</strong> Μίδας, the Hellenized form, fixed by Herodotus and the myth</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Mídas is Tier 2 because the Greek Μίδας carries only the acute stress; the vowels are short and no long vowel or diphthong is preserved. Behind the Greek form stands a genuine Phrygian royal name — the legend has a historical king inside it.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -380,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Gilded King</h2>
             <p class="section-subtitle">Kingship, Gold, and the Price of Wishes</p>
         </div>
@@ -390,7 +296,7 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L38 24H54L42 34L46 50L32 42L18 50L22 34L10 24H26L32 8Z"></path></svg></div>
         <h4 class="domain-name">The Golden Touch</h4>
-        <p class="domain-desc">Granted by <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a> in thanks for the return of Silenos; everything his hands touched — bread, wine, roses — hardened into gold.</p>
+        <p class="domain-desc">Granted by Dionysos in thanks for the return of Silenos; everything his hands touched — bread, wine, roses — hardened into gold.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 32H48M32 16V48M24 24L40 40M40 24L24 40"></path></svg></div>
@@ -431,49 +337,22 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Mídas</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Mídas lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">The Greeks attached two great fables to Mídas — the touch and the ears — and one genuine history: the wealthy Phrygian king whose gifts reached Delphi and whose wars reached Assyria. Ovid gives the fables their classic form; Herodotus keeps the history.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Reward</span>
-          <h3 class="myth-title">Silenos Returned</h3>
-          <p class="myth-text">Silenos, the drunken companion of Dionysos, strayed and was brought to Mídas — in some tellings caught in the king's own rose gardens. Mídas entertained him ten days and returned him to the god, who offered any gift in thanks. The king, thinking of his treasury, wished that everything he touched might become gold. The wish was granted on the spot.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">Words Descended from This Name</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/everyday/#midas-touch" class="source-badge" title="the knack of profitable conversion">midas touch</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Curse</span>
-          <h3 class="myth-title">All He Touches Turns to Gold</h3>
-          <p class="myth-text">The gift revealed itself at table: the bread stiffened in his hands, the wine ran molten and would not wet his lips. Hungry and thirsty in a house of gold, Mídas begged release. Dionysos sent him to wash in the spring of the Pactolus at Sardis; the power passed from his body into the river, whose sands bore gold ever after. Later ages added a gilded daughter to the tale — antiquity was content with the bread and the wine.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Judgment</span>
-          <h3 class="myth-title">The Ears of an Ass</h3>
-          <p class="myth-text">Old Tmolos judged the music-contest of Pan and Apollo for the lyre; Mídas alone declared for the pipes. Apollo would not suffer such ears to keep their human shape: they lengthened, furred, and moved. The king hid them under a Phrygian cap, but his barber knew, and whispered the secret into a hole in the ground — and the reeds that grew there have murmured 'King Mídas has ass's ears' on every wind since.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The King</span>
-          <h3 class="myth-title">Mitâ of Muški</h3>
-          <p class="myth-text">The Assyrian annals of Sargon II name Mitâ, king of Muški, pressing on the empire's eastern marches and then seeking its friendship — the Greek Mídas, ruler of Phrygia from Gordion in the late eighth century BCE. Herodotus preserves his splendor: the first foreign king to dedicate at Delphi, where his throne of judgment could still be seen, and the roses of his Macedonian gardens, which the Phrygians were said to have tended before they crossed into <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -481,7 +360,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -545,23 +424,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Mídas lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">Words Descended from This Name</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/everyday/#midas-touch" class="source-badge" title="the knack of profitable conversion">midas touch</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Μίδας</p>
+                <p class="card-body">The name in its original Greek form. <strong>Mídas</strong> (Μίδας) is attested in the source tradition — “Phrygian royal name”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">midas</p>
+                <p class="card-body">Reduced to plain <strong>midas</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Mídas</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Mídas</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Mídas.com → xn--mdas-vpa.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Mídas</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Mídas</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Mídas</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Mídas</p>
+                    <p class="card-body">Restores <strong>Μίδας</strong>. The live temple domain — <strong>mídas.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">midas</p>
+                    <p class="card-body">Flattens <strong>Μίδας</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Mídas was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/mí.das/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Mí-</span>
+        <span class="phoneme-desc">Bilabial nasal opening into acute-pitched iota [mí] — the name's single mark, pitched high.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-d-</span>
+        <span class="phoneme-desc">Voiced dental stop [d] — plain and firm.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-as</span>
+        <span class="phoneme-desc">Short alpha and final sigma [as] — the common ending of Anatolian royal names.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'MEE-dass' — stress forward, the first syllable bright and the second clipped; the English 'MY-das' flattens both.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Mídas is Tier 2 because the Greek Μίδας carries only the acute stress; the vowels are short and no long vowel or diphthong is preserved. Behind the Greek form stands a genuine Phrygian royal name — the legend has a historical king inside it.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Mídas is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Μίδας</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Mídas is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -571,7 +576,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">The touch and the ears are one story told twice. Both are parables of misjudged value: the king who thinks gold is the best thing in the world, and the listener who thinks pipes are better than the lyre. Each wish-come-true is a famine; each judgment is a deformity. The Greeks were exact about this — wealth and taste are the two places where a man chooses what he is, and Mídas chose wrong both times, and knew it, and wept, and was not destroyed.</p>
+                <p class="pantheon-body">The touch and the ears are one story told twice. Both are parables of misjudged value: the king who thinks gold is the best thing in the world, and the listener who thinks pipes are better than the lyre. Each wish-come-true is a famine; each judgment is a deformity. The Greeks were exact about this — wealth and taste are the two places where a man chooses what he is, and Midas chose wrong both times, and knew it, and wept, and was not destroyed.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -580,7 +585,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/midas_mascot.webp" type="image/webp"><img src="../assets/midas_mascot.png" alt="Mídas mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/midas_mascot.webp" type="image/webp"><img src="../assets/midas_mascot.png" alt="Mídas mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -618,7 +623,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/midas_logomark.webp" type="image/webp"><img src="../assets/midas_logomark.webp" alt="Mídas logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/midas_logomark.webp" type="image/webp"><img src="../assets/midas_logomark.webp" alt="Mídas logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

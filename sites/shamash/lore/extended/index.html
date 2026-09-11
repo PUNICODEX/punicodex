@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Šamaš, Sun, Justice, Law. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/shamash/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Šamaš?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Šamaš is /ˈʃa.maʃ/ — approximately 'SHAH-mahsh' — both sh sounds are like English 'ship'; stress the first syllable."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Šamaš mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Šamaš means Sun (Akkadian Šamaš) in the mesopotamian tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Šamaš?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Šamaš is associated with Solar disc with serrated rays (The saw-toothed sun that cuts through darkness, lies, and night itself), Winged sun disc (The sun's journey across the sky and its protective power over king and temple), Scales (The balance of justice; honest merchants weighed goods before Šamaš), Saw or serrated knife (The weapon that severs falsehood from truth, darkness from light), Stairway or mountain (The eastern mountains from which Šamaš ascends each morning)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Šamaš in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII shamash strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Šamaš?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Great Hymn to Šamaš” — Šamaš's myths are hymns, legal preludes, and royal testimonies rather than long narratives. His power is assumed, praised, and appealed to; his daily rising is the central miracle that needs no elaborate story to be authoritative. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/shamash_logolockup.webp" type="image/webp"><img src="../../assets/shamash_logolockup.png" alt="Šamaš" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Šamaš</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Šamaš.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/shamash_mascot.webp" type="image/webp"><img src="../../assets/shamash_mascot.png" alt="Šamaš — Sun, Justice, Law" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/shamash_mascot.webp" type="image/webp"><img src="../../assets/shamash_mascot.png" alt="Šamaš — Sun, Justice, Law" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Akkadian Šamaš continues the common Semitic root *šamš- 'sun.' The cuneiform writing 𒀭𒌓 joins the divine determinative (dingir) to the sun-sign, and syllabic spellings give ša-am-šu-um. The PUNICODEX form preserves the Akkadian sibilant š and the two short a-vowels. Tier 1: the caron on š marks a distinctive Akkadian phoneme — a distinctive diacritic the ASCII form loses. Sources: Chicago Assyrian Dictionary (CAD), George House Most High, Black &amp; Green Gods, Demons and Symbols of Ancient Mesopotamia.</p>
+                <p class="etymology-note">The name <strong>Šamaš</strong> carries the orthographic signature of the mesopotamian tradition: 𒀭𒌓. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Šamaš is the <strong>sun that sees everything</strong> and therefore the god who cannot be bribed. In Mesopotamia he is both the physical light that rises over the eastern mountains and the moral light that exposes false weights, perjured testimony, and hidden crime. Kings receive their laws from him; judges take their oaths before him; travelers pray to him on the open road. No other solar deity in the ancient Near East is so explicitly a god of forensic justice.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Šamaš in Later Traditions</h3><p class="cultural-card-body">Šamaš is the Akkadian continuation of the Sumerian sun-god <strong>Utu</strong>, whose name is written with the same cuneiform sun-sign (𒌓). In Amorite and West Semitic contexts the related root appears as <em>Samsu</em>, and Hebrew <em>šemeš</em> ('sun') preserves the same etymology, though not usually as a deity in the biblical corpus. Greeks and Romans identified him with <strong><a href="/helios/" class="crosslink" data-crosslink="helios">Helios</a></strong> and <strong>Sol</strong>; in later iconography the winged sun-disc influenced Mithraic and Iranian solar imagery. In some theological texts Šamaš is paired with his father <a href="/sin/" class="crosslink" data-crosslink="sin">Sîn</a> (the moon) as complementary witnesses of night and day.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Šamaš's most durable legacy is the image of <strong>justice as sunlight</strong>. The scales, the all-seeing eye, and the king receiving law from heaven all descend partly from him. The biblical prophetic phrase 'sun of righteousness' (Malachi 4:2) and later Christian iconography of Christ as Sol Iustitiae owe something to this Mesopotamian pedigree. In modern legal and political symbolism — the blindfolded statue, the rayed eye on currency, the Enlightenment equation of light with reason — Šamaš keeps shining, even when his name is forgotten.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Šamaš</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Šamaš in Later Traditions</h3><p class="cultural-card-body">Šamaš is the Akkadian continuation of the Sumerian sun-god <strong>Utu</strong>, whose name is written with the same cuneiform sun-sign (𒌓). In Amorite and West Semitic contexts the related root appears as <em>Samsu</em>, and Hebrew <em>šemeš</em> ('sun') preserves the same etymology, though not usually as a deity in the biblical corpus. Greeks and Romans identified him with <strong><a href="/helios/" class="crosslink" data-crosslink="helios">Helios</a></strong> and <strong>Sol</strong>; in later iconography the winged sun-disc influenced Mithraic and Iranian solar imagery. In some theological texts Šamaš is paired with his father <a href="/sin/" class="crosslink" data-crosslink="sin">Sîn</a> (the moon) as complementary witnesses of night and day.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Šamaš's most durable legacy is the image of <strong>justice as sunlight</strong>. The scales, the all-seeing eye, and the king receiving law from heaven all descend partly from him. The biblical prophetic phrase 'sun of righteousness' (Malachi 4:2) and later Christian iconography of Christ as Sol Iustitiae owe something to this Mesopotamian pedigree. In modern legal and political symbolism — the blindfolded statue, the rayed eye on currency, the Enlightenment equation of light with reason — Šamaš keeps shining, even when his name is forgotten.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Šamaš's principal cult center was the E-babbar ('White House') at Sippar, excavated by Iraqi and British teams; temple archives yielded hundreds of administrative and hymnic tablets. A second major temple stood at Larsa, where rulers such as Rim-Sîn and Hammurabi sponsored renovations. The famous stele of Hammurabi, now in the Louvre, depicts the Babylonian king receiving authority from Šamaš. Sun-discs, door-sockets, and royal inscriptions naming Šamaš have been recovered from Ur, Babylon, Nineveh, and Assur, testifying to a cult that spanned the whole Mesopotamian floodplain.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Šamaš means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Šamaš asks a question that every civilization must answer: what gives a law authority? Not force alone, since force is partial; not tradition alone, since tradition can be corrupt. The Mesopotamian answer is the sun itself — the one witness no bribe can reach, the one light that falls equally on palace and hovel. To invoke Šamaš is to appeal from human partiality to cosmic impartiality.</p><p>There is something almost modern in this theology. The idea that justice should be transparent, visible, and available to the weak is not a recent invention; it was already old when Hammurabi had it carved in stone. Šamaš is the god who sees the orphan, the widow, and the traveler — the people most likely to fall through the cracks of human institutions. His rays are not merely warm; they are <strong>evidentiary</strong>. They make the hidden visible and then ask the community to act on what has been seen.</p><p>To name him <em>Šamaš</em> is to remember that the sun is not neutral. It is a moral force, a daily summons to honesty. Every sunrise is a verdict waiting to be delivered on yesterday's secrets.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Šamaš, Sun, Justice, Law, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Šamaš?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Šamaš</strong> is /ˈʃa.maʃ/ — approximately 'SHAH-mahsh' — both sh sounds are like English 'ship'; stress the first syllable..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Šamaš mean?</summary><div class="faq-answer"><p><strong>Šamaš</strong> means <strong>Sun (Akkadian Šamaš)</strong> in the mesopotamian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Šamaš?</summary><div class="faq-answer"><p>Šamaš is associated with <strong>Solar disc with serrated rays</strong> (The saw-toothed sun that cuts through darkness, lies, and night itself), <strong>Winged sun disc</strong> (The sun's journey across the sky and its protective power over king and temple), <strong>Scales</strong> (The balance of justice; honest merchants weighed goods before Šamaš), <strong>Saw or serrated knife</strong> (The weapon that severs falsehood from truth, darkness from light), <strong>Stairway or mountain</strong> (The eastern mountains from which Šamaš ascends each morning).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Šamaš in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>shamash</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Šamaš?</summary><div class="faq-answer"><p>The most famous literary monument to Šamaš describes him rising from the eastern mountains, scattering the demons of night, and looking down upon every land. 'You climb the mountains to observe the world; the lower world lies before you like the palm of a hand.' The hymn insists that the god sees the wicked and the just impartially: the perjurer, the false merchant, the corrupt judge cannot hide. At the same time, the hymn praises Šamaš as the helper of the poor, the orphan, and the widow — the only court of appeal for those with no human patron.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Šamaš?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Šamaš</strong> is /ˈʃa.maʃ/ — approximately 'SHAH-mahsh' — both sh sounds are like English 'ship'; stress the first syllable.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Šamaš mean?</summary><div class="faq-answer"><p><strong>Šamaš</strong> means <strong>Sun (Akkadian Šamaš)</strong> in the mesopotamian tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Šamaš?</summary><div class="faq-answer"><p>Šamaš is associated with <strong>Solar disc with serrated rays</strong> (The saw-toothed sun that cuts through darkness, lies, and night itself), <strong>Winged sun disc</strong> (The sun's journey across the sky and its protective power over king and temple), <strong>Scales</strong> (The balance of justice; honest merchants weighed goods before Šamaš), <strong>Saw or serrated knife</strong> (The weapon that severs falsehood from truth, darkness from light), <strong>Stairway or mountain</strong> (The eastern mountains from which Šamaš ascends each morning).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Šamaš in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>shamash</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Šamaš?</summary><div class="faq-answer"><p>“The Great Hymn to Šamaš” — Šamaš's myths are hymns, legal preludes, and royal testimonies rather than long narratives. His power is assumed, praised, and appealed to; his daily rising is the central miracle that needs no elaborate story to be authoritative. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,13 +355,13 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Code of Hammurabi, stele prologue and epilogue</cite></li><li><cite>Epic of <a href="/gilgamesh/" class="crosslink" data-crosslink="gilgamesh">Gilgamesh</a>, Tablets I, VII, XI</cite></li><li><cite>Hebrew Bible, Genesis 1:14–19; Malachi 4:2 (solar imagery)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Code of Hammurabi, stele prologue and epilogue</cite></li><li><cite><a href="/texts/gilgamesh/" class="crosslink citation-link" data-citation="gilgamesh-text">Epic of Gilgamesh</a>, Tablets I, VII, XI</cite></li><li><cite>Hebrew Bible, Genesis 1:14–19; Malachi 4:2 (solar imagery)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>George, House Most High: The Temples of Ancient Mesopotamia</cite></li><li><cite>Šamaš's principal cult center was the E-babbar ('White House') at Sippar, excavated by Iraqi and British teams; temple archives yielded hundreds of administrative and hymnic tablets. A second major temple stood at Larsa, where rulers such as Rim-Sîn and Hammurabi sponsored renovations. The famous stele of Hammurabi, now in the Louvre, depicts the Babylonian king receiving authority from Šamaš. Sun-discs, door-sockets, and royal inscriptions naming Šamaš have been recovered from Ur, Babylon, Nineveh, and Assur, testifying to a cult that spanned the whole Mesopotamian floodplain.</cite></li></ul>
+                    <ul class="source-list"><li><cite>George, House Most High: The Temples of Ancient Mesopotamia</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/shamash_logomark.webp" type="image/webp"><img src="../../assets/shamash_logomark.webp" alt="Šamaš logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/shamash_logomark.webp" type="image/webp"><img src="../../assets/shamash_logomark.webp" alt="Šamaš logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

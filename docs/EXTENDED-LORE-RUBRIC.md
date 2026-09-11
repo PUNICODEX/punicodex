@@ -17,6 +17,32 @@ rubric.
   epigraphic/archaeological evidence; historiography (how scholarship on
   this figure changed).
 
+## 1a. Canonical structure (since the 2026-09 lore restructure)
+
+The generated section order is canonical — regenerate via `create-flagship.js`,
+never hand-reorder:
+
+1. Quick Facts (`#quick-facts`)
+2. Etymology & Word Family (`#etymology`) — kin and variants live here ONLY
+3. Unicode Character Breakdown (`#unicode-breakdown`)
+4. Cultural Significance (`#cultural-significance`) — syncretism, modern
+   legacy, and the archaeology card ("In the Earth")
+5. The Meditation (`#meditation`) — the catalog `extendedMeditation` essay;
+   omitted when the catalog has none
+6. Screen & Culture (`#screen-appearances`) — conditional; cards carry the
+   screen-index relevance summary
+7. FAQ (`#faq`)
+8. Scholarly Sources (`#sources`)
+
+Ownership rules that prevent lore/extended duplication:
+
+- Pronunciation (IPA, phonemes, approximation, tier rule) lives on the LORE
+  page (`#pronunciation`) ONLY — the extended page must not re-render it.
+- Etymological kin lives in extended Etymology ONLY.
+- The mythology cards live on the lore page ONLY; extended FAQ may tease a
+  myth but links back instead of re-telling it.
+- `domains.lead` renders on the lore page ONLY (Domains & Symbols section).
+
 ## 2. Accuracy (non-negotiable)
 
 - Same standard as the Scholarly Edition CONTENT-RUBRIC: every factual

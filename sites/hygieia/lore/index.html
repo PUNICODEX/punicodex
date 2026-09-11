@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Hygíeia — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ὑγίεια</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Hygíeia.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,152 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ὑγίεια</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Hygíeia</strong> (Ὑγίεια) is attested in the source tradition — “Health, soundness; personified as the goddess of health and cleanliness”. Its diphthongs and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">hygieia</p>
-                    <p class="card-body">Reduced to plain <strong>hygieia</strong>, the name loses everything that made it specific: diphthongs and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Hygíeia</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hygíeia</strong> restores diphthongs and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Hygíeia.com → xn--hygeia-5va.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Hygíeia</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hygíeia</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Hygíeia is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ὑγίεια</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Hygíeia is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hygíeia</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Hygíeia</p>
-                    <p class="card-body">Restores <strong>Ὑγίεια</strong>. The live temple domain — <strong>hygíeia.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">hygieia</p>
-                    <p class="card-body">Flattens <strong>Ὑγίεια</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Hygíeia was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Hygíeia</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/hy.gí.eː.a/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Hy-</span>
-        <span class="phoneme-desc">Rough breathing on upsilon [hy], the standard opening of ὑγιής, 'healthy'.</span>
+      <p class="lead-text">Hygíeia has few narrative myths of her own; her 'mythology' is <strong>cultic and conceptual</strong>. She is the divine form of the state every Greek desired — <em>hygieia</em>, soundness — and the stories told about her are told through her father <a href="/asklepios/" class="crosslink" data-crosslink="asklepios">Asklepios</a>, her sanctuaries, and the hymns that call her best of the gods to mortals.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hesiodic fragment</span>
+          <h3 class="myth-title">Health First of Blessings</h3>
+          <p class="myth-text">A hexameter line transmitted under Hesiod's name — the so-called Hygieia fragment — declares that health ranks first among mortal goods, since neither wealth nor pleasure can be enjoyed by the sick (pseudo-Hesiod, fr. 278 West, cited already in antiquity). Whether or not Hesiod wrote it, the sentiment is pure <a href="/texts/works-and-days/" class="crosslink citation-link" data-citation="works-and-days">Works and Days</a>: in his farmer's poem, soundness of body and a full barn are the twin rewards of honest toil, and the good is to be prayed for from <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> and <a href="/demeter/" class="crosslink" data-crosslink="demeter">Demeter</a>. Hygíeia is that prayer given a face. The Greeks did not personify health idly: in a world of epidemic disease and battlefield wounds, 'soundness' was the precondition of every other blessing, and the goddess who embodied it therefore stood, quietly, above the wealth and fame the heroes pursued. The fragment's argument — that all goods presuppose the body that can enjoy them — became the theological ground of her whole cult.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-gí-</span>
-        <span class="phoneme-desc">Gamma plus acute on short iota [gí] — the pitch peak of the word.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cult</span>
+          <h3 class="myth-title">Daughter of Asklepios</h3>
+          <p class="myth-text">In the great healing sanctuaries, Hygíeia was worshipped beside her father Asklepios, her sister Panakeia, and the little hooded Telesphoros. At Epidauros, the iamata — the inscribed miracle records — thank the family for cures of lameness, blindness, and dropsy achieved through incubation: the patient sleeping in the abaton, dreaming of snakes, waking whole (IG IV² 1). At Athens her altar stood in the Asklepieion founded on the Acropolis's south slope in 420/19 BCE; at Titane near Sicyon, Pausanias (2.11.7) describes her wooden image veiled, a serpent coiling up the throne. Her role is precise: where Asklepios cures the sick, Hygíeia keeps the well — the regimen, the bath, the diet, the clean hand. The votive reliefs show the difference in posture: the god leans on his staff over the afflicted, and the goddess stands behind the recovered, serpent in one hand, bowl in the other. Prevention, the most boring and most effective of medicines, is her whole theology.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-ei-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> epsilon-iota diphthong [eː], the classical spelling of the stem.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Orphic Hymn 66</span>
+          <h3 class="myth-title">Best of the Gods to Mortals</h3>
+          <p class="myth-text">The Orphic Hymn to Hygieia — composed for ritual, sung with the clashing of cymbals — calls her best of the gods to mortals, since without her no pleasure, no wealth, no beauty can be enjoyed; she is invoked together with her sister Panakeia and asked to come gently to the rite. The collection of Orphic Hymns (2nd–3rd century CE) is a liturgy of personifications, and Hygíeia's entry shows how completely the Greeks could divinize a state of being: not a character with adventures but a condition with a name — yet a power who may be gracious or absent, whose 'lovely gift' is the light of life itself. Later Neoplatonists read such hymns as a theology of the body: health as the soul's first ally, the body's soundness as the foundation of every higher excellence. The hymn is short, but it fixed her epithet for two thousand years — the best of the gods to mortals, because all the others require her to be felt at all.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-a</span>
-        <span class="phoneme-desc">Short alpha, the feminine nominative singular ending.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Apollodorus 3.10</span>
+          <h3 class="myth-title">The Blood of the Gorgon</h3>
+          <p class="myth-text">Apollodorus (Library 3.10.3–4) records how the healing power entered Asklepios's house: <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> gave the god two vials of blood drawn from the Gorgon's veins — from the right side, a cure for every disease; from the left, a poison with which he might destroy. So armed, Asklepios raised men from the dead — <a href="/hippolytus/" class="crosslink" data-crosslink="hippolytus">Hippolytus</a> among them — until Zeus, warned by <a href="/hades/" class="crosslink" data-crosslink="hades">Hades</a> that the dead were being stolen, struck him down with the thunderbolt. Hygíeia is the guardian of the healing half of that inheritance. The myth assigns her family its exact cosmological function: the Gorgon's blood, life and death in two bottles, is the pharmacology of the whole cult, and the daughter of the slain healer inherits not the thunderbolt but the vial — the knowledge that what kills and what cures are one substance, divided only by dose, side, and hand. Greek medicine remembered the story in its oath: the physician holds both vials forever, and walks the line between them daily.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'hoo-GHEE-ay-ah' — the second syllable is pitched high; the -eia is drawn out like 'ay-ah'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Ὑγίεια (Hygíeia), the personification of health and soundness</li><li><strong>Adjective</strong> ὑγιής (hygiḗs), 'healthy, sound, wholesome'</li><li><strong>Latin</strong> Hygīa or Salus, the Roman personification of health and safety</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Hygíeia is Tier 1 because the Greek Ὑγίεια preserves both the acute stress on the second syllable and the long diphthong ει — both features the ASCII form loses. The name gave English 'hygiene' and remains central to medical vocabulary.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -384,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Goddess of Health</h2>
             <p class="section-subtitle">Healing, Prevention, Wholeness</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Hygíeia is the <strong>personification of health</strong>, daughter of <a href="/asklepios/" class="crosslink" data-crosslink="asklepios">Asklepios</a> and companion of his healing cult. Where her father cures disease, she prevents it — the goddess of soundness, cleanliness, and the daily habits that keep bodies whole.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Hygíeia is the <strong>personification of health</strong>, daughter of Asklepios and companion of his healing cult. Where her father cures disease, she prevents it — the goddess of soundness, cleanliness, and the daily habits that keep bodies whole.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 16 18 28 18 40C18 48 24 56 32 56C40 56 46 48 46 40C46 28 40 16 32 8ZM32 32C28 32 24 36 24 40C24 44 28 48 32 48C36 48 40 44 40 40C40 36 36 32 32 32Z"></path></svg></div>
@@ -431,41 +333,22 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Hygíeia</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Hygíeia lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Hygíeia has few narrative myths of her own; her 'mythology' is <strong>cultic and conceptual</strong>. She is the divine form of a state every Greek desired: hygieia, the condition of being sound.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hesiod, Works and Days</span>
-          <h3 class="myth-title">The Blessing of Health</h3>
-          <p class="myth-text">Hesiod makes health a cardinal blessing: 'First, a house, a wife, and an ox for the plough.' Among the goods he prays for, soundness of body ranks high. Hygíeia is the goddess who embodies that prayer.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">Words Descended from This Name</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/everyday/#hygiene" class="source-badge" title="the practice of health">hygiene</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Cult</span>
-          <h3 class="myth-title">Daughter of Asklepios</h3>
-          <p class="myth-text">In the Asklepieia, Hygíeia was worshipped alongside her father Asklepios, her sister Panakeia, and the healing hero. Votive inscriptions thank her for recovery and pray for continued health; she is the preventive counterpart to Asklepios's curative power.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Orphic Hymn</span>
-          <h3 class="myth-title">Hymn to Hygieia</h3>
-          <p class="myth-text">The Orphic Hymn to Hygieia calls her 'best of the gods to mortals,' since without health no pleasure or wealth can be enjoyed. The hymn reflects her high status in personal piety and philosophical ethics.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -473,7 +356,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -537,23 +420,153 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Hygíeia lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">Words Descended from This Name</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/everyday/#hygiene" class="source-badge" title="the practice of health">hygiene</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ὑγίεια</p>
+                <p class="card-body">The name in its original Greek form. <strong>Hygíeia</strong> (Ὑγίεια) is attested in the source tradition — “Health, soundness; personified as the goddess of health and cleanliness”. Its diphthongs and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">hygieia</p>
+                <p class="card-body">Reduced to plain <strong>hygieia</strong>, the name loses everything that made it specific: diphthongs and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Hygíeia</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hygíeia</strong> restores diphthongs and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Hygíeia.com → xn--hygeia-5va.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Hygíeia</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hygíeia</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hygíeia</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Hygíeia</p>
+                    <p class="card-body">Restores <strong>Ὑγίεια</strong>. The live temple domain — <strong>hygíeia.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">hygieia</p>
+                    <p class="card-body">Flattens <strong>Ὑγίεια</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Hygíeia was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/hy.gí.eː.a/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Hy-</span>
+        <span class="phoneme-desc">Rough breathing on upsilon [hy], the standard opening of ὑγιής, 'healthy'.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-gí-</span>
+        <span class="phoneme-desc">Gamma plus acute on short iota [gí] — the pitch peak of the word.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ei-</span>
+        <span class="phoneme-desc">Long epsilon-iota diphthong [eː], the classical spelling of the stem.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-a</span>
+        <span class="phoneme-desc">Short alpha, the feminine nominative singular ending.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'hoo-GHEE-ay-ah' — the second syllable is pitched high; the -eia is drawn out like 'ay-ah'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Hygíeia is Tier 1 because the Greek Ὑγίεια preserves both the acute stress on the second syllable and the long diphthong ει — both features the ASCII form loses. The name gave English 'hygiene' and remains central to medical vocabulary.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Hygíeia is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ὑγίεια</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Hygíeia is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -572,7 +585,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/hygieia_mascot.webp" type="image/webp"><img src="../assets/hygieia_mascot.png" alt="Hygíeia mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/hygieia_mascot.webp" type="image/webp"><img src="../assets/hygieia_mascot.png" alt="Hygíeia mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -610,7 +623,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/hygieia_logomark.webp" type="image/webp"><img src="../assets/hygieia_logomark.webp" alt="Hygíeia logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/hygieia_logomark.webp" type="image/webp"><img src="../assets/hygieia_logomark.webp" alt="Hygíeia logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

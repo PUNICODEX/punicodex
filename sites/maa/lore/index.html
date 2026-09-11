@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Mꜥ — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">𓌳𓂝</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Mꜥ.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,64 +236,316 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Mꜥ</p>
+        </div>
+        
+      <p class="lead-text">Mꜥ is the Egyptian root that turns seeing into knowing: the eye that recognizes, the heart that grasps, the king who judges. No god owns it — it is a verb, among the commonest in the language — and its mythology is the record of a culture teaching itself to see straight, from the vizier's maxims to the scales of the next world.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ptahhotep</span>
+          <h3 class="myth-title">The Heart That Sees</h3>
+          <p class="myth-text">The Middle Kingdom <em>Instruction of Ptahhotep</em>, set in the mouth of a vizier of the Old Kingdom advising the son who will replace him, is a manual for cultivating mꜥ in conduct. Its maxims advise the young official to listen before speaking, to reflect before answering, and to 'see' the good path before he sets foot on it; true speech, Ptahhotep insists, flows from a heart that has perceived <a href="/maat/" class="crosslink" data-crosslink="maat">Maat</a>, while false speech is the product of a clouded gaze. One maxim declares, in Lichtheim's translation, that Maat 'is great, its worth enduring; it has not been disturbed since the day of him who made it' — the perceptual faculty and the cosmic order bound in a single word from the same root.</p><p class="myth-text">The text thus transforms mꜥ from a physical faculty into a moral discipline: the quality that distinguishes the wise man from the merely clever one. Egypt's curriculum of power begins with perception, not force — the apprentice magistrate is taught first to see straight, on the theory that every other office of state follows from that.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Spell 125</span>
+          <h3 class="myth-title">The Weighing of the Heart</h3>
+          <p class="myth-text">The most famous scene in Egyptian religion is a judgment of perception. In the tribunal called the Hall of the Two Maats, the deceased stands before forty-two assessor gods as <a href="/anubis/" class="crosslink" data-crosslink="anubis">Anubis</a> tends the scales and <a href="/thoth/" class="crosslink" data-crosslink="thoth">Thoth</a>, ibis-headed, stands ready to record the verdict. On one pan rests the feather of Maat; on the other, the heart of the dead — the organ, in Egyptian physiology, of thought and intention, the seat of everything the person actually perceived and chose. Before the weighing, the deceased recites the Negative Confession, denying every listed sin; the heart itself is called as witness. If the heart outweighs the feather, it is thrown to Ammit the Devourer, waiting at the scales with her crocodile head, lion's foreparts, and hippopotamus hindquarters — and the dead cease to exist. If the pans balance, Thoth records the verdict and the deceased is pronounced <em>mꜣꜥ-ḫrw</em>, 'true of voice,' built from the same root: accurate perception has become effective speech.</p><p class="myth-text">Egyptian justice has no jury and no advocate — only an organ and a feather. The self itself is the sole witness the court calls, and the quality of its lifetime of seeing is the only defense it has. The myth makes mꜥ the entrance fee of immortality: not belief, not sacrifice, but perception held straight to the end.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Royal Ritual</span>
+          <h3 class="myth-title">The King Who Presents Maat</h3>
+          <p class="myth-text">Egyptian royal ritual identifies the pharaoh as the one whose eyes perceive mꜥ on behalf of the land. In the daily temple liturgy and at the Sed-festival of renewal, the king kneels and presents the gods with a small figure of Maat — the gesture carved on temple walls from Abydos to <a href="/karnak/" class="crosslink" data-crosslink="karnak">Karnak</a> — declaring in effect that he has seen the goddess, grasped her, and enacted her. The claim is woven into the royal names themselves: Amenhotep III's throne name reads <em>Nebmaatre</em>, 'the Lord of Maat is Re.' What looks like an offering is in fact an audit: the king hands the gods a report of his own perception, and the world's stability is staked on its accuracy.</p><p class="myth-text">To rule, in this theology, is to keep looking. The throne's first duty is perpetual accurate sight — the cultivated faculty that Egyptian ethics made the precondition of legitimate power. A king who could no longer perceive Maat had, by definition, stopped being a king, whatever the crown said.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Amenemope</span>
+          <h3 class="myth-title">Boundary Stones and Plumb Lines</h3>
+          <p class="myth-text">The Late Egyptian <em>Instruction of Amenemope</em> (Papyrus British Museum EA 10474), a thirty-chapter wisdom book of the Ramesside age, carries the ethics of mꜥ into the surveyor's craft. Its sixth chapter commands: do not move the marker on the boundary of the fields, do not disturb the cord of the surveyor, covet not a single cubit of land, and trespass not on the boundary of a widow (Lichtheim, Ancient Egyptian Literature II). The straightness at stake is literal — the stretched cord, the set stone, the measured line along which the flood-plain is divided after every inundation — and the instruction is that a crooked eye makes a crooked boundary, and a crooked boundary makes a crooked person.</p><p class="myth-text">Sight, geometry, and ethics are one discipline here, and the discipline travelled: scholars have shown that the author of the biblical Proverbs knew Amenemope, whose prologue reappears reworked at Proverbs 22:17–23. The plumb-line of the heart is among the oldest exported ideas in the world's libraries — a straight line held against the self, from the Nile valley to Jerusalem.</p>
+        </div>
+      </div></div>
+    </div>
+</section>
+
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Vision, Perception, Understanding</h2>
+            <p class="section-subtitle">The domain of Mꜥ</p>
+        </div>
+        
+      <div class="domains-intro reveal-up"><p class="lead-text">In the egyptian tradition, <strong>Mꜥ</strong> is the verb 'to see, to perceive' — not the name of a deity: no cult, temple, or icon of a god 'Maa' is attested. This temple is dedicated to the word itself, the faculty of true perception that Egyptian ethics made the precondition of right action.</p></div>
+      <div class="domains-grid">
+      <div class="domain-card reveal-up">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 16C20 16 12 24 8 32C12 40 20 48 32 48C44 48 52 40 56 32C52 24 44 16 32 16ZM32 24C36 24 40 28 40 32C40 36 36 40 32 40C28 40 24 36 24 32C24 28 28 24 32 24Z"></path></svg></div>
+        <h4 class="domain-name">True Perception</h4>
+        <p class="domain-desc">Mꜥ names the act of seeing that becomes understanding, the eye that recognizes and the heart that grasps.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="100">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L40 16V28L32 36L24 28V16L32 8ZM24 40H40V56H24V40Z"></path></svg></div>
+        <h4 class="domain-name">Royal Discernment</h4>
+        <p class="domain-desc">The pharaoh is the one whose eyes perceive Maat; his judgment is a continuation of cosmic sight.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="200">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 12H48V48H16V12ZM24 20H40V28H24V20ZM24 36H40V40H24V36Z"></path></svg></div>
+        <h4 class="domain-name">Instruction of Ptahhotep</h4>
+        <p class="domain-desc">The maxims teach that true speech flows from a heart that has first perceived the good path.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 40H24V32H40V24H56V56H8V40Z"></path></svg></div>
+        <h4 class="domain-name">From Sight to Justice</h4>
+        <p class="domain-desc">The same root moves from mꜥ, "to see," to Maat, the straightness that holds the cosmos in order.</p>
+      </div></div>
+      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
+      <div class="symbol-item">
+        <span class="symbol-name">Open eye (irt)</span>
+        <span class="symbol-meaning">The seeing eye, the hieroglyphic and conceptual root of mꜣ 'to see, to perceive'</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Maat feather</span>
+        <span class="symbol-meaning">The ostrich feather of truth and straightness from the same mꜣʿ root</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Scribe's palette</span>
+        <span class="symbol-meaning">The tool of Thoth, the perceptive god whose wisdom depends on mꜥ</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Sun-disk with rays</span>
+        <span class="symbol-meaning">The solar eye that sees and knows all, an extension of divine perception</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Square plumb-line</span>
+        <span class="symbol-meaning">The literal 'straightness' that underlies the abstract sense of justice</span>
+      </div></div></div>
+    </div>
+</section>
+
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Mꜥ lives in the sacred library and in the words you still speak</p>
+        </div>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/book-of-the-dead/" class="source-badge">The Book of the Dead</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Related Names -->
+    <section class="section section-related" id="related">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Related Names</h2>
+            <p class="section-subtitle">Other figures in the egyptian pantheon</p>
+        </div>
+        <div class="related-grid reveal-up">
+            
+    <a href="/ra/" class="related-card reveal-up">
+      <span class="related-name">Rꜥ</span>
+      
+      <span class="related-domain">Sun, Creation, Kingship</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
+      </div>
+    </a>
+    <a href="/osiris/" class="related-card reveal-up">
+      <span class="related-name">Wsjr</span>
+      
+      <span class="related-domain">Afterlife, Resurrection, Vegetation</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
+      </div>
+    </a>
+    <a href="/anubis/" class="related-card reveal-up">
+      <span class="related-name">ꜣnpw</span>
+      
+      <span class="related-domain">Mummification, Afterlife, Jackals</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
+      </div>
+    </a>
+    <a href="/horus/" class="related-card reveal-up">
+      <span class="related-name">Ḥr</span>
+      
+      <span class="related-domain">Sky, Kingship, Falcon</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
+      </div>
+    </a>
+    <a href="/isis/" class="related-card reveal-up">
+      <span class="related-name">Ꜣst</span>
+      
+      <span class="related-domain">Magic, Motherhood, Throne</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
+      </div>
+    </a>
+    <a href="/thoth/" class="related-card reveal-up">
+      <span class="related-name">Ḏḥwtj</span>
+      
+      <span class="related-domain">Writing, Wisdom, Moon</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
+      </div>
+    </a>
+        </div>
+    </div>
+</section>
+
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
     <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">𓌳𓂝</p>
+                <p class="card-body">The name in its original Egyptian form. <strong>Mꜥ</strong> (𓌳𓂝) is attested in the source tradition — “To see, to perceive, to understand. A core verb root, extremely common in texts”. Its Egyptological ain and alef letters carry the full phonetic and orthographic weight of the source tradition.</p>
+                
             </div>
 
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">𓌳𓂝</p>
-                    <p class="card-body">The name in its original Egyptian form. <strong>Mꜥ</strong> (𓌳𓂝) is attested in the source tradition — “To see, to perceive, to understand. A core verb root, extremely common in texts”. Its Egyptological ain and alef letters carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
                 </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">maa</p>
-                    <p class="card-body">Reduced to plain <strong>maa</strong>, the name loses everything that made it specific: Egyptological ain and alef letters. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Mꜥ</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Mꜥ</strong> restores Egyptological ain and alef letters, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">maa</p>
+                <p class="card-body">Reduced to plain <strong>maa</strong>, the name loses everything that made it specific: Egyptological ain and alef letters. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
             </div>
 
-            <div class="punycode-explainer reveal-up">
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Mꜥ</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Mꜥ</strong> restores Egyptological ain and alef letters, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
                     <code class="explainer-code">Mꜥ.com → xn--m-2w3e.com</code>
                     <p class="explainer-note">The non-ASCII characters in <strong>Mꜥ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Mꜥ</em>.</p>
                 </div>
             </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Mꜥ</p>
         </div>
-    </section>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Mꜥ</p>
+                    <p class="card-body">Restores <strong>𓌳𓂝</strong>. The live temple domain — <strong>mꜥ.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">maa</p>
+                    <p class="card-body">Flattens <strong>𓌳𓂝</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Mꜥ was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/maʕ/</span>
+            <span class="ipa-label">Egyptological Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">m</span>
+        <span class="phoneme-desc">Bilabial nasal [m], the first consonant of the root mꜣʿ 'to see, to be straight'</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">ꜥ</span>
+        <span class="phoneme-desc">Voiced pharyngeal fricative [ʕ], a deep tightening in the throat; the Egyptological ayin (ꜥ) marks this sound</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">a</span>
+        <span class="phoneme-desc">Short open vowel [a], supplied by convention; hieroglyphs record only m-ꜥ</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'mah-ʿA' — a gentle 'm', then a deep throaty 'ah' like the Arabic ع; the final vowel is very light.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Egyptian Mꜥ is consonantal; the vowel is a modern Egyptological convenience. The Tier-1 form preserves the ayin (ꜥ), a distinctive Afro-Asiatic phoneme absent from English — a distinctive letter the ASCII form loses. The root mꜣʿ also yields Maat, the goddess of cosmic order.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
 
     <!-- Original Script Provenance -->
     
@@ -297,7 +554,7 @@
   <div class="section-bg-glow"></div>
   <div class="container">
     <div class="section-header reveal-up">
-      <span class="section-number">02</span>
+      <span class="section-number">08</span>
       <h2 class="section-title">Original Script &amp; Provenance</h2>
       <p class="section-subtitle">How Mꜥ travels from ancient script to the modern URL</p>
     </div>
@@ -402,7 +659,7 @@
       </div>
     </li>
     <li class="attestation-item">
-      <div class="attestation-text">Book of the Dead</div>
+      <div class="attestation-text"><a href="/texts/book-of-the-dead/" class="crosslink citation-link" data-citation="book-of-the-dead">Book of the Dead</a></div>
       <div class="attestation-meta">
         <span class="attestation-date">c. 1550–50 BCE</span>
         <span class="attestation-location">Egypt</span>
@@ -440,250 +697,6 @@
   </div>
 </section>
 
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Mꜥ</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Mꜥ</p>
-                    <p class="card-body">Restores <strong>𓌳𓂝</strong>. The live temple domain — <strong>mꜥ.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">maa</p>
-                    <p class="card-body">Flattens <strong>𓌳𓂝</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Mꜥ was spoken</p>
-        </div>
-        
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/maʕ/</span>
-            <span class="ipa-label">Egyptological Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">m</span>
-        <span class="phoneme-desc">Bilabial nasal [m], the first consonant of the root mꜣʿ 'to see, to be straight'</span>
-      </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">ꜥ</span>
-        <span class="phoneme-desc">Voiced pharyngeal fricative [ʕ], a deep tightening in the throat; the Egyptological ayin (ꜥ) marks this sound</span>
-      </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">a</span>
-        <span class="phoneme-desc">Short open vowel [a], supplied by convention; hieroglyphs record only m-ꜥ</span>
-      </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'mah-ʿA' — a gentle 'm', then a deep throaty 'ah' like the Arabic ع; the final vowel is very light.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Egyptian</strong> mꜣꜥt (<a href="/maat/" class="crosslink" data-crosslink="maat">Maat</a>), the abstract noun 'truth, justice, order' from the same root</li><li><strong>Coptic</strong> ⲙⲉ (me), 'truth, justice', a late Egyptian reflex</li><li><strong>Semitic</strong> cf. Hebrew יָשָׁר (yāšār), 'straight, right', a distant Afro-Asiatic parallel to the 'straightness' root</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Egyptian Mꜥ is consonantal; the vowel is a modern Egyptological convenience. The Tier-1 form preserves the ayin (ꜥ), a distinctive Afro-Asiatic phoneme absent from English — a distinctive letter the ASCII form loses. The root mꜣʿ also yields Maat, the goddess of cosmic order.</p></div>
-        </div>
-      </div>
-    </div>
-</section>
-
-    <!-- Domains & Sacred Symbols -->
-    <section class="section section-symbols" id="symbols">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">05</span>
-            <h2 class="section-title">Vision, Perception, Understanding</h2>
-            <p class="section-subtitle">The domain of Mꜥ</p>
-        </div>
-        
-      <div class="domains-intro reveal-up"><p>In the egyptian tradition, <strong>Mꜥ</strong> is the verb 'to see, to perceive' — not the name of a deity: no cult, temple, or icon of a god 'Maa' is attested. This temple is dedicated to the word itself, the faculty of true perception that Egyptian ethics made the precondition of right action.</p></div>
-      <div class="domains-grid">
-      <div class="domain-card reveal-up">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 16C20 16 12 24 8 32C12 40 20 48 32 48C44 48 52 40 56 32C52 24 44 16 32 16ZM32 24C36 24 40 28 40 32C40 36 36 40 32 40C28 40 24 36 24 32C24 28 28 24 32 24Z"></path></svg></div>
-        <h4 class="domain-name">True Perception</h4>
-        <p class="domain-desc">Mꜥ names the act of seeing that becomes understanding, the eye that recognizes and the heart that grasps.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="100">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L40 16V28L32 36L24 28V16L32 8ZM24 40H40V56H24V40Z"></path></svg></div>
-        <h4 class="domain-name">Royal Discernment</h4>
-        <p class="domain-desc">The pharaoh is the one whose eyes perceive Maat; his judgment is a continuation of cosmic sight.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="200">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 12H48V48H16V12ZM24 20H40V28H24V20ZM24 36H40V40H24V36Z"></path></svg></div>
-        <h4 class="domain-name">Instruction of Ptahhotep</h4>
-        <p class="domain-desc">The maxims teach that true speech flows from a heart that has first perceived the good path.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="300">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 40H24V32H40V24H56V56H8V40Z"></path></svg></div>
-        <h4 class="domain-name">From Sight to Justice</h4>
-        <p class="domain-desc">The same root moves from mꜥ, "to see," to Maat, the straightness that holds the cosmos in order.</p>
-      </div></div>
-      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
-      <div class="symbol-item">
-        <span class="symbol-name">Open eye (irt)</span>
-        <span class="symbol-meaning">The seeing eye, the hieroglyphic and conceptual root of mꜣ 'to see, to perceive'</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Maat feather</span>
-        <span class="symbol-meaning">The ostrich feather of truth and straightness from the same mꜣʿ root</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Scribe's palette</span>
-        <span class="symbol-meaning">The tool of <a href="/thoth/" class="crosslink" data-crosslink="thoth">Thoth</a>, the perceptive god whose wisdom depends on mꜣ</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Sun-disk with rays</span>
-        <span class="symbol-meaning">The solar eye that sees and knows all, an extension of divine perception</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Square plumb-line</span>
-        <span class="symbol-meaning">The literal 'straightness' that underlies the abstract sense of justice</span>
-      </div></div></div>
-    </div>
-</section>
-
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Mꜥ</p>
-        </div>
-        
-      <p class="lead-text">Mꜥ is the Egyptian root for seeing that becomes understanding. In a language where vision and knowledge are not cleanly separated, mꜥ names the act of perceiving truly: the eye that recognizes, the heart that grasps, the king who judges rightly. It is the verbal foundation of Maat, the goddess of cosmic order, because to “see” Maat is already to align oneself with truth. Mꜥ is therefore one of the most consequential roots in Egyptian thought, binding cognition, ethics, and royal authority into a single gesture of clear sight. In royal titulary, the king is the one who perceives Maat, the one whose senses align with cosmic order. Temple reliefs show him offering Maat to the gods, thereby renewing the world. This act of perception was not passive sight but judicial and ritual discernment — the cultivated faculty that Egyptian ethics made the precondition of legitimate rule.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Instruction of Ptahhotep</span>
-          <h3 class="myth-title">The Heart That Sees</h3>
-          <p class="myth-text">The Middle Kingdom <em>Instruction of Ptahhotep</em>, attributed to a vizier of the Fifth Dynasty, is a manual for cultivating mꜥ in conduct. Its maxims advise the young official to listen, to reflect, and to “see” the good path before speaking. True speech, Ptahhotep insists, flows from a heart that has perceived Maat; false speech is the product of a clouded gaze. The text thus transforms mꜥ from a physical faculty into a moral discipline, the quality that distinguishes the wise man from the merely clever one.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Negative Confession</span>
-          <h3 class="myth-title">Speaking Truth Before the Forty-Two Judges</h3>
-          <p class="myth-text">In <em>Book of the Dead</em> Spell 125, the deceased stands before the tribunal of the forty-two assessor gods and recites the Negative Confession, denying every conceivable sin. The rubric repeatedly invokes mꜣꜥ—“I have not done that which is not maat”—using the same root as Mꜥ to insist that the speaker perceived, understood, and avoided wrongdoing. The confession is not merely a list of denials; it is a performative claim that the deceased's heart has “seen” truth clearly enough to be weighed against the feather of Maat.</p><p class="myth-text">When the scales balance, the deceased is declared mꜣꜥ-ḫrw, “true of voice,” a phrase built from the same root. This means that accurate perception has become effective speech: the one who truly sees can speak rightly before gods and never be turned back at the gates of the afterlife.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Royal Ideology</span>
-          <h3 class="myth-title">The King Who Perceives Maat</h3>
-          <p class="myth-text">Egyptian royal ritual identifies the pharaoh as the one whose eyes perceive mꜥ on behalf of the land. In the daily temple liturgy and during the Sed-festival, the king presents a small figure of Maat to the gods with the declaration that he has 'seen' her—that is, perceived and enacted truth. This gesture is more than symbolism: it asserts that legitimate rule depends on the ruler's capacity for accurate perception, the same mꜥ that the gods exercise when they judge the cosmos. To see Maat rightly is to keep the world aligned with its own nature.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
-
-    <!-- Related Names -->
-    <section class="section section-related" id="related">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Related Names</h2>
-            <p class="section-subtitle">Other figures in the egyptian pantheon</p>
-        </div>
-        <div class="related-grid reveal-up">
-            
-    <a href="/ra/" class="related-card reveal-up">
-      <span class="related-name">Rꜥ</span>
-      
-      <span class="related-domain">Sun, Creation, Kingship</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
-      </div>
-    </a>
-    <a href="/osiris/" class="related-card reveal-up">
-      <span class="related-name">Wsjr</span>
-      
-      <span class="related-domain">Afterlife, Resurrection, Vegetation</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 2</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
-      </div>
-    </a>
-    <a href="/anubis/" class="related-card reveal-up">
-      <span class="related-name">ꜣnpw</span>
-      
-      <span class="related-domain">Mummification, Afterlife, Jackals</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
-      </div>
-    </a>
-    <a href="/horus/" class="related-card reveal-up">
-      <span class="related-name">Ḥr</span>
-      
-      <span class="related-domain">Sky, Kingship, Falcon</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
-      </div>
-    </a>
-    <a href="/isis/" class="related-card reveal-up">
-      <span class="related-name">Ꜣst</span>
-      
-      <span class="related-domain">Magic, Motherhood, Throne</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
-      </div>
-    </a>
-    <a href="/thoth/" class="related-card reveal-up">
-      <span class="related-name">Ḏḥwtj</span>
-      
-      <span class="related-domain">Writing, Wisdom, Moon</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Egyptian</span>
-      </div>
-    </a>
-        </div>
-    </div>
-</section>
-
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Mꜥ lives in the sacred library and in the words you still speak</p>
-        </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/book-of-the-dead/" class="source-badge">The Book of the Dead</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
     <div class="container">
@@ -691,7 +704,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Names are not merely labels; they are compressed worlds. <strong>Mꜥ</strong> carries within it a egyptian understanding of to see, to perceive, to understand. a core verb root, extremely common in texts. Unicode restoration returns that world to readable form.</p>
+                <p class="pantheon-body">Mꜥ proposes something most modern languages keep apart: that seeing is an ethical act. Egyptian grammar refuses to separate the eye that perceives from the heart that understands from the king who judges — one root does all three jobs — and the civilization built its highest court, its coronation liturgy, and its school curriculum on the assumption that the separation is the original sin. A heart that has perceived truly will speak truly, judge truly, and rule truly; a clouded gaze corrupts everything downstream of it, and no amount of ritual can compensate.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -700,7 +713,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/maa_mascot.webp" type="image/webp"><img src="../assets/maa_mascot.png" alt="Mꜥ mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/maa_mascot.webp" type="image/webp"><img src="../assets/maa_mascot.png" alt="Mꜥ mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -738,7 +751,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/maa_logomark.webp" type="image/webp"><img src="../assets/maa_logomark.webp" alt="Mꜥ logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/maa_logomark.webp" type="image/webp"><img src="../assets/maa_logomark.webp" alt="Mꜥ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

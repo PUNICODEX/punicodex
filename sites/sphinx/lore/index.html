@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Sphínx — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Σφίγξ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Sphínx.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,152 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Σφίγξ</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Sphínx</strong> (Σφίγξ) is attested in the source tradition — “Strangler”. Its aspirated consonants and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">sphinx</p>
-                    <p class="card-body">Reduced to plain <strong>sphinx</strong>, the name loses everything that made it specific: aspirated consonants and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Sphínx</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Sphínx</strong> restores aspirated consonants and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Sphínx.com → xn--sphnx-1sa.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Sphínx</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Sphínx</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Sphínx is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Σφίγξ</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Sphínx is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Sphínx</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Sphínx</p>
-                    <p class="card-body">Restores <strong>Σφίγξ</strong>. The live temple domain — <strong>sphínx.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">sphinx</p>
-                    <p class="card-body">Flattens <strong>Σφίγξ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Sphínx was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Sphínx</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/spʰíŋks/</span>
-            <span class="ipa-label">Ancient Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Sph-</span>
-        <span class="phoneme-desc">Aspirated cluster [spʰ]: voiceless sibilant plus aspirated stop.</span>
+      <p class="lead-text">The Greek Sphinx is a daughter of monstrous parents, sent by <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a> to punish Thebes. Her story is inseparable from the tragedy of <a href="/oidipous/" class="crosslink" data-crosslink="oidipous">Oedipus</a> — the man who answered her question and thereby walked straight into the fate he had fled. Every telling of the riddle is a small treatise on what it means to be human.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Genealogy</span>
+          <h3 class="myth-title">Child of Chimaira — or of Echidna?</h3>
+          <p class="myth-text">Hesiod gives the Sphinx an unexpected pedigree: in the <em><a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a></em> (325–327) she is born to the <a href="/chimaira/" class="crosslink" data-crosslink="chimaira">Chimaira</a> by Orthrus, the two-headed hound — a pairing that also produces the Nemean Lion — which makes her <a href="/typhon/" class="crosslink" data-crosslink="typhon">Typhon</a>'s granddaughter, twice removed from the storm-giant's challenge to <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>. Apollodorus, <em>Library</em> 3.5.8, streamlines the line and calls her simply 'daughter of Typhon and Echidna', kin to <a href="/cerberus/" class="crosslink" data-crosslink="cerberus">Cerberus</a> and the <a href="/hydra/" class="crosslink" data-crosslink="hydra">Hydra</a>. The sources disagree, and the disagreement is itself instructive: both genealogies place her inside the same brood of hybrid terrors, children whose mixed bodies embody the world's refusal to keep its categories clean. What the Sphinx inherited is a compound nature — speech joined to claws, a question delivered by a predator. Her lineage tells us what her riddle will confirm: the monster at the threshold is never <strong>only</strong> a monster, and neither is the answerer only a man.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-i-</span>
-        <span class="phoneme-desc">Short close front vowel [i], stressed in the Greek form.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Thebes</span>
+          <h3 class="myth-title">Sent Against the Cadmeans</h3>
+          <p class="myth-text">While Laius was king of Thebes, Hera sent the Sphinx against the city as a plague, Apollodorus reports (<em>Library</em> 3.5.8): a creature with the face of a woman, the breast and feet and tail of a lion, and the wings of a bird. She took up station on Mount Phicium above the city and waylaid travellers with a riddle the Muses had taught her. Those who failed to solve it she snatched up and devoured, until the roads fell silent and Thebes starved behind its walls. Creon, ruling for the young Laodamas, proclaimed that whoever freed the city of the monster should have the kingdom — and the hand of the widowed <a href="/jocasta/" class="crosslink" data-crosslink="jocasta">Jocasta</a>. The Sphinx was therefore never a random horror: she was a <strong>siege engine of divine anger</strong>, a blockade of knowledge laid against a city already burdened with an old, unconfessed crime. Her questions stopped the mouths of Thebes as surely as famine; only a stranger willing to answer for all mankind could lift the blockade.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-ng-</span>
-        <span class="phoneme-desc">Velar nasal [ŋ] before the final stop.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Riddle</span>
+          <h3 class="myth-title">Oedipus Names the Creature</h3>
+          <p class="myth-text">Oedipus, the Corinthian exile with the pierced ankles, came to the crossroads beneath Mount Phicium and heard the Sphinx's question: what creature walks on four feet at morning, two feet at noon, and three feet at evening? 'Man,' he answered — crawling in infancy, upright in maturity, leaning on a staff in age (Sophocles, <em>Oedipus Tyrannus</em> 130–151, 390–398; Apollodorus 3.5.8). In a later, harsher version of the question the feet are 'crippled', and the answer must carry Oedipus's own lameness inside it. Defeated by the one answer she could not survive, the Sphinx — cursing him even in defeat, Sophocles says — threw herself from the rock and died (Apollodorus 3.5.8; Hyginus, <em>Fabulae</em> 67; Pausanias 9.26.2–4 discusses the monument the Thebans later raised to her). The myth's economy is perfect: a single word ends a siege, wins a throne, and delivers the answerer to the incest and patricide he believed he had outrun. <strong>To solve the riddle of man is to inherit man's whole fate.</strong></p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-ks</span>
-        <span class="phoneme-desc">Voiceless velar stop [k] plus voiceless sibilant [s], the standard ending.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Egypt</span>
+          <h3 class="myth-title">The Older Guardian of Giza</h3>
+          <p class="myth-text">The Greek sphinx did not invent its own body. For more than two thousand years before the Theban monster was conceived, Egypt carved the <strong>androsphinx</strong> — lion's body, king's head — to guard temples, tombs, and processional ways; the Great Sphinx at Giza, cut from the living rock beside Khafre's pyramid around 2500 BCE, is the supreme survivor of that tradition, and Herodotus (2.175) saw sphinxes still standing in the sanctuaries of Egypt. But the Egyptian sphinx asks no riddles and strangles no one: it is royal power at rest, vigilance made monumental, the king as sun-guardian at the horizon. What the Greeks did was fuse that hieratic form to a characteristically Greek terror — the lethal question, the exam at the threshold — and the fusion proved unforgettable. The borrowed body shows how freely the Greeks looted older cultures for monsters; the invented voice shows what they added. <strong>Egypt made the sphinx a wall; Greece made it an interrogator.</strong></p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'SFINGKS' — aspirate the 'p' as you release it, stress the first syllable, and end with a sharp 'ks'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Σφίγξ (Sphíngks), 'the strangling one'.</li><li><strong>Egyptian</strong> The Great Sphinx at Giza, a guardian lion with human head, predates the Greek myth by millennia.</li><li><strong>Modern</strong> The word 'sphinx' has become a synonym for any enigma or riddling presence.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The PUNICODEX form Sphigx restores the Greek consonant cluster γξ as gx, matching the scholarly transliteration of Σφίγξ. The more common English spelling 'Sphinx' flattens the gamma to n; the Sphigx form keeps the etymological strangling cluster visible.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -384,88 +286,69 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Riddling Monster</h2>
             <p class="section-subtitle">Guardian, Strangler, and Threshold Terror</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">The Sphinx is the <strong>winged lion-woman who crouched outside Thebes and strangled those who could not answer her riddle</strong>. She is not merely a monster but a guardian of thresholds: the creature who bars entry until the traveller proves worthy of understanding.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">The Sphinx is the <strong>winged lion-woman who crouched outside Thebes and strangled those who could not answer her riddle</strong>. She is not merely a monster but a guardian of thresholds: the creature who bars the road until the traveller proves worthy of understanding — and who destroys those who cannot name what they are.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C20 8 12 18 12 32C12 46 20 56 32 56C44 56 52 46 52 32C52 18 44 8 32 8Z"></path></svg></div>
         <h4 class="domain-name">Guardian of Thebes</h4>
-        <p class="domain-desc">She perched on a cliff and posed a riddle to every traveller.</p>
+        <p class="domain-desc">Sent by Hera, she perched on Mount Phicium and posed her riddle to every traveller on the road (Apollodorus 3.5.8).</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 16L24 24L16 32M48 16L40 24L48 32M32 8V56"></path></svg></div>
         <h4 class="domain-name">The Riddle</h4>
-        <p class="domain-desc">'What walks on four feet in the morning, two at noon, and three in the evening?'</p>
+        <p class="domain-desc">'What walks on four feet in the morning, two at noon, and three in the evening?' — a compressed life of man.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L40 28H56L44 40L48 56L32 48L16 56L20 40L8 28H24L32 8Z"></path></svg></div>
         <h4 class="domain-name">Strangler</h4>
-        <p class="domain-desc">Her name means 'the strangling one'; she killed all who failed.</p>
+        <p class="domain-desc">Her name means 'the strangling one'; all who failed the riddle she seized and devoured.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 32H56M32 8V56"></path></svg></div>
         <h4 class="domain-name">Defeated by Oedipus</h4>
-        <p class="domain-desc"><a href="/oidipous/" class="crosslink" data-crosslink="oidipous">Oedipus</a> answered 'man'; she leaped to her death in shame.</p>
+        <p class="domain-desc">Oedipus answered 'man'; in fury or shame she threw herself from the rock (Apollodorus 3.5.8; Hyginus, Fab. 67).</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">Lion's body</span>
-        <span class="symbol-meaning">Royal power and the dangerous strength of the threshold guardian.</span>
+        <span class="symbol-meaning">Royal power and the dangerous strength of the threshold guardian — the Egyptian form the Greeks borrowed</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Wings</span>
-        <span class="symbol-meaning">The aerial, predatory nature of the creature; she strikes from above.</span>
+        <span class="symbol-meaning">The aerial, predatory nature of the creature; she strikes from above like a bird of prey</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Woman's head</span>
-        <span class="symbol-meaning">Intelligence and speech, the source of the deadly riddle.</span>
+        <span class="symbol-meaning">Intelligence and speech — the source of the deadly riddle; the human face is what makes her question articulate</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Cliff or gate</span>
-        <span class="symbol-meaning">The liminal place between safety and destruction.</span>
+        <span class="symbol-name">Cliff at the crossroads</span>
+        <span class="symbol-meaning">The liminal place between cities, between ignorance and knowledge, between life and death</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Sphínx</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Sphínx lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">The Greek Sphinx is a daughter of monstrous parents, sent by <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a> to punish Thebes. Her story is inseparable from the tragedy of Oedipus.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Genealogy</span>
-          <h3 class="myth-title">Child of Echidna and Typhon</h3>
-          <p class="myth-text">The Sphinx was born from Echidna, the half-woman half-serpent, and <a href="/typhon/" class="crosslink" data-crosslink="typhon">Typhon</a>, the storm-giant who once challenged <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>. Her siblings included <a href="/cerberus/" class="crosslink" data-crosslink="cerberus">Cerberus</a>, the <a href="/hydra/" class="crosslink" data-crosslink="hydra">Hydra</a>, and the Nemean Lion. She inherited her mother's hybrid form and her father's destructive temper, a perfect engine of ordeal.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">Words Descended from This Name</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/everyday/#sphinx" class="source-badge" title="an enigma; the riddler">sphinx</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Theban</span>
-          <h3 class="myth-title">The Riddle of the Sphinx</h3>
-          <p class="myth-text">Sent by Hera to ravage Thebes after the city's guilt, the Sphinx settled on Mount Phicium and stopped travellers with her riddle. Those who failed she seized and devoured. Thebes was paralysed until Oedipus, the exile from Corinth, approached and answered correctly. The Sphinx, defeated by human intelligence, threw herself from the cliff.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Egyptian</span>
-          <h3 class="myth-title">The Great Sphinx of Giza</h3>
-          <p class="myth-text">The Greek sphinx owes part of its form to Egypt, where colossal lion-bodied statues with royal human heads guarded temples and tombs for more than two thousand years before the Theban monster was conceived. The name was borrowed, but the riddle and the strangling are Greek inventions.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -473,7 +356,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -537,23 +420,153 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Sphínx lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">Words Descended from This Name</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/everyday/#sphinx" class="source-badge" title="an enigma; the riddler">sphinx</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Σφίγξ</p>
+                <p class="card-body">The name in its original Greek form. <strong>Sphínx</strong> (Σφίγξ) is attested in the source tradition — “Strangler”. Its aspirated consonants and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">sphinx</p>
+                <p class="card-body">Reduced to plain <strong>sphinx</strong>, the name loses everything that made it specific: aspirated consonants and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Sphínx</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Sphínx</strong> restores aspirated consonants and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Sphínx.com → xn--sphnx-1sa.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Sphínx</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Sphínx</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Sphínx</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Sphínx</p>
+                    <p class="card-body">Restores <strong>Σφίγξ</strong>. The live temple domain — <strong>sphínx.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">sphinx</p>
+                    <p class="card-body">Flattens <strong>Σφίγξ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Sphínx was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/spʰíŋks/</span>
+            <span class="ipa-label">Ancient Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Sph-</span>
+        <span class="phoneme-desc">Aspirated cluster [spʰ]: voiceless sibilant plus aspirated stop.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-i-</span>
+        <span class="phoneme-desc">Short close front vowel [i], stressed in the Greek form.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ng-</span>
+        <span class="phoneme-desc">Velar nasal [ŋ] before the final stop.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-ks</span>
+        <span class="phoneme-desc">Voiceless velar stop [k] plus voiceless sibilant [s], the standard ending.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'SFINGKS' — aspirate the 'p' as you release it, stress the first syllable, and end with a sharp 'ks'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Sphínx is Tier 2: the restoration preserves exactly one feature ASCII loses — the acute on the stressed ί. English 'Sphinx' flattens the pitched accent; it does not, as older notes claimed, alter the consonant cluster, which the Latin transcription already writes 'nx'. The Egyptian sphinx, though visually related, is a separate cultural entity with its own name and history.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Sphínx is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Σφίγξ</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Sphínx is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -563,7 +576,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">The Sphinx does not ask for strength or beauty; she asks for understanding. Her riddle is not a trick but a compressed account of human life: four legs, two legs, three legs. To answer is to accept mortality. Oedipus answers and so enters Thebes—and into the very fate he thought he had escaped.</p>
+                <p class="pantheon-body">The Sphinx does not ask for strength or beauty; she asks for understanding. Her riddle is not a trick but a compressed account of human life: four legs, two legs, three legs. To answer is to accept mortality — to name the creature that limps, ages, and leans. Oedipus answers and so enters Thebes, and enters at the same moment the fate he thought he had escaped.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -572,7 +585,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/sphinx_mascot.webp" type="image/webp"><img src="../assets/sphinx_mascot.png" alt="Sphínx mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/sphinx_mascot.webp" type="image/webp"><img src="../assets/sphinx_mascot.png" alt="Sphínx mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -610,7 +623,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/sphinx_logomark.webp" type="image/webp"><img src="../assets/sphinx_logomark.webp" alt="Sphínx logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/sphinx_logomark.webp" type="image/webp"><img src="../assets/sphinx_logomark.webp" alt="Sphínx logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

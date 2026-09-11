@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Pḗgasos — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Πήγασος</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Pḗgasos.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,141 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Πήγασος</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Pḗgasos</strong> (Πήγασος) is attested in the source tradition — “Possibly from πηγή (spring) or a pre-Greek name”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">pegasos</p>
-                    <p class="card-body">Reduced to plain <strong>pegasos</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Pḗgasos</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Pḗgasos</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Pḗgasos.com → xn--pgasos-bk7b.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Pḗgasos</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Pḗgasos</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Pḗgasos is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Πήγασος</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Pḗgasos is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Pḗgasos</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Pḗgasos</p>
-                    <p class="card-body">Restores <strong>Πήγασος</strong>. The live temple domain — <strong>pḗgasos.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Scholarly Convention</h3>
-                    <p class="card-unicode">Pēgasos</p>
-                    <p class="card-body">Restores <strong>Πήγασος</strong>. LSJ convention: length only, no stress mark.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">pegasos</p>
-                    <p class="card-body">Flattens <strong>Πήγασος</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Pḗgasos was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Pḗgasos</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/pɛ̌ː.ɡa.sos/</span>
-            <span class="ipa-label">Attic Greek</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">PAY-ga-sos, with the stacked macron+acute on the first ē.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Πήγασος</li><li><strong>Latin</strong> Pegasus</li><li><strong>Owned form</strong> Pḗgasos</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Pḗgasos bears a name that is probably not Greek at all: scholars connect it to the Luwian storm god pihassas, carried into Greek myth through Anatolian contact. The folk etymology from πηγή, "spring," was already popular in antiquity — the horse who stamps springs from the rock. Attic inscriptions spell the name with the long ē of the first syllable — the quantity the restoration keeps.</p></div>
+      <p class="lead-text">Pḗgasos is the bridge-figure of Greek myth: born in a monster story, ridden in a hero story, employed in a god story — three genres, one horse.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Birth</span>
+          <h3 class="myth-title">Out of the Gorgon</h3>
+          <p class="myth-text">Hesiod tells it in six lines (<a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 281–286): when <a href="/perseus/" class="crosslink" data-crosslink="perseus">Perseus</a> cut the head from <a href="/medousa/" class="crosslink" data-crosslink="medousa">Médousa</a>, out sprang great Pḗgasos and the golden-sworded Chrysaōr — her children by Poseidṓn. The horse flew to the "immortal ones," and Hesiod already knows his office: "he lives in the halls of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a>, carrying thunder and lightning for the counsellor."</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Bridle</span>
+          <h3 class="myth-title">Bellerophōn's Gift</h3>
+          <p class="myth-text">The hero <a href="/bellerophon/" class="crosslink" data-crosslink="bellerophon">Bellerophōn</a>, sent to Lykia with a letter demanding his own death, was ordered to kill the <a href="/chimaira/" class="crosslink" data-crosslink="chimaira">Chimaira</a>. Píndar sings (<em>Olympian</em> 13.63–92) how <a href="/athena/" class="crosslink" data-crosslink="athena">Athēnā</a> appeared with a golden bridle — "take this charm for the horse" — and how, sacrificing to Poseidṓn the horse-breaker, Bellerophōn caught Pḗgasos at the spring of Peirene and from the air slew the fire-breathing beast.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Fall</span>
+          <h3 class="myth-title">The Flight Too High</h3>
+          <p class="myth-text">Success bred the fatal wish: Bellerophōn tried to fly to <a href="/olympos/" class="crosslink" data-crosslink="olympos">Olympos</a> itself. Zeús sent a gadfly to sting the horse, and the rider fell back to earth to wander the Aleian plain alone — the <em>Iliad</em>'s model of hybris punished (Homer, <em>Iliad</em> 6.155–202) — while Pḗgasos continued upward to the stables of the gods.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Spring</span>
+          <h3 class="myth-title">The Fountain of the Horse</h3>
+          <p class="myth-text">On Helikṓn, mountain of the Muses (Pausanias 9.31.3), Pḗgasos struck the rock with his hoof and opened Hippocrene, the Horse's Spring, whose water makes poets. The image outlasted the cult: every later trope of inspiration — the struck rock, the flying horse, the intoxicating water — is his hoofprint.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -373,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Thunder-Horse</h2>
-            <p class="section-subtitle">Springs, Lightning, and the Flight to <a href="/olympos/" class="crosslink" data-crosslink="olympos">Olympos</a></p>
+            <p class="section-subtitle">Springs, Lightning, and the Flight to Olympos</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Pḗgasos springs from the severed neck of <a href="/medousa/" class="crosslink" data-crosslink="medousa">Médousa</a> at the moment of her death — beauty erupting from horror — and ends as the thunder-bearer of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> and a constellation. He is the only winged horse of Greek myth with a name, and his route runs from blood to stars.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Pḗgasos springs from the severed neck of Médousa at the moment of her death — beauty erupting from horror — and ends as the thunder-bearer of Zeús and a constellation. He is the only winged horse of Greek myth with a name, and his route runs from blood to stars.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M10 42C18 20 34 12 54 12C50 32 38 46 18 48L10 42ZM20 40C28 32 36 26 44 22"></path></svg></div>
@@ -393,7 +306,7 @@
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C28 20 20 26 20 38C20 48 25 56 32 56C39 56 44 48 44 38C44 26 36 20 32 8Z"></path></svg></div>
         <h4 class="domain-name">The Chimaira</h4>
-        <p class="domain-desc"><a href="/bellerophon/" class="crosslink" data-crosslink="bellerophon">Bellerophōn</a>'s fire-breathing foe, fought from the saddle of the flying horse.</p>
+        <p class="domain-desc">Bellerophōn's fire-breathing foe, fought from the saddle of the flying horse.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M36 4L20 36H30L26 60L44 26H34L36 4Z"></path></svg></div>
@@ -403,7 +316,7 @@
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">The golden bridle</span>
-        <span class="symbol-meaning"><a href="/athena/" class="crosslink" data-crosslink="athena">Athēnā</a>'s gift to Bellerophōn — divine technique mastering divine power</span>
+        <span class="symbol-meaning">Athēnā's gift to Bellerophōn — divine technique mastering divine power</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The hoof-print</span>
@@ -416,57 +329,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Pḗgasos</p>
-        </div>
-        
-      <p class="lead-text">Pḗgasos is the bridge-figure of Greek myth: born in a monster story, ridden in a hero story, employed in a god story — three genres, one horse.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Birth</span>
-          <h3 class="myth-title">Out of the Gorgon</h3>
-          <p class="myth-text">Hesiod tells it in four lines: when <a href="/perseus/" class="crosslink" data-crosslink="perseus">Perseus</a> cut the head from Médousa, out sprang great Pḗgasos and the warrior Chrysaōr — her children by Poseidṓn. The horse flew to the "immortal ones," and Hesiod already knows his office: "he lives in the halls of Zeús, carrying thunder and lightning for the counsellor."</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Bridle</span>
-          <h3 class="myth-title">Bellerophōn's Gift</h3>
-          <p class="myth-text">The hero Bellerophōn, sent to Lykia with a letter demanding his own death, was ordered to kill the <a href="/chimaira/" class="crosslink" data-crosslink="chimaira">Chimaira</a>. Píndar sings how Athēnā appeared with a golden bridle — "take this charm for the horse" — and how, sacrificing to Poseidṓn the horse-breaker, Bellerophōn caught Pḗgasos at the spring of Peirene and from the air slew the fire-breathing beast.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Fall</span>
-          <h3 class="myth-title">The Flight Too High</h3>
-          <p class="myth-text">Success bred the fatal wish: Bellerophōn tried to fly to Olympos itself. Zeús sent a gadfly to sting the horse, and the rider fell back to earth to wander the Aleian plain alone — Pindar's model of hybris punished — while Pḗgasos continued upward to the stables of the gods.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Spring</span>
-          <h3 class="myth-title">The Fountain of the Horse</h3>
-          <p class="myth-text">On Helikṓn, mountain of the Muses, Pḗgasos struck the rock with his hoof and opened Hippocrene, the Horse's Spring, whose water makes poets. The image outlasted the cult: every later trope of inspiration — the struck rock, the flying horse, the intoxicating water — is his hoofprint.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -530,8 +400,155 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Πήγασος</p>
+                <p class="card-body">The name in its original Greek form. <strong>Pḗgasos</strong> (Πήγασος) is attested in the source tradition — “Possibly from πηγή (spring) or a pre-Greek name”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">pegasos</p>
+                <p class="card-body">Reduced to plain <strong>pegasos</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Pḗgasos</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Pḗgasos</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Pḗgasos.com → xn--pgasos-bk7b.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Pḗgasos</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Pḗgasos</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Pḗgasos</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Pḗgasos</p>
+                    <p class="card-body">Restores <strong>Πήγασος</strong>. The live temple domain — <strong>pḗgasos.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Scholarly Convention</h3>
+                    <p class="card-unicode">Pēgasos</p>
+                    <p class="card-body">Restores <strong>Πήγασος</strong>. LSJ convention: length only, no stress mark.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">pegasos</p>
+                    <p class="card-body">Flattens <strong>Πήγασος</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Pḗgasos was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/pɛ̌ː.ɡa.sos/</span>
+            <span class="ipa-label">Attic Greek</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Pḗ-</span>
+        <span class="phoneme-desc">Long epsilon (eta) carrying the acute: the pitched, drawn-out opening of the name.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ga-</span>
+        <span class="phoneme-desc">Voiced velar stop [ɡ] plus short alpha — the light middle of the compound.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-sos</span>
+        <span class="phoneme-desc">Voiceless sibilant and short omicron-sigma close: the name lands twice on the same soft hiss.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">PAY-ga-sos, with the stacked macron+acute on the first ē.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Pḗgasos bears a name that is probably not Greek at all: scholars connect it to the Luwian storm god pihassas, carried into Greek myth through Anatolian contact. The folk etymology from πηγή, "spring," was already popular in antiquity — the horse who stamps springs from the rock. Attic inscriptions spell the name with the long ē of the first syllable — the quantity the restoration keeps.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Pḗgasos is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Πήγασος</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Pḗgasos is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -549,7 +566,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/pegasos_mascot.webp" type="image/webp"><img src="../assets/pegasos_mascot.png" alt="Pḗgasos mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/pegasos_mascot.webp" type="image/webp"><img src="../assets/pegasos_mascot.png" alt="Pḗgasos mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -587,7 +604,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/pegasos_logomark.webp" type="image/webp"><img src="../assets/pegasos_logomark.webp" alt="Pḗgasos logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/pegasos_logomark.webp" type="image/webp"><img src="../assets/pegasos_logomark.webp" alt="Pḗgasos logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

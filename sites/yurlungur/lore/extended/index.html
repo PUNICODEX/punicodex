@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Yurlungur, Copper Snake, Initiator. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/yurlungur/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Yurlungur?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Yurlungur is /ˈjʊəlʊŋɡʊə/ — approximately 'YUR-lun-gur' — three level syllables, with the first syllable receiving a light stress. Keep the 'r' soft; this is an anglicized scholarly rendering of a Yolŋu name."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Yurlungur mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yurlungur means The great copper snake in the aboriginal tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Yurlungur?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yurlungur is associated with Copper python (The living form of Yurlungur himself; the snake that is both ancestor and law), Rainbow (The celestial trace of the serpent moving between waterhole and sky; sign of rain and potency), Waterhole (The dwelling place of the great snake and the portal through which novices pass), Bullroarer (The sacred voice of the serpent heard during initiation; its sound must not be heard by women or uninitiated), White ochre (The clay with which initiates and ritual objects are painted; the mark of transformation)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Yurlungur in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yurlungur is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Yurlungur?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Swallowing of Wawi” — The central Yurlungur myth is an initiation narrative: a boy breaks a food prohibition, is swallowed by the great copper python, and is restored to his kin only after the correct ritual response. In that single event the whole logic of Yolŋu male initiation — death to childhood, passage through the ancestor's body, rebirth as a man — is enacted for the first time. The early ethnographies differ in detail, even in the serpent's gender; the myths below follow the common structure. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/yurlungur_logolockup.webp" type="image/webp"><img src="../../assets/yurlungur_logolockup.png" alt="Yurlungur" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Yurlungur</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Yurlungur</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/yurlungur_mascot.webp" type="image/webp"><img src="../../assets/yurlungur_mascot.png" alt="Yurlungur — Copper Snake, Initiator" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/yurlungur_mascot.webp" type="image/webp"><img src="../../assets/yurlungur_mascot.png" alt="Yurlungur — Copper Snake, Initiator" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Yurlungur</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The ideal form would preserve Yolŋu retroflex or postalveolar phonemes, but these are not registrable in the DNS root zone. PuniCodex therefore records the conventional English scholarly spelling **Yurlungur** with initial capitalization. The name is Tier 2: the restoration capitalizes the proper noun but does not add a diacritic or distinctive letter that the ASCII form lacks, because the Aboriginal source is transmitted orally and is conventionally romanized without special marks.</p>
+                <p class="etymology-note">The name <strong>Yurlungur</strong> reaches the modern world through scholarly transliteration of the aboriginal tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">Y</td><td><code>U+0059</code></td><td>Latin Capital Letter Y</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="560"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="640"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Yurlungur</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Yurlungur</strong> is the great copper python of the Yolŋu peoples of northeast Arnhem Land — a Rainbow Serpent whose swallowing of the boy Wawi at the first circumcision became the template for male initiation across the Murngin world. He is not merely a monster; he is the law itself, the waterhole guardian, and the ancestor who transforms boys into men.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Yurlungur in Later Traditions</h3><p class="cultural-card-body">Yurlungur is best understood within the Yolŋu moieties (<em>Dhuwa</em> and <em>Yirritja</em>) and the clan-specific song cycles (<em>manikay</em>) that map his journeys between waterholes. He is not a universal Aboriginal god but a regional ancestor whose story is owned and transmitted by particular Yolŋu lineages. Comparative anthropologists have grouped him with Rainbow Serpent figures across the continent, yet Yolŋu custodians emphasize the local specificity of his name, sites, and ritual obligations. In modern discourse he appears in Indigenous land-rights testimony, in museum interpretations of Arnhem Land art, and in scholarly discussions of Aboriginal religion and environmental knowledge.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Yurlungur remains a living ancestor for Yolŋu peoples. His story is performed in initiation, painted in bark paintings and on bodies, and invoked in claims to country and water. Anthropologists from Warner and the Berndts onward have used the Murngin material as a classic case study in Australian Aboriginal religion, kinship, and ritual. In wider Australian culture, the Rainbow Serpent — including figures such as Yurlungur — has become an emblem of Indigenous ecological knowledge and the deep connection between sacred law and the care of water. Contemporary Yolŋu artists continue to depict the great copper python, and his name is cited in discussions of cultural heritage, repatriation, and Indigenous intellectual property.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Yurlungur</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Yurlungur in Later Traditions</h3><p class="cultural-card-body">Yurlungur is best understood within the Yolŋu moieties (<em>Dhuwa</em> and <em>Yirritja</em>) and the clan-specific song cycles (<em>manikay</em>) that map his journeys between waterholes. He is not a universal Aboriginal god but a regional ancestor whose story is owned and transmitted by particular Yolŋu lineages. Comparative anthropologists have grouped him with Rainbow Serpent figures across the continent, yet Yolŋu custodians emphasize the local specificity of his name, sites, and ritual obligations; even the written sources disagree, Warner's Murngin python Julunggul being male and Berndt's Kunapipi snake Yulunggur female. In modern discourse he appears in Indigenous land-rights testimony, in museum interpretations of Arnhem Land art, and in scholarly discussions of Aboriginal religion and environmental knowledge.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Yurlungur remains a living ancestor for Yolŋu peoples. His story is performed in initiation, painted in bark paintings and on bodies, and invoked in claims to country and water. Anthropologists from Warner and the Berndts onward have used the Murngin material as a classic case study in Australian Aboriginal religion, kinship, and ritual. In wider Australian culture, the Rainbow Serpent — including figures such as Yurlungur — has become an emblem of Indigenous ecological knowledge and the deep connection between sacred law and the care of water. Contemporary Yolŋu artists continue to depict the great copper python, and his name is cited in discussions of cultural heritage, repatriation, and Indigenous intellectual property.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The material evidence for Yurlungur is held in Yolŋu ceremonial objects, rock art, and sacred sites rather than in excavated strata. Bark paintings from northeast Arnhem Land depict the Rainbow Serpent and the initiation complex; notable collections are held by the Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS), the National Museum of Australia, and the Museum and Art Gallery of the Northern Territory. The waterholes identified as Yurlungur's dwelling remain active sacred sites, and access to them is governed by Yolŋu customary law. Archaeological research in the region has documented long-term Aboriginal occupation of the Arnhem Land plateau and adjacent coastal plains, providing the environmental context within which the Yurlungur narratives are embedded.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Yurlungur means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Yurlungur asks us to think about transformation as something that happens through the body of an ancestor rather than through individual will. The boy does not choose to be swallowed; the law chooses him. He does not engineer his own rebirth; his mother's grief, the snake's response, and the community's ritual competence restore him. Initiation is therefore not a personal achievement but a social event: the whole kinship system must hold for one person to change.</p><p>In a world that prizes autonomy, Yurlungur offers a counter-image of becoming. To become a man is to be eaten by the law, to lose the name one had as a child, and to be returned with obligations one did not choose. The snake is frightening not because he is cruel but because he is impersonal: he enforces the taboo whether the boy understands it or not. Yet he is also the guardian of water, the bringer of rain, and the ancestor who makes the country habitable. His fierceness and his generosity are the same thing.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Yurlungur, Copper Snake, Initiator, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Yurlungur?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Yurlungur</strong> is /ˈjʊəlʊŋɡʊə/ — approximately 'YUR-lun-gur' — three level syllables, with the first syllable receiving a light stress. Keep the 'r' soft; this is an anglicized scholarly rendering of a Yolŋu name..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Yurlungur mean?</summary><div class="faq-answer"><p><strong>Yurlungur</strong> means <strong>The great copper snake</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Yurlungur?</summary><div class="faq-answer"><p>Yurlungur is associated with <strong>Copper python</strong> (The living form of Yurlungur himself; the snake that is both ancestor and law), <strong>Rainbow</strong> (The celestial trace of the serpent moving between waterhole and sky; sign of rain and potency), <strong>Waterhole</strong> (The dwelling place of the great snake and the portal through which novices pass), <strong>Bullroarer</strong> (The sacred voice of the serpent heard during initiation; its sound must not be heard by women or uninitiated), <strong>White ochre</strong> (The clay with which initiates and ritual objects are painted; the mark of transformation).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Yurlungur in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>yurlungur</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Yurlungur?</summary><div class="faq-answer"><p>At the first borum (circumcision) ceremony, the boy Wawi ate food that had been forbidden to him. The great copper snake Yurlungur rose from his waterhole and swallowed the boy whole. The other ancestors were dismayed; the boy's mother followed his tracks to the waterhole and wept. Moved — or perhaps shamed — by her grief, Yurlungur vomited the boy out, alive but transformed. From that day the pattern was set: every novice must enter the ancestral body and emerge again.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Yurlungur?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Yurlungur</strong> is /ˈjʊəlʊŋɡʊə/ — approximately 'YUR-lun-gur' — three level syllables, with the first syllable receiving a light stress. Keep the 'r' soft; this is an anglicized scholarly rendering of a Yolŋu name.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Yurlungur mean?</summary><div class="faq-answer"><p><strong>Yurlungur</strong> means <strong>The great copper snake</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Yurlungur?</summary><div class="faq-answer"><p>Yurlungur is associated with <strong>Copper python</strong> (The living form of Yurlungur himself; the snake that is both ancestor and law), <strong>Rainbow</strong> (The celestial trace of the serpent moving between waterhole and sky; sign of rain and potency), <strong>Waterhole</strong> (The dwelling place of the great snake and the portal through which novices pass), <strong>Bullroarer</strong> (The sacred voice of the serpent heard during initiation; its sound must not be heard by women or uninitiated), <strong>White ochre</strong> (The clay with which initiates and ritual objects are painted; the mark of transformation).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Yurlungur in Unicode?</summary><div class="faq-answer"><p><strong>Yurlungur</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Yurlungur?</summary><div class="faq-answer"><p>“The Swallowing of Wawi” — The central Yurlungur myth is an initiation narrative: a boy breaks a food prohibition, is swallowed by the great copper python, and is restored to his kin only after the correct ritual response. In that single event the whole logic of Yolŋu male initiation — death to childhood, passage through the ancestor's body, rebirth as a man — is enacted for the first time. The early ethnographies differ in detail, even in the serpent's gender; the myths below follow the common structure. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,13 +360,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Yurlungur and related cults.</cite></li><li><cite>The material evidence for Yurlungur is held in Yolŋu ceremonial objects, rock art, and sacred sites rather than in excavated strata. Bark paintings from northeast Arnhem Land depict the Rainbow Serpent and the initiation complex; notable collections are held by the Australian Institute of Aboriginal and Torres Strait Islander Studies (AIATSIS), the National Museum of Australia, and the Museum and Art Gallery of the Northern Territory. The waterholes identified as Yurlungur's dwelling remain active sacred sites, and access to them is governed by Yolŋu customary law. Archaeological research in the region has documented long-term Aboriginal occupation of the Arnhem Land plateau and adjacent coastal plains, providing the environmental context within which the Yurlungur narratives are embedded.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Yurlungur and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>AIATSIS</cite></li><li><cite>Berndt</cite></li><li><cite>Warner, W. Lloyd, A Black Civilization: A Social Study of an Australian Tribe</cite></li><li><cite>Berndt, R. M. and C. H. Berndt, The World of the First Australians</cite></li><li><cite>Elkin, A. P., Aboriginal Men of High Degree</cite></li><li><cite>Berndt, R. M., Kunapipi: A Study of an Australian Aboriginal Cult</cite></li></ul>
+                    <ul class="source-list"><li><cite>Warner, W. Lloyd, A Black Civilization: A Social Study of an Australian Tribe (1937)</cite></li><li><cite>Berndt, R. M., Kunapipi: A Study of an Australian Aboriginal Cult (1951)</cite></li><li><cite>Berndt, R. M. and C. H. Berndt, The World of the First Australians (1964)</cite></li><li><cite>Elkin, A. P., Aboriginal Men of High Degree (1945)</cite></li><li><cite>Morphy, Howard, Ancestral Connections: Art and an Aboriginal System of Knowledge (1991)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/yurlungur_logomark.webp" type="image/webp"><img src="../../assets/yurlungur_logomark.webp" alt="Yurlungur logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/yurlungur_logomark.webp" type="image/webp"><img src="../../assets/yurlungur_logomark.webp" alt="Yurlungur logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

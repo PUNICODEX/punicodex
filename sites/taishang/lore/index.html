@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Tàishàng — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">太上</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Tàishàng.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,144 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">太上</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Tàishàng</strong> (太上) is attested in the source tradition — “Supreme, great”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">taishang</p>
-                    <p class="card-body">Reduced to plain <strong>taishang</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Tàishàng</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tàishàng</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Tàishàng.com → xn--tishng-itad.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Tàishàng</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tàishàng</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Tàishàng is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">太上</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Tàishàng is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tàishàng</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Tàishàng</p>
-                    <p class="card-body">Restores <strong>太上</strong>. The live temple domain — <strong>tàishàng.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">taishang</p>
-                    <p class="card-body">Flattens <strong>太上</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Tàishàng was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Tàishàng</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/tʰaɪ̯˥˩ ʂɑŋ˥˩/</span>
-            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">tài</span>
-        <span class="phoneme-desc">Aspirated alveolar stop [tʰ], diphthong [aɪ̯], and Tone 4 (falling, ˥˩). Pinyin 't' before front vowels is aspirated [tʰ].</span>
+      <p class="lead-text">Tàishàng's mythology moves between history and cosmology: the shadowy philosopher <a href="/laozi/" class="crosslink" data-crosslink="laozi">Laozi</a> becomes the celestial teacher who reveals the Dao to emperors, hermits, and alchemists.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hagiography</span>
+          <h3 class="myth-title">Laozi Leaves the Pass</h3>
+          <p class="myth-text">Sima Qian's biography (Shiji, ch. 63) makes Laozi keeper of the royal archives of Zhou, a man so deep that even <a href="/kongzi/" class="crosslink" data-crosslink="kongzi">Confucius</a> sought him out and came away comparing him to a dragon. Weary of the failing dynasty, he rode west on a black ox. At the Hangu Pass the guard Yīn Xī, who had studied the stars and seen a purple vapor rising, recognized the sage and asked for a teaching. Laozi wrote two books of five thousand characters — what became the <em>Dàodéjīng</em> — then passed beyond the pass and out of history. Later Daoism transformed the departure into an ascension: Laozi became Tàishàng <a href="/laojun/" class="crosslink" data-crosslink="laojun">Lǎojūn</a>, the supreme immortal, the passage at the pass re-read as the moment the hidden Dao consented, once, to be written down. The myth teaches that the supreme teaching arrives only as a leave-taking — the book exists because the sage refused to stay and explain it.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">shàng</span>
-        <span class="phoneme-desc">Voiceless retroflex fricative [ʂ], close back unrounded vowel [ɨ] in the syllable rhyme, and Tone 4 (falling). Mandarin 'sh' is never English 'sh'.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Revelation</span>
+          <h3 class="myth-title">The Conversion of the Barbarians</h3>
+          <p class="myth-text">Medieval Daoist apocrypha claimed that Tàishàng Lǎojūn travelled west after leaving the pass and, finding the barbarians of India unreceptive to his teaching, transformed himself into the Buddha in order to convert them — the doctrine of the <em>Huáhú jīng</em>, the Classic of the Conversion of the Barbarians, which circulated from at least the third century CE. The claim was polemic, not history: it subordinated Buddhism, then flooding into China, by making its founder a mere avatar of Laozi, and it provoked angry Buddhist counter-pamphlets and several imperial suppressions of the text. Tendencies and all, the myth reveals the prestige Tàishàng held in medieval China — great enough that the only way to outrank a foreign saviour was to absorb him, and confident enough to say so in writing.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cosmology</span>
+          <h3 class="myth-title">One of the Three Pure Ones</h3>
+          <p class="myth-text">In formal Daoist theology, developed from the fifth century onward, the Three Pure Ones (Sānqīng) personify the three stages of cosmic emanation and preside over the three highest heavens. YUánshǐ Tiānzūn personifies the Dao in its absolute origin; <a href="/lingbao/" class="crosslink" data-crosslink="lingbao">Língbǎo</a> Tiānzūn the Dao as revealed scripture; Tàishàng Lǎojūn the third — the manifested Dao, the teacher who brings the formless principle into human language. The triad gave every Daoist temple its ceiling and its hierarchy, with Laozi's divinized form enthroned as the compassionate face of the otherwise unfaceable ultimate. He is not a creator god in the Western sense: he is the origin that cannot be named, consenting to be named — the silence of the Dàodéjīng given a beard, a gourd, and a throne.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Jiu Tangshu</span>
+          <h3 class="myth-title">The Ancestor of the Tang</h3>
+          <p class="myth-text">In 666 CE the Tang emperor Gaozong honoured Laozi with the title Tàishàng Xuányuán <a href="/huangdi/" class="crosslink" data-crosslink="huangdi">Huángdì</a> — Supreme Mysterious Origin Emperor — and the Li royal house, which shared the sage's surname, proclaimed him its divine ancestor. A century later Emperor Xuanzong, the dynasty's great patron of Daoism, canonized the <em>Dàodéjīng</em> for the civil examinations and reported dreams of Laozi promising the dynasty's fortune (Jiu Tangshu, treatise on the Laozi cult; Sima Guang, Zizhi Tongjian). Politics and piety converged: the most exalted title in the imperial vocabulary, Tàishàng, became the sage's official rank. The episode marks the completion of the deification — from a border guard's teacher to the celestial ancestor of the empire, his five thousand characters shelved beside the classics of state.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">TIE-SHUHNG — 'tai' like 'tie' with a sharp falling tone, 'shang' with a retroflex 'sh' and a falling tone.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Traditional</strong> 太上</li><li><strong>Full title</strong> 太上老君 Tàishàng <a href="/laojun/" class="crosslink" data-crosslink="laojun">Lǎojūn</a>, the deified <a href="/laozi/" class="crosslink" data-crosslink="laozi">Laozi</a> and Lord of the Dao.</li><li><strong>Wade-Giles</strong> t'ai⁴-shang⁴</li><li><strong>Related terms</strong> 道教 Dàojiào (Daoism); 三清 Sānqīng (Three Pure Ones)</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">太上 means 'Supreme, Most Exalted.' In Daoist theology it is the title of the deified Laozi as Tàishàng Lǎojūn, one of the Sānqīng (Three Pure Ones). The Pinyin restoration Tàishàng preserves both citation tones.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -376,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Supreme Lord</h2>
             <p class="section-subtitle">Dao, Deification of Laozi, and Celestial Authority</p>
         </div>
@@ -423,49 +333,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Tàishàng</p>
-        </div>
-        
-      <p class="lead-text">Tàishàng's mythology moves between history and cosmology: the shadowy philosopher Laozi becomes the celestial teacher who reveals the Dao to emperors, hermits, and alchemists.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hagiography</span>
-          <h3 class="myth-title">Laozi Leaves the Pass</h3>
-          <p class="myth-text">According to tradition, Laozi grew weary of the Zhou court and rode west on a black ox. At the Hangu Pass the guard Yīn Xī recognised him and asked for a teaching. Laozi wrote the five thousand characters of the <em>Dàodéjīng</em>, then disappeared into the west. Later Daoism transformed this departure into an ascension: Laozi became Tàishàng Lǎojūn, the supreme immortal.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Revelation</span>
-          <h3 class="myth-title">The Conversion of the Barbarians</h3>
-          <p class="myth-text">Medieval Daoist apocrypha claimed that Tàishàng Lǎojūn travelled west and transformed himself into the Buddha in order to convert the barbarians. The myth was a polemical attempt to place Daoism above Buddhism by making the Buddha a manifestation of Laozi. Though historically tendentious, it reveals the prestige Tàishàng held in medieval Chinese religion.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Cosmology</span>
-          <h3 class="myth-title">One of the Three Pure Ones</h3>
-          <p class="myth-text">In formal Daoist theology, the Three Pure Ones (Sānqīng) personify the three stages of cosmic emanation. Tàishàng Lǎojūn corresponds to the third, the manifested Dao, the teacher who brings the formless principle into human language. Above him are YUánshǐ Tiānzūn and <a href="/lingbao/" class="crosslink" data-crosslink="lingbao">Língbǎo</a> Tiānzūn, the even more primordial personifications of the Dao itself.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -529,8 +404,146 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">太上</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Tàishàng</strong> (太上) is attested in the source tradition — “Supreme, great”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">taishang</p>
+                <p class="card-body">Reduced to plain <strong>taishang</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Tàishàng</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tàishàng</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Tàishàng.com → xn--tishng-itad.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Tàishàng</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tàishàng</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tàishàng</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Tàishàng</p>
+                    <p class="card-body">Restores <strong>太上</strong>. The live temple domain — <strong>tàishàng.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">taishang</p>
+                    <p class="card-body">Flattens <strong>太上</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Tàishàng was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/tʰaɪ̯˥˩ ʂɑŋ˥˩/</span>
+            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">tài</span>
+        <span class="phoneme-desc">Aspirated alveolar stop [tʰ], diphthong [aɪ̯], and Tone 4 (falling, ˥˩). Pinyin 't' before front vowels is aspirated [tʰ].</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">shàng</span>
+        <span class="phoneme-desc">Voiceless retroflex fricative [ʂ], close back unrounded vowel [ɨ] in the syllable rhyme, and Tone 4 (falling). Mandarin 'sh' is never English 'sh'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">TIE-SHUHNG — 'tai' like 'tie' with a sharp falling tone, 'shang' with a retroflex 'sh' and a falling tone.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">太上 means 'Supreme, Most Exalted.' In Daoist theology it is the title of the deified Laozi as Tàishàng Lǎojūn, one of the Sānqīng (Three Pure Ones). The Pinyin restoration Tàishàng preserves both citation tones.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Tàishàng is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">太上</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Tàishàng is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -548,7 +561,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/taishang_mascot.webp" type="image/webp"><img src="../assets/taishang_mascot.png" alt="Tàishàng mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/taishang_mascot.webp" type="image/webp"><img src="../assets/taishang_mascot.png" alt="Tàishàng mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -586,7 +599,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/taishang_logomark.webp" type="image/webp"><img src="../assets/taishang_logomark.webp" alt="Tàishàng logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/taishang_logomark.webp" type="image/webp"><img src="../assets/taishang_logomark.webp" alt="Tàishàng logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Guāndì — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">關帝</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Guāndì.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">關帝</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Guāndì</strong> (關帝) is attested in the source tradition — “"Emperor Guan" — the deified general Guān Yǔ, god of war, loyalty, and righteousness”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">guandi</p>
-                    <p class="card-body">Reduced to plain <strong>guandi</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Guāndì</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Guāndì</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Guāndì.com → xn--gund-tpa7j.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Guāndì</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Guāndì</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Guāndì is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">關帝</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Guāndì is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Guāndì</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Guāndì</p>
-                    <p class="card-body">Restores <strong>關帝</strong>. The live temple domain — <strong>guāndì.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">guandi</p>
-                    <p class="card-body">Flattens <strong>關帝</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Guāndì was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Guāndì</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/kwán.tî/</span>
-            <span class="ipa-label">Standard Mandarin</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">gwahn-DEE — level tone, then a firm falling tone.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Chinese</strong> 關帝</li><li><strong>His name</strong> Guān Yǔ 關羽</li><li><strong>Japanese</strong> Kantei (関帝)</li><li><strong>Owned form</strong> Guāndì</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Guāndì 關帝 — "Emperor Guan" — carries the first tone on guān and the falling fourth on dì. The name is a title, not a personal name: the deified Guān Yǔ of the Three Kingdoms, raised by eight centuries of imperial investitures to the rank of Emperor. The restoration keeps the macron that marks his tone.</p></div>
+      <p class="lead-text">Guāndì's myth is history sanctified: the Records of the Three Kingdoms gave him a life, the Romance gave him a legend, and eight dynasties gave him a godhood — loyalty tested by gold, exile, and death, then canonized rank by rank until the executed general stood beside <a href="/kongzi/" class="crosslink" data-crosslink="kongzi">Confucius</a>. What is worshipped is the word that outlasts its usefulness.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Oath</span>
+          <h3 class="myth-title">The Peach Garden</h3>
+          <p class="myth-text"><em>The Romance of the Three Kingdoms</em> (ch. 1) opens not with a battle but with an oath: in the blossom of Zhang Fei's peach garden, the three — Liu Bei the petitioner, Guan Yu the bearded giant, Zhang Fei the hot-tempered butcher — kneel before heaven and earth: "We ask not to be born on the same day, but we beg to die on the same day." The history behind the novel, the <em>Sanguozhi</em> (ch. 36), knows no oath; it records only that the three were close as brothers and shared everything. The oath is the Romance's invention, and it is one of the most consequential inventions in Chinese literature: for six centuries <em>sworn brotherhood</em> (結義) has been the template for loyalty between men who are not kin, quoted at initiations, in opera, film, and lodge ceremonies alike. The myth teaches that the deepest bonds are chosen, witnessed, and paid for in the same coin — a day of death, whenever it comes.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Capture</span>
+          <h3 class="myth-title">Three Conditions, One Horse</h3>
+          <p class="myth-text">Captured with Liu Bei's household when Xiapi fell, Guan Yu dictated his own terms of surrender (<em>Romance</em>, ch. 25): he would yield only to the Han emperor, not to Cao Cao; the two sisters-in-law must be guarded with full propriety; and the moment his brother was found he would leave. Cao Cao tested the terms with gifts — gold, silks, ten beauties, and finally the Red Hare, the empire's finest horse. Guan Yu bowed twice for the horse alone: "once I hear where my brother is, I can reach him in a day." He repaid the courtesies in full — riding alone into a hundred thousand men to take the enemy general Yan Liang's head at Baima (ch. 26) — then hung his seal, left letters of thanks, and rode a thousand li through five passes and six of Cao's garrisons to rejoin a lord far poorer than his captor (ch. 27). Honor, the novel says, answers courtesy with interest — and keeps accounts with everyone.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Apotheosis</span>
+          <h3 class="myth-title">From General to Emperor</h3>
+          <p class="myth-text">The historical Guan Yu died badly in 219 CE — abandoned by allies, surrounded at Maicheng, captured at Linju and executed by Sun Quan's men (<em>Sanguozhi</em>, ch. 36). His head was sent to Cao Cao at Luoyang and buried with the honors of a prince — the grave at Guanlin that is still his shrine — while Wu buried the body at Dangyang in Hubei, where his cult first took root. Deification took eight centuries and is the slowest canonization in Chinese religious history. A Sui-era legend, preserved in Song Chan transmission records, converts his vengeful ghost at Mount Yuquan into a Buddhist protector; the Song court titled him Duke (1102) and later Prince; the Wanli emperor of the Ming raised him to Emperor — Guan Sheng Dijun — in 1614; and the Qing added the word Sage, pairing him with Confucius as the martial co-sage of the empire. No other Chinese figure rose from executed general to peer of Confucius. Rank upon rank, earned by the same oath.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Guardian</span>
+          <h3 class="myth-title">Sangharama at the Gate</h3>
+          <p class="myth-text">Buddhism adopted its most unlikely guardian: the general who died over a broken oath became <em>Sangharama</em>, protector of the monastic precinct. In Chan halls his statue stands opposite Weituo's, the two flanking the Buddha's gate — the monk's army and the monk's police. The choice is theologically pointed. The religion of impermanence stations at its door the god of the promise that does not change, and communities that release men from family duty still require a witness against oath-breaking. His night patrol survives in legend: on the last night of the year he walks the world's courts, righting verdicts that living judges got wrong — a task the opera stage gave its fullest form, where Guan Yu's shade intervenes for the falsely condemned. Daoism claimed him too, as Xietian Dadi. But the deepest adoption is this: in Hong Kong, the police-station altar and the lodge shrine burn incense to the same red face, because both sides require a god whose displeasure is worse than the law.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The General Who Became a God</h2>
             <p class="section-subtitle">War, Loyalty, Righteousness, and the Brotherhood of the Peach Garden</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Guāndì is China's god of the kept oath: the historical general Guān Yǔ (d. 220 CE) whose loyalty outlasted his dynasty, deified by emperors, merchants, and triads alike until his red-faced statue stood in more temples than any other figure in the Chinese world.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Guāndì is China's god of the kept oath: the historical general Guān Yǔ (d. 220 CE) whose loyalty outlasted his dynasty, deified by emperors, merchants, and underworld alike until his red-faced statue stood in more temples than any other figure in the Chinese world — the one witness before whom both police and triads refuse to lie.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M46 6L30 34M30 34L26 30L14 46L18 50L34 38L30 34ZM18 50L14 54L18 58L22 54L18 50Z"></path></svg></div>
@@ -406,66 +324,31 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The green robe</span>
-        <span class="symbol-meaning">The gift he refused to surrender to Cáo Cāo — fidelity to the old lord</span>
+        <span class="symbol-meaning">The gift he refused to surrender to Cao Cao — fidelity to the old lord</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The long beard</span>
         <span class="symbol-meaning">The beautiful beard he protected with a silk bag — dignity kept</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The Red Hare horse</span>
+        <span class="symbol-meaning">The empire's finest horse, the one gift he prized — speed pledged entirely to the search for a brother</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The seal hung on the gate</span>
+        <span class="symbol-meaning">The badge of office returned with a letter of thanks — authority handed back intact, the accounting of honor complete</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Guāndì</p>
-        </div>
-        
-      <p class="lead-text">Guāndì's myth is history sanctified: the Records of the Three Kingdoms gave him a life, the Romance gave him a legend, and eight dynasties gave him a godhood.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Oath</span>
-          <h3 class="myth-title">The Peach Garden</h3>
-          <p class="myth-text">The Romance of the Three Kingdoms opens with the oath: in a peach garden, Guān Yǔ swore with Liú Bèi and Zhāng Fēi to die on the same day as brothers. He kept it past reason — through capture, through Cáo Cāo's gold and titles, riding a thousand miles back to his sworn lord with the general's seal hung on his gate. Loyalty, in China, has a face, and it is his.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Capture</span>
-          <h3 class="myth-title">Lord of the Beautiful Beard</h3>
-          <p class="myth-text">Held by Cáo Cāo, he accepted three conditions only: he surrendered to the Han, not to Cáo; his brother's wives would be protected; and he would leave the moment Liú Bèi was found. He kept all three, repaying Cáo Cāo's courtesy by beheading the enemy general Yán Liáng — honor answering honor, the episode the temples never tire of carving.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Apotheosis</span>
-          <h3 class="myth-title">From General to Emperor</h3>
-          <p class="myth-text">Killed in 220 CE by Sūn Quán's men, he began as a local protective spirit at Dāngyáng; the Sui made him a Buddhist guardian; the Song emperors titled him Duke, then King; the Ming made him Emperor Guān; the Qing added "Sage," matching <a href="/kongzi/" class="crosslink" data-crosslink="kongzi">Confucius</a> himself. No other Chinese figure rose from battlefield casualty to co-Sage of the empire — the slowest, most official deification in history.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Guardian</span>
-          <h3 class="myth-title">Sangharama</h3>
-          <p class="myth-text">Chinese Buddhism adopted him as Sānghārāma, the dharma-protector who guards temple gates — the general now sworn to a larger oath. In Chan monasteries his statue stands opposite Wéituó, the two guardians of the hall: the religion that teaches impermanence keeps, at its door, the god of the promise that does not change.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -529,8 +412,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">關帝</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Guāndì</strong> (關帝) is attested in the source tradition — “"Emperor Guan" — the deified general Guān Yǔ, god of war, loyalty, and righteousness”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">guandi</p>
+                <p class="card-body">Reduced to plain <strong>guandi</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Guāndì</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Guāndì</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Guāndì.com → xn--gund-tpa7j.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Guāndì</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Guāndì</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Guāndì</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Guāndì</p>
+                    <p class="card-body">Restores <strong>關帝</strong>. The live temple domain — <strong>guāndì.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">guandi</p>
+                    <p class="card-body">Flattens <strong>關帝</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Guāndì was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/kwán.tî/</span>
+            <span class="ipa-label">Standard Mandarin</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">gwahn-DEE — level tone, then a firm falling tone.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Guāndì 關帝 — "Emperor Guan" — carries the first tone on guān and the falling fourth on dì. The name is a title, not a personal name: the deified Guān Yǔ of the Three Kingdoms, raised by eight centuries of imperial investitures to the rank of Emperor. The restoration keeps the macron that marks his tone.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Guāndì is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">關帝</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Guāndì is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -548,7 +561,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/guandi_mascot.webp" type="image/webp"><img src="../assets/guandi_mascot.png" alt="Guāndì mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/guandi_mascot.webp" type="image/webp"><img src="../assets/guandi_mascot.png" alt="Guāndì mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -586,7 +599,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/guandi_logomark.webp" type="image/webp"><img src="../assets/guandi_logomark.webp" alt="Guāndì logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/guandi_logomark.webp" type="image/webp"><img src="../assets/guandi_logomark.webp" alt="Guāndì logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

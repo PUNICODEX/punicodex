@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Phánēs — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Φάνης</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Phánēs.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Φάνης</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Phánēs</strong> (Φάνης) is attested in the source tradition — “Bringer of light”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">phanes</p>
-                    <p class="card-body">Reduced to plain <strong>phanes</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Phánēs</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Phánēs</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Phánēs.com → xn--phns-6na51a.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Phánēs</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Phánēs</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Phánēs is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Φάνης</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Phánēs is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Phánēs</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Phánēs</p>
-                    <p class="card-body">Restores <strong>Φάνης</strong>. The live temple domain — <strong>phánēs.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">phanes</p>
-                    <p class="card-body">Flattens <strong>Φάνης</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Phánēs was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Phánēs</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/pʰá.nɛːs/</span>
-            <span class="ipa-label">Attic Greek</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">FAH-nace, stress on the first syllable with a long ē.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Φάνης</li><li><strong>Orphic title</strong> Πρωτόγονος</li><li><strong>Owned form</strong> Phánēs</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Phánēs takes his name from the verb φαίνω, "to bring to light, to reveal" — the same root as "phenomenon" and "epiphany." The accent is recessive on the first syllable; the long ē of the second syllable is what the macron preserves in the restoration. The Orphic hymns scan the name as two syllables, stress on the first; the Latin poets wrote it Phanes unchanged.</p></div>
+      <p class="lead-text">Phánēs belongs to the other Greece — the Orphic theogonies sung by initiates, where the cosmos begins not with <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>' yawn but with an egg, and the first god is light itself given a name. Our knowledge of him comes from fragments, a burnt papyrus, and the gold leaves buried with the dead.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Rhapsodies</span>
+          <h3 class="myth-title">Born of the Egg</h3>
+          <p class="myth-text">In the Orphic Rhapsodies, the beginning is not Hesiod's yawning Chaos but a craftsman: Chronos, Time unaging, fashions an egg in the luminous aithēr, and winds the serpent of necessity around it. The egg splits — and Phánēs comes forth, 'the first-born, the revealer': golden-winged, four-eyed, two-faced, bearing both sexes, carrying the seeds of all gods and all things (Orphicorum fragmenta 79–86 Kern; OF 121–131 Bernabé). His other names are a catalogue of what he is: Prōtógonos, 'first-born'; Eríkepaios, a name even the ancients left unexplained; Mētis, 'counsel'; and Erōs, for he is also desire. From him the gods receive light, the cosmos its first visible form, and the initiate the pattern of every soul's journey — hatched into light out of a shell of darkness, as the world itself was hatched.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Rhapsodies</span>
+          <h3 class="myth-title">First King of the Gods</h3>
+          <p class="myth-text">The Orphic succession differs from Hesiod's at the very start. In the Rhapsodies, Phánēs holds the sceptre first of all — the first king of the gods — and the rule passes from him to Night, from Night to <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a>, and thence to <a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a> and <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a>, ending with <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a>; Proclus reports the scheme as received theology, not invention (in Timaeum; Damascius, De principiis). During his reign the hymns say the cosmos was still 'all in one,' undivided; he created sun and moon, founded the first Olympus, and gave birth to the race of the immortals and the blessed. Against the Homeric background the doctrine is startling: kingship among the gods did not begin with Zeús but with a light older than the sky itself, and every later throne — Olympian included — was borrowed from the shining one's first rule, and finally returned to it in the body of the king who swallowed him.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Rhapsodies</span>
+          <h3 class="myth-title">Zeús Becomes All</h3>
+          <p class="myth-text">The supreme Orphic mystery is a swallowing. Zeús, forewarned that he would be unseated as he had unseated Kronos, went to the source instead: he begged or seized Phánēs himself — the fragments say he 'swallowed the great strength of the revered Protogonos' — so that with the first god he swallowed all that the first god had made (OF 167–168 Bernabé). The preserved verses marvel at the result: 'thus all things within Zeús were made anew — the shining height of the aithēr, the sky, the sea, the earth, and the blessed gods themselves.' Creation is therefore not once but twice: first revealed in Phánēs, then reabsorbed and reborn in Zeús, so that the present cosmos is simultaneously the first god's body and the king's mind. It is the only Greek theogony in which the god who makes the world also consumes it — total incorporation as the last word of theology, and the pattern the gold tablets will copy at the scale of a single soul.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Derveni papyrus</span>
+          <h3 class="myth-title">The Derveni Commentary</h3>
+          <p class="myth-text">That this theology was already ancient by classical times is proven not by a temple — Orphism built none — but by a funeral fire. The Derveni papyrus, carbonized around 340 BCE in a Macedonian pyre and laboriously unrolled in the twentieth century, quotes the very poem of the swallowing and glosses it line by line: the anonymous commentator reads Zeús as Mind (<a href="/nous/" class="crosslink" data-crosslink="nous">Nous</a>) ruling all that exists, and explains the verses allegorically for a circle of initiates. It is among the oldest surviving books in <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a>, and it is an Orphic commentary — proof that the Phánēs theology circulated in written, taught, ritual form before Plato was born. When Plato complains of unnamed 'theologians' or Socrates cites '<a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a>' on the body's prison, this is the company he is arguing with, and the Derveni columns are that company's earliest surviving classroom.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Gold tablets</span>
+          <h3 class="myth-title">Instructions for the Dead</h3>
+          <p class="myth-text">The religion Phánēs presided over left no temples but left instructions. The Orphic gold tablets — fingernail-thin leaves buried with initiates from Thessaly to South Italy, from the fifth century BCE onward — coach the dead: you will come to a spring; do not drink from the water of Forgetfulness but from the Lake of Memory; say to its guardians, 'I am a child of Earth and starry Heaven, but my race is of Heaven alone' (OF 474–493 Bernabé). The tablets never name Phánēs, but their cosmology is his: the soul, like the first-shining one, is a creature of light hatched out of darkness, and the journey of the dead replays the hatching of the world at a smaller scale. The egg's two halves are the two realms — the initiate who remembers which water to drink passes through the shell of death as Phánēs passed through the shell of the cosmos, into the same light.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,12 +294,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The First-Shining One</h2>
             <p class="section-subtitle">The Orphic Egg, First Light, and the Swallowed Cosmos</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Phánēs is the hidden first god of the Orphic theogonies: hatched from the silver egg of Time, winged and shining, the first form in which the universe could see itself. <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> himself will swallow him — and in swallowing, become everything.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Phánēs is the hidden first god of the Orphic theogonies: hatched from the silver egg of Time, winged and shining, the first form in which the universe could see itself. Zeús himself will swallow him — and in swallowing, become everything.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C22 8 14 22 14 36C14 48 22 56 32 56C42 56 50 48 50 36C50 22 42 8 32 8Z"></path></svg></div>
@@ -383,7 +309,7 @@
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 20A12 12 0 1 0 32 44A12 12 0 1 0 32 20M32 4V12M32 52V60M4 32H12M52 32H60M12 12L18 18M46 46L52 52M52 12L46 18M18 46L12 52"></path></svg></div>
         <h4 class="domain-name">Protogonos</h4>
-        <p class="domain-desc">"First-born" — his other name; also Erikepaios, Mētis, and bright-winged Erōs.</p>
+        <p class="domain-desc">'First-born' — his other name; also Eríkepaios, Mētis, and bright-winged Erōs.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 32C16 22 24 18 32 18C40 18 48 22 56 32C48 42 40 46 32 46C24 46 16 42 8 32ZM32 25A7 7 0 1 0 32 39A7 7 0 1 0 32 25Z"></path></svg></div>
@@ -393,83 +319,40 @@
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M36 4L20 36H30L26 60L44 26H34L36 4Z"></path></svg></div>
         <h4 class="domain-name">The Key of Mind</h4>
-        <p class="domain-desc">Orphic verse calls him "the key of the mind" — the first intelligence to shine in darkness.</p>
+        <p class="domain-desc">Orphic verse calls him 'the key of the mind' — the first intelligence to shine in darkness.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">The golden wings</span>
-        <span class="symbol-meaning">The speed of first light spreading through unformed aithēr</span>
+        <span class="symbol-meaning">The speed of first light spreading through unformed aithēr.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The egg</span>
-        <span class="symbol-meaning">The cosmos before division — shell, white, and yolk as earth, sea, and sky</span>
+        <span class="symbol-meaning">The cosmos before division — shell, white, and yolk read as earth, sea, and sky.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The serpent wrapped with him</span>
-        <span class="symbol-meaning">Time and necessity coiled around the first revelation</span>
+        <span class="symbol-meaning">Time and necessity coiled around the first revelation.</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The four eyes and two faces</span>
+        <span class="symbol-meaning">Sight in every direction — the first awareness, before which nothing is hidden.</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The key of the mind</span>
+        <span class="symbol-meaning">The Orphic verse-title for him who opens the doors of the intellect — the first thought that turns in its lock.</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Phánēs</p>
-        </div>
-        
-      <p class="lead-text">Phánēs belongs to the other Greece — the Orphic theogonies sung by initiates, where the cosmos begins not with <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>' yawn but with an egg, and the first god is light itself given a name.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Hatching</span>
-          <h3 class="myth-title">Born of the Egg</h3>
-          <p class="myth-text">In the Orphic Rhapsodies, Chronos — Time unaging — fashions a silver egg in the divine aithēr. The egg splits, and Phánēs emerges: double-sexed, four-eyed, golden-winged, a bull's head here, a serpent there, "the first-born, the revealer," who brings light to the blessed gods and gives birth to the race of immortals.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Sovereignty</span>
-          <h3 class="myth-title">First King of the Gods</h3>
-          <p class="myth-text">The Orphic succession differs from Hesiod's: in the Rhapsodic theogony Phánēs holds the sceptre first of all — the first king of the gods, handing rule to Night, and then to <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a>, <a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a>, and Zeús, with <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a> last. He creates the sun and moon, founds the first Olympus, and rules a cosmos that is still, as the hymns say, "all in one."</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Swallowing</span>
-          <h3 class="myth-title">Zeús Becomes All</h3>
-          <p class="myth-text">The supreme Orphic mystery: Zeús swallows Phánēs whole, and with him the entire first creation. The preserved fragment marvels — "thus all things were made anew within Zeús: sky, earth, sea, the stars, and the blessed gods" — and the cosmos is born a second time from the king's body. Creation is not once but twice: first revealed, then reabsorbed and reborn.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Papyrus</span>
-          <h3 class="myth-title">The Derveni Commentary</h3>
-          <p class="myth-text">The Derveni papyrus — <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a>'s oldest surviving book, carbonized in a Macedonian funeral pyre around 340 BCE — quotes the Orphic poem about Protogonos and glosses him as "Mind": the first thing to leap forth. It proves the Phánēs theology was already old, already allegorized, before Plato wrote a word.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Tablets</span>
-          <h3 class="myth-title">Instructions for the Dead</h3>
-          <p class="myth-text">The Orphic gold tablets, buried with initiates from Thessaly to South Italy, coach the soul for the underworld: avoid the spring of forgetfulness, drink from the lake of memory, and say to the guardians, "I am a child of Earth and starry Heaven; but my race is of Heaven alone." The tablets never name Phánēs — but their cosmology is his: the initiate's soul, like the first-shining one, claims descent from light, and the journey of the dead replays the hatching of the world.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -533,8 +416,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Φάνης</p>
+                <p class="card-body">The name in its original Greek form. <strong>Phánēs</strong> (Φάνης) is attested in the source tradition — “Bringer of light”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">phanes</p>
+                <p class="card-body">Reduced to plain <strong>phanes</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Phánēs</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Phánēs</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Phánēs.com → xn--phns-6na51a.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Phánēs</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Phánēs</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Phánēs</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Phánēs</p>
+                    <p class="card-body">Restores <strong>Φάνης</strong>. The live temple domain — <strong>phánēs.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">phanes</p>
+                    <p class="card-body">Flattens <strong>Φάνης</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Phánēs was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/pʰá.nɛːs/</span>
+            <span class="ipa-label">Attic Greek</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">FAH-nace, stress on the first syllable with a long ē.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Phánēs takes his name from the verb φαίνω, 'to bring to light, to reveal' — the same root as 'phenomenon' and 'epiphany.' The accent is recessive on the first syllable; the long ē of the second syllable is what the macron preserves in the restoration. The Orphic hymns scan the name as two syllables, stress on the first; the Latin poets wrote it Phanes unchanged.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Phánēs is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Φάνης</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Phánēs is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -552,7 +565,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/phanes_mascot.webp" type="image/webp"><img src="../assets/phanes_mascot.png" alt="Phánēs mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/phanes_mascot.webp" type="image/webp"><img src="../assets/phanes_mascot.png" alt="Phánēs mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -590,7 +603,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/phanes_logomark.webp" type="image/webp"><img src="../assets/phanes_logomark.webp" alt="Phánēs logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/phanes_logomark.webp" type="image/webp"><img src="../assets/phanes_logomark.webp" alt="Phánēs logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

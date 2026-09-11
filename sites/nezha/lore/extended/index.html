@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Nézhā, Youth, War, Rebellion. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/nezha/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Nézhā?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Nézhā is /nɤ˧˥ ʈʂa˥/ — approximately NUH-jah — the first syllable rises like a question, the second stays high and level; keep the 'zh' retroflex, tongue curled back, closer to 'dr' than to 'j'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Nézhā mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nézhā means Nezha (from Sanskrit Nalakuvara) in the chinese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Nézhā?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nézhā is associated with Universe Ring (乾坤圈) (Cosmic sovereignty in miniature — heaven and earth bound into a single striking weapon), Red Armillary Sash (混天綾) (The seven-chi silk that churns seas and binds foes; the instrument of the East Sea upheaval), Fire-Tipped Spear (火尖槍) (Martial fire and unrelenting advance, the spear of the vanguard who never retreats), Wind Fire Wheels (風火輪) (Unstoppable motion — the storm itself harnessed as a vehicle for the young marshal), Lotus (蓮花) (Rebirth without debt: purity rising from the water, a body remade beyond blood and bone)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Nézhā in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII nezha strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Nézhā?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Flesh Ball” — The Nézhā cycle is the great Chinese myth of the filial rebel — a story in which the most radical act of disobedience and the most extreme act of filial piety turn out to be the same act. Its canonical form was fixed by the Ming dynasty's two great novels, the Investiture of the Gods and Journey to the West; its oldest motifs are Buddhist, carried into China along the Silk Road. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/nezha_logolockup.webp" type="image/webp"><img src="../../assets/nezha_logolockup.png" alt="Nézhā" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Nézhā</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Nézhā.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/nezha_mascot.webp" type="image/webp"><img src="../../assets/nezha_mascot.png" alt="Nézhā — Youth, War, Rebellion" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/nezha_mascot.webp" type="image/webp"><img src="../../assets/nezha_mascot.png" alt="Nézhā — Youth, War, Rebellion" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">哪吒 is the settled transcription of a name that entered Chinese through Buddhist transmission from Sanskrit Nalakūvara, son of the guardian king Vaiśravaṇa. The Modern Standard Mandarin reading is Nézhā: 吒 zhā (Tone 1) is the value recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard dictionaries, while 哪 carries here its special proper-name reading né (Tone 2), preserved only in this name and recorded as such in the standard dictionaries (Xiandai Hanyu Cidian, Hanyu Da Cidian); its ordinary interrogative reading is nǎ (Tone 3), the value given under kMandarin in the Unihan Database. Because the name is a medieval transcription of a foreign theonym rather than a native Chinese word, Old Chinese reconstruction does not apply.</p>
+                <p class="etymology-note">The name <strong>Nézhā</strong> carries the orthographic signature of the chinese tradition: 哪吒. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -233,7 +284,7 @@
                 <thead>
                     <tr><th>Character</th><th>Unicode</th><th>Name</th><th>Block</th><th>Phonetic Role</th></tr>
                 </thead>
-                <tbody><tr class="reveal-up"><td class="char-cell">N</td><td><code>U+004E</code></td><td>Latin Capital Letter N</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">é</td><td><code>U+00E9</code></td><td>Latin Small Letter E with Acute</td><td>Latin-1 Supplement</td><td>Stress on e</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">z</td><td><code>U+007A</code></td><td>Latin Small Letter Z</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">h</td><td><code>U+0068</code></td><td>Latin Small Letter H</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">ā</td><td><code>U+0101</code></td><td>Latin Small Letter A with Macron</td><td>Latin Extended-A</td><td><a href="/long/" class="crosslink" data-crosslink="long">Long</a> vowel</td></tr></tbody>
+                <tbody><tr class="reveal-up"><td class="char-cell">N</td><td><code>U+004E</code></td><td>Latin Capital Letter N</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">é</td><td><code>U+00E9</code></td><td>Latin Small Letter E with Acute</td><td>Latin-1 Supplement</td><td>Stress on e</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">z</td><td><code>U+007A</code></td><td>Latin Small Letter Z</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">h</td><td><code>U+0068</code></td><td>Latin Small Letter H</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">ā</td><td><code>U+0101</code></td><td>Latin Small Letter A with Macron</td><td>Latin Extended-A</td><td>Long vowel</td></tr></tbody>
             </table>
             <p class="breakdown-note">The <strong>Tier 1</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
         </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Nézhā</strong> is the child who would not stay born. Third son of the garrison commander Li Jing, he came into the world after three and a half years of pregnancy — not as an infant but as a ball of flesh, which his father split with a sword to reveal a walking, talking boy. The immortal Taiyi Zhenren took him as a disciple and armed him as no child has ever been armed: the Universe Ring, the Red Armillary Sash, the Fire-Tipped Spear, and the Wind Fire Wheels on which he rides the sky.</p><p class="lead-text">What follows is one of the most harrowing arcs in Chinese myth: a boy who kills the Dragon King's son, returns his flesh to his father and his bones to his mother to spare them heaven's vengeance, and is rebuilt from lotus roots and blossoms — a body owed to no one. From there he becomes the vanguard of Jiāng Zǐyá's Zhou army in the <em>Investiture of the Gods</em> and, in <em>Journey to the West</em>, the celestial marshal sent to battle Sūn Wùkōng.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Nézhā in Later Traditions</h3><p class="cultural-card-body">Nézhā is himself a product of transmission: the name enters Chinese through Buddhism as a transcription of Sanskrit <em>Nalakūvara</em>, a son of the guardian king <em>Vaiśravaṇa</em>, and the earliest Chinese forms (那吒, read closer to <em>Nata</em>) preserve that foreign sound. As the figure was naturalized, the genealogy was rewritten — his father became the historical-flavored general Li Jing, who absorbed Vaiśravaṇa's iconography wholesale and became the pagoda-bearing Heavenly King (托塔天王) of the Chinese celestial court. Taoism then claimed the child outright: under the title <em>Zhōngtán Yuánshuài</em>, Marshal of the Central Altar, Nézhā became one of the most vividly worshipped protectors in the Chinese ritual pantheon. The figure traveled with the Chinese world — to Korea, Vietnam, and Japan (where he is <em>Nataku</em>) — but it is in the Sinitic ritual tradition, and above all in the temples and processions of Taiwan and the southeastern diaspora, that the lotus-born marshal remains a living god rather than a literary memory.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">No Chinese deity has had a stronger twenty-first century. Nézhā's cult thrives in Taiwan and the diaspora, where the Marshal of the Central Altar dances in temple processions — in recent decades to electronic music, the 'techno Nézhā' of modern festival culture. On screen, the 2019 animated feature <em>Ne Zha</em> became the highest-grossing animated film in Chinese history, its defiant reading of the myth — fate is a rumor the child refuses — resonating with a generation; <em>Ne Zha 2</em> (2025) went further, breaking global box-office records for animation. The rebel child who returned his body to his parents has become, arguably, the most popular Chinese deity of the modern era: an emblem of youth that will not be told what it owes.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Nézhā</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Nézhā in Later Traditions</h3><p class="cultural-card-body">Nézhā is himself a product of transmission: the name enters Chinese through Buddhism as a transcription of Sanskrit <em>Nalakūvara</em>, a son of the guardian king <em>Vaiśravaṇa</em>, and the earliest Chinese forms (那吒, read closer to <em>Nata</em>) preserve that foreign sound. As the figure was naturalized, the genealogy was rewritten — his father became the historical-flavored general Li Jing, who absorbed Vaiśravaṇa's iconography wholesale and became the pagoda-bearing Heavenly King (托塔天王) of the Chinese celestial court. Taoism then claimed the child outright: under the title <em>Zhōngtán Yuánshuài</em>, Marshal of the Central Altar, Nézhā became one of the most vividly worshipped protectors in the Chinese ritual pantheon. The figure traveled with the Chinese world — to Korea, Vietnam, and Japan (where he is <em>Nataku</em>) — but it is in the Sinitic ritual tradition, and above all in the temples and processions of Taiwan and the southeastern diaspora, that the lotus-born marshal remains a living god rather than a literary memory.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">No Chinese deity has had a stronger twenty-first century. Nézhā's cult thrives in Taiwan and the diaspora, where the Marshal of the Central Altar dances in temple processions — in recent decades to electronic music, the 'techno Nézhā' of modern festival culture. On screen, the 2019 animated feature <em>Ne Zha</em> became the highest-grossing animated film in Chinese history, its defiant reading of the myth — fate is a rumor the child refuses — resonating with a generation; <em>Ne Zha 2</em> (2025) went further, breaking global box-office records for animation. The rebel child who returned his body to his parents has become, arguably, the most popular Chinese deity of the modern era: an emblem of youth that will not be told what it owes.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Nézhā is a textual rather than an archaeological figure, and his attestation history tracks the Buddhist transmission itself. The name first appears in Tang-dynasty Buddhist translations as 那吒 (Nata), a transcription of Sanskrit Nalakūvara, son of the guardian king Vaiśravaṇa, whose cult flourished in Tang China and whose iconography — armor, spear, and reliquary pagoda — later passed to Nézhā's literary father, Li Jing. By the Song dynasty the flesh-and-bone-returning motif was current in Chan literature, and Yuan-era drama gave the child a stage life. The canonical narrative was fixed in the Ming novels: the <em>Investiture of the Gods</em> supplied the full cycle from flesh ball to lotus rebirth, and <em>Journey to the West</em> installed him as a marshal of the celestial court. Material attestation is chiefly cultic — temple statuary of the Marshal of the Central Altar, a wheel-riding, ring-bearing youth, across southeastern China, Taiwan, and the diaspora.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Nézhā means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Nézhā teaches that the deepest bond and the deepest freedom can be purchased with the same act. He does not simply disobey his parents, as the Western rebel does; he pays them back — flesh for flesh, bone for bone — and discovers that what remains after the debt is settled is not nothing but everything: a self made of lotus, owing its shape to no one's expectation. The myth refuses the easy lesson. His sacrifice is genuinely filial and genuinely annihilating; his rebirth is genuinely free and genuinely owed to a master's compassion.</p><p>To name a domain <em>Nézhā</em> is to claim that paradox: the right to begin again without denying where you came from. The lotus does not pretend it was never in the mud. It rises out of it, blooms above the water, and carries the memory of the depths in every petal — the child of the East Sea who became the vanguard of heaven, still riding the wind on wheels of fire.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Nézhā, Youth, War, Rebellion, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Nézhā?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Nézhā</strong> is /nɤ˧˥ ʈʂa˥/ — approximately NUH-jah — the first syllable rises like a question, the second stays high and level; keep the 'zh' retroflex, tongue curled back, closer to 'dr' than to 'j'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Nézhā mean?</summary><div class="faq-answer"><p><strong>Nézhā</strong> means <strong>Nezha (from Sanskrit Nalakuvara)</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Nézhā?</summary><div class="faq-answer"><p>Nézhā is associated with <strong>Universe Ring (乾坤圈)</strong> (Cosmic sovereignty in miniature — heaven and earth bound into a single striking weapon), <strong>Red Armillary Sash (混天綾)</strong> (The seven-chi silk that churns seas and binds foes; the instrument of the East Sea upheaval), <strong>Fire-Tipped Spear (火尖槍)</strong> (Martial fire and unrelenting advance, the spear of the vanguard who never retreats), <strong>Wind Fire Wheels (風火輪)</strong> (Unstoppable motion — the storm itself harnessed as a vehicle for the young marshal), <strong>Lotus (蓮花)</strong> (Rebirth without debt: purity rising from the water, a body remade beyond blood and bone).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Nézhā in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>nezha</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Nézhā?</summary><div class="faq-answer"><p>Lady Yīn carries her third child for three years and six months. When the birth finally comes, what emerges is not an infant but a ball of flesh, and Li Jing, garrison commander of Chéntānguān, strikes at it with his sword, certain it is a demon. The ball splits open — and out steps a boy already able to walk and speak, a divine embryo sent down as the disciple of the immortal <em>Taiyi Zhenren</em>. The wrongness of the birth is the point: Nézhā enters the world already owing nothing to ordinary nature.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Nézhā?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Nézhā</strong> is /nɤ˧˥ ʈʂa˥/ — approximately NUH-jah — the first syllable rises like a question, the second stays high and level; keep the 'zh' retroflex, tongue curled back, closer to 'dr' than to 'j'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Nézhā mean?</summary><div class="faq-answer"><p><strong>Nézhā</strong> means <strong>Nezha (from Sanskrit Nalakuvara)</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Nézhā?</summary><div class="faq-answer"><p>Nézhā is associated with <strong>Universe Ring (乾坤圈)</strong> (Cosmic sovereignty in miniature — heaven and earth bound into a single striking weapon), <strong>Red Armillary Sash (混天綾)</strong> (The seven-chi silk that churns seas and binds foes; the instrument of the East Sea upheaval), <strong>Fire-Tipped Spear (火尖槍)</strong> (Martial fire and unrelenting advance, the spear of the vanguard who never retreats), <strong>Wind Fire Wheels (風火輪)</strong> (Unstoppable motion — the storm itself harnessed as a vehicle for the young marshal), <strong>Lotus (蓮花)</strong> (Rebirth without debt: purity rising from the water, a body remade beyond blood and bone).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Nézhā in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>nezha</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Nézhā?</summary><div class="faq-answer"><p>“The Flesh Ball” — The Nézhā cycle is the great Chinese myth of the filial rebel — a story in which the most radical act of disobedience and the most extreme act of filial piety turn out to be the same act. Its canonical form was fixed by the Ming dynasty's two great novels, the Investiture of the Gods and Journey to the West; its oldest motifs are Buddhist, carried into China along the Silk Road. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,13 +361,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Nézhā and related cults.</cite></li><li><cite>Nézhā is a textual rather than an archaeological figure, and his attestation history tracks the Buddhist transmission itself. The name first appears in Tang-dynasty Buddhist translations as 那吒 (Nata), a transcription of Sanskrit Nalakūvara, son of the guardian king Vaiśravaṇa, whose cult flourished in Tang China and whose iconography — armor, spear, and reliquary pagoda — later passed to Nézhā's literary father, Li Jing. By the Song dynasty the flesh-and-bone-returning motif was current in Chan literature, and Yuan-era drama gave the child a stage life. The canonical narrative was fixed in the Ming novels: the <em>Investiture of the Gods</em> supplied the full cycle from flesh ball to lotus rebirth, and <em>Journey to the West</em> installed him as a marshal of the celestial court. Material attestation is chiefly cultic — temple statuary of the Marshal of the Central Altar, a wheel-riding, ring-bearing youth, across southeastern China, Taiwan, and the diaspora.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Nézhā and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Fēngshén Yǎnyì (Investiture of the Gods)</cite></li><li><cite>Wu Cheng'en, Xīyóujì (Journey to the West)</cite></li><li><cite>Nezha (encyclopedia entry)</cite></li><li><cite>Chinese Text Project</cite></li><li><cite>Vaiśravaṇa (encyclopedia entry)</cite></li><li><cite>Taiyi Zhenren (encyclopedia entry)</cite></li><li><cite>Ao Guang, Dragon King of the East Sea (encyclopedia entry)</cite></li><li><cite>Unihan Database (Unicode Consortium)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Xǔ Zhònglín (attrib.), Fēngshén Yǎnyì, ch. 12–14</cite></li><li><cite>Wu Cheng'en (attrib.), Xīyóujì, ch. 4 &amp; 83</cite></li><li><cite>Song-dynasty Chan transmission literature</cite></li><li><cite>Chinese Text Project</cite></li><li><cite>Unihan Database (Unicode Consortium)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/nezha_logomark.webp" type="image/webp"><img src="../../assets/nezha_logomark.webp" alt="Nézhā logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/nezha_logomark.webp" type="image/webp"><img src="../../assets/nezha_logomark.webp" alt="Nézhā logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

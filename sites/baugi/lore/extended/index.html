@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Baugi, Giant, Brother of Suttungr. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/baugi/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Baugi?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Baugi is /ˈbɑu.ɣi/ — approximately 'BOW-yee' — the first syllable rhymes with English 'cow', and the medial g is not a stop but a soft voiced glide between the vowels, so the second syllable lands almost like 'yee'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Baugi mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Baugi means Ring-shaped in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Baugi?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Baugi is associated with Hnitbjǫrg (The mountain of the mead — hoard and fortress in one, opened by craft rather than force), Rati (The auger that gnaws through stone — the tool that makes the door, and nearly the weapon that closes the story), The whetstone (Óðinn's thrown bait — the small object whose coveting empties Baugi's fields of nine workers at a stroke), The nine thralls' scythes (The harvest-tools honed too well — honest labour's edge turned into mutual death by one act of sharpening), Óðrœrir, Boðn, and Són (The three vessels of the mead — 'heart-stirrer', 'vessel', and 'reconciliation' — emptied in three draughts)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Baugi in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Baugi is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Baugi?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Mead Comes to Hnitbjǫrg” — Baugi's entire mythology is one episode, and it is the most consequential single episode in the mythology of poetry: the mead heist of Skáldskaparmál. He appears only there and in the þulur of giant-names — a figure the tradition needed once, at the one door, and never again. But that once is the door through which all skaldic poetry claims to have come. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/baugi_logolockup.webp" type="image/webp"><img src="../../assets/baugi_logolockup.png" alt="Baugi" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Baugi</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Baugi</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/baugi_mascot.webp" type="image/webp"><img src="../../assets/baugi_mascot.png" alt="Baugi — Giant, Brother of Suttungr" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/baugi_mascot.webp" type="image/webp"><img src="../../assets/baugi_mascot.png" alt="Baugi — Giant, Brother of Suttungr" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Baugi</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Baugi is Tier 2 by the mechanical rule: the normalized Old Norse form is already plain ASCII — no diacritic, no distinctive letter, nothing for the ASCII alphabet to lose. The tier reports the name's orthography, not the figure's standing; the corpus names him in one story and one list, and both are written in unbroken Latin letters.</p>
+                <p class="etymology-note">The name <strong>Baugi</strong> reaches the modern world through scholarly transliteration of the norse tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — Baugi, the jötunn brother of Suttungr, named in Skáldskaparmál and listed among the giants in the þulur.</li><li><strong>Younger Futhark</strong> — ᛒᛅᚢᚴᛁ — the Viking-Age runic rendering, transliterated b-au-k-i; the k-rune writes the g, and no rune marks the medial fricative the manuscripts spell with g.</li><li><strong>Word-kin</strong> — baugr, the Old Norse masculine noun 'ring, circlet' — the word to which the name is usually, though not securely, connected; it also stands in baugeiðr, 'ring-oath', the very oath Hávamál accuses <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> of breaking in this story.</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — Baugi, the jötunn brother of Suttungr, named in <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál</a> and listed among the giants in the þulur.</li><li><strong>Younger Futhark</strong> — ᛒᛅᚢᚴᛁ — the Viking-Age runic rendering, transliterated b-au-k-i; the k-rune writes the g, and no rune marks the medial fricative the manuscripts spell with g.</li><li><strong>Word-kin</strong> — baugr, the Old Norse masculine noun 'ring, circlet' — the word to which the name is usually, though not securely, connected; it also stands in baugeiðr, 'ring-oath', the very oath <a href="/texts/poetic-edda/#hovamol" class="crosslink citation-link" data-citation="hovamol">Hávamál</a> accuses <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> of breaking in this story.</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">B</td><td><code>U+0042</code></td><td>Latin Capital Letter B</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Baugi</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Baugi is the giant who holds the one door that matters in the story of the mead of poetry: brother to Suttungr, who hoards the mead inside the mountain Hnitbjǫrg, and master of the nine thralls whose deaths open the way to Óðinn's bargain. He is the hinge of the whole theft — the labour-contractor, the reluctant accomplice, and the would-be cheat whose auger-stroke misses a snake by an inch.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Baugi in Later Traditions</h3><p class="cultural-card-body">Baugi himself has no cross-border reflex — no Old English or continental cognate figure, no cult, no charm; he is a person the Icelandic tradition made for one narrative. The myth he serves, however, sits in one of the oldest comparative dossiers in Indo-European study: the theft of the divine intoxicant. The standard parallel is Vedic — the śyena, the eagle or falcon who snatches the soma and brings it to the gods (Rigveda 4.26–27) — set beside Óðinn in eagle-shape carrying off the mead in his body. The comparison was drawn in the nineteenth century and is still registered, with due caution, in the modern handbooks: Lindow treats the mead myth as the northern member of a genuine inheritance while warning against flattening its specifically Norse machinery — the labour contract, the auger, the broken oath. Baugi's own role belongs to that northern machinery: the intermediary who can be bought, the door that opens from the inside. His closest structural kin in the corpus are the other giants whose households Óðinn penetrates by guile, above all the world of [[suttungr|Suttungr]] itself and the deep giant-lore of [[ymir|<a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>]]'s kin.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Baugi's afterlife is mostly the afterlife of the drink he failed to keep. Skaldic poetry — the entire court-poetry tradition of the Viking and medieval North — called itself by kennings drawn from this myth: Kvasir's blood, the dwarfs' drink, Suttungr's mead, Óðinn's theft, Óðrœrir's wave. Every one of those names is a character in the heist except its doorkeeper; the corpus never minted a 'Baugi's mead'. He survives instead as the specialists' hinge-figure: every scholarly treatment of the mead myth, from Finnur Jónsson to Lindow, must reckon with his two functions — the labour-broker who makes the theft logistically possible, and the wavering accomplice whose bore-hole and auger-stroke are the story's closest brush with failure. In modern retellings of the myth he appears under his name in the better handbooks and in the illustrated Eddas of the Norse revival, always in the same posture: halfway through the mountain, one hand on the auger. The mead myth itself has become the North's great parable of inspiration as something stolen, hoarded, and re-stolen — and the god of poetry, [[bragi|<a href="/bragi/" class="crosslink" data-crosslink="bragi">Bragi</a>]], pours out what Baugi could not guard.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Baugi</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Baugi in Later Traditions</h3><p class="cultural-card-body">Baugi himself has no cross-border reflex — no Old English or continental cognate figure, no cult, no charm; he is a person the Icelandic tradition made for one narrative. The myth he serves, however, sits in one of the oldest comparative dossiers in Indo-European study: the theft of the divine intoxicant. The standard parallel is Vedic — the śyena, the eagle or falcon who snatches the soma and brings it to the gods (<a href="/texts/rig-veda/#mandala-04" class="crosslink citation-link" data-citation="rig-veda">Rigveda 4.</a>26–27) — set beside Óðinn in eagle-shape carrying off the mead in his body. The comparison was drawn in the nineteenth century and is still registered, with due caution, in the modern handbooks: Lindow treats the mead myth as the northern member of a genuine inheritance while warning against flattening its specifically Norse machinery — the labour contract, the auger, the broken oath. Baugi's own role belongs to that northern machinery: the intermediary who can be bought, the door that opens from the inside. His closest structural kin in the corpus are the other giants whose households Óðinn penetrates by guile, above all the world of [[suttungr|Suttungr]] itself and the deep giant-lore of [[ymir|<a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>]]'s kin.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Baugi's afterlife is mostly the afterlife of the drink he failed to keep. Skaldic poetry — the entire court-poetry tradition of the Viking and medieval North — called itself by kennings drawn from this myth: Kvasir's blood, the dwarfs' drink, Suttungr's mead, Óðinn's theft, Óðrœrir's wave. Every one of those names is a character in the heist except its doorkeeper; the corpus never minted a 'Baugi's mead'. He survives instead as the specialists' hinge-figure: every scholarly treatment of the mead myth, from Finnur Jónsson to Lindow, must reckon with his two functions — the labour-broker who makes the theft logistically possible, and the wavering accomplice whose bore-hole and auger-stroke are the story's closest brush with failure. In modern retellings of the myth he appears under his name in the better handbooks and in the illustrated Eddas of the Norse revival, always in the same posture: halfway through the mountain, one hand on the auger. The mead myth itself has become the North's great parable of inspiration as something stolen, hoarded, and re-stolen — and the god of poetry, [[bragi|<a href="/bragi/" class="crosslink" data-crosslink="bragi">Bragi</a>]], pours out what Baugi could not guard.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Baugi is an entirely textual figure: no runestone invokes him, no picture stone has been convincingly read as the drilling of Hnitbjǫrg, and no place-name or votive deposit carries his name. His attestation is exactly as wide as his story — Snorri's Skáldskaparmál, preserved principally in the Codex Regius of the <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> (GKS 2367 4to, early fourteenth century), with the Codex Wormianus and Codex Upsaliensis as the other main witnesses, plus his entry in the þulur of giant-names. The mead myth he serves is materially older than its manuscripts: kennings presupposing it — Kvasir's blood, Suttungr's mead, Óðinn's booty — are already at work in ninth- and tenth-century skaldic verse, which proves the story's currency centuries before Snorri wrote it down. Hávamál's telling survives in the Codex Regius of the <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a> (c. 1270), the same small codex that carries nearly all the mythological poems. The runic record is silent on the theonym, as on nearly all the jǫtnar.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Baugi means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Baugi is the indispensable man nobody remembers. Strip him out and the myth stops cold: without the thralls' deaths there is no vacancy, without the contract there is no access, without the auger in his hand there is no door, and without the door there is no mead — and without the mead, by the tradition's own accounting, there is no poetry at all. Yet he is not a hero of his one story, nor even its villain; he is something rarer in the giant-world of the Eddas, a middleman. He names the limits of his power honestly — the mead is Suttungr's, not mine — and then sells access to what is not his anyway. He helps bore the hole and then tries to kill what crawls through it. The tradition leaves his motives exactly that tangled, and the tangle is the point: every hoard is opened from the inside, by someone whose loyalty is a price rather than a fact. The auger-stroke misses by the width of a snake, and because it misses, poems exist.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Baugi, Giant, Brother of Suttungr, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Baugi?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Baugi</strong> is /ˈbɑu.ɣi/ — approximately 'BOW-yee' — the first syllable rhymes with English 'cow', and the medial g is not a stop but a soft voiced glide between the vowels, so the second syllable lands almost like 'yee'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Baugi mean?</summary><div class="faq-answer"><p><strong>Baugi</strong> means <strong>Ring-shaped</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Baugi?</summary><div class="faq-answer"><p>Baugi is associated with <strong>Hnitbjǫrg</strong> (The mountain of the mead — hoard and fortress in one, opened by craft rather than force), <strong>Rati</strong> (The auger that gnaws through stone — the tool that makes the door, and nearly the weapon that closes the story), <strong>The whetstone</strong> (Óðinn's thrown bait — the small object whose coveting empties Baugi's fields of nine workers at a stroke), <strong>The nine thralls' scythes</strong> (The harvest-tools honed too well — honest labour's edge turned into mutual death by one act of sharpening), <strong>Óðrœrir, Boðn, and Són</strong> (The three vessels of the mead — 'heart-stirrer', 'vessel', and 'reconciliation' — emptied in three draughts).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Baugi in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>baugi</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Baugi?</summary><div class="faq-answer"><p>The story begins before Baugi enters it. From the peace-making of Æsir and Vanir is made Kvasir, wisest of beings; the dwarfs Fjalar and Galar kill him and brew his blood with honey into a mead that makes a poet or a scholar of whoever drinks it, keeping it in three vessels — Óðrœrir, Boðn, and Són. The dwarfs then drown the giant Gilling at sea and kill his wife with a millstone, and Gilling's son Suttungr takes revenge: he sets the dwarfs on a tide-washed skerry, and they buy their lives with the mead. Suttungr carries it home, shuts it inside the mountain Hnitbjǫrg, and sets his daughter Gunnlǫð to guard it.Only now does Snorri bring Baugi on stage, in a single sentence of genealogy: Suttungr had a brother, and his name was Baugi. The hoard is sealed, the guard is set, and the god who wants the mead does not go to its owner — he goes to the owner's brother.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Baugi?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Baugi</strong> is /ˈbɑu.ɣi/ — approximately 'BOW-yee' — the first syllable rhymes with English 'cow', and the medial g is not a stop but a soft voiced glide between the vowels, so the second syllable lands almost like 'yee'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Baugi mean?</summary><div class="faq-answer"><p><strong>Baugi</strong> means <strong>Ring-shaped</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Baugi?</summary><div class="faq-answer"><p>Baugi is associated with <strong>Hnitbjǫrg</strong> (The mountain of the mead — hoard and fortress in one, opened by craft rather than force), <strong>Rati</strong> (The auger that gnaws through stone — the tool that makes the door, and nearly the weapon that closes the story), <strong>The whetstone</strong> (Óðinn's thrown bait — the small object whose coveting empties Baugi's fields of nine workers at a stroke), <strong>The nine thralls' scythes</strong> (The harvest-tools honed too well — honest labour's edge turned into mutual death by one act of sharpening), <strong>Óðrœrir, Boðn, and Són</strong> (The three vessels of the mead — 'heart-stirrer', 'vessel', and 'reconciliation' — emptied in three draughts).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Baugi in Unicode?</summary><div class="faq-answer"><p><strong>Baugi</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Baugi?</summary><div class="faq-answer"><p>“The Mead Comes to Hnitbjǫrg” — Baugi's entire mythology is one episode, and it is the most consequential single episode in the mythology of poetry: the mead heist of Skáldskaparmál. He appears only there and in the þulur of giant-names — a figure the tradition needed once, at the one door, and never again. But that once is the door through which all skaldic poetry claims to have come. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,19 +349,19 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Snorri Sturluson, Prose Edda, Skáldskaparmál — the mead-of-poetry narrative (Baugi, Bǫlverkr, Rati, Hnitbjǫrg), trans. Anthony Faulkes (Everyman, 1987), pp. 61–64</cite></li><li><cite>Hávamál 104–110 (Óðinn's own account of the mead theft; Rati named at st. 106; the ring-oath and Suttungr defrauded at st. 110), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford, 2014)</cite></li><li><cite>The þulur of giant-names (Skáldskaparmál), listing Baugi among the jǫtnar</cite></li><li><cite>Orchard, Dictionary of Norse Myth and Legend, s.v. Baugi; Lindow, Norse Mythology: A Guide, s.v. Baugi and the mead of poetry (myth interpretation and the Vedic soma-eagle parallel, Rigveda 4.26–27)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Snorri Sturluson, Prose Edda, Skáldskaparmál — the mead-of-poetry narrative (Baugi, Bǫlverkr, Rati, Hnitbjǫrg), trans. Anthony Faulkes (Everyman, 1987), pp. 61–64</cite></li><li><cite>Hávamál 104–110 (Óðinn's own account of the mead theft; Rati named at st. 106; the ring-oath and Suttungr defrauded at st. 110), trans. Carolyne Larrington, The Poetic Edda, 2nd ed. (Oxford, 2014)</cite></li><li><cite>The þulur of giant-names (Skáldskaparmál), listing Baugi among the jǫtnar</cite></li><li><cite>Orchard, Dictionary of Norse Myth and Legend, s.v. Baugi; Lindow, Norse Mythology: A Guide, s.v. Baugi and the mead of poetry (myth interpretation and the Vedic soma-eagle parallel, Rigveda 4.26–27)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Baugi and related cults.</cite></li><li><cite>Baugi is an entirely textual figure: no runestone invokes him, no picture stone has been convincingly read as the drilling of Hnitbjǫrg, and no place-name or votive deposit carries his name. His attestation is exactly as wide as his story — Snorri's Skáldskaparmál, preserved principally in the Codex Regius of the Prose Edda (GKS 2367 4to, early fourteenth century), with the Codex Wormianus and Codex Upsaliensis as the other main witnesses, plus his entry in the þulur of giant-names. The mead myth he serves is materially older than its manuscripts: kennings presupposing it — Kvasir's blood, Suttungr's mead, Óðinn's booty — are already at work in ninth- and tenth-century skaldic verse, which proves the story's currency centuries before Snorri wrote it down. Hávamál's telling survives in the Codex Regius of the Poetic Edda (c. 1270), the same small codex that carries nearly all the mythological poems. The runic record is silent on the theonym, as on nearly all the jǫtnar.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Baugi and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/baugi_logomark.webp" type="image/webp"><img src="../../assets/baugi_logomark.webp" alt="Baugi logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/baugi_logomark.webp" type="image/webp"><img src="../../assets/baugi_logomark.webp" alt="Baugi logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

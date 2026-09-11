@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Troíā — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Τροία</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Troíā.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Τροία</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Troíā</strong> (Τροία) is attested in the source tradition — “Unknown; possibly from Τρωός”. Its diphthongs and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">troia</p>
-                    <p class="card-body">Reduced to plain <strong>troia</strong>, the name loses everything that made it specific: diphthongs and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Troíā</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Troíā</strong> restores diphthongs and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Troíā.com → xn--tro-tma4h.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Troíā</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Troíā</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Troíā is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Τροία</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Troíā is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Troíā</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Troíā</p>
-                    <p class="card-body">Restores <strong>Τροία</strong>. The live temple domain — <strong>troíā.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">troia</p>
-                    <p class="card-body">Flattens <strong>Τροία</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Troíā was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Troíā</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/troí.aː/</span>
-            <span class="ipa-label">Attic Greek</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">TROY-ah, with the stress on the final syllable and a long ā.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Τροία</li><li><strong>Latin</strong> Troia</li><li><strong>Hittite</strong> Wilusa</li><li><strong>Owned form</strong> Troíā</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Τροία bears the stress on the final syllable with a long diphthongal ending — Troíā — and Latin Troia keeps both the vowels and the fame. The form was already a place-name before it was a story: Hittite records call the land Wilusa, which most scholars now connect to (W)ilios, Troy's other Greek name.</p></div>
+      <p class="lead-text">The Trojan cycle is the largest story the Greeks told: from the wedding of <a href="/peleus/" class="crosslink" data-crosslink="peleus">Pēleús</a> and the Apple of Discord to the Returns of the heroes, it fills eight epics, of which the Iliad and Odyssey are only the surviving heart.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cypria</span>
+          <h3 class="myth-title">The Apple of Discord</h3>
+          <p class="myth-text">At the wedding of Pēleús and <a href="/thetis/" class="crosslink" data-crosslink="thetis">Thetis</a>, where every god was feasted, <a href="/eris/" class="crosslink" data-crosslink="eris">Eris</a> arrived uninvited and rolled among the guests a golden apple inscribed 'for the fairest' — and <a href="/hera/" class="crosslink" data-crosslink="hera">Hēra</a>, <a href="/athena/" class="crosslink" data-crosslink="athena">Athēnā</a>, and <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodítē</a> each claimed it. <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>, foreseeing the wrath of two losers in any verdict of his own, refused to judge and sent the goddesses to the Trojan prince Páris, exposed as an infant and herding his father's flocks on Mount Ídē. Hēra offered him empire, Athēnā military glory, Aphrodítē the most beautiful woman in the world; he chose the last, and the war became arithmetic. The Cypria, as Proclus summarizes it, makes the mechanism exact: Páris's choice triggers the oath of Tyndareus, the compact under which every former suitor of <a href="/helene/" class="crosslink" data-crosslink="helene">Helénē</a> is bound to defend her marriage — so one shepherd's preference converts three insulted goddesses into a thousand-ship alliance. Troy's doom was negotiated before its walls were named.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Iliad</span>
+          <h3 class="myth-title">Nine Years and a Quarrel</h3>
+          <p class="myth-text">A thousand ships mustered at Aulis, where <a href="/agamemnon/" class="crosslink" data-crosslink="agamemnon">Agamémnōn</a> sacrificed his daughter <a href="/iphigeneia/" class="crosslink" data-crosslink="iphigeneia">Iphigéneia</a> for a wind; nine years of raids followed before the Iliad's subject even begins. The tenth year opens with a quarrel inside the Greek camp: Agamémnōn seizes Brisēís from Achilléús, Achilléús withdraws his Myrmidons, and the Greeks begin to die of the absence of one man. The poem covers fifty-one days and never shows the fall: its subject is the chain of deaths the quarrel unlocks — <a href="/patroclus/" class="crosslink" data-crosslink="patroclus">Pátroklos</a> in Achilléús's armor, <a href="/hector/" class="crosslink" data-crosslink="hector">Héktōr</a> by the Scamander, and behind every duel the city's doom, prophesied and accepted by all the combatants. The war's deepest irony is Homer's structure: he sings one wound in the Greek body — honor — while behind it the real wound, the city, waits untouched. The Iliad ends with Héktōr's ransom, the truce, and the funeral games; everyone knows what comes next, and the knowing is the poem's ache.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Odyssey 8; Aeneid 2</span>
+          <h3 class="myth-title">The Last Night</h3>
+          <p class="myth-text">The end the Iliad withholds, the Odyssey and the Aeneid supply. After ten failed years, <a href="/odysseus/" class="crosslink" data-crosslink="odysseus">Odysseus</a> proposes the stratagem: a great wooden horse, hollow, its belly an ambush, left on the shore as an offering to Athēnā while the fleet sails behind Ténedos. The priest <a href="/laocoon/" class="crosslink" data-crosslink="laocoon">Laokóōn</a> hurls his spear into the flank and warns — I fear the Greeks, even bearing gifts — and sea-serpents rise from the water and destroy him and his sons, read by the Trojans as the goddess's answer. The prophetess Kassándrā is disbelieved, as always. At night the horse opens: warriors drop to the ground, open the Scaían Gate, and the fleet returns while the city sleeps. Priam is cut down at the altar of Zeus of the Courtyard; the infant <a href="/astyanax/" class="crosslink" data-crosslink="astyanax">Astyanax</a> is thrown from the towers; Menelaos reclaims Helénē; <a href="/aineias/" class="crosslink" data-crosslink="aineias">Aineías</a> shoulders his father Anchises and carries his household gods out of the fire. The horse is the myth's perfect machine: a gift that is a breach, an offering that is an army, the wall's conqueror cut from the forest by the wall's besiegers.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Returns</span>
+          <h3 class="myth-title">The Dispersal</h3>
+          <p class="myth-text">Greek myth scattered the victors as thoroughly as the defeated. Agamémnōn sailed home to be murdered by Klytaimnḗstrē and Aígisthos in his own hall; <a href="/menelaus/" class="crosslink" data-crosslink="menelaus">Menélaos</a> wandered seven years, touching Egypt; the lesser Aias drowned for his impiety at Athēnā's altar; and Odysseus, the war's author, took ten years for a voyage that should have taken weeks — his nostos the Odyssey itself. The Trojans fared strangely better in memory: Anténōr led a colony to the Adriatic coast; the minority tradition spared Astyanax and rebuilt a new Troy; and above all Aineías, whose westward voyage Virgil's Aeneid turned into the founding journey of Rome — Lavinium, Alba Longa, <a href="/rhea/" class="crosslink" data-crosslink="rhea">Rhea</a> Silvia, and the twins. Rome then did what no conqueror had: it adopted the conquered as its mother, and 'Trojan' became, across <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a>, a title of glory claimed by the Franks and the Britons alike. The city that fell became the ancestor of everything that claimed to have made it fall.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The City of Story</h2>
             <p class="section-subtitle">Siege, Horse, and the Mother of Empires</p>
         </div>
@@ -383,7 +301,7 @@
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M18 52L22 34C16 28 16 18 24 12L30 6L34 14C42 16 46 22 46 30L42 52M26 26L36 34"></path></svg></div>
         <h4 class="domain-name">The Horse</h4>
-        <p class="domain-desc"><a href="/odysseus/" class="crosslink" data-crosslink="odysseus">Odysseus</a>' stratagem: the gift that is a breach, the original Trojan horse.</p>
+        <p class="domain-desc">Odysseus' stratagem: the gift that is a breach, the original Trojan horse.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C28 20 20 26 20 38C20 48 25 56 32 56C39 56 44 48 44 38C44 26 36 20 32 8Z"></path></svg></div>
@@ -406,54 +324,36 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The Palladium</span>
-        <span class="symbol-meaning">The heaven-fallen image of <a href="/athena/" class="crosslink" data-crosslink="athena">Athēnā</a> on which the city's safety depended</span>
+        <span class="symbol-meaning">The heaven-fallen image of Athēnā on which the city's safety depended</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The Scamander (Xanthos)</span>
+        <span class="symbol-meaning">The river of the plain, deity and battlefield — where Achilles choked the waters with the dead until the river itself rose in anger (Iliad 21)</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Priam's towers / Pergamos</span>
+        <span class="symbol-meaning">The citadel that outlasted the city in name — the terrace where the altars of Zeus Herkeios and the household gods stood</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Troíā</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Troíā lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">The Trojan cycle is the largest story the Greeks told: from the wedding of <a href="/peleus/" class="crosslink" data-crosslink="peleus">Pēleús</a> and the Apple of Discord to the Returns of the heroes, it fills eight epics, of which the Iliad and Odyssey are only the surviving heart.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Judgment</span>
-          <h3 class="myth-title">The Apple</h3>
-          <p class="myth-text"><a href="/eris/" class="crosslink" data-crosslink="eris">Eris</a>, uninvited to the wedding of Pēleús and <a href="/thetis/" class="crosslink" data-crosslink="thetis">Thetis</a>, threw a golden apple inscribed "for the fairest." <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> delegated the verdict to the Trojan prince Paris, herding on Mount Ida: <a href="/hera/" class="crosslink" data-crosslink="hera">Hēra</a> offered empire, Athēnā victory, <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodítē</a> the most beautiful woman in the world. He chose the woman — Helen, wife of Menelaos — and the war became arithmetic.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+                    <a href="https://punicodex.com/texts/works-and-days/" class="source-badge">Works and Days</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Siege</span>
-          <h3 class="myth-title">Nine Years and a Quarrel</h3>
-          <p class="myth-text">A thousand ships gathered at Aulis; nine years raided the Troad before the Iliad even begins. The poem's subject is a quarrel in the tenth year — Agamemnōn's seizure of Brisēis, <a href="/achilleus/" class="crosslink" data-crosslink="achilleus">Achilleús</a>' withdrawal, and the chain of deaths from <a href="/patroclus/" class="crosslink" data-crosslink="patroclus">Pátroklos</a> to Hektōr — yet behind it stands the city's doom, prophesied and accepted by every combatant.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Horse</span>
-          <h3 class="myth-title">The Last Night</h3>
-          <p class="myth-text">The Odyssey and the Aeneid tell the end the Iliad never reaches: the Achaeans feign departure, leaving a wooden horse as an "offering to Athēnā." The priest Laokoōn warns against it and is destroyed by sea-serpents; the prophetess Kassandra is disbelieved, as always. At night the hidden warriors open the Scaean Gate, and Troíā burns in a single night after ten years of failure.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Survivors</span>
-          <h3 class="myth-title">The Dispersal</h3>
-          <p class="myth-text">Greek myth disperses the Trojans across the map: Aeneas to Italy in the Roman telling, Antēnor to the Adriatic, Hektor's son — in the minority tradition — restored in a new Troy. The vanquished city thus colonizes the imagination of its conquerors: to be Troianos, "of Troy," becomes, paradoxically, a title of glory.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -461,7 +361,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek-location pantheon</p>
         </div>
@@ -525,24 +425,137 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Troíā lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
-                    <a href="https://punicodex.com/texts/works-and-days/" class="source-badge">Works and Days</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Τροία</p>
+                <p class="card-body">The name in its original Greek form. <strong>Troíā</strong> (Τροία) is attested in the source tradition — “Unknown; possibly from Τρωός”. Its diphthongs and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">troia</p>
+                <p class="card-body">Reduced to plain <strong>troia</strong>, the name loses everything that made it specific: diphthongs and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Troíā</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Troíā</strong> restores diphthongs and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Troíā.com → xn--tro-tma4h.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Troíā</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Troíā</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Troíā</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Troíā</p>
+                    <p class="card-body">Restores <strong>Τροία</strong>. The live temple domain — <strong>troíā.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">troia</p>
+                    <p class="card-body">Flattens <strong>Τροία</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Troíā was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/troí.aː/</span>
+            <span class="ipa-label">Attic Greek</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">TROY-ah, with the stress on the final syllable and a long ā.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Τροία bears the stress on the final syllable with a long diphthongal ending — Troíā — and Latin Troia keeps both the vowels and the fame. The form was already a place-name before it was a story: Hittite records call the land Wilusa, which most scholars now connect to (W)ilios, Troy's other Greek name.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Troíā is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Τροία</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Troíā is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -561,7 +574,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/troia_mascot.webp" type="image/webp"><img src="../assets/troia_mascot.png" alt="Troíā mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/troia_mascot.webp" type="image/webp"><img src="../assets/troia_mascot.png" alt="Troíā mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -599,7 +612,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/troia_logomark.webp" type="image/webp"><img src="../assets/troia_logomark.webp" alt="Troíā logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/troia_logomark.webp" type="image/webp"><img src="../assets/troia_logomark.webp" alt="Troíā logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

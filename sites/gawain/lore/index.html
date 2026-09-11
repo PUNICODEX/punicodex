@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Gawain — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Gawain</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Gawain</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,143 +235,65 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Gawain</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Gawain</strong> is the standard Celtic romanisation, documented in academic sources — “Little falcon”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">gawain</p>
-                    <p class="card-body">The plain <strong>gawain</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Gawain</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Gawain</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Gawain.com → gawain.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Gawain</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Gawain</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Gawain is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Gawain</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Gawain</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Gawain</p>
-                    <p class="card-body">The full Unicode restoration. <strong>gawain.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Gawain was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Gawain</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈɡwalx.mai/</span>
-            <span class="ipa-label">Middle Welsh Reconstruction (Gwalchmai)</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Gw-</span>
-        <span class="phoneme-desc">Labiovelar onset [ɡw], as in Welsh Gwyn or English 'Gwen' — a single rounded g, never two separate sounds.</span>
+      <p class="lead-text">Gawain's dossier runs from a Welsh triad to a fourteenth-century masterpiece: in every century someone is testing him, and the test is always the same — not whether he can fight, but whether he will keep faith. He passes every quest and fails one truth; the tradition has been debating which matters more for seven hundred years.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Culhwch ac Olwen</span>
+          <h3 class="myth-title">The Knight Who Finished the Quest</h3>
+          <p class="myth-text">The oldest Arthurian tale in Welsh names him in its great muster at Arthur's court: Gwalchmei mab Gwyar — Gwalchmai son of Gwyar — 'because he never returned home without achieving the quest he had gone to seek; he was the best of walkers and the best of riders; he was nephew to Arthur, the son of his sister, and his first cousin.' In a catalogue of hundreds of warriors, giants, and wonders, that is the whole of his entry, and it is the whole of his character: the Welsh tradition remembers him not for a single exploit but for completion itself — the errand that always comes home. Centuries later, when Chrétien and the Gawain-poet needed a knight whose courtesy could carry an entire narrative, they were still writing in the shadow of that one sentence.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-alch</span>
-        <span class="phoneme-desc">Short open [a] followed by [lx]: the Welsh voiceless velar fricative ch, the rasp of Scottish 'loch', closing the first syllable.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Trioedd Ynys Prydein</span>
+          <h3 class="myth-title">One of the Three Well-Endowed Men</h3>
+          <p class="myth-text">The Welsh Triads — the medieval memory-system that files the Island of Britain's heroes in threes — name Gwalchmai son of Gwyar among the Three Well-Endowed Men of the Island of Britain, beside Llacheu son of Arthur and Rhiwallawn Broom-Hair (Triad 4). Rachel Bromwich's edition of the Triads is also the standard witness for his name: Gwalchmai, gwalch 'hawk' + Mai 'May', the 'hawk of May' — a name that stands in Welsh, glossed and explained, generations before any French romance ever sang of Gauvain. Bromwich notes that the second element has also been compared to the British god Maponos, the 'Divine Son' of the spring, so the name may carry a youth-and-season resonance older than the month itself. To be filed in a triad is to be fixed in memory: the Welsh gave him no long tale, but they gave him a slot no one else could fill.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-mai</span>
-        <span class="phoneme-desc">The word Mai, 'May', as a closing diphthong [mai] — the name's second element, 'hawk of May', sounded like the English month.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Historia Regum Britanniae</span>
+          <h3 class="myth-title">The Nephew of the King</h3>
+          <p class="myth-text">Geoffrey of Monmouth's Historia (c. 1136) made him Latin and sent him across <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a>: Walganus, son of Loth of Lodonesia and Arthur's sister Anna, given as a boy to the service of Pope Sulpicius in Rome, recalled to Britain to be knighted, and made the steel edge of Arthur's Roman campaign — the knight who cuts through the emperor's host and slays the nephew of Lucius. When Mordred's treason calls the army home, Walganus falls at the landing, in the first fighting on the shore, and is buried as the chronicle says. A generation earlier, William of Malmesbury had already written him down as Walwen — and reported his tomb, found at Rhos in Pembrokeshire, fourteen feet long. Geoffrey's Walganus is grave, dutiful, and doomed: already the nephew whose loyalty is his tragedy, three centuries before Malory would make that loyalty the hinge of the whole downfall.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Chrétien de Troyes</span>
+          <h3 class="myth-title">The Measure of Courtesy</h3>
+          <p class="myth-text">In the romances of Chrétien (c. 1160–1190), Gauvain is not the hero of any single quest but the standard against which all the heroes are measured: Erec et Enide ranks him first of the knights of the Round Table, and through Cligés, Lancelot, Yvain, and the Conte du Graal he moves as the court's fixed point — courteous without effort, brave without boasting, the knight whose speech is as ready as his sword. Chrétien lets Perceval's innocence test him and the world test them both; the Continuators of the Perceval give him stranger gifts — a strength that doubles as the sun climbs to noon and fails as it falls — the trace that later scholarship would read as the memory of a solar hero. Where other knights must learn courtesy, Gauvain simply is it; that is precisely why he is so hard to write a story about.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Sir Gawain and the Green Knight</span>
+          <h3 class="myth-title">The Bargain of the Green Chapel</h3>
+          <p class="myth-text">At Camelot's New Year feast a giant all in green rides into the hall and offers a Christmas game: any knight may take one stroke at his neck with the great axe, on condition of receiving one in return, a year and a day hence, at the Green Chapel. Gawain takes the challenge, strikes the head clean off, and the Green Knight rides out holding it, reminding him of the tryst.</p><p class="myth-text">The year turns, and Gawain rides north to keep his bargain. At Hautdesert, Lord Bertilak proposes an exchange of winnings: each evening they will swap whatever the day has gained. Three days the lord hunts; three days his lady tests Gawain in his chamber; and each evening Gawain faithfully renders the kisses he has received — but on the third day he keeps back the green girdle the lady swears will save his life. At the Green Chapel the axe falls three times: twice withheld, and once, for the kept-back lace, a nick in the neck. The Green Knight is Bertilak, sent by Morgan le Fay; the girdle was the whole point. Gawain wears it home as his 'token of untruth' — and Camelot laughs, and binds green laces on every shoulder. <strong>The poem's subject is not whether a knight can fight but what truth costs, and whether one small love of life can be forgiven</strong>.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="500">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Le Morte Darthur</span>
+          <h3 class="myth-title">The Last Letter</h3>
+          <p class="myth-text">Malory's Sir Gawaine is the courteous knight grown tragic: head of the Orkney clan, Arthur's dearest nephew, whose feud with Lancelot — after Gareth and Gaheris are slain in the fire of Guenevere's rescue — drags the fellowship to ruin. Wounded at Dover by Lancelot in the last single combat, he dies of the reopened wound, writing with his own hand the letter that calls Lancelot 'flower of all noble knights' and begs him to come see his tomb. And on the eve of Salisbury Plain he returns in Arthur's dream with a troop of ladies, warning the king not to fight Mordred on the morrow — the nephew still trying, from beyond death, to bring his uncle's last errand home. It is the pattern's final turn: the knight who always finished the quest dies writing an errand he will not live to see delivered, and begs the one man he fought to come anyway.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">GWALH-my — the gw of 'Guinevere', the ch of Scottish 'loch', and 'my' like the month of May. The later English form Gawain runs 'guh-WAYN', stress on the second syllable.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Gwalchmai, Gwalchmei, mab Gwyar — the form of Culhwch ac Olwen and the Triads</li><li><strong>Latin (Geoffrey of Monmouth)</strong> Walganus, Walguanus; William of Malmesbury writes Walwen</li><li><strong>Old French (Chrétien de Troyes)</strong> Gauvain — the courteous knight of the continental romances</li><li><strong>Middle English</strong> Gawayn, Gawan — the spelling of the Cotton Nero manuscript of Sir Gawain and the Green Knight</li><li><strong>Temple form</strong> Gawain — the canonical English form, plain ASCII</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Gwalchmai is a transparent Welsh compound: gwalch ('hawk') + Mai ('May'), whence the standard scholarly rendering 'hawk of May' (Bromwich, Trioedd Ynys Prydein; Koch); the PuniCodex lexicon keeps the traditional English gloss 'little falcon' for the same root-image. The temple form Gawain is Tier 2 by the mechanical rule: the English name is already plain ASCII — there is no diacritic and no distinctive letter for the ASCII alphabet to lose. The capital alone distinguishes the temple form from the input.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -374,7 +301,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Courteous Knight</h2>
             <p class="section-subtitle">The Hawk of May, the Quest Completed, and the Girdle of the Green Chapel</p>
         </div>
@@ -425,73 +352,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Gawain</p>
-        </div>
-        
-      <p class="lead-text">Gawain's dossier runs from a Welsh triad to a fourteenth-century masterpiece: in every century someone is testing him, and the test is always the same — not whether he can fight, but whether he will keep faith.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Culhwch ac Olwen</span>
-          <h3 class="myth-title">The Knight Who Finished the Quest</h3>
-          <p class="myth-text">The oldest Arthurian tale in Welsh names him in its great muster at Arthur's court: Gwalchmei mab Gwyar — Gwalchmai son of Gwyar — 'because he never returned home without achieving the quest he had gone to seek; he was the best of walkers and the best of riders; he was nephew to Arthur, the son of his sister, and his first cousin.' In a catalogue of hundreds of warriors, giants, and wonders, that is the whole of his entry, and it is the whole of his character: the Welsh tradition remembers him not for a single exploit but for completion itself — the errand that always comes home.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Trioedd Ynys Prydein</span>
-          <h3 class="myth-title">One of the Three Well-Endowed Men</h3>
-          <p class="myth-text">The Welsh Triads — the medieval memory-system that files the Island of Britain's heroes in threes — name Gwalchmai son of Gwyar among the Three Well-Endowed Men of the Island of Britain, beside Llacheu son of Arthur and Rhiwallawn Broom-Hair (Triad 4). Rachel Bromwich's edition of the Triads is also the standard witness for his name: Gwalchmai, gwalch 'hawk' + Mai 'May', the 'hawk of May' — a name that stands in Welsh before any French romance ever sang of Gauvain.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Historia Regum Britanniae</span>
-          <h3 class="myth-title">The Nephew of the King</h3>
-          <p class="myth-text">Geoffrey of Monmouth's Historia (c. 1136) made him Latin and sent him across <a href="/europe/" class="crosslink" data-crosslink="europe">Europe</a>: Walganus, son of Loth of Lodonesia and Arthur's sister Anna, given as a boy to the service of Pope Sulpicius in Rome, recalled to Britain to be knighted, and made the steel edge of Arthur's Roman campaign — the knight who cuts through the emperor's host and slays the nephew of Lucius. When Mordred's treason calls the army home, Walganus falls at the landing, in the first fighting on the shore, and is buried as the chronicle says. A generation earlier, William of Malmesbury had already written him down as Walwen — and reported his tomb, found at Rhos in Pembrokeshire, fourteen feet long.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Chrétien de Troyes</span>
-          <h3 class="myth-title">The Measure of Courtesy</h3>
-          <p class="myth-text">In the romances of Chrétien (c. 1160–1190), Gauvain is not the hero of any single quest but the standard against which all the heroes are measured: Erec et Enide ranks him first of the knights of the Round Table, and through Cligés, Lancelot, Yvain, and the Conte du Graal he moves as the court's fixed point — courteous without effort, brave without boasting, the knight whose speech is as ready as his sword. Chrétien lets Perceval's innocence test him and the world test them both; the Continuators of the Perceval give him stranger gifts — a strength that doubles as the sun climbs to noon and fails as it falls — the trace that later scholarship would read as the memory of a solar hero.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Sir Gawain and the Green Knight</span>
-          <h3 class="myth-title">The Bargain of the Green Chapel</h3>
-          <p class="myth-text">At Camelot's New Year feast a giant all in green rides into the hall and offers a Christmas game: any knight may take one stroke at his neck with the great axe, on condition of receiving one in return, a year and a day hence, at the Green Chapel. Gawain takes the challenge and strikes the head clean off; the Green Knight picks it up, reminds him of the tryst, and rides out holding it. The year turns, and Gawain rides north through winter to keep his side of the bargain.</p><p class="myth-text">At Hautdesert the lord Bertilak proposes an exchange: each evening they will swap whatever the day has won them. Three days the lord hunts; three days his lady tests Gawain's courtesy in his chamber; and each evening Gawain faithfully renders the kisses he has received — but on the third day he keeps back the green girdle the lady says will preserve his life. At the Green Chapel the axe falls three times: twice withheld, and once, for the kept-back girdle, a nick in the neck. The Green Knight reveals himself as Bertilak, sent by Morgan le Fay; the girdle was the whole point. Gawain wears it home as his 'token of untruth' — and Camelot laughs, and binds a green lace on every shoulder in his honor.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="500">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Le Morte Darthur</span>
-          <h3 class="myth-title">The Last Letter</h3>
-          <p class="myth-text">Malory's Sir Gawaine is the courteous knight grown tragic: head of the Orkney clan, Arthur's dearest nephew, whose feud with Lancelot — after Gareth and Gaheris are slain in the fire of Guenevere's rescue — drags the fellowship to ruin. Wounded at Dover by Lancelot in the last single combat, he dies of the reopened wound, writing with his own hand the letter that calls Lancelot 'flower of all noble knights' and begs him to come see his tomb. And on the eve of Salisbury Plain he returns in Arthur's dream with a troop of ladies, warning the king not to fight Mordred on the morrow — the nephew still trying, from beyond death, to bring his uncle's last errand home.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -555,8 +423,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Gawain</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Gawain</strong> is the standard Celtic romanisation, documented in academic sources — “Little falcon”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">gawain</p>
+                <p class="card-body">The plain <strong>gawain</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Gawain</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Gawain</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Gawain.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Gawain</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Gawain</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Gawain</p>
+                    <p class="card-body">The full Unicode restoration. <strong>gawain.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Gawain was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈɡwalx.mai/</span>
+            <span class="ipa-label">Middle Welsh Reconstruction (Gwalchmai)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Gw-</span>
+        <span class="phoneme-desc">Labiovelar onset [ɡw], as in Welsh Gwyn or English 'Gwen' — a single rounded g, never two separate sounds.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-alch</span>
+        <span class="phoneme-desc">Short open [a] followed by [lx]: the Welsh voiceless velar fricative ch, the rasp of Scottish 'loch', closing the first syllable.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-mai</span>
+        <span class="phoneme-desc">The word Mai, 'May', as a closing diphthong [mai] — the name's second element, 'hawk of May', sounded like the English month.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">GWALH-my — the gw of 'Guinevere', the ch of Scottish 'loch', and 'my' like the month of May. The later English form Gawain runs 'guh-WAYN', stress on the second syllable.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Gwalchmai is a transparent Welsh compound: gwalch ('hawk') + Mai ('May'), whence the standard scholarly rendering 'hawk of May' (Bromwich, Trioedd Ynys Prydein; Koch); the PuniCodex lexicon keeps the traditional English gloss 'little falcon' for the same root-image. The temple form Gawain is Tier 2 by the mechanical rule: the English name is already plain ASCII — there is no diacritic and no distinctive letter for the ASCII alphabet to lose. The capital alone distinguishes the temple form from the input.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Gawain is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Gawain</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -574,7 +579,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/gawain_mascot.webp" type="image/webp"><img src="../assets/gawain_mascot.png" alt="Gawain mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/gawain_mascot.webp" type="image/webp"><img src="../assets/gawain_mascot.png" alt="Gawain mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -612,7 +617,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/gawain_logomark.webp" type="image/webp"><img src="../assets/gawain_logomark.webp" alt="Gawain logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/gawain_logomark.webp" type="image/webp"><img src="../assets/gawain_logomark.webp" alt="Gawain logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

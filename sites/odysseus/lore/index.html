@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Odysseús — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ὀδυσσεύς</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Odysseús.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,148 +236,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ὀδυσσεύς</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Odysseús</strong> (Ὀδυσσεύς) is attested in the source tradition — “Hated, painful”. Its diphthongs and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">odysseus</p>
-                    <p class="card-body">Reduced to plain <strong>odysseus</strong>, the name loses everything that made it specific: diphthongs and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Odysseús</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Odysseús</strong> restores diphthongs and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Odysseús.com → xn--odysses-c2a.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Odysseús</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Odysseús</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Odysseús is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ὀδυσσεύς</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Odysseús is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Odysseús</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Odysseús</p>
-                    <p class="card-body">Restores <strong>Ὀδυσσεύς</strong>. The live temple domain — <strong>odysseús.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">odysseus</p>
-                    <p class="card-body">Flattens <strong>Ὀδυσσεύς</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Odysseús was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Odysseús</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/o.dys.seús/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">O-</span>
-        <span class="phoneme-desc">Short omicron with smooth breathing — the name begins low and unforced.</span>
+      <p class="lead-text">The Odyssey is his biography, but his story begins in the Iliad and ends in prophecy: war at Troy, ten years of wandering, and a homecoming the gods themselves had to negotiate. He is the one hero of the cycle whose full arc — force, craft, loss, return — the tradition preserves entire.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Ruse</span>
+          <h3 class="myth-title">The Wooden Horse</h3>
+          <p class="myth-text">When ten years of force had not taken Troy, Odysseús took it in a night by craft. The horse was built by Epeios with <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>'s help (Od. 8.492) and carried the flower of the Achaeans within the walls as a pretended offering to appease the very goddess the city had outraged. Odysseús steered the plan through its two greatest dangers: Helen walking the horse's flank and speaking with the voices of the men's wives (Od. 4.274–279), and the priest Laocoön hurling his spear into the wooden side, which rang hollow — a scene the Roman tradition expands into full tragedy (Virgil, Aeneid 2). At midnight the horse opened, the gates received the returning army, and Troy burned. The Odyssey's singers treat the ruse as Odysseús's crowning glory (Od. 8.520), while the heirs of the fallen remembered the same night as the crime that founded their own counter-epic. <em>The myth's unease is its point: Greek heroism could conquer what Greek force could not — but only by teaching the world to fear intelligence as much as courage.</em></p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-dys-</span>
-        <span class="phoneme-desc">Delta and short upsilon with sigma [dys] — the compact middle the poets linked to ὀδύσσομαι, 'to hate'.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Name</span>
+          <h3 class="myth-title">Nobody in the Cyclops' Cave</h3>
+          <p class="myth-text">In Odyssey 9 the wanderer comes to the island of the Cyclopes and enters the cave of Polyphêmos with twelve of his men. The giant blocks the entrance with a great stone and devours two sailors at each meal; force is impossible, so Odysseús's answer is a name. He tells the Cyclops he is called Outis — 'Nobody' (Od. 9.366) — and then hands him the potent wine of Maron. Drunk and blinded by the fire-hardened olive-stake, the giant bellows that Nobody is killing him, and his neighbors take the joke for silence and walk away. The crew escapes clinging beneath the bellies of the rams, and as the ship pulls off Odysseús cannot resist shouting his true name across the water — winning <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidôn</a>'s wrath and the ten years that followed (Od. 9.526–536). The episode is the poem's deepest meditation on identity: Odysseús survives by annihilating his name, and is nearly destroyed by reclaiming it. <em>The self, Homer suggests, is the one treasure that cannot be shouted home.</em></p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-seús</span>
-        <span class="phoneme-desc">Sigma plus the diphthong ευ under acute pitch [seús] — the rising, long final syllable of the agentive -εύς names.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Enchantress</span>
+          <h3 class="myth-title">Kirke's Island and the Road to the Dead</h3>
+          <p class="myth-text">On Aiaia, Kirke turns the scouting party into swine — 'their mind remained firm as before' (Od. 10.239–240) — until Odysseús, armed by <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermês</a> with the moly herb, forces her to swear the oath that ends her hostility (Od. 10.343–346). A year of feasting follows, and then the strangest gift in the poem: she sends him where no living sailor has gone, down to the house of <a href="/hades/" class="crosslink" data-crosslink="hades">Hades</a> to drink blood with the blind seer <a href="/teiresias/" class="crosslink" data-crosslink="teiresias">Teiresias</a> (Od. 10.487–540; 11). There he meets the ghost of his mother, Achilles among the dead, and watches Tityos, Tantalos, and Sisyphos at their eternal labors. The enchantress becomes the hero's teacher, and her island the hinge of the whole epic: before Kirke, Odysseús is a raider fleeing disasters; after her, he is a man who has consulted the dead and knows what his homecoming will cost. <em>The poem's most dangerous woman is also the one who gives it its moral map — a reversal Homer performs without comment, as if it were the most natural thing in the world.</em></p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Long Delay</span>
+          <h3 class="myth-title">Kalypso and the Land of the Phaiakians</h3>
+          <p class="myth-text">For seven years the nymph Kalypso holds Odysseús on Ogygia, offering him immortality and agelessness — and each day he refuses, choosing Ithaka, its smoke, and a mortal wife (Od. 5.209–224; 7.256–258). <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> orders his release; Poseidôn wrecks the raft within sight of land (Od. 5.282–381); the naked castaway, kept afloat by Ino-Leukothea's veil, crawls under twin olive bushes and buries himself in leaves 'like a brand under black ash' (Od. 5.483–490). Then comes the strangest rescue in Greek epic: Nausikáa, a princess doing the palace laundry, finds him salt-crusted and terrible — and, because Athena has steadied her heart, brings the stranger home. The Phaiakians feast him, hear his whole tale, and set him on a ship that carries him sleeping to Ithaka (Od. 13). The sequence is the Odyssey's theology in miniature: <em>a man can lose everything except the direction of home, and the gods help only those still crawling toward it.</em></p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Homecoming</span>
+          <h3 class="myth-title">The Bow and the Rooted Bed</h3>
+          <p class="myth-text">Twenty years gone, Odysseús enters his own hall disguised as a beggar and endures blows he could repay with blood, because revenge mistimed is ruin (Od. 17–20). <a href="/penelope/" class="crosslink" data-crosslink="penelope">Pēnelópē</a>, at the end of her patience, sets the contest: whoever strings the great bow and sends an arrow through twelve axes shall have her (Od. 19.570–587; 21). The suitors fail one by one; the beggar strings it in a motion smooth as a lyre-player's tuning, and the hall runs red (Od. 22). Even then Pēnelópē does not trust her eyes: she orders the bridal bed moved, and Odysseús cries out that it cannot be — he built it himself around a living olive stump, rooted in the earth, the wood planed and inlaid (Od. 23.153–202). Recognition comes not from the face but from the bed. <em>The epic ends by answering its own question: what survives twenty years of wandering is not strength but the rooted thing a man refuses to move.</em> Teiresias's oar still waits — a last journey inland, and a gentle death from the sea (Od. 11.121–137).</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'oh-dyss-SEWS' — three quick syllables gathering into a long, high final surge, like a wave cresting at the name's end.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek verb</strong> ὀδύσσομαι, 'to be wroth with, to hate' — the Odyssey's own etymology: his grandfather Autolykos names him 'the hated one' (Od. 19.407)</li><li><strong>Homeric epithets</strong> πολύτροπος 'of many turns', πολύμητις 'of many counsels', πολύτλας 'much-enduring'</li><li><strong>Western Greek</strong> dialectal forms with -l- (Ὀλυσσεύς) stand behind the Latin name</li><li><strong>Latin</strong> Ulixēs, whence English 'Ulysses'</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Odysseús is Tier 1 because the Greek Ὀδυσσεύς contains both stress (the acute on the final syllable) and length (the diphthong ευ). The restoration keeps the acute on ú; the diphthong itself survives in the standard transliteration eu. English 'Odysseus' flattens the pitch that Greek put on the name's last syllable.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -380,9 +294,9 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Man of Many Turns</h2>
-            <p class="section-subtitle">Cunning, Endurance, and the <a href="/long/" class="crosslink" data-crosslink="long">Long</a> Road Home</p>
+            <p class="section-subtitle">Cunning, Endurance, and the Long Road Home</p>
         </div>
         
       <div class="domains-intro reveal-up"><p class="lead-text">Odysseús is the Greeks' fullest study of intelligence under pressure: the strategist of Troy, the wanderer of ten years, the beggar who comes home to a house full of enemies and wins it back with patience, a bow, and a rooted bed. Homer gives him more words than any other hero — his weapon is speech itself.</p></div>
@@ -414,7 +328,7 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The olive-trunk bed</span>
-        <span class="symbol-meaning">Built into a living, rooted tree — the immovable sign by which <a href="/penelope/" class="crosslink" data-crosslink="penelope">Penelope</a> knows her husband</span>
+        <span class="symbol-meaning">Built into a living, rooted tree — the immovable sign by which Penelope knows her husband</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The scar</span>
@@ -431,49 +345,23 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Odysseús</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Odysseús lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">The Odyssey is his biography, but his story begins in the Iliad and ends in prophecy. He is the one hero whose full arc — war, wandering, homecoming — the tradition preserves entire.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Ruse</span>
-          <h3 class="myth-title">The Wooden Horse</h3>
-          <p class="myth-text">Ten years of force had not taken Troy; Odysseús took it in a night by craft. The horse, built by Epeios with <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>'s help, carried the pick of the Achaeans within the walls as a pretended offering, and the Odyssey remembers it as his design. The Iliad ends before the fall, but the Odyssey tells the rest: the plan, the peril of Helen's voice at the horse's side, and the sack that followed were all his.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">Words Descended from This Name</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/everyday/#odyssey" class="source-badge" title="a long, wandering journey">odyssey</a>
+                    <a href="https://punicodex.com/everyday/#mentor" class="source-badge" title="a trusted guide">mentor</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Wandering</span>
-          <h3 class="myth-title">Nobody and the Enchantress</h3>
-          <p class="myth-text">Blown off course, he meets the story-book of the sea: the Lotus-Eaters; Polyphêmos, outwitted by the name Outis — 'Nobody' — and blinded as he sleeps; Aiolos's bag of winds; the Laistrygonians; Kirke, who turns his crew to swine and then becomes his teacher; the descent to the dead, where <a href="/teiresias/" class="crosslink" data-crosslink="teiresias">Teiresias</a> foretells the road home; the Sirens heard from the mast; Skylla and Charybdis; and Thrinakia, where his last crew eats the Sun's cattle and is lost.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Wrath of the Sea</span>
-          <h3 class="myth-title">Kalypso and the Raft</h3>
-          <p class="myth-text">For the blinding of his son Polyphêmos, <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidôn</a> pursues him. Seven years he is kept on Kalypso's island, offered immortality and a goddess's bed — and refuses both for a sight of the smoke of Ithaka. Released by <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a>'s command, he builds a raft, is wrecked by the sea-god within sight of Scheria, and comes ashore naked on the Phaiakians' mercy — the low point from which everything turns.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Return</span>
-          <h3 class="myth-title">The Bow and the Rooted Bed</h3>
-          <p class="myth-text">Landed on Ithaka at last, he enters his hall disguised as a beggar and endures the suitors' insults in silence. Penelope sets the contest of the bow; he alone strings it, and the hall runs with the suitors' blood. Even then she tests him, bidding the bed be moved — and he cries out that it cannot be, for he built it round a rooted olive. Teiresias's prophecy remains: a last journey inland with an oar, until the sea is unknown, and a gentle death in old age.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -481,7 +369,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -545,24 +433,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Odysseús lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">Words Descended from This Name</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/everyday/#odyssey" class="source-badge" title="a long, wandering journey">odyssey</a>
-                    <a href="https://punicodex.com/everyday/#mentor" class="source-badge" title="a trusted guide">mentor</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ὀδυσσεύς</p>
+                <p class="card-body">The name in its original Greek form. <strong>Odysseús</strong> (Ὀδυσσεύς) is attested in the source tradition — “Hated, painful”. Its diphthongs and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">odysseus</p>
+                <p class="card-body">Reduced to plain <strong>odysseus</strong>, the name loses everything that made it specific: diphthongs and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Odysseús</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Odysseús</strong> restores diphthongs and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Odysseús.com → xn--odysses-c2a.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Odysseús</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Odysseús</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Odysseús</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Odysseús</p>
+                    <p class="card-body">Restores <strong>Ὀδυσσεύς</strong>. The live temple domain — <strong>odysseús.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">odysseus</p>
+                    <p class="card-body">Flattens <strong>Ὀδυσσεύς</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Odysseús was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/o.dys.seús/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">O-</span>
+        <span class="phoneme-desc">Short omicron with smooth breathing — the name begins low and unforced.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-dys-</span>
+        <span class="phoneme-desc">Delta and short upsilon with sigma [dys] — the compact middle the poets linked to ὀδύσσομαι, 'to hate'.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-seús</span>
+        <span class="phoneme-desc">Sigma plus the diphthong ευ under acute pitch [seús] — the rising, long final syllable of the agentive -εύς names.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'oh-dyss-SEWS' — three quick syllables gathering into a long, high final surge, like a wave cresting at the name's end.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Odysseús is Tier 1 because the Greek Ὀδυσσεύς contains both stress (the acute on the final syllable) and length (the diphthong ευ). The restoration keeps the acute on ú; the diphthong itself survives in the standard transliteration eu. English 'Odysseus' flattens the pitch that Greek put on the name's last syllable.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Odysseús is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ὀδυσσεύς</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Odysseús is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -581,7 +594,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/odysseus_mascot.webp" type="image/webp"><img src="../assets/odysseus_mascot.png" alt="Odysseús mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/odysseus_mascot.webp" type="image/webp"><img src="../assets/odysseus_mascot.png" alt="Odysseús mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -619,7 +632,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/odysseus_logomark.webp" type="image/webp"><img src="../assets/odysseus_logomark.webp" alt="Odysseús logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/odysseus_logomark.webp" type="image/webp"><img src="../assets/odysseus_logomark.webp" alt="Odysseús logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Animus, Mind, Spirit, Courage. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/animus/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Animus?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Animus is /ˈa.nɪ.mʊs/ — approximately 'AH-nih-moos' — stress the first syllable; the final vowel is short and rounded."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Animus mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Animus means Mind, spirit, courage in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Animus?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Animus is associated with Heart (The seat of courage and emotional resolve in Roman and modern symbolism.), Sword (The instrument of courage and the willingness to act with force.), Flame (The fire of spirit, ambition, and anger that drives action.), Brow or forehead (The visible place of mind and determination, where animus shows on the face.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Animus in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Animus is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Animus?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Seat of Courage” — Animus is not a mythological character but a concept that runs through Roman literature, rhetoric, and ethics. Its 'mythology' is the story of how Latin speakers imagined the active self: the mind that commands, the spirit that endures, and the anger that destroys. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/animus_logolockup.webp" type="image/webp"><img src="../../assets/animus_logolockup.png" alt="Animus" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Animus</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Animus</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/animus_mascot.webp" type="image/webp"><img src="../../assets/animus_mascot.png" alt="Animus — Mind, Spirit, Courage" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/animus_mascot.webp" type="image/webp"><img src="../../assets/animus_mascot.png" alt="Animus — Mind, Spirit, Courage" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Animus</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Animus is a Latin word, not a Greek proper name. It has no indigenous alphabetic 'original script' other than the Latin alphabet. The ASCII form animus is already the Latin spelling; the restoration capitalises the proper-noun form as a scholarly citation. Because no distinctive diacritic or special letter is added, the entry is Tier 2.</p>
+                <p class="etymology-note">The name <strong>Animus</strong> reaches the modern world through scholarly transliteration of the greek tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">A</td><td><code>U+0041</code></td><td>Latin Capital Letter A</td><td>Basic Latin</td><td>A uppercase</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>n same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>i same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>m same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>u same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">s</td><td><code>U+0073</code></td><td>Latin Small Letter S</td><td>Basic Latin</td><td>s same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Animus</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Animus</strong> is the Latin word for mind, spirit, courage, and sometimes fierce anger. It names the active, directing part of the person: the faculty that thinks, decides, resists, and fights. Where anima is breath and life, animus is will and consciousness. Roman ethics placed great weight on the animus as the seat of virtue, and the word survives in English as a sign of both spiritedness and settled hostility.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Animus in Later Traditions</h3><p class="cultural-card-body">The Latin animus maps onto Greek thymos (spiritedness), nous (mind), and psychē (soul). Roman Stoicism absorbed Greek psychology and gave it a distinctly Roman emphasis on duty, endurance, and public virtue. In modern English 'animus' has narrowed to mean hostility or ill will, but the broader Latin sense survives in words such as animate, magnanimous, and animosity. The word is a bridge between ancient ethics and modern psychology.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Animus survives in English as both a technical term and an everyday word. 'Animate,' 'animation,' and 'animal' derive from anima, but 'animus,' 'magnanimous,' 'pusillanimous,' and 'animosity' preserve the masculine, spirited sense. In Jungian psychology the animus is a major archetype, and in law and rhetoric 'animus' still names intention or state of mind. The word's career shows how Roman concepts of mind and courage continue to shape Western languages and thought.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Animus</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Animus in Later Traditions</h3><p class="cultural-card-body">The Latin animus maps onto Greek thymos (spiritedness), nous (mind), and psychē (soul). Roman Stoicism absorbed Greek psychology and gave it a distinctly Roman emphasis on duty, endurance, and public virtue. In modern English 'animus' has narrowed to mean hostility or ill will, but the broader Latin sense survives in words such as animate, magnanimous, and animosity. The word is a bridge between ancient ethics and modern psychology.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Animus survives in English as both a technical term and an everyday word. 'Animate,' 'animation,' and 'animal' derive from anima, but 'animus,' 'magnanimous,' 'pusillanimous,' and 'animosity' preserve the masculine, spirited sense. In Jungian psychology the animus is a major archetype, and in law and rhetoric 'animus' still names intention or state of mind. The word's career shows how Roman concepts of mind and courage continue to shape Western languages and thought.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No altar to Animus is known — the word never had a cult — but the concept has a material footprint. Polybius, explaining Roman power to Greeks, describes the aristocratic funeral: the corpse arrayed in the forum with actors wearing the wax portrait-masks (imagines) of every ancestor, each mask a stored animus brought back to embody the dead (Histories 6.53–54). The Roman portrait tradition — the veristic busts of the Republic and thousands of funerary inscriptions commending the animus to the gods — is the largest surviving archive of the idea. Roman coins personified virtus and fides; what they struck in bronze was the disciplined animus itself, made payable.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Animus means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>To meditate on Animus is to meditate on the will. The Latin word contains both the noblest and the most dangerous forms of spiritedness: courage and wrath, resolution and resentment. The Stoics were right to see the animus as a faculty that needs governance. Without reason it becomes mere force; with reason it becomes virtue.</p><p>In a world that often celebrates intensity without direction, Animus asks what we are directing our spirit toward. Mindless courage is recklessness; mindful courage is the foundation of justice.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Animus, Mind, Spirit, Courage, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Animus?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Animus</strong> is /ˈa.nɪ.mʊs/ — approximately 'AH-nih-moos' — stress the first syllable; the final vowel is short and rounded..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Animus mean?</summary><div class="faq-answer"><p><strong>Animus</strong> means <strong>Mind, spirit, courage</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Animus?</summary><div class="faq-answer"><p>Animus is associated with <strong>Heart</strong> (The seat of courage and emotional resolve in Roman and modern symbolism.), <strong>Sword</strong> (The instrument of courage and the willingness to act with force.), <strong>Flame</strong> (The fire of spirit, ambition, and anger that drives action.), <strong>Brow or forehead</strong> (The visible place of mind and determination, where animus shows on the face.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Animus in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>animus</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Animus?</summary><div class="faq-answer"><p>For Roman writers such as Cicero and Livy, the animus is the source of virtus, the courage that makes a citizen worthy of the state. Scipio Africanus, Horatius at the bridge, and the unnamed soldiers of the Roman legions are all praised for the strength of their animus. The word carries the conviction that character is an inner force that outward action reveals.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Animus?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Animus</strong> is /ˈa.nɪ.mʊs/ — approximately 'AH-nih-moos' — stress the first syllable; the final vowel is short and rounded.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Animus mean?</summary><div class="faq-answer"><p><strong>Animus</strong> means <strong>Mind, spirit, courage</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Animus?</summary><div class="faq-answer"><p>Animus is associated with <strong>Heart</strong> (The seat of courage and emotional resolve in Roman and modern symbolism.), <strong>Sword</strong> (The instrument of courage and the willingness to act with force.), <strong>Flame</strong> (The fire of spirit, ambition, and anger that drives action.), <strong>Brow or forehead</strong> (The visible place of mind and determination, where animus shows on the face.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Animus in Unicode?</summary><div class="faq-answer"><p><strong>Animus</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Animus?</summary><div class="faq-answer"><p>“The Seat of Courage” — Animus is not a mythological character but a concept that runs through Roman literature, rhetoric, and ethics. Its 'mythology' is the story of how Latin speakers imagined the active self: the mind that commands, the spirit that endures, and the anger that destroys. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,13 +349,13 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cicero</cite></li><li><cite>Lewis-Short</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lewis-Short</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cicero, Tusculanae disputationes and De officiis</cite></li><li><cite>Virgil, Aeneid</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cicero</cite></li><li><cite>Cicero, Tusculanae disputationes 1.64–66 and De officiis</cite></li><li><cite>Virgil, Aeneid 4.449 and 12</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -304,7 +367,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Oxford Latin Dictionary, s.v. animus</cite></li><li><cite>Lewis and Short, A Latin Dictionary, s.v. animus</cite></li><li><cite>Seneca, De ira</cite></li><li><cite>Marcus Aurelius, Meditations</cite></li></ul>
+                    <ul class="source-list"><li><cite>Oxford Latin Dictionary, s.v. animus</cite></li><li><cite>Lewis and Short, A Latin Dictionary, s.v. animus</cite></li><li><cite>Seneca, De ira; Marcus Aurelius, Meditations 2.1–2</cite></li><li><cite>Jung, Collected Works 7 and 9ii (anima/animus)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/animus_logomark.webp" type="image/webp"><img src="../../assets/animus_logomark.webp" alt="Animus logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/animus_logomark.webp" type="image/webp"><img src="../../assets/animus_logomark.webp" alt="Animus logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

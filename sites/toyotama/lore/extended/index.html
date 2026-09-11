@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Toyotama, Sea, Mother of Jimmu. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/toyotama/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Toyotama?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Toyotama is /to.jo.ta.ma/ — approximately 'TOH-yoh-tah-mah' — four even syllables, with the second beginning with a soft 'y'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Toyotama mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Toyotama means Abundant jewel in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Toyotama?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Toyotama is associated with Jewel (The abundance and treasure of the sea, enshrined in her name), Sea palace (Ryūgū) (The undersea realm where she was born and to which she returned), The wani (sea-dragon) (Her true form, seen by Hoori when he broke his promise), Cormorant-feather thatch (The birth-hut she sealed with cormorant feathers — the garment between forms)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Toyotama in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Toyotama is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Toyotama?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Bride of the Sea Palace” — Toyotama's cycle, told in the Kojiki's Hoori narrative, is the story of a sea princess who marries into the land — and of the promise whose breaking closes the road between the realms forever. She is at once bride, mother, and exile: the ocean's gift to the imperial genealogy, and its loss. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/toyotama_logolockup.webp" type="image/webp"><img src="../../assets/toyotama_logolockup.png" alt="Toyotama" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Toyotama</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Toyotama</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/toyotama_mascot.webp" type="image/webp"><img src="../../assets/toyotama_mascot.png" alt="Toyotama — Sea, Mother of Jimmu" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/toyotama_mascot.webp" type="image/webp"><img src="../../assets/toyotama_mascot.png" alt="Toyotama — Sea, Mother of Jimmu" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Toyotama, Sea, Mother of Jimmu</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">豊玉毘売命</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Toyotama</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/to.jo.ta.ma/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Japanese</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Sea, Mother of Jimmu</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Abundant jewel</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Toyotama</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Jewel, Sea palace (Ryūgū), Dragon or crocodile, Cormorant feather robe</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">豊玉毘売命</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Toyotama</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/to.jo.ta.ma/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Japanese</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Sea, Mother of Jimmu</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Abundant jewel</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Toyotama</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Jewel, Sea palace (Ryūgū), The wani (sea-dragon), Cormorant-feather thatch</span></div></div>
         </div>
     </div>
 </section>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Toyotama</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Toyotama is Tier 2: plain Hepburn. She is the sea princess and mother of the imperial ancestor <a href="/ugayafukiaezu/" class="crosslink" data-crosslink="ugayafukiaezu">Ugayafukiaezu</a>.</p>
+                <p class="etymology-note">The name <strong>Toyotama</strong> reaches the modern world through scholarly transliteration of the japanese tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Japanese</strong> — 豊玉毘売命 (Toyotama-hime-no-mikoto), 'Abundant Jewel Princess'</li><li><strong>Father</strong> — Ryūjin, the dragon god of the sea</li><li><strong>Husband</strong> — <a href="/hoori/" class="crosslink" data-crosslink="hoori">Hoori</a></li><li><strong>Son</strong> — Ugayafukiaezu, ancestor of Emperor Jimmu</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Japanese</strong> — 豊玉毘売命 (Toyotama-hime-no-mikoto), 'Abundant Jewel Princess'</li><li><strong>Father</strong> — Watatsumi / Ryūjin, the dragon god of the sea</li><li><strong>Husband</strong> — <a href="/hoori/" class="crosslink" data-crosslink="hoori">Hoori</a> (Hikohohodemi-no-mikoto)</li><li><strong>Son</strong> — <a href="/ugayafukiaezu/" class="crosslink" data-crosslink="ugayafukiaezu">Ugayafukiaezu</a>, grandfather of Emperor Jimmu</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">T</td><td><code>U+0054</code></td><td>Latin Capital Letter T</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">y</td><td><code>U+0079</code></td><td>Latin Small Letter Y</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">t</td><td><code>U+0074</code></td><td>Latin Small Letter T</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="560"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Toyotama</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Toyotama</strong> is the daughter of the sea god Ryūjin and the wife of Hoori. Her name, 'Abundant Jewel,' evokes the treasures of the undersea palace. She is the mother of Ugayafukiaezu, making her an ancestor of Emperor Jimmu and a bridge between the ocean depths and the imperial line.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Toyotama in Later Traditions</h3><p class="cultural-card-body">Toyotama belongs to a widespread East Asian motif: the animal bride whose true form must not be seen. Her story parallels Chinese and Korean dragon-palace tales, but in Japan it was woven into the imperial genealogy. She also overlaps with other sea-women and dragon daughters in Japanese folklore.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Toyotama is remembered as a tragic mother and a link between the sea and the imperial house. Her story appears in Noh, folk tales, and modern retellings of Japanese myth. The Ryūgū motif remains popular in Japanese art and entertainment.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Toyotama</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Toyotama in Later Traditions</h3><p class="cultural-card-body">Toyotama belongs to one of the oldest families of tales in East <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>: the supernatural bride whose true form must not be seen — the Japanese cousin of the Chinese dragon-palace romances and of the <em>hagoromo</em> 'feather-robe' cycle, in which a wife recovers her stolen robe and leaves her human family. Buddhist Japan read her father's palace through the nāga lens: the fish-scaled halls of the deep are the sea-serpents' treasure house, and Ryūjin's daughter moves between the two cosmologies without friction. In the medieval Shinto-Buddhist synthesis she is simply a kami of rank, fixed in the imperial genealogy she founded. Modern Japan keeps her as the archetype of the bride from the sea — beautiful, powerful, and gone — and the Ryūgū palace she left behind remains the nation's favourite undersea legend, retold in Noh, in the otogi-zōshi fairytales, and on screen.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Toyotama's legacy is dynastic before it is cultic: every emperor of Japan descends from her through Jimmu, so her name is woven into the state's founding genealogy. Her landscape is the Hyūga coast of Miyazaki — Aoshima, reached at low tide by its own sandbar, keeps the legend of the birth-hut, and Cape Kasasa and the Horikiri pass are pointed out as the myth's stations. The Ryūgū-palace motif she inhabits saturates Japanese art and story, from Noh and fairytales to modern film and anime, and 'Toyo-tama' was adopted by one of the twentieth century's great industrial houses — a modern reuse of the 'abundant jewel'. Her story endures because it is the founding genealogy's most human page: a marriage across worlds, a broken trust, a child raised between shore and sea.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Toyotama has no excavated sanctuary and no inscription names her; her witnesses are books. The <a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a> was compiled in 712 and the <a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a> in 720, and the Kojiki's oldest complete manuscript, the Shinpukuji-bon of 1371–72, still transmits the Hoori narrative. The myth's geography, however, is walked rather than read: the Miyazaki coast — Aoshima's tide-washed island shrine, the Cape Kasasa lookout, the Horikiri pass — preserves the story as local topography. Inland, at Kashihara in Nara prefecture, Kashihara Jingū marks the site of Jimmu's palace and throne, the terrestrial terminus of the sea-borne genealogy she began. Her material record, in short, is the map of Japan's founding geography.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Toyotama means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Toyotama is the mother who leaves — and the myth refuses to let us blame her cleanly. Her husband broke the only condition she set, and she went back to the sea, closing the road behind her. Yet what she left behind became the imperial line, the nation, the shrine at the water's edge. The tale understands something modern grief counsellors know: absence can found a lineage as surely as presence.</p><p>It also understands cost, and prices it honestly — hence the aetiology of childbirth pain, the myth's blunt way of saying that every descent of new life into the world is paid for in suffering, and that the bill was handed to the land the day the land looked where it had promised not to. To stand on the Hyūga shore is to stand where a marriage between sea and land was signed, witnessed, and broken.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Toyotama, Sea, Mother of Jimmu, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Toyotama?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Toyotama</strong> is /to.jo.ta.ma/ — approximately 'TOH-yoh-tah-mah' — four even syllables, with the second beginning with a soft 'y'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Toyotama mean?</summary><div class="faq-answer"><p><strong>Toyotama</strong> means <strong>Abundant jewel</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Toyotama?</summary><div class="faq-answer"><p>Toyotama is associated with <strong>Jewel</strong> (The abundance and treasure of the sea), <strong>Sea palace (Ryūgū)</strong> (The undersea realm where she was born), <strong>Dragon or crocodile</strong> (Her true form, seen by Hoori when he broke his promise), <strong>Cormorant feather robe</strong> (The garment that allowed travel between sea and land).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Toyotama in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>toyotama</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Toyotama?</summary><div class="faq-answer"><p>When Hoori descended to the undersea palace seeking the lost fishhook, Ryūjin welcomed him and gave him Toyotama in marriage. For three years they lived in the palace, and Toyotama became pregnant. Hoori longed for the land, and she agreed to accompany him.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Toyotama?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Toyotama</strong> is /to.jo.ta.ma/ — approximately 'TOH-yoh-tah-mah' — four even syllables, with the second beginning with a soft 'y'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Toyotama mean?</summary><div class="faq-answer"><p><strong>Toyotama</strong> means <strong>Abundant jewel</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Toyotama?</summary><div class="faq-answer"><p>Toyotama is associated with <strong>Jewel</strong> (The abundance and treasure of the sea, enshrined in her name), <strong>Sea palace (Ryūgū)</strong> (The undersea realm where she was born and to which she returned), <strong>The wani (sea-dragon)</strong> (Her true form, seen by Hoori when he broke his promise), <strong>Cormorant-feather thatch</strong> (The birth-hut she sealed with cormorant feathers — the garment between forms).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Toyotama in Unicode?</summary><div class="faq-answer"><p><strong>Toyotama</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Toyotama?</summary><div class="faq-answer"><p>“The Bride of the Sea Palace” — Toyotama's cycle, told in the Kojiki's Hoori narrative, is the story of a sea princess who marries into the land — and of the promise whose breaking closes the road between the realms forever. She is at once bride, mother, and exile: the ocean's gift to the imperial genealogy, and its loss. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lexical and philological sources for Toyotama.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki (Hoori and Toyotama cycle)</cite></li><li><cite>Nihon Shoki (parallel genealogy)</cite></li><li><cite>Philippi, Kojiki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li><li><cite>Kojiki, Hikohohodemi-no-mikoto and Toyotama-hime cycle; trans. Donald L. Philippi, Kojiki (Princeton University Press, 1969)</cite></li><li><cite>Nihon Shoki (Nihongi), Age of the Gods volumes, parallel variants; trans. W. G. Aston (1896)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Toyotama and related cults.</cite></li><li><cite>Toyotama has no independent material cult. Her significance is textual and genealogical, preserved in the Kojiki's narrative of Hoori and the imperial ancestry.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Toyotama and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of japanese religion and the place of Toyotama within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Aoki, Michiko Yamaguchi, Ancient Myths and Early History of Japan (Garland, 1974)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/toyotama_logomark.webp" type="image/webp"><img src="../../assets/toyotama_logomark.webp" alt="Toyotama logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/toyotama_logomark.webp" type="image/webp"><img src="../../assets/toyotama_logomark.webp" alt="Toyotama logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

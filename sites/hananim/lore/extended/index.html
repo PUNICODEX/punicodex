@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Hwanin, Supreme God, Heaven. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/hananim/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Hwanin?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Hwanin is /hwa.nin/ — approximately 'HWAH-neen' — in the Korean reading the first syllable is pronounced with rounded lips and the second is short and level. The scholarly form Hwanin preserves the capital that marks a proper name; the ASCII form hananim is an older romanisation still used in domain names."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Hwanin mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hwanin means Lord of Heaven in the korean tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Hwanin?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hwanin is associated with The heavens (The celestial realm from which Hwanin dispenses authority and blessing.), The sandalwood tree (The axis linking heaven and earth in the Dangun myth; the place where Hwanung alighted on Taebaeksan.), The heavenly seal (The token of delegated authority that Hwanin gives to Hwanung — the warrant without which the descent is illegitimate.), Sun and moon (Celestial emblems of the luminous, ordering presence of heaven.), Mugwort and garlic (The hundred-day food of the bear-woman — the austere diet that turns a beast into the ancestress of the Korean people.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Hwanin in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hwanin is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Hwanin?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Lord of Heaven Sends His Son” — The mythology of Hwanin survives in a single late masterpiece: the Samguk Yusa ('Memorabilia of the Three Kingdoms') of the monk Iryeon, compiled in 1281 CE from much older Korean and Chinese materials. In it, Hwanin — explicitly identified with Indra, the Buddhist lord of heaven — sends his son Hwanung down beneath a sandalwood tree, and from that descent flow the tiger-and-bear transformation, the birth of Dangun, and the whole legitimating myth of Korea's foundation. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/hananim_logolockup.webp" type="image/webp"><img src="../../assets/hananim_logolockup.png" alt="Hwanin" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Hwanin</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Hwanin</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/hananim_mascot.webp" type="image/webp"><img src="../../assets/hananim_mascot.png" alt="Hwanin — Supreme God, Heaven" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/hananim_mascot.webp" type="image/webp"><img src="../../assets/hananim_mascot.png" alt="Hwanin — Supreme God, Heaven" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Hwanin, Supreme God, Heaven</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">하나님</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Hwanin</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/hwa.nin/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Korean</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Supreme God, Heaven</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Lord of Heaven</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Hwanin</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The heavens, The sandalwood tree, The heavenly seal, Sun and moon</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">하나님</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Hwanin</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/hwa.nin/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Korean</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Supreme God, Heaven</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Lord of Heaven</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Hwanin</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The heavens, The sandalwood tree, The heavenly seal, Sun and moon, Mugwort and garlic</span></div></div>
         </div>
     </div>
 </section>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Hwanin</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">In Korean reading, the first syllable is pronounced with rounded lips and the second is short and level. The scholarly form  Hwanin  preserves the capital that marks a proper name; the ASCII form  hananim  is an older romanisation still used in domain names.</p>
+                <p class="etymology-note">The name <strong>Hwanin</strong> reaches the modern world through scholarly transliteration of the korean tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Hangul</strong> — 환인 — the Korean script form.</li><li><strong>Hanja</strong> — 桓因 — the Sino-Korean character form.</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Sino-Korean</strong> — 桓因 (hwan-in) — 桓 hwan 'spreading, majestic' + 因 in 'cause, origin'; the form used in the Samguk Yusa</li><li><strong>Korean vernacular</strong> — Hananim (하나님), the native reading later adopted as the Korean Christian name for God (Grayson, Korea: A Religious History)</li><li><strong>Buddhist identification</strong> — <a href="/indra/" class="crosslink" data-crosslink="indra">Indra</a> / Śakra (제석천), whom the Samguk Yusa explicitly equates with Hwanin: 'Hwanin is Indra'</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">H</td><td><code>U+0048</code></td><td>Latin Capital Letter H</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">w</td><td><code>U+0077</code></td><td>Latin Small Letter W</td><td>Basic Latin</td><td>Special character</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Special character</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Special character</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Special character</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Special character</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">—</td><td><code>N/A</code></td><td>Dropped character</td><td>Korean orthography</td><td>Dropped</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Hwanin</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Hwanin</strong> is the supreme celestial figure who rules from heaven in the <a href="/dangun/" class="crosslink" data-crosslink="dangun">Dangun</a> founding myth in Korean tradition. The name means "Lord of Heaven" and belongs to the domain "Supreme God, Heaven." In the Samguk Yusa, Hwanin is the ruler of heaven who answers the Buddha's request for a land fit for his teachings by sending his son <a href="/hwanung/" class="crosslink" data-crosslink="hwanung">Hwanung</a> to earth. Hwanin is not a creator in the biblical sense; he is the apex of a celestial hierarchy that authorises the descent of culture and law to the Korean peninsula.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Hwanin in Later Traditions</h3><p class="cultural-card-body">Hwanin entered Korean Christian vocabulary as Hananim, the name for the biblical God, while in shamanic and nationalist discourse he remains the mythic ancestor of the Korean people. The two traditions interpret the name differently—one as a personal deity, the other as a celestial title—but both preserve the sense that Korea's legitimacy flows from heaven. Confucian and Buddhist interpreters have also read Hwanin through their own categories, sometimes as a personification of cosmic principle and sometimes as a devotional figure.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hwanin survives in Korean public life chiefly through the Dangun myth, which is taught in schools, celebrated on National Foundation Day (Gaecheonjeol), and invoked in discussions of Korean identity. The name Hananim remains one of the most common words for God in Korean Christianity, while Hwanin continues to appear in scholarly reconstructions of early Korean religion, in museum exhibitions on Gojoseon, and in cultural diplomacy that presents Korea as a nation with ancient, heaven-blessed foundations.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Hwanin</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Hwanin in Later Traditions</h3><p class="cultural-card-body">Hwanin entered Korean religion on two tracks at once. The Samguk Yusa itself glosses Hwanin as Indra — the Buddhist Śakra, lord of heaven — folding the Korean celestial father into the Sanskrit cosmology that Buddhism carried east. In the twentieth century the vernacular title Hananim became the standard Korean Christian name for God, so that Protestant congregations prayed to a word that had once named the father of <a href="/hwanung/" class="crosslink" data-crosslink="hwanung">Hwanung</a>. In shamanic and nationalist discourse Hwanin remains the mythic ancestor of the Korean people; the Daejonggyo movement, founded in 1909, worshipped <a href="/dangun/" class="crosslink" data-crosslink="dangun">Dangun</a> and, through him, the heaven that sent him. Confucian interpreters read the celestial hierarchy as an ethical model of good government. All these traditions keep one constant: Korea's legitimacy descends from heaven, whatever costume the Lord of Heaven wears.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hwanin survives in Korean public life chiefly through the Dangun myth, which is taught in schools, celebrated on National Foundation Day (Gaecheonjeol, 3 October), and invoked in discussions of Korean identity on both sides of the peninsula. The name Hananim remains one of the most common words for God in Korean Christianity — it is the word Korean Bibles print for the biblical God — while Hwanin continues to appear in scholarly reconstructions of early Korean religion, in museum exhibitions on Gojoseon, and in cultural diplomacy that presents Korea as a nation with ancient, heaven-blessed foundations.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Because Hwanin belongs to a late-written myth rather than an excavated cult, his 'archaeology' is the archaeology of the myth's own survival and projection. The Samguk Yusa survives in early manuscripts of 1390 and 1512; the Dangun narrative it records was projected backward into art by the Goguryeo tomb murals of the fourth–sixth centuries CE, where celestial courts, sun-and-moon deities, and sacred-tree imagery painted on the ceilings of the Ji'an-area tombs give visual form to the same heavenly order that sends a son down to earth. In modern times the association of the myth's 'sacred sandalwood' with the slopes of <a href="/baekdusan/" class="crosslink" data-crosslink="baekdusan">Baekdusan</a> — inferred, not stated, from the Samguk Yusa's Taebaeksan — has fixed Hwanin's descent-point on the peninsula's most symbolically charged mountain, and Dangun's traditional tomb is maintained as a shrine near Pyongyang, visited by Koreans from both North and South.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Hwanin means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Hwanin is a god known almost entirely through his absence from the story he frames. He never descends; he appoints, seals, and sends. The active divine work of the Korean foundation myth is done by his son and grandson — Hwanung who rules beneath the sandalwood tree, Dangun who founds the state — while Hwanin remains above, the unmoved source of a moved world. That structure is the myth's theology in miniature: heaven does not administer the earth directly but delegates, authorizes, and watches, and legitimacy on the peninsula is real only insofar as it can trace that delegation back upward to its source.</p><p>The restoration of the name matters in the same register. 'Hananim' in ASCII flattens a title — the Lord of Heaven, 환인, 桓因 — into a string a registrar can process; Hwanin restores the capital, the characters, and the centuries-old claim that a Korean word can carry the highest meaning in the language: the Christian God, the shamanic ancestor, and the bureaucratic father of kings all live inside it at once.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Hwanin, Supreme God, Heaven, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hwanin?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hwanin</strong> is /hwa.nin/ — approximately 'HWAH-neen' — In Korean reading, the first syllable is pronounced with rounded lips and the second is short and level. The scholarly form  Hwanin  preserves the capital that marks a proper name; the ASCII form  hananim  is an older romanisation still used in domain names..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hwanin mean?</summary><div class="faq-answer"><p><strong>Hwanin</strong> means <strong>Lord of Heaven</strong> in the korean tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hwanin?</summary><div class="faq-answer"><p>Hwanin is associated with <strong>The heavens</strong> (The celestial realm from which Hwanin dispenses authority and blessing.), <strong>The sandalwood tree</strong> (The axis linking heaven and earth in the Dangun myth; the place where Hwanung alighted.), <strong>The heavenly seal</strong> (The token of delegated authority that Hwanin gives to Hwanung.), <strong>Sun and moon</strong> (Celestial emblems of the luminous, ordering presence of heaven.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hwanin in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hananim</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hwanin?</summary><div class="faq-answer"><p>According to Iryeon's Samguk Yusa, the Buddha asked Hwanin whether there was a land on earth where his teachings could flourish. Hwanin looked down and saw the Korean peninsula, then offered his son Hwanung to descend with heavenly attendants and sacred regalia.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hwanin?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hwanin</strong> is /hwa.nin/ — approximately 'HWAH-neen' — in the Korean reading the first syllable is pronounced with rounded lips and the second is short and level. The scholarly form Hwanin preserves the capital that marks a proper name; the ASCII form hananim is an older romanisation still used in domain names.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hwanin mean?</summary><div class="faq-answer"><p><strong>Hwanin</strong> means <strong>Lord of Heaven</strong> in the korean tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hwanin?</summary><div class="faq-answer"><p>Hwanin is associated with <strong>The heavens</strong> (The celestial realm from which Hwanin dispenses authority and blessing.), <strong>The sandalwood tree</strong> (The axis linking heaven and earth in the Dangun myth; the place where Hwanung alighted on Taebaeksan.), <strong>The heavenly seal</strong> (The token of delegated authority that Hwanin gives to Hwanung — the warrant without which the descent is illegitimate.), <strong>Sun and moon</strong> (Celestial emblems of the luminous, ordering presence of heaven.), <strong>Mugwort and garlic</strong> (The hundred-day food of the bear-woman — the austere diet that turns a beast into the ancestress of the Korean people.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hwanin in Unicode?</summary><div class="faq-answer"><p><strong>Hwanin</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hwanin?</summary><div class="faq-answer"><p>“The Lord of Heaven Sends His Son” — The mythology of Hwanin survives in a single late masterpiece: the Samguk Yusa ('Memorabilia of the Three Kingdoms') of the monk Iryeon, compiled in 1281 CE from much older Korean and Chinese materials. In it, Hwanin — explicitly identified with Indra, the Buddhist lord of heaven — sends his son Hwanung down beneath a sandalwood tree, and from that descent flow the tiger-and-bear transformation, the birth of Dangun, and the whole legitimating myth of Korea's foundation. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -304,7 +367,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Iryeon, Samguk Yusa (Memorabilia of the Three Kingdoms), 1281; English trans. Ha Tae-Hung and Grafton K. Mintz (1972).</cite></li><li><cite>Lee, Peter H., ed., Sourcebook of Korean Civilization, vol. 1 (Columbia University Press, 1993).</cite></li><li><cite>Grayson, James H., Korea: A Religious and Cultural History (Routledge, 2002).</cite></li></ul>
+                    <ul class="source-list"><li><cite>Iryeon, Samguk Yusa (Memorabilia of the Three Kingdoms), 1281; English trans. Ha Tae-Hung and Grafton K. Mintz (1972).</cite></li><li><cite>Lee, Peter H., ed., Sourcebook of Korean Civilization, vol. 1 (Columbia University Press, 1993).</cite></li><li><cite>Grayson, James H., Korea: A Religious History (Clarendon Press, 1989).</cite></li><li><cite>Kim Won-yong, The Arts of Korea (Kodansha International, 1979) — Goguryeo tomb murals and the visual culture of heavenly cosmology.</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/hananim_logomark.webp" type="image/webp"><img src="../../assets/hananim_logomark.webp" alt="Hwanin logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/hananim_logomark.webp" type="image/webp"><img src="../../assets/hananim_logomark.webp" alt="Hwanin logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

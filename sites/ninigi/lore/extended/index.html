@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Ninigi, Rice, Descendant of Amaterasu. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/ninigi/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Ninigi?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Ninigi is /ni.ni.ɡi/ — approximately 'NEE-nee-gee' — light, even syllables; the 'g' is hard."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Ninigi mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ninigi means The august rice spirit in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Ninigi?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ninigi is associated with Three Sacred Regalia (The mirror, sword, and jewel that legitimize imperial rule), Rice (The agricultural foundation of his name and authority), Takachiho (The Kyūshū peak where he descended from heaven), Heavenly robe (The divine garments that accompanied his descent)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Ninigi in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ninigi is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Ninigi?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Descent from Heaven” — Ninigi's mythology is the bridge between the heavenly realm of Amaterasu and the earthly rule of the emperors: four scenes — the descent, the negotiated surrender of the land, the ordeal by fire that proved his wife's fidelity, and the genealogy that produced Jimmu — suffice to carry three regalia and a nation from the Floating Bridge of Heaven to Kashihara. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/ninigi_logolockup.webp" type="image/webp"><img src="../../assets/ninigi_logolockup.png" alt="Ninigi" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Ninigi</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Ninigi</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/ninigi_mascot.webp" type="image/webp"><img src="../../assets/ninigi_mascot.png" alt="Ninigi — Rice, Descendant of Amaterasu" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/ninigi_mascot.webp" type="image/webp"><img src="../../assets/ninigi_mascot.png" alt="Ninigi — Rice, Descendant of Amaterasu" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Ninigi</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Ninigi is Tier 2: plain Hepburn. He is the heavenly grandson sent to rule the terrestrial world.</p>
+                <p class="etymology-note">The name <strong>Ninigi</strong> reaches the modern world through scholarly transliteration of the japanese tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Japanese</strong> — 邇邇芸命 (Ninigi-no-mikoto), 'The August Rice Spirit'</li><li><strong>Grandmother</strong> — Amaterasu</li><li><strong>Descendant</strong> — Great-grandfather of Emperor Jimmu</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Japanese</strong> — 邇邇芸命 (Ninigi-no-mikoto), 'The August Grandchild of the Rice' (<a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a>, Book I)</li><li><strong>Grandmother</strong> — Amaterasu, the sun goddess who sent him down (Kojiki, Book I)</li><li><strong>Descendant</strong> — Great-grandfather of Emperor Jimmu (<a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a>, Books I–III)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">N</td><td><code>U+004E</code></td><td>Latin Capital Letter N</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Ninigi</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Ninigi</strong> is the grandson of Amaterasu, sent from heaven to rule the terrestrial world and establish the imperial line. He descended to Takachiho in <a href="/kyushu/" class="crosslink" data-crosslink="kyushu">Kyūshū</a> bearing the Three Sacred Regalia — the mirror, the sword, and the jewel — and his great-grandson became Emperor Jimmu, the legendary first emperor of Japan.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Ninigi in Later Traditions</h3><p class="cultural-card-body">Ninigi is primarily an imperial genealogical figure rather than a widely worshipped deity. His role connects solar mythology, agricultural sovereignty, and political legitimacy. In State Shinto, his descent was taught as the founding event of the Japanese nation.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ninigi is remembered chiefly in imperial rites and in the mythology taught in Japanese schools. Takachiho remains a pilgrimage site associated with his descent, and the Three Sacred Regalia continue to symbolize imperial legitimacy.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Ninigi</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ninigi in Later Traditions</h3><p class="cultural-card-body">Ninigi was never a popularly worshipped god, and that absence is itself revealing. His role was absorbed into two institutions: the imperial house, which descends from him, and State Shinto, which taught his descent as the founding act of the Japanese nation. In the Meiji period the <em>tenson kōrin</em> became civic doctrine, and Jimmu's traditional accession date anchored the national holiday Kigensetsu. After 1945 the emperor's divinity was renounced, and Ninigi settled back into mythology — taught in schools, visited at Takachiho, but rarely prayed to. Buddhism, meanwhile, largely ignored him: he is one of the few major kami without a Buddhist avatar (<em>honji</em>). His syncretic afterlife is thus mostly political memory — the story a state told about where its authority came from.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ninigi's legacy is carried by objects and places rather than temples. The Three Sacred Regalia he bore — mirror, sword, jewel — remain the symbols of imperial legitimacy, presented at each accession though never publicly displayed. Takachiho in Miyazaki Prefecture, his traditional landing place, draws pilgrims and visitors to the Ama-no-Iwato shrine and the gorge of the descent; Kashihara Jingū in Nara marks where his great-grandson Jimmu is said to have acceded. The <em>Kojiki</em> (712) and <em>Nihon Shoki</em> (720) preserve his story as the hinge between gods and emperors. In a Japan that no longer claims divine descent, Ninigi endures as the mythological explanation of why the islands were long thought to belong to one unbroken line.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No artifact can be tied to Ninigi himself, but the geography of his myth is mapped in standing shrines. Takachiho in Miyazaki Prefecture keeps the sites of the descent — the Ama-no-Iwato ('Cave of Heaven') shrine and the sheer gorge where, by tradition, he first set foot on earth. Izumo Ōyashiro in Shimane, rebuilt in its monumental ancient form, marks the sanctuary <a href="/okuninushi/" class="crosslink" data-crosslink="okuninushi">Ōkuninushi</a> demanded as the price of withdrawing; excavations in 2000 uncovered pillar bases suggesting an ancient structure of unprecedented height. Kashihara Jingū in Nara stands at the foot of Unebi-yama, the traditional accession site of Jimmu, Ninigi's great-grandson. The regalia he carried are kept at Ise (the mirror), Atsuta (the sword), and the palace (the jewel) — none ever displayed or archaeologically examined. Ninigi's material record is thus a landscape of shrines rather than a museum of objects.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Ninigi means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Ninigi is the moment when heaven touches earth. He carries divine authority not as force but as gift — the mirror that sees truly, the sword that cuts cleanly, the jewel that holds abundance — and his story asks what it means to receive power and pass it on. He is, notably, a mediocre protagonist: he doubts his wife, wins no battles, performs no miracles. The tradition seems uninterested in his character because his function is transmission, not heroism. He is a conduit, and the myth honors the conduit more than the current.</p><p>That is a quietly radical theology of legitimacy. Authority is not earned in the descent but entrusted before it, and its proof is not the bearer's virtue but the unbroken line that follows him. Every institution that inherits rather than conquers its mandate — every regency, every relay, every succession — retells Ninigi's descent without knowing it.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Ninigi, Rice, Descendant of Amaterasu, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ninigi?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ninigi</strong> is /ni.ni.ɡi/ — approximately 'NEE-nee-gee' — light, even syllables; the 'g' is hard..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ninigi mean?</summary><div class="faq-answer"><p><strong>Ninigi</strong> means <strong>The august rice spirit</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ninigi?</summary><div class="faq-answer"><p>Ninigi is associated with <strong>Three Sacred Regalia</strong> (The mirror, sword, and jewel that legitimize imperial rule), <strong>Rice</strong> (The agricultural foundation of his name and authority), <strong>Takachiho</strong> (The Kyūshū peak where he descended from heaven), <strong>Heavenly robe</strong> (The divine garments that accompanied his descent).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ninigi in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>ninigi</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ninigi?</summary><div class="faq-answer"><p>Amaterasu decided that her grandson Ninigi should rule the terrestrial world. She gave him the Three Sacred Regalia and sent him down to Takachiho in Kyūshū. The earthly kami <a href="/okuninushi/" class="crosslink" data-crosslink="okuninushi">Ōkuninushi</a> initially resisted but eventually submitted after negotiations and divine pressure. Ninigi thus established heavenly rule over the land.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ninigi?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ninigi</strong> is /ni.ni.ɡi/ — approximately 'NEE-nee-gee' — light, even syllables; the 'g' is hard.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ninigi mean?</summary><div class="faq-answer"><p><strong>Ninigi</strong> means <strong>The august rice spirit</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ninigi?</summary><div class="faq-answer"><p>Ninigi is associated with <strong>Three Sacred Regalia</strong> (The mirror, sword, and jewel that legitimize imperial rule), <strong>Rice</strong> (The agricultural foundation of his name and authority), <strong>Takachiho</strong> (The <a href="/kyushu/" class="crosslink" data-crosslink="kyushu">Kyūshū</a> peak where he descended from heaven), <strong>Heavenly robe</strong> (The divine garments that accompanied his descent).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ninigi in Unicode?</summary><div class="faq-answer"><p><strong>Ninigi</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ninigi?</summary><div class="faq-answer"><p>“The Descent from Heaven” — Ninigi's mythology is the bridge between the heavenly realm of Amaterasu and the earthly rule of the emperors: four scenes — the descent, the negotiated surrender of the land, the ordeal by fire that proved his wife's fidelity, and the genealogy that produced Jimmu — suffice to carry three regalia and a nation from the Floating Bridge of Heaven to Kashihara. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lexical and philological sources for Ninigi.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki (Ninigi's descent and marriage)</cite></li><li><cite>Nihon Shoki (parallel descent account)</cite></li><li><cite>Philippi, Kojiki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li><li><cite>Kojiki, Book I (descent, Ōkuninushi's withdrawal, the ordeal of fire)</cite></li><li><cite>Nihon Shoki, Books I–III (parallel and variant accounts)</cite></li><li><cite>Philippi, Kojiki (translation)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ninigi and related cults.</cite></li><li><cite>Ninigi has no independent material cult. His significance is preserved in the textual genealogy of the imperial house and in sites such as Takachiho, where his descent is commemorated.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ninigi and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of japanese religion and the place of Ninigi within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Aston, Nihongi (translation)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/ninigi_logomark.webp" type="image/webp"><img src="../../assets/ninigi_logomark.webp" alt="Ninigi logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/ninigi_logomark.webp" type="image/webp"><img src="../../assets/ninigi_logomark.webp" alt="Ninigi logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

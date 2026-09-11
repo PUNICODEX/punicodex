@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Ēa — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">𒀭𒂍𒀀</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Ēa.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,64 +236,313 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Ēa</p>
+        </div>
+        
+      <p class="lead-text">The myths of Ea / Enki are stories of <strong>intelligent intervention</strong> — and they are also data. Every text that names him, from the Sumerian <em>Enki and the World Order</em> to the Babylonian <em><a href="/texts/enuma-elish/" class="crosslink citation-link" data-citation="enuma-elish">Enuma Elish</a></em>, is evidence for how the name was read, pronounced, and transmitted. This temple treats those texts as a phonological corpus: each occurrence is a clue to the vowels, stress, and syllable weight that cuneiform signs leave underspecified.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Dilmun</span>
+          <h3 class="myth-title">Enki and Ninhursag</h3>
+          <p class="myth-text">In the Sumerian myth <em>Enki and Ninhursag</em> (ETCSL 1.1.1), the land of Dilmun is a paradise without sickness or death but also without water. Enki impregnates <a href="/ninhursag/" class="crosslink" data-crosslink="ninhursag">Ninhursag</a>, and a line of daughters follows — Ninsar, Ninkurra, and finally the young goddess Uttu — until eight plants sprout from Enki's own seed set in the marsh. When Enki eats the plants, Ninhursag curses him with eight ailments, one for each afflicted part of his body, and withdraws; only later, persuaded to return, does she seat him by her vulva and bear from his wounded limbs eight healing goddesses, among them <strong>Ninti</strong>, 'the lady of the rib'. The Sumerian pun is famous: <em>ti</em> means both 'rib' and 'life', the oldest known wordplay on the human condition. Eight diseases, eight remedies, one body of the god — sickness and cure issued from the same source, and the myth reads like a medical text in reverse: the pharmacopoeia is the god's own anatomy, and the healer is the one he wronged.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Flood</span>
+          <h3 class="myth-title">Enki Warns the Flood's Survivor</h3>
+          <p class="myth-text">In the <em>Atrahasis</em> epic and the Sumerian <em>Eridu Genesis</em>, the gods, worn out by the noise of humankind, decree a flood to destroy their creation, and Enki is bound by the assembly's oath of silence. He breaks it anyway — not face to face, but through the reed wall of the pious king's house, so that technically the warning goes to a wall (Atrahasis, Tablet I; Eridu Genesis, where the deity speaks to Ziusudra in a dream). The king builds his boat, rides out the deluge, and offers sacrifice when the waters fall; and here the gods learn the counter-lesson — without humans there is no one to feed them (Atrahasis III). This is the earliest known flood narrative in world literature, centuries before <a href="/noah/" class="crosslink" data-crosslink="noah">Noah</a>, and its theology is startling: the god who saves mankind is the one who cheated, and heaven's survival, not just man's, is the argument for mercy. Loyalty, in Enki's ethics, outranks protocol.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cosmic Order</span>
+          <h3 class="myth-title">Enki and the World Order</h3>
+          <p class="myth-text">In <em>Enki and the World Order</em> (ETCSL 1.1.3), the god decrees the destinies of Sumer. He appoints the herding god, sets the sea in its place, regulates the winds and the rains, causes the Tigris and Euphrates to rise — the hymn pictures him loading the two rivers with water 'like a barge' — and above all distributes the <strong>me</strong>, the divine powers and offices that make civilization run: kingship, priesthood, the crafts, the arts of the smith and the scribe, even the perverse and the sorrowful. Then he sails to Nippur in his boat to have <a href="/enlil/" class="crosslink" data-crosslink="enlil">Enlil</a> confirm the whole arrangement. The poem is a theodicy of culture: every institution has its divine origin in one wise node's dispensation, and the cosmos works because competence, not force, is its first principle. When something in Sumer breaks — a canal, a dynasty, a rite — the myth says what broke is a line of custody that began in Enki's distribution.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Chaoskampf Parallel</span>
+          <h3 class="myth-title">Ea and Apsu in the Enuma Elish</h3>
+          <p class="myth-text">In the Babylonian <em>Enuma Elish</em>, the genealogy runs <a href="/apsu/" class="crosslink" data-crosslink="apsu">Apsu</a> and <a href="/tiamat/" class="crosslink" data-crosslink="tiamat">Tiamat</a> → <a href="/lahmu/" class="crosslink" data-crosslink="lahmu">Lahmu</a> and <a href="/lahamu/" class="crosslink" data-crosslink="lahamu">Lahamu</a> → <a href="/anshar/" class="crosslink" data-crosslink="anshar">Anshar</a> and <a href="/kishar/" class="crosslink" data-crosslink="kishar">Kishar</a> → Anu → <strong>Ea, son of Anu</strong> (Tablet I). When Apsu, the freshwater primal father, plots to destroy the noisy younger gods, it is Ea who acts: he casts his spell, subdues Apsu, slays him, and establishes his own dwelling upon the conquered waters — the house called E-abzu, 'the temple of the Abzu' — founding a line of wise sovereignty that his son <a href="/marduk/" class="crosslink" data-crosslink="marduk">Marduk</a> will complete by defeating Tiamat. The pattern — the older water-power supplanted by a wiser one, on the way to a storm-god's triumph — parallels the Hittite Kumarbi cycle and the Greek <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a>–<a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a> sequence. Note the geography of the act: the son of heaven builds his house on the slain father's body. Knowledge, in the Babylonian cosmos, stands on the deep it replaced — the temple of wisdom is literally founded on the waters of the first father.</p>
+        </div>
+      </div></div>
+    </div>
+</section>
+
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">ĒA — The Phonological Reconstruction Hub</h2>
+            <p class="section-subtitle">Abzu, Crafts, Incantations</p>
+        </div>
+        
+      <div class="domains-intro reveal-up"><p class="lead-text">The name is written 𒀭𒂍𒀀. Standard Assyriology transliterates it as <strong>Ea</strong>. But in the phonological grammar of Akkadian, the first vowel's length remains an open question — and it is here, in the space between the written sign and the spoken sound, that this temple operates. This node of PuniCodex is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East. We mark vowel length not because it is certain, but because it is discussable. The macron is a question mark made visible.</p></div>
+      <div class="domains-grid">
+      <div class="domain-card reveal-up">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 40C16 32 24 24 32 24C40 24 48 32 48 40C48 48 40 56 32 56C24 56 16 48 16 40ZM8 44C8 44 16 36 32 36C48 36 56 44 56 44M12 52C12 52 20 44 32 44C44 44 52 52 52 52"></path></svg></div>
+        <h4 class="domain-name">The Abzu</h4>
+        <p class="domain-desc">The subterranean freshwater ocean; Enki's temple at Eridu, the E-abzu, was built over it.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="100">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 8 18 16 18 24C18 34 26 42 32 50C38 42 46 34 46 24C46 16 40 8 32 8ZM32 16V24M28 20H36M24 28H40"></path></svg></div>
+        <h4 class="domain-name">Wisdom and Counsel</h4>
+        <p class="domain-desc">The god who knows the secret plans of the universe and whispers them to the righteous king.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="200">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 16H44V24H20V16ZM16 28H48V36H16V28ZM20 40H44V48H20V40"></path></svg></div>
+        <h4 class="domain-name">The Craftsman</h4>
+        <p class="domain-desc">Patron of exorcists, potters, smiths, and scribes; the divine engineer who devises solutions.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C24 20 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 20 32 12Z"></path></svg></div>
+        <h4 class="domain-name">Magic and Incantation</h4>
+        <p class="domain-desc">The ashipu-priest invokes Enki to undo sickness, demons, and the curses of fate.</p>
+      </div></div>
+      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
+      <div class="symbol-item">
+        <span class="symbol-name">Goat-fish (suhurmašu)</span>
+        <span class="symbol-meaning">The hybrid sea-goat, Capricorn's ancestor, linking the Abzu with the stars</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Flowing water</span>
+        <span class="symbol-meaning">Streams issuing from his shoulders or a vase — life-giving freshwater</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Tortoise</span>
+        <span class="symbol-meaning">A creature of the marshy border between water and land, sacred to Enki</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Eridu</span>
+        <span class="symbol-meaning">His primordial city, the first city in Sumerian king lists and cosmology</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Caduceus-like staff</span>
+        <span class="symbol-meaning">The rod of magic and authority, sometimes twined with serpents</span>
+      </div></div></div>
+    </div>
+</section>
+
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Ēa lives in the sacred library and in the words you still speak</p>
+        </div>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/enuma-elish/" class="source-badge">Enūma Eliš</a>
+                    <a href="https://punicodex.com/texts/gilgamesh/" class="source-badge">The Epic of Gilgamesh</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Related Names -->
+    <section class="section section-related" id="related">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Related Names</h2>
+            <p class="section-subtitle">Other figures in the mesopotamian pantheon</p>
+        </div>
+        <div class="related-grid reveal-up">
+            
+    <a href="/ishtar/" class="related-card reveal-up">
+      <span class="related-name">Ištar</span>
+      
+      <span class="related-domain">Love, War, Fertility, Venus</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
+      </div>
+    </a>
+    <a href="/ashur/" class="related-card reveal-up">
+      <span class="related-name">Aššur</span>
+      
+      <span class="related-domain">War, Kingship, Assyrian Patron</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
+      </div>
+    </a>
+    <a href="/shamash/" class="related-card reveal-up">
+      <span class="related-name">Šamaš</span>
+      
+      <span class="related-domain">Sun, Justice, Law</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
+      </div>
+    </a>
+    <a href="/marduk/" class="related-card reveal-up">
+      <span class="related-name">Marduk</span>
+      
+      <span class="related-domain">Creation, Babylon, Storms</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 2</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
+      </div>
+    </a>
+    <a href="/enlil/" class="related-card reveal-up">
+      <span class="related-name">Enlīl</span>
+      
+      <span class="related-domain">Phonological Reconstruction, Wind, Air, Storms, Kingship</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
+      </div>
+    </a>
+    <a href="/anu/" class="related-card reveal-up">
+      <span class="related-name">Anû</span>
+      
+      <span class="related-domain">Phonological Reconstruction, Sky, Heaven, Kingship</span>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
+        <span class="related-tier">Tier 1</span>
+        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
+      </div>
+    </a>
+        </div>
+    </div>
+</section>
+
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
     <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">𒀭𒂍𒀀</p>
+                <p class="card-body">The name in its original Mesopotamian form. <strong>Ēa</strong> (𒀭𒂍𒀀) is attested in the source tradition — “Reconstruction node for the Akkadian deity Ea (Sumerian Enki): the macron marks a discussable vowel length, not a canonical spelling.”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
+                
             </div>
 
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">𒀭𒂍𒀀</p>
-                    <p class="card-body">The name in its original Mesopotamian form. <strong>Ēa</strong> (𒀭𒂍𒀀) is attested in the source tradition — “Reconstruction node for the Akkadian deity Ea (Sumerian Enki): the macron marks a discussable vowel length, not a canonical spelling.”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
                 </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">ea</p>
-                    <p class="card-body">Reduced to plain <strong>ea</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Ēa</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ēa</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">ea</p>
+                <p class="card-body">Reduced to plain <strong>ea</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
             </div>
 
-            <div class="punycode-explainer reveal-up">
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Ēa</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ēa</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
                 <div class="explainer-label">Punycode Encoding</div>
                 <div class="explainer-box">
                     <code class="explainer-code">Ēa.com → xn--a-oia.com</code>
                     <p class="explainer-note">The non-ASCII characters in <strong>Ēa</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ēa</em>.</p>
                 </div>
             </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ēa</p>
         </div>
-    </section>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Ēa</p>
+                    <p class="card-body">Restores <strong>𒀭𒂍𒀀</strong>. The live temple domain — <strong>ēa.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">ea</p>
+                    <p class="card-body">Flattens <strong>𒀭𒂍𒀀</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Ēa was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈeː.a/</span>
+            <span class="ipa-label">Akkadian Reconstruction (discussable)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Ē-</span>
+        <span class="phoneme-desc">Long or tense [eː] — the macron marks a reconstructed vowel length that Assyriologists debate; the sign 𒂍 does not itself encode length.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-a</span>
+        <span class="phoneme-desc">Open central [a] — the second element of the divine name, written with the sign 𒀀.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'EH-ah' — two level syllables, with the first vowel held slightly longer to signal the open question of length.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ēa is Tier 1: the macron is a diacritic the ASCII form loses. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Akkadian. The standard Assyriological spelling is Ea; the Unicode form Ēa belongs to PuniCodex's phonological reconstruction hub.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
 
     <!-- Original Script Provenance -->
     
@@ -297,7 +551,7 @@
   <div class="section-bg-glow"></div>
   <div class="container">
     <div class="section-header reveal-up">
-      <span class="section-number">02</span>
+      <span class="section-number">08</span>
       <h2 class="section-title">Original Script &amp; Provenance</h2>
       <p class="section-subtitle">How Ēa travels from ancient script to the modern URL</p>
     </div>
@@ -401,7 +655,7 @@
       </div>
     </li>
     <li class="attestation-item">
-      <div class="attestation-text">Epic of <a href="/gilgamesh/" class="crosslink" data-crosslink="gilgamesh">Gilgamesh</a></div>
+      <div class="attestation-text"><a href="/texts/gilgamesh/" class="crosslink citation-link" data-citation="gilgamesh-text">Epic of Gilgamesh</a></div>
       <div class="attestation-meta">
         <span class="attestation-date">c. 1800–600 BCE</span>
         <span class="attestation-location">Mesopotamia</span>
@@ -447,255 +701,6 @@
   </div>
 </section>
 
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ēa</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Ēa</p>
-                    <p class="card-body">Restores <strong>𒀭𒂍𒀀</strong>. The live temple domain — <strong>ēa.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">ea</p>
-                    <p class="card-body">Flattens <strong>𒀭𒂍𒀀</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Ēa was spoken</p>
-        </div>
-        
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈeː.a/</span>
-            <span class="ipa-label">Akkadian Reconstruction (discussable)</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Ē-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> or tense [eː] — the macron marks a reconstructed vowel length that Assyriologists debate; the sign 𒂍 does not itself encode length.</span>
-      </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-a</span>
-        <span class="phoneme-desc">Open central [a] — the second element of the divine name, written with the sign 𒀀.</span>
-      </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'EH-ah' — two level syllables, with the first vowel held slightly longer to signal the open question of length.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Sumerian</strong> 𒂗𒆠 (EN.KI), 'lord of the earth' — cuneiform title and theonym</li><li><strong>Akkadian</strong> Ea (𒂍𒀀), standard Assyriological transliteration; vowel length is reconstructed, not sign-given</li><li><strong>Logogram</strong> 𒀭𒂍𒀀 (dE-a), the divine determinative plus Ea</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ēa is Tier 1: the macron is a diacritic the ASCII form loses. It is a pedagogical mark: a visible question that invites discussion about how the name was pronounced in Akkadian. The standard Assyriological spelling is Ea; the Unicode form Ēa belongs to PuniCodex's phonological reconstruction hub.</p></div>
-        </div>
-      </div>
-    </div>
-</section>
-
-    <!-- Domains & Sacred Symbols -->
-    <section class="section section-symbols" id="symbols">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">05</span>
-            <h2 class="section-title">ĒA — The Phonological Reconstruction Hub</h2>
-            <p class="section-subtitle"><a href="/apsu/" class="crosslink" data-crosslink="apsu">Abzu</a>, Crafts, Incantations</p>
-        </div>
-        
-      <div class="domains-intro reveal-up"><p class="lead-text">The name is written 𒀭𒂍𒀀. Standard Assyriology transliterates it as <strong>Ea</strong>. But in the phonological grammar of Akkadian, the first vowel's length remains an open question — and it is here, in the space between the written sign and the spoken sound, that this temple operates. This node of PuniCodex is dedicated to the <strong>phonological reconstruction and didactic grammar</strong> of the ancient Near East. We mark vowel length not because it is certain, but because it is discussable. The macron is a question mark made visible.</p></div>
-      <div class="domains-grid">
-      <div class="domain-card reveal-up">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 40C16 32 24 24 32 24C40 24 48 32 48 40C48 48 40 56 32 56C24 56 16 48 16 40ZM8 44C8 44 16 36 32 36C48 36 56 44 56 44M12 52C12 52 20 44 32 44C44 44 52 52 52 52"></path></svg></div>
-        <h4 class="domain-name">The Abzu</h4>
-        <p class="domain-desc">The subterranean freshwater ocean; Enki's temple at Eridu, the E-abzu, was built over it.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="100">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 8 18 16 18 24C18 34 26 42 32 50C38 42 46 34 46 24C46 16 40 8 32 8ZM32 16V24M28 20H36M24 28H40"></path></svg></div>
-        <h4 class="domain-name">Wisdom and Counsel</h4>
-        <p class="domain-desc">The god who knows the secret plans of the universe and whispers them to the righteous king.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="200">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 16H44V24H20V16ZM16 28H48V36H16V28ZM20 40H44V48H20V40"></path></svg></div>
-        <h4 class="domain-name">The Craftsman</h4>
-        <p class="domain-desc">Patron of exorcists, potters, smiths, and scribes; the divine engineer who devises solutions.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="300">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C24 20 20 28 24 36C26 40 30 42 32 48C34 42 38 40 40 36C44 28 40 20 32 12Z"></path></svg></div>
-        <h4 class="domain-name">Magic and Incantation</h4>
-        <p class="domain-desc">The ashipu-priest invokes Enki to undo sickness, demons, and the curses of fate.</p>
-      </div></div>
-      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
-      <div class="symbol-item">
-        <span class="symbol-name">Goat-fish (suhurmašu)</span>
-        <span class="symbol-meaning">The hybrid sea-goat, Capricorn's ancestor, linking the Abzu with the stars</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Flowing water</span>
-        <span class="symbol-meaning">Streams issuing from his shoulders or a vase — life-giving freshwater</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Tortoise</span>
-        <span class="symbol-meaning">A creature of the marshy border between water and land, sacred to Enki</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Eridu</span>
-        <span class="symbol-meaning">His primordial city, the first city in Sumerian king lists and cosmology</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Caduceus-like staff</span>
-        <span class="symbol-meaning">The rod of magic and authority, sometimes twined with serpents</span>
-      </div></div></div>
-    </div>
-</section>
-
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Ēa</p>
-        </div>
-        
-      <p class="lead-text">The myths of Ea / Enki are stories of <strong>intelligent intervention</strong> — and they are also data. Every text that names him, from the Sumerian <em>Enki and the World Order</em> to the Babylonian <em>Enuma Elish</em>, is evidence for how the name was read, pronounced, and transmitted. This temple treats those texts as a phonological corpus: each occurrence is a clue to the vowels, stress, and syllable weight that cuneiform signs leave underspecified.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Dilmun</span>
-          <h3 class="myth-title">Enki and Ninhursag</h3>
-          <p class="myth-text">In the Sumerian myth <em>Enki and Ninhursag</em>, the land of Dilmun is a paradise without sickness or death but also without water. Enki impregnates <a href="/ninhursag/" class="crosslink" data-crosslink="ninhursag">Ninhursag</a>, who bears Ninsar, and the line continues through Ninkurra to the spider-goddess Uttu. The eight plants sprout from Enki's semen placed in the marsh. When Enki eats the plants, Ninhursag curses him with eight ailments, one for each afflicted body part. She is later persuaded to heal him, giving birth to eight deities from his afflicted limbs — among them Ninti — a myth of botanical origin, sexual cosmogony, and the healing power that flows from the Abzu.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Flood</span>
-          <h3 class="myth-title">Enki Warns Ziusudra</h3>
-          <p class="myth-text">In the <em>Atrahasis</em> epic and the Sumerian <em>Eridu Genesis</em>, the gods decide to send a flood to destroy humanity. Enki breaks the divine assembly's oath of silence and warns the pious king Ziusudra (later Utnapishtim) in a dream or through the reed wall of his house. Because of Enki, humankind survives; because of the flood, the gods learn that they need human labor. This is the earliest known flood narrative in world literature.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Cosmic Order</span>
-          <h3 class="myth-title">Enki and the World Order</h3>
-          <p class="myth-text">In <em>Enki and the World Order</em>, the god assigns the me — the divine powers and offices of civilization — to the gods of Sumer. He establishes the Tigris and Euphrates, appoints the herding god, and regulates the sea, the winds, and the rains. The poem is a theodicy of culture: every institution has its divine origin in Enki's dispensation.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Chaoskampf Parallel</span>
-          <h3 class="myth-title">Ea and Apsu in the Enuma Elish</h3>
-          <p class="myth-text">In the Babylonian <em>Enuma Elish</em>, Ea (Enki) is the son of Apsu, the freshwater primal father, and <a href="/tiamat/" class="crosslink" data-crosslink="tiamat">Tiamat</a>, the saltwater primal mother. When Apsu plots to destroy the noisy younger gods, Ea casts a spell and kills him, taking Apsu's place as ruler of the waters. His son <a href="/marduk/" class="crosslink" data-crosslink="marduk">Marduk</a> will later defeat Tiamat. The pattern — older water-god supplanted by storm-god — parallels the Hittite Kumarbi-Taru and Greek Uranus-<a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a> cycles.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
-
-    <!-- Related Names -->
-    <section class="section section-related" id="related">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Related Names</h2>
-            <p class="section-subtitle">Other figures in the mesopotamian pantheon</p>
-        </div>
-        <div class="related-grid reveal-up">
-            
-    <a href="/ishtar/" class="related-card reveal-up">
-      <span class="related-name">Ištar</span>
-      
-      <span class="related-domain">Love, War, Fertility, Venus</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
-      </div>
-    </a>
-    <a href="/ashur/" class="related-card reveal-up">
-      <span class="related-name">Aššur</span>
-      
-      <span class="related-domain">War, Kingship, Assyrian Patron</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
-      </div>
-    </a>
-    <a href="/shamash/" class="related-card reveal-up">
-      <span class="related-name">Šamaš</span>
-      
-      <span class="related-domain">Sun, Justice, Law</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
-      </div>
-    </a>
-    <a href="/marduk/" class="related-card reveal-up">
-      <span class="related-name">Marduk</span>
-      
-      <span class="related-domain">Creation, Babylon, Storms</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 2</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
-      </div>
-    </a>
-    <a href="/enlil/" class="related-card reveal-up">
-      <span class="related-name">Enlīl</span>
-      
-      <span class="related-domain">Phonological Reconstruction, Wind, Air, Storms, Kingship</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
-      </div>
-    </a>
-    <a href="/anu/" class="related-card reveal-up">
-      <span class="related-name">Anû</span>
-      
-      <span class="related-domain">Phonological Reconstruction, Sky, Heaven, Kingship</span>
-      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:auto;padding-top:0.5rem;">
-        <span class="related-tier">Tier 1</span>
-        <span class="related-tier" style="border-color:rgba(255,255,255,0.06);color:var(--white-dim);">Mesopotamian</span>
-      </div>
-    </a>
-        </div>
-    </div>
-</section>
-
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Ēa lives in the sacred library and in the words you still speak</p>
-        </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/enuma-elish/" class="source-badge">Enūma Eliš</a>
-                    <a href="https://punicodex.com/texts/gilgamesh/" class="source-badge">The Epic of Gilgamesh</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
     <div class="container">
@@ -712,7 +717,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/ea_mascot.webp" type="image/webp"><img src="../assets/ea_mascot.png" alt="Ēa mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ea_mascot.webp" type="image/webp"><img src="../assets/ea_mascot.png" alt="Ēa mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -750,7 +755,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/ea_logomark.webp" type="image/webp"><img src="../assets/ea_logomark.webp" alt="Ēa logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ea_logomark.webp" type="image/webp"><img src="../assets/ea_logomark.webp" alt="Ēa logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

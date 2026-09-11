@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Hýdra — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ὕδρα</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Hýdra.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,144 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ὕδρα</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Hýdra</strong> (Ὕδρα) is attested in the source tradition — “Water serpent”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">hydra</p>
-                    <p class="card-body">Reduced to plain <strong>hydra</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Hýdra</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hýdra</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Hýdra.com → xn--hdra-5ra.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Hýdra</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hýdra</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Hýdra is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ὕδρα</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Hýdra is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hýdra</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Hýdra</p>
-                    <p class="card-body">Restores <strong>Ὕδρα</strong>. The live temple domain — <strong>hýdra.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">hydra</p>
-                    <p class="card-body">Flattens <strong>Ὕδρα</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Hýdra was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Hýdra</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/hý.dra/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Hý-</span>
-        <span class="phoneme-desc">Rough breathing on upsilon with acute [hý] — the name begins with a breathy, high-pitched syllable.</span>
+      <p class="lead-text">Hýdra's myth is a <strong>labor of escalation</strong>. <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a> must discover that brute force alone feeds the monster; victory comes only when fire meets flesh at the exact moment of severance.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Genealogy</span>
+          <h3 class="myth-title">The Brood of Typhon and Echidna</h3>
+          <p class="myth-text">Hesiod gives the Hydra a monstrous pedigree. She is the child of <a href="/typhon/" class="crosslink" data-crosslink="typhon">Typhon</a> and Echidna — the storm-fiend and the she-viper — and thus the sister of <a href="/cerberus/" class="crosslink" data-crosslink="cerberus">Cerberus</a> and the Chimaera, 'whom the white-crested <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a> reared' against Herakles (<em><a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a></em> 313–318, 333–335). Her home was the marsh of Lerna, beside the Alcyonian lake, a water so deep and foul that antiquity said its bottom had never been seen; Pausanias (2.36–37) records the ground's ill repute and the sanctuary of the Lernaean <a href="/demeter/" class="crosslink" data-crosslink="demeter">Demeter</a> beside it. The genealogy is the myth's point: the Hydra is not a freak but a family — bred from the union of storm and serpent, fostered by a goddess with a grudge, and set down in stagnant water where sickness gathers. Before Herakles ever raises his club, the monster is already a theological statement: some evils are raised deliberately, in the dark, by powers that mean to test a hero.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-dra</span>
-        <span class="phoneme-desc">Delta-rho-alpha; the root ὕδωρ, 'water,' is visible, though the creature is a water-serpent in form and habitat.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Apollodorus</span>
+          <h3 class="myth-title">The Second Labor</h3>
+          <p class="myth-text">Eurystheus, king of Tiryns, sent Herakles against the Hydra as his second labor — a commission made hopeless by its own terms, for the beast had nine heads, or fifty, or a hundred, depending on the teller, and one of them was immortal. Heracles began as heroes begin: he lured the serpent from its lair with arrows, closed, and smashed the heads with his club (<em>Apollodorus, Bibliotheca</em> 2.5.2). For every head that fell, two grew back. Hera, the monster's foster-mother, sent a crab to fasten on Herakles' foot — the sidelong nip of panic at a hero's heel, immortalized in the constellation Cancer. The labor undoes the hero's entire method: where force had always answered, force now feeds the enemy. Apollodorus adds the bitter footnote that Eurystheus later refused to count the labor, precisely because Herakles accepted help. The myth's lesson arrives early: some trials are designed so that strength alone disqualifies you.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Apollodorus</span>
+          <h3 class="myth-title">Iolaos and the Fire</h3>
+          <p class="myth-text">The turn comes from outside the hero. Iolaos, Herakles' nephew and charioteer, saw what strength could not see: that each wound had to be burned shut the instant it was made. He brought fire, and as Herakles struck off each head, Iolaos cauterized the neck with a burning brand; the severed heads could no longer multiply (<em>Apollodorus</em> 2.5.2). In the fuller iconographic tradition <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> stands by as divine adviser — on scores of archaic vases the goddess directs the fire while the two men work. The immortal head Herakles cut off last and buried beneath a great rock on the road from Lerna to Elaious, where Apollodorus says it lay still breathing its poison. The episode is the Greek hymn to technique over force: fire, timing and partnership defeat what the club could not. But the victory has a price the hero must accept — the labor must be shared, and so must the credit, or the hero dies.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Aftermath</span>
+          <h3 class="myth-title">The Arrows of Gall</h3>
+          <p class="myth-text">Herakles then did the thing that would unmake him. He cut open the Hydra's body and steeped his arrows in its gall, making of each shaft a sure death (<em>Apollodorus</em> 2.5.2, 2.7.7). Years later the centaur Nessos, dying by one of those arrows, told Deianeira to keep his blood — now poisoned by the Hydra — as a love-charm; smeared on Herakles' robe, it consumed the hero on his own pyre (Sophocles, <em>Women of Trachis</em> 555–581). The bow passed to <a href="/philoctetes/" class="crosslink" data-crosslink="philoctetes">Philoctetes</a>, whose festering wound the Greeks could not heal, and it was one of these arrows that killed Paris and broke the siege of Troy (<em>Apollodorus, Epitome</em>). The myth follows the poison across a whole career: the weapon that won the labor became the agent of the hero's death, the army's curse, and the war's end. The Greeks kept the receipt — triumph always carries its toxin forward. The hydra's real head was never buried: it was dipped, and it traveled.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'HOO-drah' — the first syllable is pitched high and begins with a rough 'h'; the final -a is short.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Ὕδρα (Hýdra), the water-serpent slain by <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a></li><li><strong>Root</strong> ὕδωρ (hýdōr), 'water'; the Hydra is the dangerous aspect of stagnant water</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Hýdra is Tier 2 because the Greek Ὕδρα preserves the acute stress on the first syllable but has no long vowel. The rough breathing on the upsilon is essential to the name's sound and identity.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -376,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Many-Headed Serpent</h2>
             <p class="section-subtitle">Regeneration, Stagnant Water, Heroic Trial</p>
         </div>
@@ -418,54 +328,19 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Crab</span>
-        <span class="symbol-meaning">The crab sent by <a href="/hera/" class="crosslink" data-crosslink="hera">Hera</a> to harass Herakles during the combat</span>
+        <span class="symbol-meaning">The crab sent by Hera to harass Herakles during the combat</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Hýdra</p>
-        </div>
-        
-      <p class="lead-text">Hýdra's myth is a <strong>labor of escalation</strong>. Herakles must discover that brute force alone feeds the monster; victory comes only when fire meets flesh at the exact moment of severance.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Apollodorus</span>
-          <h3 class="myth-title">The Second Labor</h3>
-          <p class="myth-text">Eurystheus assigned Herakles the Hydra of Lerna. The creature had a huge dog-like body and many heads, one of them immortal. Herakles struck off heads with his club, but for every head lost, two grew back. Hera also sent a crab to nip at his feet.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Apollodorus</span>
-          <h3 class="myth-title">Iolaos and the Fire</h3>
-          <p class="myth-text">Seeing the heads multiply, Iolaos brought fire and cauterized each neck as Herakles cut it. This stopped the regeneration. The immortal head Herakles severed and buried under a heavy rock on the road from Lerna to Elaious, where it still breathed poison.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Iconography</span>
-          <h3 class="myth-title">Poison and Arrows</h3>
-          <p class="myth-text">Herakles dipped his arrows in the Hydra's gall, making them lethally poisonous. The weapon that killed the monster became the instrument of later tragedies, including Herakles' own death by the poisoned shirt of Nessos.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -529,8 +404,146 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ὕδρα</p>
+                <p class="card-body">The name in its original Greek form. <strong>Hýdra</strong> (Ὕδρα) is attested in the source tradition — “Water serpent”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">hydra</p>
+                <p class="card-body">Reduced to plain <strong>hydra</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Hýdra</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hýdra</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Hýdra.com → xn--hdra-5ra.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Hýdra</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hýdra</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hýdra</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Hýdra</p>
+                    <p class="card-body">Restores <strong>Ὕδρα</strong>. The live temple domain — <strong>hýdra.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">hydra</p>
+                    <p class="card-body">Flattens <strong>Ὕδρα</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Hýdra was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/hý.dra/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Hý-</span>
+        <span class="phoneme-desc">Rough breathing on upsilon with acute [hý] — the name begins with a breathy, high-pitched syllable.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-dra</span>
+        <span class="phoneme-desc">Delta-rho-alpha; the root ὕδωρ, 'water,' is visible, though the creature is a water-serpent in form and habitat.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'HOO-drah' — the first syllable is pitched high and begins with a rough 'h'; the final -a is short.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Hýdra is Tier 2 because the Greek Ὕδρα preserves the acute stress on the first syllable but has no long vowel. The rough breathing on the upsilon is essential to the name's sound and identity.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Hýdra is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ὕδρα</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Hýdra is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -548,7 +561,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/hydra_mascot.webp" type="image/webp"><img src="../assets/hydra_mascot.png" alt="Hýdra mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/hydra_mascot.webp" type="image/webp"><img src="../assets/hydra_mascot.png" alt="Hýdra mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -586,7 +599,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/hydra_logomark.webp" type="image/webp"><img src="../assets/hydra_logomark.webp" alt="Hýdra logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/hydra_logomark.webp" type="image/webp"><img src="../assets/hydra_logomark.webp" alt="Hýdra logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

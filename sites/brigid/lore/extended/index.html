@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Brigid, Poetry, Healing, Smithcraft, Fire. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/brigid/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Brigid?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Brigid is /ˈbrʲiɣʲitʲ/ — approximately 'BRIJ-id' — like 'bridge' split in two, the g softened to a voiced fricative (a gargled g), both r and d slender; the modern Irish form Bríd is simply 'breed'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Brigid mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Brigid means The Exalted One (from Old Irish Brigit) in the celtic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Brigid?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Brigid is associated with The flame of Kildare (The fire that neither dies nor accumulates ash — patronage that outlasts the night-watch of its keepers), The anvil and the forge (Smithcraft, the making province — skill that transforms raw metal the way poetry transforms raw speech), The holy well (Healing drawn from the ground — the countless wells of St Brigit where the leech-sister's province is still visited), Fea and Femen, the two oxen (The Dagda's daughter's beasts, who gave their names to plains of Ireland — wealth and the working land), Imbolc (The first of February, the milk returning to the ewes — the year's first hinge, kept as her day)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Brigid in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Brigid is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Brigid?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Dagda's Daughter” — Irish tradition gives Brigit few long tales but a peculiar density of testimony: the great pseudohistory of the Lebor Gabála knows her genealogy, the battle-tale Cath Maige Tuired gives her the first keening heard in Ireland, and Cormac's Glossary preserves the triad that made her three goddesses in one name. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/brigid_logolockup.webp" type="image/webp"><img src="../../assets/brigid_logolockup.png" alt="Brigid" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Brigid</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Brigid</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/brigid_mascot.webp" type="image/webp"><img src="../../assets/brigid_mascot.png" alt="Brigid — Poetry, Healing, Smithcraft, Fire" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/brigid_mascot.webp" type="image/webp"><img src="../../assets/brigid_mascot.png" alt="Brigid — Poetry, Healing, Smithcraft, Fire" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Brigid</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Brigid is Tier 2 by the mechanical rule: the normalized form is already plain ASCII — the Old Irish spelling Brigit carries no diacritic and no distinctive letter for the restoration to recover. Only the capital distinguishes the temple's form from the input; the name's fame, like <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>'s, vastly outruns its orthography.</p>
+                <p class="etymology-note">The name <strong>Brigid</strong> reaches the modern world through scholarly transliteration of the celtic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">B</td><td><code>U+0042</code></td><td>Latin Capital Letter B</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">d</td><td><code>U+0064</code></td><td>Latin Small Letter D</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Brigid</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Brigit, daughter of the Dagda, is the triple hearth of the Irish gods: Cormac's Glossary gives her two sisters of the same name — Brigit the smith and Brigit the leech beside Brigit the poet — so that the one name covers the forge, the well, and the word. Her feast is Imbolc, the first of February, when the ewes come into milk; and at Kildare a fire burned for her, Giraldus says, that no man might approach and no night ever saw go out.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Brigid in Later Traditions</h3><p class="cultural-card-body">Brigit's syncretic life runs in two directions. Across the water, her name is one with the goddess Brigantia of Roman Britain, honoured in inscriptions from the Wall country and portrayed on the Birrens relief with Minerva's globe and spear — the interpretatio romana pairing the exalted one with the Roman goddess of craft and war-wisdom; the tribal Brigantes and the Gaulish Brigindu carry the same name-element, and the old comparison with Sanskrit bṛhatī, 'the high, exalted one', shows how deep the root runs. Within Ireland, the identification is Christian: Brigit of Kildare, the sixth-century saint whose feast falls on Imbolc, whose church kept a perpetual fire, and whose wonder-tales in Cogitosus's Life echo the goddess's provinces. Whether saint succeeded goddess, goddess was Christianized into saint, or two figures fused in one name, the sources do not let us decide — and Mac Cana and Koch both counsel holding the question open. What is certain is the continuity of the name: the Exalted One never left Ireland's calendar.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">No Celtic deity has a longer unbroken afterlife. Imbolc is still celebrated as St Brigid's Day — Lá Fhéile Bríde — and since 2023 it has been a public holiday in the Republic of Ireland, the first named for a woman. Rushes are still woven into Brigid's crosses on the eve of the feast and hung above doors; hundreds of holy wells bear the saint's name, and the clootie and cure customs at them preserve the leech-sister's province in folk practice. Modern paganism and Celtic Reconstructionism restored the goddess explicitly, keeping Imbolc as the feast of the returning light and of the three crafts; poets, smiths, and healers alike claim her patronage. And the name itself — Brigid, Bridget, Bríd — never ceased to be given to Irish daughters, carrying the Proto-Celtic word for exaltation into every generation since the Iron Age.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Brigid</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Brigid in Later Traditions</h3><p class="cultural-card-body">Brigit's syncretic life runs in two directions. Across the water, her name is one with the goddess Brigantia of Roman Britain, honoured in inscriptions from the Wall country and portrayed on the Birrens relief with Minerva's globe and spear — the interpretatio romana pairing the exalted one with the Roman goddess of craft and war-wisdom; the tribal Brigantes and the Gaulish Brigindu carry the same name-element, and the old comparison with Sanskrit bṛhatī, 'the high, exalted one', shows how deep the root runs. Within Ireland, the identification is Christian: Brigit of Kildare, the sixth-century saint whose feast falls on Imbolc, whose church kept a perpetual fire, and whose wonder-tales in Cogitosus's Life echo the goddess's provinces. Whether saint succeeded goddess, goddess was Christianized into saint, or two figures fused in one name, the sources do not let us decide — and Mac Cana and Koch both counsel holding the question open. What is certain is the continuity of the name: the Exalted One never left Ireland's calendar.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">No Celtic deity has a longer unbroken afterlife. Imbolc is still celebrated as St Brigid's Day — Lá Fhéile Bríde — and since 2023 it has been a public holiday in the Republic of Ireland, the first named for a woman. Rushes are still woven into Brigid's crosses on the eve of the feast and hung above doors; hundreds of holy wells bear the saint's name, and the clootie and cure customs at them preserve the leech-sister's province in folk practice. Modern paganism and Celtic Reconstructionism restored the goddess explicitly, keeping Imbolc as the feast of the returning light and of the three crafts; poets, smiths, and healers alike claim her patronage. And the name itself — Brigid, Bridget, Bríd — never ceased to be given to Irish daughters, carrying the Proto-Celtic word for exaltation into every generation since the Iron Age.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Brigit herself is unattested in pre-Christian Irish material: no Ogham stone, votive, or image names the goddess, and Ireland's Iron Age left no cult sites securely hers. Her name's material record lies across the water: Romano-British inscriptions honour Brigantia from the Wall country — most famously the relief from Birrens (Dumfriesshire), where the goddess stands with Minerva's globe, spear, and crown — and a Gaulish inscription from Volnay (Côte-d'Or) invokes Brigindu, the same name-element on the Continent. In Ireland the evidence is ecclesiastical and hydronymic: the monastic site of Kildare (Cill Dara, 'church of the oak'), with its round tower and its memory of the perpetual fire Giraldus describes, and the hundreds of holy wells dedicated to St Brigit, whose rag-trees and cure customs are the living deposit of the leech-sister's province.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Brigid means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Brigit is the rare goddess whose three provinces are one act seen from three sides. The smith and the poet do the same thing: they take what is raw — ore, breath — and by heat and pressure give it a form that outlasts them. The healer does it too, coaxing the broken body back toward the shape it was made for. Cormac's three sisters are really a single lesson: that making is sacred wherever it happens, at the anvil, on the tongue, or at the sickbed. Her fire at Kildare, hedged and watched and never consumed, is the emblem of that lesson — a flame tended by nineteen keepers that still belongs, on the twentieth night, to the name itself. Craft, kept in common, does not go out.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Brigid, Poetry, Healing, Smithcraft, Fire, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Brigid?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Brigid</strong> is /ˈbrʲiɣʲitʲ/ — approximately 'BRIJ-id' — like 'bridge' split in two, the g softened to a voiced fricative (a gargled g), both r and d slender; the modern Irish form Bríd is simply 'breed'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Brigid mean?</summary><div class="faq-answer"><p><strong>Brigid</strong> means <strong>The Exalted One (from Old Irish Brigit)</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Brigid?</summary><div class="faq-answer"><p>Brigid is associated with <strong>The flame of Kildare</strong> (The fire that neither dies nor accumulates ash — patronage that outlasts the night-watch of its keepers), <strong>The anvil and the forge</strong> (Smithcraft, the making province — skill that transforms raw metal the way poetry transforms raw speech), <strong>The holy well</strong> (Healing drawn from the ground — the countless wells of St Brigit where the leech-sister's province is still visited), <strong>Fea and Femen, the two oxen</strong> (The Dagda's daughter's beasts, who gave their names to plains of Ireland — wealth and the working land), <strong>Imbolc</strong> (The first of February, the milk returning to the ewes — the year's first hinge, kept as her day).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Brigid in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>brigid</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Brigid?</summary><div class="faq-answer"><p>The Book of Invasions places Brigit firmly in the family of the Túatha Dé Danann: Brigit the poetess, daughter of the Dagda, the good god who owns the cauldron and the club. The same tradition marries her to Bres, the half-Fomorian king whose beautiful face and niggardly rule nearly undid the Túatha Dé Danann, and gives her a son, Ruadán — so that the exalted one stands, by marriage and blood, on both sides of the great conflict of Irish myth. The Lebor Gabála is pseudohistory, written by Christian scholars ordering the gods into an ancestry, but its genealogies are the tradition's own filing system: Brigit belongs to the Dagda's house.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Brigid?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Brigid</strong> is /ˈbrʲiɣʲitʲ/ — approximately 'BRIJ-id' — like 'bridge' split in two, the g softened to a voiced fricative (a gargled g), both r and d slender; the modern Irish form Bríd is simply 'breed'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Brigid mean?</summary><div class="faq-answer"><p><strong>Brigid</strong> means <strong>The Exalted One (from Old Irish Brigit)</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Brigid?</summary><div class="faq-answer"><p>Brigid is associated with <strong>The flame of Kildare</strong> (The fire that neither dies nor accumulates ash — patronage that outlasts the night-watch of its keepers), <strong>The anvil and the forge</strong> (Smithcraft, the making province — skill that transforms raw metal the way poetry transforms raw speech), <strong>The holy well</strong> (Healing drawn from the ground — the countless wells of St Brigit where the leech-sister's province is still visited), <strong>Fea and Femen, the two oxen</strong> (The Dagda's daughter's beasts, who gave their names to plains of Ireland — wealth and the working land), <strong>Imbolc</strong> (The first of February, the milk returning to the ewes — the year's first hinge, kept as her day).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Brigid in Unicode?</summary><div class="faq-answer"><p><strong>Brigid</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Brigid?</summary><div class="faq-answer"><p>“The Dagda's Daughter” — Irish tradition gives Brigit few long tales but a peculiar density of testimony: the great pseudohistory of the Lebor Gabála knows her genealogy, the battle-tale Cath Maige Tuired gives her the first keening heard in Ireland, and Cormac's Glossary preserves the triad that made her three goddesses in one name. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,7 +360,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Brigid and related cults.</cite></li><li><cite>Brigit herself is unattested in pre-Christian Irish material: no Ogham stone, votive, or image names the goddess, and Ireland's Iron Age left no cult sites securely hers. Her name's material record lies across the water: Romano-British inscriptions honour Brigantia from the Wall country — most famously the relief from Birrens (Dumfriesshire), where the goddess stands with Minerva's globe, spear, and crown — and a Gaulish inscription from Volnay (Côte-d'Or) invokes Brigindu, the same name-element on the Continent. In Ireland the evidence is ecclesiastical and hydronymic: the monastic site of Kildare (Cill Dara, 'church of the oak'), with its round tower and its memory of the perpetual fire Giraldus describes, and the hundreds of holy wells dedicated to St Brigit, whose rag-trees and cure customs are the living deposit of the leech-sister's province.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Brigid and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/brigid_logomark.webp" type="image/webp"><img src="../../assets/brigid_logomark.webp" alt="Brigid logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/brigid_logomark.webp" type="image/webp"><img src="../../assets/brigid_logomark.webp" alt="Brigid logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

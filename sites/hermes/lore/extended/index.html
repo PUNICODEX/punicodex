@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Hermês, Messengers, Commerce, Thieves. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/hermes/lore/extended/">
 
@@ -72,6 +72,62 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Hermês?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Hermês is /her.ˈmɛːs/ — approximately 'her-MACE' — the first syllable is quick and breathy; the second is long, level, and carries the accent."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Hermês mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hermês means Heap of stones, boundary marker in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Hermês?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hermês is associated with Caduceus (The herald's staff entwined with serpents, symbol of peace and negotiation), Winged sandals (Speed and the ability to cross all boundaries), Traveler's hat (Protection on the road), Lyre (The instrument he invented and traded to Apóllōn), Tortoise (From whose shell he made the first lyre)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why are there different spellings of Hermês?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each form is a historically attested restoration rather than a mistake: Hermēs is the macron-only form (LSJ convention: length only, no circumflex). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Hermês in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII hermes strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Hermês?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Born in a Cave on Mount Cyllene” — Hermês's myths celebrate intelligence in motion. Born at dawn, by nightfall he has invented music, stolen a herd, and talked his way out of both — and Zeús rewards him with every boundary-crossing office: herald, trader, guide of the dead. Every threshold in the Greek world — door, road, market, grave — stood under his sign. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +165,14 @@
                 <picture><source srcset="../../assets/hermes_logolockup.webp" type="image/webp"><img src="../../assets/hermes_logolockup.png" alt="Hermês" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +183,14 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +203,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Hermês</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Hermês.com · Hermēs.com</span>
@@ -157,7 +218,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/hermes_mascot.webp" type="image/webp"><img src="../../assets/hermes_mascot.png" alt="Hermês — Messengers, Commerce, Thieves" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/hermes_mascot.webp" type="image/webp"><img src="../../assets/hermes_mascot.png" alt="Hermês — Messengers, Commerce, Thieves" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -216,7 +277,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Hermês is Tier 1 because the Greek Ἑρμῆς contains both stress (circumflex on the long η) and length (η). The circumflex form Hermês is the ideal; Hermēs is the macron-only LSJ convention. The name's boundary-marker etymology suits the god of thresholds.</p>
+                <p class="etymology-note">From Ἑρμῆς, possibly from ἕρμα "boundary stone". Psychopomp and messenger.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -253,36 +314,51 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Hermês is the fastest, cleverest, and most adaptable of the gods. He moves between Olympus, earth, and the underworld; he protects travelers, merchants, thieves, and heralds. <strong>Where there is a boundary, there is Hermês</strong>.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Hermês in Later Traditions</h3><p class="cultural-card-body">The Romans identified Hermês with Mercurius, the god of commerce and travel, whose name gives us 'merchant' and 'mercury.' The planet Mercury, swift in its orbit, bears his name. In Egypt he was fused with <a href="/thoth/" class="crosslink" data-crosslink="thoth">Thoth</a>, the ibis-headed god of writing and wisdom, producing the figure of Hermes Trismegistus, central to Hellenistic and Renaissance occultism. The caduceus, though often confused with the rod of Asclepius, remains a global symbol of diplomacy and medicine.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hermês is the god of everything that moves: messages, money, travelers, thieves, and souls. The herm was one of the most common religious objects in Athens; every doorway and road was under his protection. In philosophy, Hermes Trismegistus became a founder of alchemy and Hermeticism. Modern concepts of communication, commerce, and even the internet — a network of boundaries crossed at speed — would have seemed to the Greeks like the domain of Hermês. Restoring <em>Hermês</em> restores the name of the god who first made exchange possible.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Hermês</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Hermês in Later Traditions</h3><p class="cultural-card-body">The Romans identified Hermês with Mercurius, the god of commerce and travel, whose name gives us 'merchant' and 'mercury.' The planet Mercury, swift in its orbit, bears his name. In Egypt he was fused with <a href="/thoth/" class="crosslink" data-crosslink="thoth">Thoth</a>, the ibis-headed god of writing and wisdom, producing the figure of Hermes Trismegistus, central to Hellenistic and Renaissance occultism. The caduceus, though often confused with the rod of Asclepius, remains a global symbol of diplomacy and medicine.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hermês is the god of everything that moves: messages, money, travelers, thieves, and souls. The herm was one of the most common religious objects in Athens; every doorway and road was under his protection. In philosophy, Hermes Trismegistus became a founder of alchemy and Hermeticism. Modern concepts of communication, commerce, and even the internet — a network of boundaries crossed at speed — would have seemed to the Greeks like the domain of Hermês. Restoring <em>Hermês</em> restores the name of the god who first made exchange possible.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Thousands of herms—four-sided pillars topped with Hermes' head and genitals—stood at doorways, crossroads, and gymnasia across Athens; the mutilation of the herms in 415 BCE is recorded by Thucydides and left numerous surviving examples. The Hermes of Praxiteles (Archaeological Museum of <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a>) is a fourth-century BCE marble of the god carrying the infant <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a>. The herm of Andros and the Archanes herms illustrate his role as boundary guardian.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Hermês means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Hermês is the god of the in-between moment: the handshake, the border crossing, the message sent but not yet received. He is neither Olympian splendor nor chthonic dread but the quick intelligence that moves between them. The Greeks trusted him on roads because they knew that roads are dangerous, and danger requires a clever companion.</p><p>Every time we send a message, make a trade, or cross a threshold, we repeat the gestures Hermês invented. The internet is his latest domain: a vast network of exchanges across boundaries, some honest, some thieving, all swift. The restoration of his name in Unicode is fitting: he would have approved of a script that lets any language travel instantly.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     <section class="section section-name" id="screen-appearances">
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Screen Appearances</h2>
-            <p class="section-subtitle">Films, series, animations, and games featuring Hermês</p>
+            <span class="section-number">06</span>
+            <h2 class="section-title">Screen &amp; Culture</h2>
+            <p class="section-subtitle">Where Hermês echoes through film, television, and games — and how</p>
         </div>
         <div class="screen-appearances-grid"><a class="screen-appearance-card reveal-up" href="/screen/percy-jackson-the-olympians-the-lightning-thief-2010/">
                 <span class="screen-appearance-year">2010</span>
                 <h3 class="screen-appearance-title">Percy Jackson &amp; the Olympians: The Lightning Thief</h3>
                 <span class="screen-appearance-type">Film</span>
                 <p class="screen-appearance-studio">20th Century Fox</p>
+                <p class="screen-appearance-summary">A modern demigod discovers he is Poseidon's son and is drawn into a conflict among the Olympian gods.</p>
             </a><a class="screen-appearance-card reveal-up" href="/screen/hades-2020/">
                 <span class="screen-appearance-year">2020</span>
                 <h3 class="screen-appearance-title">Hades</h3>
                 <span class="screen-appearance-type">Game</span>
                 <p class="screen-appearance-studio">Supergiant Games</p>
+                <p class="screen-appearance-summary">A roguelike action game in which Zagreus attempts to escape the Underworld, encountering most of the Olympian pantheon.</p>
             </a><a class="screen-appearance-card reveal-up" href="/screen/percy-jackson-and-the-olympians-2023/">
                 <span class="screen-appearance-year">2023</span>
                 <h3 class="screen-appearance-title">Percy Jackson and the Olympians</h3>
                 <span class="screen-appearance-type">Series</span>
                 <p class="screen-appearance-studio">Disney+</p>
+                <p class="screen-appearance-summary">A faithful Disney+ adaptation of Riordan's novels, following Percy through Camp Half-Blood and encounters with the Greek gods.</p>
             </a></div>
     </div>
 </section>
@@ -291,11 +367,11 @@
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Hermês, Messengers, Commerce, Thieves, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hermês?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hermês</strong> is /her.ˈmɛːs/ — approximately 'her-MACE' — the first syllable is quick and breathy; the second is long, level, and carries the accent..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hermês mean?</summary><div class="faq-answer"><p><strong>Hermês</strong> means <strong>Heap of stones, boundary marker</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hermês?</summary><div class="faq-answer"><p>Hermês is associated with <strong>Caduceus</strong> (The herald's staff entwined with serpents, symbol of peace and negotiation), <strong>Winged sandals</strong> (Speed and the ability to cross all boundaries), <strong>Traveler's hat</strong> (Protection on the road), <strong>Lyre</strong> (The instrument he invented and traded to <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a>), <strong>Tortoise</strong> (From whose shell he made the first lyre).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>What is the difference between Hermês.com and Hermēs.com?</summary><div class="faq-answer"><p>Each is a historically defensible restoration. <strong>Hermēs.com</strong> is the macron-only form: LSJ convention: length only, no circumflex.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Hermês in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hermes</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Hermês?</summary><div class="faq-answer"><p>Hermês was born to <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> and the nymph Maia in a remote Arcadian cave. By midday of his first day he had invented the lyre from a tortoise shell and slipped out to steal Apóllōn's cattle. He made them walk backward to confuse the tracks. When Apóllōn accused him, the infant denied everything with such charm that even the accusation became comic.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hermês?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hermês</strong> is /her.ˈmɛːs/ — approximately 'her-MACE' — the first syllable is quick and breathy; the second is long, level, and carries the accent.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hermês mean?</summary><div class="faq-answer"><p><strong>Hermês</strong> means <strong>Heap of stones, boundary marker</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hermês?</summary><div class="faq-answer"><p>Hermês is associated with <strong>Caduceus</strong> (The herald's staff entwined with serpents, symbol of peace and negotiation), <strong>Winged sandals</strong> (Speed and the ability to cross all boundaries), <strong>Traveler's hat</strong> (Protection on the road), <strong>Lyre</strong> (The instrument he invented and traded to <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a>), <strong>Tortoise</strong> (From whose shell he made the first lyre).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why are there different spellings of Hermês?</summary><div class="faq-answer"><p>Each form is a historically attested restoration rather than a mistake: <strong>Hermēs</strong> is the macron-only form (LSJ convention: length only, no circumflex). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Hermês in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hermes</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Hermês?</summary><div class="faq-answer"><p>“Born in a Cave on Mount Cyllene” — Hermês's myths celebrate intelligence in motion. Born at dawn, by nightfall he has invented music, stolen a herd, and talked his way out of both — and <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> rewards him with every boundary-crossing office: herald, trader, guide of the dead. Every threshold in the Greek world — door, road, market, grave — stood under his sign. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -304,7 +380,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">08</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -323,19 +399,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homer, Iliad and Odyssey</cite></li><li><cite>Hesiod, Theogony</cite></li><li><cite>Homeric Hymn to Hermes</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to Hermes</cite></li><li><cite>Homer, Odyssey 10.275–306; 24.1–14</cite></li><li><cite>Homer, Iliad 24 (Argeiphontes)</cite></li><li><cite>Ovid, <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 1.668–723; 2.676–707</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hermês and related cults.</cite></li><li><cite>Thousands of herms—four-sided pillars topped with Hermes' head and genitals—stood at doorways, crossroads, and gymnasia across Athens; the mutilation of the herms in 415 BCE is recorded by Thucydides and left numerous surviving examples. The Hermes of Praxiteles (Archaeological Museum of <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a>) is a fourth-century BCE marble of the god carrying the infant <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a>. The herm of Andros and the Archanes herms illustrate his role as boundary guardian.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hermês and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Corpus Hermeticum</cite></li></ul>
+                    <ul class="source-list"><li><cite>Antoninus Liberalis 23 (Nicander, Corinna)</cite></li><li><cite>Corpus Hermeticum</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -396,7 +472,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/hermes_logomark.webp" type="image/webp"><img src="../../assets/hermes_logomark.webp" alt="Hermês logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/hermes_logomark.webp" type="image/webp"><img src="../../assets/hermes_logomark.webp" alt="Hermês logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

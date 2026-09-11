@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Pángǔ, Creation, Separation, Foundation. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/pangu/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Pángǔ?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Pángǔ is /pʰa˧˥ ku˨˩˦/ — approximately pahng-goo, rising tone on Pang, low-dipping on Gu."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Pángǔ mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pángǔ means 'Coiled antiquity' (盤古), the giant who split heaven from earth in the chinese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Pángǔ?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pángǔ is associated with The egg (Chaos as potential — the undivided whole that must crack to become a world), The horns (His folk-iconography — the shaggy, horned giant of the first morning), The pillars of his limbs (The four limbs as the four sacred mountains — the body as geography)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Pángǔ in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII pangu strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Pángǔ?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Three-Five Calendar Record” — Pángǔ's myth exists in two sentences of immense consequence, recorded by Xú Zhěng in the 3rd century CE — and expanded by a civilization into its canonical account of how the world began. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/pangu_logolockup.webp" type="image/webp"><img src="../../assets/pangu_logolockup.png" alt="Pángǔ" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Pángǔ</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Pángǔ.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/pangu_mascot.webp" type="image/webp"><img src="../../assets/pangu_mascot.png" alt="Pángǔ — Creation, Separation, Foundation" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/pangu_mascot.webp" type="image/webp"><img src="../../assets/pangu_mascot.png" alt="Pángǔ — Creation, Separation, Foundation" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Pángǔ 盘古 carries the rising tone on páng and the dipping third tone on gǔ ("antiquity"); the name pairs "coiling" with "ancient" — the coiled one of the primordial egg. Written 盤古 in traditional characters, it is Chinese myth's youngest great name: the giant is attested only from the 3rd century CE.</p>
+                <p class="etymology-note">The name <strong>Pángǔ</strong> carries the orthographic signature of the chinese tradition: 盤古. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Chinese</strong> — 盤古</li><li><strong>Owned form</strong> — Pángǔ</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Chinese script</strong> — 盤古 (simplified 盘古): pán 'coil, great basin' + gǔ 'ancient' — the graphs name him: the coiled one of antiquity.</li><li><strong>Southern kin</strong> — <a href="/pan/" class="crosslink" data-crosslink="pan">Pán</a> Hù 盤瓠, the dog-ancestor of Yao and Miao genealogies — the phonetic and regional neighbor from whom scholars suspect the giant was borrowed, or with whom he merged.</li><li><strong>World-body type</strong> — Vedic Púruṣa and Norse <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a> — the dismembered primordial being whose body becomes the world; Pángǔ's death is the type's gentlest version.</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Pángǔ is China's creation made flesh: the giant who grew for eighteen thousand years inside the cosmic egg, pushed heaven and earth apart with his own body, and — dying at last — became the world itself: his eyes the sun and moon, his breath the wind, his voice the thunder.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Pángǔ in Later Traditions</h3><p class="cultural-card-body">The Pángǔ–<a href="/pan/" class="crosslink" data-crosslink="pan">Pán</a> Hù debate is one of Chinese mythology's famous problems: the southern dog-ancestor of the Yao and She peoples and the cosmic giant share a syllable and a region, and scholars from the Republican era onward have argued transmission in both directions. Comparative mythology places him with the dismembered primordial beings — Vedic Púruṣa, Norse <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a> — whose bodies become worlds: China's version is distinctive for making the giant's death not a murder but a completion.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">"Since Pángǔ separated heaven and earth" is the standard Chinese formula for "since the beginning of time," and his myth opens every children's account of Chinese prehistory. The transformation — body to landscape — gave Chinese poetry one of its deepest image-families, the mountain-as-body. UNESCO-listed school textbooks, animated films, and the giant's statues across southern China (Henan's Tongbai county claims his birthplace) keep the youngest creator as the most familiar.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Pángǔ</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Pángǔ in Later Traditions</h3><p class="cultural-card-body">The Pángǔ–Pán Hù debate is one of Chinese mythology's famous problems: the southern dog-ancestor of the Yao and She peoples and the cosmic giant share a syllable and a region, and scholars from the Republican era onward have argued transmission in both directions. Comparative mythology places him with the dismembered primordial beings — Vedic Púruṣa, Norse Ymir — whose bodies become worlds: China's version is distinctive for making the giant's death not a murder but a completion.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">"Since Pángǔ separated heaven and earth" is the standard Chinese formula for "since the beginning of time," and his myth opens every children's account of Chinese prehistory. The transformation — body to landscape — gave Chinese poetry one of its deepest image-families, the mountain-as-body. UNESCO-listed school textbooks, animated films, and the giant's statues across southern China (Henan's Tongbai county claims his birthplace) keep the youngest creator as the most familiar.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No cult-temple of Pángǔ predates the myth's literary arrival, but his material afterlife is real: the Pángǔ temples of Tóngbái (Henan) and the southern shrines of Guǎngdōng and Guǎngxī mark the festival of his 'birth' in the tenth lunar month, and the Shùyì jì's report of a Pángǔ country in the southern sea whose people carried his name as a surname shows the cult travelling on genealogies as much as on festivals. The textual archaeology is exact — Xú Zhěng's Sānwǔ lìjì and the Wǔyùn lìnián jì (both 3rd century, preserved in encyclopedias) are the two struts of the whole tradition, and the history of their quotation is the history of the myth itself.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Pángǔ means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Pángǔ is the god of the long work: eighteen thousand years of pushing, unnoticed, until the sky stayed up on its own. He never saw the world he made — he became it. He asks of everyone engaged in slow, unglamorous creation: what are you growing between the heaven and the earth of your time — and will it stand when you are done?</p><p>The flea-born people of the oldest version keep the myth honest: humanity is not the giant's masterpiece but his smallest parasite, quickened by the wind. It is the humblest creation-line in world mythology — and somehow the most accurate: we are the detail, not the design, and the world was not made for us but of something that once stood up and held it apart.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Pángǔ, Creation, Separation, Foundation, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Pángǔ?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Pángǔ</strong> is /pʰa˧˥ ku˨˩˦/ — approximately pahng-goo, rising tone on Pang, low-dipping on Gu..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Pángǔ mean?</summary><div class="faq-answer"><p><strong>Pángǔ</strong> means <strong>'Coiled antiquity' (盤古), the giant who split heaven from earth</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Pángǔ?</summary><div class="faq-answer"><p>Pángǔ is associated with <strong>The egg</strong> (<a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a> as potential — the undivided whole that must crack to become a world), <strong>The horns</strong> (His folk-iconography — the shaggy, horned giant of the first morning), <strong>The pillars of his limbs</strong> (The four limbs as the four sacred mountains — the body as geography).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Pángǔ in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>pangu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Pángǔ?</summary><div class="faq-answer"><p>Xú Zhěng's Sānwǔ lìjì gives the founding text: "Heaven and earth were chaos like a hen's egg, and Pángǔ was born within it. After eighteen thousand years, heaven and earth opened: the bright, light qì rose to become heaven; the dark, heavy qì sank to become earth. Pángǔ stood between them, changing nine times daily — heaven rising ten feet a day, earth thickening ten feet, and Pángǔ growing ten feet — for eighteen thousand years more."</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Pángǔ?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Pángǔ</strong> is /pʰa˧˥ ku˨˩˦/ — approximately pahng-goo, rising tone on Pang, low-dipping on Gu.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Pángǔ mean?</summary><div class="faq-answer"><p><strong>Pángǔ</strong> means <strong>'Coiled antiquity' (盤古), the giant who split heaven from earth</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Pángǔ?</summary><div class="faq-answer"><p>Pángǔ is associated with <strong>The egg</strong> (<a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a> as potential — the undivided whole that must crack to become a world), <strong>The horns</strong> (His folk-iconography — the shaggy, horned giant of the first morning), <strong>The pillars of his limbs</strong> (The four limbs as the four sacred mountains — the body as geography).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Pángǔ in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>pangu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Pángǔ?</summary><div class="faq-answer"><p>“Three-Five Calendar Record” — Pángǔ's myth exists in two sentences of immense consequence, recorded by Xú Zhěng in the 3rd century CE — and expanded by a civilization into its canonical account of how the world began. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,13 +361,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Pángǔ and related cults.</cite></li><li><cite>No cult-temple of Pángǔ predates the myth's literary arrival, but his material afterlife is real: the Pángǔ temples of Tongbai (Henan) and the southern shrines of Guangdong and Guangxi mark the festival of his "birth" in the tenth lunar month. The textual archaeology is exact — Xú Zhěng's Sānwǔ lìjì and the Wǔyùn lìnián jì (both 3rd century, preserved in encyclopedias) are the two struts of the whole tradition, and the history of their quotation is the history of the myth itself.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Pángǔ and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Xu Zheng</cite></li><li><cite>Birrell</cite></li><li><cite>Shiji</cite></li><li><cite>Chinese classics</cite></li><li><cite>Chinese folklore</cite></li><li><cite>Shan Hai Jing</cite></li></ul>
+                    <ul class="source-list"><li><cite>Xú Zhěng 徐整 (3rd c. CE), Sānwǔ lìjì 三五歷記 — the cosmic egg and the body-transformation; preserved in Tàipíng yùlàn 2 and Yìwén lèijù 1</cite></li><li><cite>Xú Zhěng, Wǔyùn lìnián jì 五運歷年紀 — the horned, serpent-bodied stratum of the legend</cite></li><li><cite>Rèn Fáng 任昉 (d. 508), Shùyì jì 述異記 — the folk variants and the Pángǔ country of the southern sea</cite></li><li><cite>Birrell, Anne, Chinese Mythology: An Introduction (Johns Hopkins, 1993), ch. 2</cite></li><li><cite>Yuán Kē 袁珂, Zhōngguó gǔdài shénhuà 中國古代神話 (rev. edn.) — the standard modern synthesis</cite></li><li><cite>Shan Hǎi Jīng 山海經 — the pre-Han cosmography whose silence on Pángǔ dates him</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/pangu_logomark.webp" type="image/webp"><img src="../../assets/pangu_logomark.webp" alt="Pángǔ logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/pangu_logomark.webp" type="image/webp"><img src="../../assets/pangu_logomark.webp" alt="Pángǔ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

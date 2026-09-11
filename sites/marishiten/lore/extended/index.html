@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Marishiten, War, Invisibility, Sun. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/marishiten/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Marishiten?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Marishiten is /ma.ɾi.ɕi.teɴ/ — approximately 'MAH-ree-shee-ten' — the 'r' is a light tap, and the final 'n' is soft."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Marishiten mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marishiten means Marici in Japanese in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Marishiten?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marishiten is associated with Boar (Her vehicle and a symbol of courage and prosperity), Sun chariot (Her association with dawn and solar victory), Weapons (The bow, arrow, sword, and spear of the warrior goddess), Multiple arms (Her ability to act in many directions at once)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Marishiten in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Marishiten is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Marishiten?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Mārīcī, the Ray Before the Sun” — Marishiten's mythology is liturgical rather than epic: no sutra tells her life-story, but the Mārīcī texts of the Chinese canon (Taishō nos. 1254–1257) and the iconographic manuals of Japanese esoteric Buddhism define her powers, her images, and the communities that claimed her protection — travelers first, then soldiers, then everyone whose survival depended on not being seen. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/marishiten_logolockup.webp" type="image/webp"><img src="../../assets/marishiten_logolockup.png" alt="Marishiten" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Marishiten</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Marishiten</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/marishiten_mascot.webp" type="image/webp"><img src="../../assets/marishiten_mascot.png" alt="Marishiten — War, Invisibility, Sun" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/marishiten_mascot.webp" type="image/webp"><img src="../../assets/marishiten_mascot.png" alt="Marishiten — War, Invisibility, Sun" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Marishiten</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Marishiten is Tier 2: the Japanese form is plain Hepburn. She is a Buddhist-Taoist warrior goddess adopted by samurai and martial artists.</p>
+                <p class="etymology-note">The name <strong>Marishiten</strong> reaches the modern world through scholarly transliteration of the japanese tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Japanese</strong> — 摩利支天 (Marishiten), goddess of war, invisibility, and the sun</li><li><strong>Sanskrit</strong> — Mārīcī, a Buddhist goddess of dawn and victory</li><li><strong>Chinese</strong> — Mólìzhītiān (摩利支天)</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Sanskrit</strong> — Mārīcī, 'ray, beam of light' — the dawn-goddess's name is the common noun for a ray of light (Monier-Williams, Sanskrit-English Dictionary, s.v. mārīcī)</li><li><strong>Japanese</strong> — 摩利支天 (Marishiten), goddess of war, invisibility, and the sun — the esoteric Buddhist reading of the same characters</li><li><strong>Chinese</strong> — Mólìzhītiān (摩利支天), the Middle-Chinese transcription of Mārīcīdeva attested in the Taishō canon translations (nos. 1254–1257)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">M</td><td><code>U+004D</code></td><td>Latin Capital Letter M</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">s</td><td><code>U+0073</code></td><td>Latin Small Letter S</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">h</td><td><code>U+0068</code></td><td>Latin Small Letter H</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="560"><td class="char-cell">t</td><td><code>U+0074</code></td><td>Latin Small Letter T</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="640"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="720"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Marishiten</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Marishiten</strong> is the Japanese form of Mārīcī, a Buddhist goddess of dawn, light, and victory. In Japan she became a patron of warriors, archers, and practitioners of the martial arts, worshipped for her power to make devotees invisible to harm and irresistible in battle. She rides a boar and is often depicted with multiple arms bearing weapons.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Marishiten in Later Traditions</h3><p class="cultural-card-body">Marishiten is a Buddhist warrior goddess who overlaps with Shinto sun kami and Taoist astral figures. Her boar mount connects her to the Japanese zodiac and agricultural cults, while her solar chariot links her to <a href="/amaterasu/" class="crosslink" data-crosslink="amaterasu">Amaterasu</a>. She represents the Buddhist appropriation of solar and martial power for the protection of the faithful.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Marishiten is still venerated in some Buddhist temples and martial arts dojos. Her image appears in Japanese Buddhist iconography, and her name is known to practitioners of traditional archery and swordsmanship. In popular culture she appears as a solar warrior goddess in games and manga.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Marishiten</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Marishiten in Later Traditions</h3><p class="cultural-card-body">Marishiten is a Buddhist figure assembled from several older identities. Her name and dawn office are Sanskrit, kin to the Vedic dawn goddess Uṣas; her chariot and solar imagery carry Taoist and Chinese star-lore, for the esoteric texts link her to the circumpolar stars that never set — the only lights that share her gift of never being caught. In Japan she overlaps with the Shinto sun kami: the deva of dawn bends easily toward <a href="/amaterasu/" class="crosslink" data-crosslink="amaterasu">Amaterasu</a>, and some medieval commentators read her as the Buddhist face of the rising sun. Her boar vehicle ties her to the agricultural calendar and the zodiac year of the boar, and her warrior cult merged with Shugendō mountain asceticism, where protective spells are working tools. She is thus a layered deity — Indian ray, Chinese star, Japanese war-patron — and her history shows esoteric Buddhism operating exactly as designed: absorbing local powers and re-issuing them under a dhāraṇī.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Marishiten's cult is quieter than her reputation but it has never vanished. Esoteric temples of the Tendai and Shingon schools still keep her images among the tenbu protectors, and traditional martial arts — kyūdō above all, and some lines of swordsmanship — preserve her name in their ritual vocabulary and founding legends. In the Edo period her confraternities reached deep into townspeople's culture, and she was affectionately known as Marishiten-sama, the grandmother-like guardian of those who work by stealth. Modern Japan meets her mostly as a character: a solar warrior goddess in games, manga, and anime, where her multi-armed, boar-riding silhouette is instantly readable. For the historian of religion she remains the cleanest case study of a protective deity migrating from Indian liturgy to Chinese iconography to Japanese warrior culture — a ray of light that became a sword.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Marishiten's material record is the record of Japanese esoteric Buddhism. Multi-armed, boar-riding images in bronze, dry lacquer, and wood, and scroll paintings of her chariot, survive from the Heian period onward, prescribed by the iconographic manual Besson zakki (twelfth century) and preserved in temple treasuries of the Shingon and Tendai schools and in national collections; de Visser's Ancient Buddhism in Japan (1935) catalogues early examples and their cult settings. Edo-period confraternity paraphernalia — votive plaques, small gilt images, and Marishiten-kō registers — document her townspeople's following. No excavated sanctuary is exclusively hers; her archaeology is dispersed, like her devotees, across the altars of esoteric temples.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Marishiten means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Marishiten teaches that protection can take the form of light. To be invisible to harm is not to hide in darkness but to move in the dawn — seen by the divine, unseen by danger. She is the goddess of those who must face conflict with clarity: the soldier before the battle, the traveler before the pass, the accused before the judge.</p><p>Her deeper lesson concerns timing. The ray of light that precedes the sun cannot be opposed, because it announces what is already unstoppable; the warrior who moves with that timing shares its inevitability. In an age that worships visibility — the feed, the profile, the brand — Marishiten stands for the older excellence of being unperceived until the moment of action. Her temple honours the value of moving first, quietly, in the first light.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Marishiten, War, Invisibility, Sun, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Marishiten?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Marishiten</strong> is /ma.ɾi.ɕi.teɴ/ — approximately 'MAH-ree-shee-ten' — the 'r' is a light tap, and the final 'n' is soft..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Marishiten mean?</summary><div class="faq-answer"><p><strong>Marishiten</strong> means <strong>Marici in Japanese</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Marishiten?</summary><div class="faq-answer"><p>Marishiten is associated with <strong>Boar</strong> (Her vehicle and a symbol of courage and prosperity), <strong>Sun chariot</strong> (Her association with dawn and solar victory), <strong>Weapons</strong> (The bow, arrow, sword, and spear of the warrior goddess), <strong>Multiple arms</strong> (Her ability to act in many directions at once).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Marishiten in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>marishiten</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Marishiten?</summary><div class="faq-answer"><p>In Indian Buddhism, Mārīcī was a goddess of dawn, a ray of light preceding the sun. She was invoked for protection, especially by travelers and those in danger. Her association with invisibility and escape comes from her ability to move unseen before the dawn.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Marishiten?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Marishiten</strong> is /ma.ɾi.ɕi.teɴ/ — approximately 'MAH-ree-shee-ten' — the 'r' is a light tap, and the final 'n' is soft.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Marishiten mean?</summary><div class="faq-answer"><p><strong>Marishiten</strong> means <strong>Marici in Japanese</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Marishiten?</summary><div class="faq-answer"><p>Marishiten is associated with <strong>Boar</strong> (Her vehicle and a symbol of courage and prosperity), <strong>Sun chariot</strong> (Her association with dawn and solar victory), <strong>Weapons</strong> (The bow, arrow, sword, and spear of the warrior goddess), <strong>Multiple arms</strong> (Her ability to act in many directions at once).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Marishiten in Unicode?</summary><div class="faq-answer"><p><strong>Marishiten</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Marishiten?</summary><div class="faq-answer"><p>“Mārīcī, the Ray Before the Sun” — Marishiten's mythology is liturgical rather than epic: no sutra tells her life-story, but the Mārīcī texts of the Chinese canon (Taishō nos. 1254–1257) and the iconographic manuals of Japanese esoteric Buddhism define her powers, her images, and the communities that claimed her protection — travelers first, then soldiers, then everyone whose survival depended on not being seen. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,19 +355,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The <em>Kojiki</em>; the <em>Nihon Shoki</em>; shrine ritual records.</cite></li></ul>
+                    <ul class="source-list"><li><cite>The <em><a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a></em>; the <em><a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a></em>; shrine ritual records.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Marishiten and related cults.</cite></li><li><cite>Marishiten is primarily an iconographic and textual figure, preserved in Buddhist statuary, mandalas, and martial-arts manuscripts. Temples such as Hase-dera and Enryaku-ji preserve images of the goddess.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Marishiten and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Buddhist texts (Mārīcī dhāraṇī and sūtras)</cite></li><li><cite>Japanese martial-arts ritual texts</cite></li><li><cite>Bocking, A Popular Dictionary of Shinto</cite></li></ul>
+                    <ul class="source-list"><li><cite>Taishō Shinshū Daizōkyō nos. 1254–1257 — the Mārīcī sūtras and dhāraṇī translations</cite></li><li><cite>Besson zakki (12th c. iconographic compendium) — the multi-armed, boar-riding form</cite></li><li><cite>de Visser, Ancient Buddhism in Japan, 2 vols (Brill, 1935) — early Japanese Marishiten images and cult</cite></li><li><cite>Miyake Hitoshi, Shugendō: Essays on the Structure of Japanese Folk Religion (University of Michigan, 1993)</cite></li><li><cite>Monier-Williams, A Sanskrit-English Dictionary, s.v. mārīcī</cite></li><li><cite>Bocking, A Popular Dictionary of Shinto</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/marishiten_logomark.webp" type="image/webp"><img src="../../assets/marishiten_logomark.webp" alt="Marishiten logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/marishiten_logomark.webp" type="image/webp"><img src="../../assets/marishiten_logomark.webp" alt="Marishiten logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

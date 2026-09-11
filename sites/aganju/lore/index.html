@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Aganjú — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Aganjú</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Aganjú.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,148 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Aganjú</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Aganjú</strong> is the standard Yoruba romanisation, documented in academic sources — “The uninhabited place”. Its acute stress marks preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">aganju</p>
-                    <p class="card-body">Reduced to plain <strong>aganju</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Aganjú</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Aganjú</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Aganjú.com → xn--aganj-cva.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Aganjú</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Aganjú</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Aganjú is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Aganjú</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Aganjú</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Aganjú</p>
-                    <p class="card-body">The live temple domain — <strong>aganjú.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">aganju</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Aganjú was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Aganjú</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/à.gà.ɲú/</span>
-            <span class="ipa-label">Yoruba Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">À-</span>
-        <span class="phoneme-desc">Open central vowel [a] with low tone, written without dot below in the lexical form but historically linked to the agánbára ('force') root.</span>
+      <p class="lead-text">Aganjú's myths are less numerous than those of <a href="/oshun/" class="crosslink" data-crosslink="oshun">Ọṣun</a> or <a href="/shango/" class="crosslink" data-crosslink="shango">Ṣàngó</a>, but they centre on a single theme: the earth as a living, burning body that carries human life without belonging to it. Where other orishas crowd the town and its markets, Aganjú's dossier is written at the boundary — volcano, desert, quarry — and in the diaspora's discovery that the wilderness god was carrying the world all along.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Lineage</span>
+          <h3 class="myth-title">Son of Odùduwà and Ọbatalá</h3>
+          <p class="myth-text">Aganjú's birth is a statement of his character: he arrives from the union of the two powers that divide the Yoruba cosmos. In many lineages he is counted a son of <a href="/oduduwa/" class="crosslink" data-crosslink="oduduwa">Odùduwà</a>, the royal ancestor who founded the earth's cities, and of Ọbatalá, the white-clothed sculptor of human bodies; the genealogies vary — oral tradition keeps several versions, and no single Ifá corpus settles the question. What the variants agree on is the outcome. This child of kingship and craft refuses both inheritances and chooses the uncultivated bush, the lava field, the place no farm can claim. Where Ọbatalá shapes and Odùduwà rules, Aganjú simply burns and bears. Divination verses recorded by Bascom and others keep him at the world's edge, immense and mostly silent, invoked when the earth itself must be addressed — droughts, eruptions, the cracking of foundations. The myth means that every order rests on an unowned force it cannot command: the volcano is the family member the palace never invited home.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-gà-</span>
-        <span class="phoneme-desc">Voiced velar stop [g] followed by open [a] with low tone.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Kingship</span>
+          <h3 class="myth-title">The King Who Became the Volcano</h3>
+          <p class="myth-text">A second tradition makes Aganjú not a god from birth but a king who became one. Samuel Johnson's <em>History of the Yorubas</em> (1921), the great early record of Oyo tradition, preserves the memory of an Aláàfin — a king of the old Ọ̀yọ́ empire — remembered as Aganjú, whose rule ended in apotheosis: his name passed to the orisha of the wilderness, and the royal cult and the wilderness cult folded into one figure. Johnson is a single, late, colonial-era source, and modern scholarship treats the deified-king account cautiously — it may be a rationalization, or a genuinely remembered apotheosis of the kind Yoruba kingship often produced. But the tradition matters even if it is embroidery, because it explains why Aganjú carries both a king's gravity and a volcano's indifference to law. The myth means that the wilderness god may once have worn a crown — and that a king too fierce for the palace could still find a temple.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-ɲú</span>
-        <span class="phoneme-desc">Palatal nasal [ɲ] — like Spanish ñ — plus close back rounded vowel [u] with high tone.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Diaspora</span>
+          <h3 class="myth-title">Aggayú Solá Carries the World</h3>
+          <p class="myth-text">In Cuban Santería, Aganjú crosses the Atlantic and grows. As Aggayú Solá — the name already swelling with the sea-voyage — he is imagined as a giant so tall that rivers reach his ankles and palm trees are grass under his feet; he walks through lava as others walk through sand, and the earth rides on his shoulders like a load. When he possesses a devotee in ceremony, the person's whole gait changes: the step becomes heavy, swaying, patient, as if the ground under the dancer has remembered it is alive. Verger, who documented the orisha cults on both sides of the Atlantic, records that the diaspora re-centered Aganjú from the edge of settlement into the very center of the ritual house, pairing him with Ṣàngó as earth-fire to sky-fire. The transformation is the myth's meaning: a god of the uninhabited place became, in exile, the god who carries the inhabited one. The wilderness orisha ends up holding the whole world.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cult</span>
+          <h3 class="myth-title">The Desert and the Town</h3>
+          <p class="myth-text">Aganjú's cult geography is a map of the human boundary. His offerings — palm wine, smoked fish, red palm oil — are carried to the edge of towns, to road-cuts and quarries, to the last wall before the bush begins; in Candomblé houses his <em>assentamento</em> of iron-rich and volcanic stones sits low and grounded, as close to the floor as a god can get. Unlike Ọṣun, whose rivers run through the marketplace, Aganjú keeps the places where people stop and wilderness resumes. Mason's studies of New World Yoruba ritual describe the deliberate slowness of his rites: nothing about him is quick, because nothing about volcanoes is quick. The theology is stated by the offering site itself — civilization rests on older, hotter forces and owes them a share. The myth means that the wall around the city is a courtesy the wilderness extends, not a victory it has conceded.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">ah-gah-NYOO — start low on 'ah', stay low on 'gah', then rise sharply to 'NYOO'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Yoruba</strong> Aganjú, the orixá of volcanoes, desert, and terrible natural force.</li><li><strong>Brazilian Candomblé</strong> Aganjú, syncretised with Saint Christopher and associated with the desert and fire.</li><li><strong>Cuban Santería</strong> Aggayú Solá, the giant who carries the world and walks through lava.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Aganjú is Tier 1: the acute accent on ú preserves the high tone of the final syllable, a distinctive feature the ASCII form loses. The dot below is absent from the lexical form because the stem vowel is plain /a/, not open /ɔ/ or /ɛ/.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -379,12 +285,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Lord of the Volcano</h2>
             <p class="section-subtitle">Wilderness, Desert, and Terrestrial Fire</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Aganjú</strong> is the orixá of the uninhabited places: volcanic earth, desert scrub, and the molten core beneath the mountain. Unlike <a href="/shango/" class="crosslink" data-crosslink="shango">Ṣàngó</a>, whose fire crackles in the sky, Aganjú's fire moves slowly through stone. He is the son of <a href="/oduduwa/" class="crosslink" data-crosslink="oduduwa">Odùduwà</a> and Ọbatalá in many accounts, the giant whose strides once shook the earth and whose breath still steams from fissures in the ground.</p><p class="lead-text">In Afro-Atlantic ritual he appears as Aggayú Solá, the bearer of the world, a deity so tall that rivers reach only his ankles. To invoke him is to acknowledge that civilization rests on forces older and more patient than human law.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Aganjú</strong> is the orixá of the uninhabited places: volcanic earth, desert scrub, and the molten core beneath the mountain. Unlike Ṣàngó, whose fire crackles in the sky, Aganjú's fire moves slowly through stone. He is the son of Odùduwà and Ọbatalá in many accounts, the giant whose strides once shook the earth and whose breath still steams from fissures in the ground.</p><p class="lead-text">In Afro-Atlantic ritual he appears as Aggayú Solá, the bearer of the world, a deity so tall that rivers reach only his ankles. To invoke him is to acknowledge that civilization rests on forces older and more patient than human law.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 52L32 12L44 52H20ZM32 20L26 44H38L32 20Z"></path></svg></div>
@@ -426,41 +332,22 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Aganjú</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Aganjú lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Aganjú's myths are less numerous than those of <a href="/oshun/" class="crosslink" data-crosslink="oshun">Ọṣun</a> or Ṣàngó, but they centre on a single theme: the earth as a living, burning body that carries human life without belonging to it.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Lineage</span>
-          <h3 class="myth-title">Son of Odùduwà and Ọbatalá</h3>
-          <p class="myth-text">In Yoruba cosmogony, Aganjú is born from the union of the royal ancestor Odùduwà and the white-cloth creator Ọbatalá. The story makes him kin to both earthly kingship and heavenly craftsmanship, but his own domain remains the wild land that refuses cultivation. He is the child who left the palace to live in the volcano.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/nigerian-studies/" class="source-badge">Nigerian Studies — The Orisha Myths</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Diaspora</span>
-          <h3 class="myth-title">Aggayú Solá Carries the World</h3>
-          <p class="myth-text">In Cuban Santería, Aggayú Solá is imagined as a giant so large that he wades through rivers and carries the earth itself. When he possesses a devotee in ceremony, the person's gait becomes heavy and swaying, as if the ground beneath them has gained consciousness. The myth turns geological force into a mythic person who walks among humans.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Cult</span>
-          <h3 class="myth-title">The Desert and the Town</h3>
-          <p class="myth-text">Aganjú receives offerings at the boundary between settlement and wilderness. His devotees leave him palm wine, smoked fish, and red palm oil at the edge of roads and quarries. The ritual geography acknowledges that human order exists only because older, hotter forces hold it up.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -468,7 +355,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the yoruba pantheon</p>
         </div>
@@ -532,23 +419,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Aganjú lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/nigerian-studies/" class="source-badge">Nigerian Studies — The Orisha Myths</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Aganjú</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Aganjú</strong> is the standard Yoruba romanisation, documented in academic sources — “The uninhabited place”. Its acute stress marks preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">aganju</p>
+                <p class="card-body">Reduced to plain <strong>aganju</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Aganjú</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Aganjú</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Aganjú.com → xn--aganj-cva.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Aganjú</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Aganjú</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Aganjú</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Aganjú</p>
+                    <p class="card-body">The live temple domain — <strong>aganjú.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">aganju</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Aganjú was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/à.gà.ɲú/</span>
+            <span class="ipa-label">Yoruba Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">À-</span>
+        <span class="phoneme-desc">Open central vowel [a] with low tone, written without dot below in the lexical form but historically linked to the agánbára ('force') root.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-gà-</span>
+        <span class="phoneme-desc">Voiced velar stop [g] followed by open [a] with low tone.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ɲú</span>
+        <span class="phoneme-desc">Palatal nasal [ɲ] — like Spanish ñ — plus close back rounded vowel [u] with high tone.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">ah-gah-NYOO — start low on 'ah', stay low on 'gah', then rise sharply to 'NYOO'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Aganjú is Tier 1: the acute accent on ú preserves the high tone of the final syllable, a distinctive feature the ASCII form loses. The dot below is absent from the lexical form because the stem vowel is plain /a/, not open /ɔ/ or /ɛ/.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Aganjú is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Aganjú</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -567,7 +580,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/aganju_mascot.webp" type="image/webp"><img src="../assets/aganju_mascot.png" alt="Aganjú mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/aganju_mascot.webp" type="image/webp"><img src="../assets/aganju_mascot.png" alt="Aganjú mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -605,7 +618,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/aganju_logomark.webp" type="image/webp"><img src="../assets/aganju_logomark.webp" alt="Aganjú logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/aganju_logomark.webp" type="image/webp"><img src="../assets/aganju_logomark.webp" alt="Aganjú logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

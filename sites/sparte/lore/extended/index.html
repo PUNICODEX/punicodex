@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Spártē, Warrior City. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/sparte/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Spártē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Spártē is /ˈspar.tɛː/ — approximately 'SPAR-tay' — roll the 'r', stress the first syllable, and hold the final 'tay' long."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Spártē mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Spártē means Sown land (from σπείρω) in the greek-location tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Spártē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Spártē is associated with Lambda shield (The Spartan shield blazon, the first letter of Lacedaemon), Doric column (The austere architectural order favoured in Laconia), Helot's plough (The agricultural labour that supported the Spartan warrior class), Spear and red cloak (The simple military kit of the Spartan citizen-soldier), Eurotas river (The river that defined the Spartan valley and its identity)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Spártē in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII sparte strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Spártē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Sparta and Lacedaemon” — Greek myth gives Sparta a human namesake. Sparta is the daughter of the river-god Eurotas and the wife of Lacedaemon, son of Zeus; through her, the city receives both its name and its mythic charter. Around her cluster the lawgiver Lycurgus, the divine authorization from Delphi, and the Spartan share in the greatest cycle of Greek heroic legend, the Trojan War. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/sparte_logolockup.webp" type="image/webp"><img src="../../assets/sparte_logolockup.png" alt="Spártē" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Spártē</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Spártē.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/sparte_mascot.webp" type="image/webp"><img src="../../assets/sparte_mascot.png" alt="Spártē — Warrior City" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/sparte_mascot.webp" type="image/webp"><img src="../../assets/sparte_mascot.png" alt="Spártē — Warrior City" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -216,7 +267,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Spártē is Tier 1 because the final eta is long. The traditional etymology connects the name with σπείρω 'to sow', though some scholars suspect a pre-Greek origin. The acute on the first alpha marks stress; the eta carries length but no stress.</p>
+                <p class="etymology-note">From σπείρω "to sow". The sown land.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -253,24 +304,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">In the greek location tradition, <strong>Spártē</strong> governed warrior city. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Spártē in Later Traditions</h3><p class="cultural-card-body">Greek cult and myth travelled with colonists, traders, and conquerors; Roman adaptation, Hellenistic ruler cult, and later European classicism all recast this name for new audiences.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The name endures in place names, scholarly vocabulary, modern fiction, and the ongoing recovery of ancient Greek culture through archaeology and philology. Restoring <em>Spártē</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII. Sparta remains a byword for military discipline, austere virtue, and civic sacrifice, studied by generals and political theorists alike. The Greek spelling <em>Spártē</em> preserves the acute accent that marked the city's name in classical texts. Modern Sparta preserves the ancient name while the surrounding region, Laconia, keeps the memory of its laconic speech. The very word laconic, describing terse speech, derives from Laconia and Spartan reputation. The Spartans cultivated silence as a civic virtue, making their very speech an expression of discipline.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Spártē</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Spártē in Later Traditions</h3><p class="cultural-card-body">Sparta's afterlife is a reception history rather than a theology. Republican Rome studied the Lycurgan constitution through Xenophon, Aristotle's lost treatise on the Lacedaemonians, and Polybius' account of the mixed constitution — and read Sparta as proof that a state could trade comfort for discipline and longevity. Plutarch's <em>Life of Lycurgus</em> then carried the idealized Sparta into every later century, from Rousseau, who praised the lawgiver's shaping of citizens, to the 19th-century gymnastics and boarding-school movements that borrowed the agoge's name. Modern scholarship, led by Cartledge and Hodkinson, has dismantled the mirage of a changeless Sparta — yet the mirage itself is one of antiquity's most influential exports, a whole political imagination built on a Greek city that may never have existed as its admirers believed.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Sparta survives in language itself: 'laconic' speech, the terseness the Lacedaemonians made a civic art, and the modern Greek town of Sparti on the ancient site. Thermopylae made the Spartan name a byword for disciplined collective sacrifice, echoed from Roman funerary inscriptions to modern military units. The agoge, the common mess, and the ephorate still anchor classroom discussions of ancient constitutions, and the scholarly debate over 'the Spartan mirage' is itself a legacy — evidence of how thoroughly this austere city colonized the political imagination of the West. Restoring <em>Spártē</em> with its long final eta returns the name to the vowel sound in which Greek speakers actually pronounced it.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Spartan acropolis preserves the temple of <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> Chalkioikos ('of the Bronze House'), the city's principal sanctuary, above the theatre where the absurdly fragmentary remains of Lacedaemon still impress. At Therapne across the Eurotas, the Menelaion — the hero-shrine of <a href="/menelaus/" class="crosslink" data-crosslink="menelaus">Menelaus</a> and Helen — has been excavated since 1900, with votive offerings from the seventh century BCE onward. The sanctuary of <a href="/artemis/" class="crosslink" data-crosslink="artemis">Artemis</a> Orthia by the Eurotas yielded the famous lead votive figurines and the 'diamastigosis' whipping altar described by Xenophon and Pausanias; at Amyklai, the colossal throne of Apollo Amyklaios (Pausanias 3.18–19) anchored the Hyacinthia festival. Linear B tablets from the Mycenaean palace at Thebes and Pylos attest the Laconian place-name, and recent surveys have traced the Iron Age villages that synoecized into classical Sparta.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Spártē means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Sparta is the ancient city that became an argument. Every generation since Xenophon has used it to prove something — that law can shape a people, that equality of hardship creates equality of courage, that a state can choose discipline over comfort and win. The Spartans themselves encouraged the reading: they attributed everything to a single lawgiver and a single oracle, as if their whole society were one long act of obedience. Whether the reality matched the argument is a question archaeology keeps reopening: the inscriptions reveal a Sparta of wealthy families, contested offices, and art as fine as any in Greece. Yet the argument endures because it answers a need no evidence can settle — the wish that a community could be built on shared sacrifice rather than shared appetite. Spártē is less a place than a standing challenge.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Spártē, Warrior City, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Spártē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Spártē</strong> is /ˈspar.tɛː/ — approximately 'SPAR-tay' — roll the 'r', stress the first syllable, and hold the final 'tay' long..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Spártē mean?</summary><div class="faq-answer"><p><strong>Spártē</strong> means <strong>Sown land (from σπείρω)</strong> in the greek-location tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Spártē?</summary><div class="faq-answer"><p>Spártē is associated with <strong>Lambda shield</strong> (The Spartan shield blazon, the first letter of Lacedaemon), <strong>Doric column</strong> (The austere architectural order favoured in Laconia), <strong>Helot's plough</strong> (The agricultural labour that supported the Spartan warrior class), <strong>Spear and red cloak</strong> (The simple military kit of the Spartan citizen-soldier), <strong>Eurotas river</strong> (The river that defined the Spartan valley and its identity).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Spártē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>sparte</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Spártē?</summary><div class="faq-answer"><p>The river Eurotas had a daughter named Sparta, beautiful and vigorous. Lacedaemon, son of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> and Taygete, came to Laconia and married her, uniting two divine lineages. The land took her name, Sparta, while the wider region was called Lacedaemon after him. Their children, Amyclas and <a href="/eurydice/" class="crosslink" data-crosslink="eurydice">Eurydice</a>, continued the royal line that would eventually produce the twin kingship for which historical Sparta was famous.This mythic marriage explains why the city and its territory bore different names in Greek usage. 'Sparta' named the city proper, while 'Lacedaemon' named the state and its people. The distinction survived into the classical period, when Spartans called themselves Lacedaemonians and their kings traced descent from Heracles through the Heraclidae, the line of Hyllus.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Spártē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Spártē</strong> is /ˈspar.tɛː/ — approximately 'SPAR-tay' — roll the 'r', stress the first syllable, and hold the final 'tay' long.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Spártē mean?</summary><div class="faq-answer"><p><strong>Spártē</strong> means <strong>Sown land (from σπείρω)</strong> in the greek-location tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Spártē?</summary><div class="faq-answer"><p>Spártē is associated with <strong>Lambda shield</strong> (The Spartan shield blazon, the first letter of Lacedaemon), <strong>Doric column</strong> (The austere architectural order favoured in Laconia), <strong>Helot's plough</strong> (The agricultural labour that supported the Spartan warrior class), <strong>Spear and red cloak</strong> (The simple military kit of the Spartan citizen-soldier), <strong>Eurotas river</strong> (The river that defined the Spartan valley and its identity).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Spártē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>sparte</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Spártē?</summary><div class="faq-answer"><p>“Sparta and Lacedaemon” — Greek myth gives Sparta a human namesake. Sparta is the daughter of the river-god Eurotas and the wife of Lacedaemon, son of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>; through her, the city receives both its name and its mythic charter. Around her cluster the lawgiver Lycurgus, the divine authorization from Delphi, and the Spartan share in the greatest cycle of Greek heroic legend, the Trojan War. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -279,7 +342,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,19 +361,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.</cite></li><li><cite>Strabo, Geography Book 8 (Laconia and Spartan institutions)</cite></li><li><cite>Diodorus Siculus, Bibliotheca historica (Spartan affairs and the Persian Wars)</cite></li><li><cite>Pindar, Pythian Odes (victory odes for Spartan athletes)</cite></li><li><cite>Tyrtaeus, Elegies (Spartan martial poems)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Homer, Iliad 2.581–590 (Sparta in the Catalogue of Ships); Odyssey 4 (Menelaus' palace)</cite></li><li><cite>Pausanias 3.1–20 (the mythic history of Laconia); Description of Greece Book 3</cite></li><li><cite>Xenophon, Constitution of the Lacedaemonians; Plutarch, Life of Lycurgus</cite></li><li><cite>Tyrtaeus, Elegies (Spartan martial poems)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Spártē and related cults.</cite></li><li><cite>Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Spártē and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.</cite></li><li><cite>Material evidence from the Greek world — inscriptions, sanctuaries, votive deposits, and literary papyri — anchors the name in historical cult.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Herodotus 1.65–68 (Lycurgus and the oracle), 7.202–239 (Thermopylae)</cite></li><li><cite>Cartledge, Paul, Sparta and Lakonia: A Regional History 1300–362 BC (Routledge, 2002)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -371,7 +434,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/sparte_logomark.webp" type="image/webp"><img src="../../assets/sparte_logomark.webp" alt="Spártē logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/sparte_logomark.webp" type="image/webp"><img src="../../assets/sparte_logomark.webp" alt="Spártē logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

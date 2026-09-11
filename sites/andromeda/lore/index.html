@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Andromedē — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ἀνδρομέδη</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Andromedē.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,157 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ἀνδρομέδη</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Andromedē</strong> (Ἀνδρομέδη) is attested in the source tradition — “Ruler of men”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">andromeda</p>
-                    <p class="card-body">Reduced to plain <strong>andromeda</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Andromedē</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Andromedē</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Andromedē.com → xn--andromed-bdb.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Andromedē</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Andromedē</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Andromedē is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ἀνδρομέδη</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Andromedē is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Andromedē</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Andromedē</p>
-                    <p class="card-body">Restores <strong>Ἀνδρομέδη</strong>. The live temple domain — <strong>andromedē.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Ideal Form</h3>
-                    <p class="card-unicode">Andromédē</p>
-                    <p class="card-body">Restores <strong>Ἀνδρομέδη</strong>. Acute on the stressed short vowel, matching Greek Ἀνδρομέδη; preserves stress where the canonical macron-only form records length only.. Not in the PuniCodex collection.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">andromeda</p>
-                    <p class="card-body">Flattens <strong>Ἀνδρομέδη</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Andromedē was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Andromedē</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/an.dro.mé.dɛː/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">An-</span>
-        <span class="phoneme-desc">Short alpha followed by nu; the name opens with a clear, unaspirated 'an'.</span>
+      <p class="lead-text">Andromédē's story is a <strong>chain of consequences</strong>: a queen's boast, a god's wrath, a daughter's punishment, and a hero's arrival at the decisive moment. It is also a founding myth of genealogy, linking Greek and Persian royal lines.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Boast</span>
+          <h3 class="myth-title">The Queen Who Rivaled the Nereids</h3>
+          <p class="myth-text">The chain begins with a boast. Kassiepeia, queen of Aithiopia, declared that she — or, in some tellings, her daughter — was more beautiful than the Nereids, the sea-nymphs in <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidôn</a>'s train (Apollodorus, <em>Bibliotheca</em> 2.4.3; the fullest telling is Ovid, <em><a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a></em> 4.663–764). The insulted sea answered with a flood and a ketos, a ravening sea-beast against the Ethiopian coast, and the oracle of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>-Ammōn delivered the verdict: only the exposure of Andromédē, the king's daughter, would end the devastation. Kepheus, pressed by his starving people, had the princess stripped and chained to a sea-cliff as the monster's due. Sophocles wrote an <em>Andromeda</em>, now lost but for fragments, and painted vases carried the scene to every Greek city. The myth's logic is pitiless: <strong>the daughter pays for the mother's tongue</strong>, and the sea, which the Greeks both crossed and feared, collects its tribute in royal flesh.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-dro-</span>
-        <span class="phoneme-desc">Delta-rho-omicron; the root ἀνδρ- means 'man, husband, warrior'.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Rock</span>
+          <h3 class="myth-title">The Maiden and the Winged Stranger</h3>
+          <p class="myth-text">Andromédē was fastened to the rock by bonds Ovid calls indissoluble — the Nereids' own handiwork, in his exquisite cruelty — and left to the rising beast. At that moment Perseus came flying home from the Gorgons' shore, with <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermes</a>' harpe, <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>'s mirrored shield, and the kibisis on his shoulders. Struck by the chained figure — a statue, 'but for the wind in her hair and the tears on her cheeks' (Ovid, <em>Met.</em> 4.672–679) — he struck a bargain with Kepheus: the girl's life for her hand. The scene proved irresistible to Greek painters: from early Corinthian and Attic vases to the frescoes of Pompeii, the pale maiden against dark rock, the descending hero, and the monster breasting the foam became antiquity's canonical rescue image. <strong>Innocence displayed and violence arriving in the same instant</strong> — the myth compresses the whole psychology of the heroic moment into one shoreline.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-mé-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> epsilon (eta) with acute [méː] — the pitch peak and a ruler's domain.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Feast</span>
+          <h3 class="myth-title">Phineus and the Fight for the Bride</h3>
+          <p class="myth-text">The rescue did not end the story. Andromédē had been promised to her uncle Phineus, and while the wedding feast of Perseus and Andromédē was still singing, Phineus burst in with an armed mob to claim her. Outnumbered, Perseus unslung the kibisis and turned the Gorgoneion on the attackers, transforming Phineus and his men into a stone tableau mid-swing — Ovid lingers over the frozen weapons and marble mouths (<em>Metamorphoses</em> 5.1–249; Apollodorus 2.4.3 gives the sober prose version). The slaughter shadowed the marriage it defended: Andromédē's deliverance was purchased in her kinsmen's blood, a price the myth does not hide. She bore Perseus many sons, among them Persēs, whom Herodotus (7.61) makes the eponymous ancestor of the Persian kings — folding a Greek princess into the genealogy of an empire. <strong>The rescued become the founders; the monster's intended bride mothers a royal line.</strong></p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-dē</span>
-        <span class="phoneme-desc">Delta-eta, long final syllable; the name ends in the feminine agent suffix.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Stars</span>
+          <h3 class="myth-title">Catasterism and the Great Galaxy</h3>
+          <p class="myth-text">At death, Athena set Andromédē among the stars — the 'chained lady' of the northern sky, as Eratosthenes' <em>Catasterismi</em> and Hyginus' <em>De Astronomica</em> (2.11) preserve the tale. The constellation keeps the whole family on stage: Perseus above her with the Gorgon's head, Kepheus and Kassiepeia on either hand, and the ketos — our Cetus — still rising from the sea below, the pursuit made permanent. The Great Andromeda Galaxy, M31, the nearest spiral galaxy to our own, bears her name, so that the princess exposed to a sea-monster now names an island universe two and a half million light-years away. Catasterism is the Greeks' quiet answer to mortality: <strong>what could not be saved on earth is preserved in the pattern of the sky</strong>, where the chains are drawn as stars and no god's wrath can reach her again.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'ahn-dro-MAY-day' — the third syllable is pitched and drawn out; the final -ē is long.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Ἀνδρομέδη (Andromédē), 'she who thinks/ruled like a man' or 'ruler of men'</li><li><strong>Ethiopian/Phoenician</strong> The princess of Aithiopia in most sources; her name is Greek, not local</li><li><strong>Latin</strong> Andromeda, adopted directly into Roman poetry and astronomy</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Andromédē is Tier 1 because the Greek Ἀνδρομέδη contains both stress (acute on the long η) and length (η). The compound is transparently Greek, though the princess herself is said to dwell in Ethiopia.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -389,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Chained Princess</h2>
             <p class="section-subtitle">Rescue, Constellation, Royal Sacrifice</p>
         </div>
@@ -404,17 +301,17 @@
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 12L24 28H40L48 12M16 12L8 28H16M48 12L56 28H48M24 28V56H40V28"></path></svg></div>
         <h4 class="domain-name">Sacrifice to the Sea</h4>
-        <p class="domain-desc">Chained to a coastal rock as appeasement to the sea-monster sent by <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidôn</a>.</p>
+        <p class="domain-desc">Chained to a coastal rock as appeasement to the ketos sent by Poseidôn.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 4L40 24H60L44 36L48 56L32 44L16 56L20 36L4 24H24L32 4Z"></path></svg></div>
         <h4 class="domain-name">Perseus's Rescue</h4>
-        <p class="domain-desc">Saved by the gorgon-slayer, she becomes his wife and ancestor of Persian kings.</p>
+        <p class="domain-desc">Saved by the gorgon-slayer, she becomes his wife and, through their son Persēs, ancestor of the Persian line (Herodotus 7.61).</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C22 12 14 20 14 32C14 44 22 52 32 56C42 52 50 44 50 32C50 20 42 12 32 12ZM32 20V44M20 32H44"></path></svg></div>
         <h4 class="domain-name">Constellation</h4>
-        <p class="domain-desc">After death she is placed in the northern sky, the Andromeda galaxy her stellar home.</p>
+        <p class="domain-desc">Placed in the northern sky after death, she keeps the whole family group as stars; the Andromeda galaxy is her stellar home.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
@@ -427,7 +324,7 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Head of <a href="/medousa/" class="crosslink" data-crosslink="medousa">Medousa</a></span>
-        <span class="symbol-meaning">The weapon Perseus carries when he rescues her</span>
+        <span class="symbol-meaning">The weapon Perseus carries when he rescues her — and turns back her own kinsmen</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Wedding crown</span>
@@ -436,49 +333,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Andromedē</p>
-        </div>
-        
-      <p class="lead-text">Andromédē's story is a <strong>chain of consequences</strong>: a queen's boast, a god's wrath, a daughter's punishment, and a hero's arrival at the decisive moment. It is also a founding myth of genealogy, linking Greek and Persian royal lines.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Ovid, Metamorphoses</span>
-          <h3 class="myth-title">The Boast of Kassiepeia</h3>
-          <p class="myth-text">Kassiepeia boasted that she — or her daughter — was more beautiful than the Nereids. Poseidôn, enraged on behalf of his sea-nymphs, sent a flood and a sea-monster (ketos) to ravage Aithiopia. The oracle of Ammon declared that only the sacrifice of Andromédē could appease him.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Apollodorus</span>
-          <h3 class="myth-title">Chained to the Rock</h3>
-          <p class="myth-text">Andromédē was stripped and bound to a sea-cliff as the monster approached. The scene became one of the most painted moments in Western art: the maiden's pale body against dark rocks, the hero descending with winged sandals, the creature rising from the foam.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Catasterism</span>
-          <h3 class="myth-title">The Stars of Andromeda</h3>
-          <p class="myth-text">After her death, <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> placed Andromédē in the heavens near Perseus, Kepheus, and Kassiepeia. The constellation preserves the family group in stellar form; the Andromeda Galaxy (M31), visible to the naked eye, bears her name.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -542,8 +404,159 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ἀνδρομέδη</p>
+                <p class="card-body">The name in its original Greek form. <strong>Andromedē</strong> (Ἀνδρομέδη) is attested in the source tradition — “Ruler of men”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">andromeda</p>
+                <p class="card-body">Reduced to plain <strong>andromeda</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Andromedē</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Andromedē</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Andromedē.com → xn--andromed-bdb.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Andromedē</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Andromedē</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Andromedē</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Andromedē</p>
+                    <p class="card-body">Restores <strong>Ἀνδρομέδη</strong>. The live temple domain — <strong>andromedē.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Ideal Form</h3>
+                    <p class="card-unicode">Andromédē</p>
+                    <p class="card-body">Restores <strong>Ἀνδρομέδη</strong>. Acute on the stressed short vowel, matching Greek Ἀνδρομέδη; preserves stress where the canonical macron-only form records length only.. Not in the PuniCodex collection.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">andromeda</p>
+                    <p class="card-body">Flattens <strong>Ἀνδρομέδη</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Andromedē was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/an.dro.mé.dɛː/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">An-</span>
+        <span class="phoneme-desc">Short alpha followed by nu; the name opens with a clear, unaspirated 'an'.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-dro-</span>
+        <span class="phoneme-desc">Delta-rho-omicron; the root ἀνδρ- means 'man, husband, warrior'.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-mé-</span>
+        <span class="phoneme-desc">Long epsilon (eta) with acute [méː] — the pitch peak and a ruler's domain.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-dē</span>
+        <span class="phoneme-desc">Delta-eta, long final syllable; the name ends in the feminine agent suffix.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'ahn-dro-MAY-day' — the third syllable is pitched and drawn out; the final -ē is long.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Andromédē is Tier 1 because the Greek Ἀνδρομέδη contains both stress (acute on the long η) and length (η). The compound is transparently Greek, though the princess herself is said to dwell in Ethiopia.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Andromedē is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ἀνδρομέδη</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Andromedē is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -561,7 +574,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/andromeda_mascot.webp" type="image/webp"><img src="../assets/andromeda_mascot.png" alt="Andromedē mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/andromeda_mascot.webp" type="image/webp"><img src="../assets/andromeda_mascot.png" alt="Andromedē mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -599,7 +612,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/andromeda_logomark.webp" type="image/webp"><img src="../assets/andromeda_logomark.webp" alt="Andromedē logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/andromeda_logomark.webp" type="image/webp"><img src="../assets/andromeda_logomark.webp" alt="Andromedē logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

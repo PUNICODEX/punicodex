@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Wawalag, Two Sisters, Creators. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/wawalag/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Wawalag?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Wawalag is /ˈwawalag/ — approximately 'WAH-wah-lag' — three even syllables, with the first syllable slightly stronger; keep the vowels open like 'father', not diphthongal like English 'way'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Wawalag mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wawalag means The two sisters in the aboriginal tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Wawalag?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wawalag is associated with Waterhole (The sacred well where the sisters' blood awakens Yurlunggur and where the rainbow serpent dwells), Rainbow Serpent (Yurlunggur / Ngalyod) (The transformer who swallows the sisters and, in releasing them, establishes clan order and the monsoon), Blood and menstruation (The sisters' blood is not impure; it is a potent sacred substance that moves the ancestral power of the land), Camp sites and journey tracks (Each stopping place on the sisters' walk becomes a named site tied to clan identity and ritual responsibility), The child (The infant born on the journey links the sisters to future generations and to the transmission of law)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Wawalag in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wawalag is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Wawalag?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Journey and the Birth” — The Wawalag sisters travel across Arnhem Land with their mother and a newborn child, and everything they do — every camp, every name spoken, every birth — becomes law, geography, and weather. The cycle is not a single fixed text but a song performed in ceremony, whose episodes encode land tenure, marriage class, and the coming of the wet season; the spellings Wawalag, Wauwalak, and Wawilak record different transcribers and different estates. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/wawalag_logolockup.webp" type="image/webp"><img src="../../assets/wawalag_logolockup.png" alt="Wawalag" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Wawalag</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Wawalag</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/wawalag_mascot.webp" type="image/webp"><img src="../../assets/wawalag_mascot.png" alt="Wawalag — Two Sisters, Creators" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/wawalag_mascot.webp" type="image/webp"><img src="../../assets/wawalag_mascot.png" alt="Wawalag — Two Sisters, Creators" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Wawalag</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The name is not Greek or Indo-European; the ASCII form 'wawalag' already encodes the same consonants and vowels used in scholarly romanization. Because no distinctive diacritic or special letter is required to recover the spoken name, the restoration 'Wawalag' is Tier 2: a conventional capitalized citation form rather than a phonetic restoration of lost information.</p>
+                <p class="etymology-note">The name <strong>Wawalag</strong> reaches the modern world through scholarly transliteration of the aboriginal tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">W</td><td><code>U+0057</code></td><td>Latin Capital Letter W</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">w</td><td><code>U+0077</code></td><td>Latin Small Letter W</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Wawalag</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Wawalag</strong> are the two ancestral sisters of north-eastern Arnhem Land. In Yolŋu and related traditions they are at once travellers, mothers, law-givers, and the agents through whom the Rainbow Serpent reshapes the country. Their journey establishes clan territories, marriage classes, and the rituals that still renew the monsoon. They are not domesticated heroines: they carry sacred power in their bodies, and the land responds to that power with flood, fire, and transformation.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Wawalag in Later Traditions</h3><p class="cultural-card-body">The Wawalag sisters are specific to the Aboriginal traditions of Arnhem Land, especially the Yolŋu peoples, and are not simply interchangeable with other creator figures. Their story is connected, however, to the wider Australian theme of the Rainbow Serpent as a transformer of land and law. Comparisons with other Aboriginal sister-pairs must be made cautiously, because each belongs to a particular estate, language group, and ritual complex. In academic discourse the names Wawalag, Wauwalak, and Wawilak refer to the same ancestral pair across different transcriptions and clan versions.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The Wawalag sisters remain central to Arnhem Land ceremony, art, and land tenure. Their song cycles are performed in initiation and public ritual; their images appear in bark paintings, sculptures, and contemporary Aboriginal art produced under community-controlled protocols. The story is also cited in land-rights and native-title evidence, where it demonstrates the continuity of spiritual ownership. Scholarly studies by Berndt and Berndt, Warner, Elkin, and AIATSIS have made the Wawalag cycle one of the best-documented Aboriginal creation narratives, while always noting that the deepest meanings belong to initiated custodians.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Wawalag</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Wawalag in Later Traditions</h3><p class="cultural-card-body">The Wawalag sisters are specific to the Aboriginal traditions of Arnhem Land, especially the Yolŋu peoples, and are not simply interchangeable with other creator figures. Their story is connected, however, to the wider Australian theme of the Rainbow Serpent as a transformer of land and law. Comparisons with other Aboriginal sister-pairs must be made cautiously, because each belongs to a particular estate, language group, and ritual complex. In academic discourse the names Wawalag, Wauwalak, and Wawilak refer to the same ancestral pair across different transcriptions and clan versions.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The Wawalag sisters remain central to Arnhem Land ceremony, art, and land tenure. Their song cycles are performed in initiation and public ritual; their images appear in bark paintings, sculptures, and contemporary Aboriginal art produced under community-controlled protocols. The story is also cited in land-rights and native-title evidence, where it demonstrates the continuity of spiritual ownership. Scholarly studies by Berndt and Berndt, Warner, Elkin, and AIATSIS have made the Wawalag cycle one of the best-documented Aboriginal creation narratives, while always noting that the deepest meanings belong to initiated custodians.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Wawalag cycle is anchored in the physical landscape of Arnhem Land: waterholes, rock shelters, and seasonal wetlands named in the travelling songs. Rock art panels depicting ancestral figures, serpents, and journey tracks are known from the region, though identifying a specific 'Wawalag' image requires community permission and cultural knowledge. Archaeological evidence for human occupation of Arnhem Land extends back at least 65,000 years, providing the deep time frame within which the Wawalag narrative has been transmitted.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Wawalag means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>The Wawalag sisters unsettle the tidy categories imported from elsewhere. They are women, yet they found law; they are travellers, yet every place they touch becomes sacred geography; their bodies are the source of both life and flood. In a tradition that has often been misread through colonial lenses as 'primitive', the Wawalag cycle offers a sophisticated theology of embodiment, land, and seasonal time.</p><p>To sit with the sisters is to recognise that creation is not a single act but a repeated, relational event: the land responds to the people, the serpent responds to the women, the wet responds to the story. They ask us to hear the monsoon not as weather only, but as memory — the country singing what the sisters did.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Wawalag, Two Sisters, Creators, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Wawalag?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Wawalag</strong> is /ˈwawalag/ — approximately 'WAH-wah-lag' — three even syllables, with the first syllable slightly stronger; keep the vowels open like 'father', not diphthongal like English 'way'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Wawalag mean?</summary><div class="faq-answer"><p><strong>Wawalag</strong> means <strong>The two sisters</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Wawalag?</summary><div class="faq-answer"><p>Wawalag is associated with <strong>Waterhole</strong> (The sacred well where the sisters' blood awakens Yurlunggur and where the rainbow serpent dwells), <strong>Rainbow Serpent (Yurlunggur / Ngalyod)</strong> (The transformer who swallows the sisters and, in releasing them, establishes clan order and the monsoon), <strong>Blood and menstruation</strong> (The sisters' blood is not impure; it is a potent sacred substance that moves the ancestral power of the land), <strong>Camp sites and journey tracks</strong> (Each stopping place on the sisters' walk becomes a named site tied to clan identity and ritual responsibility), <strong>The child</strong> (The infant born on the journey links the sisters to future generations and to the transmission of law).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Wawalag in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>wawalag</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Wawalag?</summary><div class="faq-answer"><p>The two sisters set out from the interior, carrying their mother and a child. At each camp they name the country, gather food, and perform the actions that will later be repeated in ritual. The younger sister gives birth, and the blood from childbirth enters a waterhole — an event that is at once ordinary and cosmically charged, because the Rainbow Serpent Yurlunggur smells it and rises.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Wawalag?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Wawalag</strong> is /ˈwawalag/ — approximately 'WAH-wah-lag' — three even syllables, with the first syllable slightly stronger; keep the vowels open like 'father', not diphthongal like English 'way'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Wawalag mean?</summary><div class="faq-answer"><p><strong>Wawalag</strong> means <strong>The two sisters</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Wawalag?</summary><div class="faq-answer"><p>Wawalag is associated with <strong>Waterhole</strong> (The sacred well where the sisters' blood awakens Yurlunggur and where the rainbow serpent dwells), <strong>Rainbow Serpent (Yurlunggur / Ngalyod)</strong> (The transformer who swallows the sisters and, in releasing them, establishes clan order and the monsoon), <strong>Blood and menstruation</strong> (The sisters' blood is not impure; it is a potent sacred substance that moves the ancestral power of the land), <strong>Camp sites and journey tracks</strong> (Each stopping place on the sisters' walk becomes a named site tied to clan identity and ritual responsibility), <strong>The child</strong> (The infant born on the journey links the sisters to future generations and to the transmission of law).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Wawalag in Unicode?</summary><div class="faq-answer"><p><strong>Wawalag</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Wawalag?</summary><div class="faq-answer"><p>“The Journey and the Birth” — The Wawalag sisters travel across Arnhem Land with their mother and a newborn child, and everything they do — every camp, every name spoken, every birth — becomes law, geography, and weather. The cycle is not a single fixed text but a song performed in ceremony, whose episodes encode land tenure, marriage class, and the coming of the wet season; the spellings Wawalag, Wauwalak, and Wawilak record different transcribers and different estates. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,7 +360,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Wawalag and related cults.</cite></li><li><cite>The Wawalag cycle is anchored in the physical landscape of Arnhem Land: waterholes, rock shelters, and seasonal wetlands named in the travelling songs. Rock art panels depicting ancestral figures, serpents, and journey tracks are known from the region, though identifying a specific 'Wawalag' image requires community permission and cultural knowledge. Archaeological evidence for human occupation of Arnhem Land extends back at least 65,000 years, providing the deep time frame within which the Wawalag narrative has been transmitted.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Wawalag and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/wawalag_logomark.webp" type="image/webp"><img src="../../assets/wawalag_logomark.webp" alt="Wawalag logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/wawalag_logomark.webp" type="image/webp"><img src="../../assets/wawalag_logomark.webp" alt="Wawalag logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

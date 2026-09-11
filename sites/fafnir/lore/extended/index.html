@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Fáfnir, Dwarf turned Dragon. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/fafnir/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Fáfnir?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Fáfnir is /ˈfɑːv.nir/ — approximately 'FAHV-neer' — hold the first vowel long like 'ah', let the f soften to a 'v' before the n, and trill the final r."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Fáfnir mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fáfnir means figure in Germanic heroic legend in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Fáfnir?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fáfnir is associated with The hoard of Andvari (The weregild gold that ransomed Ótr's skin and cursed every hand it passed through), Andvaranautr (The dwarf's ring, given up last and cursed aloud: death to its possessor and strife to his house), The serpent shape (The ormr-form greed gave him on Gnitaheiðr; the Eddas' dragon crawls to his water — the winged firedrake belongs to later art), The ægishjálmr (The helm of terror he wore over the gold, which he boasted made him stronger than all), The heart's blood (The draught of wisdom that taught Sigurðr the speech of birds and unmasked Reginn's treachery)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Fáfnir in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII fafnir strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Fáfnir?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Weregild of Ótr” — Fáfnir is the dragon at the hinge of the Vǫlsung cycle — born the son of Hreiðmarr, remade by greed into the serpent of Gnitaheiðr, and slain by Sigurðr in the scene on which the whole heroic tragedy turns, when the cursed gold of Andvari changed hands and the curse changed hands with it. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/fafnir_logolockup.webp" type="image/webp"><img src="../../assets/fafnir_logolockup.png" alt="Fáfnir" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Fáfnir</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Fáfnir.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/fafnir_mascot.webp" type="image/webp"><img src="../../assets/fafnir_mascot.png" alt="Fáfnir — Dwarf turned Dragon" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/fafnir_mascot.webp" type="image/webp"><img src="../../assets/fafnir_mascot.png" alt="Fáfnir — Dwarf turned Dragon" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Fáfnir is Tier 1: the acute on á marks stress and length on the first syllable — a feature the ASCII form Fafnir loses. The form is attested throughout the Codex Regius poems (Reginsmál, Fáfnismál) and in Vǫlsunga saga; Cleasby-Vigfusson (s.v. Fáfnir) and Zoëga's Concise Dictionary of Old Icelandic record the name and connect it with the notion of 'the embracer' (cf. faðmr, 'embrace'). The medial -fn- was pronounced with a voiced fricative, [vn] — hence the approximation 'FAHV-neer'.</p>
+                <p class="etymology-note">The name <strong>Fáfnir</strong> carries the orthographic signature of the norse tradition: ᚠᛅᚠᚾᛁᚱ. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">In the norse tradition, <strong>Fáfnir</strong> governed gold, greed, and the metamorphosis that greed performs. The son of Hreiðmarr who became the dragon of Gnitaheiðr, he is the living proof of the curse he served: the weregild gold of the dwarf Andvari unmade a farmer's son into a poison-breathing serpent, and turned a name that means <em>the embracer</em> into an emblem of everything that hoarding destroys.</p><p class="lead-text">His domain is the moral underside of heroic legend: patricide for an inheritance, kinship dissolved by a ring, and the slow alchemical change of a man into the monster that guards what he cannot use. When <a href="/sigurd/" class="crosslink" data-crosslink="sigurd">Sigurðr</a>'s sword found his heart, the gold passed on — and the curse passed with it, through the hall of the Gjúkungs to the ruin of the whole Vǫlsung line.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Fáfnir in Later Traditions</h3><p class="cultural-card-body">Fáfnir belongs to the common Germanic heroic stock rather than to any cult, and his closest kin are literary. The continental redaction of the same legend-complex survives in the Middle High German <em>Nibelungenlied</em>, where Siegfried slays a dragon and wins the hoard of the Nibelungs — though there the dragon and the curse have drifted apart, the hoard's doom attaching to the Burgundian kings instead. The Old English <em>Beowulf</em> offers the nearest analogue scene: a fire-dragon coiled for three hundred years on a barrow-hoard, roused by the theft of a single cup, slain by a hero it kills in turn. Comparison is often drawn with the Indo-European serpent-slaying myth — the storm-god's combat with a watery serpent — but Fáfnir is a different creature: not a chaos-monster opposed to cosmic order but a man whom avarice deformed, a moral dragon rather than a cosmic one. The Norse <em>Þiðrekssaga</em> preserves yet another redaction of the <a href="/reginn/" class="crosslink" data-crosslink="reginn">Reginn</a>–Sigurðr material, and in later Scandinavian folk tradition the dragon on the gold-barrow became a standing figure of sterile, hoarded wealth. The line descends unbroken into modern fantasy: Tolkien's Smaug is openly the heir of Fáfnismál's talking, riddle-loving worm.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Wagner fixed the dragon's modern image: in <em>Siegfried</em>, the third opera of the <em>Ring des Nibelungen</em>, the giant Fafner — who has already murdered his brother Fasolt for the ring — has used the Tarnhelm to become a dragon and sleeps on the hoard in a forest cave until Siegfried's sword Nothung finds his heart; tasting the blood, Wagner's Siegfried likewise comes to understand the Woodbird and, warned by it, kills the treacherous Mime. Wagner conflated Hreiðmarr's sons with the giant brothers of his own invention, but the kinslaying for gold and the blood-taught birdsong come straight from Reginsmál and Fáfnismál. Tolkien acknowledged Fáfnir among the chief models for Smaug — the speaking dragon on his gold, with the one unarmoured patch beneath. In comics, Marvel's Fafnir appears as a <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a> antagonist, the monstrous king of Nastrond; in games the name surfaces from <em>Final Fantasy</em> to <em>Smite</em> and <em>God of War</em>, where Fáfnir is remembered as a dwarf whose greed turned him dragon. The idiom of the dragon-hoard — wealth kept and never used — is his permanent bequest to the language of moralists. In modern Heathenry Fáfnir is no object of cult but a cautionary emblem: the man who embraced gold until the embrace became scales.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Fáfnir</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Fáfnir in Later Traditions</h3><p class="cultural-card-body">Fáfnir belongs to the common Germanic heroic stock rather than to any cult, and his closest kin are literary. The continental redaction of the same legend-complex survives in the Middle High German <em>Nibelungenlied</em>, where Siegfried slays a dragon and wins the hoard of the Nibelungs — though there the dragon and the curse have drifted apart, the hoard's doom attaching to the Burgundian kings instead. The Old English <em>Beowulf</em> offers the nearest analogue scene: a fire-dragon coiled for three hundred years on a barrow-hoard, roused by the theft of a single cup, slain by a hero it kills in turn. Comparison is often drawn with the Indo-European serpent-slaying myth — the storm-god's combat with a watery serpent — but Fáfnir is a different creature: not a chaos-monster opposed to cosmic order but a man whom avarice deformed, a moral dragon rather than a cosmic one. The Norse <em>Þiðrekssaga</em> preserves yet another redaction of the <a href="/reginn/" class="crosslink" data-crosslink="reginn">Reginn</a>–<a href="/sigurd/" class="crosslink" data-crosslink="sigurd">Sigurðr</a> material, and in later Scandinavian folk tradition the dragon on the gold-barrow became a standing figure of sterile, hoarded wealth. The line descends unbroken into modern fantasy: Tolkien's Smaug is openly the heir of <a href="/texts/poetic-edda/#fafnismol" class="crosslink citation-link" data-citation="fafnismol">Fáfnismál</a>'s talking, riddle-loving worm.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Wagner fixed the dragon's modern image: in <em>Siegfried</em>, the third opera of the <em>Ring des Nibelungen</em>, the giant Fafner — who has already murdered his brother Fasolt for the ring — has used the Tarnhelm to become a dragon and sleeps on the hoard in a forest cave until Siegfried's sword Nothung finds his heart; tasting the blood, Wagner's Siegfried likewise comes to understand the Woodbird and, warned by it, kills the treacherous Mime. Wagner conflated Hreiðmarr's sons with the giant brothers of his own invention, but the kinslaying for gold and the blood-taught birdsong come straight from <a href="/texts/poetic-edda/#reginsmol" class="crosslink citation-link" data-citation="reginsmol">Reginsmál</a> and Fáfnismál. Tolkien acknowledged Fáfnir among the chief models for Smaug — the speaking dragon on his gold, with the one unarmoured patch beneath. In comics, Marvel's Fafnir appears as a <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a> antagonist, the monstrous king of Nastrond; in games the name surfaces from <em>Final Fantasy</em> to <em>Smite</em> and <em>God of War</em>, where Fáfnir is remembered as a dwarf whose greed turned him dragon. The idiom of the dragon-hoard — wealth kept and never used — is his permanent bequest to the language of moralists. In modern Heathenry Fáfnir is no object of cult but a cautionary emblem: the man who embraced gold until the embrace became scales.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Fáfnir story is the most frequently illustrated narrative of the late Viking Age. The Ramsund carving (Sö 101) and the Gök stone (Sö 327), both eleventh-century monuments in Södermanland, Sweden, depict the whole cycle: Sigurðr thrusting his sword up through the serpent's body from below, the horse Grani, Reginn slain beside his smith's tools, the birds in the tree, and Sigurðr sucking his burned thumb over the roasting fire. The carved portal of Hylestad stave church in Norway (c. 1200, now in the University Museum of Bergen) shows Reginn forging the sword and the dragon's death, and crosses from the Isle of Man — Jurby and Kirk Andreas among them — carry the same Sigurðr iconography into the Irish Sea world. On the textual side, Reginsmál and Fáfnismál survive in the Codex Regius of the <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a> (GKS 2365 4to, c. 1270), and Vǫlsunga saga is preserved most fully in the vellum NKS 1824 b 4to (c. 1400).</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Fáfnir means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Names are not merely labels; they are compressed worlds. <strong>Fáfnir</strong> — <em>the embracer</em> — names a man who embraced gold so completely that the embrace became his skin. The medieval scribes who wrote the name marked its long á with care, and the Unicode restoration keeps that mark: the length of the first syllable is the length of the boast he traded for a life. A dragon, in the end, is what a hoard does to the one who will not let it go.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Fáfnir, Dwarf turned Dragon, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Fáfnir?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Fáfnir</strong> is /ˈfɑːv.nir/ — approximately 'FAHV-neer' — hold the first vowel long like 'ah', let the f soften to a 'v' before the n, and trill the final r..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Fáfnir mean?</summary><div class="faq-answer"><p><strong>Fáfnir</strong> means <strong>figure in Germanic heroic legend</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Fáfnir?</summary><div class="faq-answer"><p>Fáfnir is associated with <strong>The hoard of Andvari</strong> (The weregild gold that ransomed Ótr's skin and cursed every hand it passed through), <strong>Andvaranautr</strong> (The dwarf's ring, given up last and cursed aloud: death to its possessor and strife to his house), <strong>The serpent shape</strong> (The ormr-form greed gave him on Gnitaheiðr; the Eddas' dragon crawls to his water — the winged firedrake belongs to later art), <strong>The ægishjálmr</strong> (The helm of terror he wore over the gold, which he boasted made him stronger than all), <strong>The heart's blood</strong> (The draught of wisdom that taught Sigurðr the speech of birds and unmasked Reginn's treachery).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Fáfnir in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>fafnir</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Fáfnir?</summary><div class="faq-answer"><p><a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, Hœnir, and <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> came traveling to a waterfall where an otter sat eating a salmon, half-asleep. Loki killed the otter with a stone, and the gods flayed it and carried the skin as a trophy — but the otter was <em>Ótr</em>, son of Hreiðmarr, who had the craft to take that shape. That night Hreiðmarr seized the gods and named the ransom: the otter-skin was to be filled with gold and covered with gold, inside and out.Loki borrowed <a href="/ran/" class="crosslink" data-crosslink="ran">Rán</a>'s net and caught the dwarf <em>Andvari</em>, who lived in the falls in the likeness of a pike, and stripped him of his hoard down to the last ring — <em>Andvaranautr</em>. Andvari cursed it as he went into the rock: the gold would be the death of two brothers and the strife of eight princes, and no man should joy in his wealth. When the skin was covered, Hreiðmarr saw one whisker still showing, and Óðinn had to give up the ring to hide it. So the ransom that was meant to settle a killing carried a spoken curse into the house that received it.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Fáfnir?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Fáfnir</strong> is /ˈfɑːv.nir/ — approximately 'FAHV-neer' — hold the first vowel long like 'ah', let the f soften to a 'v' before the n, and trill the final r.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Fáfnir mean?</summary><div class="faq-answer"><p><strong>Fáfnir</strong> means <strong>figure in Germanic heroic legend</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Fáfnir?</summary><div class="faq-answer"><p>Fáfnir is associated with <strong>The hoard of Andvari</strong> (The weregild gold that ransomed Ótr's skin and cursed every hand it passed through), <strong>Andvaranautr</strong> (The dwarf's ring, given up last and cursed aloud: death to its possessor and strife to his house), <strong>The serpent shape</strong> (The ormr-form greed gave him on Gnitaheiðr; the Eddas' dragon crawls to his water — the winged firedrake belongs to later art), <strong>The ægishjálmr</strong> (The helm of terror he wore over the gold, which he boasted made him stronger than all), <strong>The heart's blood</strong> (The draught of wisdom that taught Sigurðr the speech of birds and unmasked Reginn's treachery).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Fáfnir in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>fafnir</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Fáfnir?</summary><div class="faq-answer"><p>“The Weregild of Ótr” — Fáfnir is the dragon at the hinge of the Vǫlsung cycle — born the son of Hreiðmarr, remade by greed into the serpent of Gnitaheiðr, and slain by Sigurðr in the scene on which the whole heroic tragedy turns, when the cursed gold of Andvari changed hands and the curse changed hands with it. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Reginsmál, tr. Bellows (Internet Sacred Text Archive)</cite></li><li><cite>Poetic Edda: Fáfnismál, tr. Bellows (Internet Sacred Text Archive)</cite></li><li><cite>Prose Edda: Skáldskaparmál, tr. Brodeur (Internet Sacred Text Archive)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Poetic Edda: Reginsmál, tr. Bellows (Internet Sacred Text Archive)</cite></li><li><cite>Poetic Edda: Fáfnismál, tr. Bellows (Internet Sacred Text Archive)</cite></li><li><cite><a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a>: <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál</a>, tr. Brodeur (Internet Sacred Text Archive)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Fáfnir and related cults.</cite></li><li><cite>The Fáfnir story is the most frequently illustrated narrative of the late Viking Age. The Ramsund carving (Sö 101) and the Gök stone (Sö 327), both eleventh-century monuments in Södermanland, Sweden, depict the whole cycle: Sigurðr thrusting his sword up through the serpent's body from below, the horse Grani, Reginn slain beside his smith's tools, the birds in the tree, and Sigurðr sucking his burned thumb over the roasting fire. The carved portal of Hylestad stave church in Norway (c. 1200, now in the University Museum of Bergen) shows Reginn forging the sword and the dragon's death, and crosses from the Isle of Man — Jurby and Kirk Andreas among them — carry the same Sigurðr iconography into the Irish Sea world. On the textual side, Reginsmál and Fáfnismál survive in the Codex Regius of the Poetic Edda (GKS 2365 4to, c. 1270), and Vǫlsunga saga is preserved most fully in the vellum NKS 1824 b 4to (c. 1400).</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Fáfnir and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Vǫlsunga saga, tr. Morris &amp; Magnússon (Project Gutenberg #1152)</cite></li><li><cite>Reginsmál — Old Norse text (heimskringla.no)</cite></li><li><cite>Fáfnismál — Old Norse text (heimskringla.no)</cite></li><li><cite>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (Germanic Lexicon Project)</cite></li><li><cite>The Ramsund carving (Sö 101) — the Sigurðr cycle in stone</cite></li></ul>
+                    <ul class="source-list"><li><cite>Vǫlsunga saga, tr. Morris &amp; Magnússon (Project Gutenberg #1152)</cite></li><li><cite>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (Germanic Lexicon Project)</cite></li><li><cite>The Ramsund carving (Sö 101) and Gök stone (Sö 327), Södermanland — the Sigurðr cycle in eleventh-century stone; Simek, Dictionary of Northern Mythology, s.v. Fáfnir.</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/fafnir_logomark.webp" type="image/webp"><img src="../../assets/fafnir_logomark.webp" alt="Fáfnir logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/fafnir_logomark.webp" type="image/webp"><img src="../../assets/fafnir_logomark.webp" alt="Fáfnir logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

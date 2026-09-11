@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Ullr, Archery, Hunting, Skiing. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/ullr/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Ullr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Ullr is /ˈulːr/ — approximately 'ULL-r' — one firm beat, the vowel short and rounded as in 'pull', the double l held a fraction long, and the final r sounded; as in modern Icelandic Ullur."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Ullr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ullr means Glory, splendor in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Ullr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ullr is associated with The yew bow (The weapon of Ýdalir timber — archery as divine craft, and the hall's name as the god's own advertisement), The snowshoes (Öndurr, the ski or snowshoe — winter travel raised to godhead; the kenning öndur-Áss, Snowshoe God), The shield, 'Ullr's ship' (The skaldic kenning that makes his shield a vessel — a fragment of a lost voyage myth), The oath-ring (The holy ring of Atlakviða by which the deepest oaths were sworn — Ullr as guarantor of sworn speech), Ýdalir (The Yew-Dales, his hall in Grímnismál's survey of heaven — one of the few divine addresses the poems give)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Ullr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ullr is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Ullr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Yew-Dales” — Ullr's dossier is a paradox: among the best-attested gods in the Scandinavian place-name record and among the least narrated in the literature. The Poetic Edda gives him a stanza and a half; Snorri gives him a paragraph and a list of kennings; Saxo gives him a throne for ten years. What the myths withhold, the map supplies — a god whose story was carved into the landscape of Norway and Sweden long before anyone wrote an Edda. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/ullr_logolockup.webp" type="image/webp"><img src="../../assets/ullr_logolockup.png" alt="Ullr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Ullr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Ullr</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/ullr_mascot.webp" type="image/webp"><img src="../../assets/ullr_mascot.png" alt="Ullr — Archery, Hunting, Skiing" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/ullr_mascot.webp" type="image/webp"><img src="../../assets/ullr_mascot.png" alt="Ullr — Archery, Hunting, Skiing" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Ullr</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Ullr is Tier 2 by the mechanical rule: the normalized Old Norse form is already plain ASCII — no diacritic, no distinctive letter for the ASCII alphabet to lose. Only the capital distinguishes the restored form from the input; the tier says something about orthography and nothing about the god.</p>
+                <p class="etymology-note">The name <strong>Ullr</strong> reaches the modern world through scholarly transliteration of the norse tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">U</td><td><code>U+0055</code></td><td>Latin Capital Letter U</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Ullr</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Ullr, son of Sif and stepson of Thor, dwells in Ýdalir — the Yew-Dales, named for the tree that gave the North its bows — and he is everything the address promises: a bowman so good and a skier so swift that no one can compete with him, fair of face, with a warrior's skill, the god it is good to call on in single combat. The Edda gives him a paragraph; the map gives him a province. Scores of holy places across Norway and Sweden — Ullensaker, Ullevi, Ullern — still bear his name, the fossil of a cult far older and greater than his surviving verses, and a Danish chronicler remembered a rumor that once, for ten years, this god ruled heaven itself in Odin's place.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Ullr in Later Traditions</h3><p class="cultural-card-body">Ullr's true comparison class is not another mythology's gods but his own name's reach. Inside the corpus his nearest kin is [[skadi|<a href="/skadi/" class="crosslink" data-crosslink="skadi">Skaði</a>]], the other ski-going hunter of the northern corpus, and the skalds' pairing of bow, snowshoe, and shield makes him the Æsir's winter counterpart to the Vanir she married into. His mythic position — son of [[sif|Sif]], stepson of [[thor|Thor]] — seats him in the one household of the gods Snorri trusted with a family tree, and Saxo's Ollerus, ruling in [[odinn|<a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>]]'s place at <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a>, keeps a memory that this 'minor' god once carried major authority. Beyond the corpus, the old etymological tie to Proto-Germanic *wulþuz, 'glory' — Gothic wulþus, Old English wuldor — led generations of scholars to see in Ullr a faded sky- or splendor-god, and the third-century Thorsberg chape inscription owlþuþewaz may carry his name-element centuries before the Eddas. Nineteenth-century comparatists reached for bow-bearing Apollo and other Indo-European hunters; current handbooks are cooler. Simek and Lindow emphasize what can actually be shown: a cult dense in Norway and Sweden, absent from Denmark and Iceland, a ring-oath and a hall, and a name meaning 'Glory' — the profile of a god whose importance peaked before our sources were written.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ullr's afterlife is the snow itself. When Scandinavia reinvented skiing in the nineteenth century as sport and national emblem, the old snowshoe god was waiting: Norwegian ski culture embraced Ull as its patron, and his name has crowned winter festivals, ski clubs, and slopes ever since — the only Norse god whose modern cult is conducted on mountains with equipment. The name lives on as a Scandinavian given name and, far more densely, in the map: Ullensaker, Ullern, Ullensvang, Ullevi and their kin keep his sanctuaries' names long after the sanctuaries fell. Modern Heathen and Ásatrú communities call on him for winter sport and for the sworn word, reading the oath-ring of Atlakviða as seriously as the bow. And in the broader reception he stands as the textbook case of a great god the literature lost — the figure every handbook uses to prove that the Edda's silence is not a cult's measure.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Ullr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ullr in Later Traditions</h3><p class="cultural-card-body">Ullr's true comparison class is not another mythology's gods but his own name's reach. Inside the corpus his nearest kin is [[skadi|<a href="/skadi/" class="crosslink" data-crosslink="skadi">Skaði</a>]], the other ski-going hunter of the northern corpus, and the skalds' pairing of bow, snowshoe, and shield makes him the Æsir's winter counterpart to the Vanir she married into. His mythic position — son of [[sif|Sif]], stepson of [[thor|Thor]] — seats him in the one household of the gods Snorri trusted with a family tree, and Saxo's Ollerus, ruling in [[odinn|<a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>]]'s place at <a href="/uppsala/" class="crosslink" data-crosslink="uppsala">Uppsala</a>, keeps a memory that this 'minor' god once carried major authority. Beyond the corpus, the old etymological tie to Proto-Germanic *wulþuz, 'glory' — Gothic wulþus, Old English wuldor — led generations of scholars to see in Ullr a faded sky- or splendor-god, and the third-century Thorsberg chape inscription owlþuþewaz may carry his name-element centuries before the Eddas. Nineteenth-century comparatists reached for bow-bearing Apollo and other Indo-European hunters; current handbooks are cooler. Simek and Lindow emphasize what can actually be shown: a cult dense in Norway and Sweden, absent from Denmark and Iceland, a ring-oath and a hall, and a name meaning 'Glory' — the profile of a god whose importance peaked before our sources were written.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ullr's afterlife is the snow itself. When Scandinavia reinvented skiing in the nineteenth century as sport and national emblem, the old snowshoe god was waiting: Norwegian ski culture embraced Ull as its patron, and his name has crowned winter festivals, ski clubs, and slopes ever since — the only Norse god whose modern cult is conducted on mountains with equipment. The name lives on as a Scandinavian given name and, far more densely, in the map: Ullensaker, Ullern, Ullensvang, Ullevi and their kin keep his sanctuaries' names long after the sanctuaries fell. Modern Heathen and Ásatrú communities call on him for winter sport and for the sworn word, reading the oath-ring of Atlakviða as seriously as the bow. And in the broader reception he stands as the textbook case of a great god the literature lost — the figure every handbook uses to prove that the Edda's silence is not a cult's measure.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Ullr's archaeology is written across two countries rather than buried in any one of them: no image and no votive hoard can be securely assigned to him, but the Scandinavian place-name record is the densest of any god outside the great three. Norway keeps Ullensaker ('Ullr's field'), Ullern ('Ullr's meadow' or from Ullarvin), Ullensvang, and the lost Ullarhof; Sweden keeps Ullevi and Lilla Ullevi ('Ullr's sanctuary'), Ulleråker ('Ullr's field'), Ullvi and their kin — a cult landscape spread across south-eastern Norway and eastern middle Sweden, with not one secure Ullr-name in Denmark or Iceland. At Lilla Ullevi in Bro parish, Uppland, excavations in the 2000s uncovered an Iron Age cult building rich in amulet rings — a rare look at the kind of site the name advertises, though the identification with the god rests on the place-name alone. The oldest possible attestation is runic and continental: the third-century Thorsberg shield-chape (Schleswig) reads owlþuþewaz, whose first element is the *wulþu- 'glory' that became the name Ullr — whether theonym or personal name is disputed, but it proves the name's antiquity. Later antiquarian tradition supplied the familiar image: seventeenth- and eighteenth-century Icelandic paper manuscripts (the 'Edda oblongata' type) picture Ullr on skis with his bow — an early modern reconstruction, not a medieval witness.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Ullr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Every tradition in the lexicon has its quiet god, the one the myths barely use and cannot forget. Ullr is the North's. <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a> names his hall among the first of heaven's addresses and puts his favor first among the gods' blessings; the poets swear by his ring; the map of two countries is salted with his holy places — and Snorri, who can spend pages on a fishing trip, gives him one sentence. The discrepancy is itself the record. Whatever Ullr was at the height of his worship — bow-god, sky-god, lord of the sworn oath, the Glory his name still means — it belonged to an older layer of the religion than the Eddas preserve, and by the thirteenth century only the specialists kept the tokens: a stanza, a kenning, a rumor from Denmark that he once sat in Odin's seat. Ullr teaches the reader of myth a hard and useful lesson: the silence of a source is evidence about the source, never about the god. The yew-dales are still on the map.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Ullr, Archery, Hunting, Skiing, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ullr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ullr</strong> is /ˈulːr/ — approximately 'ULL-r' — one firm beat, the vowel short and rounded as in 'pull', the double l held a fraction long, and the final r sounded; as in modern Icelandic Ullur..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ullr mean?</summary><div class="faq-answer"><p><strong>Ullr</strong> means <strong>Glory, splendor</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ullr?</summary><div class="faq-answer"><p>Ullr is associated with <strong>The yew bow</strong> (The weapon of Ýdalir timber — archery as divine craft, and the hall's name as the god's own advertisement), <strong>The snowshoes</strong> (Öndurr, the ski or snowshoe — winter travel raised to godhead; the kenning öndur-Áss, Snowshoe God), <strong>The shield, 'Ullr's ship'</strong> (The skaldic kenning that makes his shield a vessel — a fragment of a lost voyage myth), <strong>The oath-ring</strong> (The holy ring of Atlakviða by which the deepest oaths were sworn — Ullr as guarantor of sworn speech), <strong>Ýdalir</strong> (The Yew-Dales, his hall in Grímnismál's survey of heaven — one of the few divine addresses the poems give).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ullr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>ullr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ullr?</summary><div class="faq-answer"><p>In Grímnismál's numbered survey of the gods' dwellings, the fifth hall belongs to Ullr: Ýdalir heita þar er Ullr hefir sér of görva sali — 'Yew-Dales is the name of the place where Ullr has made himself a hall.' The poem gives him no lineage, no wife, no adventure — only an address. But what an address: the yew is the bow-wood of the North, and a god who halls himself in its dales declares his office in the naming.Grímnismál touches him once more at its close, when the tortured Geirrøðr's son is blessed at the fire: Ullar hylli hefr ok allra goða — 'the favor of Ullr and of all the gods shall he have.' In a poem where Odin alone speaks, Ullr's name stands first among the gods whose goodwill is invoked — a small, unexplained precedence that commentators have never stopped noticing.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ullr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ullr</strong> is /ˈulːr/ — approximately 'ULL-r' — one firm beat, the vowel short and rounded as in 'pull', the double l held a fraction long, and the final r sounded; as in modern Icelandic Ullur.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ullr mean?</summary><div class="faq-answer"><p><strong>Ullr</strong> means <strong>Glory, splendor</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ullr?</summary><div class="faq-answer"><p>Ullr is associated with <strong>The yew bow</strong> (The weapon of Ýdalir timber — archery as divine craft, and the hall's name as the god's own advertisement), <strong>The snowshoes</strong> (Öndurr, the ski or snowshoe — winter travel raised to godhead; the kenning öndur-Áss, Snowshoe God), <strong>The shield, 'Ullr's ship'</strong> (The skaldic kenning that makes his shield a vessel — a fragment of a lost voyage myth), <strong>The oath-ring</strong> (The holy ring of Atlakviða by which the deepest oaths were sworn — Ullr as guarantor of sworn speech), <strong>Ýdalir</strong> (The Yew-Dales, his hall in Grímnismál's survey of heaven — one of the few divine addresses the poems give).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ullr in Unicode?</summary><div class="faq-answer"><p><strong>Ullr</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ullr?</summary><div class="faq-answer"><p>“The Yew-Dales” — Ullr's dossier is a paradox: among the best-attested gods in the Scandinavian place-name record and among the least narrated in the literature. The <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a> gives him a stanza and a half; Snorri gives him a paragraph and a list of kennings; Saxo gives him a throne for ten years. What the myths withhold, the map supplies — a god whose story was carved into the landscape of Norway and Sweden long before anyone wrote an Edda. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,19 +349,19 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Grímnismál 5 (Ýdalir, the hall Ullr made for himself) and 42 (Ullar hylli, the favor of Ullr invoked first among the gods); Atlakviða 30 (the oath sworn 'by the ring of Ullr'), trans. Carolyne Larrington</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 31 (Ullr son of Sif, stepson of Thor; the bowman, the skier, the god of single combat); Skáldskaparmál (kennings: the Snowshoe God, the Bow God, the Hunting God, the Shield God; the shield as 'Ullr's ship'), trans. Anthony Faulkes</cite></li><li><cite>Saxo Grammaticus, Gesta Danorum, Book 3 (Ollerus rules in Othinus's place for ten years; the spell-marked bone; driven out and slain in Sweden), trans. Peter Fisher, ed. Hilda Ellis Davidson</cite></li><li><cite>de Vries, Altnordisches etymologisches Wörterbuch, s.v. Ullr (from Proto-Germanic *wulþuz, 'glory'; Gothic wulþus, Old English wuldor)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Poetic Edda: Grímnismál 5 (Ýdalir, the hall Ullr made for himself) and 42 (Ullar hylli, the favor of Ullr invoked first among the gods); Atlakviða 30 (the oath sworn 'by the ring of Ullr'), trans. Carolyne Larrington</cite></li><li><cite>Snorri Sturluson, <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a>: <a href="/texts/prose-edda/#gylfaginning-31" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 31</a> (Ullr son of Sif, stepson of Thor; the bowman, the skier, the god of single combat); <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál</a> (kennings: the Snowshoe God, the Bow God, the Hunting God, the Shield God; the shield as 'Ullr's ship'), trans. Anthony Faulkes</cite></li><li><cite>Saxo Grammaticus, Gesta Danorum, Book 3 (Ollerus rules in Othinus's place for ten years; the spell-marked bone; driven out and slain in Sweden), trans. Peter Fisher, ed. Hilda Ellis Davidson</cite></li><li><cite>de Vries, Altnordisches etymologisches Wörterbuch, s.v. Ullr (from Proto-Germanic *wulþuz, 'glory'; Gothic wulþus, Old English wuldor)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ullr and related cults.</cite></li><li><cite>Ullr's archaeology is written across two countries rather than buried in any one of them: no image and no votive hoard can be securely assigned to him, but the Scandinavian place-name record is the densest of any god outside the great three. Norway keeps Ullensaker ('Ullr's field'), Ullern ('Ullr's meadow' or from Ullarvin), Ullensvang, and the lost Ullarhof; Sweden keeps Ullevi and Lilla Ullevi ('Ullr's sanctuary'), Ulleråker ('Ullr's field'), Ullvi and their kin — a cult landscape spread across south-eastern Norway and eastern middle Sweden, with not one secure Ullr-name in Denmark or Iceland. At Lilla Ullevi in Bro parish, Uppland, excavations in the 2000s uncovered an Iron Age cult building rich in amulet rings — a rare look at the kind of site the name advertises, though the identification with the god rests on the place-name alone. The oldest possible attestation is runic and continental: the third-century Thorsberg shield-chape (Schleswig) reads owlþuþewaz, whose first element is the *wulþu- 'glory' that became the name Ullr — whether theonym or personal name is disputed, but it proves the name's antiquity. Later antiquarian tradition supplied the familiar image: seventeenth- and eighteenth-century Icelandic paper manuscripts (the 'Edda oblongata' type) picture Ullr on skis with his bow — an early modern reconstruction, not a medieval witness.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ullr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/ullr_logomark.webp" type="image/webp"><img src="../../assets/ullr_logomark.webp" alt="Ullr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/ullr_logomark.webp" type="image/webp"><img src="../../assets/ullr_logomark.webp" alt="Ullr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

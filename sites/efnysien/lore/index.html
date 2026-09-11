@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Efnysien — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Efnysien</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Efnysien</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,147 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Efnysien</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Efnysien</strong> is the standard Celtic romanisation, documented in academic sources — “Double enemy”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">efnysien</p>
-                    <p class="card-body">The plain <strong>efnysien</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Efnysien</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Efnysien</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Efnysien.com → efnysien.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Efnysien</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Efnysien</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Efnysien is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Efnysien</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Efnysien</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Efnysien</p>
-                    <p class="card-body">The full Unicode restoration. <strong>efnysien.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Efnysien was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Efnysien</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ɛvˈnɪs.jɛn/</span>
-            <span class="ipa-label">Modern Welsh</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">E-</span>
-        <span class="phoneme-desc">Short open-mid front [ɛ], as in English 'elf'; the light, unstressed first syllable.</span>
+      <p class="lead-text">Efnysien belongs to one tale and fills it: the Second Branch of the Mabinogi, Branwen ferch Llŷr. The branch is the story of a compensation that failed, and Efnysien is the reason — twice over the author of the injury, and at the end the author of the only sacrifice that stopped the ruin.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Mabinogi, Second Branch</span>
+          <h3 class="myth-title">The Two Brothers</h3>
+          <p class="myth-text">The tale introduces him by contrast. Penarddun ferch <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a>, mother of Brân the Blessed, Branwen, and <a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a> by Llŷr, bore two sons to Euroswydd: <a href="/nisien/" class="crosslink" data-crosslink="nisien">Nisien</a> and Efnysien. Of Nisien the branch says he was a good man and a gentle youth, who could bring peace between two armies at their most embittered; of Efnysien it says he would set two brothers at strife when they loved each other most. The balance of the phrasing is deliberate — peace between armies set against strife between brothers, the public against the intimate, and the intimate wins. The narrator does not call Efnysien evil; he says only what the man did to love: he could unmake it, at will, and did. The whole Second Branch is the working-out of that one sentence, and it will never once pause to explain how a woman of Beli's line and Llŷr's house came to bear such a son.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-f-</span>
-        <span class="phoneme-desc">Voiced labiodental [v]: Welsh writes the v-sound with a single f — the name's first trap for English eyes.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Mabinogi, Second Branch</span>
+          <h3 class="myth-title">The Maiming of the Horses</h3>
+          <p class="myth-text">When Brân gave his half-sister Branwen to <a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>, king of Ireland, the wedding feast was held at Aberffraw, and the horses of the Irish king were stabled for the night. Efnysien asked why they were there, and was told they belonged to Matholwch, who had married his sister. 'Is this what they have done with a maiden as fine as her, my own sister — given her away without asking me?' In his rage he went under the horses and cut off their lips to the teeth, their ears to the head, their tails to the rumps, and their eyelids to the bone. Matholwch rose in silence and made for his ships; only Brân's embassy — Manawydan among them — and the offer of honour-price brought him back: a silver staff as tall as himself, a gold plate as broad as his face, fresh horses, and the Cauldron of Rebirth, which Brân had from Llasar Llaes Gyfnewid and Cymidei Cymeinfoll, wanderers who had fled to his court out of Ireland.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-nis-</span>
-        <span class="phoneme-desc">Alveolar nasal [n], short [ɪ] (the Welsh y of a non-final syllable), and [s]; this is the stressed syllable — Welsh words carry their weight on the penult.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Mabinogi, Second Branch</span>
+          <h3 class="myth-title">The Hundred Bags of Flour</h3>
+          <p class="myth-text">The compensation did not hold. In Ireland the insult was remembered, Matholwch was shamed by his own nobles, and Branwen was sent to the kitchen with a box on the ear from the butcher every day — until she tamed a starling and sent word across the sea. Brân waded the channel, for no ship could carry him, and lay across the river when the Irish destroyed the bridge: 'He who would be a leader, let him be a bridge.' The Irish sued for terms: the kingship would pass to Gwern, Branwen's son, and they would build Brân a house great enough to hold him — the first house he had ever entered. But in that house they hung a hundred bags, an armed man in each. Efnysien walked the row ahead of the feast, laid his hand on each bag — 'What is in here?' 'Flour.' — and squeezed each head through the sacking until he felt the skull give, a hundred times down the hall.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-ien</span>
-        <span class="phoneme-desc">Palatal glide [j] and short open [ɛ] closing on [n]; the final syllable falls away unstressed, 'yen' kept light.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Mabinogi, Second Branch</span>
+          <h3 class="myth-title">The Boy in the Fire</h3>
+          <p class="myth-text">At the feast of reconciliation the boy Gwern was invested as king, and — charming everyone, the branch says — he went from lap to lap among his kinsmen, from Brân to Manawydan to Nisien, until he came to Efnysien's lap. 'Why does my nephew not come to me?' Efnysien asked; and when the boy was put into his arms he seized him by the feet and threw him headlong into the great fire. Branwen would have leapt in after her son, but Brân caught her with one hand and took up his shield with the other, and the hall rose in war. It is the tale's darkest sentence, and its hinge: after Gwern, no negotiation is possible. The branch does not stop to mourn the boy, and it has never once stopped for Efnysien; the child-killer is not given a single word of excuse or grief. That silence is the point — the deed is meant to be looked at straight, and judged.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Mabinogi, Second Branch</span>
+          <h3 class="myth-title">The Breaking of the Cauldron</h3>
+          <p class="myth-text">In the battle that followed, the Irish had the advantage that could not be beaten: every night they cast their slain into the Cauldron of Rebirth, and every morning the dead rose as fighting men again — speechless, but unkillable in any final sense. Then Efnysien, seeing the ruin he had made, did the one thing only he could do. He lay down among the Irish dead as if he were a corpse, was thrown into the cauldron with them, and stretched himself out inside it until the vessel burst into four pieces — and his own heart burst with it, and so he died. The branch gives him no speech of repentance and no eulogy: the destroyer ends the war his own hand started, at the price of his life, and the narration passes on. Of the hosts of Britain only seven men came home, bearing Brân's head; Branwen died of a broken heart on the shore of Anglesey and was buried in a four-sided grave on the bank of the Alaw.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'ev-NIS-yen' — the f sounds as v, the stress lands on the middle syllable, and the last syllable is a quick, light 'yen'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Efnisien, son of Euroswydd and Penarddun, in the White Book of Rhydderch and the Red Book of Hergest</li><li><strong>Modern Welsh</strong> Efnisien, the standard modern spelling</li><li><strong>The named opposite</strong> <a href="/nisien/" class="crosslink" data-crosslink="nisien">Nisien</a>, his brother — the tale presents the two as one contrast: peace-maker and strife-maker</li><li><strong>English translations</strong> Efnisien (Guest), Efnysien — the same name carried into English prose</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Efnysien is Tier 2 by the mechanical rule: the Middle Welsh manuscript form is written in plain Latin letters, and normalized Welsh orthography attaches no diacritic to the name — there is nothing for the ASCII alphabet to lose. The capital alone distinguishes the temple form from the input; the figure's weight in the tradition is beside the point.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -378,17 +293,17 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Trouble, Mischief</h2>
             <p class="section-subtitle">The Strife-Maker of the Second Branch, and the Cauldron He Died Breaking</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Efnysien is the destroyer of the Mabinogi: the man the Second Branch introduces in a single balanced sentence — his brother Nisien could make peace between two armies at their most embittered; Efnysien could make two brothers quarrel when they loved each other best. One act of his, the maiming of the Irish king's horses, sets two kingdoms on the road to ruin; his last act, the breaking of the Cauldron of Rebirth, costs him his heart and ends the slaughter he began.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Efnysien is the destroyer of the Mabinogi: introduced by the Second Branch in a single balanced sentence — his brother Nisien could make peace between two armies at their most embittered; Efnysien could make two brothers quarrel when they loved each other best. One act, the maiming of the Irish king's horses, sets two kingdoms on the road to ruin; his last act, breaking the Cauldron of Rebirth, ends the slaughter.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M10 44C14 30 24 22 36 22C44 22 50 26 54 32M22 30L18 24M30 26L30 18M40 26L44 18M12 44H52M20 44V52M44 44V52"></path></svg></div>
         <h4 class="domain-name">The Maimed Horses</h4>
-        <p class="domain-desc">At the wedding feast of Aberffraw, in a rage that no one had asked his consent, he cuts the lips, ears, tails, and eyelids of <a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>'s horses — the insult that compensation could not bury.</p>
+        <p class="domain-desc">At the wedding feast of Aberffraw, in a rage that no one had asked his consent, he cuts the lips, ears, tails, and eyelids of Matholwch's horses — the insult that compensation could not bury.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M18 26C18 22 46 22 46 26L44 44C44 50 20 50 20 44ZM18 26H46M24 32C26 36 38 36 40 32M32 18V10M26 14H38"></path></svg></div>
@@ -429,65 +344,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Efnysien</p>
-        </div>
-        
-      <p class="lead-text">Efnysien belongs to one tale and fills it: the Second Branch of the Mabinogi, Branwen ferch Llŷr. The branch is the story of a compensation that failed, and Efnysien is the reason — twice over the author of the injury, and at the end the author of the only sacrifice that stopped the ruin.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Mabinogi, Second Branch</span>
-          <h3 class="myth-title">The Two Brothers</h3>
-          <p class="myth-text">The tale introduces him by contrast. Penarddun ferch <a href="/beli/" class="crosslink" data-crosslink="beli">Beli</a>, mother of Brân the Blessed, Branwen, and <a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a> by Llŷr, bore two sons to Euroswydd: Nisien and Efnysien. Of Nisien the branch says he was a good man and a gentle youth, who could bring peace between two armies at their most embittered; of Efnysien it says he would set two brothers at strife when they loved each other most. The whole Second Branch is the working-out of that one sentence.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Mabinogi, Second Branch</span>
-          <h3 class="myth-title">The Maiming of the Horses</h3>
-          <p class="myth-text">When Brân gave his half-sister Branwen to Matholwch, king of Ireland, the wedding feast was held at Aberffraw, and the horses of the Irish king were stabled for the night. Efnysien asked why they were there, and was told they belonged to Matholwch, who had married his sister. 'Is this what they have done with a maiden as fine as her, my own sister — given her away without asking me?' In his rage he went under the horses and cut off their lips to the teeth, their ears to the head, their tails to the rumps, and their eyelids to the bone. Matholwch rose in silence and made for his ships; only Brân's embassy — Manawydan among them — and the offer of honour-price brought him back: a silver staff as tall as himself, a gold plate as broad as his face, fresh horses, and the Cauldron of Rebirth, which Brân had from Llasar Llaes Gyfnewid and Cymidei Cymeinfoll, wanderers who had fled to his court out of Ireland.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Mabinogi, Second Branch</span>
-          <h3 class="myth-title">The Hundred Bags of Flour</h3>
-          <p class="myth-text">The compensation did not hold. In Ireland the insult was remembered, Matholwch was shamed by his own nobles, and Branwen was sent to the kitchen with a box on the ear from the butcher every day — until she tamed a starling and sent word across the sea. Brân waded the channel, for no ship could carry him, and lay across the river when the Irish destroyed the bridge: 'He who would be a leader, let him be a bridge.' The Irish sued for terms: the kingship would pass to Gwern, Branwen's son, and they would build Brân a house great enough to hold him — the first house he had ever entered. But in that house they hung a hundred bags, an armed man in each. Efnysien walked the row ahead of the feast, laid his hand on each bag — 'What is in here?' 'Flour.' — and squeezed each head through the sacking until he felt the skull give, a hundred times down the hall.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Mabinogi, Second Branch</span>
-          <h3 class="myth-title">The Boy in the Fire</h3>
-          <p class="myth-text">At the feast of reconciliation the boy Gwern was invested as king, and — charming everyone, the branch says — he went from lap to lap among his kinsmen, from Brân to Manawydan to Nisien, until he came to Efnysien's lap. 'Why does my nephew not come to me?' Efnysien asked; and when the boy was put into his arms he seized him by the feet and threw him headlong into the great fire. Branwen would have leapt in after her son, but Brân caught her with one hand and took up his shield with the other, and the hall rose in war. It is the tale's darkest sentence, and its hinge: after Gwern, no negotiation is possible.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Mabinogi, Second Branch</span>
-          <h3 class="myth-title">The Breaking of the Cauldron</h3>
-          <p class="myth-text">In the battle that followed, the Irish had the advantage that could not be beaten: every night they cast their slain into the Cauldron of Rebirth, and every morning the dead rose as fighting men again — speechless, but unkillable in any final sense. Then Efnysien, seeing the ruin he had made, did the one thing only he could do. He lay down among the Irish dead as if he were a corpse, was thrown into the cauldron with them, and stretched himself out inside it until the vessel burst into four pieces — and his own heart burst with it, and so he died. The branch gives him no speech of repentance and no eulogy: the destroyer ends the war his own hand started, at the price of his life, and the narration passes on. Of the hosts of Britain only seven men came home, bearing Brân's head; Branwen died of a broken heart on the shore of Anglesey and was buried in a four-sided grave on the bank of the Alaw.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -551,8 +415,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Efnysien</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Efnysien</strong> is the standard Celtic romanisation, documented in academic sources — “Double enemy”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">efnysien</p>
+                <p class="card-body">The plain <strong>efnysien</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Efnysien</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Efnysien</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Efnysien.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Efnysien</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Efnysien</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Efnysien</p>
+                    <p class="card-body">The full Unicode restoration. <strong>efnysien.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Efnysien was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ɛvˈnɪs.jɛn/</span>
+            <span class="ipa-label">Modern Welsh</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">E-</span>
+        <span class="phoneme-desc">Short open-mid front [ɛ], as in English 'elf'; the light, unstressed first syllable.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-f-</span>
+        <span class="phoneme-desc">Voiced labiodental [v]: Welsh writes the v-sound with a single f — the name's first trap for English eyes.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-nis-</span>
+        <span class="phoneme-desc">Alveolar nasal [n], short [ɪ] (the Welsh y of a non-final syllable), and [s]; this is the stressed syllable — Welsh words carry their weight on the penult.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-ien</span>
+        <span class="phoneme-desc">Palatal glide [j] and short open [ɛ] closing on [n]; the final syllable falls away unstressed, 'yen' kept light.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'ev-NIS-yen' — the f sounds as v, the stress lands on the middle syllable, and the last syllable is a quick, light 'yen'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Efnysien is Tier 2 by the mechanical rule: the Middle Welsh manuscript form is written in plain Latin letters, and normalized Welsh orthography attaches no diacritic to the name — there is nothing for the ASCII alphabet to lose. The capital alone distinguishes the temple form from the input; the figure's weight in the tradition is beside the point.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Efnysien is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Efnysien</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -570,7 +575,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/efnysien_mascot.webp" type="image/webp"><img src="../assets/efnysien_mascot.png" alt="Efnysien mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/efnysien_mascot.webp" type="image/webp"><img src="../assets/efnysien_mascot.png" alt="Efnysien mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -608,7 +613,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/efnysien_logomark.webp" type="image/webp"><img src="../assets/efnysien_logomark.webp" alt="Efnysien logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/efnysien_logomark.webp" type="image/webp"><img src="../assets/efnysien_logomark.webp" alt="Efnysien logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

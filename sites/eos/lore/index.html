@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Ēōs — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ἠώς</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Ēōs.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,149 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ἠώς</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Ēōs</strong> (Ἠώς) is attested in the source tradition — “Dawn (from ἠώς)”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">eos</p>
-                    <p class="card-body">Reduced to plain <strong>eos</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Ēōs</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ēōs</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Ēōs.com → xn--s-oia8o.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Ēōs</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ēōs</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Ēōs is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ἠώς</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Ēōs is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ēōs</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Ēōs</p>
-                    <p class="card-body">Restores <strong>Ἠώς</strong>. The live temple domain — <strong>ēōs.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Ideal Form</h3>
-                    <p class="card-unicode">Ēṓs</p>
-                    <p class="card-body">Restores <strong>Ἠώς</strong>. Stacked macron+acute on the stressed long vowel, matching Greek Ἠώς; philologically ideal but often untypeable on phones.. Not in the PuniCodex collection.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">eos</p>
-                    <p class="card-body">Flattens <strong>Ἠώς</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Ēōs was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Ēōs</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ɛː.ɔ̌ːs/</span>
-            <span class="ipa-label">Homeric/Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Ē-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> eta [ɛː], the first syllable drawn out like the first pale light.</span>
+      <p class="lead-text">Ēōs is the dawn made divine — the rosy-fingered goddess who rises each morning from Oceanus to open the gates of day. Daughter of <a href="/hyperion/" class="crosslink" data-crosslink="hyperion">Hyperion</a> and <a href="/theia/" class="crosslink" data-crosslink="theia">Theía</a>, sister of <a href="/helios/" class="crosslink" data-crosslink="helios">Hēlios</a> and <a href="/selene/" class="crosslink" data-crosslink="selene">Selḗnē</a>, she belongs to the oldest generation of sky powers. Her myths are myths of desire: she loves mortals, and her love keeps asking the gods for gifts they only half grant.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Lover</span>
+          <h3 class="myth-title">Tithonos and the Cicada</h3>
+          <p class="myth-text">The <em><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodite</a></em> (218–238) tells the saddest of the goddess's affairs. Smitten by the Trojan Tithonos, 'he of the yellow hair', Ēōs asked <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> to grant him <strong>immortality</strong> — and, the poet says, she forgot to ask for <strong>endless youth</strong>. So Tithonos lives forever, but age creeps on: his voice thins, his hair whitens, his limbs fail, until he babbles endlessly and shrinks into the body of a cicada, chirruping at the ends of the earth. Homer already knows the opening of the story: the Iliad wakes its warriors as Dawn rises 'from her bed beside noble Tithonos' (11.1–2). Sappho, in the fragment long read as her old-age lament (fr. 58), has the goddess herself discover that youth once lost cannot be recovered. The myth reads time itself as a failed negotiation: <strong>love can win exemption from death, but not from aging</strong>.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ōs</span>
-        <span class="phoneme-desc">Long omega with acute or circumflex [ɔ̌ːs], the pitch peak and the root meaning 'dawn'.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Abduction</span>
+          <h3 class="myth-title">Kephalos: Two Versions, One Wreckage</h3>
+          <p class="myth-text">Ēōs's second great mortal love was Kephalos, the beautiful hunter — and here the sources openly disagree. In Hesiod's version (fr. in the Catalogue) and Apollodorus (1.9.4), the goddess simply carries Kephalos off and bears him a son, Phaethōn — a different boy from Hēlios's doomed driver — whom Aphrodítē later steals away to be night-watchman of her sanctuary. But the later, tragic tradition (reworked by Ovid, <em><a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a></em> 7.700–865) reverses the direction: Kephalos, tested by a disguised Ēōs, resists the goddess and is restored to his beloved wife Prókris — only for the suspicion planted by the failed seduction to destroy the marriage anyway. Half-convinced of her infidelity, Kephalos hurls the javelin that kills Prókris in the thicket. Whether the goddess wins or loses the mortal, the tale insists that divine desire visited upon a marriage leaves wreckage: <strong>even a resisted temptation, once spoken, cannot be unsaid</strong>.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Formula</span>
+          <h3 class="myth-title">Dawn over Troy</h3>
+          <p class="myth-text">Homer needs no story for Ēōs because he has a formula: <em>ēmós d' ērigéneia phánē rhododáktylos Ēṓs</em> — 'when early-born, rosy-fingered Dawn appeared' (<em>Iliad</em> 1.477 and passim). Twenty times the Iliad opens a day with her. She rises from Oceanus or from her couch beside Tithonos, harnessing the swift horses whom the Odyssey names Lampós and Phaethōn, 'Shining' and 'Blazing' (23.244–246), and climbs until her light touches the armies at Troy. The epithet <em>rhododáktylos</em>, 'rose-fingered', paints the moment her first rays spread across the horizon like fingers over the sleeping world. To Homer's audience the formula was prayer-adjacent: a new day was not a mechanism but a goddess arriving on schedule. In the epic's economy Ēōs is the one power that never breaks a promise — <strong>the war pauses, the feasting ends, the heroes die, and still, book after book, she comes</strong>.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Curse</span>
+          <h3 class="myth-title">Why the Dawn Loves Mortals</h3>
+          <p class="myth-text">Why does Ēōs, alone among goddesses, burn for mortal men? Later antiquity supplied an answer and a warning. The mythographers (Apollodorus 3.14.3) report that Aphrodíté, angered because Ēōs had lain with her lover <a href="/ares/" class="crosslink" data-crosslink="ares">Árēs</a>, cursed her with an insatiable longing for mortals — Orion, Kephalos, Kleitos, Tithonos. The oldest trace of the pattern is Homer's own: in <em>Odyssey</em> 5.121–124 the nymph Kalypso complains that the gods begrudge goddesses their mortal lovers, 'as when rosy-fingered Dawn rose and carried off Orion, until <a href="/artemis/" class="crosslink" data-crosslink="artemis">Artemis</a> of the golden throne... slew him' in Ortygia. Orion's fate stays chillingly ambiguous — some say Artemis killed him at Ēōs's own jealous request, others in divine anger at the pairing. The tradition, fragmentary and contradictory as it is, makes one point clearly: <strong>love between an immortal and a mortal always ends with the mortal's end</strong> — the goddess keeps rising; her beloveds do not.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'AY-ohss' — two long syllables, the first level, the second pitched and sustained like the rising sun.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Ἠώς (Ēṓs), the goddess of dawn</li><li><strong>PIE</strong> *h₂éws-ōs, 'dawn'; cognate with Latin aurora and Sanskrit uṣás</li><li><strong>Latin</strong> Aurora, the Roman dawn goddess</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ēōs is Tier 1 because the Greek Ἠώς contains two long syllables, the second carrying the acute/circumflex. The name is one of the most securely reconstructed Indo-European divine names.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -381,88 +286,83 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Rose-Fingered Goddess</h2>
             <p class="section-subtitle">Dawn, Morning Light, New Beginnings</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Ēōs is the <strong>goddess of dawn</strong>, daughter of <a href="/hyperion/" class="crosslink" data-crosslink="hyperion">Hyperion</a> and <a href="/theia/" class="crosslink" data-crosslink="theia">Theía</a>, sister of <a href="/helios/" class="crosslink" data-crosslink="helios">Hēlios</a> and <a href="/selene/" class="crosslink" data-crosslink="selene">Selēnē</a>. Each morning she rises from the sea in a saffron robe and opens the gates of day, scattering light across the world.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Ēōs is the dawn personified: the rosy-fingered goddess who rises each morning from the Ocean stream, harnessing her bright horses while the world still sleeps. Daughter of Hyperion and Theía, sister of Hēlios and Selḗnē, she is the night's release and the day's herald — beautiful, punctual, and quietly tragic.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 4L40 24H60L44 36L48 56L32 44L16 56L20 36L4 24H24L32 4Z"></path></svg></div>
         <h4 class="domain-name">Bringer of Day</h4>
-        <p class="domain-desc">She opens the gates of heaven so Hēlios can ride his chariot across the sky.</p>
+        <p class="domain-desc">She opens the gates of heaven and harnesses her horses Lampós and Phaethōn so Hēlios can ride (Odyssey 23.244–246).</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 48C16 36 24 32 32 32C40 32 48 36 56 48V56H8V48Z"></path></svg></div>
         <h4 class="domain-name">Rose-Fingered</h4>
-        <p class="domain-desc">The Homeric epithet rhododáktylos describes the red light of early morning touching the world.</p>
+        <p class="domain-desc">The epithet rhododáktylos paints her first rays spreading across the horizon — the formula opens book after book of the Iliad.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 16 18 28 18 40C18 48 24 56 32 56C40 56 46 48 46 40C46 28 40 16 32 8ZM32 32C28 32 24 36 24 40C24 44 28 48 32 48C36 48 40 44 40 40C40 36 36 32 32 32Z"></path></svg></div>
         <h4 class="domain-name">Lover of Mortals</h4>
-        <p class="domain-desc">She abducted Tithonos, Kephalos, and Orion, loving mortals whose fates ended in grief.</p>
+        <p class="domain-desc">She carried off Tithonos, Kephalos, and Orion; her affairs with mortals are a study in gifts that backfire.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C22 12 14 20 14 32C14 44 22 52 32 56C42 52 50 44 50 32C50 20 42 12 32 12ZM32 20V44M20 32H44"></path></svg></div>
         <h4 class="domain-name">Saffron Robe</h4>
-        <p class="domain-desc">She wears the golden-red robe of morning light across sea and mountain.</p>
+        <p class="domain-desc">The crimson-saffron garment of early light, which she puts on as she climbs from the eastern Ocean.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
-        <span class="symbol-name">Saffron or rosy light</span>
-        <span class="symbol-meaning">The color of the dawn sky and her garments</span>
+        <span class="symbol-name">Saffron robe</span>
+        <span class="symbol-meaning">The crimson-saffron garment of the early sky, which Ēōs puts on as she rises — the dawn's color made clothing.</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Wings or winged chariot</span>
-        <span class="symbol-meaning">Her swift passage across the horizon</span>
+        <span class="symbol-name">Rose fingers</span>
+        <span class="symbol-meaning">The epithet rhododáktylos: her first rays spreading across the horizon like fingers of red light, the most repeated formula in Homer.</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Lampós and Phaethōn</span>
+        <span class="symbol-meaning">Her two horses, 'Shining' and 'Blazing', harnessed as she leaves Tithonos' bed (Odyssey 23.244–246).</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The eastern Ocean</span>
+        <span class="symbol-meaning">The stream from which she climbs each morning — Homer calls her 'early-born' (ērigéneia) because she is born from it daily.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The morning star</span>
-        <span class="symbol-meaning">The last star visible as she rises</span>
+        <span class="symbol-meaning">The last star of night, still visible when she rises — the herald that walks before her chariot.</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Tithonos turning into a cicada</span>
-        <span class="symbol-meaning">The emblem of her failed request for his immortality without youth</span>
+        <span class="symbol-name">The cicada</span>
+        <span class="symbol-meaning">Tithonos' final form: endless life with endless age, 'chirruping' at the edge of the world (Homeric Hymn to Aphrodite 236–238).</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Ēōs</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Ēōs lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Ēōs is <strong>beautiful and inconsolable</strong>. Her myths turn on love for mortals and the tragedy of asking the gods for the wrong gift.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Homeric Hymn to <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodite</a></span>
-          <h3 class="myth-title">Tithonos and the Cicada</h3>
-          <p class="myth-text">Ēōs loved the Trojan prince Tithonos and asked <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> to grant him immortality. She forgot to ask for eternal youth. Tithonos aged endlessly, shrinking until he became a cicada, whose chirping is the sound of immortal old age. The myth is a meditation on the limits of divine gifts.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+                </div>
+            </div>
+            <div class="reveal-up">
+                <h3 class="symbols-title">Words Descended from This Name</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/everyday/#aurora" class="source-badge" title="the dawn; the polar lights">aurora</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Odyssey</span>
-          <h3 class="myth-title">The Abduction of Kephalos</h3>
-          <p class="myth-text">Ēōs abducted the handsome hunter Kephalos and bore him a son, <a href="/phaethon/" class="crosslink" data-crosslink="phaethon">Phaethon</a>. In some versions she later restores him to his wife Prokris, but the damage is done: suspicion and a tragic hunting accident destroy the marriage.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Iliad</span>
-          <h3 class="myth-title">Dawn over Troy</h3>
-          <p class="myth-text">Homer opens many books with the formula 'Dawn appeared, rosy-fingered.' Ēōs is the daily return of possibility: every battle, every journey, every reconciliation begins with her light. Her presence is so regular it becomes sacred.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -470,7 +370,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -534,29 +434,150 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Ēōs lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ἠώς</p>
+                <p class="card-body">The name in its original Greek form. <strong>Ēōs</strong> (Ἠώς) is attested in the source tradition — “Dawn (from ἠώς)”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">eos</p>
+                <p class="card-body">Reduced to plain <strong>eos</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Ēōs</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ēōs</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Ēōs.com → xn--s-oia8o.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Ēōs</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ēōs</em>.</p>
                 </div>
             </div>
-            <div class="reveal-up">
-                <h3 class="symbols-title">Words Descended from This Name</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/everyday/#aurora" class="source-badge" title="the dawn; the polar lights">aurora</a>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ēōs</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Ēōs</p>
+                    <p class="card-body">Restores <strong>Ἠώς</strong>. The live temple domain — <strong>ēōs.com</strong>.</p>
                 </div>
-            </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Ideal Form</h3>
+                    <p class="card-unicode">Ēṓs</p>
+                    <p class="card-body">Restores <strong>Ἠώς</strong>. Stacked macron+acute on the stressed long vowel, matching Greek Ἠώς; philologically ideal but often untypeable on phones.. Not in the PuniCodex collection.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">eos</p>
+                    <p class="card-body">Flattens <strong>Ἠώς</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
         </div>
     </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Ēōs was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ɛː.ɔ̌ːs/</span>
+            <span class="ipa-label">Homeric/Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Ē-</span>
+        <span class="phoneme-desc">Long eta [ɛː], the first syllable drawn out like the first pale light.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ōs</span>
+        <span class="phoneme-desc">Long omega with acute or circumflex [ɔ̌ːs], the pitch peak and the root meaning 'dawn'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'AY-ohss' — two long syllables, the first level, the second pitched and sustained like the rising sun.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ēōs is Tier 1 because the Greek Ἠώς contains two long syllables, the second carrying the acute/circumflex. The name is one of the most securely reconstructed Indo-European divine names.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Ēōs is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ἠώς</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Ēōs is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -566,7 +587,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Ēōs is persistence. She returns every morning whether we are ready or not. In that regularity there is mercy: no night is final, no darkness permanent. Yet she also carries the memory of Tithonos, the beloved who could not die and could not be young. Her dawn is therefore bittersweet.</p>
+                <p class="pantheon-body">Ēōs is persistence with a wound. She returns every morning whether the world deserves it or not — the one deity whose reliability Homer could count on twenty times a book. Yet her own stories are about what her light cannot fix: Tithonos, who will not die and cannot be young; Kephalos, returned to a marriage already poisoned; Orion, carried off and then destroyed. The dawn goddess, of all beings, knows that beginnings are not cures.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -575,7 +596,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/eos_mascot.webp" type="image/webp"><img src="../assets/eos_mascot.png" alt="Ēōs mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/eos_mascot.webp" type="image/webp"><img src="../assets/eos_mascot.png" alt="Ēōs mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -613,7 +634,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/eos_logomark.webp" type="image/webp"><img src="../assets/eos_logomark.webp" alt="Ēōs logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/eos_logomark.webp" type="image/webp"><img src="../assets/eos_logomark.webp" alt="Ēōs logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

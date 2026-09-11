@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Medb — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Medb</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Medb</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,147 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Medb</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Medb</strong> is the standard Celtic romanisation, documented in academic sources — “'The intoxicating one' (Old Irish medb, cognate with 'mead'), Queen of Connacht who drives the cattle raid of the Táin Bó Cúailnge.”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">medb</p>
-                    <p class="card-body">The plain <strong>medb</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Medb</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Medb</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Medb.com → medb.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Medb</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Medb</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Medb is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Medb</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Medb</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Medb</p>
-                    <p class="card-body">The full Unicode restoration. <strong>medb.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Medb was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Medb</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈmʲeðv/</span>
-            <span class="ipa-label">Old Irish Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">M-</span>
-        <span class="phoneme-desc">Slender (palatalized) m [mʲ] — the m of 'muse', not 'mud'; Old Irish keeps the slender quality before the front vowel.</span>
+      <p class="lead-text">Medb's dossier is the Táin Bó Cúailnge, the longest and greatest tale of the Ulster Cycle — and unlike every other great name in Irish myth, she is not a goddess remembered as a woman but a queen the tradition may once have worshipped as a goddess. The tale itself never says which.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Táin Bó Cúailnge, Recension I</span>
+          <h3 class="myth-title">The Pillow-Talk</h3>
+          <p class="myth-text">One night at Crúachan, when the royal bed had been made for Medb and Ailill, they fell into a 'bolster-conversation' — comrac chind cherchailli — and Ailill boasted that the woman married to a wealthy man is well off. Medb answered that she was well off before him: daughter of Eochu Feidlech, high king of Ireland, and the wealthier of the two. To settle it they had every treasure counted — cups, rings, cattle, sheep, horses — and the tally came out exactly even, save one item: the great bull Finnbennach, born in Medb's herd, had scorned to be counted a woman's chattel and walked over into Ailill's, where he stood as the White-Horned of Connacht.</p><p class="myth-text">That one beast broke the equality Medb would not live without. Her steward Mac Roth found the match: the Donn of Cúailnge, the Brown Bull of Cooley, kept by Dáire mac Fiachna in Ulster. Medb sent for a year's loan of him at princely terms — fifty heifers a year, a stretch of the plain of Aí, her own chariot, and the friendship of her thighs — and Dáire agreed. But the messengers drank and boasted that had the loan been refused they would have taken the bull by force, and Dáire swore that only by force would he ever be taken. The embassy came home empty, and Medb resolved on war.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-e-</span>
-        <span class="phoneme-desc">Short front [e], the stressed vowel of the name's single syllable — the 'e' of 'bed', held brief.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Táin Bó Cúailnge, Recension I</span>
+          <h3 class="myth-title">The Bride-Gift Speech</h3>
+          <p class="myth-text">The Táin lets Medb state her own terms, and the speech is the charter of her queenship. Daughter of the high king, wooed by the kings of Ireland, she refused them all, she says, 'for I asked a strange bride-gift such as no woman before me had asked of a man of the men of Ireland — a husband without meanness, without jealousy, without fear.' If he were mean, their wealth could not sit together, for she is generous in gifts; if jealous, she could not live beside him, 'for I was never without one man in the shadow of another'; if fearful, he would shame her in the front of every fight.</p><p class="myth-text">Such a man she found in Ailill mac Máta: no meanness, no jealousy, no fear. She brought him the bride-gift — the clothing of twelve men, a chariot worth thrice seven cumals, the width of his face in red gold, the weight of his left forearm in bronze — and it is into her province, not his, that he came. The Táin is blunt about the arithmetic: he is king of Connacht because he is married to Medb of Crúachan.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-d-</span>
-        <span class="phoneme-desc">Lenited d, the voiced dental fricative [ð] — the soft 'th' of English 'this'; Old Irish orthography writes lenition in this position without marking it.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Táin Bó Cúailnge</span>
+          <h3 class="myth-title">The Debility and the Boy at the Ford</h3>
+          <p class="myth-text">Medb timed the raid for the cess noínden, the pangs of the Ulstermen — the debility laid on the warriors of Ulster by [[macha|<a href="/macha/" class="crosslink" data-crosslink="macha">Macha</a>]], whom they had forced to race the king's horses when she was great with child. With Ulster's fighting-men abed, Medb marched the hosting of four provinces north — Connacht's own, the Leinster Galeóin, and the exiles of Ulster under Fergus mac Róich, who knew every road and ford of the way and, the tale says plainly, shared the queen's bed with Ailill's leave, for the road could not be found without him.</p><p class="myth-text">One boy stood against the whole hosting: [[cuchulainn|Cú Chulainn]], untouched by the debility, who held the fords in single combat and took the heads of the best of Connacht one by one. Medb spent everything on him — terms, ambushes, satirists, her daughter Findabair promised to a dozen champions at once — and the hardest price fell on Ferdia, Cú Chulainn's own foster-brother, whom she plied with drink and the promise of Findabair until he took the ford. Four days they fought; the gae bolga ended it; and the march went on over the body of the one man Medb could not buy twice.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-b</span>
-        <span class="phoneme-desc">Final lenited b, [v] — the ancestor of the -bh of Modern Irish Meadhbh and of the English form 'Maeve'.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Táin Bó Cúailnge</span>
+          <h3 class="myth-title">The Battle of the Bulls</h3>
+          <p class="myth-text">The hosts met at Gáirech and Irgáirech when the pangs lifted and Ulster rose; Medb's army broke, but the prize was already driven south — she had the Donn of Cúailnge, and she covered the retreat herself, in the tale's most unsparing passage, when her gush of blood came on her and she asked Cú Chulainn's protection for her army's rear. He granted it: 'no coward's weapon is the weapon of a woman.' Fergus mac Róich, looking back over the ruin of the hosting, gave the raid its verdict: 'This is what usually happens to a herd of horses led by a mare — their substance is taken and carried off and destroyed as they follow a woman who has misled them.'</p><p class="myth-text">The bulls settled the account themselves. Finnbennach saw the Donn and bellowed; they fought through the night across Ireland, and in the morning the men of Connacht found the Brown Bull standing over the White-Horned trampled to pieces. The Donn carried Finnbennach's carcass on his horns through Connacht — scattering the loin at Áth Luain, the liver at Trim — then turned north for Cúailnge and died there of his wounds and his victory. Medb had her bull, and her equality, and the Táin's dry arithmetic: the two most valuable beasts in Ireland, both dead, and nothing left to count.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Aided Meidbe</span>
+          <h3 class="myth-title">The Cheese of Inis Cloithrinn</h3>
+          <p class="myth-text">Medb outlived the raid, outlived Ailill — slain at Conall Cernach's hand — and kept her sovereignty into age, spending her last years at Inis Cloithrinn, her island on Lough Ree, where she bathed in the pool every morning at sunrise. She had killed her sister Clothru, and Clothru's son Furbaide had been cut from his mother's womb — whence his name, Ferbend, 'of the cutting' — and he grew up with the debt of it.</p><p class="myth-text">Furbaide found the queen's bathing place and measured it the patient way: morning after morning he stood on the shore opposite and practiced his cast against the distance, until the stone flew true by habit. Then one sunrise, as Medb came to her bath, his sling let fly — a ball of hard cheese, the tale insists, the humblest weapon in Ireland — and the queen of Connacht, who had moved four provinces against Ulster and asked no man's leave for anything in her life, died by her nephew's hand at the water's edge. Her grave, the local tradition says, is the great cairn on Knocknarea in Sligo, where she stands buried upright, facing Ulster.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'MYETHV' — one short syllable: slender m, brief e, the d melted into the soft 'th' of 'this', finishing on 'v'. The modern Irish Meadhbh, anglicized Maeve, has collapsed the middle consonant and sounds simply 'mayv'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Old Irish</strong> Medb (genitive Medba), 'the intoxicating one'; the same word serves as the common noun medb, 'mead'</li><li><strong>Modern Irish</strong> Meadhbh, the unbroken living form — Anglicized as Maeve</li><li><strong>Celtic kin</strong> Welsh meddw, 'drunk, intoxicated' — the same adjective, worn smooth</li><li><strong>Indo-European root</strong> PIE *médhu, 'sweet drink' — English mead, Greek méthu ('wine'), and Sanskrit mádu, all one word</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Medb is Tier 2 by the mechanical rule: normalized Old Irish writes the name in plain Latin letters — no diacritic and no distinctive letter for ASCII to lose. The temple form differs from the lowercase entry only by the capital; the queen's standing in the tradition is beside the point. The etymology, by contrast, is one of the most secure in the Celtic corpus: Old Irish medb, 'intoxicating, she who intoxicates', cognate with the noun medb, 'mead', continuing Proto-Indo-European *médhu, 'sweet drink'. The name is the sovereignty drink made personal.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -378,7 +293,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Queen Who Chooses</h2>
             <p class="section-subtitle">The Pillow-Talk, the Bride-Gift Speech, and the Cattle Raid of Cooley</p>
         </div>
@@ -429,65 +344,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Medb</p>
-        </div>
-        
-      <p class="lead-text">Medb's dossier is the Táin Bó Cúailnge, the longest and greatest tale of the Ulster Cycle — and unlike every other great name in Irish myth, she is not a goddess remembered as a woman but a queen the tradition may once have worshipped as a goddess. The tale itself never says which.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Táin Bó Cúailnge, Recension I</span>
-          <h3 class="myth-title">The Pillow-Talk</h3>
-          <p class="myth-text">One night at Crúachan, when the royal bed had been made for Medb and Ailill, they fell into a 'bolster-conversation' — comrac chind cherchailli — and Ailill boasted that the woman married to a wealthy man is well off. Medb answered that she was well off before him: daughter of Eochu Feidlech, high king of Ireland, and the wealthier of the two. To settle it they had every treasure counted — cups, rings, cattle, sheep, horses — and the tally came out exactly even, save one item: the great bull Finnbennach, born in Medb's herd, had scorned to be counted a woman's chattel and walked over into Ailill's, where he stood as the White-Horned of Connacht.</p><p class="myth-text">That one beast broke the equality Medb would not live without. Her steward Mac Roth found the match: the Donn of Cúailnge, the Brown Bull of Cooley, kept by Dáire mac Fiachna in Ulster. Medb sent for a year's loan of him at princely terms — fifty heifers a year, a stretch of the plain of Aí, her own chariot, and the friendship of her thighs — and Dáire agreed. But the messengers drank and boasted that had the loan been refused they would have taken the bull by force, and Dáire swore that only by force would he ever be taken. The embassy came home empty, and Medb resolved on war.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Táin Bó Cúailnge, Recension I</span>
-          <h3 class="myth-title">The Bride-Gift Speech</h3>
-          <p class="myth-text">The Táin lets Medb state her own terms, and the speech is the charter of her queenship. Daughter of the high king, wooed by the kings of Ireland, she refused them all, she says, 'for I asked a strange bride-gift such as no woman before me had asked of a man of the men of Ireland — a husband without meanness, without jealousy, without fear.' If he were mean, their wealth could not sit together, for she is generous in gifts; if jealous, she could not live beside him, 'for I was never without one man in the shadow of another'; if fearful, he would shame her in the front of every fight.</p><p class="myth-text">Such a man she found in Ailill mac Máta: no meanness, no jealousy, no fear. She brought him the bride-gift — the clothing of twelve men, a chariot worth thrice seven cumals, the width of his face in red gold, the weight of his left forearm in bronze — and it is into her province, not his, that he came. The Táin is blunt about the arithmetic: he is king of Connacht because he is married to Medb of Crúachan.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Táin Bó Cúailnge</span>
-          <h3 class="myth-title">The Debility and the Boy at the Ford</h3>
-          <p class="myth-text">Medb timed the raid for the cess noínden, the pangs of the Ulstermen — the debility laid on the warriors of Ulster by [[macha|<a href="/macha/" class="crosslink" data-crosslink="macha">Macha</a>]], whom they had forced to race the king's horses when she was great with child. With Ulster's fighting-men abed, Medb marched the hosting of four provinces north — Connacht's own, the Leinster Galeóin, and the exiles of Ulster under Fergus mac Róich, who knew every road and ford of the way and, the tale says plainly, shared the queen's bed with Ailill's leave, for the road could not be found without him.</p><p class="myth-text">One boy stood against the whole hosting: [[cuchulainn|Cú Chulainn]], untouched by the debility, who held the fords in single combat and took the heads of the best of Connacht one by one. Medb spent everything on him — terms, ambushes, satirists, her daughter Findabair promised to a dozen champions at once — and the hardest price fell on Ferdia, Cú Chulainn's own foster-brother, whom she plied with drink and the promise of Findabair until he took the ford. Four days they fought; the gae bolga ended it; and the march went on over the body of the one man Medb could not buy twice.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Táin Bó Cúailnge</span>
-          <h3 class="myth-title">The Battle of the Bulls</h3>
-          <p class="myth-text">The hosts met at Gáirech and Irgáirech when the pangs lifted and Ulster rose; Medb's army broke, but the prize was already driven south — she had the Donn of Cúailnge, and she covered the retreat herself, in the tale's most unsparing passage, when her gush of blood came on her and she asked Cú Chulainn's protection for her army's rear. He granted it: 'no coward's weapon is the weapon of a woman.' Fergus mac Róich, looking back over the ruin of the hosting, gave the raid its verdict: 'This is what usually happens to a herd of horses led by a mare — their substance is taken and carried off and destroyed as they follow a woman who has misled them.'</p><p class="myth-text">The bulls settled the account themselves. Finnbennach saw the Donn and bellowed; they fought through the night across Ireland, and in the morning the men of Connacht found the Brown Bull standing over the White-Horned trampled to pieces. The Donn carried Finnbennach's carcass on his horns through Connacht — scattering the loin at Áth Luain, the liver at Trim — then turned north for Cúailnge and died there of his wounds and his victory. Medb had her bull, and her equality, and the Táin's dry arithmetic: the two most valuable beasts in Ireland, both dead, and nothing left to count.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Aided Meidbe</span>
-          <h3 class="myth-title">The Cheese of Inis Cloithrinn</h3>
-          <p class="myth-text">Medb outlived the raid, outlived Ailill — slain at Conall Cernach's hand — and kept her sovereignty into age, spending her last years at Inis Cloithrinn, her island on Lough Ree, where she bathed in the pool every morning at sunrise. She had killed her sister Clothru, and Clothru's son Furbaide had been cut from his mother's womb — whence his name, Ferbend, 'of the cutting' — and he grew up with the debt of it.</p><p class="myth-text">Furbaide found the queen's bathing place and measured it the patient way: morning after morning he stood on the shore opposite and practiced his cast against the distance, until the stone flew true by habit. Then one sunrise, as Medb came to her bath, his sling let fly — a ball of hard cheese, the tale insists, the humblest weapon in Ireland — and the queen of Connacht, who had moved four provinces against Ulster and asked no man's leave for anything in her life, died by her nephew's hand at the water's edge. Her grave, the local tradition says, is the great cairn on Knocknarea in Sligo, where she stands buried upright, facing Ulster.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -551,8 +415,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Medb</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Medb</strong> is the standard Celtic romanisation, documented in academic sources — “'The intoxicating one' (Old Irish medb, cognate with 'mead'), Queen of Connacht who drives the cattle raid of the Táin Bó Cúailnge.”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">medb</p>
+                <p class="card-body">The plain <strong>medb</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Medb</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Medb</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Medb.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Medb</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Medb</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Medb</p>
+                    <p class="card-body">The full Unicode restoration. <strong>medb.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Medb was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈmʲeðv/</span>
+            <span class="ipa-label">Old Irish Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">M-</span>
+        <span class="phoneme-desc">Slender (palatalized) m [mʲ] — the m of 'muse', not 'mud'; Old Irish keeps the slender quality before the front vowel.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-e-</span>
+        <span class="phoneme-desc">Short front [e], the stressed vowel of the name's single syllable — the 'e' of 'bed', held brief.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-d-</span>
+        <span class="phoneme-desc">Lenited d, the voiced dental fricative [ð] — the soft 'th' of English 'this'; Old Irish orthography writes lenition in this position without marking it.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-b</span>
+        <span class="phoneme-desc">Final lenited b, [v] — the ancestor of the -bh of Modern Irish Meadhbh and of the English form 'Maeve'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'MYETHV' — one short syllable: slender m, brief e, the d melted into the soft 'th' of 'this', finishing on 'v'. The modern Irish Meadhbh, anglicized Maeve, has collapsed the middle consonant and sounds simply 'mayv'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Medb is Tier 2 by the mechanical rule: normalized Old Irish writes the name in plain Latin letters — no diacritic and no distinctive letter for ASCII to lose. The temple form differs from the lowercase entry only by the capital; the queen's standing in the tradition is beside the point. The etymology, by contrast, is one of the most secure in the Celtic corpus: Old Irish medb, 'intoxicating, she who intoxicates', cognate with the noun medb, 'mead', continuing Proto-Indo-European *médhu, 'sweet drink'. The name is the sovereignty drink made personal.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Medb is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Medb</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -570,7 +575,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/medb_mascot.webp" type="image/webp"><img src="../assets/medb_mascot.png" alt="Medb mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/medb_mascot.webp" type="image/webp"><img src="../assets/medb_mascot.png" alt="Medb mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -608,7 +613,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/medb_logomark.webp" type="image/webp"><img src="../assets/medb_logomark.webp" alt="Medb logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/medb_logomark.webp" type="image/webp"><img src="../assets/medb_logomark.webp" alt="Medb logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

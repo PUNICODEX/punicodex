@@ -110,6 +110,71 @@ function run() {
     assert.ok(!out.includes('<body'));
   });
 
+  // ─── English-word false positives ───
+  test('plain English words never link, even with allowAmbiguousAscii', () => {
+    const out = autoLink('<p>Long vowels open the day. A set of min now ran past.</p>', {
+      selfId: null,
+      allowAmbiguousAscii: true,
+    });
+    for (const w of ['long', 'day', 'set', 'min', 'ran']) {
+      assert.ok(!out.includes(`data-crosslink="${w}"`), `"${w}" must never link`);
+    }
+  });
+
+  test('pronunciation/phoneme glosses are skipped entirely', () => {
+    const out = autoLink(
+      '<div class="pronunciation-main"><span class="phoneme-desc">Long eta with acute [ɛː]</span></div><p>Nike wins.</p>',
+      { selfId: null, allowAmbiguousAscii: true }
+    );
+    assert.ok(!out.includes('phoneme-desc"><a '), 'glosses must stay unlinked');
+    assert.ok(out.includes('data-crosslink="nike"'), 'prose still links');
+  });
+
+  // ─── Citation linking ───
+  test('citations link to /texts/ pages and deep anchors', () => {
+    const out = autoLink('<p>See Hávamál 138, Völuspá, and Gylfaginning 15 for the tale.</p>', {
+      selfId: null,
+      linkCitations: true,
+    });
+    assert.ok(out.includes('href="/texts/poetic-edda/#hovamol"'), 'Hávamál deep link');
+    assert.ok(out.includes('href="/texts/poetic-edda/#voluspo"'), 'Völuspá deep link');
+    assert.ok(
+      out.includes('href="/texts/prose-edda/#gylfaginning-15"'),
+      'Gylfaginning chapter anchor'
+    );
+    assert.ok(out.includes('data-citation="hovamol"'));
+  });
+
+  test('citation linking is opt-in and first-mention only', () => {
+    const plain = autoLink('<p>The Hávamál speaks.</p>', { selfId: null });
+    assert.ok(!plain.includes('/texts/'), 'no citations without the flag');
+    const out = autoLink('<p>Hávamál here. Hávamál again.</p>', {
+      selfId: null,
+      linkCitations: true,
+    });
+    assert.strictEqual((out.match(/data-citation="hovamol"/g) || []).length, 1);
+  });
+
+  test('Ṛgveda mandala citations deep-link; non-library works stay plain', () => {
+    const out = autoLink(
+      '<p>Ṛgveda 7.86 confesses; the Iliad and Odyssey are not in the library.</p>',
+      { selfId: null, linkCitations: true }
+    );
+    assert.ok(out.includes('href="/texts/rig-veda/#mandala-07"'), 'mandala anchor');
+    assert.ok(!out.includes('href="/texts/iliad'), 'Iliad must not dead-link');
+    assert.ok(!out.includes('href="/texts/odyssey'), 'Odyssey must not dead-link');
+  });
+
+  test('Gilgamesh links to his temple; only the Epic phrase links to /texts/', () => {
+    const out = autoLink('<p>Gilgamesh built Uruk. Read the Epic of Gilgamesh.</p>', {
+      selfId: null,
+      allowAmbiguousAscii: true,
+      linkCitations: true,
+    });
+    assert.ok(out.includes('data-crosslink="gilgamesh"'), 'deity link wins');
+    assert.ok(out.includes('href="/texts/gilgamesh/"'), 'epic phrase links to the text');
+  });
+
   // ─── Baked-page invariants ───
   const siteDirs = fs
     .readdirSync(path.join(ROOT, 'sites'), { withFileTypes: true })

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Xipe, Spring, Agriculture, Flayed. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/xipe/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Xipe?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Xipe is /ˈʃi.pe/ — approximately 'SHE-peh' — both vowels are short, the stress falls on the first syllable, and the x is never the English 'ks' or 'z' sound."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Xipe mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Xipe means The flayed one in the nahuatl tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Xipe?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Xipe is associated with Flayed human skin (His defining attribute — a second skin knotted at the wrists and ankles, the visible claim that the old covering must die for new life to emerge.), Maize husk (The theological key to his cult: the seed cannot germinate until it sheds its sheath, as the god shed his skin to feed humanity.), Temalacatl (The round gladiator stone on which captive warriors fought bound during Tlacaxipehualiztli before being sacrificed in his honor.), Pointed cap (copilli) (The conical headgear of his image, marking lordship and linking him to the solar-warrior complex of the western sky.), Chicahuaztli (The rattle staff he carries in codex imagery, an instrument of fertility whose sound accompanies the ancestral dances.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Xipe in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Xipe is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Xipe?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Lord Who Fed the World” — Xipe's mythology survives only in fragments: one late creation story, the great festival book of the Florentine Codex, and the uneasy testimony of Spanish friars. Pieced together, they reveal a god whose apparent cruelty is an agricultural theology — the flayed skin is the seed coat, and the death of the husk is the birth of the maize. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/xipe_logolockup.webp" type="image/webp"><img src="../../assets/xipe_logolockup.png" alt="Xipe" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Xipe</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Xipe</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/xipe_mascot.webp" type="image/webp"><img src="../../assets/xipe_mascot.png" alt="Xipe — Spring, Agriculture, Flayed" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/xipe_mascot.webp" type="image/webp"><img src="../../assets/xipe_mascot.png" alt="Xipe — Spring, Agriculture, Flayed" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -175,7 +226,7 @@
             <p class="section-subtitle">Essential information about Xipe, Spring, Agriculture, Flayed</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Xipe</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Xipe</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/xipe/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Nahuatl</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Spring, Agriculture, Flayed</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">The flayed one</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Xipe</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Name, Domain</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Scholarly Transliteration</span><span class="fact-value script">Xipe</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Xipe</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ˈʃi.pe/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Nahuatl</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Spring, Agriculture, Flayed</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">The flayed one</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Xipe</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Flayed human skin, Maize husk, Temalacatl, Pointed cap (copilli), Chicahuaztli</span></div></div>
         </div>
     </div>
 </section>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Xipe</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,11 +260,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The ASCII form "xipe" is a DNS compromise; the restoration "Xipe" preserves the name's scholarly dignity.</p>
+                <p class="etymology-note">The name <strong>Xipe</strong> reaches the modern world through scholarly transliteration of the nahuatl tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Modern Descendants</h4><ul><li><strong>xipe</strong> — Modern English / international usage</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Nahuatl</strong> — xipehua, 'to flay, to peel (a fruit or a man)' — the verb at the root of the god's name (Karttunen, An Analytical Dictionary of Nahuatl, s.v.)</li><li><strong>Nahuatl</strong> — Tōtec, 'our lord' — the full cult name is Xipe Tōtec, 'Our Lord the Flayed One'</li><li><strong>Solar title</strong> — Tlatlauhqui, 'the red one' — Xipe as 'Red <a href="/tezcatlipoca/" class="crosslink" data-crosslink="tezcatlipoca">Tezcatlipoca</a>', lord of the west and patron of goldsmiths (Sahagún, Florentine Codex; Miller &amp; Taube, s.v. Xipe Totec)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">X</td><td><code>U+0058</code></td><td>Latin Capital Letter X</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">p</td><td><code>U+0070</code></td><td>Latin Small Letter P</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Xipe</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Xipe</strong> is spring, agriculture, flayed. The name means "The flayed one" and belongs to the nahuatl tradition.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Xipe remains a touchstone for understanding nahuatl religion, art, and identity.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Xipe</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Xipe in Later Traditions</h3><p class="cultural-card-body">The Dominican Diego de Durán, watching Tlacaxipehualiztli in the decades after the Conquest, was struck that the feast fell near <strong>Holy Week</strong> — the god who wore a flayed skin commemorated at the season when Christians mourned a god who wore a body and lost it. The friars suppressed the rite, yet its imagery proved durable: in the Puebla and Guerrero regions, masked and costumed dance confraternities — ancestors of today's <em>concheros</em> and Danza Azteca — carried the flayed lord's memory in transformed dress. Twentieth-century revival movements such as the Mexicayotl circle reclaimed Xipe Tōtec as a figure of indigenous identity and renewal rather than barbarism. Comparative religion places him among the world's 'dying vegetation' gods, but the Mexica theology was stranger and more precise: not a god who dies like a plant, but a god who <strong>peels like a seed</strong>.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Xipe Tōtec stands at the center of the modern debate over Aztec sacrifice — read by some as the theological heart of a sophisticated agricultural civilization, by others as evidence of state terror (Clendinnen, Townsend). His images anchor museum collections: the monolithic Xipe of the Templo Mayor Museum, wearing his knotted second skin, is among the most reproduced Aztec sculptures. Nahuatl lexicography (Karttunen, Lockhart) keeps his name etymologically alive, and Danza Azteca troupes across Mexico and the United States still perform in the spring season his festival once owned. For better and worse, the Flayed One is now the world's most recognizable emblem of Mexica religion.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The earliest material witness to the flayed-skin complex comes from the shaft tombs of West Mexico (Colima, Jalisco, Nayarit, c. 200 BCE–500 CE), whose ceramic figures wear the flayed skins of other men — proof the imagery predates the Aztec state by centuries. At Tenochtitlan, the INAH excavations of the Templo Mayor precinct (from 1978) located Xipe's shrine, Yopico, and its caches; the Templo Mayor Museum preserves a monolithic Xipe Tōtec whose back shows the wearer's own skin beneath the knotted cords of the second skin. The cult's heartland lay among the Yope of the Guerrero coast and in the Puebla region, and the screenfold Codex Borgia (c. 1500) gives the god's fullest painted dossier.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Xipe means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Xipe Tōtec asks the question every farmer knows and every city forgets: what must die for something else to live? His answer is a skin. The maize seed does not negotiate with its husk; it splits it. The god does not sympathize with the covering; he wears it. In a culture that now separates death from dinner by an almost perfectly opaque supply chain, the Flayed One insists on the connection: your bread was once a seed's corpse, your gold was once a stone's wound.</p><p>To meditate on Xipe is to meditate on the cost of renewal. He is not a god of resurrection — nothing in the rite promises the flayed man his life back. He is a god of <strong>transfer</strong>: life moves, and something is always left behind. The friars saw only cruelty; the Mexica saw the farming year. Both were reading the same skin.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Xipe, Spring, Agriculture, Flayed, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Xipe?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Xipe</strong> is /xipe/ — approximately Say "xipe" with the stress and length implied by the scholarly restoration "Xipe"..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Xipe mean?</summary><div class="faq-answer"><p><strong>Xipe</strong> means <strong>The flayed one</strong> in the nahuatl tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Xipe?</summary><div class="faq-answer"><p>Xipe is associated with <strong>Name</strong> (The restored form Xipe, carrying scholarly and cultural weight.), <strong>Domain</strong> (Spring, Agriculture, Flayed).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Xipe in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>xipe</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Xipe?</summary><div class="faq-answer"><p>Xipe appears in nahuatl tradition as spring, agriculture, flayed. The name's meaning, "The flayed one", shapes the narratives told about this figure.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Xipe?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Xipe</strong> is /ˈʃi.pe/ — approximately 'SHE-peh' — both vowels are short, the stress falls on the first syllable, and the x is never the English 'ks' or 'z' sound.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Xipe mean?</summary><div class="faq-answer"><p><strong>Xipe</strong> means <strong>The flayed one</strong> in the nahuatl tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Xipe?</summary><div class="faq-answer"><p>Xipe is associated with <strong>Flayed human skin</strong> (His defining attribute — a second skin knotted at the wrists and ankles, the visible claim that the old covering must die for new life to emerge.), <strong>Maize husk</strong> (The theological key to his cult: the seed cannot germinate until it sheds its sheath, as the god shed his skin to feed humanity.), <strong>Temalacatl</strong> (The round gladiator stone on which captive warriors fought bound during Tlacaxipehualiztli before being sacrificed in his honor.), <strong>Pointed cap (copilli)</strong> (The conical headgear of his image, marking lordship and linking him to the solar-warrior complex of the western sky.), <strong>Chicahuaztli</strong> (The rattle staff he carries in codex imagery, an instrument of fertility whose sound accompanies the ancestral dances.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Xipe in Unicode?</summary><div class="faq-answer"><p><strong>Xipe</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Xipe?</summary><div class="faq-answer"><p>“The Lord Who Fed the World” — Xipe's mythology survives only in fragments: one late creation story, the great festival book of the Florentine Codex, and the uneasy testimony of Spanish friars. Pieced together, they reveal a god whose apparent cruelty is an agricultural theology — the flayed skin is the seed coat, and the death of the husk is the birth of the maize. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -303,7 +366,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of nahuatl religion and the place of Xipe within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Sahagún, Florentine Codex, Book 2 (Tlacaxipehualiztli and the tototectin)</cite></li><li><cite>Diego de Durán, Book of the Gods and Rites (the festival and the Holy Week parallel)</cite></li><li><cite>Histoyre du Mechique, ed. Garibay (the flaying of the lord)</cite></li><li><cite>Miller &amp; Taube, The Gods and Symbols of Ancient Mexico and the <a href="/maya/" class="crosslink" data-crosslink="maya">Maya</a> (1993), s.v. Xipe Totec</cite></li><li><cite>Karttunen, An Analytical Dictionary of Nahuatl, s.v. xipehua</cite></li><li><cite>León-Portilla, Aztec Thought and Culture (1963)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/xipe_logomark.webp" type="image/webp"><img src="../../assets/xipe_logomark.webp" alt="Xipe logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/xipe_logomark.webp" type="image/webp"><img src="../../assets/xipe_logomark.webp" alt="Xipe logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

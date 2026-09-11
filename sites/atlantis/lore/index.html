@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Atlantís — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ἀτλαντίς</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Atlantís.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,148 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ἀτλαντίς</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Atlantís</strong> (Ἀτλαντίς) is attested in the source tradition — “Daughter of Atlas; the legendary lost island civilization”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">atlantis</p>
-                    <p class="card-body">Reduced to plain <strong>atlantis</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Atlantís</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Atlantís</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Atlantís.com → xn--atlants-dza.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Atlantís</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Atlantís</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Atlantís is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ἀτλαντίς</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Atlantís is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Atlantís</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Atlantís</p>
-                    <p class="card-body">Restores <strong>Ἀτλαντίς</strong>. The live temple domain — <strong>atlantís.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">atlantis</p>
-                    <p class="card-body">Flattens <strong>Ἀτλαντίς</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Atlantís was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Atlantís</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/at.lan.tís/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">At-</span>
-        <span class="phoneme-desc">Short alpha plus tau, the unstressed opening of the name.</span>
+      <p class="lead-text">Atlantís is <strong>Plato's story</strong>, whether invented or adapted from older traditions. It serves as a philosophical allegory about the corruption of power and the fragility of civilization.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Plato, Timaeus 24e–25d</span>
+          <h3 class="myth-title">The Egyptian Priest's Tale</h3>
+          <p class="myth-text">The story reaches us nested three layers deep. Solon, the Athenian lawmaker, visits Saïs in Egypt, and the priests there show him how young Greece's memory is: floods repeatedly wipe out the Greeks' records, while the Nile preserves Egypt's. One priest then produces a marvel: nine thousand years before Solon — a deliberate impossibility, before Athens itself existed — the city of Athens led the resistance against a great Atlantic power that had enslaved the Mediterranean as far as Egypt and Tyrrhenia, and drove it back in a single victorious stroke (Plato, <em>Timaeus</em> 25b–c). Atlantis, the priest says, lay beyond the Pillars of <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a>, 'larger than Libya and <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a> together'. Kritias heard the tale from his grandfather, who heard it from Solon himself; Socrates, hearing it retold, is asked to imagine Athens' ancient constitution in action against the island's might.</p><p class="myth-text">The frame is the point: Plato hides an invented world inside a claimed memory, and dares his readers to ask which of their own certainties are merely the oldest surviving copy.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-lan-</span>
-        <span class="phoneme-desc">Lambda-alpha-nu, the middle syllable carrying the root 'Atlas'.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Plato, Critias 108e–113d</span>
+          <h3 class="myth-title">The Island and Its Kings</h3>
+          <p class="myth-text">The <em>Critias</em> supplies what the <em>Timaeus</em> only sketches. <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidon</a> receives the island, falls in love with the mortal Kleitō, and carves the hill around her dwelling into concentric rings of land and sea — two of earth and three of water — spanned by bridges and girdled with a wall of orichalcum. Their five pairs of twin sons rule the ten kingdoms, the eldest named Atlas, who gives the island and the ocean their names. Behind the capital stretches a plain divided by a grid of canals; on the hilltop stands the temple of Poseidon and Kleitō, walled in orichalcum, roofed in ivory, and filled with gold — and inside, a gold statue of the god in a chariot drawn by six winged horses stands so tall 'his head touched the roof' (<em>Critias</em> 116e–117a).</p><p class="myth-text">For generations the kings keep the divine portion of their law inscribed on the temple's orichalcum pillars; then the admixture of mortality thickens, and the very wealth Plato has just finished cataloguing begins to rot the virtue that built it.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-tis</span>
-        <span class="phoneme-desc">Tau-iota-sigma with an acute on the iota [tís], the feminine patronymic ending meaning 'daughter of Atlas'.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Plato, Critias 120d–121c</span>
+          <h3 class="myth-title">The Cataclysm</h3>
+          <p class="myth-text">The decline takes one generation past the tipping point: the kings of Atlantis, 'filled with lawless ambition and power', resolve to enslave the whole Mediterranean, the Greeks included. <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>, 'god of gods, who rules by law', convenes the divine council, and in a speech unique in Plato — the supreme god speaking like a lawgiver — he rehearses the case against the island: 'when the divine part in them became enfeebled and the human got the upper hand, they could no longer bear their good fortune' (<em>Critias</em> 121a–b). Then the sentence falls, as the <em>Timaeus</em> (25c–d) records it: 'there were earthquakes and floods of extraordinary violence, and in a single dreadful day and night all your fighting men were swallowed up by the earth, and the island of Atlantis was similarly swallowed up by the sea and vanished.'</p><p class="myth-text">Only a shoal of mud marked the sea where an empire had been. The myth's terror is its brevity: a civilization ends inside one sentence, in one day, leaving shoals through which no ship could pass.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Critias 121c</span>
+          <h3 class="myth-title">The Unfinished Sentence</h3>
+          <p class="myth-text">The <em>Critias</em> stops mid-sentence. Zeus has risen to pronounce judgment, 'wishing to punish them and so bring them to their senses' — and the manuscript simply ends, whether Plato abandoned the dialogue or it was lost. Antiquity felt the truncation: Strabo (2.3.6) records the skeptical tradition that Plato invented the tale as a lesson and reports Aristotle's quip — the man who dreamed it up also sank it. Theopompos of Chios answered Plato with deliberate parody within a generation: his <em>Meropis</em>, preserved by Aelian (<em>Varia Historia</em> 3.18), describes a continent beyond the ocean whose people live twice as long as we do and where a great war nearly crossed the sea — Atlantis told as satire, barely after Plato's death.</p><p class="myth-text">The unfinished ending became the story's engine: every age since has tried to complete the sentence, and none has managed it — which may be exactly the lesson Plato intended.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'at-lahn-TEES' — the final syllable carries the acute, marking the stress.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Ἀτλαντίς (Atlantís), 'daughter of Atlas,' the legendary island</li><li><strong>Root</strong> Ἄτλας (Átlas), the Titan who held up the heavens</li><li><strong>Narrative</strong> Plato's invention or adaptation, told in Timaeus and Critias</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Atlantís is Tier 2 because the Greek Ἀτλαντίς preserves the acute stress on the final syllable but has no long vowel in the standard domain restoration. The name is a patronymic adjective, 'of Atlas,' turned into a place name.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -380,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Lost Island</h2>
             <p class="section-subtitle">Legendary Civilization, <a href="/hubris/" class="crosslink" data-crosslink="hubris">Hubris</a>, Cataclysm</p>
         </div>
@@ -390,7 +296,7 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 16 18 28 18 40C18 48 24 56 32 56C40 56 46 48 46 40C46 28 40 16 32 8ZM32 32C28 32 24 36 24 40C24 44 28 48 32 48C36 48 40 44 40 40C40 36 36 32 32 32Z"></path></svg></div>
         <h4 class="domain-name">Island Empire</h4>
-        <p class="domain-desc">A ringed island beyond the Pillars of <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a>, rich in metals, timber, and fertile soil.</p>
+        <p class="domain-desc">A ringed island beyond the Pillars of Herakles, rich in metals, timber, and fertile soil.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 16H48V48H16V16ZM24 24V40H40V24H24Z"></path></svg></div>
@@ -400,7 +306,7 @@
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C22 12 14 20 14 32C14 44 22 52 32 56C42 52 50 44 50 32C50 20 42 12 32 12ZM32 20V44M20 32H44"></path></svg></div>
         <h4 class="domain-name">Hubris and Fall</h4>
-        <p class="domain-desc">Its kings grew greedy and impious; <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> punished them with earthquakes and floods.</p>
+        <p class="domain-desc">Its kings grew greedy and impious; Zeus punished them with earthquakes and floods.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 48C16 36 24 32 32 32C40 32 48 36 56 48V56H8V48Z"></path></svg></div>
@@ -413,7 +319,7 @@
         <span class="symbol-meaning">The engineered geography of the Atlantean capital</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name"><a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidon</a>'s trident</span>
+        <span class="symbol-name">Poseidon's trident</span>
         <span class="symbol-meaning">The island's divine patron and the instrument of its destruction</span>
       </div>
       <div class="symbol-item">
@@ -427,49 +333,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Atlantís</p>
-        </div>
-        
-      <p class="lead-text">Atlantís is <strong>Plato's story</strong>, whether invented or adapted from older traditions. It serves as a philosophical allegory about the corruption of power and the fragility of civilization.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Plato, Timaeus</span>
-          <h3 class="myth-title">The Egyptian Priest's Tale</h3>
-          <p class="myth-text">Solon visits Egypt and hears from a priest that Athens once defeated a great Atlantic power nine thousand years earlier. The Greeks have forgotten because catastrophes repeatedly destroy their records, while Egypt's memory is preserved by the Nile's stability.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Plato, Critias</span>
-          <h3 class="myth-title">The Island and Its Kings</h3>
-          <p class="myth-text">Atlantis was allotted to Poseidon, who fell in love with a mortal woman, Kleito. Their descendants built a magnificent capital of concentric harbors, temples, and walls. For generations they were virtuous; then wealth and power corrupted them.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Plato, Critias</span>
-          <h3 class="myth-title">The Cataclysm</h3>
-          <p class="myth-text">Zeus assembled the gods to punish Atlantis. 'There were earthquakes and floods of extraordinary violence, and in a single dreadful day and night all your fighting men were swallowed up by the earth, and the island of Atlantis was similarly swallowed up by the sea and vanished.' Only mud shoals remained.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek-location pantheon</p>
         </div>
@@ -533,8 +404,150 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ἀτλαντίς</p>
+                <p class="card-body">The name in its original Greek form. <strong>Atlantís</strong> (Ἀτλαντίς) is attested in the source tradition — “Daughter of Atlas; the legendary lost island civilization”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">atlantis</p>
+                <p class="card-body">Reduced to plain <strong>atlantis</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Atlantís</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Atlantís</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Atlantís.com → xn--atlants-dza.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Atlantís</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Atlantís</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Atlantís</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Atlantís</p>
+                    <p class="card-body">Restores <strong>Ἀτλαντίς</strong>. The live temple domain — <strong>atlantís.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">atlantis</p>
+                    <p class="card-body">Flattens <strong>Ἀτλαντίς</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Atlantís was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/at.lan.tís/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">At-</span>
+        <span class="phoneme-desc">Short alpha plus tau, the unstressed opening of the name.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-lan-</span>
+        <span class="phoneme-desc">Lambda-alpha-nu, the middle syllable carrying the root 'Atlas'.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-tis</span>
+        <span class="phoneme-desc">Tau-iota-sigma with an acute on the iota [tís], the feminine patronymic ending meaning 'daughter of Atlas'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'at-lahn-TEES' — the final syllable carries the acute, marking the stress.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Atlantís is Tier 2 because the Greek Ἀτλαντίς preserves the acute stress on the final syllable but has no long vowel in the standard domain restoration. The name is a patronymic adjective, 'of Atlas,' turned into a place name.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Atlantís is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ἀτλαντίς</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Atlantís is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -552,7 +565,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/atlantis_mascot.webp" type="image/webp"><img src="../assets/atlantis_mascot.png" alt="Atlantís mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/atlantis_mascot.webp" type="image/webp"><img src="../assets/atlantis_mascot.png" alt="Atlantís mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -590,7 +603,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/atlantis_logomark.webp" type="image/webp"><img src="../assets/atlantis_logomark.webp" alt="Atlantís logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/atlantis_logomark.webp" type="image/webp"><img src="../assets/atlantis_logomark.webp" alt="Atlantís logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

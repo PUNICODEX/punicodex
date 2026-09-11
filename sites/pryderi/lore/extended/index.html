@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Pryderi, Son of Pwyll, King. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/pryderi/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Pryderi?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Pryderi is /prəˈdɛr.i/ — approximately 'pruh-DEH-ree' — the y is a soft 'uh', the stress falls on 'der' (the Welsh penult), and the final i is a short 'ee'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Pryderi mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pryderi means Care, anxiety in the celtic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Pryderi?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pryderi is associated with The silk brocade wrapping (Royal blood declaring itself at a stable door — the foundling child whose swaddling says what no witness can), The clawed hand (The Otherworld reaching through the window on May-eve — the unseen power that takes foals and princes alike), The golden bowl on its chains (Bait that looks like treasure — the trap at the heart of the enchanted fortress, and the cost of touching what is not yours), The gate-hammer about his neck (What he wore out of the enchantment — the humiliation of the Third Branch, borne home and buried in silence), The swine of Annwn (Otherworld wealth with a geis upon it — not to be sold or given until the herd had doubled — and the war a broken promise bought)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Pryderi in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pryderi is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Pryderi?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The May-Eve Vanishing” — Pryderi's mythology is unique in Welsh prose: he is the only character who appears in all Four Branches of the Mabinogi, and his life is the thread the whole cycle is strung on. The First Branch gives his birth, theft, and naming; the Second carries him through the Irish war as one of the seven survivors; the Third empties his kingdom and takes him captive; the Fourth kills him. Every word of it is medieval Welsh prose, preserved in two great manuscripts. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/pryderi_logolockup.webp" type="image/webp"><img src="../../assets/pryderi_logolockup.png" alt="Pryderi" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Pryderi</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Pryderi</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/pryderi_mascot.webp" type="image/webp"><img src="../../assets/pryderi_mascot.png" alt="Pryderi — Son of Pwyll, King" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/pryderi_mascot.webp" type="image/webp"><img src="../../assets/pryderi_mascot.png" alt="Pryderi — Son of Pwyll, King" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Pryderi</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,11 +260,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Pryderi is Tier 2 by the mechanical rule: the Middle Welsh form is already plain ASCII — there is no diacritic and no distinctive letter for the restoration to recover, and only the capital distinguishes the restored form from the input. The name's etymology is the tale's own: the First Branch names him from <a href="/rhiannon/" class="crosslink" data-crosslink="rhiannon">Rhiannon</a>'s word pryder, 'care, anxiety', spoken when the lost child was restored — an aetiological naming the medieval author builds into the story itself, and the lexicon's gloss 'Care, anxiety' follows the text.</p>
+                <p class="etymology-note">The name <strong>Pryderi</strong> reaches the modern world through scholarly transliteration of the celtic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Middle Welsh</strong> — Pryderi uab Pwyll, son of Pwyll Pen Annwn and Rhiannon, lord of Dyfed in the Four Branches of the Mabinogi.</li><li><strong>Foster-name</strong> — Gwri Wallt Euryn, 'Gwri of the Golden Hair' — the name Teyrnon Twrf Liant's household gave the foundling before his true name was known.</li><li><strong>Welsh common noun</strong> — pryder, 'care, anxiety, worry' — the living word the First Branch names him from: Rhiannon's own pryder, lifted at his return.</li><li><strong>Comparative reflex</strong> — Mabon ap Modron, the Welsh divine son stolen from his mother, and Gaulish Maponos — the figure-type Pryderi is read against; a parallel, not a cognate of the name.</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Middle Welsh</strong> — Pryderi uab Pwyll, son of Pwyll Pen Annwn and <a href="/rhiannon/" class="crosslink" data-crosslink="rhiannon">Rhiannon</a>, lord of Dyfed in the Four Branches of the Mabinogi.</li><li><strong>Foster-name</strong> — Gwri Wallt Euryn, 'Gwri of the Golden Hair' — the name Teyrnon Twrf Liant's household gave the foundling before his true name was known.</li><li><strong>Welsh common noun</strong> — pryder, 'care, anxiety, worry' — the living word the First Branch names him from: Rhiannon's own pryder, lifted at his return.</li><li><strong>Comparative reflex</strong> — Mabon ap Modron, the Welsh divine son stolen from his mother, and Gaulish Maponos — the figure-type Pryderi is read against; a parallel, not a cognate of the name.</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">P</td><td><code>U+0050</code></td><td>Latin Capital Letter P</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">y</td><td><code>U+0079</code></td><td>Latin Small Letter Y</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">d</td><td><code>U+0064</code></td><td>Latin Small Letter D</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Pryderi</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Pryderi is the hinge of the whole Mabinogi: the only figure who walks through all Four Branches — stolen on the night of his birth and found outside a stable door, named from his mother's lifted anxiety, emptied out of Dyfed by an enchanter's mist, and killed at last in single combat by <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a>'s craft. Son of Pwyll and Rhiannon, lord of Dyfed, he is the king the tales keep taking things from — and the name he carries is the Welsh word for care.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Pryderi in Later Traditions</h3><p class="cultural-card-body">Pryderi's great comparative frame is the Celtic divine son. The handbooks set him beside Mabon ap Modron — 'Son son of Mother' — the youth of Culhwch ac Olwen who was taken from his mother Modron when he was three nights old and found again after a search that outlasts every living memory, and behind Mabon the Gaulish Maponos, the 'Divine Son' whom Romano-Celtic dedications pair with Apollo. A child of an Otherworld mother, stolen at birth and restored, whose name carries his story: the figure-type is one, and Mac Cana and Koch both register the comparison — but the names are not cognate, and no scholar claims identity. The second frame is sovereignty-by-loss: like the stricken kings of Irish tradition, Pryderi holds a kingdom that enchantment can empty in a night, and his rescue comes not by his own strength but by <a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a>'s patience — the Third Branch's quiet thesis about where a king's real safety lies. Within the corpus his closest kin are his parents [[rhiannon|Rhiannon]] and Pwyll Pen Annwn, his stepfather and rescuer [[manawydan|Manawydan]], his benefactor [[arawn|<a href="/arawn/" class="crosslink" data-crosslink="arawn">Arawn</a>]] of [[annwn|Annwn]], and his slayer [[gwydion|Gwydion]] — the enchanter whose conjured wealth bought the pigs and, with them, the war.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried Pryderi out of the Welsh manuscripts and into English, and the Victorian Celtic revival made the vanished child of the First Branch one of its set-pieces. Twentieth-century scholarship gave him his modern standing: Ifor Williams's edition fixed the standard Welsh text, W. J. Gruffydd's Rhiannon (1953) built its whole argument about the First and Third Branches around the Pryderi complex, and Mac Cana's study of the Mabinogi made the boy who spans all four branches the structural key to the cycle. Evangeline Walton's Mabinogion tetralogy retold his theft and naming for modern readers, and Lloyd Alexander's Chronicles of Prydain — five novels built openly on the Mabinogi's world — carried the matter of Pryderi's branches to a vast young readership, though the boy himself never appears under his own name. In modern Druid and pagan practice he is honoured as the lost-and-found divine son and the lord who endured the emptied land, and the name survives in scholarship as the standing example of the Mabinogi's own method: a person named, deliberately and explicitly, out of a single spoken word of grief relieved.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Pryderi</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Pryderi in Later Traditions</h3><p class="cultural-card-body">Pryderi's great comparative frame is the Celtic divine son. The handbooks set him beside Mabon ap Modron — 'Son son of Mother' — the youth of Culhwch ac Olwen who was taken from his mother Modron when he was three nights old and found again after a search that outlasts every living memory, and behind Mabon the Gaulish Maponos, the 'Divine Son' whom Romano-Celtic dedications pair with Apollo. A child of an Otherworld mother, stolen at birth and restored, whose name carries his story: the figure-type is one, and Mac Cana and Koch both register the comparison — but the names are not cognate, and no scholar claims identity. The second frame is sovereignty-by-loss: like the stricken kings of Irish tradition, Pryderi holds a kingdom that enchantment can empty in a night, and his rescue comes not by his own strength but by <a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a>'s patience — the Third Branch's quiet thesis about where a king's real safety lies. Within the corpus his closest kin are his parents [[rhiannon|Rhiannon]] and Pwyll Pen Annwn, his stepfather and rescuer [[manawydan|Manawydan]], his benefactor [[arawn|<a href="/arawn/" class="crosslink" data-crosslink="arawn">Arawn</a>]] of [[annwn|Annwn]], and his slayer [[gwydion|<a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a>]] — the enchanter whose conjured wealth bought the pigs and, with them, the war.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Lady Charlotte Guest's translation of the Mabinogion (1838–49) carried Pryderi out of the Welsh manuscripts and into English, and the Victorian Celtic revival made the vanished child of the First Branch one of its set-pieces. Twentieth-century scholarship gave him his modern standing: Ifor Williams's edition fixed the standard Welsh text, W. J. Gruffydd's Rhiannon (1953) built its whole argument about the First and Third Branches around the Pryderi complex, and Mac Cana's study of the Mabinogi made the boy who spans all four branches the structural key to the cycle. Evangeline Walton's Mabinogion tetralogy retold his theft and naming for modern readers, and Lloyd Alexander's Chronicles of Prydain — five novels built openly on the Mabinogi's world — carried the matter of Pryderi's branches to a vast young readership, though the boy himself never appears under his own name. In modern Druid and pagan practice he is honoured as the lost-and-found divine son and the lord who endured the emptied land, and the name survives in scholarship as the standing example of the Mabinogi's own method: a person named, deliberately and explicitly, out of a single spoken word of grief relieved.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Pryderi is a textual figure: no temple, votive deposit, or inscription names him, and the early inscribed stones of Wales — Latin and ogham memorial stones of roughly the fifth to seventh centuries — record personal names in funerary formulae, not the heroes of story. His evidence is manuscript evidence. The Four Branches survive complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' date of composition is argued rather than documented — Ifor Williams placed them in the later eleventh century, and current scholarship generally holds a range around 1060–1120. The geography of his story is real and walkable: Arberth, the chief court of Dyfed, stands by modern Narberth in Pembrokeshire; Y Felenrhyd, where the fatal combat was fought, lies in the country toward the border of Gwynedd and Dyfed; and the Fourth Branch points to his grave at Maen Tywynog above it. The nearest epigraphic horizon is comparative, not his: the Gaulish Maponos of the Chamalières tablet and the northern British dedications to Apollo Maponus — the divine son whose figure-type the handbooks read him against.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Pryderi means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Pryderi is named out of relief. His mother has carried a false charge for years — sitting by the horse-block, offering her back to strangers — and when the lost boy is set before her she does not say vengeance, or justice, or even joy: she says her care is lifted, and the court builds the child's name out of that word. Anxiety, made into a name and then, astonishingly, into a king. The rest of his story keeps faith with the naming. His is the kingdom a mist can empty between one hour and the next; his is the hand that sticks to the golden bowl; his is the herd of otherworld pigs that a poet's illusion can buy; his is the grave above Y Felenrhyd. Nothing in the Four Branches is safe, and Pryderi is the figure through whom the Mabinogi says so — the lord who loses everything except the thread of the tale, and who walks through all four branches carrying it. Care, the Welsh word means; and also what care is for: the watch kept, the debt counted, the mother who waited at the gate.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Pryderi, Son of Pwyll, King, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Pryderi?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Pryderi</strong> is /prəˈdɛr.i/ — approximately 'pruh-DEH-ree' — the y is a soft 'uh', the stress falls on 'der' (the Welsh penult), and the final i is a short 'ee'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Pryderi mean?</summary><div class="faq-answer"><p><strong>Pryderi</strong> means <strong>Care, anxiety</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Pryderi?</summary><div class="faq-answer"><p>Pryderi is associated with <strong>The silk brocade wrapping</strong> (Royal blood declaring itself at a stable door — the foundling child whose swaddling says what no witness can), <strong>The clawed hand</strong> (The Otherworld reaching through the window on May-eve — the unseen power that takes foals and princes alike), <strong>The golden bowl on its chains</strong> (Bait that looks like treasure — the trap at the heart of the enchanted fortress, and the cost of touching what is not yours), <strong>The gate-hammer about his neck</strong> (What he wore out of the enchantment — the humiliation of the Third Branch, borne home and buried in silence), <strong>The swine of Annwn</strong> (Otherworld wealth with a geis upon it — not to be sold or given until the herd had doubled — and the war a broken promise bought).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Pryderi in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>pryderi</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Pryderi?</summary><div class="faq-answer"><p>Pryderi is born to Pwyll and Rhiannon after the nobles of Dyfed have pressed for an heir, and on the night of his birth the six women set to watch all fall asleep — and the child is gone. Terrified of the blame, the women kill the pups of a hound, smear the blood on Rhiannon's face, lay the bones beside her, and swear she has destroyed her own son; her penance at the horse-block begins, and it will last until the boy comes home. The child, meanwhile, has fallen into the strangest rescue in Welsh prose. Teyrnon Twrf Liant, a lord of Gwent Is Coed by the sea, loses a foal every May-eve; keeping watch over his mare, he sees a great clawed hand reach through the window to seize the newborn foal, and strikes it off with his sword. Outside the door he finds a baby boy wrapped in silk brocade. He and his wife rear the child as their own and call him Gwri Wallt Euryn — Gwri of the Golden Hair.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Pryderi?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Pryderi</strong> is /prəˈdɛr.i/ — approximately 'pruh-DEH-ree' — the y is a soft 'uh', the stress falls on 'der' (the Welsh penult), and the final i is a short 'ee'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Pryderi mean?</summary><div class="faq-answer"><p><strong>Pryderi</strong> means <strong>Care, anxiety</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Pryderi?</summary><div class="faq-answer"><p>Pryderi is associated with <strong>The silk brocade wrapping</strong> (Royal blood declaring itself at a stable door — the foundling child whose swaddling says what no witness can), <strong>The clawed hand</strong> (The Otherworld reaching through the window on May-eve — the unseen power that takes foals and princes alike), <strong>The golden bowl on its chains</strong> (Bait that looks like treasure — the trap at the heart of the enchanted fortress, and the cost of touching what is not yours), <strong>The gate-hammer about his neck</strong> (What he wore out of the enchantment — the humiliation of the Third Branch, borne home and buried in silence), <strong>The swine of Annwn</strong> (Otherworld wealth with a geis upon it — not to be sold or given until the herd had doubled — and the war a broken promise bought).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Pryderi in Unicode?</summary><div class="faq-answer"><p><strong>Pryderi</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Pryderi?</summary><div class="faq-answer"><p>“The May-Eve Vanishing” — Pryderi's mythology is unique in Welsh prose: he is the only character who appears in all Four Branches of the Mabinogi, and his life is the thread the whole cycle is strung on. The First Branch gives his birth, theft, and naming; the Second carries him through the Irish war as one of the seven survivors; the Third empties his kingdom and takes him captive; the Fourth kills him. Every word of it is medieval Welsh prose, preserved in two great manuscripts. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,13 +360,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Pryderi and related cults.</cite></li><li><cite>Pryderi is a textual figure: no temple, votive deposit, or inscription names him, and the early inscribed stones of Wales — Latin and ogham memorial stones of roughly the fifth to seventh centuries — record personal names in funerary formulae, not the heroes of story. His evidence is manuscript evidence. The Four Branches survive complete in the White Book of Rhydderch (Aberystwyth, NLW Peniarth MSS 4–5, c. 1350) and the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410), with earlier fragments in Peniarth 6; the tales' date of composition is argued rather than documented — Ifor Williams placed them in the later eleventh century, and current scholarship generally holds a range around 1060–1120. The geography of his story is real and walkable: Arberth, the chief court of Dyfed, stands by modern Narberth in Pembrokeshire; Y Felenrhyd, where the fatal combat was fought, lies in the country toward the border of Gwynedd and Dyfed; and the Fourth Branch points to his grave at Maen Tywynog above it. The nearest epigraphic horizon is comparative, not his: the Gaulish Maponos of the Chamalières tablet and the northern British dedications to Apollo Maponus — the divine son whose figure-type the handbooks read him against.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Pryderi and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The Mabinogi — all Four Branches (Pwyll Pendefig Dyfed; Branwen ferch Llŷr; Manawydan fab Llŷr; <a href="/math/" class="crosslink" data-crosslink="math">Math</a> fab Mathonwy): trans. Sioned Davies (Oxford, 2007); Welsh text ed. Ifor Williams, Pedeir Keinc y Mabinogi (1930)</cite></li><li><cite>The Mabinogion, trans. Lady Charlotte Guest (1838–49)</cite></li><li><cite>Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Triads of the Island of Britain, 4th ed. (University of Wales Press, 2014) — the Three Powerful Swineherds: Pryderi tending the swine of Pendaran Dyfed</cite></li><li><cite>Gruffydd, W. J., Rhiannon: An Inquiry into the Origins of the First and Third Branches of the Mabinogi (University of Wales Press, 1953)</cite></li><li><cite>Mac Cana, Proinsias, The Mabinogi, 2nd ed. (University of Wales Press, 1992) — Pryderi as the figure spanning all Four Branches; the Mabon comparison</cite></li><li><cite>Koch, John T., ed., Celtic Culture: A Historical Encyclopedia (ABC-CLIO, 2006), s.vv. Pryderi, Mabon, Maponos</cite></li><li><cite>MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Pryderi, Teyrnon, Gwri Wallt Euryn</cite></li><li><cite>Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (GPC), s.vv. Pryderi, pryder</cite></li></ul>
+                    <ul class="source-list"><li><cite>The Mabinogi — all Four Branches (Pwyll Pendefig Dyfed; Branwen ferch Llŷr; Manawydan fab Llŷr; <a href="/math/" class="crosslink" data-crosslink="math">Math</a> fab Mathonwy): trans. Sioned Davies (Oxford, 2007); Welsh text ed. Ifor Williams, Pedeir Keinc y Mabinogi (1930)</cite></li><li><cite>The Mabinogion, trans. Lady Charlotte Guest (1838–49)</cite></li><li><cite>Bromwich, Rachel, ed. and trans., Trioedd Ynys Prydein: The Triads of the Island of Britain, 4th ed. (University of Wales Press, 2014) — the Three Powerful Swineherds: Pryderi tending the swine of Pendaran Dyfed</cite></li><li><cite>Gruffydd, W. J., Rhiannon: An Inquiry into the Origins of the First and Third Branches of the Mabinogi (University of Wales Press, 1953)</cite></li><li><cite>Mac Cana, Proinsias, The Mabinogi, 2nd ed. (University of Wales Press, 1992) — Pryderi as the figure spanning all Four Branches; the Mabon comparison</cite></li><li><cite>Koch, John T., ed., Celtic Culture: A Historical and Comparative Encyclopedia (ABC-CLIO, 2006), s.vv. Pryderi, Mabon, Maponos</cite></li><li><cite>MacKillop, James, Dictionary of Celtic Mythology (Oxford, 1998), s.vv. Pryderi, Teyrnon, Gwri Wallt Euryn</cite></li><li><cite>Geiriadur Prifysgol Cymru / A Dictionary of the Welsh Language (GPC), s.vv. Pryderi, pryder</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/pryderi_logomark.webp" type="image/webp"><img src="../../assets/pryderi_logomark.webp" alt="Pryderi logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/pryderi_logomark.webp" type="image/webp"><img src="../../assets/pryderi_logomark.webp" alt="Pryderi logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

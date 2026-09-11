@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Taliesin, Poet, Shapeshifter. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/taliesin/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Taliesin?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Taliesin is /talˈjɛsɪn/ — approximately 'tal-YES-in' — three syllables, the weight squarely on the middle one, the first a soft tap; exactly the living Welsh name."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Taliesin mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Taliesin means Welsh bard in the celtic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Taliesin?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Taliesin is associated with The cauldron of inspiration (The vessel Ceridwen set to boil for a year and a day — the awen made material, the source from which all poetry in the legend flows), The three drops (The sum of the cauldron's virtue, caught on a boy's thumb — inspiration as a finite, transferable grace), The black hen (Ceridwen's final shape in the chase — the goddess as the mother who must swallow to give birth), The coracle in the weir (The skin boat Elffin found among the salmon — the poet's second arrival, from the water like every gift of Annwn), The silenced bards (Maelgwn's court poets reduced to droning 'blerwm blerwm' by a child's breath — the power of true song over mere office)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Taliesin in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Taliesin is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Taliesin?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Poet of Urien” — Taliesin's dossier divides into two figures the Welsh tradition never quite separated: the historical poet of sixth-century Rheged, and the wonder-child of the cauldron whose story is medieval but survives whole only in sixteenth-century manuscripts. The first is attested within three centuries of his life; the second is the fullest legendary biography any Celtic poet ever received. Between them the name becomes a theory of poetry itself. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/taliesin_logolockup.webp" type="image/webp"><img src="../../assets/taliesin_logolockup.png" alt="Taliesin" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Taliesin</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Taliesin</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/taliesin_mascot.webp" type="image/webp"><img src="../../assets/taliesin_mascot.png" alt="Taliesin — Poet, Shapeshifter" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/taliesin_mascot.webp" type="image/webp"><img src="../../assets/taliesin_mascot.png" alt="Taliesin — Poet, Shapeshifter" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Taliesin</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Taliesin is Tier 2 by the mechanical rule: medieval Welsh writes the name in plain Latin letters — no diacritic, no distinctive letter for the ASCII alphabet to lose. The name's fame vastly outruns its orthography; only the capital distinguishes the restored form from the input.</p>
+                <p class="etymology-note">The name <strong>Taliesin</strong> reaches the modern world through scholarly transliteration of the celtic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">T</td><td><code>U+0054</code></td><td>Latin Capital Letter T</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">s</td><td><code>U+0073</code></td><td>Latin Small Letter S</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="560"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Taliesin</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Taliesin is the supreme bard of Welsh tradition — twice-born master of the awen, the flowing spirit of poetic inspiration. As Gwion Bach he stirred <a href="/ceridwen/" class="crosslink" data-crosslink="ceridwen">Ceridwen</a>'s cauldron and caught the three drops meant for her son; as the grain the black hen swallowed he was reborn from the water with a brow so radiant that Elffin ap Gwyddno named him for it. Before Maelgwn Gwynedd's court he silenced the assembled bards with a puff of breath and freed his foster-father from thirteen locks; and behind the legend stands a historical poet of sixth-century Rheged, whose praise-songs to Urien the Historia Brittonum already knew. Poet and shapeshifter, child of the cauldron and voice of all he has ever been, Taliesin is the Welsh tradition's own answer to what a name is: a brow made radiant by what has passed through it.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Taliesin in Later Traditions</h3><p class="cultural-card-body">Taliesin's closest kin is Irish. The Song of Amairgen — 'I am the wind on the sea, I am the wave of the sea, I am the stag of seven tines' — speaks in the same grammar of self-predication as Cad Goddeu, and Sjoestedt set the two side by side as the Celtic poet's native form: the boast that is a cosmology, the claim that the inspired singer has been all things and so may speak of all. The awen itself has its Irish counterpart in imbas, the 'great knowledge' of the filid, and the transformation chase of the Hanes belongs to the international tale-type of the flight in shifting shapes. Within Wales, Taliesin was paired from early on with <a href="/myrddin/" class="crosslink" data-crosslink="myrddin">Myrddin</a>: the Black Book of Carmarthen's Ymddiddan Myrddin a Thaliesin stages the two prophets in dialogue over the battle of Arfderydd — the two great names of Welsh poetry reading each other's grief. The Christian scribes needed no euhemerism for him: a poet, however marvelous, was safe to keep, and they kept him whole.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Taliesin entered the modern world with Lady Charlotte Guest's Mabinogion (1838–49), which first printed the Hanes Taliesin from Elis Gruffydd's sixteenth-century chronicle and made the cauldron story a classic far beyond Wales. Twentieth-century scholarship restored the historical poet: Ifor Williams's Canu Taliesin (1960) separated the Urien corpus from the legendary Book and set the standard for all later work. Robert Graves's The White Goddess (1948) built a famous and much-contested mythology on Cad Goddeu — scholars reject his tree-alphabet, but he carried the poem to a vast new readership. Modern Druidry took the awen for its own: the three rays are its emblem and the word its name for inspiration. The name itself passed into architecture — Frank Lloyd Wright named his Wisconsin home and school Taliesin — and in Wales it never needed reviving: Taliesin remains a living given name, and Swansea's arts centre bears it. Few figures in the lexicon bridge a sixth-century court and a modern concert hall so completely.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Taliesin</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Taliesin in Later Traditions</h3><p class="cultural-card-body">Taliesin's closest kin is Irish. The Song of Amairgen — 'I am the wind on the sea, I am the wave of the sea, I am the stag of seven tines' — speaks in the same grammar of self-predication as Cad Goddeu, and Sjoestedt set the two side by side as the Celtic poet's native form: the boast that is a cosmology, the claim that the inspired singer has been all things and so may speak of all. The awen itself has its Irish counterpart in imbas, the 'great knowledge' of the filid, and the transformation chase of the Hanes belongs to the international tale-type of the flight in shifting shapes. Within Wales, Taliesin was paired from early on with <a href="/myrddin/" class="crosslink" data-crosslink="myrddin">Myrddin</a>: the Black Book of Carmarthen's Ymddiddan Myrddin a Thaliesin stages the two prophets in dialogue over the battle of Arfderydd — the two great names of Welsh poetry reading each other's grief. The Christian scribes needed no euhemerism for him: a poet, however marvelous, was safe to keep, and they kept him whole.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Taliesin entered the modern world with Lady Charlotte Guest's Mabinogion (1838–49), which first printed the Hanes Taliesin from Elis Gruffydd's sixteenth-century chronicle and made the cauldron story a classic far beyond Wales. Twentieth-century scholarship restored the historical poet: Ifor Williams's Canu Taliesin (1960) separated the Urien corpus from the legendary Book and set the standard for all later work. Robert Graves's The White Goddess (1948) built a famous and much-contested mythology on Cad Goddeu — scholars reject his tree-alphabet, but he carried the poem to a vast new readership. Modern Druidry took the awen for its own: the three rays are its emblem and the word its name for inspiration. The name itself passed into architecture — Frank Lloyd Wright named his Wisconsin home and school Taliesin — and in Wales it never needed reviving: Taliesin remains a living given name, and Swansea's arts centre bears it. Few figures in the lexicon bridge a sixth-century court and a modern concert hall so completely.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Taliesin is a wholly textual figure: no inscription names him, no ogham stone or cross-slab invokes him, and the Welsh epigraphic record — Romano-British memorial stones and the ogham stones of the Irish settlers in Dyfed — belongs to other names entirely. His witnesses are manuscripts of unusually late but exact pedigree. The Book of Taliesin (NLW Peniarth MS 2, early fourteenth century) preserves both the sixth-century praise-poems to Urien of Rheged and the legendary cycle in a single hand. The Black Book of Carmarthen (mid-thirteenth century) holds the Ymddiddan Myrddin a Thaliesin. The Historia Brittonum's notice travels in its ninth-century recensions, Harley MS 3859 chief among them. And the full legendary biography, the Hanes Taliesin, survives entire only in the sixteenth-century chronicle of Elis Gruffydd — a late witness to a story whose own materials (the Triads, the Book's persona-poems) prove medieval. Between Peniarth and Gruffydd stands the whole transmission: a poet who is historical, legendary, and manuscript all at once.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Taliesin means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Taliesin is the one figure in the Celtic dossier whose myth is a complete theory of art. Inspiration exists: it is real, finite, and brewable — a cauldron's worth, a year and a day in the making. It is unjust: meant for the ill-favored son of a goddess, it lands on the thumb of a hired boy, and no pursuit, however divine, can win it back. And it is total: once swallowed, it remakes both the swallower and the swallowed, and what is reborn is not a boy with a gift but a poet who has been everything — sword and rain, eagle and grain — because poetry is exactly the faculty of having been everything. The name keeps the whole doctrine in two words: radiant brow, the visible mark where the three drops passed through. Taliesin asks the question every bard answers nightly: not whether the gift is deserved, but what it costs to carry a light on the forehead that anyone can see.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Taliesin, Poet, Shapeshifter, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Taliesin?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Taliesin</strong> is /talˈjɛsɪn/ — approximately 'tal-YES-in' — three syllables, the weight squarely on the middle one, the first a soft tap; exactly the living Welsh name..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Taliesin mean?</summary><div class="faq-answer"><p><strong>Taliesin</strong> means <strong>Welsh bard</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Taliesin?</summary><div class="faq-answer"><p>Taliesin is associated with <strong>The cauldron of inspiration</strong> (The vessel Ceridwen set to boil for a year and a day — the awen made material, the source from which all poetry in the legend flows), <strong>The three drops</strong> (The sum of the cauldron's virtue, caught on a boy's thumb — inspiration as a finite, transferable grace), <strong>The black hen</strong> (Ceridwen's final shape in the chase — the goddess as the mother who must swallow to give birth), <strong>The coracle in the weir</strong> (The skin boat Elffin found among the salmon — the poet's second arrival, from the water like every gift of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>), <strong>The silenced bards</strong> (Maelgwn's court poets reduced to droning 'blerwm blerwm' by a child's breath — the power of true song over mere office).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Taliesin in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>taliesin</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Taliesin?</summary><div class="faq-answer"><p>The Historia Brittonum (c. 829) names five poets famed in the days of Ida of Bernicia, in the mid-sixth century: Talhaearn Tad Awen, Aneirin, Cian, Blwchfardd — 'and Taliesin, who is renowned in British poetry'. The Book of Taliesin preserves the substance behind the notice: a core of praise-poems to Urien of Rheged and his son Owain, court verse of the Old North, singing the wars of Rheged against the Bernician Angles. Ifor Williams's scholarship established the canon: a dozen poems of the Book stand as plausibly the work of a real Taliesin, court bard of Urien in the generation before Rheged fell.This is the oldest Taliesin the record offers — not a wonder-child but a professional of the northern courts, remembered three centuries later as the very type of the famed poet. The legend did not invent him; it annexed him, and gave the court bard of Rheged a second birth out of a goddess's cauldron.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Taliesin?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Taliesin</strong> is /talˈjɛsɪn/ — approximately 'tal-YES-in' — three syllables, the weight squarely on the middle one, the first a soft tap; exactly the living Welsh name.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Taliesin mean?</summary><div class="faq-answer"><p><strong>Taliesin</strong> means <strong>Welsh bard</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Taliesin?</summary><div class="faq-answer"><p>Taliesin is associated with <strong>The cauldron of inspiration</strong> (The vessel <a href="/ceridwen/" class="crosslink" data-crosslink="ceridwen">Ceridwen</a> set to boil for a year and a day — the awen made material, the source from which all poetry in the legend flows), <strong>The three drops</strong> (The sum of the cauldron's virtue, caught on a boy's thumb — inspiration as a finite, transferable grace), <strong>The black hen</strong> (Ceridwen's final shape in the chase — the goddess as the mother who must swallow to give birth), <strong>The coracle in the weir</strong> (The skin boat Elffin found among the salmon — the poet's second arrival, from the water like every gift of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>), <strong>The silenced bards</strong> (Maelgwn's court poets reduced to droning 'blerwm blerwm' by a child's breath — the power of true song over mere office).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Taliesin in Unicode?</summary><div class="faq-answer"><p><strong>Taliesin</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Taliesin?</summary><div class="faq-answer"><p>“The Poet of Urien” — Taliesin's dossier divides into two figures the Welsh tradition never quite separated: the historical poet of sixth-century Rheged, and the wonder-child of the cauldron whose story is medieval but survives whole only in sixteenth-century manuscripts. The first is attested within three centuries of his life; the second is the fullest legendary biography any Celtic poet ever received. Between them the name becomes a theory of poetry itself. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,7 +360,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Taliesin and related cults.</cite></li><li><cite>Taliesin is a wholly textual figure: no inscription names him, no ogham stone or cross-slab invokes him, and the Welsh epigraphic record — Romano-British memorial stones and the ogham stones of the Irish settlers in Dyfed — belongs to other names entirely. His witnesses are manuscripts of unusually late but exact pedigree. The Book of Taliesin (NLW Peniarth MS 2, early fourteenth century) preserves both the sixth-century praise-poems to Urien of Rheged and the legendary cycle in a single hand. The Black Book of Carmarthen (mid-thirteenth century) holds the Ymddiddan Myrddin a Thaliesin. The Historia Brittonum's notice travels in its ninth-century recensions, Harley MS 3859 chief among them. And the full legendary biography, the Hanes Taliesin, survives entire only in the sixteenth-century chronicle of Elis Gruffydd — a late witness to a story whose own materials (the Triads, the Book's persona-poems) prove medieval. Between Peniarth and Gruffydd stands the whole transmission: a poet who is historical, legendary, and manuscript all at once.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Taliesin and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/taliesin_logomark.webp" type="image/webp"><img src="../../assets/taliesin_logomark.webp" alt="Taliesin logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/taliesin_logomark.webp" type="image/webp"><img src="../../assets/taliesin_logomark.webp" alt="Taliesin logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

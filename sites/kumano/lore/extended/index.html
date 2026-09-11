@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Kumano, Sacred Region, Three Shrines. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/kumano/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Kumano?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Kumano is /kɯ.ma.no/ — approximately 'KOO-mah-noh' — three even syllables, with the first vowel soft and back."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Kumano mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kumano means Bear plain in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Kumano?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kumano is associated with Three-legged crow (Yatagarasu) (The divine guide who led Emperor Jimmu through the mountains), Nachi Falls (The sacred waterfall and the deity of water and longevity), Cedar forest (The ancient trees through which pilgrims walked), Stone markers and oji (The sub-shrines and markers along the Kumano Kodō)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Kumano in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kumano is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Kumano?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Yatagarasu and Emperor Jimmu” — Kumano's mythology blends imperial foundation legend, mountain asceticism, and the medieval fusion of kami and Buddha. Its sources are chronicle, mandala, and ritual text rather than epic, and its stories are walked as much as told: the crow who guided an emperor, the hermits who heard sermons in waterfalls, and the retired sovereigns who came on foot to meet them. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/kumano_logolockup.webp" type="image/webp"><img src="../../assets/kumano_logolockup.png" alt="Kumano" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Kumano</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Kumano</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/kumano_mascot.webp" type="image/webp"><img src="../../assets/kumano_mascot.png" alt="Kumano — Sacred Region, Three Shrines" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/kumano_mascot.webp" type="image/webp"><img src="../../assets/kumano_mascot.png" alt="Kumano — Sacred Region, Three Shrines" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Kumano</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Kumano is Tier 2: plain Hepburn. Its significance is geographic, ritual, and symbolic rather than orthographic.</p>
+                <p class="etymology-note">The name <strong>Kumano</strong> reaches the modern world through scholarly transliteration of the japanese tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">K</td><td><code>U+004B</code></td><td>Latin Capital Letter K</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Kumano</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Kumano</strong> is a mountainous region on the Kii Peninsula that has been sacred for over a thousand years. Its three great shrines — the Kumano Sanzan — drew emperors, aristocrats, and commoners on pilgrimage along the Kumano Kodō. Kumano is a place where dense forest, rushing rivers, and waterfalls create a landscape felt to be inhabited by powerful kami and Buddhas.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Kumano in Later Traditions</h3><p class="cultural-card-body">Kumano is a classic case of <em>shinbutsu shūgō</em>, the medieval fusion of Shinto and Buddhism. The Kumano shrines housed Buddhist temples, and the kami were identified with Buddhist divinities. The region also absorbed Shugendō practices, making it a threefold meeting ground of kami worship, Buddhism, and mountain asceticism. The Meiji separation of Shinto and Buddhism stripped away the Buddhist layers, but the landscape retains its hybrid memory.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The Kumano Kodō and Kii mountain shrines were designated a UNESCO World Heritage site in 2004. Modern pilgrims continue to walk the ancient routes, and Kumano remains a powerful symbol of spiritual journey in Japan. The three-legged crow appears on the logo of the Japan Football Association, tracing its lineage back to Jimmu's guide.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Kumano</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Kumano in Later Traditions</h3><p class="cultural-card-body">Kumano is a classic case of <em>shinbutsu shūgō</em>, the medieval fusion of Shinto and Buddhism. The Kumano shrines housed Buddhist temples, and the kami were identified with Buddhist divinities. The region also absorbed Shugendō practices, making it a threefold meeting ground of kami worship, Buddhism, and mountain asceticism. The Meiji separation of Shinto and Buddhism stripped away the Buddhist layers, but the landscape retains its hybrid memory.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The Kumano Kodō and Kii mountain shrines were designated a UNESCO World Heritage site in 2004. Modern pilgrims continue to walk the ancient routes, and Kumano remains a powerful symbol of spiritual journey in Japan. The three-legged crow appears on the logo of the Japan Football Association, tracing its lineage back to Jimmu's guide.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Kumano Sanzan (Kumano Hongū Taisha, Kumano Hayatama Taisha, Kumano Nachi Taisha) and the Kumano Kodō pilgrimage routes preserve a landscape of shrines, stone pavements, ritual sites, and Nachi Falls. Archaeological and architectural study documents the region's importance from the Heian period onward.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Kumano means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Kumano asks us to walk. The pilgrimage is not a metaphor but a practice: each step through the cedar forest is a step away from ordinary life and toward encounter — with the kami in the waterfall, with the self under fatigue, with the crow that still guides those who are lost. For a thousand years the route made emperors humble: the most powerful men in Japan removed their shoes and climbed. Kumano's lesson is that the sacred is not a doctrine but a geography, and that renewal is something you approach on foot, season after season, one honest pilgrimage at a time.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Kumano, Sacred Region, Three Shrines, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Kumano?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Kumano</strong> is /kɯ.ma.no/ — approximately 'KOO-mah-noh' — three even syllables, with the first vowel soft and back..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Kumano mean?</summary><div class="faq-answer"><p><strong>Kumano</strong> means <strong>Bear plain</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Kumano?</summary><div class="faq-answer"><p>Kumano is associated with <strong>Three-legged crow (Yatagarasu)</strong> (The divine guide who led Emperor Jimmu through the mountains), <strong>Nachi Falls</strong> (The sacred waterfall and the deity of water and longevity), <strong>Cedar forest</strong> (The ancient trees through which pilgrims walked), <strong>Stone markers and oji</strong> (The sub-shrines and markers along the Kumano Kodō).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Kumano in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>kumano</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Kumano?</summary><div class="faq-answer"><p>When Emperor Jimmu, the first emperor, was lost in the mountains of Kumano, the sun goddess sent Yatagarasu, a three-legged crow, to guide him. The crow led Jimmu's army to victory and established the imperial line in Yamato. Yatagarasu remains a symbol of divine guidance and Kumano's protection of the nation.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Kumano?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Kumano</strong> is /kɯ.ma.no/ — approximately 'KOO-mah-noh' — three even syllables, with the first vowel soft and back.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Kumano mean?</summary><div class="faq-answer"><p><strong>Kumano</strong> means <strong>Bear plain</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Kumano?</summary><div class="faq-answer"><p>Kumano is associated with <strong>Three-legged crow (Yatagarasu)</strong> (The divine guide who led Emperor Jimmu through the mountains), <strong>Nachi Falls</strong> (The sacred waterfall and the deity of water and longevity), <strong>Cedar forest</strong> (The ancient trees through which pilgrims walked), <strong>Stone markers and oji</strong> (The sub-shrines and markers along the Kumano Kodō).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Kumano in Unicode?</summary><div class="faq-answer"><p><strong>Kumano</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Kumano?</summary><div class="faq-answer"><p>“Yatagarasu and Emperor Jimmu” — Kumano's mythology blends imperial foundation legend, mountain asceticism, and the medieval fusion of kami and Buddha. Its sources are chronicle, mandala, and ritual text rather than epic, and its stories are walked as much as told: the crow who guided an emperor, the hermits who heard sermons in waterfalls, and the retired sovereigns who came on foot to meet them. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki</cite></li><li><cite>Nihon Shoki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lexical and philological sources for Kumano.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kojiki and Nihon Shoki (Jimmu and Yatagarasu)</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a></cite></li><li><cite><a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a></cite></li><li><cite>Kojiki (712) and Nihon Shoki (720), Jimmu and Yatagarasu episodes</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Kumano and related cults.</cite></li><li><cite>The Kumano Sanzan (Kumano Hongū Taisha, Kumano Hayatama Taisha, Kumano Nachi Taisha) and the Kumano Kodō pilgrimage routes preserve a landscape of shrines, stone pavements, ritual sites, and Nachi Falls. Archaeological and architectural study documents the region's importance from the Heian period onward.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Kumano and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Kumano shrine records</cite></li><li><cite>Grapard, The Protocol of the Gods</cite></li></ul>
+                    <ul class="source-list"><li><cite>UNESCO, Sacred Sites and Pilgrimage Routes in the Kii Mountain Range (World Heritage listing, 2004)</cite></li><li><cite>Kumano shrine records and medieval Kumano mandalas</cite></li><li><cite>Grapard, R. D., The Protocol of the Gods (1988)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/kumano_logomark.webp" type="image/webp"><img src="../../assets/kumano_logomark.webp" alt="Kumano logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/kumano_logomark.webp" type="image/webp"><img src="../../assets/kumano_logomark.webp" alt="Kumano logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

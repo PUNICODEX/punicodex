@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Monókerōs — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Μονόκερως</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Monókerōs.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,141 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Μονόκερως</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Monókerōs</strong> (Μονόκερως) is attested in the source tradition — “'Single-horned' (from μόνος + κέρας)”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">monokeros</p>
-                    <p class="card-body">Reduced to plain <strong>monokeros</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Monókerōs</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Monókerōs</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Monókerōs.com → xn--monkers-n0a72f.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Monókerōs</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Monókerōs</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Monókerōs is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Μονόκερως</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Monókerōs is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Monókerōs</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Monókerōs</p>
-                    <p class="card-body">Restores <strong>Μονόκερως</strong>. The live temple domain — <strong>monókerōs.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Scholarly Convention</h3>
-                    <p class="card-unicode">Monokērōs</p>
-                    <p class="card-body">Restores <strong>Μονόκερως</strong>. LSJ convention: length only, no stress mark.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">monokeros</p>
-                    <p class="card-body">Flattens <strong>Μονόκερως</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Monókerōs was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Monókerōs</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/mo.nó.kɛː.rɔːs/</span>
-            <span class="ipa-label">Attic Greek</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">mo-NO-keh-ross, stress on the antepenult with a long final ō.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> μονόκερως</li><li><strong>Latin</strong> monoceros / unicornis</li><li><strong>English</strong> unicorn</li><li><strong>Owned form</strong> Monókerōs</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek μονόκερως is a compound: mónos ("single") plus kéras ("horn"), stressed on the first element. Greek authors used it of real and reported animals alike — the rhinoceros included — centuries before Latin monoceros and the medieval unicorn softened it into legend.</p></div>
+      <p class="lead-text">The Greek tradition is zoological, not mythological: no hero fights the monokeros, no god rides it. Its power lies precisely in being reported — a creature at the edge of the map, described by those who claim to have seen its horn in the flesh, and believed, half-believed, or corrected by each successive century.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Indika fr. 45</span>
+          <h3 class="myth-title">Ktēsias of Knidos and the Indian Ass</h3>
+          <p class="myth-text">The unicorn's birth certificate is a doctor's field report. Ktēsias of Knidos spent years at the Persian court of Artaxerxēs II as royal physician, and in his <em>Indika</em> — preserved for us in the epitome of Photius (Bibliotheca cod. 72) and echoed by Aelian — he wrote of Indian wild asses 'swifter than horses,' each bearing on its forehead a single horn a cubit and a half long, white at the base, black in the middle, and bright crimson at the tip. Cups rimmed with shavings of the horn, he was told, detect poison: the liquid sweats and beads on the rim if it is tainted. The animals' fleetness made them impossible to hunt; a foal might be taken, but never a grown one. His fellow Greeks already doubted him — the 'liar Ktēsias' was a standing joke within a century — yet every later account of the beast begins here, at a Persian court, in a doctor's notebook.</p><p class="myth-text">The report is the myth. No one who wrote the unicorn down ever claimed to have ridden it; they claimed to have heard of it honestly, at one remove from the people who had. The creature's whole career rests on that modest foundation — hearsay reported as hearsay — and it is precisely that honesty about distance that let the story travel further than any verified animal ever could.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">HA 499b</span>
+          <h3 class="myth-title">Aristotle's Verification</h3>
+          <p class="myth-text">Aristotle took the report seriously enough to check its anatomy. In the <em>History of Animals</em> (2.1, 499b) he lists the solid-hooved, single-horned 'Indian ass' alongside the oryx, and he gets the mechanics exactly right: a true single horn must grow from the skull's midline, where the paired horns of cattle arise side by side — a point of osteology no mere storyteller would think to make. Pliny the Elder carries the file forward in his <em>Natural History</em> (8.30): the monoceros has the body of a horse, the head of a stag, the feet of an elephant, the tail of a boar, and a single black horn two cubits long; it is 'the fiercest animal,' uncatchable by strength, and — the detail that betrays the storyteller's art — it can be taken only by stratagem, for when healthy no hunter dares approach it. Between Aristotle's plumb-line and Pliny's stratagem, the beast's zoological dossier is complete and its capture impossible.</p><p class="myth-text">The rationalizers did their disciplined best, and the animal slipped every snare. Disproof could not travel faster than the story; a horn 'seen in the flesh' by a merchant's cousin outranked a whole library of anatomy. The unicorn survived its first audit the way it would survive all the rest — by being just out of reach, in India, in the past, in someone else's reliable hands.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Septuagint</span>
+          <h3 class="myth-title">The Re'em Passage</h3>
+          <p class="myth-text">The unicorn entered Scripture by a translator's choice. The Hebrew Bible's re'em is a wild ox — the aurochs, most scholars agree — used from Numbers to Job as the standing image of untamable strength: 'Will the re'em be willing to serve you, or abide by your crib? Can you bind him in the furrow with ropes?' (Job 39:9–10). When the Septuagint translators worked in Ptolemaic Alexandria, they had no Greek word fierce enough for God's exhibit of what no man can harness, and they chose monokeros — for by the third century BCE the word already meant the fierce one-horned beast of Indian report. It stands in Numbers 24:8 ('he has, as it were, the glory of a monokeros'), Deuteronomy 33:17 ('his horns are like the horns of a monokeros' — the plural is one of the fingerprints of the original ox), Psalm 21:22 in the Septuagint numbering, and the Job passage; the Latin Vulgate made it usually unicornis, the <a href="/texts/bible-kjv/" class="crosslink citation-link" data-citation="bible-kjv">King James Bible</a> 'unicorn' in 1611.</p><p class="myth-text">A Greek traveler's Indian ass thereby entered the Psalms, and every subsequent European imagination. The translators were choosing the fiercest word in their zoology for the most untamable image in their poetry; posterity read the result as a divine warrant for the beast, and the medieval unicorn was already waiting in the wings of the alphabet.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Physiologus 36</span>
+          <h3 class="myth-title">The Virgin Stratagem</h3>
+          <p class="myth-text">The <em>Physiologus</em> — the Greek bestiary of the early Christian centuries, written in Alexandria — added the one scene that made the legend medieval. The monokeros, it says, is a small fierce animal, catchable by no hunter, fought off by every creature; but it has one weakness, a passion for maidenhood. The hunters station a virgin in the forest; the unicorn runs to her, lays its head in her lap, and sleeps; and in that sleep it is taken — or, in the reading that became doctrine, not taken but incarnate. The allegory wrote itself, and the bestiarists wrote it: the one horn the single Godhead, the virgin the Virgin, the willing captivity the Incarnation — 'he whom no power could hold was held because he willed it.' The Greek traveler's beast passed into Latin bestiaries, thence into the art of a thousand manuscripts and two great tapestry cycles — the Lady with the Unicorn at the Musée de Cluny (c. 1500) and the Hunt of the Unicorn at the Cloisters (c. 1495–1505), the latter ending in the fenced garden where the slain-and-alive creature bleeds into a millefleurs meadow.</p><p class="myth-text">Heraldry completed the circuit: the unicorn, chained because a free one is dangerous, became the royal beast of Scotland and, facing the lion, the supporter of the British arms. The stratagem of the virgin became the statecraft of kings — the untamable thing displayed, tastefully, in bonds.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -373,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The One Horn</h2>
             <p class="section-subtitle">The Untamable, the Pure, and the Report from India</p>
         </div>
@@ -412,61 +325,26 @@
       <div class="symbol-item">
         <span class="symbol-name">The cup</span>
         <span class="symbol-meaning">Alicorn drinking vessels of kings, supposedly proof against poison</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The chain</span>
+        <span class="symbol-meaning">Heraldic binder of the unicorn — 'a free one is dangerous'; the Scottish royal beast is always shown chained</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The millefleurs meadow</span>
+        <span class="symbol-meaning">The flower-strewn ground of the late-medieval tapestries, where the hunt ends in the fenced garden of captivity</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Monókerōs</p>
-        </div>
-        
-      <p class="lead-text">The Greek tradition is zoological, not mythological: no hero fights the monokeros, no god rides it. Its power lies precisely in being reported — a creature at the edge of the map, described by those who claim to have seen its horn in the flesh.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Report</span>
-          <h3 class="myth-title">Ktēsias of Knidos</h3>
-          <p class="myth-text">Ktēsias, physician to the Persian king Artaxerxēs, wrote in his Indika of Indian wild asses "swift as horses, with a single horn on the forehead, white at the base, black in the middle, crimson at the tip." Their horn shavings, he says, are an antidote to all poisons; their fleetness makes them unhuntable. His report is the unicorn's birth certificate.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Verification</span>
-          <h3 class="myth-title">Aristotle's List</h3>
-          <p class="myth-text">Aristotle, a more careful zoologist, lists in his History of Animals the solid-hooved, one-horned "Indian ass" alongside the oryx — and gets the mechanics right: a real single horn must grow from the skull's midline, unlike the paired horns of cattle. Pliny the Elder later repeats the monoceros as "the fiercest animal," catchable, he was told, only by stratagem.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Translation</span>
-          <h3 class="myth-title">The Re'em Passage</h3>
-          <p class="myth-text">When the Septuagint translators met the re'em — the wild ox of Hebrew scripture, image of untamable strength — they chose monokeros. The Latin Vulgate made it unicornis, and the King James Bible "unicorn": thus a Greek traveler's Indian ass entered the Psalms and Job, and every subsequent European imagination.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Hunt</span>
-          <h3 class="myth-title">The Virgin Stratagem</h3>
-          <p class="myth-text">The Physiologos — the early Christian bestiary — added the capture-scene that made the legend medieval: the unicorn, uncatchable by any hunter, will run to a virgin seated in the forest and fall asleep in her lap, where the hunters take it. The allegory wrote itself: the horn the single nature, the virgin Mary, the capture the Incarnation — and the Greek traveler's report became the Middle Ages' most painted animal, from the Unicorn Tapestries to the royal arms of Scotland.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -530,8 +408,143 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Μονόκερως</p>
+                <p class="card-body">The name in its original Greek form. <strong>Monókerōs</strong> (Μονόκερως) is attested in the source tradition — “'Single-horned' (from μόνος + κέρας)”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">monokeros</p>
+                <p class="card-body">Reduced to plain <strong>monokeros</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Monókerōs</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Monókerōs</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Monókerōs.com → xn--monkers-n0a72f.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Monókerōs</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Monókerōs</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Monókerōs</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Monókerōs</p>
+                    <p class="card-body">Restores <strong>Μονόκερως</strong>. The live temple domain — <strong>monókerōs.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Scholarly Convention</h3>
+                    <p class="card-unicode">Monokērōs</p>
+                    <p class="card-body">Restores <strong>Μονόκερως</strong>. LSJ convention: length only, no stress mark.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">monokeros</p>
+                    <p class="card-body">Flattens <strong>Μονόκερως</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Monókerōs was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/mo.nó.kɛ.rɔːs/</span>
+            <span class="ipa-label">Attic Greek</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">mo-NO-keh-ross, stress on the antepenult, the epsilon of -ker- short and the final -ōs long.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek μονόκερως is a compound: mónos ('single') plus kéras ('horn'). That the accent falls as μονό-κερως — preserving the accent of kéras rather than the recessive pattern — is itself evidence the word was compounded inside Greek, centuries before Latin monoceros and the medieval unicorn softened it into legend.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Monókerōs is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Μονόκερως</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Monókerōs is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -540,7 +553,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Monókerōs is the patron of honest impossibility. The Greeks never claimed to rule it, saddle it, or even see it clearly — they only reported it, at the edge of the known. It stands for the single, the indivisible, the thing that cannot be made to serve: a reminder that some of the world's value lies in what refuses to be caught.</p>
+                <p class="pantheon-body">Monókerōs is the patron of honest impossibility. The Greeks never claimed to rule it, saddle it, or even see it clearly — they only reported it, at the edge of the known, with scrupulous attention to who had told them and where. It stands for the single, the indivisible, the thing that cannot be made to serve: a reminder that some of the world's value lies in what refuses to be caught.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -549,7 +562,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/monokeros_mascot.webp" type="image/webp"><img src="../assets/monokeros_mascot.png" alt="Monókerōs mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/monokeros_mascot.webp" type="image/webp"><img src="../assets/monokeros_mascot.png" alt="Monókerōs mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -587,7 +600,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/monokeros_logomark.webp" type="image/webp"><img src="../assets/monokeros_logomark.webp" alt="Monókerōs logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/monokeros_logomark.webp" type="image/webp"><img src="../assets/monokeros_logomark.webp" alt="Monókerōs logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

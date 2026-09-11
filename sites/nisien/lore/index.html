@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Nisien — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Nisien</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Nisien</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,143 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Nisien</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Nisien</strong> is the standard Celtic romanisation, documented in academic sources — “Peaceful one”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">nisien</p>
-                    <p class="card-body">The plain <strong>nisien</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Nisien</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Nisien</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Nisien.com → nisien.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Nisien</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Nisien</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Nisien is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Nisien</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Nisien</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Nisien</p>
-                    <p class="card-body">The full Unicode restoration. <strong>nisien.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Nisien was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Nisien</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈnɪsɪɛn/</span>
-            <span class="ipa-label">Modern Welsh</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Ni-</span>
-        <span class="phoneme-desc">Voiced alveolar nasal [n] plus short close [ɪ], the light unstressed opening; Welsh i is close and short, never the English diphthong of 'nine'.</span>
+      <p class="lead-text">Nisien has the smallest dossier in the Mabinogi and the clearest definition: he exists as one half of an antithesis. The Second Branch of the Mabinogi, Branwen ferch Llŷr, names him exactly once as a character and then spends its whole length on the war his brother kindles. What survives of him is a sentence, a lineage, and a presence — and the Welsh tradition built an entire moral pole out of that spareness.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Branwen ferch Llŷr</span>
+          <h3 class="myth-title">The Two Sons of Euroswydd</h3>
+          <p class="myth-text">The Second Branch introduces the twins in a single balanced construction, the most quoted sentence either brother ever gets. Nisien, the tale says, was a good man: he would bring about peace between two armies when they were at the height of their fury. Efnysien would bring about a quarrel between two brothers when they loved each other most. They are twins, sons of Euroswydd by Penarddun — and so half-brothers to Brân the Blessed, Branwen, and <a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a>, Penarddun's children by Llŷr.</p><p class="myth-text">The construction is the whole point: Welsh prose has no other pair like it. The tradition does not describe two temperaments; it defines two forces — peace and strife — as brothers born in one hour, and then sets them loose in the same household. Every reader of the branch knows, before the horses are harmed, exactly which twin will act and which will stand by.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-si-</span>
-        <span class="phoneme-desc">Voiceless alveolar sibilant [s] and short [ɪ] again — the stressed penult, where Welsh accent always falls; a clean hiss, never voiced to z.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Branwen ferch Llŷr</span>
+          <h3 class="myth-title">The Horses at Aberffraw</h3>
+          <p class="myth-text">When Brân consents to give Branwen in marriage to <a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>, king of Ireland, and the wedding is held at Aberffraw, it is Efnysien — insulted that the match was made without his leave — who takes revenge on the groom's horses: he cuts off their lips to the teeth, their ears to their heads, their tails to their backs, and the eyelids to the bone. The outrage becomes the war's first cause, patched over with reparation and the gift of the Cauldron of Rebirth, and reopened in Ireland when Branwen is made a scullion and struck daily in the kitchen.</p><p class="myth-text">Nisien's place in all this is the tale's deliberate emptiness: the peace-maker is there, kin to all parties, gifted by his own description with the one power the crisis needs — and the text never once shows him using it. The mutilation stands unappeased from its author; no embassy of Nisien's is ever recorded. The Second Branch's tragedy is written so that the reader supplies the missing twin.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-en</span>
-        <span class="phoneme-desc">Short open [ɛ] and final alveolar nasal [n]; the last syllable falls away unstressed, as in Welsh pen 'head'.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Branwen ferch Llŷr</span>
+          <h3 class="myth-title">The War Over the Sea</h3>
+          <p class="myth-text">Brân wades the sea at the head of the hosts of Britain, for no ship can carry him, and the war that follows destroys both kingdoms. The Irish revive their slain in the Cauldron of Rebirth, so that they rise to fight again, and the balance breaks only when Efnysien — feigning death among the corpses, flung living into the cauldron — stretches himself out and bursts it, dying in the act: the strife-twin consuming himself to undo the one weapon his own first outrage helped set in motion. Of the men of Britain only seven come home; Branwen dies of a broken heart on the shore of the Alaw.</p><p class="myth-text">Nisien's name is not among the dead, the seven, or the counsellors: the tale simply stops mentioning him. Scholars have long read the silence as the branch's own verdict — Mac Cana and MacKillop alike treat the twins as a personified antithesis, peace and discord hypostatized as brothers, and on that reading Nisien's function is complete the moment the paired sentence is spoken. He is not a character the tale forgot; he is the peace the tale declined.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Scholarly Reading</span>
+          <h3 class="myth-title">The Antithesis Made Flesh</h3>
+          <p class="myth-text">The modern handbooks are unusually agreed about what the twins are. Mac Cana reads the pair as the Mabinogi's clearest case of abstract forces embodied as kin: the redactor names Nisien and Efnysien in one breath because they are one idea in two bodies. MacKillop's dictionary keeps both entries short for the same reason — there is no cycle, no second tale, no folklore of Nisien to collect; the dossier is the Second Branch and nothing else. Koch's encyclopedia files both under Branwen ferch Llŷr.</p><p class="myth-text">The names themselves resist resolution. The traditional glosses — 'peaceful one' for Nisien, 'double enemy' for Efnysien — are older scholarly convention rather than settled etymology, and the Geiriadur Prifysgol Cymru and the handbooks record the derivations as uncertain. What is certain is the structure: two names, two clauses, one cradle. The Welsh tradition made its peace-maker the way myth usually makes its gods — by naming the opposite and letting the pair do the work.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'NISS-yen' — stress the middle syllable, keep every vowel short, and never let the s soften into a z.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Nissyen, the manuscript spelling of the White and Red Books, where y writes the same short vowel.</li><li><strong>Modern Welsh</strong> Nisien, the standardized modern spelling — the form the restoration takes.</li><li><strong>The twin pair</strong> Efnysien (Middle Welsh Efnissyen), his brother and antithesis; the tradition never names one without implying the other.</li><li><strong>Patronymic</strong> Nisien fab Euroswydd — son of Euroswydd, by Penarddun, and so half-brother to Brân, Branwen, and <a href="/manawydan/" class="crosslink" data-crosslink="manawydan">Manawydan</a>.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Nisien is Tier 2 by the mechanical rule: the normalized Middle Welsh form is already plain ASCII — there is no diacritic and no distinctive letter for the ASCII alphabet to lose. The manuscripts write Nissyen; the modern standard writes Nisien; only the capital distinguishes the temple form from the input. The traditional gloss 'peaceful one' suits the character exactly, but the philology behind the name is honestly uncertain, and the handbooks record rather than resolve it.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -374,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Peace, Brother of Efnysien</h2>
             <p class="section-subtitle">The Gentle Twin of the Second Branch</p>
         </div>
@@ -416,7 +327,7 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The mutilated horses</span>
-        <span class="symbol-meaning">His brother's unprovoked outrage against <a href="/matholwch/" class="crosslink" data-crosslink="matholwch">Matholwch</a>'s team — the act of strife that no peace in the tale can undo</span>
+        <span class="symbol-meaning">His brother's unprovoked outrage against Matholwch's team — the act of strife that no peace in the tale can undo</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The silent presence</span>
@@ -425,57 +336,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Nisien</p>
-        </div>
-        
-      <p class="lead-text">Nisien has the smallest dossier in the Mabinogi and the clearest definition: he exists as one half of an antithesis. The Second Branch of the Mabinogi, Branwen ferch Llŷr, names him exactly once as a character and then spends its whole length on the war his brother kindles. What survives of him is a sentence, a lineage, and a presence — and the Welsh tradition built an entire moral pole out of that spareness.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Branwen ferch Llŷr</span>
-          <h3 class="myth-title">The Two Sons of Euroswydd</h3>
-          <p class="myth-text">The Second Branch introduces the twins in a single balanced construction, the most quoted sentence either brother ever gets. Nisien, the tale says, was a good man: he would bring about peace between two armies when they were at the height of their fury. Efnysien would bring about a quarrel between two brothers when they loved each other most. They are twins, sons of Euroswydd by Penarddun — and so half-brothers to Brân the Blessed, Branwen, and Manawydan, Penarddun's children by Llŷr.</p><p class="myth-text">The construction is the whole point: Welsh prose has no other pair like it. The tradition does not describe two temperaments; it defines two forces — peace and strife — as brothers born in one hour, and then sets them loose in the same household. Every reader of the branch knows, before the horses are harmed, exactly which twin will act and which will stand by.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Branwen ferch Llŷr</span>
-          <h3 class="myth-title">The Horses at Aberffraw</h3>
-          <p class="myth-text">When Brân consents to give Branwen in marriage to Matholwch, king of Ireland, and the wedding is held at Aberffraw, it is Efnysien — insulted that the match was made without his leave — who takes revenge on the groom's horses: he cuts off their lips to the teeth, their ears to their heads, their tails to their backs, and the eyelids to the bone. The outrage becomes the war's first cause, patched over with reparation and the gift of the Cauldron of Rebirth, and reopened in Ireland when Branwen is made a scullion and struck daily in the kitchen.</p><p class="myth-text">Nisien's place in all this is the tale's deliberate emptiness: the peace-maker is there, kin to all parties, gifted by his own description with the one power the crisis needs — and the text never once shows him using it. The mutilation stands unappeased from its author; no embassy of Nisien's is ever recorded. The Second Branch's tragedy is written so that the reader supplies the missing twin.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Branwen ferch Llŷr</span>
-          <h3 class="myth-title">The War Over the Sea</h3>
-          <p class="myth-text">Brân wades the sea at the head of the hosts of Britain, for no ship can carry him, and the war that follows destroys both kingdoms. The Irish revive their slain in the Cauldron of Rebirth, so that they rise to fight again, and the balance breaks only when Efnysien — feigning death among the corpses, flung living into the cauldron — stretches himself out and bursts it, dying in the act: the strife-twin consuming himself to undo the one weapon his own first outrage helped set in motion. Of the men of Britain only seven come home; Branwen dies of a broken heart on the shore of the Alaw.</p><p class="myth-text">Nisien's name is not among the dead, the seven, or the counsellors: the tale simply stops mentioning him. Scholars have long read the silence as the branch's own verdict — Mac Cana and MacKillop alike treat the twins as a personified antithesis, peace and discord hypostatized as brothers, and on that reading Nisien's function is complete the moment the paired sentence is spoken. He is not a character the tale forgot; he is the peace the tale declined.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Scholarly Reading</span>
-          <h3 class="myth-title">The Antithesis Made Flesh</h3>
-          <p class="myth-text">The modern handbooks are unusually agreed about what the twins are. Mac Cana reads the pair as the Mabinogi's clearest case of abstract forces embodied as kin: the redactor names Nisien and Efnysien in one breath because they are one idea in two bodies. MacKillop's dictionary keeps both entries short for the same reason — there is no cycle, no second tale, no folklore of Nisien to collect; the dossier is the Second Branch and nothing else. Koch's encyclopedia files both under Branwen ferch Llŷr.</p><p class="myth-text">The names themselves resist resolution. The traditional glosses — 'peaceful one' for Nisien, 'double enemy' for Efnysien — are older scholarly convention rather than settled etymology, and the Geiriadur Prifysgol Cymru and the handbooks record the derivations as uncertain. What is certain is the structure: two names, two clauses, one cradle. The Welsh tradition made its peace-maker the way myth usually makes its gods — by naming the opposite and letting the pair do the work.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -539,8 +407,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Nisien</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Nisien</strong> is the standard Celtic romanisation, documented in academic sources — “Peaceful one”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">nisien</p>
+                <p class="card-body">The plain <strong>nisien</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Nisien</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Nisien</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Nisien.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Nisien</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Nisien</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Nisien</p>
+                    <p class="card-body">The full Unicode restoration. <strong>nisien.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Nisien was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈnɪsɪɛn/</span>
+            <span class="ipa-label">Modern Welsh</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Ni-</span>
+        <span class="phoneme-desc">Voiced alveolar nasal [n] plus short close [ɪ], the light unstressed opening; Welsh i is close and short, never the English diphthong of 'nine'.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-si-</span>
+        <span class="phoneme-desc">Voiceless alveolar sibilant [s] and short [ɪ] again — the stressed penult, where Welsh accent always falls; a clean hiss, never voiced to z.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-en</span>
+        <span class="phoneme-desc">Short open [ɛ] and final alveolar nasal [n]; the last syllable falls away unstressed, as in Welsh pen 'head'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'NISS-yen' — stress the middle syllable, keep every vowel short, and never let the s soften into a z.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Nisien is Tier 2 by the mechanical rule: the normalized Middle Welsh form is already plain ASCII — there is no diacritic and no distinctive letter for the ASCII alphabet to lose. The manuscripts write Nissyen; the modern standard writes Nisien; only the capital distinguishes the temple form from the input. The traditional gloss 'peaceful one' suits the character exactly, but the philology behind the name is honestly uncertain, and the handbooks record rather than resolve it.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Nisien is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Nisien</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -558,7 +563,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/nisien_mascot.webp" type="image/webp"><img src="../assets/nisien_mascot.png" alt="Nisien mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/nisien_mascot.webp" type="image/webp"><img src="../assets/nisien_mascot.png" alt="Nisien mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -596,7 +601,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/nisien_logomark.webp" type="image/webp"><img src="../assets/nisien_logomark.webp" alt="Nisien logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/nisien_logomark.webp" type="image/webp"><img src="../assets/nisien_logomark.webp" alt="Nisien logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

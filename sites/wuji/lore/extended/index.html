@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Wújí, Limitless, Ultimate Nothing. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/wuji/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Wújí?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Wújí is /u˧˥ tɕi˧˥/ — approximately WOO-JEE — both syllables carry a rising tone (mid to high), like a gentle question on each half."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Wújí mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wújí means The primordial state of emptiness in the taoist tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Wújí?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wújí is associated with The empty circle (The standard visual representation of Wújí — a boundary with nothing inside it), Primordial mist (The undifferentiated hundun or chaos that precedes cosmic order), The uncarved block (Pu, the uncarved wood that is still capable of becoming any implement), The number one (The pre-dual unity from which yin and yang are differentiated), The meditation stance (The Wújí posture in internal arts: standing without agenda)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Wújí in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII wuji strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Wújí?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Wújí ér Tàijí” — Wújí belongs to cosmogony rather than narrative. Its myths are stories about the origin of differentiation, told by philosophers, alchemists, and meditators across two millennia. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/wuji_logolockup.webp" type="image/webp"><img src="../../assets/wuji_logolockup.png" alt="Wújí" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Wújí</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Wújí.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/wuji_mascot.webp" type="image/webp"><img src="../../assets/wuji_mascot.png" alt="Wújí — Limitless, Ultimate Nothing" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/wuji_mascot.webp" type="image/webp"><img src="../../assets/wuji_mascot.png" alt="Wújí — Limitless, Ultimate Nothing" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">無極 (Wújí) means 'Limitless' or 'Ultimate Nothing', the undifferentiated state before the emergence of <a href="/taichi/" class="crosslink" data-crosslink="taichi">Tàijí</a> in Zhou Dunyi's Taijitu shuo. The Modern Standard Mandarin reading is wú (Tone 2) + jí (Tone 2), per the Hanyu Pinyin scheme and the Unihan Database (kMandarin). Baxter &amp; Sagart (2014) reconstruct 無 as *ma (GSR 0103a, 'not have') and 極 as *[g](r)ək (GSR 0910e, 'extreme'). The Unicode restoration Wújí preserves the parallel rising tones of both syllables.</p>
+                <p class="etymology-note">The name <strong>Wújí</strong> carries the orthographic signature of the taoist tradition: 無極. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Wújí</strong> is the boundless before the bounded, the empty circle before the diagram is drawn. In Zhou Dunyi's cosmology it precedes Tàijí; in Daoist meditation it names the state of no-limit, no-position, no-preference from which the ten thousand things arise. It is not nihilistic emptiness but a plenum of undifferentiated potential — the silence that contains every possible note.</p><p class="lead-text">To think about Wújí is to practice standing at the edge of language, where names have not yet been attached to things.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Wújí in Later Traditions</h3><p class="cultural-card-body">Wújí overlaps with the Buddhist concept of <em>śūnyatā</em> (emptiness), and the two were often fused in later Chinese Buddhism, especially in Chan. Neo-Confucians borrowed Wújí from Daoist diagrams and reinterpreted it as the formless aspect of moral principle. In Western thought, Wújí has been compared to the Neoplatonic One beyond being, to Spinoza's substance, and to the quantum vacuum — though these analogies are loose and should not be pressed too hard. The common thread is the intuition that fullness and emptiness are not opposites but phases of a single reality.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Wújí survives in names and practices. Wujiquan and Wuji standing meditation open many internal-arts sessions. The empty-circle motif appears in minimalist art, architecture, and graphic design as an emblem of potential. In popular culture, Wújí is the name of games, albums, martial-arts schools, and wellness brands — often used more for atmosphere than precision. Yet the underlying idea remains potent: before the first move, before the first word, there is a spaciousness that contains everything. Modern contemplative traditions, from mindfulness to certain psychotherapies, independently rediscover what Wújí named two thousand years ago.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Wújí</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Wújí in Later Traditions</h3><p class="cultural-card-body">Wújí overlaps with the Buddhist concept of <em>śūnyatā</em> (emptiness), and the two were often fused in later Chinese Buddhism, especially in Chan. Neo-Confucians borrowed Wújí from Daoist diagrams and reinterpreted it as the formless aspect of moral principle. In Western thought, Wújí has been compared to the Neoplatonic One beyond being, to Spinoza's substance, and to the quantum vacuum — though these analogies are loose and should not be pressed too hard. The common thread is the intuition that fullness and emptiness are not opposites but phases of a single reality.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Wújí survives in names and practices. Wujiquan and Wuji standing meditation open many internal-arts sessions. The empty-circle motif appears in minimalist art, architecture, and graphic design as an emblem of potential. In popular culture, Wújí is the name of games, albums, martial-arts schools, and wellness brands — often used more for atmosphere than precision. Yet the underlying idea remains potent: before the first move, before the first word, there is a spaciousness that contains everything. Modern contemplative traditions, from mindfulness to certain psychotherapies, independently rediscover what Wújí named two thousand years ago.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Like <a href="/taichi/" class="crosslink" data-crosslink="taichi">Tàijí</a>, Wújí is primarily a textual and diagrammatic concept. Its classic formulation appears in Zhou Dunyi's <em>Taijitu shuo</em> and the commentaries of Zhu Xi, transmitted through Song and Ming woodblock editions. Daoist internal-alchemical texts from the Tang through Qing dynasties return to Wújí as a meditative stage. Archaeologically, the empty circle appears on steles, talismans, and altar cloths, though the concept itself is not tied to a single excavation site.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Wújí means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Wújí is the permission slip to not yet be anything. In a world that rewards definition — what do you do, where do you stand, what do you believe — Wújí is the value of the unmarked state. It is the silence before the opinion, the blank page before the sketch, the open hand before it grasps.</p><p>This is not a denial of form. The Daoist sage does not stay in Wújí; she lets forms arise and pass through it. Wújí is the home base to which one returns after every action, the awareness that no label ever exhausts what a thing is. To name a domain Wújí is almost a joke: the moment you name it, it is no longer Wújí. But it is also a serious gesture — a reminder that every web page, every brand, every word is born from the unnameable ground that precedes it.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Wújí, Limitless, Ultimate Nothing, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Wújí?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Wújí</strong> is /u˧˥ tɕi˧˥/ — approximately WOO-JEE — both syllables carry a rising tone (mid to high), like a gentle question on each half..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Wújí mean?</summary><div class="faq-answer"><p><strong>Wújí</strong> means <strong>The primordial state of emptiness</strong> in the taoist tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Wújí?</summary><div class="faq-answer"><p>Wújí is associated with <strong>The empty circle</strong> (The standard visual representation of Wújí — a boundary with nothing inside it), <strong>Primordial mist</strong> (The undifferentiated <em>hundun</em> or chaos that precedes cosmic order), <strong>The uncarved block</strong> (<em>Pu</em>, the uncarved wood that is still capable of becoming any implement), <strong>The number one</strong> (The pre-dual unity from which yin and yang are differentiated), <strong>The meditation stance</strong> (The Wújí posture in internal arts: standing without agenda).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Wújí in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>wuji</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Wújí?</summary><div class="faq-answer"><p>Zhou Dunyi's famous line, 'Wújí ér Tàijí,' can be translated as 'The Limitless, and yet the Supreme Ultimate.' The phrase caused centuries of debate: does Wújí come before Tàijí, or are they two names for the same reality? Zhu Xi, the great synthesizer, argued that Wújí is simply the name for Tàijí's lack of form.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Wújí?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Wújí</strong> is /u˧˥ tɕi˧˥/ — approximately WOO-JEE — both syllables carry a rising tone (mid to high), like a gentle question on each half.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Wújí mean?</summary><div class="faq-answer"><p><strong>Wújí</strong> means <strong>The primordial state of emptiness</strong> in the taoist tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Wújí?</summary><div class="faq-answer"><p>Wújí is associated with <strong>The empty circle</strong> (The standard visual representation of Wújí — a boundary with nothing inside it), <strong>Primordial mist</strong> (The undifferentiated <em>hundun</em> or chaos that precedes cosmic order), <strong>The uncarved block</strong> (<em>Pu</em>, the uncarved wood that is still capable of becoming any implement), <strong>The number one</strong> (The pre-dual unity from which yin and yang are differentiated), <strong>The meditation stance</strong> (The Wújí posture in internal arts: standing without agenda).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Wújí in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>wuji</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Wújí?</summary><div class="faq-answer"><p>“Wújí ér Tàijí” — Wújí belongs to cosmogony rather than narrative. Its myths are stories about the origin of differentiation, told by philosophers, alchemists, and meditators across two millennia. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,7 +349,7 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Dao De Jing</cite></li><li><cite>Daoist Canon</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/tao-te-ching/" class="crosslink citation-link" data-citation="tao-te-ching">Dao De Jing</a></cite></li><li><cite>Daoist Canon</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
@@ -298,13 +361,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Wújí and related cults.</cite></li><li><cite>Like Tàijí, Wújí is primarily a textual and diagrammatic concept. Its classic formulation appears in Zhou Dunyi's <em>Taijitu shuo</em> and the commentaries of Zhu Xi, transmitted through Song and Ming woodblock editions. Daoist internal-alchemical texts from the Tang through Qing dynasties return to Wújí as a meditative stage. Archaeologically, the empty circle appears on steles, talismans, and altar cloths, though the concept itself is not tied to a single excavation site.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Wújí and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Zhou Dunyi, Taijitu shuo</cite></li><li><cite><a href="/laozi/" class="crosslink" data-crosslink="laozi">Laozi</a>, Daodejing</cite></li><li><cite><a href="/zhuangzi/" class="crosslink" data-crosslink="zhuangzi">Zhuangzi</a></cite></li><li><cite>Zhu Xi, Zhouyi benyi / commentary tradition</cite></li><li><cite>Needham, Science and Civilisation in China</cite></li><li><cite>Graham, Disputers of the Tao</cite></li><li><cite>Baxter &amp; Sagart, Old Chinese Reconstruction</cite></li><li><cite>Unihan Database (Unicode Consortium)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Zhou Dunyi, Taijitu shuo</cite></li><li><cite><a href="/laozi/" class="crosslink" data-crosslink="laozi">Laozi</a>, Daodejing</cite></li><li><cite><a href="/zhuangzi/" class="crosslink" data-crosslink="zhuangzi">Zhuangzi</a></cite></li><li><cite>Zhu Xi, commentary tradition on the Taijitu shuo</cite></li><li><cite>Needham, Science and Civilisation in China</cite></li><li><cite>Graham, Disputers of the Tao</cite></li><li><cite>Baxter &amp; Sagart, Old Chinese Reconstruction</cite></li><li><cite>Unihan Database (Unicode Consortium)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/wuji_logomark.webp" type="image/webp"><img src="../../assets/wuji_logomark.webp" alt="Wújí logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/wuji_logomark.webp" type="image/webp"><img src="../../assets/wuji_logomark.webp" alt="Wújí logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

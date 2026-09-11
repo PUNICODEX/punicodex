@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Kotoshironushi — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">事代主神</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Kotoshironushi</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,143 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">事代主神</p>
-                    <p class="card-body">The name in its original Japanese form. <strong>Kotoshironushi</strong> (事代主神) is attested in the source tradition — “Lord who substitutes”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">kotoshironushi</p>
-                    <p class="card-body">The plain <strong>kotoshironushi</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Kotoshironushi</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Kotoshironushi</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Kotoshironushi.com → kotoshironushi.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Kotoshironushi</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Kotoshironushi</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Kotoshironushi is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">事代主神</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Kotoshironushi is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kotoshironushi</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Kotoshironushi</p>
-                    <p class="card-body">Restores <strong>事代主神</strong>. The full Unicode restoration. <strong>kotoshironushi.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Kotoshironushi was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Kotoshironushi</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ko.to.ɕi.ɾo.nɯ.ɕi/</span>
-            <span class="ipa-label">Modern Standard Japanese (Hepburn)</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Koto-</span>
-        <span class="phoneme-desc">Voiceless velar [k], open-mid [o], alveolar [t], open-mid [o]; from 事 'matter/affair'</span>
+      <p class="lead-text">Kotoshironushi’s mythology is brief but pivotal: as a son of <a href="/okuninushi/" class="crosslink" data-crosslink="okuninushi">Ōkuninushi</a>, ruler of the earthly kami, he advised the peaceful cession of the land to the heavenly line of <a href="/amaterasu/" class="crosslink" data-crosslink="amaterasu">Amaterasu</a> and then withdrew from the world. His “hiding” let the imperial succession begin without the annihilation of the old order, and later ages gathered his memory into <a href="/ebisu/" class="crosslink" data-crosslink="ebisu">Ebisu</a>, the beloved god of fishermen and merchants.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a></span>
+          <h3 class="myth-title">The Cession of the Land</h3>
+          <p class="myth-text">Amaterasu resolved that her grandson <a href="/ninigi/" class="crosslink" data-crosslink="ninigi">Ninigi</a> should rule the central land of reed plains, and sent the warrior god Takemikazuchi to compel its ruler, Ōnamuchi — Ōkuninushi — to yield. Ōkuninushi’s son Takeminakata answered the embassy with defiance, was defeated in a trial of strength, and fled across the sea to Suwa. Then the Kojiki slows for the decisive interview: Ōkuninushi asked his son Kotoshironushi what should be done. Kotoshironushi answered that the land should be given up to the heavenly grandchildren, and — his counsel accepted — he withdrew into concealment, kakuremi, and “the land was then at peace.” His mother, the Kojiki adds, was Hayaakitsuhime, a daughter of the sea deity Ōwatatsumi, which is why his disappearance ran seaward. By choosing counsel over resistance, one son of the old order ended a war that his brother’s arms could not have won — and the mythology marks the cost exactly: the surrendering god simply vanishes from the story he made possible.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-shiro-</span>
-        <span class="phoneme-desc">Voiceless alveolo-palatal [ɕ], close front [i], alveolar tap [ɾ], open-mid [o]; from 代 'substitute/age'</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a></span>
+          <h3 class="myth-title">The God Who Hides</h3>
+          <p class="myth-text">The Nihon Shoki’s parallel account deepens both the withdrawal and the genealogy: it names Kotoshironushi’s mother a child of the sea deity, binding him to Watatsumi’s watery realm, and dwells on the hiding itself — the kakuremi by which the god of the old dispensation removes himself so that the new one can begin. Japanese scholarship has long read the “hiding kami” as the mythic signature of cults that withdrew from the political centre: deities who lost the argument survived by retreating into oracles, mountains, and the sea, keeping a voice precisely by surrendering a throne. The theme recurs across the early chronicles — gods who conceal themselves and must be lured, cajoled, or divined back into relationship with the court. Kotoshironushi is the purest case: he is the patron of every defeated thing that refuses to die, and his entire myth is an exit that turned out to be a survival.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-nushi</span>
-        <span class="phoneme-desc">Alveolar nasal [n], close back [ɯ], voiceless alveolo-palatal [ɕ], close front [i]; from 主 'lord/master'</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Shrine tradition</span>
+          <h3 class="myth-title">The Oracle Lord of Miwa</h3>
+          <p class="myth-text">His very name — 事代主, “lord who substitutes for the matter” — was read by later generations as a title of the oracular god: the one who speaks the divine word in place of another, and so “substitutes” for the hidden deity behind the message. Shrine tradition around Ōmiwa, at the foot of Mount Miwa in Nara prefecture — one of the oldest sanctuaries in Japan, where the mountain itself is the sacred body of the god — links his lineage to the Miwa cult, through which the will of the kami was delivered to the court by divination and trance. Some scholars have gone further and proposed identifying Kotoshironushi with Ōmononushi, the great kami of Miwa itself; the identification remains a hypothesis, but a telling one. In the Nihon Shoki’s age of oracles, the troubled reign of Emperor Sujin — plagues, failed harvests, and divine warnings that had to be sought and obeyed — taught that neglected gods of the land would speak until properly housed. Kotoshironushi’s specialty is precisely that: being the voice of the one who is absent.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Ebisu</span>
+          <h3 class="myth-title">The Smiling God of Nishinomiya</h3>
+          <p class="myth-text">By the medieval and early modern centuries, the hidden god had resurfaced as the most approachable of deities. The great shrine of Nishinomiya in Hyōgo prefecture identifies its kami with Kotoshironushi and calls him Ebisu — “the prosperous guest” — the smiling god who carries a fishing rod and a red sea bream, the tai whose name puns on medetai, “auspicious.” Every January the shrine fills with merchants and fishermen for the Tōka Ebisu festival, when visitors buy lucky bamboo grass and invite the god of the new year into their shops and boats. Among the Seven Gods of Fortune, Ebisu is the only one worshipped purely as a native kami, without Buddhist, Daoist, or foreign pedigree. The transformation is one of the neatest survivals in Japanese religion: the son who advised his father to surrender an empire became the guest who blesses a shopkeeper’s ledger. The old order lost the land — and won the marketplace.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'KOH-toh-shee-roh-noo-shee' — the 'r' is a light tap, and the final vowels are soft.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Japanese</strong> 事代主神 (Kotoshironushi-no-kami), 'Lord who Substitutes'</li><li><strong>Father</strong> <a href="/okuninushi/" class="crosslink" data-crosslink="okuninushi">Ōkuninushi</a></li><li><strong>Associations</strong> Oracles, fishing, <a href="/ebisu/" class="crosslink" data-crosslink="ebisu">Ebisu</a>, and the land-transfer myth</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kotoshironushi is Tier 2: plain Hepburn. He is a son of Ōkuninushi and a key figure in the transfer of the land to <a href="/amaterasu/" class="crosslink" data-crosslink="amaterasu">Amaterasu</a>'s descendants.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -375,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Lord Who Substitutes</h2>
             <p class="section-subtitle">Oracle, Fishing, and the Transfer of the Land</p>
         </div>
@@ -385,86 +296,51 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L48 56H16L32 8Z"></path></svg></div>
         <h4 class="domain-name">Land Transfer</h4>
-        <p class="domain-desc">He agreed to cede the land to <a href="/ninigi/" class="crosslink" data-crosslink="ninigi">Ninigi</a>'s descendants, enabling imperial rule.</p>
+        <p class="domain-desc">His counsel ceded the land of reed plains to the heavenly grandchildren — the surrender that founded imperial rule without a war of extermination.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C22 8 14 18 14 32C14 46 22 56 32 56C42 56 50 46 50 32C50 18 42 8 32 8ZM32 20V44"></path></svg></div>
         <h4 class="domain-name">Oracle God</h4>
-        <p class="domain-desc">His oracles guided the negotiations over the land.</p>
+        <p class="domain-desc">His name means “lord who substitutes”: the voice that speaks the divine will when the god himself is hidden.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 48C16 36 24 32 32 32C40 32 48 36 56 48V56H8V48Z"></path></svg></div>
         <h4 class="domain-name">Fishing Deity</h4>
-        <p class="domain-desc">Like Ebisu, he withdrew to the sea and governed its bounty.</p>
+        <p class="domain-desc">A grandson of the sea deity Ōwatatsumi, he withdrew toward the water and became patron of its catches.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L40 24H56L44 36L48 52L32 44L16 52L20 36L8 24H24L32 8Z"></path></svg></div>
         <h4 class="domain-name">Ebisu Link</h4>
-        <p class="domain-desc">Later tradition identified him with the smiling god of commerce.</p>
+        <p class="domain-desc">Nishinomiya’s Ebisu — rod and red tai in hand — is his smiling later face, the only purely Japanese god among the Seven Gods of Fortune.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">Fishing rod</span>
-        <span class="symbol-meaning">His attribute as a sea god</span>
+        <span class="symbol-meaning">The attribute he carries as Ebisu, god of the catch — the tool by which fortune is drawn from the sea</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Sea bream</span>
-        <span class="symbol-meaning">The auspicious fish associated with Ebisu and maritime fortune</span>
+        <span class="symbol-name">Sea bream (tai)</span>
+        <span class="symbol-meaning">The auspicious fish whose name puns on medetai, “auspicious”; Ebisu’s perpetual catch</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Oracle implements</span>
-        <span class="symbol-meaning">Tools of divination used in land-transfer negotiations</span>
+        <span class="symbol-meaning">The divination tools of the Miwa tradition — the “substituted” voice of the hidden god</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Bow</span>
-        <span class="symbol-meaning">Symbol of the martial power that persuaded the earthly kami to submit</span>
+        <span class="symbol-name">Kakuremi (the hiding)</span>
+        <span class="symbol-meaning">His withdrawal into concealment after the cession — the survival strategy of the defeated old order</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Kotoshironushi</p>
-        </div>
-        
-      <p class="lead-text">Kotoshironushi's mythology centers on the peaceful transfer of sovereignty from the earthly kami to the heavenly line.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Kojiki</span>
-          <h3 class="myth-title">The Cession of the Land</h3>
-          <p class="myth-text">When Amaterasu sent her grandson Ninigi to rule the earth, the earthly kami Ōkuninushi resisted. After negotiations and divine pressure, Ōkuninushi asked his son Kotoshironushi for advice. Kotoshironushi declared that the land should be surrendered to the heavenly descendants, and he withdrew to the sea. His voluntary submission made the peaceful transfer possible.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Nihon Shoki</span>
-          <h3 class="myth-title">Oracle at Miwa</h3>
-          <p class="myth-text">The Nihon Shoki associates Kotoshironushi with the Miwa area and with oracular divination. His withdrawal to the sea and identification with marine fortune reflect his role as a mediator between land and water, old order and new.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Folk tradition</span>
-          <h3 class="myth-title">Kotoshironushi and Ebisu</h3>
-          <p class="myth-text">In popular devotion, Kotoshironushi merged with Hiruko and other sea figures to become Ebisu, the smiling god of fishermen and merchants. This synthesis shows how minor mythological figures could be gathered into a single, beloved deity.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the japanese pantheon</p>
         </div>
@@ -528,8 +404,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">事代主神</p>
+                <p class="card-body">The name in its original Japanese form. <strong>Kotoshironushi</strong> (事代主神) is attested in the source tradition — “Lord who substitutes”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">kotoshironushi</p>
+                <p class="card-body">The plain <strong>kotoshironushi</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Kotoshironushi</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Kotoshironushi</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Kotoshironushi.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Kotoshironushi</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Kotoshironushi</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Kotoshironushi</p>
+                    <p class="card-body">Restores <strong>事代主神</strong>. The full Unicode restoration. <strong>kotoshironushi.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Kotoshironushi was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ko.to.ɕi.ɾo.nɯ.ɕi/</span>
+            <span class="ipa-label">Modern Standard Japanese (Hepburn)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Koto-</span>
+        <span class="phoneme-desc">Voiceless velar [k], open-mid [o], alveolar [t], open-mid [o]; from 事 'matter/affair'</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-shiro-</span>
+        <span class="phoneme-desc">Voiceless alveolo-palatal [ɕ], close front [i], alveolar tap [ɾ], open-mid [o]; from 代 'substitute/age'</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-nushi</span>
+        <span class="phoneme-desc">Alveolar nasal [n], close back [ɯ], voiceless alveolo-palatal [ɕ], close front [i]; from 主 'lord/master'</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'KOH-toh-shee-roh-noo-shee' — the 'r' is a light tap, and the final vowels are soft.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Kotoshironushi is Tier 2: plain Hepburn. He is a son of Ōkuninushi and a key figure in the transfer of the land to Amaterasu's descendants.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Kotoshironushi is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">事代主神</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Kotoshironushi is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -538,7 +551,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Kotoshironushi teaches that sovereignty can pass peacefully. His withdrawal is not defeat but wisdom: sometimes the greater power yields to the new order so that life — fishing, trade, worship — can continue.</p>
+                <p class="pantheon-body">Kotoshironushi is the theology of the graceful exit. Every tradition must answer the question his story poses: what becomes of the old order when the new one arrives? His answer — counsel surrender, then withdraw — let both worlds survive. There is a distinctly Japanese lesson in the shape of his career: power that argues with history loses, while power that serves as its voice endures. The oracle-god who speaks for the absent deity becomes, centuries later, the guest-god who blesses the shop: both are the same office, the sacred made negotiable. In an age that treats every ending as a failure, the Lord Who Substitutes reminds us that some of the most durable things in a culture are precisely the ones that stepped aside at the right moment.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -547,7 +560,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/kotoshironushi_mascot.webp" type="image/webp"><img src="../assets/kotoshironushi_mascot.png" alt="Kotoshironushi mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kotoshironushi_mascot.webp" type="image/webp"><img src="../assets/kotoshironushi_mascot.png" alt="Kotoshironushi mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -585,7 +598,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/kotoshironushi_logomark.webp" type="image/webp"><img src="../assets/kotoshironushi_logomark.webp" alt="Kotoshironushi logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/kotoshironushi_logomark.webp" type="image/webp"><img src="../assets/kotoshironushi_logomark.webp" alt="Kotoshironushi logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

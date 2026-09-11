@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Átlas, Bearer of the Heavens. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/atlas/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Átlas?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Átlas is /át.laːs/ — approximately 'AT-lass' — the first syllable is pitched high, as if lifting; the second is level and heavy."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Átlas mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Átlas means Enduring, suffering (from τλάω) in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Átlas?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Átlas is associated with Celestial sphere (The heavens he supports — the Farnese Atlas marble still shows the constellations incised on it), Pillars (The Pillars of Herakles, once called the Pillars of Atlas — the gate of the Mediterranean at the western edge), Globe (Later iconographic fusion of the sky and earth, and the reason map-books are called atlases), Book or scroll (His astronomical knowledge — Diodorus' Atlas was a star-king as much as a load-bearer), Apples of the Hesperides (The golden apples guarded by his daughters, the prize that brought Herakles to his shoulders)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Átlas in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII atlas strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Átlas?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Sky on His Shoulders” — Atlas belongs to the defeated generation of gods, yet his punishment became Greece's image of endurance itself: the rebel turned load-bearer, the edge of the world where sky meets sea. His myths are few — a war, a labor, a petrification — but they carry an entire cosmography, and a name the Renaissance would place on every book of maps. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/atlas_logolockup.webp" type="image/webp"><img src="../../assets/atlas_logolockup.png" alt="Átlas" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Átlas</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Átlas.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/atlas_mascot.webp" type="image/webp"><img src="../../assets/atlas_mascot.png" alt="Átlas — Bearer of the Heavens" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/atlas_mascot.webp" type="image/webp"><img src="../../assets/atlas_mascot.png" alt="Átlas — Bearer of the Heavens" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Átlas is Tier 2 because the Greek Ἄτλας preserves stress (acute on the first alpha) but no long vowel. The name's short, heavy sound mimics the burden it describes: a single pitched syllable followed by the weight of the final syllable.</p>
+                <p class="etymology-note">Enduring, suffering (from τλάω)</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — ἀντλέω (antleō) or τλάω (tlao), 'to endure, to bear' — the traditional Greek etymology</li><li><strong>PIE</strong> — *telh₂- 'to bear, support' — possible root, though Beekes disputes a Greek etymology</li><li><strong>Atlantic</strong> — from Atlas — the sea beyond the pillars he holds</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — τλάω (tláō), 'to endure, to bear, to dare' — the traditional Greek etymology</li><li><strong>PIE</strong> — *telh₂- 'to bear, support' — a possible root; Beekes judges the name's deeper origin uncertain</li><li><strong>Atlantic</strong> — from Atlas — the sea beyond the pillars he holds; the range, the moon crater, and a star in the Pleiades all keep his name</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Átlas is the Titan who holds up the sky. He is not a villain but a defeated rebel, condemned to bear the celestial sphere on his shoulders for eternity. His endurance becomes a kind of heroism: <strong>he does not triumph, but he does not collapse</strong>.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Átlas in Later Traditions</h3><p class="cultural-card-body">Átlas had no Roman counterpart; the Romans simply kept his Greek name. In Renaissance and Baroque art he became a symbol of fortitude and cosmological knowledge. The Farnese Atlas, a second-century CE marble statue in Naples, is the oldest surviving representation of the celestial sphere and preserves ancient Greek astronomical data. Cartographers from Mercator onward used Átlas as the frontispiece for atlases, making his name synonymous with geographic knowledge. In modern astronomy, the Atlas Mountains and the lunar crater Atlas (adjacent to the crater Hercules) bear his name, and he appears in science fiction as the archetype of the being who holds up worlds.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Átlas is the archetype of the burden-bearer. The image of a giant holding up the world is one of the most enduring in Western art and literature. Ayn Rand used his name for her novel <em>Atlas Shrugged</em>, giving him a modern political meaning. In astronomy, the Titan's association with the celestial sphere made him a patron of stargazers and mapmakers. The word 'atlas' is now universal. Restoring <em>Átlas</em> restores the name of the being whose endurance holds the sky in place.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Átlas</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Átlas in Later Traditions</h3><p class="cultural-card-body">The Romans kept his Greek name untranslated — there was no Latin Titan to absorb him. Renaissance cartographers placed him, sphere in arms, on the title-pages of map-books; by Mercator's time the book itself was called an <em>atlas</em>, so the Titan's punishment became the emblem of world-knowledge. The Farnese Atlas, a second-century CE marble in Naples, preserves the oldest surviving celestial globe with the Greek constellations in place. Modern astronomy repeats the name everywhere at once: the Atlas Mountains, the lunar crater Atlas beside the crater Hercules, a star in the Pleiades, a moon of Saturn. He has become science fiction's favorite archetype too — the being engineered to hold up a world — from Ayn Rand's <em>Atlas Shrugged</em> to every story that asks who carries what cannot be put down.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Atlas is the West's archetype of the burden-bearer, his bent shoulders reproduced from temple metopes to corporate logos; Charles Atlas borrowed even his physique. In astronomy his name outranks the hero who freed him — the star Atlas, the lunar crater, the Saturnian moon. The word 'atlas' is now simply the word for a book of maps. Restoring <em>Átlas</em> restores the sound of the short, pitched first syllable under which the whole sky is held — a name that turned a cosmic sentence into the West's permanent image of quiet, sustaining strength.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Farnese Atlas in the National Archaeological Museum, Naples (inv. 6374), a Roman copy of a Hellenistic original, holds the oldest surviving celestial globe, its forty-one constellations preserving Greek star-data. The Temple of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a> (ca. 470-456 BCE) displayed a metope of <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a> receiving the apples from Atlas. Pausanias describes Atlas carrying the heaven on the chest of Cypselus and on votive offerings at the Heraion (5.17-19), and Theban and Attic vases show the same bent figure. Roman North Africa made the identification literal: the mountains themselves were the Titan's petrified body, and their coins sometimes say so.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Átlas means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Atlas is the god of the weight that does not end. He is not punished with pain but with labor — the same labor, forever. There is no transformation, no reward, no release. Yet he is not entirely pitiable. His burden is also his identity: without it, he is just another defeated Titan.</p><p>The modern world has many Atlases: caregivers, essential workers, anyone whose effort keeps the structure upright. The restoration of his name is a recognition that some forms of greatness are not dramatic but sustaining — the willingness to hold what would otherwise fall.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Átlas, Bearer of the Heavens, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Átlas?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Átlas</strong> is /át.laːs/ — approximately 'AT-lass' — the first syllable is pitched high, as if lifting; the second is level and heavy..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Átlas mean?</summary><div class="faq-answer"><p><strong>Átlas</strong> means <strong>Enduring, suffering (from τλάω)</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Átlas?</summary><div class="faq-answer"><p>Átlas is associated with <strong>Celestial sphere</strong> (The heavens he supports), <strong>Pillars</strong> (The Pillars of <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a>, once called the Pillars of Atlas), <strong>Globe</strong> (Later iconographic fusion of the sky and earth), <strong>Book or scroll</strong> (His astronomical knowledge), <strong>Apples of the Hesperides</strong> (The golden apples guarded by his daughters).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Átlas in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>atlas</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Átlas?</summary><div class="faq-answer"><p>Átlas was one of the leading Titans in the war against <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> and the Olympians. When the Titans were defeated, Zeús singled him out for the heaviest punishment: he must hold up the sky for all time. Other Titans were imprisoned in <a href="/tartaros/" class="crosslink" data-crosslink="tartaros">Tartaros</a>; Átlas was given a task that required constant, conscious effort. His punishment is a form of forced usefulness.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Átlas?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Átlas</strong> is /át.laːs/ — approximately 'AT-lass' — the first syllable is pitched high, as if lifting; the second is level and heavy.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Átlas mean?</summary><div class="faq-answer"><p><strong>Átlas</strong> means <strong>Enduring, suffering (from τλάω)</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Átlas?</summary><div class="faq-answer"><p>Átlas is associated with <strong>Celestial sphere</strong> (The heavens he supports — the Farnese Atlas marble still shows the constellations incised on it), <strong>Pillars</strong> (The Pillars of Herakles, once called the Pillars of Atlas — the gate of the Mediterranean at the western edge), <strong>Globe</strong> (Later iconographic fusion of the sky and earth, and the reason map-books are called atlases), <strong>Book or scroll</strong> (His astronomical knowledge — Diodorus' Atlas was a star-king as much as a load-bearer), <strong>Apples of the Hesperides</strong> (The golden apples guarded by his daughters, the prize that brought Herakles to his shoulders).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Átlas in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>atlas</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Átlas?</summary><div class="faq-answer"><p>“The Sky on His Shoulders” — Atlas belongs to the defeated generation of gods, yet his punishment became Greece's image of endurance itself: the rebel turned load-bearer, the edge of the world where sky meets sea. His myths are few — a war, a labor, a petrification — but they carry an entire cosmography, and a name the Renaissance would place on every book of maps. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,13 +355,13 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod, Theogony</cite></li><li><cite>Homer, Odyssey</cite></li><li><cite>Apollodorus, Library</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 215, 517-520, 744-750</cite></li><li><cite>Homer, Odyssey 1.52-54</cite></li><li><cite>Apollodorus, Library 2.5.11 (Herakles and the apples)</cite></li><li><cite>Ovid, <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 4.627-662 (<a href="/perseus/" class="crosslink" data-crosslink="perseus">Perseus</a>); Hyginus, Fabulae 150</cite></li><li><cite>Diodorus Siculus 3.60.1-3; 4.26.2-3</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Átlas and related cults.</cite></li><li><cite>The Farnese Atlas in the National Archaeological Museum, Naples (inv. 6374), is a Roman copy of a Hellenistic statue holding a celestial globe; it preserves the oldest complete representation of Greek constellations. The Temple of Zeus at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a> (ca. 470–456 BCE) displayed a metope of Heracles receiving the apples from Atlas. Numismatic and sculptural images from Roman North Africa identified the Atlas Mountains with the Titan's petrified body.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Átlas and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/atlas_logomark.webp" type="image/webp"><img src="../../assets/atlas_logomark.webp" alt="Átlas logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/atlas_logomark.webp" type="image/webp"><img src="../../assets/atlas_logomark.webp" alt="Átlas logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

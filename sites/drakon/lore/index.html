@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Drákōn — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Δράκων</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Drákōn.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,141 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Δράκων</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Drákōn</strong> (Δράκων) is attested in the source tradition — “'The one who sees clearly' (from δέρκομαι, to see)”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">drakon</p>
-                    <p class="card-body">Reduced to plain <strong>drakon</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Drákōn</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Drákōn</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Drákōn.com → xn--drkn-6na36d.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Drákōn</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Drákōn</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Drákōn is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Δράκων</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Drákōn is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Drákōn</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Drákōn</p>
-                    <p class="card-body">Restores <strong>Δράκων</strong>. The live temple domain — <strong>drákōn.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Scholarly Convention</h3>
-                    <p class="card-unicode">Drakōn</p>
-                    <p class="card-body">Restores <strong>Δράκων</strong>. LSJ convention: length only, no stress mark.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">drakon</p>
-                    <p class="card-body">Flattens <strong>Δράκων</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Drákōn was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Drákōn</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/drá.kɔːn/</span>
-            <span class="ipa-label">Attic Greek</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">DRAH-kone, stress on the first syllable with a long final ō.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> δράκων</li><li><strong>Latin</strong> draco</li><li><strong>English</strong> dragon</li><li><strong>Owned form</strong> Drákōn</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek δράκων derives from the aorist root of δέρκομαι, "to see clearly" — the dragon is etymologically "the sharp-sighted one," the watcher. The circumflex in Drákōn marks the long ō of the -ων stem; the macron-only Drakōn is the scholarly fallback. The long ō belongs to the nominative singular alone; the oblique stem (drakontos) carries a short o — the macron preserves the nominative's lengthened vowel.</p></div>
+      <p class="lead-text">Every Greek dragon is a threshold made flesh: kill one and a sanctuary, a city, or a marriage becomes possible — which is why the founders of cities are all, sooner or later, dragonslayers.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Oracle</span>
+          <h3 class="myth-title">Apóllōn and Python</h3>
+          <p class="myth-text">The <a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to Apollo (300–374) tells how the young god, still beardless, sought a site for his oracle and found the spring at <a href="/delphoi/" class="crosslink" data-crosslink="delphoi">Delphoi</a> guarded by a great she-dragon — Typhaon’s nurse, they said, a plague on the flocks and fields of the people. From a hundred paces <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a> drew his silver bow and shot; the shaft transfixed her, and she writhed in the dust, gasping out her great breath. Then the god, master of the moment, mocked: “Now rot (pytheu) here upon the fruitful soil — no more will you be a bane to my parishioners.” From the rotting came the old name of the place, Pythō, and of its prophetess, Pythia; the god’s temple was raised beside the spring his arrow had freed. The myth means sanctuary and monster are one package in Greek religion: a god wins his holy place by killing what guarded it — the oracle’s authority is a dragon’s death certificate.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The City</span>
+          <h3 class="myth-title">Kadmos at the Spring</h3>
+          <p class="myth-text">Sent from Phoenicia to find his sister Europa, Kadmos followed an oracle to a cow that would show him where to found a city. Where the cow lay down, the Ismenian spring flowed — guarded by a dragon, offspring of <a href="/ares/" class="crosslink" data-crosslink="ares">Árēs</a> himself, which killed Kadmos’ men as they drew water. Kadmos hurled a rock that crushed the serpent’s head, then, on <a href="/athena/" class="crosslink" data-crosslink="athena">Athēnā</a>’s counsel, sowed half its teeth in the plain. Armed men, the Spartoi, the “Sown,” rose from the furrows and at once fell to killing one another, until five remained — the ancestors of Thebes’ proudest houses. Kadmos did penance to Árēs for a year for the death of the god’s son, and the Theban king-list ever after carried the serpent’s blood. The myth means a city is founded on a killing that must be paid for: the polis begins as a debt, and its nobles are sprung, literally, from a dragon’s teeth.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Apples</span>
+          <h3 class="myth-title">Ladon of the Hesperides</h3>
+          <p class="myth-text">Beyond <a href="/atlas/" class="crosslink" data-crosslink="atlas">Atlas</a>, at the western edge of the world, stood the garden of the Hesperides, where a tree bore golden apples that <a href="/gaia/" class="crosslink" data-crosslink="gaia">Gaia</a> had given <a href="/hera/" class="crosslink" data-crosslink="hera">Hēra</a> at her wedding. Hesiod (<a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 333–336) calls its guardian a coiling dragon “terrible, with a hundred voices,” offspring of Phorkys and Ketō — <a href="/ladon/" class="crosslink" data-crosslink="ladon">Ladon</a>. <a href="/herakles/" class="crosslink" data-crosslink="herakles">Hēraklēs</a>’ eleventh labor took the apples: finding the hundred-headed warden unwinnable by force, he sent Atlas for the fruit (or, in the second account, killed Ladon with an arrow) and carried the apples back through the world. Later stargazers set the dragon among the stars as Draco, coiled forever around the north celestial pole — the one constellation that never sets. The myth means the Greeks hung their monsters in the sky to be outlasted nightly by the turning world: even eternity, in their astronomy, is a guard-duty.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Fleece</span>
+          <h3 class="myth-title">The Kolchian Warden</h3>
+          <p class="myth-text">At the world’s eastern edge, in Árēs’ grove at Kolchis, the Golden Fleece hung in a sacred oak, watched by a dragon that Apollonius describes as vast as a fifty-oared warship — and which never closed its eyes in sleep: the sleepless warden made perfect. No hero could fight it. Mēdeia, priestess and granddaughter of the Sun, did what force could not: her song and her pharmaka — the charm of sleep — drenched the guardian; its great head drooped, its coils loosened, and <a href="/iason/" class="crosslink" data-crosslink="iason">Iásōn</a> took the fleece from the tree. Ovid (<a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 7.149–158) keeps the telling detail that Mēdeia herself wept over the sleeping beast she had enchanted. It is the rare Greek dragon defeated not by the spear but by knowledge — by the very intelligence the Greeks called mētis. The myth means the Greeks knew some thresholds open only to the pharmakon: the warden that cannot be beaten can still be sung to sleep.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -373,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Watcher</h2>
             <p class="section-subtitle">Guardian Serpents, Spring Wardens, and the Sown Teeth</p>
         </div>
@@ -388,7 +301,7 @@
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M14 46C22 38 42 38 50 46M20 32C28 24 36 24 44 32M27 18H37M32 18V10"></path></svg></div>
         <h4 class="domain-name">Python</h4>
-        <p class="domain-desc">The earth-serpent of <a href="/delphoi/" class="crosslink" data-crosslink="delphoi">Delphoi</a> slain by <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a>, whose rotting gave the site its old name, Pythō.</p>
+        <p class="domain-desc">The earth-serpent of Delphoi slain by Apóllōn, whose rotting gave the site its old name, Pythō.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L38 26L56 26L41 37L46 55L32 44L18 55L23 37L8 26L26 26Z"></path></svg></div>
@@ -407,66 +320,31 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The spring</span>
-        <span class="symbol-meaning">What the dragon always guards — water, the earth's own wealth</span>
+        <span class="symbol-meaning">What the dragon always guards — water, the earth’s own wealth</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The teeth</span>
         <span class="symbol-meaning">Violence sown into the ground, sprouting as civil strife</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The hundred heads</span>
+        <span class="symbol-meaning">Ladon’s answer to the problem of sleeping on duty — Hesiod calls him “terrible, with a hundred voices” (Theogony 333): a warden built so that some head is always awake</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The windsock (draco)</span>
+        <span class="symbol-meaning">The hollow bronze serpent standard of Late Roman cavalry, its gaping mouth howling in the wind — the watcher turned into an army’s voice</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Drákōn</p>
-        </div>
-        
-      <p class="lead-text">Every Greek dragon is a threshold made flesh: kill one and a sanctuary, a city, or a marriage becomes possible — which is why the founders of cities are all, sooner or later, dragonslayers.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Oracle</span>
-          <h3 class="myth-title">Apóllōn and Python</h3>
-          <p class="myth-text">The Homeric Hymn to Apóllōn tells how the god, seeking a site for his oracle, found the spring at Delphoi guarded by a great she-dragon who had nursed Typhaon and ravaged the flocks. He shot her and left her to rot in the sun — "now rot (pytheu) here upon the fruitful soil" — and the place was called Pythō, the priestess Pythia, ever after.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The City</span>
-          <h3 class="myth-title">Kadmos at the Spring</h3>
-          <p class="myth-text">Sent to fetch water from the Ismenian spring, Kadmos' companions were killed by its guardian dragon, offspring of <a href="/ares/" class="crosslink" data-crosslink="ares">Árēs</a>. Kadmos crushed it with a rock, and on <a href="/athena/" class="crosslink" data-crosslink="athena">Athēnā</a>'s counsel sowed half its teeth: armed men, the Spartoi, rose from the furrows and killed each other until five remained — the ancestors of Thebes' noble houses.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Apples</span>
-          <h3 class="myth-title">Ladon of the Hesperides</h3>
-          <p class="myth-text">Beyond <a href="/atlas/" class="crosslink" data-crosslink="atlas">Atlas</a>, at the world's western edge, the dragon <a href="/ladon/" class="crosslink" data-crosslink="ladon">Ladon</a> — offspring of Phorkys and Ketō, in Hesiod "terrible, with a hundred voices" — coiled around the tree of the golden apples that <a href="/gaia/" class="crosslink" data-crosslink="gaia">Gaia</a> gave at <a href="/hera/" class="crosslink" data-crosslink="hera">Hēra</a>'s wedding. <a href="/herakles/" class="crosslink" data-crosslink="herakles">Hēraklēs</a>' eleventh labour took the apples; the wounded or slain dragon was set among the stars as the constellation Draco, coiled around the north celestial pole.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Fleece</span>
-          <h3 class="myth-title">The Kolchian Warden</h3>
-          <p class="myth-text">The Golden Fleece hung in Árēs' grove at Kolchis, guarded by a dragon "vast as a fifty-oared ship" that Apollonius says never closed its eyes in sleep. Mēdeia's song and her pharmaka drenched it in slumber — the rare Greek dragon defeated not by force but by knowledge.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -530,8 +408,143 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Δράκων</p>
+                <p class="card-body">The name in its original Greek form. <strong>Drákōn</strong> (Δράκων) is attested in the source tradition — “'The one who sees clearly' (from δέρκομαι, to see)”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">drakon</p>
+                <p class="card-body">Reduced to plain <strong>drakon</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Drákōn</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Drákōn</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Drákōn.com → xn--drkn-6na36d.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Drákōn</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Drákōn</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Drákōn</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Drákōn</p>
+                    <p class="card-body">Restores <strong>Δράκων</strong>. The live temple domain — <strong>drákōn.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Scholarly Convention</h3>
+                    <p class="card-unicode">Drakōn</p>
+                    <p class="card-body">Restores <strong>Δράκων</strong>. LSJ convention: length only, no stress mark.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">drakon</p>
+                    <p class="card-body">Flattens <strong>Δράκων</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Drákōn was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/drá.kɔːn/</span>
+            <span class="ipa-label">Attic Greek</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">DRAH-kone, stress on the first syllable with a long final ō.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek δράκων derives from the aorist root of δέρκομαι, "to see clearly" — the dragon is etymologically "the sharp-sighted one," the watcher. The circumflex in Drákōn marks the long ō of the -ων stem; the macron-only Drakōn is the scholarly fallback. The long ō belongs to the nominative singular alone; the oblique stem (drakontos) carries a short o — the macron preserves the nominative's lengthened vowel.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Drákōn is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Δράκων</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Drákōn is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -549,7 +562,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/drakon_mascot.webp" type="image/webp"><img src="../assets/drakon_mascot.png" alt="Drákōn mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/drakon_mascot.webp" type="image/webp"><img src="../assets/drakon_mascot.png" alt="Drákōn mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -587,7 +600,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/drakon_logomark.webp" type="image/webp"><img src="../assets/drakon_logomark.webp" alt="Drákōn logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/drakon_logomark.webp" type="image/webp"><img src="../assets/drakon_logomark.webp" alt="Drákōn logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

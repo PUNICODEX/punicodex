@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Ymir, Primordial Giant, Chaos. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/ymir/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Ymir?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Ymir is /ˈy.mir/ — approximately 'EE-meer' with rounded lips — say 'ee' while pursing the mouth as for 'oo' (the Old Norse y is German ü), then a short 'i' and a fully trilled final r."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Ymir mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ymir means Twin, screamer (from *ymijaz) in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Ymir?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ymir is associated with Ginnungagap (The yawning void at the world's beginning — the unmade space where fire and ice first traded breath), Auðhumla (The cow who feeds the giant and frees the gods — plenty and creation flowing from the same rime), The dismembered body (The map of the world written in one corpse: every landscape a part of Ymir, the cosmos as anatomy), The blood-flood (The deluge from Ymir's wound that drowns the frost-giants — destruction and sea-making in a single act), The four sky-dwarfs (Norðri, Suðri, Austri, and Vestri, set by the gods to hold Ymir's skull up at the four corners of heaven)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Ymir in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ymir is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Ymir?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Out of the Rime” — Ymir has no adventures and no cult: his mythology is cosmogony entire. He exists to be first — first life, first giant, first death — and the corpus treats him less as a character than as a fact of physics: the being out of whom everything had to be made, because before him there was nothing to make it from. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/ymir_logolockup.webp" type="image/webp"><img src="../../assets/ymir_logolockup.png" alt="Ymir" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Ymir</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Ymir</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/ymir_mascot.webp" type="image/webp"><img src="../../assets/ymir_mascot.png" alt="Ymir — Primordial Giant, Chaos" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/ymir_mascot.webp" type="image/webp"><img src="../../assets/ymir_mascot.png" alt="Ymir — Primordial Giant, Chaos" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -207,7 +258,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Ymir</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="4" data-delay="300">
       <div class="etym-step-content">
@@ -216,7 +267,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Ymir is Tier 2 by the mechanical rule: the normalized Old Norse form is already plain ASCII — there is no diacritic and no distinctive letter for the ASCII alphabet to lose. The giant's cosmic scale vastly outruns his name's orthography; only the capital distinguishes the restored form from the input.</p>
+                <p class="etymology-note">Twin, screamer (from *ymijaz)</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -241,7 +292,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">Y</td><td><code>U+0059</code></td><td>Latin Capital Letter Y</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Ymir</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -253,24 +304,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Ymir is the first living thing in the Norse cosmos — the frost-giant who condensed out of the dripping rime where the heat of Múspell met the ice of <a href="/niflheimr/" class="crosslink" data-crosslink="niflheimr">Niflheimr</a> in the yawning void of Ginnungagap. He is the ancestor of every jotunn, the cow Auðhumla's nursling, and finally the raw material of creation itself: <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>, Vili, and Vé kill him, and from his body build the world — flesh to earth, blood to sea, bones to mountains, skull to sky.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Ymir in Later Traditions</h3><p class="cultural-card-body">Ymir stands at the centre of the best-known comparative debate in Germanic mythology: the Indo-European dismemberment cosmogony. The Sanskrit parallel is exact in structure — Rigveda 10.90, the Puruṣasūkta, makes the world from the sacrifice of the primeval man Puruṣa, whose breath became wind, head sky, feet earth — and scholars from the nineteenth century onward have read Ymir as the Norse reflex of the same inherited pattern, most fully in Bruce Lincoln's studies of Indo-European creation myth. The name itself is contested: the strong philological line derives Ymir from the Old Norse verb ymja, 'to scream, roar, resound' — the Roarer — while the alternative connects it to Indo-European *yemo-, 'twin' (Sanskrit Yama, Latin geminus), which would make the hermaphroditic, self-begetting giant the 'Twin'. Simek, de Vries, and Lindow all register the dispute without settling it; this temple records both. Tacitus supplies the Germanic corroboration — Germania chapter 2 has the peoples of Germania sing of Tuisto, 'a god born of the earth', whose name is regularly read as 'twin, two-fold' — as the ancestor of Mannus and all the tribes.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ymir's afterlife runs wherever Norse myth is retold at scale. Richard Wagner's ring cycle built its world-music on the same dismembered-primordial logic, and the giant survives under his own name across modern popular culture: Robert E. Howard's 'The Frost-Giant's Daughter' (1934) makes its heroine the daughter of Ymir, Marvel Comics has kept Ymir the frost giant in print since 1962 as an antagonist of <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a>, and the name recurs across fantasy games from Dungeons &amp; Dragons onward wherever frost-giants are wanted. In scholarship the figure anchors the comparative project — Lincoln's Myth, Cosmos, and Society built its account of Indo-European creation ideology around the Ymir material. Modern Heathenry reads him as the necessary first matter of the cosmos: not a villain to be erased but the body the world is still made of.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Ymir</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ymir in Later Traditions</h3><p class="cultural-card-body">Ymir stands at the centre of the best-known comparative debate in Germanic mythology: the Indo-European dismemberment cosmogony. The Sanskrit parallel is exact in structure — <a href="/texts/rig-veda/#mandala-10" class="crosslink citation-link" data-citation="rig-veda">Rigveda 10.</a>90, the Puruṣasūkta, makes the world from the sacrifice of the primeval man Puruṣa, whose breath became wind, head sky, feet earth — and scholars from the nineteenth century onward have read Ymir as the Norse reflex of the same inherited pattern, most fully in Bruce Lincoln's studies of Indo-European creation myth. The name itself is contested: the strong philological line derives Ymir from the Old Norse verb ymja, 'to scream, roar, resound' — the Roarer — while the alternative connects it to Indo-European *yemo-, 'twin' (Sanskrit Yama, Latin geminus), which would make the hermaphroditic, self-begetting giant the 'Twin'. Simek, de Vries, and Lindow all register the dispute without settling it; this temple records both. Tacitus supplies the Germanic corroboration — Germania chapter 2 has the peoples of Germania sing of Tuisto, 'a god born of the earth', whose name is regularly read as 'twin, two-fold' — as the ancestor of Mannus and all the tribes.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ymir's afterlife runs wherever Norse myth is retold at scale. Richard Wagner's ring cycle built its world-music on the same dismembered-primordial logic, and the giant survives under his own name across modern popular culture: Robert E. Howard's 'The Frost-Giant's Daughter' (1934) makes its heroine the daughter of Ymir, Marvel Comics has kept Ymir the frost giant in print since 1962 as an antagonist of <a href="/thor/" class="crosslink" data-crosslink="thor">Thor</a>, and the name recurs across fantasy games from Dungeons &amp; Dragons onward wherever frost-giants are wanted. In scholarship the figure anchors the comparative project — Lincoln's Myth, Cosmos, and Society built its account of Indo-European creation ideology around the Ymir material. Modern Heathenry reads him as the necessary first matter of the cosmos: not a villain to be erased but the body the world is still made of.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Ymir is an entirely textual being: no runestone invokes him, no votive deposit names him, and no image can be securely identified with him — a silence that fits a cosmogonic abstraction rather than a cult figure. His attestation is the manuscript record. <a href="/texts/poetic-edda/#vafthruthnismol" class="crosslink citation-link" data-citation="vafthruthnismol">Vafþrúðnismál</a> and <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a> survive in the thirteenth-century Codex Regius of the <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a> (GKS 2365 4to); <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a> is preserved both there and in the fourteenth-century Hauksbók; Snorri's creation account rests on the Codex Regius of the <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> and related codices. Skaldic verse keeps the giant alive in kennings — the þulur catalogued in <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál</a> list Aurgelmir, Brimir, and Bláinn among the giant-names — proving the cosmogony's currency in the working vocabulary of pre-Christian and early Christian poets. The comparative witnesses are themselves texts: Rigveda 10.90 and Tacitus' Germania, copied and recopied in Sanskrit and Latin manuscript traditions far from the North.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Ymir means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Every cosmogony answers the question of what the world is made from; the Norse answer is a body. Before there was matter there was already a being — and so creation is never innocent. The ground is flesh, the weather is a giant's breath, the mountains are bones that once walked. The myth refuses the comfort of an empty beginning: someone had to die for there to be anywhere at all. Yet the Edda does not linger on the killing's guilt; it lingers on the fitting. Flesh to earth, blood to sea, skull to sky — the world is a translation, part for part, of the first body into the lasting one. To live in <a href="/midgardr/" class="crosslink" data-crosslink="midgardr">Miðgarðr</a>, in this telling, is to live inside Ymir: behind a wall of his eyelashes, under a vault of his skull, walking his flesh. The old name for that intimacy is one the modern world is relearning — that the environment is not around us but is what we are made of.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Ymir, Primordial Giant, Chaos, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ymir?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ymir</strong> is /ˈy.mir/ — approximately 'EE-meer' with rounded lips — say 'ee' while pursing the mouth as for 'oo' (the Old Norse y is German ü), then a short 'i' and a fully trilled final r..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ymir mean?</summary><div class="faq-answer"><p><strong>Ymir</strong> means <strong>Twin, screamer (from *ymijaz)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ymir?</summary><div class="faq-answer"><p>Ymir is associated with <strong>Ginnungagap</strong> (The yawning void at the world's beginning — the unmade space where fire and ice first traded breath), <strong>Auðhumla</strong> (The cow who feeds the giant and frees the gods — plenty and creation flowing from the same rime), <strong>The dismembered body</strong> (The map of the world written in one corpse: every landscape a part of Ymir, the cosmos as anatomy), <strong>The blood-flood</strong> (The deluge from Ymir's wound that drowns the frost-giants — destruction and sea-making in a single act), <strong>The four sky-dwarfs</strong> (Norðri, Suðri, Austri, and Vestri, set by the gods to hold Ymir's skull up at the four corners of heaven).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ymir in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>ymir</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ymir?</summary><div class="faq-answer"><p>Before the world there was Ginnungagap, the yawning void, with the frozen rivers of Niflheimr to the north and the sparks of Múspell to the south. Where the heat met the rime, Snorri says, the hoar-frost melted and dripped, and the drops quickened into the shape of a man: Ymir, whom the frost-giants call Aurgelmir. Vafþrúðnismál gives the older verse version — from Élivágar's waves shot poison-drops that froze and grew, until a jotunn arose from them.He was no god and no friend to gods: Snorri calls him and all his line evil. Yet everything that follows in the cosmos presupposes him — the first living being is the first material, and creation in the Norse telling is not ex nihilo but a reworking of what already is.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ymir?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ymir</strong> is /ˈy.mir/ — approximately 'EE-meer' with rounded lips — say 'ee' while pursing the mouth as for 'oo' (the Old Norse y is German ü), then a short 'i' and a fully trilled final r.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ymir mean?</summary><div class="faq-answer"><p><strong>Ymir</strong> means <strong>Twin, screamer (from *ymijaz)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ymir?</summary><div class="faq-answer"><p>Ymir is associated with <strong>Ginnungagap</strong> (The yawning void at the world's beginning — the unmade space where fire and ice first traded breath), <strong>Auðhumla</strong> (The cow who feeds the giant and frees the gods — plenty and creation flowing from the same rime), <strong>The dismembered body</strong> (The map of the world written in one corpse: every landscape a part of Ymir, the cosmos as anatomy), <strong>The blood-flood</strong> (The deluge from Ymir's wound that drowns the frost-giants — destruction and sea-making in a single act), <strong>The four sky-dwarfs</strong> (Norðri, Suðri, Austri, and Vestri, set by the gods to hold Ymir's skull up at the four corners of heaven).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ymir in Unicode?</summary><div class="faq-answer"><p><strong>Ymir</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ymir?</summary><div class="faq-answer"><p>“Out of the Rime” — Ymir has no adventures and no cult: his mythology is cosmogony entire. He exists to be first — first life, first giant, first death — and the corpus treats him less as a character than as a fact of physics: the being out of whom everything had to be made, because before him there was nothing to make it from. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -279,7 +342,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,13 +361,13 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Völuspá 3–5 ('when Ymir dwelled'), Vafþrúðnismál 20–21, 29–35 (Ymir's origin, offspring, and Bergelmir's flood), Grímnismál 40–41 (the world from Ymir's body), Hyndluljóð 33 (all giants descend from Ymir)</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning 5–8 (Ginnungagap, Élivágar, Auðhumla and <a href="/buri/" class="crosslink" data-crosslink="buri">Búri</a>, the killing and the making of the world); Skáldskaparmál (kennings and the þulur naming Aurgelmir, Brimir, Bláinn)</cite></li><li><cite>Rigveda 10.90, the Puruṣasūkta (the world from the dismembered primeval man) — the Sanskrit structural parallel</cite></li></ul>
+                    <ul class="source-list"><li><cite>Poetic Edda: Völuspá 3–5 ('when Ymir dwelled'), Vafþrúðnismál 20–21, 29–35 (Ymir's origin, offspring, and Bergelmir's flood), Grímnismál 40–41 (the world from Ymir's body), <a href="/texts/poetic-edda/#hyndluljoth" class="crosslink citation-link" data-citation="hyndluljoth">Hyndluljóð</a> 33 (all giants descend from Ymir)</cite></li><li><cite>Snorri Sturluson, Prose Edda: <a href="/texts/prose-edda/#gylfaginning-05" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 5</a>–8 (Ginnungagap, Élivágar, Auðhumla and <a href="/buri/" class="crosslink" data-crosslink="buri">Búri</a>, the killing and the making of the world); Skáldskaparmál (kennings and the þulur naming Aurgelmir, Brimir, Bláinn)</cite></li><li><cite>Rigveda 10.90, the Puruṣasūkta (the world from the dismembered primeval man) — the Sanskrit structural parallel</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ymir and related cults.</cite></li><li><cite>Ymir is an entirely textual being: no runestone invokes him, no votive deposit names him, and no image can be securely identified with him — a silence that fits a cosmogonic abstraction rather than a cult figure. His attestation is the manuscript record. Vafþrúðnismál and Grímnismál survive in the thirteenth-century Codex Regius of the Poetic Edda (GKS 2365 4to); Völuspá is preserved both there and in the fourteenth-century Hauksbók; Snorri's creation account rests on the Codex Regius of the Prose Edda and related codices. Skaldic verse keeps the giant alive in kennings — the þulur catalogued in Skáldskaparmál list Aurgelmir, Brimir, and Bláinn among the giant-names — proving the cosmogony's currency in the working vocabulary of pre-Christian and early Christian poets. The comparative witnesses are themselves texts: Rigveda 10.90 and Tacitus' Germania, copied and recopied in Sanskrit and Latin manuscript traditions far from the North.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ymir and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -371,7 +434,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/ymir_logomark.webp" type="image/webp"><img src="../../assets/ymir_logomark.webp" alt="Ymir logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/ymir_logomark.webp" type="image/webp"><img src="../../assets/ymir_logomark.webp" alt="Ymir logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

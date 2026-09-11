@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Ọrun — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Ọrun</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Ọrun.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,136 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Ọrun</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Ọrun</strong> is the standard Yoruba romanisation, documented in academic sources — “"Heaven" — the sky-realm of the orisha, the divine order above the world”. Its original diacritics and script distinctions preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">orun</p>
-                    <p class="card-body">Reduced to plain <strong>orun</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Ọrun</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ọrun</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Ọrun.com → xn--run-slz.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Ọrun</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ọrun</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Ọrun is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ọrun</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ọrun</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Ọrun</p>
-                    <p class="card-body">The live temple domain — <strong>ọrun.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">orun</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Ọrun was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Ọrun</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ɔ̀.rún/</span>
-            <span class="ipa-label">Standard Yoruba</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">aw-ROON — open o (dot-below), low-high melody.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Yoruba</strong> Ọ̀run</li><li><strong>Owner of heaven</strong> Olóòrun</li><li><strong>Owned form</strong> Ọrun</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ọrun is Yoruba for "heaven": the precomposed dot-below Ọ is the domain-maximal form — the full tone marks (Ọ̀run, low-high) cannot be registered as a domain, so the temple preserves the tone in text while the address bar carries what the DNS allows. The dot-below is the open-mid vowel — the open aw of law — distinct from the close o; the tone is low-high, rising from the grave to the acute.</p></div>
+      <p class="lead-text">Ọrun's myths are the architecture of Yoruba cosmology: how heaven was connected to earth, how every soul is commissioned before birth, and how the traffic between the two realms has never once stopped.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Descent</span>
+          <h3 class="myth-title">The Chain to Earth</h3>
+          <p class="myth-text">In the beginning there was only sky. Below Ọrun lay the primeval waters, and on the water floated nothing but the command of <a href="/olodumare/" class="crosslink" data-crosslink="olodumare">Olódùmarè</a>. The creation account recorded across Yorubaland — set down by the Rev. Samuel Johnson in the early twentieth century and analyzed by Bolaji Idowu — tells how Olódùmarè sent the orisha down a golden chain from heaven with a hen, a chameleon, and a handful of sand. Where the sand fell and the hen scratched, a mound rose from the flood: Ilé-Ifẹ̀, 'the house that spreads', the navel of the earth. The chain did not come back up; it anchored heaven to the new ground, and orisha, ancestors, and newborn souls have traveled it in both directions ever since. The myth means that Yoruba cosmology is a story of migration. Every birth repeats the first descent, and the road between Ọrun and ayé has never once been closed.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Choice</span>
+          <h3 class="myth-title">The Choosing of Orí</h3>
+          <p class="myth-text">Before a child is born, the Ifá corpus teaches, its soul kneels in Ọrun at the workshop of Ajala, the celestial potter, to choose its orí — the inner head that is its personal destiny. The odu narratives (see Abimbola, Ifá: An Exposition of Ifá Literary Corpus, and Bascom, Ifá Divination) tell of souls who chose carelessly, who bargained, or who arrived too late and had to take whatever heads remained. The choice is then sealed and the memory wiped: the child is born carrying an unread contract, and life is the slow reading of it. This is why Yoruba religion lavishes its attention on the head itself — offerings are made to the orí, the physical crown of the body, the one shrine every person carries everywhere. The myth means that destiny is chosen, not imposed — but chosen by a self you no longer remember being.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Traffic</span>
+          <h3 class="myth-title">Souls on the Road</h3>
+          <p class="myth-text">The Yoruba cosmos runs on commuting. Orisha descend to mount their priests in trance; ancestors return as Egúngún masquerades; the dead are reborn, and the abíkú — 'born to die' — are the children who keep commuting, slipping back to Ọrun young and being sent down again until their earthly parents find a charm to bind them to stay. The Ifá verses speak of these journeys as ordinary travel — dangerous, expensive, but routine — along the same chain-road the first orisha descended (Abimbola; Bascom; Drewal). The dead do not leave the world; they change direction. The myth means that Ọrun is not a distant heaven but an adjacent one — the next town, not the next world — and the border is crossed so often that every lineage keeps stories of the crossing.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Return</span>
+          <h3 class="myth-title">The Egúngún Come Back</h3>
+          <p class="myth-text">The most dramatic proof that the dead commute is the Egúngún: the masked, robed masqueraders who appear at the great festivals and are understood — not metaphorically but literally — as ancestors returned from Ọrun for a visit. The cloth-wrapped figure may never be touched or unmasked, for the cloth is both its embassy and its disguise; its voice is disguised, its blessing is sought by the whole lineage, and its displeasure is feared more than any chief's (Drewal, Pemberton and Abiodun, Yoruba: Nine Centuries of African Art and Thought, 1989). The Egúngún societies keep the costumes as lineage treasures handed down the generations, and the appearance of the ancestors is the high point of the ritual year. The institution means that heaven maintains a postal service: the dead can still speak, still bless, still scold — they simply cannot stay, and the message always comes wrapped in cloth.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -367,9 +285,9 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Heaven Above the Heavens</h2>
-            <p class="section-subtitle">Sky, Destiny, and the Realm of <a href="/olodumare/" class="crosslink" data-crosslink="olodumare">Olódùmarè</a></p>
+            <p class="section-subtitle">Sky, Destiny, and the Realm of Olódùmarè</p>
         </div>
         
       <div class="domains-intro reveal-up"><p class="lead-text">Ọrun is the Yoruba name of heaven itself: the sky-realm where Olódùmarè and the orisha dwell, from which every soul descends to earth (ayé) — and to which every destiny (orí) is assigned before birth. It is not a god but the address of the gods.</p></div>
@@ -406,53 +324,22 @@
       <div class="symbol-item">
         <span class="symbol-name">The head</span>
         <span class="symbol-meaning">Orí, the chosen destiny — heaven carried inside the skull</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The golden chain</span>
+        <span class="symbol-meaning">The road from Ọrun down which the first orisha descended to found Ilé-Ifẹ̀ — and by which every soul since has commuted between heaven and earth</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Ọrun</p>
-        </div>
-        
-      <p class="lead-text">Ọrun's myths are the architecture of Yoruba cosmology: how heaven was made, and how souls travel its road to earth.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Descent</span>
-          <h3 class="myth-title">The Chain to Earth</h3>
-          <p class="myth-text">In the beginning there was only Ọrun above and the waters below. Olódùmarè sent <a href="/oduduwa/" class="crosslink" data-crosslink="oduduwa">Odùduwà</a> down with a chain, a hen, and a handful of earth: the hen scattered the soil on the water, and the land of Ilé-Ifẹ̀ spread — earth founded beneath heaven, the two realms joined by the road of the orisha. Every Yoruba city thereafter is a point on that first chain's route.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Choice</span>
-          <h3 class="myth-title">The Choosing of Orí</h3>
-          <p class="myth-text">Before birth, each soul kneels in Ọrun before Olódùmarè and receives its orí — its inner head, its portion of destiny. The Ifá corpus teaches that the choice, once made, is erased from memory but not from life: every fortune and misfortune on earth is the heaven-chosen head working out its own plot. To pray for a good orí is to negotiate with one's own prenatal self.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Traffic</span>
-          <h3 class="myth-title">Souls on the Road</h3>
-          <p class="myth-text">The Yoruba cosmos runs on commuting: the orisha descend to possess their priests, the ancestors visit in dreams and Egúngún masquerades, and the dead return as children ("abíkú" are souls who commute too often). Ọrun is not distant but adjacent — the sky-realm whose door opens in every shrine, every trance, and every correctly cast palm-nut of Ifá.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the yoruba pantheon</p>
         </div>
@@ -516,8 +403,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Ọrun</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Ọrun</strong> is the standard Yoruba romanisation, documented in academic sources — “"Heaven" — the sky-realm of the orisha, the divine order above the world”. Its original diacritics and script distinctions preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">orun</p>
+                <p class="card-body">Reduced to plain <strong>orun</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Ọrun</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Ọrun</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Ọrun.com → xn--run-slz.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Ọrun</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Ọrun</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Ọrun</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Ọrun</p>
+                    <p class="card-body">The live temple domain — <strong>ọrun.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">orun</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Ọrun was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ɔ̀.rún/</span>
+            <span class="ipa-label">Standard Yoruba</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">aw-ROON — open o (dot-below), low-high melody.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Ọrun is Yoruba for 'heaven': the precomposed dot-below Ọ is the domain-maximal form — the full tone marks (Ọ̀run, low-high) cannot be registered as a domain, so the temple preserves the tone in text while the address bar carries what the DNS allows. The dot-below is the open-mid vowel — the open aw of law — distinct from the close o; the tone is low-high, rising from the grave to the acute.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Ọrun is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ọrun</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -526,7 +543,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Ọrun is the heaven that answers letters. It is not a place you hope to reach but the place you came from — with your destiny already in your pocket, unread. It asks the Yoruba question, which is also everyone's: the head you chose is the life you are living — so what, this morning, will you do with the heaven you brought with you?</p>
+                <p class="pantheon-body">Ọrun is the heaven you came from, not the one you hope to reach. Every soul descends with an orí already chosen and the memory of the choice erased: you signed the contract, but the signature is in a language you no longer speak. Yoruba religion is therefore not a quest for heaven but a negotiation with the heaven already inside — the head you chose is the life you are living.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -535,7 +552,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/orun_mascot.webp" type="image/webp"><img src="../assets/orun_mascot.png" alt="Ọrun mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/orun_mascot.webp" type="image/webp"><img src="../assets/orun_mascot.png" alt="Ọrun mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -573,7 +590,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/orun_logomark.webp" type="image/webp"><img src="../assets/orun_logomark.webp" alt="Ọrun logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/orun_logomark.webp" type="image/webp"><img src="../assets/orun_logomark.webp" alt="Ọrun logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

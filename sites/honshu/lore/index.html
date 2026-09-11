@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Honshū — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">本州</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Honshū.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">本州</p>
-                    <p class="card-body">The name in its original Japanese form. <strong>Honshū</strong> (本州) is attested in the source tradition — “'Main island' (本州)”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">honshu</p>
-                    <p class="card-body">Reduced to plain <strong>honshu</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Honshū</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Honshū</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Honshū.com → xn--honsh-pfb.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Honshū</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Honshū</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Honshū is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">本州</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Honshū is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Honshū</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Honshū</p>
-                    <p class="card-body">Restores <strong>本州</strong>. The live temple domain — <strong>honshū.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">honshu</p>
-                    <p class="card-body">Flattens <strong>本州</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Honshū was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Honshū</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/hon.ɕuː/</span>
-            <span class="ipa-label">Japanese (Hepburn)</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">HON-shoo, with a long final ū.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Japanese</strong> 本州</li><li><strong>Mythic name</strong> Ōyashima</li><li><strong>Owned form</strong> Honshū</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Honshū 本州 — "Main Province" — closes with the long ū of shū, preserved in the macron. The name is descriptive geography elevated to a proper name: the largest of Japan's islands, holding <a href="/tokyo/" class="crosslink" data-crosslink="tokyo">Tokyo</a>, <a href="/kyoto/" class="crosslink" data-crosslink="kyoto">Kyōto</a>, <a href="/osaka/" class="crosslink" data-crosslink="osaka">Ōsaka</a>, and some three-quarters of the nation. Both syllables carry long vowels in kana (ほんしゅう); the macron on the final ū marks the doubled u.</p></div>
+      <p class="lead-text">Honshū's mythology is the national charter itself: the <a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a>'s island-birth, the sun goddess's gift of the land, and the descent of her grandson to rule it.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Birth</span>
+          <h3 class="myth-title">The Islands from the Spear</h3>
+          <p class="myth-text">The Kojiki opens on the heavenly bridge: <a href="/izanagi/" class="crosslink" data-crosslink="izanagi">Izanagi</a> and <a href="/izanami/" class="crosslink" data-crosslink="izanami">Izanami</a> stir the ocean with the jewelled spear, and from the brine dripping from its point the first island coagulates. Descending, they wed and give birth to the islands of Japan — the "great eight islands" culminating in Ōyashima — and then to the kami of wind, sea, mountain, and tree. The archipelago is not created but born: the land is kin.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Sun</span>
+          <h3 class="myth-title">Amaterasu's Realm</h3>
+          <p class="myth-text">When the sun goddess <a href="/amaterasu/" class="crosslink" data-crosslink="amaterasu">Amaterasu</a> withdrew into the Heavenly Rock-Cave — outraged by her brother <a href="/susanoo/" class="crosslink" data-crosslink="susanoo">Susanoo</a>'s rampage — the world went dark until the gods' comic dance lured her out. Her mirror, hung outside the cave, caught her own light back to her; that mirror rests at Ise on Honshū's Kii coast, and her shrine there has been ritually rebuilt every twenty years for thirteen centuries: the island's heartwood, renewed.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Descent</span>
+          <h3 class="myth-title">Ninigi and the Rice Land</h3>
+          <p class="myth-text">Amaterasu sent her grandson <a href="/ninigi/" class="crosslink" data-crosslink="ninigi">Ninigi</a> down from heaven to rule the "Land of Fair Rice-ears of the Fertile Reed-plain" — the Kojiki's name for Honshū's heartland — bearing the three regalia. His great-grandson Jimmu conquered eastward to Yamato and became the first emperor: the mythic bridge from island-birth to imperial genealogy, anchored to real ground in Nara's basin.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Yielding</span>
+          <h3 class="myth-title">Ōkuninushi Surrenders the Land</h3>
+          <p class="myth-text">One more myth fixes Honshū's western half to the imperial story. When Amaterasu sent her grandson down to take the land, its ruler — <a href="/okuninushi/" class="crosslink" data-crosslink="okuninushi">Ōkuninushi</a>, the great land-master of Izumo — was first challenged through his sons, each defeated in turn, and then visited by the divine negotiators with a counter-offer: yield the visible world to heaven's line, and in exchange heaven would build him a shrine 'with its pillars thick at the base and high at the head' and house his spirit there (<em>Kojiki</em>, age of the heavenly grandchild). Ōkuninushi accepted. The <em><a href="/texts/nihon-shoki/" class="crosslink citation-link" data-citation="nihon-shoki">Nihon Shoki</a></em> remembers the bargain as a settled diplomatic exchange — Japan's mythic account of how the western realms joined the Yamato order without a war of conquest. Izumo Taisha, on Honshū's Sea-of-Japan coast, stands where the deal was struck, and the vast pillars its ancient halls once held were, by tradition, exactly the size the god stipulated.</p><p class="myth-text">The myth is a charter for peaceful annexation: the land yields, the god is honored, and both houses — Izumo's shrine and the imperial palace — stand on the same island.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Main Island</h2>
             <p class="section-subtitle">The Heartland, the Capitals, and the Spine of Japan</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Honshū is the island that became a civilization: largest of the Japanese archipelago, home of every historic capital from Nara to Kyōto to Edo-Tōkyō, and the ground on which the Jōmon, the Yayoi, and the Yamato state built the longest continuous imperial tradition on earth.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Honshū is the island that became a civilization: largest of the Japanese archipelago, home of every historic capital from Nara to <a href="/kyoto/" class="crosslink" data-crosslink="kyoto">Kyōto</a> to Edo-<a href="/tokyo/" class="crosslink" data-crosslink="tokyo">Tōkyō</a>, and the ground on which the Jōmon, the Yayoi, and the Yamato state built the longest continuous imperial tradition on earth.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 52L24 20L32 34L40 16L56 52Z"></path></svg></div>
@@ -411,49 +329,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Honshū</p>
-        </div>
-        
-      <p class="lead-text">Honshū's mythology is the national charter itself: the Kojiki's island-birth, the sun goddess's gift of the land, and the descent of her grandson to rule it.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Birth</span>
-          <h3 class="myth-title">The Islands from the Spear</h3>
-          <p class="myth-text">The Kojiki opens on the heavenly bridge: <a href="/izanagi/" class="crosslink" data-crosslink="izanagi">Izanagi</a> and <a href="/izanami/" class="crosslink" data-crosslink="izanami">Izanami</a> stir the ocean with the jewelled spear, and from the brine dripping from its point the first island coagulates. Descending, they wed and give birth to the islands of Japan — the "great eight islands" culminating in Ōyashima — and then to the kami of wind, sea, mountain, and tree. The archipelago is not created but born: the land is kin.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Sun</span>
-          <h3 class="myth-title">Amaterasu's Realm</h3>
-          <p class="myth-text">When the sun goddess <a href="/amaterasu/" class="crosslink" data-crosslink="amaterasu">Amaterasu</a> withdrew into the Heavenly Rock-Cave — outraged by her brother <a href="/susanoo/" class="crosslink" data-crosslink="susanoo">Susanoo</a>'s rampage — the world went dark until the gods' comic dance lured her out. Her mirror, hung outside the cave, caught her own light back to her; that mirror rests at Ise on Honshū's Kii coast, and her shrine there has been ritually rebuilt every twenty years for thirteen centuries: the island's heartwood, renewed.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Descent</span>
-          <h3 class="myth-title">Ninigi and the Rice Land</h3>
-          <p class="myth-text">Amaterasu sent her grandson <a href="/ninigi/" class="crosslink" data-crosslink="ninigi">Ninigi</a> down from heaven to rule the "Land of Fair Rice-ears of the Fertile Reed-plain" — the Kojiki's name for Honshū's heartland — bearing the three regalia. His great-grandson Jimmu conquered eastward to Yamato and became the first emperor: the mythic bridge from island-birth to imperial genealogy, anchored to real ground in Nara's basin.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the japanese pantheon</p>
         </div>
@@ -517,8 +400,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">本州</p>
+                <p class="card-body">The name in its original Japanese form. <strong>Honshū</strong> (本州) is attested in the source tradition — “'Main island' (本州)”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">honshu</p>
+                <p class="card-body">Reduced to plain <strong>honshu</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Honshū</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Honshū</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Honshū.com → xn--honsh-pfb.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Honshū</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Honshū</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Honshū</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Honshū</p>
+                    <p class="card-body">Restores <strong>本州</strong>. The live temple domain — <strong>honshū.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">honshu</p>
+                    <p class="card-body">Flattens <strong>本州</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Honshū was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/hon.ɕuː/</span>
+            <span class="ipa-label">Japanese (Hepburn)</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">HON-shoo, with a long final ū.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Honshū 本州 — "Main Province" — closes with the long ū of shū, preserved in the macron. The name is descriptive geography elevated to a proper name: the largest of Japan's islands, holding Tokyo, Kyōto, Ōsaka, and some three-quarters of the nation. Both syllables carry long vowels in kana (ほんしゅう); the macron on the final ū marks the doubled u.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Honshū is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">本州</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Honshū is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -536,7 +549,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/honshu_mascot.webp" type="image/webp"><img src="../assets/honshu_mascot.png" alt="Honshū mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/honshu_mascot.webp" type="image/webp"><img src="../assets/honshu_mascot.png" alt="Honshū mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -574,7 +587,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/honshu_logomark.webp" type="image/webp"><img src="../assets/honshu_logomark.webp" alt="Honshū logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/honshu_logomark.webp" type="image/webp"><img src="../assets/honshu_logomark.webp" alt="Honshū logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

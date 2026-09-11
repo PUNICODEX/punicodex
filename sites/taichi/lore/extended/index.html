@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Tàijí, Supreme Ultimate, Origin. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/taichi/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Tàijí?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Tàijí is /tʰaɪ̯˥˩ tɕi˧˥/ — approximately TIE-JEE — 'tai' like 'tie' with a sharp falling tone (high to low), and 'ji' like 'gee' with a rising tone."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Tàijí mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tàijí means Great extreme in the chinese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Tàijí?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tàijí is associated with The taijitu circle (The whole that contains both yin and yang in dynamic interdependence), The empty circle of wuji (The limitless void from which Tàijí emerges), Solid and broken lines (Yang and yin as the two building blocks of all subsequent forms), Water (The softest thing that overcomes the hardest — the practical image of Tàijí's yielding power), The center (The still point around which all motion turns)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Tàijí in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII taichi strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Tàijí?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Wújí ér Tàijí” — Tàijí has no body and no biography; its 'mythology' is the story Chinese thinkers told about how the one becomes many. The most influential telling is Zhou Dunyi's short prose poem, but it draws on much older Daoist and Yijing material. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/taichi_logolockup.webp" type="image/webp"><img src="../../assets/taichi_logolockup.png" alt="Tàijí" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Tàijí</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Tàijí.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/taichi_mascot.webp" type="image/webp"><img src="../../assets/taichi_mascot.png" alt="Tàijí — Supreme Ultimate, Origin" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/taichi_mascot.webp" type="image/webp"><img src="../../assets/taichi_mascot.png" alt="Tàijí — Supreme Ultimate, Origin" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">太極 (Tàijí) means the 'Supreme Ultimate' or 'Great Extreme', the primordial source from which yin and yang differentiate in Neo-Confucian cosmology. The Modern Standard Mandarin reading is tài (Tone 4) + jí (Tone 2), per the Hanyu Pinyin scheme (ISO 7098) and the Unihan Database (kMandarin). Baxter &amp; Sagart (2014) reconstruct the component characters as 太 *l̥a[t]-s (GSR 0317d) and 極 *[g](r)ək (GSR 0910e). The Unicode restoration Tàijí preserves both citation tones.</p>
+                <p class="etymology-note">The name <strong>Tàijí</strong> carries the orthographic signature of the chinese tradition: 太極. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Tàijí</strong> is the moment before distinction. In Neo-Confucian cosmology it is the 'Supreme Ultimate' or 'Supreme Polarity' — not a god but a generative singularity from which yin and yang unfold. The famous opening of Zhou Dunyi's <em>Taijitu shuo</em> (c. 1073 CE) sets the sequence in motion: <a href="/wuji/" class="crosslink" data-crosslink="wuji">Wújí</a> gives rise to Tàijí; Tàijí moves and generates yáng; at the limit of movement it becomes still and generates yīn.</p><p class="lead-text">This is not static monism. Tàijí is the axis of a cosmic breathing — the one that contains the two, the undivided source of all subsequent differentiation.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Tàijí in Later Traditions</h3><p class="cultural-card-body">Tàijí sits at the intersection of three Chinese traditions. For Daoists it is the cosmological stage just after the Dao; for Neo-Confucians it is the metaphysical foundation of ethics and natural order; for martial artists it is the physical principle of softness overcoming hardness. The symbol of the taijitu migrated into Korean Taoism, Japanese martial arts, and Vietnamese folk religion, often detached from Zhou Dunyi's text. In the modern West, <em>Tai Chi</em> is usually known as a health exercise, while the taijitu has become a generic emblem of balance and Eastern wisdom — sometimes stripped of its specific philosophical grammar but instantly recognizable.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Taijiquan is now practiced by millions worldwide and was added to UNESCO's Representative List of the Intangible Cultural Heritage of Humanity in 2020. Hospitals prescribe it for balance, hypertension, and stress; parks from Beijing to San Francisco fill with slow, synchronized movement at dawn. The taijitu symbol appears on flags, album covers, tattoos, and corporate logos — a visual shorthand for equilibrium. Yet the most lasting legacy may be conceptual: Tàijí gave Chinese thought a vocabulary for describing how a single dynamic source can generate an ordered cosmos without recourse to a creator god.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Tàijí</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Tàijí in Later Traditions</h3><p class="cultural-card-body">Tàijí sits at the intersection of three Chinese traditions. For Daoists it is the cosmological stage just after the Dao; for Neo-Confucians it is the metaphysical foundation of ethics and natural order; for martial artists it is the physical principle of softness overcoming hardness. The symbol of the taijitu migrated into Korean Taoism, Japanese martial arts, and Vietnamese folk religion, often detached from Zhou Dunyi's text. In the modern West, <em>Tai Chi</em> is usually known as a health exercise, while the taijitu has become a generic emblem of balance and Eastern wisdom — sometimes stripped of its specific philosophical grammar but instantly recognizable.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Taijiquan is now practiced by millions worldwide and was added to UNESCO's Representative List of the Intangible Cultural Heritage of Humanity in 2020. Hospitals prescribe it for balance, hypertension, and stress; parks from Beijing to San Francisco fill with slow, synchronized movement at dawn. The taijitu symbol appears on flags, album covers, tattoos, and corporate logos — a visual shorthand for equilibrium. Yet the most lasting legacy may be conceptual: Tàijí gave Chinese thought a vocabulary for describing how a single dynamic source can generate an ordered cosmos without recourse to a creator god.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Tàijí as a named cosmological term is textual rather than archaeological. Its locus classicus is Zhou Dunyi's <em>Taijitu shuo</em>, preserved in Song dynasty editions and woodblock prints. Earlier antecedents appear in Han commentaries on the <em>Yijing</em> and in the Mawangdui silk manuscripts, which transmit variant versions of the <em><a href="/texts/tao-te-ching/" class="crosslink citation-link" data-citation="tao-te-ching">Daodejing</a></em> and <em>Yijing</em>. The distinctive two-tone taijitu diagram itself becomes common only in Song and Ming visual culture, though the yin-yang pairing it encodes is far older.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Tàijí means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Tàijí is the stillness inside motion and the motion inside stillness. It is the held breath before the word, the pause before the decision, the center of the storm. In a culture obsessed with productivity and opposition, Tàijí reminds us that the most powerful position may be the one that does not push back but redirects.</p><p>To meditate on Tàijí is to stop asking whether something is yin or yang and to start noticing how it is becoming its opposite. Day becomes night, tension becomes release, victory becomes defeat if pushed too far. The supreme ultimate is not a place to arrive but a way of keeping one's balance while everything turns.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Tàijí, Supreme Ultimate, Origin, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Tàijí?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Tàijí</strong> is /tʰaɪ̯˥˩ tɕi˧˥/ — approximately TIE-JEE — 'tai' like 'tie' with a sharp falling tone (high to low), and 'ji' like 'gee' with a rising tone..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Tàijí mean?</summary><div class="faq-answer"><p><strong>Tàijí</strong> means <strong>Great extreme</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Tàijí?</summary><div class="faq-answer"><p>Tàijí is associated with <strong>The taijitu circle</strong> (The whole that contains both yin and yang in dynamic interdependence), <strong>The empty circle of wuji</strong> (The limitless void from which Tàijí emerges), <strong>Solid and broken lines</strong> (Yang and yin as the two building blocks of all subsequent forms), <strong>Water</strong> (The softest thing that overcomes the hardest — the practical image of Tàijí's yielding power), <strong>The center</strong> (The still point around which all motion turns).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Tàijí in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>taichi</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Tàijí?</summary><div class="faq-answer"><p>Zhou Dunyi's <em>Explanation of the Diagram of the Supreme Ultimate</em> opens: 'Wújí ér Tàijí' — the limitless, and yet the supreme ultimate. From this arise movement and stillness, yang and yin, the five phases, and finally the moral order of the sage. The text became the cosmological charter of Song Neo-Confucianism and shaped Chinese state orthodoxy for centuries.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Tàijí?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Tàijí</strong> is /tʰaɪ̯˥˩ tɕi˧˥/ — approximately TIE-JEE — 'tai' like 'tie' with a sharp falling tone (high to low), and 'ji' like 'gee' with a rising tone.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Tàijí mean?</summary><div class="faq-answer"><p><strong>Tàijí</strong> means <strong>Great extreme</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Tàijí?</summary><div class="faq-answer"><p>Tàijí is associated with <strong>The taijitu circle</strong> (The whole that contains both yin and yang in dynamic interdependence), <strong>The empty circle of wuji</strong> (The limitless void from which Tàijí emerges), <strong>Solid and broken lines</strong> (Yang and yin as the two building blocks of all subsequent forms), <strong>Water</strong> (The softest thing that overcomes the hardest — the practical image of Tàijí's yielding power), <strong>The center</strong> (The still point around which all motion turns).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Tàijí in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>taichi</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Tàijí?</summary><div class="faq-answer"><p>“<a href="/wuji/" class="crosslink" data-crosslink="wuji">Wújí</a> ér Tàijí” — Tàijí has no body and no biography; its 'mythology' is the story Chinese thinkers told about how the one becomes many. The most influential telling is Zhou Dunyi's short prose poem, but it draws on much older Daoist and Yijing material. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,7 +361,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Tàijí and related cults.</cite></li><li><cite>Tàijí as a named cosmological term is textual rather than archaeological. Its locus classicus is Zhou Dunyi's <em>Taijitu shuo</em>, preserved in Song dynasty editions and woodblock prints. Earlier antecedents appear in Han commentaries on the <em>Yijing</em> and in the Mawangdui silk manuscripts, which transmit variant versions of the <em>Daodejing</em> and <em>Yijing</em>. The distinctive two-tone taijitu diagram itself becomes common only in Song and Ming visual culture, though the yin-yang pairing it encodes is far older.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Tàijí and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/taichi_logomark.webp" type="image/webp"><img src="../../assets/taichi_logomark.webp" alt="Tàijí logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/taichi_logomark.webp" type="image/webp"><img src="../../assets/taichi_logomark.webp" alt="Tàijí logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

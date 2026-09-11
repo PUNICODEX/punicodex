@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Blodeuwedd — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Blodeuwedd</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Blodeuwedd</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,147 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Blodeuwedd</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Blodeuwedd</strong> is the standard Celtic romanisation, documented in academic sources — “Flower face”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">blodeuwedd</p>
-                    <p class="card-body">The plain <strong>blodeuwedd</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Blodeuwedd</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Blodeuwedd</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Blodeuwedd.com → blodeuwedd.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Blodeuwedd</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Blodeuwedd</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Blodeuwedd is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Blodeuwedd</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Blodeuwedd</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Blodeuwedd</p>
-                    <p class="card-body">The full Unicode restoration. <strong>blodeuwedd.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Blodeuwedd was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Blodeuwedd</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/blɔˈdɛu̯.wɛð/</span>
-            <span class="ipa-label">Modern Welsh</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Bl-</span>
-        <span class="phoneme-desc">Voiced bilabial stop [b] released straight into the lateral [l]; the cluster is as plain as English 'blow'.</span>
+      <p class="lead-text"><strong>Blodeuwedd</strong> exists in exactly one witness, and it is enough: the Fourth Branch of the Mabinogi, '<a href="/math/" class="crosslink" data-crosslink="math">Math</a> uab Mathonwy', the masterpiece of medieval Welsh prose. She enters the tale as its most beautiful artefact and leaves it as its most haunting sentence — a woman made from flowers, a bride who chose her own lover, and an owl that still bears her name in modern Welsh.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">Made of Flowers</h3>
+          <p class="myth-text">When Arianrhod, shamed by the birth the wand had forced from her, laid her third destiny on her son — that he should never have a wife of any race then on earth — Math the king took counsel with [[gwydion|<a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a>]]: 'Let us try, by charms and enchantment, to conjure a wife for him out of flowers.' They took the flowers of the oak, the flowers of the broom, and the flowers of the meadowsweet, and from them made the fairest and most beautiful woman anyone had ever seen; they baptized her in the manner of the time, and named her Blodeuwedd, Flower-face.</p><p class="myth-text">The wedding sealed the counter-spell: Lleu was given the cantref of Dinoding to rule, and the pair settled at his court in Ardudwy, at the place called Mur Castell. The Fourth Branch gives the marriage one sentence of happiness — everyone was content — before it sets the trap the whole tale has been building toward: a king's nephew with a destiny, and a wife who was never born of woman at all.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-o-</span>
-        <span class="phoneme-desc">Short open back rounded [ɔ], as in British English 'lot'; unstressed and brief.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">Gronw of Penllyn</h3>
+          <p class="myth-text">Lleu went to Caer Dathyl to visit Math, and while he was away Gronw Pebr, the lord of Penllyn, came hunting into the country. At nightfall Blodeuwedd welcomed the hunter into the court — the hospitality owed to a guest — and the tale says simply that that night they talked, and she conceived a love for him, and he for her. Three nights they lay together while her husband sat at his uncle's court.</p><p class="myth-text">The Fourth Branch wastes no breath condemning them; it reports desire with the same flat care it gives to flower-making. But the lovers' question is the tale's hinge: how can they be together for good? Blodeuwedd's answer is to learn what only a wife can learn — the manner of her husband's death — and the text lets her do it in his own trust, 'in the guise of concern', asking how a man so strangely fated could ever be killed.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-deu-</span>
-        <span class="phoneme-desc">Voiced dental stop [d] into the Welsh diphthong eu [ɛu̯], a glide from open e toward a close rounded vowel; this syllable carries the stress, as Welsh stresses the penult.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The Impossible Conditions</h3>
+          <p class="myth-text">Lleu, trusting, told her everything. He cannot be killed indoors or out of doors, on horseback or on foot. He can be killed only in one posture: a bath prepared on the bank of a river, a thatched frame over the tub, one foot on the rim of the cauldron and the other on the back of a billy-goat — and only by a spear worked for a full year, and only during the hours of Mass on Sundays. Blodeuwedd sent every word to Gronw, and Gronw set the smiths to work.</p><p class="myth-text">When the year was out she asked her husband to show her the marvellous stance — she would never understand it, she said, unless she saw it. The bath was drawn, the frame thatched, the goat brought; Lleu set one foot on the cauldron's rim and one on the goat, and Gronw rose from the hill called Bryn Cyfergyr and cast the spear. It struck Lleu in the side so the shaft stood out of him and the head stayed in, and with a terrible scream he flew up in the shape of an eagle and was gone. Gronw took the lands, and the flower-bride's making came to its harvest.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-wedd</span>
-        <span class="phoneme-desc">Labial-velar glide [w], short open [ɛ], and final Welsh dd [ð], the voiced dental fricative of English 'this' — never a stopped d.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The Lake of the Maidens</h3>
+          <p class="myth-text">When Math and Gwydion came against Gronw, Blodeuwedd heard of the host assembling and fled with her maidens into the mountains, abandoning the court that had been her making. But fear made them walk backward, looking always behind them for the pursuit, until the whole company walked into a lake and drowned — all of them except Blodeuwedd herself. The tale names the place for them: Llyn y Morwynion, the Lake of the Maidens.</p><p class="myth-text">Gwydion overtook her in the mountains and took her. The image the Fourth Branch leaves is among the coldest in Welsh literature: the made woman fleeing through the dark with her dead companions behind her under the water, caught at last not by a warrior but by the enchanter who had fashioned her out of blossoms three years — or one lifetime — before.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Math fab Mathonwy</span>
+          <h3 class="myth-title">The Owl's Sentence</h3>
+          <p class="myth-text">Gwydion's judgement is the Fourth Branch's second great transformation-sentence, and it is precise: 'I will not kill you; I will do what is worse. I will let you go in the shape of a bird. Because of the dishonour you have done Lleu Llaw Gyffes, you shall never dare show your face in the light of day, and that shall be from fear of all birds: they shall mob you and molest you wherever they find you. And you shall not lose your name, but shall always be called Blodeuwedd.' She went, in the shape of the owl. The tale adds its own etiology: blodeuwedd is what the owl is called to this day, and for that reason the birds hate the owl wherever it is found.</p><p class="myth-text">The aftermath belongs to the slain man's healing and the standing stone: Lleu, nursed back from eagle-shape and skin and bone, demanded to stand where Gronw had stood; Gronw took the stone slab between himself and the spear, and Lleu's cast drove through the slab and through him. The pierced stone on the bank of the Cynfael was called Llech Ronw, Gronw's stone. Blodeuwedd alone of the tale's dead is not buried — she is still flying, under her flower-name, in every Welsh word for owl.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'blo-DEH-weth' — three syllables with the weight on the middle one; the final dd is the soft th of 'this', and the eu slides like the vowel of 'say' pulled toward a rounded close.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Blodeuwedd (also written Blodeuedd), the manuscript form in the White Book of Rhydderch and the Red Book of Hergest</li><li><strong>Welsh elements</strong> blodau, 'flowers', plus gwedd, 'face, appearance, form' — 'flower-face', the tale's own gloss</li><li><strong>Modern Welsh</strong> blodeuwedd, the ordinary common noun for the owl — the semantic afterlife the Fourth Branch itself explains</li><li><strong>Attested form</strong> Blodeuwedd — plain ASCII, identical to the normalized manuscript spelling</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Blodeuwedd is Tier 2 by the mechanical rule: Middle Welsh is written in the Latin alphabet and the manuscript spelling carries no diacritic or distinctive letter for ASCII to lose, so the restored form differs from the input only by the capital. The name is a transparent Welsh compound — blodau 'flowers' + gwedd 'face' — and its history runs in a circle: coined in the tale for a woman made of blossoms, it survives in modern Welsh as the everyday word for the owl she became.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -378,12 +293,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Flower Bride, Betrayal</h2>
-            <p class="section-subtitle">The domain of Blodeuwedd</p>
+            <p class="section-subtitle">The flower-bride of the Fourth Branch — made of blossoms to defeat a destiny, judged into the owl</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p>In the celtic tradition, <strong>Blodeuwedd</strong> is the flower-bride of the Fourth Branch of the Mabinogi: the fairest woman ever seen, made by [[gwydion|<a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a>]] and [[math|<a href="/math/" class="crosslink" data-crosslink="math">Math</a>]] from the blossoms of oak, broom, and meadowsweet to defeat the destiny that barred Lleu Llaw Gyffes from every wife on earth — and the bride who loved Gronw Pebr of Penllyn, drew her husband's death-secret out of him, and was judged into the shape of the owl.</p></div>
+      <div class="domains-intro reveal-up"><p>In the celtic tradition, <strong>Blodeuwedd</strong> is the flower-bride of the Fourth Branch of the Mabinogi: the fairest woman ever seen, made by [[gwydion|Gwydion]] and [[math|Math]] from the blossoms of oak, broom, and meadowsweet to defeat the destiny that barred Lleu Llaw Gyffes from every wife on earth — and the bride who loved Gronw Pebr of Penllyn, drew her husband's death-secret out of him, and was judged into the shape of the owl.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 52V32M32 32C32 22 24 18 18 18C18 28 24 32 32 32ZM32 32C32 22 40 18 46 18C46 28 40 32 32 32ZM32 18V10"></path></svg></div>
@@ -433,65 +348,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Blodeuwedd</p>
-        </div>
-        
-      <p class="lead-text"><strong>Blodeuwedd</strong> exists in exactly one witness, and it is enough: the Fourth Branch of the Mabinogi, 'Math uab Mathonwy', the masterpiece of medieval Welsh prose. She enters the tale as its most beautiful artefact and leaves it as its most haunting sentence — a woman made from flowers, a bride who chose her own lover, and an owl that still bears her name in modern Welsh.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Math fab Mathonwy</span>
-          <h3 class="myth-title">Made of Flowers</h3>
-          <p class="myth-text">When Arianrhod, shamed by the birth the wand had forced from her, laid her third destiny on her son — that he should never have a wife of any race then on earth — Math the king took counsel with [[gwydion|Gwydion]]: 'Let us try, by charms and enchantment, to conjure a wife for him out of flowers.' They took the flowers of the oak, the flowers of the broom, and the flowers of the meadowsweet, and from them made the fairest and most beautiful woman anyone had ever seen; they baptized her in the manner of the time, and named her Blodeuwedd, Flower-face.</p><p class="myth-text">The wedding sealed the counter-spell: Lleu was given the cantref of Dinoding to rule, and the pair settled at his court in Ardudwy, at the place called Mur Castell. The Fourth Branch gives the marriage one sentence of happiness — everyone was content — before it sets the trap the whole tale has been building toward: a king's nephew with a destiny, and a wife who was never born of woman at all.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Math fab Mathonwy</span>
-          <h3 class="myth-title">Gronw of Penllyn</h3>
-          <p class="myth-text">Lleu went to Caer Dathyl to visit Math, and while he was away Gronw Pebr, the lord of Penllyn, came hunting into the country. At nightfall Blodeuwedd welcomed the hunter into the court — the hospitality owed to a guest — and the tale says simply that that night they talked, and she conceived a love for him, and he for her. Three nights they lay together while her husband sat at his uncle's court.</p><p class="myth-text">The Fourth Branch wastes no breath condemning them; it reports desire with the same flat care it gives to flower-making. But the lovers' question is the tale's hinge: how can they be together for good? Blodeuwedd's answer is to learn what only a wife can learn — the manner of her husband's death — and the text lets her do it in his own trust, 'in the guise of concern', asking how a man so strangely fated could ever be killed.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Math fab Mathonwy</span>
-          <h3 class="myth-title">The Impossible Conditions</h3>
-          <p class="myth-text">Lleu, trusting, told her everything. He cannot be killed indoors or out of doors, on horseback or on foot. He can be killed only in one posture: a bath prepared on the bank of a river, a thatched frame over the tub, one foot on the rim of the cauldron and the other on the back of a billy-goat — and only by a spear worked for a full year, and only during the hours of Mass on Sundays. Blodeuwedd sent every word to Gronw, and Gronw set the smiths to work.</p><p class="myth-text">When the year was out she asked her husband to show her the marvellous stance — she would never understand it, she said, unless she saw it. The bath was drawn, the frame thatched, the goat brought; Lleu set one foot on the cauldron's rim and one on the goat, and Gronw rose from the hill called Bryn Cyfergyr and cast the spear. It struck Lleu in the side so the shaft stood out of him and the head stayed in, and with a terrible scream he flew up in the shape of an eagle and was gone. Gronw took the lands, and the flower-bride's making came to its harvest.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Math fab Mathonwy</span>
-          <h3 class="myth-title">The Lake of the Maidens</h3>
-          <p class="myth-text">When Math and Gwydion came against Gronw, Blodeuwedd heard of it and fled with her maidens into the mountains. But fear made them walk backward, looking always behind them for the pursuit, until the whole company walked into a lake and drowned — all of them except Blodeuwedd herself. The tale names the place for them: Llyn y Morwynion, the Lake of the Maidens.</p><p class="myth-text">Gwydion overtook her in the mountains and took her. The image the Fourth Branch leaves is among the coldest in Welsh literature: the made woman fleeing through the dark with her dead companions behind her under the water, caught at last not by a warrior but by the enchanter who had fashioned her out of blossoms three years — or one lifetime — before.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Math fab Mathonwy</span>
-          <h3 class="myth-title">The Owl's Sentence</h3>
-          <p class="myth-text">Gwydion's judgement is the Fourth Branch's second great transformation-sentence, and it is precise: 'I will not kill you; I will do what is worse. I will let you go in the shape of a bird. Because of the dishonour you have done Lleu Llaw Gyffes, you shall never dare show your face in the light of day, and that shall be from fear of all birds: they shall mob you and molest you wherever they find you. And you shall not lose your name, but shall always be called Blodeuwedd.' She went, in the shape of the owl. The tale adds its own etiology: blodeuwedd is what the owl is called to this day, and for that reason the birds hate the owl wherever it is found.</p><p class="myth-text">The aftermath belongs to the slain man's healing and the standing stone: Lleu, nursed back from eagle-shape and skin and bone, demanded to stand where Gronw had stood; Gronw took the stone slab between himself and the spear, and Lleu's cast drove through the slab and through him. The pierced stone on the bank of the Cynfael was called Llech Ronw, Gronw's stone. Blodeuwedd alone of the tale's dead is not buried — she is still flying, under her flower-name, in every Welsh word for owl.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -555,8 +419,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Blodeuwedd</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Blodeuwedd</strong> is the standard Celtic romanisation, documented in academic sources — “Flower face”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">blodeuwedd</p>
+                <p class="card-body">The plain <strong>blodeuwedd</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Blodeuwedd</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Blodeuwedd</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Blodeuwedd.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Blodeuwedd</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Blodeuwedd</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Blodeuwedd</p>
+                    <p class="card-body">The full Unicode restoration. <strong>blodeuwedd.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Blodeuwedd was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/blɔˈdɛu̯.wɛð/</span>
+            <span class="ipa-label">Modern Welsh</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Bl-</span>
+        <span class="phoneme-desc">Voiced bilabial stop [b] released straight into the lateral [l]; the cluster is as plain as English 'blow'.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-o-</span>
+        <span class="phoneme-desc">Short open back rounded [ɔ], as in British English 'lot'; unstressed and brief.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-deu-</span>
+        <span class="phoneme-desc">Voiced dental stop [d] into the Welsh diphthong eu [ɛu̯], a glide from open e toward a close rounded vowel; this syllable carries the stress, as Welsh stresses the penult.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-wedd</span>
+        <span class="phoneme-desc">Labial-velar glide [w], short open [ɛ], and final Welsh dd [ð], the voiced dental fricative of English 'this' — never a stopped d.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'blo-DEH-weth' — three syllables with the weight on the middle one; the final dd is the soft th of 'this', and the eu slides like the vowel of 'say' pulled toward a rounded close.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Blodeuwedd is Tier 2 by the mechanical rule: Middle Welsh is written in the Latin alphabet and the manuscript spelling carries no diacritic or distinctive letter for ASCII to lose, so the restored form differs from the input only by the capital. The name is a transparent Welsh compound — blodau 'flowers' + gwedd 'face' — and its history runs in a circle: coined in the tale for a woman made of blossoms, it survives in modern Welsh as the everyday word for the owl she became.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Blodeuwedd is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Blodeuwedd</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -574,7 +579,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/blodeuwedd_mascot.webp" type="image/webp"><img src="../assets/blodeuwedd_mascot.png" alt="Blodeuwedd mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/blodeuwedd_mascot.webp" type="image/webp"><img src="../assets/blodeuwedd_mascot.png" alt="Blodeuwedd mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -612,7 +617,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/blodeuwedd_logomark.webp" type="image/webp"><img src="../assets/blodeuwedd_logomark.webp" alt="Blodeuwedd logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/blodeuwedd_logomark.webp" type="image/webp"><img src="../assets/blodeuwedd_logomark.webp" alt="Blodeuwedd logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

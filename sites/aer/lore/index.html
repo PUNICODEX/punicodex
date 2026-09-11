@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Aḗr — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ἀήρ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Aḗr.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,144 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ἀήρ</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Aḗr</strong> (Ἀήρ) is attested in the source tradition — “Air, mist”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">aer</p>
-                    <p class="card-body">Reduced to plain <strong>aer</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Aḗr</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Aḗr</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Aḗr.com → xn--ar-lts.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Aḗr</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Aḗr</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Aḗr is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ἀήρ</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Aḗr is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Aḗr</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Aḗr</p>
-                    <p class="card-body">Restores <strong>Ἀήρ</strong>. The live temple domain — <strong>aḗr.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">aer</p>
-                    <p class="card-body">Flattens <strong>Ἀήρ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Aḗr was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Aḗr</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/a.ɛ́ːr/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">A-</span>
-        <span class="phoneme-desc">Short alpha with smooth breathing, the simple opening of the word.</span>
+      <p class="lead-text">Aḗr has <strong>no mythic biography</strong>; its story is the history of Greek thought. From Homer to Aristotle — and from Aristophanes' comic atheists to the Stoics — it moves from mere atmosphere to a recognized element of the cosmos, and from an element to a rival of the gods.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Homer</span>
+          <h3 class="myth-title">Aēr and Aithēr</h3>
+          <p class="myth-text">Homer already divides the sky in two. Aēr is the lower air, the misty, breathable region where mortals live and fight; aithēr is the bright, pure upper air where the gods dwell and where the stars are set. When a hero dies in the <em>Iliad</em>, his soul flits to <a href="/hades/" class="crosslink" data-crosslink="hades">Hades</a> 'like smoke' — through the aēr — while the gods look down from aithēr. The distinction is more than meteorology: it maps a cosmic hierarchy onto the atmosphere itself. The higher the air, the purer and more divine it is; mortals stand with their heads in the mist and their feet in the dust. Every later Greek natural philosopher inherited this two-storey sky, and every one of them had to decide which layer counted as the true element. Aēr's story is the story of that decision — the slow promotion of the lower air from backdrop to principle.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ḗr</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> eta with acute plus rho [ɛ̌ːr] — the pitch peak and the core meaning 'air, mist'.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Anaximenes</span>
+          <h3 class="myth-title">Air as the Arche</h3>
+          <p class="myth-text">Anaximenes of Miletus, writing around the middle of the sixth century BCE, made a bold and simple proposal: aēr is the <em>archē</em> — the single stuff from which everything else comes. 'As our soul,' he is reported to have said, 'which is air, holds us together, so do breath and air surround the whole cosmos' (fr. 2, Kirk–Raven–Schofield). Rarefy air and it becomes fire; condense it and it becomes wind, cloud, water, earth, and stone, in a graded series of densities. It was the first fully monistic physical theory in the West: no gods needed to be summoned, only a substance and a mechanism. Aristotle reports the doctrine with respect, and posterity remembered Anaximenes as the first thinker to explain change by quantity rather than by quality. The air we breathe — the most ordinary thing in the world — was thus promoted to the rank of first principle, and the atmosphere became philosophy's founding subject.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Aristophanes</span>
+          <h3 class="myth-title">The New Gods of the Clouds</h3>
+          <p class="myth-text">In Aristophanes' comedy <em>Clouds</em> (423 BCE), Socrates is shown worshipping new divinities in a thought-factory: 'I first invoke the Clouds, the fair dew-carriers... and then the deep-roaring Strength of the air, and the bright aether.' The joke cuts deep: the sophisticated have replaced <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> the Thunderer with the Whirl (<em>dinos</em>) and the Clouds, and air itself has been promoted to godhead. Strepsiades, the old farmer, is scandalized — so the Whirl is Zeus now? The comedy is our best witness to how radical the new air-doctrines seemed in the 420s: natural philosophy was not ivory-tower speculation but a live rival to the city's gods, taught in a school next door to the agora. Aēr, the humble mist, had become the stuff of both cosmology and blasphemy. The play ends with the school burned down — a joke, and a warning, about what happens when the elements replace the gods.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Aristotle</span>
+          <h3 class="myth-title">The Element Between</h3>
+          <p class="myth-text">Aristotle gave aēr its canonical rank. In <em>On the Heavens</em> (3.3) he divides simple bodies into four — earth, water, air, fire — each with its natural place in concentric regions around the cosmos, air occupying the shell between water and fire. In the <em>Meteorology</em> he makes it the medium of wind, cloud, thunder, and every disturbance between the heavens and the ground, its motions driven by the exhalations of the earth below. Medieval and Renaissance science inherited the four-element scheme wholesale, and medicine mapped it onto the temperaments — the 'airy' sanguine type, hot and moist. The scheme fell only in the seventeenth century, when Boyle and the pneumatic chemists showed that air is a mixture of gases. But Aristotle's placement survived in subtler form: we still speak of the atmosphere as a distinct realm between ground and space, and of the air we breathe as a planetary skin we all share.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'ah-HAYR' — the second syllable is long, pitched high, and ends with a rolled or tapped r.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> ἀήρ (aḗr), 'air, mist, lower atmosphere'</li><li><strong>PIE</strong> *h₂weh₁r- 'air, wind'; cognate with Latin aura and possibly air-related Germanic words</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Aḗr is Tier 1 because the Greek ἀήρ contains both length (η) and stress (acute) on the same syllable. It is one of the elemental words of Greek philosophy and science.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -376,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Lower Air</h2>
             <p class="section-subtitle">Mist, Atmosphere, Breath of Life</p>
         </div>
@@ -406,66 +316,31 @@
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">Wind</span>
-        <span class="symbol-meaning">The moving air that carries breath, weather, and omens</span>
+        <span class="symbol-meaning">The moving aēr of Homer's battles — the breath that fills sails, lungs, and omens alike</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Cloud</span>
-        <span class="symbol-meaning">Condensed air; the visible form of aēr</span>
+        <span class="symbol-meaning">Condensed aēr: the visible form the element takes when it gathers into mist and rain</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Lungs or breath</span>
-        <span class="symbol-meaning">The biological medium in which life persists</span>
+        <span class="symbol-name">Breath</span>
+        <span class="symbol-meaning"><a href="/pneuma/" class="crosslink" data-crosslink="pneuma">Pneuma</a> in the body — the thin column of aēr whose stopping is death</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Empty vessel</span>
-        <span class="symbol-meaning">The philosophical symbol of aēr as the unseen substance filling space</span>
+        <span class="symbol-name">The empty vessel</span>
+        <span class="symbol-meaning">The philosopher's image of aēr as unseen substance: the 'void' that is actually full</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Aḗr</p>
-        </div>
-        
-      <p class="lead-text">Aḗr has <strong>no mythic biography</strong>; its story is the history of Greek thought. From Homer to Aristotle, it moves from mere atmosphere to a recognized element of the cosmos.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Homer</span>
-          <h3 class="myth-title">Aēr and Aithēr</h3>
-          <p class="myth-text">In Homer, aēr is the lower, misty air where mortals breathe and battle; aithēr is the bright upper air of the gods. The distinction sets up a cosmic hierarchy: the higher the air, the more divine it is.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Anaximenes</span>
-          <h3 class="myth-title">Air as Arche</h3>
-          <p class="myth-text">Anaximenes of Miletus (6th c. BCE) proposed that aēr is the arche, the fundamental stuff of the universe. When rarefied, it becomes fire; when condensed, it becomes wind, cloud, water, earth, and stone. This was one of the first monistic physical theories in the West.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Aristotle</span>
-          <h3 class="myth-title">The Element Between</h3>
-          <p class="myth-text">Aristotle made aēr one of the four elements, positioned between fire and water. It is hot and wet, mobile and transparent, the natural place of birds and the medium of sound. His scheme dominated Western science for two millennia.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -529,8 +404,146 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ἀήρ</p>
+                <p class="card-body">The name in its original Greek form. <strong>Aḗr</strong> (Ἀήρ) is attested in the source tradition — “Air, mist”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">aer</p>
+                <p class="card-body">Reduced to plain <strong>aer</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Aḗr</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Aḗr</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Aḗr.com → xn--ar-lts.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Aḗr</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Aḗr</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Aḗr</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Aḗr</p>
+                    <p class="card-body">Restores <strong>Ἀήρ</strong>. The live temple domain — <strong>aḗr.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">aer</p>
+                    <p class="card-body">Flattens <strong>Ἀήρ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Aḗr was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/a.ɛ́ːr/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">A-</span>
+        <span class="phoneme-desc">Short alpha with smooth breathing, the simple opening of the word.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ḗr</span>
+        <span class="phoneme-desc">Long eta with acute plus rho [ɛ̌ːr] — the pitch peak and the core meaning 'air, mist'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'ah-HAYR' — the second syllable is long, pitched high, and ends with a rolled or tapped r.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Aḗr is Tier 1 because the Greek ἀήρ contains both length (η) and stress (acute) on the same syllable. It is one of the elemental words of Greek philosophy and science.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Aḗr is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ἀήρ</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Aḗr is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -548,7 +561,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/aer_mascot.webp" type="image/webp"><img src="../assets/aer_mascot.png" alt="Aḗr mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/aer_mascot.webp" type="image/webp"><img src="../assets/aer_mascot.png" alt="Aḗr mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -586,7 +599,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/aer_logomark.webp" type="image/webp"><img src="../assets/aer_logomark.webp" alt="Aḗr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/aer_logomark.webp" type="image/webp"><img src="../assets/aer_logomark.webp" alt="Aḗr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Cōātlīcue — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Cōātlīcue</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Cōātlīcue.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,152 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Cōātlīcue</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Cōātlīcue</strong> is the standard Nahuatl romanisation, documented in academic sources — “She of the serpent skirt”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">coatlicue</p>
-                    <p class="card-body">Reduced to plain <strong>coatlicue</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Cōātlīcue</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Cōātlīcue</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Cōātlīcue.com → xn--ctlcue-3za25a6j.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Cōātlīcue</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Cōātlīcue</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Cōātlīcue is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Cōātlīcue</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Cōātlīcue</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Cōātlīcue</p>
-                    <p class="card-body">The live temple domain — <strong>cōātlīcue.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">coatlicue</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Cōātlīcue was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Cōātlīcue</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/koː.aːˈtɬiː.kwe/</span>
-            <span class="ipa-label">Classical Nahuatl Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Cō-</span>
-        <span class="phoneme-desc">Voiceless velar stop [k] followed by long open-mid [oː]. In Classical Nahuatl, c before back vowels is /k/; the macron marks vowel length.</span>
+      <p class="lead-text">Cōātlīcue's best-known myth is the birth of the sun god Huitzilopōchtli, a story of cosmic matricide in which one child is chosen and the others are cast into the sky. The narrative is preserved in the Florentine Codex and colonial Nahuatl histories; it fuses divine genealogy with political theology.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Birth myth</span>
+          <h3 class="myth-title">The Conception and Birth of Huitzilopōchtli</h3>
+          <p class="myth-text">While Cōātlīcue was sweeping on the sacred mountain Coatepec — 'Serpent Mountain' — a ball of brilliant feathers drifted down from the sky, and she placed it in her bosom as she swept. By this sign she conceived, and when her pregnancy showed, her daughter <a href="/coyolxauhqui/" class="crosslink" data-crosslink="coyolxauhqui">Coyolxāuhqui</a>, the Golden Bells, was shamed and enraged; she incited the Centzōn Huītznāhua, the Four Hundred Southerners, her brothers, to storm the mountain and kill their dishonoured mother. Cōātlīcue's unborn child answered for her. At the very moment of the assault, Huitzilopōchtli emerged fully armed from her womb, wielding the fire-serpent xiuhcoatl as his weapon; he struck off Coyolxāuhqui's head, shattered her body, and sent the Four Hundred tumbling across the heavens, where they became the stars. The account is told in Sahagún's <em>Florentine Codex</em> (Book III) and the <em>Anales de Cuauhtitlan</em>. The myth reads as pure cosmogony — the sun, born of earth, annihilates the moon and the stars at the moment of his rising — and as pure statecraft: the Mexica patron god defeats the older celestial powers at his birthplace.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ā-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> open front [aː], a held vowel that distinguishes the first element of the compound.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Foundation myth</span>
+          <h3 class="myth-title">Coatepec at the Center of the World</h3>
+          <p class="myth-text">The Mexica mapped the birth myth onto their capital with architectural precision. The Great Temple of Tenochtitlan was Coatepec: Huitzilopōchtli's shrine crowned its summit, and at the foot of his stairway lay the great carved disk of Coyolxāuhqui, eleven feet across, her dismembered limbs exactly where the myth said her brother threw them — at the base of the mountain, forever falling. Cōātlīcue's own shrine stood within the precinct, and the <a href="/tlaloc/" class="crosslink" data-crosslink="tlaloc">Tlaloc</a> temple shared the pyramid's twin summit, binding rain, earth, and war into one axis. Excavations of the Templo Mayor, begun after the Coyolxāuhqui disk's chance discovery in 1978, revealed this choreography stage by stage, each rebuilding of the city re-stating the myth in stone. The foundation narrative thus did double duty: it explained the cosmos — sun over moon, order over rebellion — and it explained Tenochtitlan itself, whose every enemy could be cast in the role of the Four Hundred and cast down the same stairway.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-tlī-</span>
-        <span class="phoneme-desc">Lateral affricate [tɬ] plus long close front [iː]; the -tl is a single Nahuatl sound, not English t + l.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Creator figure</span>
+          <h3 class="myth-title">Mother of Stars and the Moon</h3>
+          <p class="myth-text">In the broader theology, Cōātlīcue is more than the mother of one god: she is Tēteoh īnnān, 'Mother of the Gods,' the generative earth from which the luminous powers come. Her body is the ground itself; the moon that waxes above it and the stars that wheel over it are her transformed or defeated children, and the myth keeps returning to this economy — the sky is born of the earth, feeds on the earth, and falls back to the earth. Durán and the <em>Florentine Codex</em> describe her priesthood and her place in the festival round, where the earth-mother's rites of renewal required the same tribute as her myths: hearts and blood, returned to the soil so that it would give again. Sahagún's informants preserve her grief and her appetite in one image, for the earth that receives the dead corpse is also the earth that pushes up maize. The myth's logic is the Aztec logic of reciprocity itself: nothing rises from the ground that the ground does not first claim.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-cue</span>
-        <span class="phoneme-desc">Voiceless velar stop [k] plus rounded [we], the Nahuatl labiovelar sequence.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cosmogony</span>
+          <h3 class="myth-title">The Dismembered Moon</h3>
+          <p class="myth-text">Coyolxāuhqui's fate is the myth's second half, and the <em>Florentine Codex</em> and the <em>Anales de Cuauhtitlan</em> keep its details with the precision of a ritual script. Beheaded at Coatepec, her body broken and tumbled down the mountain, the Golden Bells became the moon; her four hundred brothers became the stars of the southern sky; and the great stone disk found in 1978 shows the moment frozen — severed head, dislocated limbs, the belts and bells of her regalia scattered like the pieces of the lunar month itself. The reading is not accidental. Mesoamerican calendars counted the moon's phases as a cycle of wounding and reassembly, and the myth gives the phases a story: the moon is a body struck apart at sunrise, gathering itself through the month only to fall again. The myth also assigns the roles of cosmic politics: the moon and stars are the defeated older order, the pre-solar powers — which is why, in the deepest sense, Coyolxāuhqui lies at the foot of Huitzilopōchtli's temple, where every defeated enemy belongs.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'koh-AH-tlee-kweh' — the 'tl' is one crisp sound, and the macrons stretch the o, a, and i into long vowels.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Classical Nahuatl</strong> Cōātlīcue — from cōātl 'snake, serpent' + īcue 'her skirt'</li><li><strong>Colonial Spanish orthography</strong> Coatlicue, the conventional spelling that loses the vowel-length distinctions</li><li><strong>Mēxihcah title</strong> Tēteoh īnnān, 'Mother of the Gods'</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Classical Nahuatl vowel length is the key prosodic feature preserved here. The name is transparently composed of cōātl ('snake, serpent') and īcue ('her skirt'), a possessive form of cueitl 'skirt.' The final labiovelar [kwe] is not a diphthong in English terms but a velar stop followed by a labial glide. Tier 1: the three macrons preserve reconstructed long vowels in the first, second, and fourth syllables.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -383,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Mother of the Gods</h2>
             <p class="section-subtitle">Earth, Death, and the Serpent Skirt</p>
         </div>
@@ -398,7 +300,7 @@
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 16H44V48H20V16ZM24 20V44M28 20V44M32 20V44M36 20V44M40 20V44"></path></svg></div>
         <h4 class="domain-name">Mother of the Gods</h4>
-        <p class="domain-desc">Called Tēteoh īnnān, she is the progenitor of Huitzilopōchtli, <a href="/coyolxauhqui/" class="crosslink" data-crosslink="coyolxauhqui">Coyolxāuhqui</a>, and the Centzōn Huītznāhua.</p>
+        <p class="domain-desc">Called Tēteoh īnnān, she is the progenitor of Huitzilopōchtli, Coyolxāuhqui, and the Centzōn Huītznāhua.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L36 20H48L38 28L42 40L32 32L22 40L26 28L16 20H28L32 8Z"></path></svg></div>
@@ -430,49 +332,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Cōātlīcue</p>
-        </div>
-        
-      <p class="lead-text">Cōātlīcue's best-known myth is the birth of the sun god Huitzilopōchtli, a story of cosmic matricide in which one child is chosen and the others are cast into the sky. The narrative is preserved in the Florentine Codex and colonial Nahuatl histories; it fuses divine genealogy with political theology.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Birth myth</span>
-          <h3 class="myth-title">The Conception and Birth of Huitzilopōchtli</h3>
-          <p class="myth-text">While Cōātlīcue was sweeping on the sacred mountain Coatepec, 'Serpent Mountain,' a ball of feathers descended and she placed it in her bosom. By this she conceived Huitzilopōchtli. Her daughter Coyolxāuhqui and the Centzōn Huītznāhua were enraged at the shame of a mysterious pregnancy and resolved to kill her. At the moment of their attack, Huitzilopōchtli emerged fully armed from his mother's womb, slew Coyolxāuhqui, and scattered the four hundred brothers across the heavens as stars. (Florentine Codex III; Anales de Cuauhtitlan.)</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Foundation myth</span>
-          <h3 class="myth-title">Coatepec and the Mexica Exodus</h3>
-          <p class="myth-text">The myth of Huitzilopōchtli's birth was mapped onto the landscape of Tenochtitlan: the Templo Mayor was identified with Coatepec, Cōātlīcue's shrine stood at its base, and the great stone disk of Coyolxāuhqui lay at the foot of Huitzilopōchtli's temple stairway. The narrative thus legitimized the Mexica state by casting its enemies as the defeated celestial rebels.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Creator figure</span>
-          <h3 class="myth-title">Mother of Stars and the Moon</h3>
-          <p class="myth-text">In some accounts Cōātlīcue is the mother not only of Huitzilopōchtli but of the moon and the stars. Her body is the earth itself; her dismembered or transformed children become the luminous bodies that move above her. The image binds cosmology to agriculture: the sky is born from the earth, and the earth in turn receives the sky's dead.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the nahuatl pantheon</p>
         </div>
@@ -536,8 +403,154 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Cōātlīcue</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Cōātlīcue</strong> is the standard Nahuatl romanisation, documented in academic sources — “She of the serpent skirt”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">coatlicue</p>
+                <p class="card-body">Reduced to plain <strong>coatlicue</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Cōātlīcue</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Cōātlīcue</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Cōātlīcue.com → xn--ctlcue-3za25a6j.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Cōātlīcue</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Cōātlīcue</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Cōātlīcue</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Cōātlīcue</p>
+                    <p class="card-body">The live temple domain — <strong>cōātlīcue.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">coatlicue</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Cōātlīcue was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/koː.aːˈtɬiː.kwe/</span>
+            <span class="ipa-label">Classical Nahuatl Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Cō-</span>
+        <span class="phoneme-desc">Voiceless velar stop [k] followed by long open-mid [oː]. In Classical Nahuatl, c before back vowels is /k/; the macron marks vowel length.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ā-</span>
+        <span class="phoneme-desc">Long open front [aː], a held vowel that distinguishes the first element of the compound.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-tlī-</span>
+        <span class="phoneme-desc">Lateral affricate [tɬ] plus long close front [iː]; the -tl is a single Nahuatl sound, not English t + l.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-cue</span>
+        <span class="phoneme-desc">Voiceless velar stop [k] plus rounded [we], the Nahuatl labiovelar sequence.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'koh-AH-tlee-kweh' — the 'tl' is one crisp sound, and the macrons stretch the o, a, and i into long vowels.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Classical Nahuatl vowel length is the key prosodic feature preserved here. The name is transparently composed of cōātl ('snake, serpent') and īcue ('her skirt'), a possessive form of cueitl 'skirt.' The final labiovelar [kwe] is not a diphthong in English terms but a velar stop followed by a labial glide. Tier 1: the three macrons preserve reconstructed long vowels in the first, second, and fourth syllables.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Cōātlīcue is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Cōātlīcue</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -555,7 +568,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/coatlicue_mascot.webp" type="image/webp"><img src="../assets/coatlicue_mascot.png" alt="Cōātlīcue mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/coatlicue_mascot.webp" type="image/webp"><img src="../assets/coatlicue_mascot.png" alt="Cōātlīcue mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -593,7 +606,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/coatlicue_logomark.webp" type="image/webp"><img src="../assets/coatlicue_logomark.webp" alt="Cōātlīcue logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/coatlicue_logomark.webp" type="image/webp"><img src="../assets/coatlicue_logomark.webp" alt="Cōātlīcue logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

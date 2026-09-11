@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Nǚwā — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">女媧</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Nǚwā.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">女媧</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Nǚwā</strong> (女媧) is attested in the source tradition — “Woman wa”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">nuwa</p>
-                    <p class="card-body">Reduced to plain <strong>nuwa</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Nǚwā</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Nǚwā</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Nǚwā.com → xn--nw-ela08f.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Nǚwā</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Nǚwā</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Nǚwā is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">女媧</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Nǚwā is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Nǚwā</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Nǚwā</p>
-                    <p class="card-body">Restores <strong>女媧</strong>. The live temple domain — <strong>nǚwā.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">nuwa</p>
-                    <p class="card-body">Flattens <strong>女媧</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Nǚwā was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Nǚwā</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ny˨˩˦ wa˥/</span>
-            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">nyoo-wah, low-dipping tone on Nǚ, high level on Wā.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Chinese</strong> 女媧</li><li><strong>Her title</strong> 媧皇 (Wāhuáng)</li><li><strong>Owned form</strong> Nǚwā</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Nǚwā 女娲 bears the third tone on nǚ — the vowel ü written with its two dots, which the restoration keeps and plain ASCII drops. Wā is the level-toned archaic graph for this goddess alone: a character invented for her name, used for nothing else in the language. The ü is the front rounded vowel — the sound French writes u — which plain ASCII loses to plain u.</p></div>
+      <p class="lead-text">Nǚwā's myths answer the two great questions — where people came from, and why the sky holds — and a third the tradition added later: what happens when the whole human race must begin again. They are told in the earliest strata of Chinese myth and never improved upon.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Catastrophe</span>
+          <h3 class="myth-title">The Mending of the Sky</h3>
+          <p class="myth-text">The <em>Huáinánzǐ</em> (ch. 6, the Lanming xun, c. 139 BCE) tells it in the grammar of catastrophe: in high antiquity the four pillars snapped and the nine provinces split; fire blazed unquenched, waters rose undrained; fierce beasts devoured the people and birds of prey seized the old and weak. Then Nǚwā acted, and the text lists her works like an engineer's report: she smelted stones of five colors to patch the azure sky; cut the legs from the great turtle to set the four pillars true; slew the black dragon to deliver Jì province; and heaped reed-ashes to dam the flooding waters. Then — and only then — 'the people of the four quarters could set foot on the land again', and the cunning beasts went quiet. Nothing in the passage is creation from nothing: heaven is mended with worked matter, propped with sacrifice, and drained with humble ash. The oldest Chinese creation story is a repair manual, and its author is a goddess with a craftsman's hands.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Creation</span>
+          <h3 class="myth-title">People of Yellow Earth</h3>
+          <p class="myth-text">The gentler myth survives in quotation from Ying Shao's <em>Fengsu Tongyi</em> (c. 195 CE): when sky and earth had opened and there were not yet people, Nǚwā knelt by the Yellow River and shaped human beings from yellow clay. The work delighted but wearied her — so she trailed a rope through the mud and flung the drops loose, and the drops too became people. The handmade figures became the rich and noble; the rope-flung drops, the poor and common — China's oldest surviving reflection on how inequality began, set inside its tenderest creation story. Note what the myth refuses to do: it does not blame the poor for their fortune or flatter the rich for theirs. Both were made by the same hands in the same afternoon; the difference is only which instrument touched them. Two thousand years before the word existed, the tradition was teaching that class is an accident of the tool.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Institution</span>
+          <h3 class="myth-title">The First Matchmaker</h3>
+          <p class="myth-text">Having made people singly, she made them continuous. The <em>Fengsu Tongyi</em> continues: Nǚwā prayed at the shrine of the go-between, asking to become the divine matchmaker (Gāoméi), and so established marriage and its rites — so that humanity could reproduce itself without her kneeling by the river forever. The tradition therefore names her among the Three August Ones: progenitor, legislator, and engineer in one. Her strangest attestation is older still: the <em>Shan Hai Jing</em> ('Dahuang xijing') names ten spirits who dwell in the wilderness of Lìguǎng and calls them 'the intestines of Nǚwā, transformed into gods' — a fragment so archaic that the commentators have debated it for two millennia. Marriage and statecraft, clay and catastrophe, and one unglossable line about what a goddess leaves behind in the world: the sources give us a figure complete and still, after all this time, unexplained.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Flood</span>
+          <h3 class="myth-title">The Two Survivors of Mount Kunlun</h3>
+          <p class="myth-text">The tradition's later stratum sends the flood. When the waters drowned the world, only <a href="/fuxi/" class="crosslink" data-crosslink="fuxi">Fúxī</a> and Nǚwā remained, brother and sister sheltering on Mount <a href="/kunlun/" class="crosslink" data-crosslink="kunlun">Kunlun</a> — and the human race hung on their decision. They wished to marry and continue the line, but hesitated: were they not siblings? So they put the question to heaven itself. The fullest surviving version comes down through quotation from the Tang collection <em>Duyi zhi</em> (Li Rong, 9th century): each climbed a separate peak and kindled a fire, resolving that if the two smokes joined as one, the marriage was approved. The smokes mingled in the sky. They married, and Nǚwā bore — not children but a ball of flesh; ashamed, she cut it into pieces and scattered them, and the pieces became the peoples of the world. The myth is startling for its honesty: heaven's consent is asked, the body is divided to make the nations, and the founding marriage of humanity is a marriage that had to be permitted. Even the gods, it says, do not waive the need to ask.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Mender of Heaven</h2>
             <p class="section-subtitle">The Five-Colored Stones, the Clay, and the First People</p>
         </div>
@@ -378,22 +296,22 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 48C16 30 22 16 32 12C42 16 48 30 48 48L38 44L32 52L26 44L16 48Z"></path></svg></div>
         <h4 class="domain-name">The Five-Colored Stones</h4>
-        <p class="domain-desc">Melted and poured into the sky's wound — the world's first and greatest repair.</p>
+        <p class="domain-desc">Melted and poured into the sky's wound — the world's first and greatest repair, one stone left over (the seed of Dream of the Red Chamber).</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M14 46C22 38 42 38 50 46M20 32C28 24 36 24 44 32M27 18H37M32 18V10"></path></svg></div>
         <h4 class="domain-name">The Serpent Body</h4>
-        <p class="domain-desc">Her form in Han art: human head, serpent body — earth's maker in earth's image.</p>
+        <p class="domain-desc">Her form in Han art: human head, serpent body — earth's maker in earth's image, twined with Fúxī.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 20C12 20 8 26 8 32C8 38 12 44 20 44C28 44 36 20 44 20C52 20 56 26 56 32C56 38 52 44 44 44C36 44 28 20 20 20Z"></path></svg></div>
         <h4 class="domain-name">The Rope of Mud</h4>
-        <p class="domain-desc">The rich she shaped by hand, the poor she flung from a rope — humanity's two fortunes.</p>
+        <p class="domain-desc">The rich she shaped by hand, the poor she flung from a rope — humanity's two fortunes, told without flinching.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 10V54M14 20H50M18 20L12 36H24L18 20ZM46 20L40 36H52L46 20ZM24 54H40"></path></svg></div>
         <h4 class="domain-name">The Marriage Rites</h4>
-        <p class="domain-desc">She instituted marriage and is prayed to for children — society's first legislator.</p>
+        <p class="domain-desc">She prayed to become the matchmaker and instituted marriage — society's first legislator, outsourcing creation to love.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
@@ -402,58 +320,31 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The compass</span>
-        <span class="symbol-meaning">Her emblem in Han art, paired with <a href="/fuxi/" class="crosslink" data-crosslink="fuxi">Fúxī</a>'s square — heaven's measure in her hand</span>
+        <span class="symbol-meaning">Her emblem in Han art, paired with Fúxī's square — heaven's measure in her hand</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The turtle's legs</span>
         <span class="symbol-meaning">The four pillars she cut and set — sacrifice repurposed as architecture</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The rope of mud</span>
+        <span class="symbol-meaning">Her tool of mass creation — and the myth's blunt explanation of why fortunes differ</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The stone she did not use</span>
+        <span class="symbol-meaning">The one stone left over after the mending — the stone that becomes the jade of Dream of the Red Chamber and the book itself</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Nǚwā</p>
-        </div>
-        
-      <p class="lead-text">Nǚwā's two great myths answer the two great questions: where people came from, and why the sky holds. Both are told in the earliest strata of Chinese myth and never improved upon.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Catastrophe</span>
-          <h3 class="myth-title">The Mending of the Sky</h3>
-          <p class="myth-text">The Huáinánzǐ tells it: in high antiquity the four pillars snapped, the nine provinces split; fire raged unquenched, waters rose undrained; fierce beasts devoured the people. Nǚwā melted stones of five colors to mend the azure sky, cut the legs of the great turtle to set the four pillars, slew the black dragon to save Jì province, and heaped reed-ashes to dam the flood. Then — and only then — the world was habitable, and the beasts went quiet.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Creation</span>
-          <h3 class="myth-title">People of Yellow Earth</h3>
-          <p class="myth-text">The later compendia preserve the gentler myth: Nǚwā, walking alone in the empty world, knelt by the river and shaped human beings from yellow clay. The work delighted but wearied her — so she trailed a rope through the mud and flung the drops, which became people too. The handmade figures became the rich and noble; the rope-flung drops, the poor and common — China's oldest reflection on how inequality began.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Institution</span>
-          <h3 class="myth-title">The First Matchmaker</h3>
-          <p class="myth-text">Having made people singly, she made them continuous: Nǚwā instituted marriage and the go-between, so that humanity could reproduce itself without her kneeling by the river forever. She is therefore prayed to for children and for marriages — the goddess who outsourced creation to love. The tradition names her among the Three August Ones: progenitor, legislator, and engineer in one.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -517,8 +408,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">女媧</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Nǚwā</strong> (女媧) is attested in the source tradition — “Woman wa”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">nuwa</p>
+                <p class="card-body">Reduced to plain <strong>nuwa</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Nǚwā</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Nǚwā</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Nǚwā.com → xn--nw-ela08f.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Nǚwā</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Nǚwā</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Nǚwā</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Nǚwā</p>
+                    <p class="card-body">Restores <strong>女媧</strong>. The live temple domain — <strong>nǚwā.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">nuwa</p>
+                    <p class="card-body">Flattens <strong>女媧</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Nǚwā was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ny˨˩˦ wa˥/</span>
+            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">nyoo-wah, low-dipping tone on Nǚ, high level on Wā.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Nǚwā 女娲 bears the third tone on nǚ — the vowel ü written with its two dots, which the restoration keeps and plain ASCII drops. Wā is the level-toned archaic graph for this goddess alone: a character invented for her name, used for nothing else in the language. The ü is the front rounded vowel — the sound French writes u — which plain ASCII loses to plain u.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Nǚwā is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">女媧</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Nǚwā is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -536,7 +557,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/nuwa_mascot.webp" type="image/webp"><img src="../assets/nuwa_mascot.png" alt="Nǚwā mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/nuwa_mascot.webp" type="image/webp"><img src="../assets/nuwa_mascot.png" alt="Nǚwā mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -574,7 +595,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/nuwa_logomark.webp" type="image/webp"><img src="../assets/nuwa_logomark.webp" alt="Nǚwā logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/nuwa_logomark.webp" type="image/webp"><img src="../assets/nuwa_logomark.webp" alt="Nǚwā logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Mnēmosýnē, Memory, Muses' Mother. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/mnemosyne/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Mnēmosýnē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Mnēmosýnē is /mnɛː.mosý.nɛː/ — approximately 'mneh-MOH-see-nee' — the first syllable is like 'mneh', the stress falls on the third syllable, and both long vowels are held."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Mnēmosýnē mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mnēmosýnē means Memory (from μνήμη) in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Mnēmosýnē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mnēmosýnē is associated with Spring of Mnēmosýnē (The cold underworld water of the Orphic gold tablets; drinking it, the soul remembers its heavenly birth and walks the sacred road.), The nine Muses (Her daughters — the arts are memory externalized and made singable.), Gold tablet (The lamella buried with initiates, carrying the soul's password past the guardians of the springs.), The lyre of Helicon (The instrument through which the Muses — her daughters — turn recollection into song on the mountain where Hesiod met them.), Laurel (The poet's crown; every victor in song owes it to her gift, and every epic invocation is secretly hers.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Mnēmosýnē in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII mnemosyne strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Mnēmosýnē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Nine Nights with Zeus” — Mnēmosýnē's myths are few because her function is everywhere. A Titaness daughter of Ouranos and Gaia, mother of the nine Muses by Zeus, she is the ground of narrative itself — the reason anything Greek can be told twice in the same words. Her two great monuments are her daughters and the gold tablets of the mysteries. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/mnemosyne_logolockup.webp" type="image/webp"><img src="../../assets/mnemosyne_logolockup.png" alt="Mnēmosýnē" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Mnēmosýnē</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Mnēmosýnē.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/mnemosyne_mascot.webp" type="image/webp"><img src="../../assets/mnemosyne_mascot.png" alt="Mnēmosýnē — Memory, Muses' Mother" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/mnemosyne_mascot.webp" type="image/webp"><img src="../../assets/mnemosyne_mascot.png" alt="Mnēmosýnē — Memory, Muses' Mother" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Mnēmosýnē, Memory, Muses' Mother</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">Μνημοσύνη</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Mnēmosýnē</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/mnɛː.mosý.nɛː/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Memory, Muses' Mother</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Memory (from μνήμη)</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Mnēmosýnē.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Spring or fountain, Book or tablet, Lamp, Laurel</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">Μνημοσύνη</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Mnēmosýnē</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/mnɛː.mosý.nɛː/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Memory, Muses' Mother</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Memory (from μνήμη)</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Mnēmosýnē.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Spring of Mnēmosýnē, The nine Muses, Gold tablet, The lyre of Helicon, Laurel</span></div></div>
         </div>
     </div>
 </section>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Mnēmosýnē is Tier 1: the Greek original contains both length (ē) and acute stress (ý), making it the fullest scholarly restoration. The English 'Mnemosyne' flattens the vowels.</p>
+                <p class="etymology-note">Memory (from μνήμη)</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Μνημοσύνη (Mnēmosýnē), Memory personified.</li><li><strong>Latin</strong> — Moneta, later identified with Juno and with memory/money.</li><li><strong>Function</strong> — Mother of the nine Muses by <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>.</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — Μνημοσύνη (Mnēmosýnē), Memory personified.</li><li><strong>Root</strong> — μνήμη (mnēmē), 'memory' — the root of English 'mnemonic' and 'amnesty' (a-mnēstia, 'not-remembering', i.e., forgetting of wrongs).</li><li><strong>Function</strong> — Mother of the nine Muses by <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>; keeper of the Orphic spring the dead must drink.</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Mnēmosýnē is the <strong>personification of memory and the mother of the nine Muses</strong>. Without her, there is no poetry, no history, no law, no song. She is the deep reservoir from which all the arts draw, and the spring from which the initiates of the mysteries drink so that they may remember their divine origin after death.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Mnēmosýnē in Later Traditions</h3><p class="cultural-card-body">Roman poets identified Mnēmosýnē with Moneta, a title of Juno associated with memory and warning. In the Renaissance she merged with the art of memory, the mnemonic technique by which orators stored speeches in imagined buildings. Modern psychology and neuroscience have taken over the empirical study of memory, but Mnēmosýnē remains the ancient name for the mystery that makes identity possible: the fact that we can recall who we are.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Mnēmosýnē lives in every museum (from mouseion, 'place of the Muses') and every act of remembrance. She is invoked at funerals, in national memorials, and in the simple act of telling a story. The word 'mnemonic' derives from her name. In a culture of accelerating forgetting, Mnēmosýnē is the guardian of continuity: she asks us not to let the past dissolve.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Mnēmosýnē</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Mnēmosýnē in Later Traditions</h3><p class="cultural-card-body">Rome made no translation of Mnēmosýnē — her name crossed into Latin unchanged, a rarity that marks how abstractly antiquity took her: not a foreign goddess to be matched with a Roman one, but a concept to be quoted. Roman rhetoric developed her art practically: the <em>ars memorativa</em> taught in the <em>Rhetorica ad Herennium</em> organized speeches in imagined buildings — an externalized Mnēmosýnē that Frances Yates's <em>The Art of Memory</em> would trace from the Romans to Giordano Bruno. The medieval and Renaissance memory-palace tradition, and the modern word <em>mnemonic</em>, are her direct descendants. In every generation she has stood for the same mystery: the fact that we can recall who we are — the ground of identity itself, which neuroscience now studies empirically while her name keeps the older, deeper question.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Mnēmosýnē lives in every <em>museum</em> (from <em>mouseion</em>, 'place of the Muses', her daughters' house) and every act of remembrance. She is invoked at funerals, in national memorials, and in the simple act of telling a story twice in the same words. The word 'mnemonic' descends from her name, as does the whole Greek bequest to historiography: a culture that made memory the mother of the arts made recording the past a sacred duty. In a culture of accelerating forgetting — feeds that erase yesterday, archives that expire — Mnēmosýnē is the guardian of continuity. She does not promise that the past was good; she promises that it was real, and that reality matters.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Direct material traces are thin — fitting for a goddess of the invisible. Her most concrete monuments are the gold lamellae themselves: the tablets from Petelia (now in Naples), Hipponion, Pherai, and Pharsalos, fourth century BCE and later, whose instructions name her spring. At the valley of the Muses on Helicon near Thespiai, the sanctuary Pausanias walked placed her at the head of the Muses' company, among tripods and statues now mostly gone; the spring Hippokrēnē still flows from the rock. Between grave and grove, her archaeology is an archaeology of remembering — which is, after all, her element.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Mnēmosýnē means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Mnēmosýnē is the most quietly powerful of the Titans. She does not fight like <a href="/coeus/" class="crosslink" data-crosslink="coeus">Koîos</a>, nor prophesy like <a href="/phoebe/" class="crosslink" data-crosslink="phoebe">Phoíbē</a>. She simply remembers. Yet without memory there is no self, no culture, no justice. A people that cannot remember its dead is not a people; a person who cannot remember their promises is not yet a person.</p><p>The Orphic instruction is the deepest: when you die, do not drink forgetfulness. Choose memory, even when it hurts. Memory is the link between the soul and the divine; the gold tablets treat recollection as the one skill that survives death. Mnēmosýnē does not promise that the past was good — she promises that it was real, and that the real must be carried. Her restoration in Unicode is itself an act in her honor: a name remembered, transmitted, set down where it will not be lost.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Mnēmosýnē, Memory, Muses' Mother, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Mnēmosýnē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Mnēmosýnē</strong> is /mnɛː.mosý.nɛː/ — approximately 'mneh-MOH-see-nee' — the first syllable is like 'mneh', the stress falls on the third syllable, and both long vowels are held..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Mnēmosýnē mean?</summary><div class="faq-answer"><p><strong>Mnēmosýnē</strong> means <strong>Memory (from μνήμη)</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Mnēmosýnē?</summary><div class="faq-answer"><p>Mnēmosýnē is associated with <strong>Spring or fountain</strong> (The waters of memory from which the dead must drink.), <strong>Book or tablet</strong> (The written record that preserves what time would erase.), <strong>Lamp</strong> (The light that keeps memory visible in darkness.), <strong>Laurel</strong> (The crown of the poet whose work depends on her gift.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Mnēmosýnē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mnemosyne</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Mnēmosýnē?</summary><div class="faq-answer"><p>Hesiod tells how Zeus lay with Mnēmosýnē for nine consecutive nights in Pieria. From this union came the nine Muses, each bearing a province of the arts. The very number of nights corresponds to the months of gestation, as if memory itself must be incubated before it can give birth to song.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Mnēmosýnē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Mnēmosýnē</strong> is /mnɛː.mosý.nɛː/ — approximately 'mneh-MOH-see-nee' — the first syllable is like 'mneh', the stress falls on the third syllable, and both long vowels are held.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Mnēmosýnē mean?</summary><div class="faq-answer"><p><strong>Mnēmosýnē</strong> means <strong>Memory (from μνήμη)</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Mnēmosýnē?</summary><div class="faq-answer"><p>Mnēmosýnē is associated with <strong>Spring of Mnēmosýnē</strong> (The cold underworld water of the Orphic gold tablets; drinking it, the soul remembers its heavenly birth and walks the sacred road.), <strong>The nine Muses</strong> (Her daughters — the arts are memory externalized and made singable.), <strong>Gold tablet</strong> (The lamella buried with initiates, carrying the soul's password past the guardians of the springs.), <strong>The lyre of Helicon</strong> (The instrument through which the Muses — her daughters — turn recollection into song on the mountain where Hesiod met them.), <strong>Laurel</strong> (The poet's crown; every victor in song owes it to her gift, and every epic invocation is secretly hers.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Mnēmosýnē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mnemosyne</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Mnēmosýnē?</summary><div class="faq-answer"><p>“Nine Nights with Zeus” — Mnēmosýnē's myths are few because her function is everywhere. A Titaness daughter of <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a> and <a href="/gaia/" class="crosslink" data-crosslink="gaia">Gaia</a>, mother of the nine Muses by Zeus, she is the ground of narrative itself — the reason anything Greek can be told twice in the same words. Her two great monuments are her daughters and the gold tablets of the mysteries. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,7 +355,7 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod, Theogony</cite></li><li><cite>Pindar, Olympian Odes</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 22–62, 915–917</cite></li><li><cite>Plato, Phaedrus 274c–275b</cite></li><li><cite>Pausanias 9.29–31</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -304,7 +367,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Orphic gold tablets</cite></li><li><cite>LSJ (Liddell-Scott-Jones)</cite></li><li><cite>Beekes, Etymological Dictionary of Greek</cite></li></ul>
+                    <ul class="source-list"><li><cite>Orphic gold tablets (Petelia, Hipponion, Pherai)</cite></li><li><cite>Graf &amp; Johnston, Ritual Texts for the Afterlife</cite></li><li><cite>LSJ (Liddell-Scott-Jones)</cite></li><li><cite>Beekes, Etymological Dictionary of Greek</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/mnemosyne_logomark.webp" type="image/webp"><img src="../../assets/mnemosyne_logomark.webp" alt="Mnēmosýnē logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/mnemosyne_logomark.webp" type="image/webp"><img src="../../assets/mnemosyne_logomark.webp" alt="Mnēmosýnē logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

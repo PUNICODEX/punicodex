@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Muspellheimr, World of Fire. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/muspellheimr/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Muspellheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Muspellheimr is /ˈmus.pelˌhɛi̯mr/ — approximately 'MOOS-pel-haymr' — stress the first syllable, keep the vowels short, and glide through the final 'haymer'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Muspellheimr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Muspellheimr means Muspel-home (world-ender) in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Muspellheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Muspellheimr is associated with Surtr's flaming sword (The giant's bright blade that burns the world at Ragnarǫk), Lava field (The volcanic landscape of Iceland that medieval Norse readers imagined as Muspell), Spark-shower (The fire that flies from Muspellheimr to kindle sun, moon, and stars), Fire-giant's crown (Surtr as the ruler of the flaming realm, sometimes shown with a crown of flames), World-ash blackened (The burned Yggdrasil after the fire of Muspell has passed)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Muspellheimr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Muspellheimr is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Muspellheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Surtr Comes from the South” — Muspellheimr is the world of fire, the southern realm that burned before the cosmos was shaped and will burn it again at Ragnarǫk. Home of Surtr and his sons, it is both the furnace whose sparks quickened Ymir's rime and the terminal conflagration that ends the ordered world. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/muspellheimr_logolockup.webp" type="image/webp"><img src="../../assets/muspellheimr_logolockup.png" alt="Muspellheimr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Muspellheimr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Muspellheimr.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/muspellheimr_mascot.webp" type="image/webp"><img src="../../assets/muspellheimr_mascot.png" alt="Muspellheimr — World of Fire" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/muspellheimr_mascot.webp" type="image/webp"><img src="../../assets/muspellheimr_mascot.png" alt="Muspellheimr — World of Fire" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -207,7 +258,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Muspellheimr</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="4" data-delay="300">
       <div class="etym-step-content">
@@ -216,11 +267,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Muspellheimr is Tier 2: no vowel is marked long or stressed. The first element Muspell is not a native transparent compound; its prehistory is debated, which is why the pronunciation stays conservative and the etymology is not invented.</p>
+                <p class="etymology-note">Uncertain; possibly from PGmc *muspell- "world-end fire". The realm of fire.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — Muspell, the personified fire-world, possibly a loan or archaic word</li><li><strong>Poetic Edda</strong> — Muspells lýti, 'the destroyer of Muspell', a kenning for Surtr</li><li><strong>Old Saxon / Old High German</strong> — mutspelli, the day of the world's end in the Heliand, beside the OHG poem Muspilli</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — Muspell, the personified fire-world, possibly a loan or archaic word</li><li><strong><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a></strong> — Muspells lýti, 'the destroyer of Muspell', a kenning for Surtr</li><li><strong>Old Saxon / Old High German</strong> — mutspelli, the day of the world's end in the Heliand, beside the OHG poem Muspilli</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -241,7 +292,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">M</td><td><code>U+004D</code></td><td>Latin Capital Letter M</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">s</td><td><code>U+0073</code></td><td>Latin Small Letter S</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">p</td><td><code>U+0070</code></td><td>Latin Small Letter P</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="560"><td class="char-cell">h</td><td><code>U+0068</code></td><td>Latin Small Letter H</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="640"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="720"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="800"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="880"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Muspellheimr</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -253,24 +304,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">In the norse tradition, <strong>Muspellheimr</strong> governed world of fire. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Muspellheimr in Later Traditions</h3><p class="cultural-card-body">Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Muspellheimr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII. Muspell's fire resonates in apocalyptic imagination, volcanic disaster narratives, and climate change discourse. The Old Norse form <em>Muspellheimr</em> preserves a medieval intuition that creation and destruction are fueled by the same primordial heat.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Muspellheimr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Muspellheimr in Later Traditions</h3><p class="cultural-card-body">Muspellheimr's nearest relatives are continental Germanic rather than Norse: the Old High German Muspilli and the Old Saxon Heliand's mūdspelli reuse the word for the Christian Last Judgment, though whether muspilli is a native Germanic term for the world-fire or a learned coinage remains unsettled — the sources, as so often here, refuse certainty. Christian apocalyptic coloring of <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a>'s fire is debated in the same register: the poem's burning of the world may be old, may be medieval, likely both at once. On the ground, medieval Icelanders knew exactly what a fire-world looked like: the Eldgjá fissure eruption of c. 939 CE — one of the largest lava floods of the last two millennia — and repeated eruptions of Hekla, long rumored in European lore as an entrance to hell, gave the southern realm an empirical address. Later centuries moved the realm into fantasy literature and modern heathenry, where Muspel stands for the primal fire in games, novels, and neopagan cosmology.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Muspellheimr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII. Muspell's fire resonates in apocalyptic imagination, volcanic disaster narratives, and climate change discourse. The Old Norse form <em>Muspellheimr</em> preserves a medieval intuition that creation and destruction are fueled by the same primordial heat.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The fiery south is anchored in the volcanic geology witnessed by medieval Icelanders. The Eldgjá fissure eruption of c. 939 CE and repeated Hekla eruptions supplied an empirical model for a world of flame. The name Muspell itself echoes continental Germanic eschatological fire poems such as the Old High German Muspilli, preserved in the manuscript at the Bavarian State Library.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Muspellheimr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Names are not merely labels; they are compressed worlds. <strong>Muspellheimr</strong> carries within it a norse understanding of muspel-home (world-ender). Unicode restoration returns that world to readable form.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Muspellheimr, World of Fire, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Muspellheimr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Muspellheimr</strong> is /ˈmus.pelˌhɛi̯mr/ — approximately 'MOOS-pel-haymr' — stress the first syllable, keep the vowels short, and glide through the final 'haymer'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Muspellheimr mean?</summary><div class="faq-answer"><p><strong>Muspellheimr</strong> means <strong>Muspel-home (world-ender)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Muspellheimr?</summary><div class="faq-answer"><p>Muspellheimr is associated with <strong>Surtr's flaming sword</strong> (The giant's bright blade that burns the world at <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a>), <strong>Lava field</strong> (The volcanic landscape of Iceland that medieval Norse readers imagined as Muspell), <strong>Spark-shower</strong> (The fire that flies from Muspellheimr to kindle sun, moon, and stars), <strong>Fire-giant's crown</strong> (Surtr as the ruler of the flaming realm, sometimes shown with a crown of flames), <strong>World-ash blackened</strong> (The burned Yggdrasil after the fire of Muspell has passed).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Muspellheimr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>muspellheimr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Muspellheimr?</summary><div class="faq-answer"><p>The seeress of <em>Völuspá</em> foretells that Surtr will come from the south with fire, his sword brighter than the sun. The bridge Bifröst breaks beneath the tread of Muspell's sons; the fire giant slays the beautiful god <a href="/freyr/" class="crosslink" data-crosslink="freyr">Freyr</a>, who gave away his own sword for love. The flames spread until heaven itself is consumed.This is Muspellheimr's decisive mythic appearance: not as a realm to be visited but as a force that arrives at the end of time. Its fire does not discriminate; it burns gods, giants, and the world-tree alike, making Muspellheimr the agent of universal dissolution.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Muspellheimr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Muspellheimr</strong> is /ˈmus.pelˌhɛi̯mr/ — approximately 'MOOS-pel-haymr' — stress the first syllable, keep the vowels short, and glide through the final 'haymer'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Muspellheimr mean?</summary><div class="faq-answer"><p><strong>Muspellheimr</strong> means <strong>Muspel-home (world-ender)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Muspellheimr?</summary><div class="faq-answer"><p>Muspellheimr is associated with <strong>Surtr's flaming sword</strong> (The giant's bright blade that burns the world at <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a>), <strong>Lava field</strong> (The volcanic landscape of Iceland that medieval Norse readers imagined as Muspell), <strong>Spark-shower</strong> (The fire that flies from Muspellheimr to kindle sun, moon, and stars), <strong>Fire-giant's crown</strong> (Surtr as the ruler of the flaming realm, sometimes shown with a crown of flames), <strong>World-ash blackened</strong> (The burned Yggdrasil after the fire of Muspell has passed).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Muspellheimr in Unicode?</summary><div class="faq-answer"><p><strong>Muspellheimr</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Muspellheimr?</summary><div class="faq-answer"><p>“Surtr Comes from the South” — Muspellheimr is the world of fire, the southern realm that burned before the cosmos was shaped and will burn it again at Ragnarǫk. Home of Surtr and his sons, it is both the furnace whose sparks quickened <a href="/ymir/" class="crosslink" data-crosslink="ymir">Ymir</a>'s rime and the terminal conflagration that ends the ordered world. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -279,7 +342,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,25 +355,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Prose Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.</cite></li><li><cite>Poetic Edda: Vafþrúðnismál (Surtalogi, the black flame that will consume the world)</cite></li><li><cite>Poetic Edda: Grímnismál (cosmological enumeration of the worlds and their boundaries)</cite></li><li><cite>Saxo Grammaticus, Gesta Danorum (eschatological fire and the fall of the gods)</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a></cite></li><li><cite>Poetic Edda: Völuspá 47–52</cite></li><li><cite>Snorri Sturluson, Prose Edda: <a href="/texts/prose-edda/#gylfaginning-04" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 4</a>–8 (Muspellheimr, <a href="/surt/" class="crosslink" data-crosslink="surt">Surt</a>, the first melting; the sparks fixed as stars)</cite></li><li><cite>Poetic Edda: <a href="/texts/poetic-edda/#vafthruthnismol" class="crosslink citation-link" data-citation="vafthruthnismol">Vafþrúðnismál</a> 50–51 (Surtalogi, the black flame)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Muspellheimr and related cults.</cite></li><li><cite>The fiery south is anchored in the volcanic geology witnessed by medieval Icelanders. The Eldgjá fissure eruption of c. 939 CE and repeated Hekla eruptions supplied an empirical model for a world of flame. The name Muspell itself echoes continental Germanic eschatological fire poems such as the Old High German Muspilli, preserved in the manuscript at the Bavarian State Library.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Muspellheimr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.</cite></li><li><cite>Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Das althochdeutsche Muspilli (Munich, BSB Clm 14098); the Heliand’s mūdspelli</cite></li><li><cite>Simek, Dictionary of Northern Mythology, s.v. Muspell(heimr), Surtr</cite></li><li><cite>de Vries, Altnordisches etymologisches Wörterbuch, s.v. muspell</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -371,7 +434,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/muspellheimr_logomark.webp" type="image/webp"><img src="../../assets/muspellheimr_logomark.webp" alt="Muspellheimr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/muspellheimr_logomark.webp" type="image/webp"><img src="../../assets/muspellheimr_logomark.webp" alt="Muspellheimr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

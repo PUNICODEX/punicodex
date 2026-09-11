@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Tháleia, Comedy, Idyll. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/thaleia/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Tháleia?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Tháleia is /ˈtʰa.leː.a/ — approximately 'TAH-lay-ah' — begin with a breathy t as in 'top', lean on the first syllable, and let the 'ei' glide long; the English 'th' of Thalia has no place in the Greek."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Tháleia mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tháleia means Flourishing, blooming in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Tháleia?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tháleia is associated with Comic mask (Her defining attribute in ancient iconography — laughter given a face), Shepherd's staff (pedum) (The bucolic world of idyllic poetry: flocks, shade, and song), Ivy wreath (The plant of Dionysos, god of the theater where comedy was performed), Comic slipper (soccus) (The low shoe of comic actors, set against tragedy's high cothurnus), Frame drum (The tambourine of the Corybantes, the ecstatic dancers said to be her sons)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Tháleia in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII thaleia strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Tháleia?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Nine Nights, Nine Daughters” — Tháleia rarely acts alone: her myths are the myths of the Muses as a body. What the sources give us is her birth, her name, and one startling marriage — to Apollo, father of her dancing sons. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/thaleia_logolockup.webp" type="image/webp"><img src="../../assets/thaleia_logolockup.png" alt="Tháleia" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Tháleia</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Tháleia.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/thaleia_mascot.webp" type="image/webp"><img src="../../assets/thaleia_mascot.png" alt="Tháleia — Comedy, Idyll" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/thaleia_mascot.webp" type="image/webp"><img src="../../assets/thaleia_mascot.png" alt="Tháleia — Comedy, Idyll" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Tháleia is Tier 1 because the Greek Θάλεια carries both stress (the acute on the initial alpha) and length (the long diphthong ει). The restoration preserves both: the acute on the á marks the accent, and the digraph -ei- keeps the long diphthong that plain ASCII Thalia erases.</p>
+                <p class="etymology-note">The name <strong>Tháleia</strong> carries the orthographic signature of the greek tradition: Θάλεια. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Tháleia is the <strong>Muse of comedy and idyllic poetry</strong>, one of the nine daughters <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> fathered on Mnémosynē. Her name is the Greek word for <strong>flourishing</strong> — from θάλλω, 'to bloom' — and in the plural, θαλίαι, it means nothing less than festivities: the good cheer of the feast. The Greeks gave laughter a Muse, and they named her Blooming.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Tháleia in Later Traditions</h3><p class="cultural-card-body">Rome adopted the nine <em>Musae</em> almost without translation, and Thalia kept her Greek name; it was in late antique and Renaissance iconography that she was fixed once and for all as comedy's patron, mask in hand, one of the paired faces of the theater. Her namesake the Charis lived a parallel afterlife as one of the three Graces of Western art — Aglaia, Euphrosyne, and Thalia, the dancers of Botticelli's <em>Primavera</em>. Through her collective she passes into the very words 'music' and 'museum,' both children of the Greek <em>Mousa</em>.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">No common English noun descends from Tháleia's name alone — her legacy travels under other flags. She presides in spirit over Theocritus's <em>Idylls</em>, the bucolic poems that gave English the word 'idyll' for every scene of pastoral peace. Theaters bear her name — Hamburg's Thalia Theater most famously — and the paired masks of comedy and tragedy that still sign for the stage are, by long convention, hers and <a href="/melpomene/" class="crosslink" data-crosslink="melpomene">Melpoménē</a>'s. As a given name, Thalia has never gone out of use; the Muse of laughter is one of the few Greek deities people still name their daughters after.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Tháleia</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Tháleia in Later Traditions</h3><p class="cultural-card-body">Rome adopted the nine <em>Musae</em> almost without translation, and Thalia kept her Greek name; it was in late antique and Renaissance iconography that she was fixed once and for all as comedy's patron, mask in hand, one of the paired faces of the theater. Her namesake the Charis lived a parallel afterlife as one of the three Graces of Western art — Aglaia, Euphrosyne, and Thalia, the dancers of Botticelli's <em>Primavera</em>. Through her collective she passes into the very words 'music' and 'museum,' both children of the Greek <em>Mousa</em>.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">No common English noun descends from Tháleia's name alone — her legacy travels under other flags. She presides in spirit over Theocritus's <em>Idylls</em>, the bucolic poems that gave English the word 'idyll' for every scene of pastoral peace. Theaters bear her name — Hamburg's Thalia Theater most famously — and the paired masks of comedy and tragedy that still sign for the stage are, by long convention, hers and <a href="/melpomene/" class="crosslink" data-crosslink="melpomene">Melpoménē</a>'s. As a given name, Thalia has never gone out of use; the Muse of laughter is one of the few Greek deities people still name their daughters after.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The great cult center of the Muses stood in the Valley of the Muses below Mount Helicon, near Thespiai, with its grove, its statues, and the Mouseia festival games; Pausanias (9.29–30) describes the sanctuary and the nearby spring Hippocrene at length. Tháleia herself survives visually on Roman-era Muses sarcophagi and mosaics, where she sits with the comic mask and shepherd's staff that became her invariable attributes. Comic masks further appear throughout theater-related dedications and Pompeian wall painting, the material trace of the genre she was believed to rule.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Tháleia means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Honesty requires a caveat: Hesiod assigns no spheres to the Muses. The tidy division — Tháleia for comedy, Melpoménē for tragedy, Kalliṓpē for epic — is a Hellenistic and Roman codification, unknown to the archaic sources, which treat the nine as one undivided choir. Yet the later assignment is not arbitrary decoration. That comedy receives a Muse at all is the telling fact: the Greeks did not rank laughter beneath song but placed both in the care of Memory's daughters, performed together at the festivals of <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a>.</p><p>Her name carries the argument further. Θάλλω is what the green world does in spring — and in the plural, θαλίαι is what the feast does in winter. One root holds vegetation and celebration together, as if the Greeks suspected that festivity is simply abundance made audible. A Muse named Blooming says that comedy is not escape from the serious world but its renewal: the year, and the city, flowering again.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Tháleia, Comedy, Idyll, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Tháleia?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Tháleia</strong> is /ˈtʰa.leː.a/ — approximately 'TAH-lay-ah' — begin with a breathy t as in 'top', lean on the first syllable, and let the 'ei' glide long; the English 'th' of Thalia has no place in the Greek..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Tháleia mean?</summary><div class="faq-answer"><p><strong>Tháleia</strong> means <strong>Flourishing, blooming</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Tháleia?</summary><div class="faq-answer"><p>Tháleia is associated with <strong>Comic mask</strong> (Her defining attribute in ancient iconography — laughter given a face), <strong>Shepherd's staff (pedum)</strong> (The bucolic world of idyllic poetry: flocks, shade, and song), <strong>Ivy wreath</strong> (The plant of <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a>, god of the theater where comedy was performed), <strong>Comic slipper (soccus)</strong> (The low shoe of comic actors, set against tragedy's high cothurnus), <strong>Frame drum</strong> (The tambourine of the Corybantes, the ecstatic dancers said to be her sons).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Tháleia in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>thaleia</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Tháleia?</summary><div class="faq-answer"><p>Hesiod tells how Mnémosynē, Memory herself, lay with Zeus for nine nights and bore the nine Muses 'to be a forgetting of evils and a rest from cares' (<em>Theogony</em> 53–62). When he names them, Tháleia stands third: '<a href="/kleio/" class="crosslink" data-crosslink="kleio">Kleiṓ</a> and <a href="/euterpe/" class="crosslink" data-crosslink="euterpe">Eutérpē</a> and Tháleia and Melpoménē' (<em>Theogony</em> 76–79). From the beginning, then, laughter and festivity are numbered among the daughters of Memory — comedy is not beneath remembrance but one of its gifts.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Tháleia?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Tháleia</strong> is /ˈtʰa.leː.a/ — approximately 'TAH-lay-ah' — begin with a breathy t as in 'top', lean on the first syllable, and let the 'ei' glide long; the English 'th' of Thalia has no place in the Greek.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Tháleia mean?</summary><div class="faq-answer"><p><strong>Tháleia</strong> means <strong>Flourishing, blooming</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Tháleia?</summary><div class="faq-answer"><p>Tháleia is associated with <strong>Comic mask</strong> (Her defining attribute in ancient iconography — laughter given a face), <strong>Shepherd's staff (pedum)</strong> (The bucolic world of idyllic poetry: flocks, shade, and song), <strong>Ivy wreath</strong> (The plant of Dionysos, god of the theater where comedy was performed), <strong>Comic slipper (soccus)</strong> (The low shoe of comic actors, set against tragedy's high cothurnus), <strong>Frame drum</strong> (The tambourine of the Corybantes, the ecstatic dancers said to be her sons).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Tháleia in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>thaleia</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Tháleia?</summary><div class="faq-answer"><p>“Nine Nights, Nine Daughters” — Tháleia rarely acts alone: her myths are the myths of the Muses as a body. What the sources give us is her birth, her name, and one startling marriage — to Apollo, father of her dancing sons. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,19 +349,19 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod</cite></li><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod, Theogony</cite></li><li><cite>Homer, Iliad</cite></li><li><cite>Apollodorus</cite></li><li><cite>Pausanias</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod</cite></li><li><cite>Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 53–62, 76–79, 907–911</cite></li><li><cite>Homer, Iliad 2.594–600</cite></li><li><cite>Apollodorus, Bibliotheca 1.3.4</cite></li><li><cite>Pausanias 9.35.1–7</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Tháleia and related cults.</cite></li><li><cite>The great cult center of the Muses stood in the Valley of the Muses below Mount Helicon, near Thespiai, with its grove, its statues, and the Mouseia festival games; Pausanias (9.29–30) describes the sanctuary and the nearby spring Hippocrene at length. Tháleia herself survives visually on Roman-era Muses sarcophagi and mosaics, where she sits with the comic mask and shepherd's staff that became her invariable attributes. Comic masks further appear throughout theater-related dedications and Pompeian wall painting, the material trace of the genre she was believed to rule.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Tháleia and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/thaleia_logomark.webp" type="image/webp"><img src="../../assets/thaleia_logomark.webp" alt="Tháleia logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/thaleia_logomark.webp" type="image/webp"><img src="../../assets/thaleia_logomark.webp" alt="Tháleia logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

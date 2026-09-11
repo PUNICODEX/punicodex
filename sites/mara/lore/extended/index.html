@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Māra, Death, Temptation, Illusion. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/mara/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Māra?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Māra is /ˈmɑː.rɐ/ — approximately MAH-ruh — the ā is long; two syllables, no ornament."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Māra mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Māra means ‘death, the tempter’, the personification of death and desire who assailed the Buddha under the Bodhi tree (from √mṛ ‘to die’), MW. in the buddhist tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Māra?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Māra is associated with The tenfold army (The taxonomy of temptation: every assault on resolve sorted by battalion), The flower arrows (Desire's camouflage: the shafts that arrive looking like gifts), The shadow at the seat (His claim on the Bodhi throne: the ego's final argument, \"this place is mine\"), The deva of the Vasavattī heaven (Māra is no devil from below but a god of the highest desire-realm — the ceiling of saṃsāra, himself subject to the wheel; his terror is that even the tempter ends)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Māra in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII mara strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Māra?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Ten Armies” — Māra's mythology is the dark half of the Buddhist biography: wherever the teaching advances, the texts station him at the next bend — and his defeats chart the whole path from striving to parinibbāna. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/mara_logolockup.webp" type="image/webp"><img src="../../assets/mara_logolockup.png" alt="Māra" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Māra</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Māra.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/mara_mascot.webp" type="image/webp"><img src="../../assets/mara_mascot.png" alt="Māra — Death, Temptation, Illusion" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/mara_mascot.webp" type="image/webp"><img src="../../assets/mara_mascot.png" alt="Māra — Death, Temptation, Illusion" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Māra, Death, Temptation, Illusion</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">मार</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Māra</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ˈmɑː.rɐ/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Buddhist</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Death, Temptation, Illusion</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">‘death, the tempter’, the personification of death and desire who assailed the Buddha under the Bodhi tree (from √mṛ ‘to die’), MW.</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Māra.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The tenfold army, The flower arrows, The shadow at the seat</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">मार</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Māra</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/ˈmɑː.rɐ/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Buddhist</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Death, Temptation, Illusion</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">‘death, the tempter’, the personification of death and desire who assailed the Buddha under the Bodhi tree (from √mṛ ‘to die’), MW.</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 1</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Māra.com</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The tenfold army, The flower arrows, The shadow at the seat, The deva of the Vasavattī heaven</span></div></div>
         </div>
     </div>
 </section>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Māra derives from √mṛ, "to die" (Monier-Williams): "death, the killer" — the personification of everything that kills the spiritual life, from desire to death itself. The Pāli canon also knows him as Namuci (an old Vedic name), Pāpimā, "the Evil One," and Kaṇha, "the Dark One." The restoration's whole content is the long ā: the difference between "Mara" and Māra is the difference between a name and the word for death. Tier-1 by rule.</p>
+                <p class="etymology-note">The name <strong>Māra</strong> carries the orthographic signature of the buddhist tradition: मार. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Sanskrit</strong> — मार (māra), "death, the killer," from √mṛ</li><li><strong>Pāli</strong> — Māra; also Namuci and Pāpimā</li><li><strong>Vedic antecedent</strong> — Namuci, the asura of the Ṛgveda slain by <a href="/indra/" class="crosslink" data-crosslink="indra">Indra</a></li><li><strong>His daughters</strong> — Taṇhā, Aratī, Rāgā — Craving, Aversion, Passion</li><li><strong>Owned form</strong> — Māra</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Sanskrit</strong> — मार (māra), "death, the killer," from √mṛ</li><li><strong>Pāli</strong> — Māra; also Namuci and Pāpimā</li><li><strong>Vedic antecedent</strong> — Namuci, the asura of the <a href="/texts/rig-veda/" class="crosslink citation-link" data-citation="rig-veda">Ṛgveda</a> slain by <a href="/indra/" class="crosslink" data-crosslink="indra">Indra</a></li><li><strong>His daughters</strong> — Taṇhā, Aratī, Rāgā — Craving, Aversion, Passion</li><li><strong>Owned form</strong> — Māra</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Māra is Death wearing every disguise the mind can manufacture: the lord of the desire-realm who marched his ten armies against the Buddha under the Bodhi tree, sent his three daughters when the armies broke, and lost — not to a weapon, but to being recognized.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Māra in Later Traditions</h3><p class="cultural-card-body">His oldest document is Vedic: Namuci, the asura of the Ṛgveda whom Indra slew with the foam of the waters, survived in the Pāli canon as Māra's other name — a borrowing as old as the texts themselves. Indian religion lent him Kāma's iconography, the sugarcane bow and flower arrows of the love-god, for desire was his first army. The scholastics then multiplied him: the Mahāyāna handbooks count four Māras — the aggregates, the defilements, death, and the god — turning the tempter into a complete theory of bondage. And the comparison with Satan, inevitable since the first missionaries, is inexact in the instructive way: Māra is no eternal adversary but a god of the highest desire-realm heaven, the Vasavattī, himself mortal, himself subject to the wheel — the ceiling of samsāra, not its enemy.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Māra gave Buddhism its psychology of the inner adversary: modern teachers from forest masters to mindfulness clinicians read the ten armies as the mind's own defenses against stillness, and "the Blessed One knows me" as the moment every compulsion loses power — when it is seen. His assault is the most-painted scene in Buddhist art, from Gandhāran panels to the murals of a thousand Thai wats, where the earth-goddess Thoranī wrings a flood from her hair to drown his host. And his name still does its original work: in the teaching languages of three continents, māra remains the common noun for what kills.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Māra</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Māra in Later Traditions</h3><p class="cultural-card-body">His oldest document is Vedic: Namuci, the asura of the Ṛgveda whom Indra slew with the foam of the waters, survived in the Pāli canon as Māra's other name — a borrowing as old as the texts themselves. Indian religion lent him Kāma's iconography, the sugarcane bow and flower arrows of the love-god, for desire was his first army. The scholastics then multiplied him: the Mahāyāna handbooks count four Māras — the aggregates, the defilements, death, and the god — turning the tempter into a complete theory of bondage. And the comparison with Satan, inevitable since the first missionaries, is inexact in the instructive way: Māra is no eternal adversary but a god of the highest desire-realm heaven, the Vasavattī, himself mortal, himself subject to the wheel — the ceiling of samsāra, not its enemy.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Māra gave Buddhism its psychology of the inner adversary: modern teachers from forest masters to mindfulness clinicians read the ten armies as the mind's own defenses against stillness, and "the Blessed One knows me" as the moment every compulsion loses power — when it is seen. His assault is the most-painted scene in Buddhist art, from Gandhāran panels to the murals of a thousand Thai wats, where the earth-goddess Thoranī wrings a flood from her hair to drown his host. And his name still does its original work: in the teaching languages of three continents, māra remains the common noun for what kills.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The assault on the Bodhi seat is among the oldest narrative scenes in Buddhist art: Gandhāran schist panels of the first centuries CE — now in Peshawar, Lahore, and Western collections — show the demon host shrinking from the seated figure, and the Pāla-period steles of the eight great events put the Māra-vijaya at the center of the sacred biography. The bhūmisparśa image that records the victory became the default Buddha of mainland Southeast <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>; Thai, Lao, and Khmer temple murals added the earth-goddess Thoranī wringing the flood from her hair; and Bodh Gayā itself — the vajrāsana, the "diamond throne" beneath the descendant of the very tree — remains the one site on earth where his defeat has a postal address.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Māra means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Māra is the only adversary who is defeated exclusively by being identified. No sūtra has the Buddha out-argue him, out-pray him, or out-fight him: he is seen, and he is finished — "I see you, Māra" — and his own epitaph is "the Blessed One knows me." Every craving, every fear, every vanity keeps his treaty: unnamed, it commands; named, it kneels like Girimekhala. The tradition offers no other weapon because none has ever been needed.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Māra, Death, Temptation, Illusion, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Māra?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Māra</strong> is /ˈmɑː.rɐ/ — approximately MAH-ruh — the ā is long; two syllables, no ornament..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Māra mean?</summary><div class="faq-answer"><p><strong>Māra</strong> means <strong>‘death, the tempter’, the personification of death and desire who assailed the Buddha under the Bodhi tree (from √mṛ ‘to die’), MW.</strong> in the buddhist tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Māra?</summary><div class="faq-answer"><p>Māra is associated with <strong>The tenfold army</strong> (The taxonomy of temptation: every assault on resolve sorted by battalion), <strong>The flower arrows</strong> (Desire's camouflage: the shafts that arrive looking like gifts), <strong>The shadow at the seat</strong> (His claim on the Bodhi throne: the ego's final argument, "this place is mine").</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Māra in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mara</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Māra?</summary><div class="faq-answer"><p>The Sutta Nipāta's Padhāna Sutta gives his order of battle, and it is a psychology textbook in disguise: sensual pleasure is his first army, discontent the second, hunger and thirst the third, craving the fourth, sloth and torpor the fifth, fear the sixth, doubt the seventh, hypocrisy and obstinacy the eighth, gains, fame, and honor the ninth, and the tenth is self-exaltation joined with contempt for others. The Buddha's answer is the template of every later victory: he sees each army for what it is. The tradition's whole art of temptation is this catalog — and its whole defense is recognition.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Māra?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Māra</strong> is /ˈmɑː.rɐ/ — approximately MAH-ruh — the ā is long; two syllables, no ornament.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Māra mean?</summary><div class="faq-answer"><p><strong>Māra</strong> means <strong>‘death, the tempter’, the personification of death and desire who assailed the Buddha under the Bodhi tree (from √mṛ ‘to die’), MW.</strong> in the buddhist tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Māra?</summary><div class="faq-answer"><p>Māra is associated with <strong>The tenfold army</strong> (The taxonomy of temptation: every assault on resolve sorted by battalion), <strong>The flower arrows</strong> (Desire's camouflage: the shafts that arrive looking like gifts), <strong>The shadow at the seat</strong> (His claim on the Bodhi throne: the ego's final argument, "this place is mine"), <strong>The deva of the Vasavattī heaven</strong> (Māra is no devil from below but a god of the highest desire-realm — the ceiling of saṃsāra, himself subject to the wheel; his terror is that even the tempter ends).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Māra in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>mara</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Māra?</summary><div class="faq-answer"><p>“The Ten Armies” — Māra's mythology is the dark half of the Buddhist biography: wherever the teaching advances, the texts station him at the next bend — and his defeats chart the whole path from striving to parinibbāna. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,19 +355,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The <em>Larger Sukhāvatī-vyūha Sūtra</em>; the <em>Smaller Sukhāvatī-vyūha Sūtra</em>; the <em>Amitāyurdhyāna Sūtra</em>; the <em>Lotus Sūtra</em>.</cite></li></ul>
+                    <ul class="source-list"><li><cite>The <em>Larger Sukhāvatī-vyūha Sūtra</em>; the <em>Smaller Sukhāvatī-vyūha Sūtra</em>; the <em>Amitāyurdhyāna Sūtra</em>; the <em><a href="/texts/lotus-sutra/" class="crosslink citation-link" data-citation="lotus-sutra">Lotus Sūtra</a></em>.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Māra and related cults.</cite></li><li><cite>The assault on the Bodhi seat is among the oldest narrative scenes in Buddhist art: Gandhāran schist panels of the first centuries CE — now in Peshawar, Lahore, and Western collections — show the demon host shrinking from the seated figure, and the Pāla-period steles of the eight great events put the Māra-vijaya at the center of the sacred biography. The bhūmisparśa image that records the victory became the default Buddha of mainland Southeast <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>; Thai, Lao, and Khmer temple murals added the earth-goddess Thoranī wringing the flood from her hair; and Bodh Gayā itself — the vajrāsana, the "diamond throne" beneath the descendant of the very tree — remains the one site on earth where his defeat has a postal address.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Māra and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Padhāna Sutta (Sutta Nipāta 3.2)</cite></li><li><cite>Māradhītu Sutta (SN 4.25)</cite></li><li><cite>Mahāparinibbāna Sutta (DN 16)</cite></li><li><cite>Buddhacarita</cite></li><li><cite>Nidānakathā</cite></li><li><cite>Monier-Williams</cite></li></ul>
+                    <ul class="source-list"><li><cite>Padhāna Sutta (Sutta Nipāta 3.2)</cite></li><li><cite>Māradhītu Sutta (SN 4.25)</cite></li><li><cite>Mahāparinibbāna Sutta (DN 16)</cite></li><li><cite>Aśvaghoṣa, Buddhacarita, canto XIII</cite></li><li><cite>Nidānakathā (Jātaka commentary, introduction)</cite></li><li><cite>Monier-Williams, Sanskrit-English Dictionary s.v. māra</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/mara_logomark.webp" type="image/webp"><img src="../../assets/mara_logomark.webp" alt="Māra logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/mara_logomark.webp" type="image/webp"><img src="../../assets/mara_logomark.webp" alt="Māra logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

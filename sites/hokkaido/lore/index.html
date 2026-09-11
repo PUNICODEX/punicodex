@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Hokkaidō — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">北海道</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Hokkaidō.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">北海道</p>
-                    <p class="card-body">The name in its original Japanese form. <strong>Hokkaidō</strong> (北海道) is attested in the source tradition — “Northern sea circuit”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">hokkaido</p>
-                    <p class="card-body">Reduced to plain <strong>hokkaido</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Hokkaidō</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hokkaidō</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Hokkaidō.com → xn--hokkaid-cmb.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Hokkaidō</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hokkaidō</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Hokkaidō is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">北海道</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Hokkaidō is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hokkaidō</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Hokkaidō</p>
-                    <p class="card-body">Restores <strong>北海道</strong>. The live temple domain — <strong>hokkaidō.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">hokkaido</p>
-                    <p class="card-body">Flattens <strong>北海道</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Hokkaidō was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Hokkaidō</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/hok.kai.doː/</span>
-            <span class="ipa-label">Japanese (Hepburn)</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">hok-KAI-doh, with the long final ō.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Japanese</strong> 北海道</li><li><strong>Ainu</strong> Ainu Mosir</li><li><strong>Older name</strong> Ezochi</li><li><strong>Owned form</strong> Hokkaidō</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Hokkaidō 北海道 — "North Sea Road" — carries a long final ō, the doubled vowel the macron preserves. The name dates only from 1869, when the explorer Matsuura Takeshirō proposed it for the island the Ainu long called Ainu Mosir, "the quiet land of humans." The long ō of dō is a doubled vowel in kana (どう); the macron is the romanization of that extra beat.</p></div>
+      <p class="lead-text">Hokkaidō's mythology is Ainu: a kamuy-cosmos where every animal, fire, and tool has a spirit-owner, and where the human world is maintained by right exchange with the unseen.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Land</span>
+          <h3 class="myth-title">Ainu Mosir and Kamuy Mosir</h3>
+          <p class="myth-text">Ainu oral tradition divides existence between Ainu Mosir, the land of humans, and Kamuy Mosir, the land of the spirits — and teaches that kamuy visit the human world wearing animal bodies as gifts. The bear is the mountain god's greatest visitation; the fire goddess, Ape-huci-kamuy, keeps every hearth and carries every prayer to the spirit world. The island itself is a borderland between the two realms.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Ceremony</span>
+          <h3 class="myth-title">Iomante</h3>
+          <p class="myth-text">The iomante — "sending off" — returns the visiting bear-spirit to Kamuy Mosir with songs, prayers, and gifts, so that the god will tell the other kamuy of human courtesy and come again in generous flesh. Long misread by outsiders as cruelty, it is among the most studied hunting ceremonies on earth: a theology of gratitude in which killing and honouring are the same act.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Frontier</span>
+          <h3 class="myth-title">From Ezochi to Hokkaidō</h3>
+          <p class="myth-text">The island's modern foundation-myth is documentary: in 1869 the new Meiji state renamed Ezochi, established the Kaitakushi (Colonization Commission), and invited American advisers — Capron, Clark ("Boys, be ambitious!") — to lay out farms, ports, and Sapporo itself on the American grid. A century of settlement followed; the Ainu were legally recognized as indigenous only in 2008, and the Ainu Promotion Act of 2019 opened a new chapter at last.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Epic</span>
+          <h3 class="myth-title">Kutune Shirka — The Song of the Young God</h3>
+          <p class="myth-text">The greatest surviving Ainu epic, the Kutune Shirka, was sung from memory across Hokkaidō and recorded in writing by the folklorist Kindaichi Kyōsuke in the early twentieth century. It tells of the young hunter Aina: sent with a company to hunt the deer of the deep mountains, he is abandoned by his companions, armed with a toy-like bow that the strong men scorn — and he succeeds where the strong fail, speaking with the animal people, outwitting the shape-shifting lord of the deer, and returning through trials that cross the border between Kamuy Mosir and Ainu Mosir (Kindaichi, Kutune Shirka, 1924; English selections in Donald L. Philippi, Songs of Gods, Songs of Humans, 1979). A yukar of this order took days to perform, sung in a cadenced chant passed from reciter to reciter. Its hero's weapon is not strength but courtesy toward the animal people — the exact ethic the iomante enacts at the bear's sending-off. The epic is Hokkaidō's own Iliad: a poem that remembers, from inside Ainu Mosir, what the island's later maps forgot to record.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The North Sea Road</h2>
             <p class="section-subtitle">Ainu Mosir, the Frontier, and the Snow Country</p>
         </div>
@@ -411,49 +329,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Hokkaidō</p>
-        </div>
-        
-      <p class="lead-text">Hokkaidō's mythology is Ainu: a kamuy-cosmos where every animal, fire, and tool has a spirit-owner, and where the human world is maintained by right exchange with the unseen.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Land</span>
-          <h3 class="myth-title">Ainu Mosir and Kamuy Mosir</h3>
-          <p class="myth-text">Ainu oral tradition divides existence between Ainu Mosir, the land of humans, and Kamuy Mosir, the land of the spirits — and teaches that kamuy visit the human world wearing animal bodies as gifts. The bear is the mountain god's greatest visitation; the fire goddess, Ape-huci-kamuy, keeps every hearth and carries every prayer to the spirit world. The island itself is a borderland between the two realms.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Ceremony</span>
-          <h3 class="myth-title">Iomante</h3>
-          <p class="myth-text">The iomante — "sending off" — returns the visiting bear-spirit to Kamuy Mosir with songs, prayers, and gifts, so that the god will tell the other kamuy of human courtesy and come again in generous flesh. <a href="/long/" class="crosslink" data-crosslink="long">Long</a> misread by outsiders as cruelty, it is among the most studied hunting ceremonies on earth: a theology of gratitude in which killing and honouring are the same act.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Frontier</span>
-          <h3 class="myth-title">From Ezochi to Hokkaidō</h3>
-          <p class="myth-text">The island's modern foundation-myth is documentary: in 1869 the new Meiji state renamed Ezochi, established the Kaitakushi (Colonization Commission), and invited American advisers — Capron, Clark ("Boys, be ambitious!") — to lay out farms, ports, and Sapporo itself on the American grid. A century of settlement followed; the Ainu were legally recognized as indigenous only in 2008, and the Ainu Promotion Act of 2019 opened a new chapter at last.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the japanese pantheon</p>
         </div>
@@ -517,8 +400,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">北海道</p>
+                <p class="card-body">The name in its original Japanese form. <strong>Hokkaidō</strong> (北海道) is attested in the source tradition — “Northern sea circuit”. Its macron-length vowels carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">hokkaido</p>
+                <p class="card-body">Reduced to plain <strong>hokkaido</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Hokkaidō</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hokkaidō</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Hokkaidō.com → xn--hokkaid-cmb.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Hokkaidō</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hokkaidō</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hokkaidō</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Hokkaidō</p>
+                    <p class="card-body">Restores <strong>北海道</strong>. The live temple domain — <strong>hokkaidō.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">hokkaido</p>
+                    <p class="card-body">Flattens <strong>北海道</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Hokkaidō was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/hok.kai.doː/</span>
+            <span class="ipa-label">Japanese (Hepburn)</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">hok-KAI-doh, with the long final ō.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Hokkaidō 北海道 — "North Sea Road" — carries a long final ō, the doubled vowel the macron preserves. The name dates only from 1869, when the explorer Matsuura Takeshirō proposed it for the island the Ainu long called Ainu Mosir, "the quiet land of humans." The long ō of dō is a doubled vowel in kana (どう); the macron is the romanization of that extra beat.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Hokkaidō is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">北海道</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Hokkaidō is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -536,7 +549,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/hokkaido_mascot.webp" type="image/webp"><img src="../assets/hokkaido_mascot.png" alt="Hokkaidō mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/hokkaido_mascot.webp" type="image/webp"><img src="../assets/hokkaido_mascot.png" alt="Hokkaidō mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -574,7 +587,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/hokkaido_logomark.webp" type="image/webp"><img src="../assets/hokkaido_logomark.webp" alt="Hokkaidō logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/hokkaido_logomark.webp" type="image/webp"><img src="../assets/hokkaido_logomark.webp" alt="Hokkaidō logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

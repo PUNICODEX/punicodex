@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Adámas — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">ἀδάμας</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Adámas.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,148 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">ἀδάμας</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Adámas</strong> (ἀδάμας) is attested in the source tradition — “Unbreakable; the adamant; the hardest substance; origin of "diamond"”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">adamas</p>
-                    <p class="card-body">Reduced to plain <strong>adamas</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Adámas</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Adámas</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Adámas.com → xn--admas-yqa.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Adámas</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Adámas</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Adámas is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">ἀδάμας</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Adámas is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Adámas</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Adámas</p>
-                    <p class="card-body">Restores <strong>ἀδάμας</strong>. The live temple domain — <strong>adámas.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">adamas</p>
-                    <p class="card-body">Flattens <strong>ἀδάμας</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Adámas was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Adámas</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/a.dá.mas/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">a-</span>
-        <span class="phoneme-desc">Short alpha [a], unstressed first syllable in the adjective ἀδάμας.</span>
+      <p class="lead-text">Adámas appears in Greek myth not as a character but as a <strong>substance that binds, wounds, or pivots the cosmos itself</strong>. Its hardness creates the drama: what can hold an immortal must be stronger than the divine. From the sickle that cuts the sky to the spindle that turns the heavens, the unbreakable metal marks the exact points where Greek imagination needed something stronger than god.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a></span>
+          <h3 class="myth-title">The Sickle That Wounded the Sky</h3>
+          <p class="myth-text"><a href="/gaia/" class="crosslink" data-crosslink="gaia">Gaia</a>, weary of <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a> pressing down upon her and hiding their children inside her depths, fashioned a plan and set her youngest, <a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a>, to ambush his father. She made a great long sickle with jagged teeth — of adamant, <em>ἅρπη ἀδάμαντος</em> (Hesiod, Theogony 161) — and bade Kronos wait in a hidden place. When Ouranos came at night, 'stretched all over Gaia, desiring love,' Kronos reached out with his left hand and swung with his right, severing his father's genitals and hurling them behind him. From the blood that fell on the earth were born the Erinyes, the great Giants, and the Meliai; from the sea-foam where they landed, <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodite</a> (Theogony 173–192). Adamant matters here because the myth needs a material harder than the sky: only the unbreakable can break the original order. The word appears at the exact hinge where cosmic succession — and all Greek generation — begins.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-dá-</span>
-        <span class="phoneme-desc">Delta plus acute on short alpha [da] — the pitch peak of the word.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag"><a href="/prometheus/" class="crosslink" data-crosslink="prometheus">Prometheus</a> Bound</span>
+          <h3 class="myth-title">Chains That Hold a Titan</h3>
+          <p class="myth-text">Aeschylus opens <em>Prometheus Bound</em> at the edge of the world, where <a href="/hephaistos/" class="crosslink" data-crosslink="hephaistos">Hephaistos</a>, ordered by Strength and Force, must rivet the rebel Titan to the crags of the Caucasus. His bonds are adamantine — the material whose name means 'unconquerable' — and Hephaistos grieves as he works: his own craft, the fire he gave the world, is being turned to chain the god who gave it to men. The cosmology behind the image is already in Hesiod (Theogony 521–616): <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> bound Prometheus in indissoluble fetters and set an eagle to tear his liver, because the Titan had tricked him over the sacrifice and stolen the fire. But Aeschylus sharpens the metal's meaning: adamant is not merely strong — it is the substance of the new regime, the hardness of power that will not negotiate, set against a mind that will not yield. The chains hold. The argument, Prometheus insists, will outlast them.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-mas</span>
-        <span class="phoneme-desc">Mu-alpha-sigma; the -ας ending marks a third-declension noun/adjective stem.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Philosophy</span>
+          <h3 class="myth-title">The Spindle of Necessity</h3>
+          <p class="myth-text">In the great myth that closes Plato's <em>Republic</em> (616b–617d), the soul journeys beyond the heavens and sees the cosmos from outside: a column of light binding the sky together, and Necessity — Anankē — enthroned, with her daughters the Fates, turning the spindle that carries the whorls of the planetary spheres. 'The shaft and the hook of the spindle were of adamant,' Plato writes, while the great whorl mixed adamant with other materials. Adamant is the chosen metal of the world's axis: harder than anything the heavens contain, it alone is fit to be the pivot on which every sphere, every fate, every mortal life visibly turns. The choice is philosophically deliberate. The cosmos is not held up by Zeus's strength but by something stronger — a fixed, unyielding order that even the gods must revolve around. Through the later Platonists, and through Boethius, the image became canonical: fate turns on an adamantine hinge.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Lapidary</span>
+          <h3 class="myth-title">The Stone That Breaks the Anvil</h3>
+          <p class="myth-text">For the ancient naturalists adamas was not only a poetic metal but a real substance — and an infuriating one. Pliny devotes a long entry to it (Natural History 37.61–65): a small, dark, impregnable stone that no anvil survives, that resists fire and hammer alike, and that some said could be split only by soaking it in goat's blood. Pliny's account is a museum of marvels and errors, but its testimony is decisive for the word's history: by the first century CE, <em>adamas</em> had drifted from 'unbreakable metal' toward 'hardest known stone' — the ancestor, through Latin <em>adamas</em>, Vulgar Latin <em>*diamantem</em>, and Old French <em>diamant</em>, of the English <em>diamond</em>. The lapidary tradition then laid a moral on the mineral: like faith, the true stone cannot be crushed. The myth of the stone that breaks its tools outlived the tools — modern mineralogy still measures every material against diamond, adamas's direct heir, on the Mohs scale.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'ah-DAH-mahs' — stress falls on the middle syllable, with a crisp final -s.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> ἀδάμας (adámas), the hardest metal or substance, 'unbreakable'</li><li><strong>Latin</strong> adamās, borrowed as a precious stone and later 'diamond'</li><li><strong>English</strong> diamond, via Old French diamant and Vulgar Latin *diamantem</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Adámas is Tier 2 because the Greek ἀδάμας preserves the acute stress on the second syllable but lacks a long vowel. The word is not a deity but a material concept that became a philosophical emblem of invincibility.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -380,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Unbreakable</h2>
             <p class="section-subtitle">Invincible Substance, Obdurate Will, Philosophical Symbol</p>
         </div>
@@ -395,7 +301,7 @@
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 16H48V48H16V16ZM24 24V40H40V24H24Z"></path></svg></div>
         <h4 class="domain-name">Bonds of the Gods</h4>
-        <p class="domain-desc">In Homer and tragedy, adamantine fetters hold <a href="/prometheus/" class="crosslink" data-crosslink="prometheus">Prometheus</a>, <a href="/ares/" class="crosslink" data-crosslink="ares">Ares</a>, and other immortals fast.</p>
+        <p class="domain-desc">In Homer and tragedy, adamantine fetters hold Prometheus, <a href="/ares/" class="crosslink" data-crosslink="ares">Ares</a>, and other immortals fast.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 4L40 24H60L44 36L48 56L32 44L16 56L20 36L4 24H24L32 4Z"></path></svg></div>
@@ -410,7 +316,7 @@
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">Adamantine sickle</span>
-        <span class="symbol-meaning">The weapon used by <a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a> to castrate <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a>, and by <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> in some traditions</span>
+        <span class="symbol-meaning">The weapon used by Kronos to castrate Ouranos, and by Zeus in some traditions</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">Chains of Prometheus</span>
@@ -427,49 +333,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Adámas</p>
-        </div>
-        
-      <p class="lead-text">Adámas appears in Greek myth not as a character but as a <strong>substance that binds, wounds, or armors the gods themselves</strong>. Its very hardness creates drama: what can hold an immortal must be stronger than the divine.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Theogony</span>
-          <h3 class="myth-title">The Castration of Ouranos</h3>
-          <p class="myth-text">Hesiod (Theogony 161) says <a href="/gaia/" class="crosslink" data-crosslink="gaia">Gaia</a> gave Kronos an adamantine sickle (ἅρπην ἀδάμαντος) with which to wound his father Ouranos. The tool is decisive: only a substance harder than sky can wound the sky. The blood that falls from the cut begets the Erinyes, the Giants, and the Meliai nymphs.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Prometheus Bound</span>
-          <h3 class="myth-title">Chains That Hold a Titan</h3>
-          <p class="myth-text">In Aeschylus's <em>Prometheus Bound</em>, <a href="/hephaistos/" class="crosslink" data-crosslink="hephaistos">Hephaistos</a> forges adamantine bonds to pin Prometheus to the Caucasus. The blacksmith laments that his own art must be turned against a kindred god; the chains symbolize the cruelty of Zeus's new order and the unyielding price of foresight.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Iliad</span>
-          <h3 class="myth-title">Adamantine in Battle</h3>
-          <p class="myth-text">Homer uses ἀδάμας and its compounds to describe obdurate things: the threshold of <a href="/hades/" class="crosslink" data-crosslink="hades">Hades</a>, the will of a hero, the unbreakable nature of divine resolve. The word's poetic force lies in its superlative hardness — nothing yields, nothing forgives.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -533,8 +404,150 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">ἀδάμας</p>
+                <p class="card-body">The name in its original Greek form. <strong>Adámas</strong> (ἀδάμας) is attested in the source tradition — “Unbreakable; the adamant; the hardest substance; origin of "diamond"”. Its acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">adamas</p>
+                <p class="card-body">Reduced to plain <strong>adamas</strong>, the name loses everything that made it specific: acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Adámas</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Adámas</strong> restores acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Adámas.com → xn--admas-yqa.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Adámas</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Adámas</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Adámas</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Adámas</p>
+                    <p class="card-body">Restores <strong>ἀδάμας</strong>. The live temple domain — <strong>adámas.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">adamas</p>
+                    <p class="card-body">Flattens <strong>ἀδάμας</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Adámas was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/a.dá.mas/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">a-</span>
+        <span class="phoneme-desc">Short alpha [a], unstressed first syllable in the adjective ἀδάμας.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-dá-</span>
+        <span class="phoneme-desc">Delta plus acute on short alpha [da] — the pitch peak of the word.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-mas</span>
+        <span class="phoneme-desc">Mu-alpha-sigma; the -ας ending marks a third-declension noun/adjective stem.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'ah-DAH-mahs' — stress falls on the middle syllable, with a crisp final -s.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Adámas is Tier 2 because the Greek ἀδάμας preserves the acute stress on the second syllable but lacks a long vowel. The word is not a deity but a material concept that became a philosophical emblem of invincibility.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Adámas is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">ἀδάμας</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Adámas is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -552,7 +565,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/adamas_mascot.webp" type="image/webp"><img src="../assets/adamas_mascot.png" alt="Adámas mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/adamas_mascot.webp" type="image/webp"><img src="../assets/adamas_mascot.png" alt="Adámas mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -590,7 +603,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/adamas_logomark.webp" type="image/webp"><img src="../assets/adamas_logomark.webp" alt="Adámas logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/adamas_logomark.webp" type="image/webp"><img src="../assets/adamas_logomark.webp" alt="Adámas logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

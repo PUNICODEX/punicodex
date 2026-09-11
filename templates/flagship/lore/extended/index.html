@@ -8,8 +8,8 @@
     <meta name="description" content="The definitive scholarly guide to {{UNICODE}}, {{DOMAIN}}. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/{{TEMPLE_ID}}/lore/extended/">
 
@@ -33,6 +33,7 @@
     <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
     <meta name="theme-color" content="#0A0A0C">
     {{BREADCRUMB_JSONLD}}
+    {{FAQ_JSONLD}}
 </head>
 <body>
     <!-- Global Strip -->
@@ -60,12 +61,7 @@
                 <picture><source srcset="../../assets/{{TEMPLE_ID}}_logolockup.webp" type="image/webp"><img src="../../assets/{{TEMPLE_ID}}_logolockup.png" alt="{{UNICODE}}" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                {{EXTENDED_NAV_LINKS}}
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -76,11 +72,7 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert>
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        {{EXTENDED_NAV_LINKS}}
     </div>
 
     <!-- Hero Section -->
@@ -93,7 +85,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">{{UNICODE}}</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology &middot; Phonology &middot; Orthography &middot; Cultural Legacy &middot; Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology &middot; Orthography &middot; Cultural Legacy &middot; Reception &middot; Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     {{TIER_BADGES}}
                     <span class="meta-domain">{{DOMAINS_TEXT}}</span>
@@ -129,7 +121,10 @@
     <!-- Cultural Significance -->
     {{CULTURAL_SIGNIFICANCE}}
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    {{MEDITATION}}
+
+    <!-- Screen & Culture -->
     {{SCREEN_APPEARANCES}}
 
     <!-- FAQ -->

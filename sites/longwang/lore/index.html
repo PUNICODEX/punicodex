@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Lóngwáng — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">龍王</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Lóngwáng.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,144 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">龍王</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Lóngwáng</strong> (龍王) is attested in the source tradition — “water deity in Chinese mythology”. Its acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">longwang</p>
-                    <p class="card-body">Reduced to plain <strong>longwang</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Lóngwáng</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Lóngwáng</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Lóngwáng.com → xn--lngwng-sta4l.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Lóngwáng</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Lóngwáng</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Lóngwáng is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">龍王</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Lóngwáng is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Lóngwáng</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Lóngwáng</p>
-                    <p class="card-body">Restores <strong>龍王</strong>. The live temple domain — <strong>lóngwáng.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">longwang</p>
-                    <p class="card-body">Flattens <strong>龍王</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Lóngwáng was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Lóngwáng</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/lʊŋ˧˥ waŋ˧˥/</span>
-            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">lóng</span>
-        <span class="phoneme-desc">First syllable with voiced alveolar lateral approximant [l], final [ʊŋ] (close-mid back rounded vowel + velar nasal), and Tone 2 (rising, ˧˥). Pinyin 'o' before 'ng' corresponds to IPA [ʊ].</span>
+      <p class="lead-text">The Dragon Kings stand at the crossing of two Chinas: the literary China of the great Ming novels, where they are foils, creditors, and comic bureaucrats, and the living China of the village temple, where they were the address to which a drought-stricken county sent its prayers. The same figure is mocked in the novel and begged in the field.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Journey to the West</span>
+          <h3 class="myth-title">The Jìng River Dragon King's Wager</h3>
+          <p class="myth-text">The great cautionary tale of the celestial bureaucracy survives in <em>Journey to the West</em> (ch. 9). The Dragon King of the Jìng River wagers with the Chang'an fortune-teller Yuán Shǒuchéng over the coming day's rain; the diviner names the hour and the inch, and when the <a href="/yuhuang/" class="crosslink" data-crosslink="yuhuang">Jade Emperor</a>'s decree arrives it matches exactly. Unwilling to lose the bet, the king secretly shaves the allotted rain and delays its fall by an hour. The difference is trifling, and it does not matter: for editing heaven's paperwork he is condemned to death, with the mortal minister Wei Zheng appointed as executioner. His ghost then haunts the Tang emperor who had promised to save him — an embarrassment that drags the entire plot of the novel into motion. The myth's arithmetic is merciless. In a cosmos run as an administration there are no small alterations, and the smallest forgery is treason.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">wáng</span>
-        <span class="phoneme-desc">Second syllable with labial-velar glide [w], open vowel [a], velar nasal coda [ŋ], and Tone 2 (rising, ˧˥).</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Investiture of the Gods</span>
+          <h3 class="myth-title">Nézhā and the Third Prince</h3>
+          <p class="myth-text">In the <em>Investiture of the Gods</em> (ch. 12–13), the boy <a href="/nezha/" class="crosslink" data-crosslink="nezha">Nézhā</a>, bathing where the river meets the East Sea, churns the water with his magic Red Armillary Sash until the crystal palace of Āo Guǎng trembles on its foundations. The Dragon King sends his yaksha enforcer and then his third son, Āo Bǐng; the child kills them both and plucks out the prince's sinews to make a belt. Robbed of an heir, Āo Guǎng demands justice of heaven and of Li Jing's town alike; and faced with the choice between his family and his child's life, Li Jing hesitates. Nézhā answers with the terrible arithmetic of filial duty — cutting himself apart, returning his flesh to his mother and his bones to his father, so that the debt dies with him. The Dragon King wins the confrontation and loses everything he came for: his son is not restored, and the story every Chinese child knows is not his. The myth's sympathy lies entirely with the child.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Journey to the West</span>
+          <h3 class="myth-title">The Sea-Pinning Iron</h3>
+          <p class="myth-text">Needing a weapon worthy of himself, Sūn Wùkōng descends to Āo Guǎng's treasury and waves aside every blade and spear the court can offer (<em>Journey to the West</em>, ch. 3). What he takes instead is a fixture of the deep: the Rúyì Jīngū Bàng, the Compliant Gold-Banded Staff, a black iron pillar thirteen thousand five hundred catties heavy that once pinned the seas and measured the flood-waters of the world. To the Dragon King it was obsolete hardware; to the Monkey King it shrinks to a needle behind the ear and grows to a pillar that props up heaven. The other three Dragon Kings, summoned to help, can only add golden armor, cloud-walking shoes, and a phoenix-feather cap while their brother's treasury walks out the door. To the water's own government the staff was the sea's measure; to the rebel it became the measure of the rebel — and the East Sea never got it back.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Folk Religion</span>
+          <h3 class="myth-title">Parading the King in the Sun</h3>
+          <p class="myth-text">Dragon King temples (龍王廟) once dotted farming China, and when the rains failed the county did not pray — it petitioned. Processions, offerings, and rain-letters addressed the local king as a magistrate who had neglected his district; ethnographers of North China recorded what came next in extreme drought: the king's lacquered effigy was carried from his shrine and paraded through the burning fields, or set in the sun before his own temple door, so that he might feel on his own scales the heat his villages were dying of. Some communities threatened to leave the statue outdoors, or unroofed, until the rain came. It is a theology of astonishing literalness — the god made answerable by exposure, his comfort held hostage to his performance. Few traditions anywhere have written accountability so plainly into ritual: sovereignty over water is a mandate, and mandates, the farmers knew, are reviewable by the ruled.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">LUHNG-WAHNG — two even syllables, each rising from mid to high pitch; the 'o' of the first is like the 'oo' in 'book', the 'a' of the second like the 'a' in 'father'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Traditional</strong> 龍王</li><li><strong>Simplified</strong> 龙王</li><li><strong>Wade-Giles</strong> Lung²-wang²</li><li><strong>Cantonese</strong> lung⁴ wong⁴</li><li><strong>Related terms</strong> 東海龍王 Dōnghǎi Lóngwáng (Dragon King of the East Sea); 敖廣 Āo Guǎng; 如意金箍棒 Rúyì Jīngū Bàng; 龍王廟 Lóngwáng miào (Dragon King temple)</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">龍王 denotes the Dragon King, the crowned ruler of the waters in Chinese religion and literature. The Modern Standard Mandarin reading is Lóngwáng — both syllables in Tone 2 (rising, ˧˥) — as recorded in the Unihan Database (Unicode Consortium, kMandarin) for 龍 and 王, and in standard Mandarin dictionaries. Baxter &amp; Sagart (2014) reconstruct the Old Chinese forms as *[m]-roŋ (龍, GSR 1193a) and *[ɢ]ʷaŋ (王). The tone-marked Pinyin restoration Lóngwáng preserves the citation rising tones of both syllables; in connected speech the contours may be compressed, but the lexical tones remain Tone 2 throughout.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -376,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Kings of the Four Seas</h2>
             <p class="section-subtitle">Crystal Palaces, Rain by Mandate, the Bureaucracy of Water</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Lóngwáng</strong>, the Dragon King, is not one god but a crowned office — four brothers who hold the Four Seas that ring the Chinese world, each enthroned in an underwater crystal palace with its own court, treasury, and army of shrimp soldiers and crab generals. Āo Guǎng 敖廣 of the East Sea is the most prominent; beside him rule Āo Qīn 敖欽 of the South, Āo Rùn 敖閏 of the West, and Āo Shùn 敖順 of the North. Beneath them, lesser dragon kings govern every river, lake, and well worth the naming.</p><p class="lead-text">In their world, rainfall is a bureaucratic act. The <a href="/yuhuang/" class="crosslink" data-crosslink="yuhuang">Jade Emperor</a> issues the mandate — how much rain, where, and at what hour — and the Dragon King delivers it, down to the last tenth of an inch. It is the Chinese imagination at its most characteristic: the wild water of heaven brought under a seal, a ledger, and a chain of command. The novels and the village temples agree on the stakes — a king who edits the figures loses his head, and a village that loses the king's favour loses its harvest.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Lóngwáng</strong>, the Dragon King, is not one god but a crowned office — the royal administration of water. Four brothers hold the Four Seas in crystal palaces beneath the waves; the Jade Emperor decrees each rain by amount and hour, and the Dragon King delivers it exactly. A king in his own water, a clerk in heaven's: sovereignty won by accountability.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 24C16 16 24 16 32 24C40 32 48 32 56 24M8 40C16 32 24 32 32 40C40 48 48 48 56 40"></path></svg></div>
@@ -427,57 +337,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Lóngwáng</p>
-        </div>
-        
-      <p class="lead-text">The Dragon Kings stand at the crossing of two Chinas: the literary China of the great Ming novels, where they are foils, creditors, and comic bureaucrats, and the living China of the village temple, where they were the address to which a drought-stricken county sent its prayers. The same figure is mocked in the novel and begged in the field.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Journey to the West</span>
-          <h3 class="myth-title">The Jìng River Dragon King's Wager</h3>
-          <p class="myth-text">The <em>Journey to the West</em> preserves the great cautionary tale of the celestial bureaucracy. The Dragon King of the Jìng River wagers with a mortal fortune-teller over the next day's rain; when the Jade Emperor's decree arrives matching the diviner's figures exactly, the king — unwilling to lose — secretly alters the amount and delays the timing. The difference is trifling, and it does not matter. For editing heaven's paperwork he is sentenced to death and executed, a reminder that in a cosmos run as an administration, the smallest forged figure is treason.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Investiture of the Gods</span>
-          <h3 class="myth-title">Nézhā and the Third Prince</h3>
-          <p class="myth-text">In the <em>Investiture of the Gods</em> (<em>Féngshén Yǎnyì</em>), the boy <a href="/nezha/" class="crosslink" data-crosslink="nezha">Nézhā</a>, bathing in the eastern stream, shakes the East Sea crystal palace to its foundations with his magic sash. Āo Guǎng sends his third son, Āo Bǐng, to subdue the child; Nézhā kills the prince and plucks out his sinews to make a belt. Faced with the Dragon King's wrath against his family and his town, Nézhā answers with the terrible arithmetic of filial duty — he cuts himself apart, returning his flesh to his mother and his bones to his father, so that the debt dies with him.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Journey to the West</span>
-          <h3 class="myth-title">The Sea-Pinning Iron</h3>
-          <p class="myth-text">Needing a weapon worthy of him, Sūn Wùkōng descends to the East Sea treasury and passes over every blade and spear Āo Guǎng can offer. What he takes instead is the <em>Rúyì Jīngū Bàng</em> — the Compliant Gold-Banded Staff, a black iron pillar that once pinned the seas and measured the flood-waters of the world. To the Dragon King it was a fixture of the deep; to the Monkey King it shrinks to a needle behind the ear and grows to a pillar that props up heaven. The East Sea never got it back.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Folk Religion</span>
-          <h3 class="myth-title">Parading the King in the Sun</h3>
-          <p class="myth-text">Dragon King temples (龍王廟) dotted farming China, and when the rains failed, the village went to the temple: processions, offerings, and rain-prayers addressed to the local king as to a magistrate who had neglected his district. In extreme drought the negotiation turned coercive — the king's effigy was carried out and paraded in the burning sun, so that he might feel on his own lacquered scales the heat his fields were dying of. Few religions have made their god's accountability so literal.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -541,8 +408,146 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">龍王</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Lóngwáng</strong> (龍王) is attested in the source tradition — “water deity in Chinese mythology”. Its acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">longwang</p>
+                <p class="card-body">Reduced to plain <strong>longwang</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Lóngwáng</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Lóngwáng</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Lóngwáng.com → xn--lngwng-sta4l.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Lóngwáng</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Lóngwáng</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Lóngwáng</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Lóngwáng</p>
+                    <p class="card-body">Restores <strong>龍王</strong>. The live temple domain — <strong>lóngwáng.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">longwang</p>
+                    <p class="card-body">Flattens <strong>龍王</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Lóngwáng was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/lʊŋ˧˥ waŋ˧˥/</span>
+            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">lóng</span>
+        <span class="phoneme-desc">First syllable with voiced alveolar lateral approximant [l], final [ʊŋ] (close-mid back rounded vowel + velar nasal), and Tone 2 (rising, ˧˥). Pinyin 'o' before 'ng' corresponds to IPA [ʊ].</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">wáng</span>
+        <span class="phoneme-desc">Second syllable with labial-velar glide [w], open vowel [a], velar nasal coda [ŋ], and Tone 2 (rising, ˧˥).</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">LUHNG-WAHNG — two even syllables, each rising from mid to high pitch; the 'o' of the first is like the 'oo' in 'book', the 'a' of the second like the 'a' in 'father'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">龍王 denotes the Dragon King, the crowned ruler of the waters in Chinese religion and literature. The Modern Standard Mandarin reading is Lóngwáng — both syllables in Tone 2 (rising, ˧˥) — as recorded in the Unihan Database (Unicode Consortium, kMandarin) for 龍 and 王, and in standard Mandarin dictionaries. Baxter &amp; Sagart (2014) reconstruct the Old Chinese forms as *[m]-roŋ (龍, GSR 1193a) and *[ɢ]ʷaŋ (王). The tone-marked Pinyin restoration Lóngwáng preserves the citation rising tones of both syllables; in connected speech the contours may be compressed, but the lexical tones remain Tone 2 throughout.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Lóngwáng is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">龍王</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Lóngwáng is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -560,7 +565,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/longwang_mascot.webp" type="image/webp"><img src="../assets/longwang_mascot.png" alt="Lóngwáng mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/longwang_mascot.webp" type="image/webp"><img src="../assets/longwang_mascot.png" alt="Lóngwáng mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -598,7 +603,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/longwang_logomark.webp" type="image/webp"><img src="../assets/longwang_logomark.webp" alt="Lóngwáng logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/longwang_logomark.webp" type="image/webp"><img src="../assets/longwang_logomark.webp" alt="Lóngwáng logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

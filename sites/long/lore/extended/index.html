@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Lóng, Dragon. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/long/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Lóng?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Lóng is /lʊŋ˧˥/ — approximately LUHNG — the 'o' is like the 'oo' in 'book', and the tone rises from mid to high, as in a questioning intonation."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Lóng mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lóng means Chinese dragon in the chinese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Lóng?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lóng is associated with Dragon pearl (Wisdom, spiritual energy, and the moon or sun the dragon protects), Antlers and horns (Vitality, longevity, and the stag-like generative power of nature), Carp scales (Transformation — the carp that leaps the Dragon Gate becomes a dragon), Clouds and waves (The dragon's medium; it does not fly through air but swims through mist and rain), Five claws (Imperial supremacy; fewer claws marked nobility or vassal states)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Lóng in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII long strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Lóng?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Yinglong, the Winged Dragon” — Chinese dragon lore is less a single narrative than a vast ecology of stories — about weather, examinations, bureaucracy, and the sky itself. The lóng is not born but achieved: a fish that leaps, a rain that answers petition, a constellation that keeps the seasons. These four episodes map its four habitats: myth, folklore, religion, and the stars. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/long_logolockup.webp" type="image/webp"><img src="../../assets/long_logolockup.png" alt="Lóng" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Lóng</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Lóng.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/long_mascot.webp" type="image/webp"><img src="../../assets/long_mascot.png" alt="Lóng — Dragon" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/long_mascot.webp" type="image/webp"><img src="../../assets/long_mascot.png" alt="Lóng — Dragon" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">龍 denotes the Chinese dragon, an emblem of imperial authority, fertility, and cosmic yang force. The Modern Standard Mandarin reading is lóng (Tone 2), as recorded in the Unihan Database (Unicode Consortium, kMandarin) and standard Mandarin dictionaries. Baxter &amp; Sagart (2014) reconstruct the Old Chinese form as *[m]-roŋ (GSR 1193a). The tone-marked Pinyin restoration Lóng preserves the citation rising tone of the second tone; in connected speech the contour may be compressed, but the lexical tone remains Tone 2.</p>
+                <p class="etymology-note">The name <strong>Lóng</strong> carries the orthographic signature of the chinese tradition: 龍. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Traditional</strong> — 龍</li><li><strong>Simplified</strong> — 龙</li><li><strong>Wade-Giles</strong> — lung²</li><li><strong>Cantonese</strong> — lung⁴</li><li><strong>Related terms</strong> — 龍王 <a href="/longwang/" class="crosslink" data-crosslink="longwang">Lóngwáng</a> (Dragon King); 龍鳳 lóngfèng (dragon and phoenix)</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Traditional</strong> — 龍</li><li><strong>Simplified</strong> — 龙</li><li><strong>Wade-Giles</strong> — lung²</li><li><strong>Cantonese</strong> — lung⁴</li><li><strong>Related terms</strong> — 龍王 <a href="/longwang/" class="crosslink" data-crosslink="longwang">Lóngwáng</a> (Dragon King); 龍門 Lóngmén (Dragon Gate)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Lóng</strong> is not the fire-breathing tyrant of Western fairy tales. The Chinese dragon is a composite being — antlers of a stag, head of a camel, eyes of a demon, neck of a snake, belly of a clam, scales of a carp, claws of an eagle, pads of a tiger — and yet it moves as a single fluid force. It is the spirit of water in all its forms: the river, the rain, the mist, and the storm. It is also the imperial emblem of absolute legitimacy, the yang counterweight to the phoenix's yin, and the power that makes the fields fertile.</p><p class="lead-text">Wherever Chinese civilization spread, the dragon went with it: carved on jade, coiled around columns, embroidered on silk, and raised above temples as a promise that heaven still listened.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Lóng in Later Traditions</h3><p class="cultural-card-body">The Chinese dragon absorbed and influenced dragon imagery across East <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>. The Japanese <em>ryū</em> and <em>tatsu</em>, the Korean <em>yong</em>, and the Vietnamese <em>rồng</em> all descend from the same visual and cosmological root, though each culture adjusted claw count, temperament, and symbolic color. Indian <em>nāgas</em> — serpent deities of water and the underworld — entered Chinese Buddhism and were often depicted as dragon-like guardians, especially at temple gates and in rain-making rituals. The Western dragon, by contrast, is a distinct tradition: a hoarding, fire-breathing antagonist shaped by Near Eastern and medieval European warfare, only superficially related to the Chinese rain-bringing sovereign. Modern global culture often conflates the two, but they answer to different cosmologies.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The dragon never left Chinese public life. The Qing imperial flag was a five-clawed dragon on a yellow field; the Republic of China and early People's Republic used dragon motifs on currency, stamps, and regalia. Today the dragon dance winds through Lunar New Year streets worldwide, and the Year of the Dragon is the most auspicious sign in the zodiac. In feng shui, dragon imagery channels <em>qi</em>; in martial arts, <em>Long Xing Mo Qiao</em> and other styles imitate its coiling power. The dragon has also become a contested nationalist symbol — claimed by state propaganda, diaspora communities, and pop culture alike as a badge of Chinese identity, ambition, and ancestral continuity.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Lóng</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Lóng in Later Traditions</h3><p class="cultural-card-body">The Chinese dragon absorbed and influenced dragon imagery across East <a href="/asia/" class="crosslink" data-crosslink="asia">Asia</a>. The Japanese ryū and tatsu, the Korean yong, and the Vietnamese rồng all descend from the same visual and cosmological root, though each culture adjusted claw count, temperament, and color symbolism. Indian nāgas — serpent deities of water and the underworld — entered China with Buddhism and were often depicted as dragon-like guardians, especially in rain-making ritual and at temple gates. The Western dragon is a distinct tradition: a hoarding, fire-breathing antagonist shaped by Near Eastern and medieval European warfare, only superficially related to the Chinese rain-bringing sovereign. Modern global culture often conflates the two, but they answer to different cosmologies — one guards gold in a cave, the other brings the rain that fills the rice bowl.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The dragon never left Chinese public life. The Qing imperial flag was a five-clawed dragon on a yellow field; the Republic and early People's Republic used dragon motifs on currency, stamps, and regalia. Today the dragon dance winds through Lunar New Year streets worldwide, and the Year of the Dragon is the most auspicious sign in the zodiac. In feng shui, dragon imagery channels qi; in martial arts, styles such as Dragon Shape imitate its coiling power; in language, lóng compounds mark excellence — lóngfèng (dragon and phoenix) for harmonious marriage, wàngzǐlóng for the hope of sons. The dragon has also become a contested nationalist symbol — claimed by state propaganda, diaspora communities, and pop culture alike as the badge of Chinese identity and ancestral continuity. Restoring Lóng with its tone mark returns the rise in pitch that the character 龍 has carried for three thousand years.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The earliest dragon image in China may be the C-shaped jade 'pig-dragon' of the Hongshan culture (c. 4700–2900 BCE) from Inner Mongolia and Liaoning; the Erlitou culture (c. 1900–1500 BCE) produced a turquoise-inlaid dragon plaque; Shang and Zhou bronzes coil dragon-derived taotie masks across their surfaces. Han dynasty tomb murals and stone reliefs show dragons pulling chariots, guarding ascents to immortality, and arching between earth and heaven. Textually the dragon is present from the oracle-bone inscriptions onward, already a royal and meteorological sign by the Western Zhou — three thousand years of continuous iconography for a creature that was never alive and never stopped acting.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Lóng means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>The Chinese dragon teaches that power need not be hard. It is water made conscious: yielding enough to flow around any obstacle, forceful enough to wear down mountains. Unlike the Western dragon guarding a static hoard, the Chinese dragon is process — rain becoming river, river becoming mist, mist returning to cloud. It is a reminder that sovereignty in the Chinese imagination is less about domination than about maintaining the dynamic balance that lets life flourish.</p><p>To name a domain Lóng is therefore to claim something older than empire: the claim that the cosmos itself pulses with living, transformative energy. The dragon does not ask to be worshipped from a distance; it asks to be recognized in the rain on the field, the mist on the mountain, and the long coiling body of a river moving toward the sea — power that arrives, feeds everything it touches, and leaves.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Lóng, Dragon, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Lóng?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Lóng</strong> is /lʊŋ˧˥/ — approximately LUHNG — the 'o' is like the 'oo' in 'book', and the tone rises from mid to high, as in a questioning intonation..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Lóng mean?</summary><div class="faq-answer"><p><strong>Lóng</strong> means <strong>Chinese dragon</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Lóng?</summary><div class="faq-answer"><p>Lóng is associated with <strong>Dragon pearl</strong> (Wisdom, spiritual energy, and the moon or sun the dragon protects), <strong>Antlers and horns</strong> (Vitality, longevity, and the stag-like generative power of nature), <strong>Carp scales</strong> (Transformation — the carp that leaps the Dragon Gate becomes a dragon), <strong>Clouds and waves</strong> (The dragon's medium; it does not fly through air but swims through mist and rain), <strong>Five claws</strong> (Imperial supremacy; fewer claws marked nobility or vassal states).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Lóng in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>long</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Lóng?</summary><div class="faq-answer"><p>In the <em>Classic of Mountains and Seas</em>, the winged dragon Yinglong answers the Yellow Emperor's call at the Battle of Zhuolu. Chiyou, the rebel, has raised fog so thick that armies lose their way; Yinglong slays Chiyou and ends the war. Afterward the dragon is said to be bound to the earth, unable to return to heaven — a mythic echo of the cost of using cosmic power for mortal victory.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Lóng?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Lóng</strong> is /lʊŋ˧˥/ — approximately LUHNG — the 'o' is like the 'oo' in 'book', and the tone rises from mid to high, as in a questioning intonation.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Lóng mean?</summary><div class="faq-answer"><p><strong>Lóng</strong> means <strong>Chinese dragon</strong> in the chinese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Lóng?</summary><div class="faq-answer"><p>Lóng is associated with <strong>Dragon pearl</strong> (Wisdom, spiritual energy, and the moon or sun the dragon protects), <strong>Antlers and horns</strong> (Vitality, longevity, and the stag-like generative power of nature), <strong>Carp scales</strong> (Transformation — the carp that leaps the Dragon Gate becomes a dragon), <strong>Clouds and waves</strong> (The dragon's medium; it does not fly through air but swims through mist and rain), <strong>Five claws</strong> (Imperial supremacy; fewer claws marked nobility or vassal states).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Lóng in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>long</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Lóng?</summary><div class="faq-answer"><p>“Yinglong, the Winged Dragon” — Chinese dragon lore is less a single narrative than a vast ecology of stories — about weather, examinations, bureaucracy, and the sky itself. The lóng is not born but achieved: a fish that leaps, a rain that answers petition, a constellation that keeps the seasons. These four episodes map its four habitats: myth, folklore, religion, and the stars. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,13 +361,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Lóng and related cults.</cite></li><li><cite>The earliest dragon image in China may be the C-shaped jade 'pig-dragon' of the Hongshan culture (c. 4700–2900 BCE) from Inner Mongolia and Liaoning. The Erlitou culture (c. 1900–1500 BCE) produced a turquoise-inlaid dragon plaque, while Shang and Zhou bronzes feature dragon-derived <em>taotie</em> masks. Han dynasty tomb murals and stone reliefs show dragons pulling chariots, guarding ascents to immortality, and separating heaven from earth. Textual witnesses range from oracle-bone inscriptions onward, with the dragon firmly established as a royal and meteorological symbol by the Western Zhou.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Lóng and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Shanhaijing (Classic of Mountains and Seas)</cite></li><li><cite>Sima Qian, Shiji (Records of the Grand Historian)</cite></li><li><cite>Shuowen Jiezi</cite></li><li><cite>Yijing (Book of Changes)</cite></li><li><cite>Baxter &amp; Sagart, Old Chinese Reconstruction</cite></li><li><cite>Eberhard, A Dictionary of Chinese Symbols</cite></li><li><cite>Liu, The Chinese Dragon</cite></li><li><cite>Unihan Database (Unicode Consortium)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Shanhaijing (Classic of Mountains and Seas), 'Great Wilderness: North' — Yinglong (ctext.org/shan-hai-jing)</cite></li><li><cite>Chuci, 'Heavenly Questions' (Tianwen) — the questions on Yinglong and the rivers</cite></li><li><cite>Huainanzi, 'Treatise on Celestial Patterns' (Tianwen xun) — the Four Symbols</cite></li><li><cite>Sanqin ji (三秦記, lost), preserved in leishu quotations such as Taiping Yulan — the carp at Dragon Gate</cite></li><li><cite>Wu Cheng'en, Journey to the West, ch. 3; Fengshen yanyi (<a href="/nezha/" class="crosslink" data-crosslink="nezha">Nezha</a> cycle) — Ao Guang</cite></li><li><cite>Eberhard, Wolfram, A Dictionary of Chinese Symbols (1986)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/long_logomark.webp" type="image/webp"><img src="../../assets/long_logomark.webp" alt="Lóng logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/long_logomark.webp" type="image/webp"><img src="../../assets/long_logomark.webp" alt="Lóng logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

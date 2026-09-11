@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Math — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Math</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Math</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,203 +235,16 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Math</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Math</strong> is the standard Celtic romanisation, documented in academic sources — “Bear”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">math</p>
-                    <p class="card-body">The plain <strong>math</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Math</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Math</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Math.com → math.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Math</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Math</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Math is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Math</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Math</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Math</p>
-                    <p class="card-body">The full Unicode restoration. <strong>math.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Math was spoken</p>
-        </div>
-        
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/maːθ/</span>
-            <span class="ipa-label">Modern Welsh</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">MAATH — a long, open 'ah', held like the a of 'father', closing on the soft voiceless th of English 'thin'. One syllable; the whole weight of the name sits on the length of the vowel and the hush at the end.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Math uab Mathonwy, the manuscript form in the White Book of Rhydderch and the Red Book of Hergest</li><li><strong>Old Irish</strong> math, 'bear' — attested in the compound mathgamain</li><li><strong>Gaulish</strong> Matugenos, 'bear-born' — the same *matu- root in epigraphic onomastics</li><li><strong>Attested form</strong> Math — plain ASCII, identical to the manuscript spelling</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Middle Welsh Math (Math uab Mathonwy) is already written in the Latin alphabet, so the ASCII form loses nothing: the name is Tier 2 by the mechanical rule, since the restoration preserves no diacritic or distinctive letter that ASCII drops. The standard etymology derives the name from Proto-Celtic *matu- 'bear' — compare Old Irish math 'bear' (attested in the compound mathgamain), the Irish name Mathgen borne by the seer of the Túatha Dé Danann, and Gaulish Matugenos 'bear-born'. The father's name, Mathonwy, is built on the same root, and the handbooks treat the bear-derivation as the best-supported reading.</p></div>
-        </div>
-      </div>
-    </div>
-</section>
-
-    <!-- Domains & Sacred Symbols -->
-    <section class="section section-symbols" id="symbols">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">05</span>
-            <h2 class="section-title">Magic, Kingship</h2>
-            <p class="section-subtitle">The domain of Math</p>
-        </div>
-        
-      <div class="domains-intro reveal-up"><p>In the celtic tradition, <strong>Math</strong> governed magic, kingship. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p></div>
-      <div class="domains-grid">
-      <div class="domain-card reveal-up">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 48L44 20M40 16L48 24M44 12L52 20M38 22L46 30"></path></svg></div>
-        <h4 class="domain-name">The Wand of Office</h4>
-        <p class="domain-desc">Math's hutlath — the magic wand that tested Arianrhod, turned his nephews into beasts for three years, and helped fashion a woman out of flowers.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="100">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 40H44M24 40V48H40V40M28 32C28 26 32 24 32 24C32 24 36 26 36 32"></path></svg></div>
-        <h4 class="domain-name">The Footholder's Geas</h4>
-        <p class="domain-desc">The strange condition of his kingship: Math could not live except with his feet in the lap of a virgin, unless the turmoil of war released him.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="200">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 10L38 22L32 34L26 22ZM32 34V50M20 50L32 44L44 50"></path></svg></div>
-        <h4 class="domain-name">The Threefold Sentence</h4>
-        <p class="domain-desc">His justice wore animal skins: <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> and Gilfaethwy spent a year each as deer, boars, and wolves — and their beast-children were baptized at his court.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="300">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 52V32M32 32C32 22 24 18 18 18C18 28 24 32 32 32ZM32 32C32 22 40 18 46 18C46 28 40 32 32 32ZM32 18V10"></path></svg></div>
-        <h4 class="domain-name">The Flower Bride</h4>
-        <p class="domain-desc">With Gwydion he took oak, broom, and meadowsweet and made <a href="/blodeuwedd/" class="crosslink" data-crosslink="blodeuwedd">Blodeuwedd</a> — the wife no earthly race could supply for the nephew fated to have none.</p>
-      </div></div>
-      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
-      <div class="symbol-item">
-        <span class="symbol-name">The magic wand (hutlath)</span>
-        <span class="symbol-meaning">The rod of transformation and testing — proof, punishment, and creation carried in one length of wood</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">The virgin's lap</span>
-        <span class="symbol-meaning">The footholder's office — the geas that bound the king's life to an untouched maiden, save in time of war</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Goewin ferch Pebin</span>
-        <span class="symbol-meaning">The footholder of Dôl Pebin in Arfon, wronged in the king's own house and made his queen in redress</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">The swine of Annwfn</span>
-        <span class="symbol-meaning">The otherworld herd whose engineered theft gave Gwydion his war — the first pigs in Wales, and the pretext that broke the geas</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Hyddwn, Hychddwn, and Bleiddwn</span>
-        <span class="symbol-meaning">Stag, pig, and wolf — the three beast-sons of the punished brothers, restored to human shape and baptized</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">Oak, broom, and meadowsweet</span>
-        <span class="symbol-meaning">The three flowers Math and Gwydion wove into Blodeuwedd, the bride made by craft</span>
-      </div></div></div>
-    </div>
-</section>
-
-    <!-- Mythology -->
+    <!-- Mythology — the heart of the lore page -->
     <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">01</span>
             <h2 class="section-title">Mythology</h2>
             <p class="section-subtitle">Stories of Math</p>
         </div>
         
-      <p class="lead-text"><strong>Math</strong> fab Mathonwy is the king at the still centre of the Fourth Branch of the Mabinogi — the branch that bears his name: lord of Gwynedd, master of the magic wand, uncle of Gwydion and Gilfaethwy. His rule hangs on the strangest condition in Welsh literature — he cannot live except with his feet in a virgin's lap, unless war calls him out — and around that geas the whole plot turns: the theft of the swine, the wrong to Goewin, the justice of the three animal years, and the making of a bride from flowers.</p>
+      <p class="lead-text"><strong>Math</strong> fab Mathonwy is the king at the still centre of the Fourth Branch of the Mabinogi — the branch that bears his name: lord of Gwynedd, master of the magic wand, uncle of <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> and Gilfaethwy. His rule hangs on the strangest condition in Welsh literature — he cannot live except with his feet in a virgin's lap, unless war calls him out — and around that geas the whole plot turns: the theft of the swine, the wrong to Goewin, the justice of the three animal years, and the making of a bride from flowers.</p>
       <div class="myths-timeline">
       <div class="myth-card reveal-up">
         <div class="myth-marker"></div>
@@ -465,17 +283,79 @@
         <div class="myth-content">
           <span class="myth-tag">Math fab Mathonwy</span>
           <h3 class="myth-title">The Bride Made of Flowers</h3>
-          <p class="myth-text">Arianrhod, shamed before the court, laid her tynghedau on the boy: he should have no name until she named him, no arms until she armed him, and no wife of any race then on earth. Gwydion's craft undid the first two; for the third there was no earthly answer, and it was Math who joined him in making one. The two enchanters took their wands and, from the flowers of the oak, the broom, and the meadowsweet, fashioned the fairest and most beautiful maiden anyone had seen, baptized her, and named her Blodeuwedd — and gave her to Lleu.</p><p class="myth-text">The tale records no death for Math. The branch ends with Lleu restored and avenged, ruling Gwynedd after, and the old king simply withdraws from the record — the stillness at the centre to the last.</p>
+          <p class="myth-text">Arianrhod, shamed before the court, laid her tynghedau on the boy: he should have no name until she named him, no arms until she armed him, and no wife of any race then on earth. Gwydion's craft undid the first two; for the third there was no earthly answer, and it was Math who joined him in making one. The two enchanters took their wands and, from the flowers of the oak, the broom, and the meadowsweet, fashioned the fairest and most beautiful maiden anyone had seen, baptized her, and named her <a href="/blodeuwedd/" class="crosslink" data-crosslink="blodeuwedd">Blodeuwedd</a> — and gave her to Lleu.</p><p class="myth-text">The tale records no death for Math. The branch ends with Lleu restored and avenged, ruling Gwynedd after, and the old king simply withdraws from the record — the stillness at the centre to the last.</p>
         </div>
       </div></div>
     </div>
 </section>
 
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Magic, Kingship</h2>
+            <p class="section-subtitle">The domain of Math</p>
+        </div>
+        
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Math</strong> fab Mathonwy is the king at the still centre of the Fourth Branch of the Mabinogi: lord of Gwynedd, master of the magic wand, uncle of Gwydion and Gilfaethwy. His kingship runs on the strangest condition in Welsh literature — he cannot live unless his feet rest in a virgin's lap, save when war calls him out — and the whole plot of his branch is what happens when two nephews read that condition like a statute and use it against him.</p></div>
+      <div class="domains-grid">
+      <div class="domain-card reveal-up">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 48L44 20M40 16L48 24M44 12L52 20M38 22L46 30"></path></svg></div>
+        <h4 class="domain-name">The Wand of Office</h4>
+        <p class="domain-desc">Math's hutlath — the magic wand that tested Arianrhod, turned his nephews into beasts for three years, and helped fashion a woman out of flowers.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="100">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 40H44M24 40V48H40V40M28 32C28 26 32 24 32 24C32 24 36 26 36 32"></path></svg></div>
+        <h4 class="domain-name">The Footholder's Geas</h4>
+        <p class="domain-desc">The strange condition of his kingship: Math could not live except with his feet in the lap of a virgin, unless the turmoil of war released him.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="200">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 10L38 22L32 34L26 22ZM32 34V50M20 50L32 44L44 50"></path></svg></div>
+        <h4 class="domain-name">The Threefold Sentence</h4>
+        <p class="domain-desc">His justice wore animal skins: Gwydion and Gilfaethwy spent a year each as deer, boars, and wolves — and their beast-children were baptized at his court.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 52V32M32 32C32 22 24 18 18 18C18 28 24 32 32 32ZM32 32C32 22 40 18 46 18C46 28 40 32 32 32ZM32 18V10"></path></svg></div>
+        <h4 class="domain-name">The Flower Bride</h4>
+        <p class="domain-desc">With Gwydion he took oak, broom, and meadowsweet and made Blodeuwedd — the wife no earthly race could supply for the nephew fated to have none.</p>
+      </div></div>
+      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
+      <div class="symbol-item">
+        <span class="symbol-name">The magic wand (hutlath)</span>
+        <span class="symbol-meaning">The rod of transformation and testing — proof, punishment, and creation carried in one length of wood</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The virgin's lap</span>
+        <span class="symbol-meaning">The footholder's office — the geas that bound the king's life to an untouched maiden, save in time of war</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Goewin ferch Pebin</span>
+        <span class="symbol-meaning">The footholder of Dôl Pebin in Arfon, wronged in the king's own house and made his queen in redress</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The swine of Annwfn</span>
+        <span class="symbol-meaning">The otherworld herd whose engineered theft gave Gwydion his war — the first pigs in Wales, and the pretext that broke the geas</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Hyddwn, Hychddwn, and Bleiddwn</span>
+        <span class="symbol-meaning">Stag, pig, and wolf — the three beast-sons of the punished brothers, restored to human shape and baptized</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Oak, broom, and meadowsweet</span>
+        <span class="symbol-meaning">The three flowers Math and Gwydion wove into Blodeuwedd, the bride made by craft</span>
+      </div></div></div>
+    </div>
+</section>
+
+    <!-- In the Texts & Everyday Words -->
+    
+
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -539,8 +419,133 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Math</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Math</strong> is the standard Celtic romanisation, documented in academic sources — “Bear”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">math</p>
+                <p class="card-body">The plain <strong>math</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Math</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Math</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Math.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Math</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Math</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Math</p>
+                    <p class="card-body">The full Unicode restoration. <strong>math.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Math was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/maːθ/</span>
+            <span class="ipa-label">Modern Welsh</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">MAATH — a long, open 'ah', held like the a of 'father', closing on the soft voiceless th of English 'thin'. One syllable; the whole weight of the name sits on the length of the vowel and the hush at the end.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Middle Welsh Math (Math uab Mathonwy) is already written in the Latin alphabet, so the ASCII form loses nothing: the name is Tier 2 by the mechanical rule, since the restoration preserves no diacritic or distinctive letter that ASCII drops. The standard etymology derives the name from Proto-Celtic *matu- 'bear' — compare Old Irish math 'bear' (attested in the compound mathgamain), the Irish name Mathgen borne by the seer of the Túatha Dé Danann, and Gaulish Matugenos 'bear-born'. The father's name, Mathonwy, is built on the same root, and the handbooks treat the bear-derivation as the best-supported reading.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Math is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Math</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -558,7 +563,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/math_mascot.webp" type="image/webp"><img src="../assets/math_mascot.png" alt="Math mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/math_mascot.webp" type="image/webp"><img src="../assets/math_mascot.png" alt="Math mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -596,7 +601,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/math_logomark.webp" type="image/webp"><img src="../assets/math_logomark.webp" alt="Math logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/math_logomark.webp" type="image/webp"><img src="../assets/math_logomark.webp" alt="Math logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

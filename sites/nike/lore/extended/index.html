@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Níkē, Victory. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/nike/lore/extended/">
 
@@ -72,6 +72,62 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Níkē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Níkē is /ní.kɛː/ — approximately 'NEE-kay' — the first syllable rises in pitch like a shout; the second is long and clear."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Níkē mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Níkē means Victory, conquest in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Níkē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Níkē is associated with Wings (Speed and the swift arrival of victory — and its swift departure, which the Athenians tried to prevent by clipping them.), Laurel wreath (The crown of the victor at the games — the tangible form of her favor.), Palm branch (The sign of the victor, raised in the athlete's right hand on countless victory monuments.), Filleted trophy (The captured arms hung on a stake — a battlefield victory turned into a cult object with her ribbons.), Flying drapery (The wind-filled garment of the Samothracian and Acropolis Nikai — momentum caught at its peak.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why are there different spellings of Níkē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each form is a historically attested restoration rather than a mistake: Nikē is the macron-only form (LSJ convention: length only, no acute). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Níkē in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII nike strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Níkē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Níkē at Zeus's Side” — Níkē has few independent myths because she is always elsewhere — on the battlefield, at the games, at the stern of the winning ship — arriving the instant struggle ends. Daughter of Styx, ally of Zeus, companion of Athēnâ: she is what every Greek competitor prayed to feel. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +165,13 @@
                 <picture><source srcset="../../assets/nike_logolockup.webp" type="image/webp"><img src="../../assets/nike_logolockup.png" alt="Níkē" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +182,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +201,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Níkē</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier-1</span> <span class="meta-badge">Tier-2</span>
                     <span class="meta-domain">Níkē.com · Nikē.com</span>
@@ -157,7 +216,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/nike_mascot.webp" type="image/webp"><img src="../../assets/nike_mascot.png" alt="Níkē — Victory" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/nike_mascot.webp" type="image/webp"><img src="../../assets/nike_mascot.png" alt="Níkē — Victory" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -216,11 +275,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Níkē is dual-tier because the Greek Νίκη carries both stress (acute on the short ι) and length (long η), and because two historically defensible restorations exist: Níkē with acute stress and Nikē with macron-only length. Both forms are owned and both preserve the goddess's essential meaning: Victory itself.</p>
+                <p class="etymology-note">From νίκη "victory", cognate with Latin vincere, English win.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>PIE</strong> — etymology unknown; possibly Pre-Greek (Beekes) — the comparison with Latin vincere is unproven</li><li><strong>Greek</strong> — νικάω (nikaō), 'to conquer, to be victorious'</li></ul></div><div class="derivative-group"><h4>Unicode Variants</h4><ul><li><strong>Nikē</strong> — macron-only (LSJ convention: length only, no acute)</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>PIE</strong> — etymology unknown; possibly Pre-Greek (Beekes) — the comparison with Latin vincere is unproven</li><li><strong>Greek</strong> — νικάω (nikaō), 'to conquer, to be victorious'</li><li><strong>Roman</strong> — Victoria, the Roman counterpart whose name gives English 'victory'</li></ul></div><div class="derivative-group"><h4>Unicode Variants</h4><ul><li><strong>Nikē</strong> — macron-only (LSJ convention: length only, no acute)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -253,24 +312,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Níkē is not merely a personification; she is <strong>the divine power of winning</strong>. She stands beside <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>, <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a>, and Athletes, crowning the victor with laurel or fillet. In a culture that made competition the organizing principle of politics, athletics, and warfare, Níkē was everywhere.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Níkē in Later Traditions</h3><p class="cultural-card-body">The Romans identified Níkē with Victoria, whose name gives us 'victory' in English. Victoria was a major state cult, and generals built temples to her after triumphs. The winged figure of Victory persisted into Christian art, where she influenced depictions of angels and, in the famous Louvre statue, became a secular emblem of France. The winged figure of Victory became a secular emblem of human achievement and later inspired countless modern marks of excellence. The idea that victory can be personified and worshipped stretches from ancient Greece into the present day.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Níkē is perhaps the most widely recognized Greek goddess in the modern world. Her winged image has inspired countless marks of excellence, from athletic victory to artistic achievement. But her ancient importance was far deeper: she embodied the Greek belief that excellence deserves public recognition, that competition produces virtue, and that victory is a divine gift rather than a merely human achievement. The Temple of Athena Nike on the Acropolis is a monument to this ideal. Every medal, trophy, and laurel wreath descends from her cult. Restoring <em>Níkē</em> restores the name of the goddess who crowns the winner.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Níkē</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Níkē in Later Traditions</h3><p class="cultural-card-body">The Romans identified Níkē with <strong>Victoria</strong>, whose name gives English 'victory' and whose cult — an altar on the Palatine attributed to Evander (Virgil, <em>Aeneid</em> 8.337–341), a temple vowed in 294 BCE (Livy 10.33) — made triumph a state sacrament. The winged figure was borrowed back into Christian iconography, where Victoria's stance and wings shaped the earliest angels of the sarcophagi; the Byzantines translated her into the city's protectress. In the modern West she became a secular emblem of achievement — the Brescian Victory (382 CE), the Samothracian Nike herself, the French Revolution's and the Olympic movement's winged figures. The Greek name survives most loudly in a modern sportswear brand, but the older idea survives better: that triumph is a divine, not merely human, event — and that it must be honored precisely because it cannot be kept.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Níkē is perhaps the most widely recognized Greek goddess in the modern world: her winged silhouette has crowned Olympic podiums, war memorials, and brand marks on every continent. But her ancient importance ran deeper than symbolism. She embodied the Greek belief that excellence deserves public recognition, that competition produces virtue, and that victory is a divine gift rather than a merely human achievement. The Temple of <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> Nike on the Acropolis remains her masterpiece — a marble argument that winning, rightly understood, is an act of piety. Every medal, trophy, and laurel wreath descends from her cult. Restoring <em>Níkē</em> restores the name of the goddess who crowns the winner.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Athens preserves her finest hour: the Temple of Athena Nike (c. 427–424 BCE) with its celebrated parapet — the sandal-adjusting Níkē among the most reproduced images in Greek art — and the Nike of Paionios at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a> (c. 420 BCE), still alighting on her pillar. On Samothrace, the great Winged Victory (c. 190 BCE) stands on the prow of a warship in the Louvre, recovered from the sanctuary of the Great Gods in 1863. Roman Victoria dominates countless imperial coins, and the Brescia Victory (382 CE) closes the ancient series in gold and gems. From acropolis to empire, her archaeology is the archaeology of triumph itself.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Níkē means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Níkē is the goddess of the decisive moment. She does not fight; she arrives when the fighting is done. She is not effort but its recognition, not struggle but its resolution. That is why the Greeks made her winged: victory is swift, and it can disappear just as quickly — the wingless statue at Athens is the confession that everyone who wins understands.</p><p>Modern culture borrows her image constantly but has forgotten her meaning. We treat victory as a metric, a ranking, a quarterly result. The Greeks treated it as an epiphany — a god standing beside you for one bright instant, gone before you can thank her. To restore Níkē's name is to recover that discipline: excellence should be crowned because it is rare, and it is rare because the goddess flies.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Níkē, Victory, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Níkē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Níkē</strong> is /ní.kɛː/ — approximately 'NEE-kay' — the first syllable rises in pitch like a shout; the second is long and clear..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Níkē mean?</summary><div class="faq-answer"><p><strong>Níkē</strong> means <strong>Victory, conquest</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Níkē?</summary><div class="faq-answer"><p>Níkē is associated with <strong>Wings</strong> (Speed and the swift arrival of victory), <strong>Laurel wreath</strong> (The crown of the victor), <strong>Palm branch</strong> (Peace and triumph), <strong>Filleted trophy</strong> (The captured arms or athletic prize), <strong>Flying drapery</strong> (Momentum and the moment of triumph).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>What is the difference between Níkē.com and Nikē.com?</summary><div class="faq-answer"><p>Each is a historically defensible restoration. <strong>Nikē.com</strong> is the macron-only form: LSJ convention: length only, no acute.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Níkē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>nike</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Níkē?</summary><div class="faq-answer"><p>In the <em>Theogony</em> (384–385), <a href="/styx/" class="crosslink" data-crosslink="styx">Styx</a> brings her children Zelos (Rivalry), Nike (Victory), <a href="/kratos/" class="crosslink" data-crosslink="kratos">Kratos</a> (Power), and Bia (Force) to Zeús's side at the beginning of the Titanomachy. Níkē is therefore one of the first divine powers to align with the new Olympian order. Her presence guarantees that the war against the Titans will end in triumph.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Níkē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Níkē</strong> is /ní.kɛː/ — approximately 'NEE-kay' — the first syllable rises in pitch like a shout; the second is long and clear.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Níkē mean?</summary><div class="faq-answer"><p><strong>Níkē</strong> means <strong>Victory, conquest</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Níkē?</summary><div class="faq-answer"><p>Níkē is associated with <strong>Wings</strong> (Speed and the swift arrival of victory — and its swift departure, which the Athenians tried to prevent by clipping them.), <strong>Laurel wreath</strong> (The crown of the victor at the games — the tangible form of her favor.), <strong>Palm branch</strong> (The sign of the victor, raised in the athlete's right hand on countless victory monuments.), <strong>Filleted trophy</strong> (The captured arms hung on a stake — a battlefield victory turned into a cult object with her ribbons.), <strong>Flying drapery</strong> (The wind-filled garment of the Samothracian and Acropolis Nikai — momentum caught at its peak.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why are there different spellings of Níkē?</summary><div class="faq-answer"><p>Each form is a historically attested restoration rather than a mistake: <strong>Nikē</strong> is the macron-only form (LSJ convention: length only, no acute). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Níkē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>nike</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Níkē?</summary><div class="faq-answer"><p>“Níkē at <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>'s Side” — Níkē has few independent myths because she is always elsewhere — on the battlefield, at the games, at the stern of the winning ship — arriving the instant struggle ends. Daughter of <a href="/styx/" class="crosslink" data-crosslink="styx">Styx</a>, ally of Zeus, companion of Athēnâ: she is what every Greek competitor prayed to feel. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -279,7 +350,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,19 +369,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod, Theogony</cite></li><li><cite>Pausanias, Description of Greece</cite></li><li><cite>Homeric Hymn to Athena</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 383–403</cite></li><li><cite>Pausanias, Description of Greece 1.22.4</cite></li><li><cite>Pindar, Isthmian 7</cite></li><li><cite>Virgil, Aeneid 8</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Níkē and related cults.</cite></li><li><cite>Athens: Temple of Athena Nike (ca. 427–424 BCE) on the Acropolis; Nike parapet frieze. <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a>: Nike of Paionios (ca. 421 BCE).</cite></li></ul>
+                    <ul class="source-list"><li><cite>Ira Mark, The Sanctuary of Athena Nike in Athens</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Mark, The Sanctuaries of Nike</cite></li></ul>
+                    <ul class="source-list"><li><cite>Comparative studies of greek religion and the place of Níkē within it.</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -371,7 +442,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/nike_logomark.webp" type="image/webp"><img src="../../assets/nike_logomark.webp" alt="Níkē logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/nike_logomark.webp" type="image/webp"><img src="../../assets/nike_logomark.webp" alt="Níkē logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

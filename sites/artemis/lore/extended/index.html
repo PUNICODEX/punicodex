@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Ártemis, Hunt, Wilderness, Moon. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/artemis/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Ártemis?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Ártemis is /ár.te.mis/ — approximately 'AR-te-miss' — the first syllable is sharp and high; the name is quick, like the arrow she looses."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Ártemis mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ártemis means Safe, unharmed (from ἀρτεμής) in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Ártemis?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ártemis is associated with Bow and arrows (The silver bow of the hunt and the plague shafts she shares with Apollo; sudden, unpitying, and precise), Deer (Her sacred chariot team and protected prey — the Ceryneian hind had golden antlers and brazen hooves), Cypress (The mourning tree of the wild grove, planted where the huntress's arrows fall), Crescent moon (Her later lunar aspect; the crescent diadem becomes standard on Hellenistic and Roman statues), Hunting dogs (Her companions in the chase — fifty hounds in Callimachus' Hymn to Artemis, swifter than deer)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Ártemis in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII artemis strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Ártemis?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Born on Ortygia, Midwife of Her Twin” — Ártemis's myths are almost all about the protection of boundaries — between virgin and sexual, wild and civilized, mortal and divine. Those who cross them pay terribly, and the goddess who presides over childbirth is the same one who strikes down the intruder at her bath. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,14 @@
                 <picture><source srcset="../../assets/artemis_logolockup.webp" type="image/webp"><img src="../../assets/artemis_logolockup.png" alt="Ártemis" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +175,14 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +195,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Ártemis</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Ártemis.com</span>
@@ -157,7 +210,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/artemis_mascot.webp" type="image/webp"><img src="../../assets/artemis_mascot.png" alt="Ártemis — Hunt, Wilderness, Moon" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/artemis_mascot.webp" type="image/webp"><img src="../../assets/artemis_mascot.png" alt="Ártemis — Hunt, Wilderness, Moon" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -216,11 +269,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Ártemis is Tier 2 because the Greek Ἄρτεμις preserves stress (acute on the first alpha) but no long vowel. She is the most important single-tier Tier-2 deity in the Greek pantheon: her acute alone carries the entire prosodic signature of the huntress's cry.</p>
+                <p class="etymology-note">Possibly from ἄρκτος "bear" + suffix, or pre-Greek. Mistress of animals (potnia theron).</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — ἄρτεμις (artemis), possibly related to ἀρτεμής 'safe and sound' or ἄρταμις, a Lydian goddess</li><li><strong>Lydian</strong> — Artimuš, a goddess possibly borrowed into Greek Artemis</li><li><strong>PIE</strong> — no secure Indo-European etymology; Beekes argues for a Pre-Greek or Anatolian origin</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — ἄρτεμις (artemis), possibly related to ἀρτεμής 'safe and sound' or to a root for 'bear' — both ancient guesses, neither proven</li><li><strong>Lydian</strong> — Artimuš, a Lydian goddess whose name may have been borrowed into Greek Artemis — the Anatolian connection is argued by Beekes</li><li><strong>PIE</strong> — no secure Indo-European etymology; Beekes argues for a Pre-Greek or Anatolian origin, fitting a goddess whose oldest cults are in Arcadia and Ephesus</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -253,31 +306,45 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Ártemis is <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a>'s twin but his opposite. Where he imposes order, she preserves wildness. She is <strong>the huntress who protects the animals she kills</strong>, the virgin who oversees childbirth, the goddess of the liminal space between city and forest, child and adult, human and beast.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Ártemis in Later Traditions</h3><p class="cultural-card-body">The Romans identified Ártemis with <a href="/diana/" class="crosslink" data-crosslink="diana">Diana</a>, a goddess of the hunt and the moon who was also patron of the Latin crossroads and the underworld. Diana's cult at Aricia, with its sacred grove and priest-king the Rex Nemorensis, became one of the most famous in Italy. In Hellenistic and Roman Egypt, Ártemis was syncretized with <a href="/bastet/" class="crosslink" data-crosslink="bastet">Bastet</a> and other lunar goddesses. The crescent crown of the Virgin Mary in Byzantine and Renaissance art may owe something to the iconography of Ártemis-Diana. Modern Wicca and Neopaganism have made her one of the most widely invoked goddesses of feminine autonomy and wild nature.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ártemis is the archetype of the independent, untamable feminine power. Her sanctuary at Ephesus was one of the Seven Wonders of the Ancient World; its many-breasted statue became an icon of nature's abundance. The Brauronia festival, in which young Athenian girls served as 'bears' in her sanctuary before marriage, was a central rite of female initiation. In modern environmentalism, Ártemis is a patron of wilderness preservation and animal rights. Her bow remains a symbol of focused, lethal skill. Restoring <em>Ártemis</em> restores the name of the goddess who refuses to be domesticated.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Ártemis</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ártemis in Later Traditions</h3><p class="cultural-card-body">The Romans identified Ártemis with <a href="/diana/" class="crosslink" data-crosslink="diana">Diana</a>, a goddess of the hunt, the moon, and the crossroads whose famous grove at Aricia, beside Lake Nemi, was guarded by the Rex Nemorensis — the runaway slave who ruled as long as he could kill his successor, the strangest priesthood in Italy (Strabo 5.3.12; the site is excavated). In Egypt she absorbed aspects of <a href="/bastet/" class="crosslink" data-crosslink="bastet">Bastet</a> and other lunar goddesses; in Anatolia her Ephesian form, the many-breasted Artemis of the great temple, was a cosmic mother goddess unlike the Greek huntress. The crescent crown that Byzantine and Renaissance artists set on the Virgin Mary's head descends from Diana's iconography. Modern Wicca and Neopaganism have made her one of the most widely invoked goddesses of feminine autonomy and wild nature — a reading her ancient virgins' cults would, at least, not have found strange.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Ártemis is the archetype of independent, untamable feminine power. Her temple at Ephesus was one of the Seven Wonders of the Ancient World, its colossal many-breasted cult image the emblem of nature's abundance. The Brauronia, in which Athenian girls 'played the bear' in her sanctuary before marriage, was a central rite of female initiation, and the little votive bear-girls excavated at Brauron are among the most moving objects in Greek archaeology. Her bow remains a symbol of focused, lethal skill, and in modern environmentalism she has become a patroness of wilderness preservation and animal protection. Restoring <em>Ártemis</em> restores the name of the goddess who refuses to be domesticated.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Ephesus preserves her greatest monument: the Artemision, whose archaic colossal temple — rebuilt after the fire of 356 BCE — was one of the Seven Wonders; column drums inscribed with the name of Croesus confirm the Lydian king's patronage, and John Turtle Wood's excavations of 1869 recovered its plan. At Brauron in Attica, the sanctuary of Artemis Brauronia has yielded the famous kore statuettes of little girls dedicated after their service as arktoi, together with the Π-shaped stoa where the rites unfolded. In Arcadia, the sanctuary of Artemis <a href="/hemera/" class="crosslink" data-crosslink="hemera">Hemera</a> at Lousoi — excavated in the 1990s — produced rich votive deposits from a healing spring cult. Her sanctuaries at <a href="/delos/" class="crosslink" data-crosslink="delos">Delos</a>, Mounichia in Piraeus, and the Amyklaion complement the record, and the terracotta 'Lady of Ephesus' figures found across the Mediterranean trace her Anatolian form from cult to souvenir.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Ártemis means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Ártemis is the goddess of the untouched. Not the virginity of inexperience, but the virginity of self-possession. She hunts not because she lacks feeling but because she has chosen a boundary and will kill to defend it. The forest is not her prison; it is her chosen territory.</p><p>In a culture that constantly demands women's availability, Ártemis is radical. She is not available. She is not domestic. She is not safe. The restoration of her name is a small acknowledgment that the ancient world knew a feminine power that needed no relation to masculinity to be complete.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     <section class="section section-name" id="screen-appearances">
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Screen Appearances</h2>
-            <p class="section-subtitle">Films, series, animations, and games featuring Ártemis</p>
+            <span class="section-number">06</span>
+            <h2 class="section-title">Screen &amp; Culture</h2>
+            <p class="section-subtitle">Where Ártemis echoes through film, television, and games — and how</p>
         </div>
         <div class="screen-appearances-grid"><a class="screen-appearance-card reveal-up" href="/screen/fate-grand-order-2015/">
                 <span class="screen-appearance-year">2015</span>
                 <h3 class="screen-appearance-title">Fate/Grand Order</h3>
                 <span class="screen-appearance-type">Game</span>
                 <p class="screen-appearance-studio">Lasengle / Aniplex</p>
+                <p class="screen-appearance-summary">A mobile gacha RPG that summons heroic and divine spirits from world history and mythology as Servants.</p>
             </a><a class="screen-appearance-card reveal-up" href="/screen/hades-2020/">
                 <span class="screen-appearance-year">2020</span>
                 <h3 class="screen-appearance-title">Hades</h3>
                 <span class="screen-appearance-type">Game</span>
                 <p class="screen-appearance-studio">Supergiant Games</p>
+                <p class="screen-appearance-summary">A roguelike action game in which Zagreus attempts to escape the Underworld, encountering most of the Olympian pantheon.</p>
             </a></div>
     </div>
 </section>
@@ -286,11 +353,11 @@
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Ártemis, Hunt, Wilderness, Moon, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ártemis?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ártemis</strong> is /ár.te.mis/ — approximately 'AR-te-miss' — the first syllable is sharp and high; the name is quick, like the arrow she looses..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ártemis mean?</summary><div class="faq-answer"><p><strong>Ártemis</strong> means <strong>Safe, unharmed (from ἀρτεμής)</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ártemis?</summary><div class="faq-answer"><p>Ártemis is associated with <strong>Bow and arrows</strong> (The hunt and sudden, unpitying death), <strong>Deer</strong> (Her sacred animal and the prey she protects), <strong>Cypress</strong> (The tree of mourning and the wild grove), <strong>Crescent moon</strong> (Later symbol of her lunar aspect), <strong>Hunting dogs</strong> (Her companions in the chase).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ártemis in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>artemis</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ártemis?</summary><div class="faq-answer"><p>Ártemis was born to Lētô after the goddess wandered the earth under Hêra's curse. The Homeric <em>Hymn to Apollo</em> places her birth on Ortygia — <a href="/delos/" class="crosslink" data-crosslink="delos">Delos</a> bore Apóllōn, and Ortygia Ártemis — and the tradition recorded by Apollodorus (1.4.1) makes her the elder twin, born first and then helping to deliver her brother: the virgin goddess of childbirth from her first hour. The island that sheltered Apóllōn became one of the most sacred places in the Aegean.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Ártemis?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Ártemis</strong> is /ár.te.mis/ — approximately 'AR-te-miss' — the first syllable is sharp and high; the name is quick, like the arrow she looses.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Ártemis mean?</summary><div class="faq-answer"><p><strong>Ártemis</strong> means <strong>Safe, unharmed (from ἀρτεμής)</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Ártemis?</summary><div class="faq-answer"><p>Ártemis is associated with <strong>Bow and arrows</strong> (The silver bow of the hunt and the plague shafts she shares with Apollo; sudden, unpitying, and precise), <strong>Deer</strong> (Her sacred chariot team and protected prey — the Ceryneian hind had golden antlers and brazen hooves), <strong>Cypress</strong> (The mourning tree of the wild grove, planted where the huntress's arrows fall), <strong>Crescent moon</strong> (Her later lunar aspect; the crescent diadem becomes standard on Hellenistic and Roman statues), <strong>Hunting dogs</strong> (Her companions in the chase — fifty hounds in Callimachus' Hymn to Artemis, swifter than deer).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Ártemis in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>artemis</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Ártemis?</summary><div class="faq-answer"><p>“Born on Ortygia, Midwife of Her Twin” — Ártemis's myths are almost all about the protection of boundaries — between virgin and sexual, wild and civilized, mortal and divine. Those who cross them pay terribly, and the goddess who presides over childbirth is the same one who strikes down the intruder at her bath. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -299,7 +366,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">08</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -318,19 +385,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homer, Iliad</cite></li><li><cite>Hesiod, Theogony</cite></li><li><cite>Homeric Hymn to Artemis</cite></li><li><cite>Euripides, Iphigenia among the Taurians</cite></li></ul>
+                    <ul class="source-list"><li><cite>Homer, Iliad 9.533–599; Odyssey 5.121–124</cite></li><li><cite><a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to Delian Apollo 14–18</cite></li><li><cite>Pseudo-Apollodorus, Bibliotheca 1.4.1; 1.8.2; 3.8.2</cite></li><li><cite>Euripides, Iphigenia among the Taurians</cite></li><li><cite>Ovid, <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 2.401–531; 3.138–252</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ártemis and related cults.</cite></li><li><cite>Ephesus: Temple of Artemis, one of the Seven Wonders. Brauron: sanctuary of Artemis Brauronia and the arktoi rite. Delos: shared birthplace sanctuary.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Ártemis and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of greek religion and the place of Ártemis within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Callimachus, Hymn 3 to Artemis</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -391,7 +458,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/artemis_logomark.webp" type="image/webp"><img src="../../assets/artemis_logomark.webp" alt="Ártemis logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/artemis_logomark.webp" type="image/webp"><img src="../../assets/artemis_logomark.webp" alt="Ártemis logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Cheírōn — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Χείρων</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Cheírōn.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,148 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Χείρων</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Cheírōn</strong> (Χείρων) is attested in the source tradition — “Hand”. Its diphthongs, long vowels, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">chiron</p>
-                    <p class="card-body">Reduced to plain <strong>chiron</strong>, the name loses everything that made it specific: diphthongs, long vowels, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Cheírōn</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Cheírōn</strong> restores diphthongs, long vowels, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Cheírōn.com → xn--chern-1sa78d.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Cheírōn</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Cheírōn</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Cheírōn is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Χείρων</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Cheírōn is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Cheírōn</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Cheírōn</p>
-                    <p class="card-body">Restores <strong>Χείρων</strong>. The live temple domain — <strong>cheírōn.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">chiron</p>
-                    <p class="card-body">Flattens <strong>Χείρων</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Cheírōn was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Cheírōn</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/kʰéː.rɔːn/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Kh-</span>
-        <span class="phoneme-desc">aspirated k (χ), a hard stop released with a strong breath — not the fricative of modern Greek</span>
+      <p class="lead-text">Cheírōn stands at the hinge of two orders: Titan-born yet honored by the Olympians, beast-bodied yet the very image of wisdom. His myths are the myths of transmission — what one generation hands to the next.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Birth</span>
+          <h3 class="myth-title">Son of Kronos and Philyra</h3>
+          <p class="myth-text"><a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a> lay with the Oceanid Philyra in the shape of a horse, and from that union was born a child of double nature — half god, half horse (Apollodorus, Library 1.2.4). Pindar names him 'the son of Philyra and Kronos', making Cheírōn the half-brother of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> and <a href="/poseidon/" class="crosslink" data-crosslink="poseidon">Poseidon</a> (Pythian 4.102–115) — an older generation's blood serving the new order. Philyra, ashamed of her foal, begged to be changed into anything else and became a linden tree, under which the infant was found and reared by Apollo and <a href="/artemis/" class="crosslink" data-crosslink="artemis">Artemis</a>; from them he drew the arts he would spend eternity handing on. The myth's double nature runs deeper than the body: the wisest of teachers begins as the child of deception and rejection, and his school in the cave on Pelion is founded by the one centaur whom the gods did not exile from their company.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-eí-</span>
-        <span class="phoneme-desc">long close ē (ει), carrying the high pitch of the acute accent</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The School of Pelion</span>
+          <h3 class="myth-title">Tutor of the Heroes</h3>
+          <p class="myth-text">Pindar gives the roll of his pupils: in his cave Cheírōn reared <a href="/iason/" class="crosslink" data-crosslink="iason">Iason</a>, gentle-handed <a href="/asklepios/" class="crosslink" data-crosslink="asklepios">Asklepios</a> whom he taught the craft of remedies, and Achilles, whom he fed on the marrow of lions and wild boars to make him fierce (Nemean 3.43–58). Homer twice seals the bond: Achilles treats wounds with remedies 'that Cheiron gave to his father in friendship' (Iliad 4.218–219), and is the man 'whom Cheiron taught, the most just of the centaurs' — dikaiotatos Kentaurōn (Iliad 11.831–832). Actaeon and <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a> also passed through his tutelage. When the Argo sailed, the centaur came down from Pelion to see her off and give the Argonauts his blessing for the voyage (Apollonius Rhodius, Argonautica 1.553–558). And in Pindar's grief for the sick Hieron, the poet's deepest wish is that Cheírōn still lived in his cave, that another healer might rise from Pelion and sail to Sicily (Pythian 3.1–7). The school had an address, and the whole Greek world knew it.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-rōn</span>
-        <span class="phoneme-desc">long open ō (ω) with final n</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Gift</span>
+          <h3 class="myth-title">The Spear for Peleus</h3>
+          <p class="myth-text">When <a href="/peleus/" class="crosslink" data-crosslink="peleus">Peleus</a> married the sea-goddess <a href="/thetis/" class="crosslink" data-crosslink="thetis">Thetis</a>, the gods came down from Olympus and the wedding feast was held on Pelion in Cheírōn's cave; the centaur gave the bridegroom a spear of mountain ash cut from Pelion's peak (Pindar, Pythian 3.86–95; Iliad 16.143–144). That spear passed to Achilles, and at Troy no other Achaean could wield it — Patroklos himself left it behind when he donned Achilles's armor, 'heavy, huge, and strong, which no other of the Achaeans could brandish' (Iliad 16.140–144). The teacher's gift thus runs through the whole Iliad: it is the one weapon that marks the hero his pupil became. The marriage it honored also produced the child Cheírōn would raise — the spear, like the school, was an investment in Achilles before Achilles existed. And when the child was old enough, the centaur received him on Pelion and took up the education the gift had already begun.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Wound and the Stars</span>
+          <h3 class="myth-title">The Immortal Who Chose Death</h3>
+          <p class="myth-text">When Herakles fought the wild centaurs at the cave of Pholos, one of his arrows — tipped with the hydra's incurable venom — struck Cheírōn's knee (Apollodorus, Library 2.5.4). The poison that no healer could answer burned in the flesh of the greatest healer of all; immortal, he could neither heal nor die, and the Iliad preserves the grim acknowledgment — 'Cheiron, the most just of centaurs, whom the gods taught, and whom Herakles's shaft slew' (11.831–832, where even epic grammar staggers at the thought). Sophocles remembers the shaft as the one 'wherewith Cheiron was struck' (Trachiniae 714–716). At last he surrendered his immortality — offered in some tellings in exchange for <a href="/prometheus/" class="crosslink" data-crosslink="prometheus">Prometheus</a>'s release — and was allowed to die; Zeus set him among the stars, and Ovid watches the father of heroes' education take his place in the sky (Fasti 5.379–414; Hyginus, Astronomica 2.38). The teacher's last lesson is mortality itself.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'KHEH-rōn' — long ē, long ō, the pitch rising on the first syllable</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> χείρ (kheír), 'hand' — the traditional association of the name, possibly a folk etymology</li><li><strong>PIE</strong> if the link holds, χείρ descends from PIE *ǵʰésr- 'hand' (cf. Hittite keššar); the name's own derivation remains uncertain — Beekes treats the connection cautiously</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tier 1: the Greek original Χείρων carries both stress (the acute on ει) and long vowels (ει and ω). The restored form Cheírōn preserves both marks — the accent and the macron — that plain ASCII 'Cheiron' erases.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -380,36 +286,41 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Most Just of Centaurs</h2>
             <p class="section-subtitle">Wisdom · Teaching · Heroes</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Cheírōn is the exception among the wild <strong>κένταυροι</strong>: the immortal son of <a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a> who dwells in a cave on Mount Pelion and turns raw princes into heroes. Where his kin are drunkards and rapine, Homer calls him <strong>δικαιότατος Κενταύρων</strong> — the most just of centaurs. He is the teacher: medicine for <strong><a href="/asklepios/" class="crosslink" data-crosslink="asklepios">Asklepios</a></strong>, the lyre and the remedies for <strong>Achilles</strong>, the whole heroic craft for <a href="/iason/" class="crosslink" data-crosslink="iason">Iason</a> and <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a>.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Cheírōn is the exception among the wild <strong>κένταυροι</strong>: the immortal son of Kronos who dwells in a cave on Mount Pelion and turns raw princes into heroes. Where his kin are drunkards and rapine, Homer calls him <strong>δικαιότατος Κενταύρων</strong> — the most just of centaurs. He is the teacher: medicine for <strong>Asklepios</strong>, the lyre and the remedies for <strong>Achilles</strong>, the whole heroic craft for Iason and Herakles.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 16L44 16L44 48L20 48L20 16"></path></svg></div>
         <h4 class="domain-name">The Tutor's Craft</h4>
-        <p class="domain-desc">He reared Achilles, Iásōn, and Asklepios on Mount Pēlion — “the most just of the Centaurs” (Iliad 11.832).</p>
+        <p class="domain-desc">He reared Achilles, Iásōn, and Asklepios on Mount Pēlion — 'the most just of the Centaurs' (Iliad 11.832).</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12L32 52M22 32L42 32"></path></svg></div>
         <h4 class="domain-name">The Healing Hand</h4>
-        <p class="domain-desc">He taught Asklepios the art of drugs, and was himself struck by Herakles’ hydra-venomed arrow that no healing art could cure.</p>
+        <p class="domain-desc">He taught Asklepios the art of drugs, and was himself struck by Herakles' hydra-venomed arrow that no healing art could cure.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M14 32L50 32L42 24M50 32L42 40"></path></svg></div>
         <h4 class="domain-name">The Hunter's Art</h4>
         <p class="domain-desc">From him the heroes learned the chase itself — tracking, coursing, and spear-work in the mountain wilds.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M36 8L22 34H32L26 56L44 30H34L36 8Z"></path></svg></div>
+        <h4 class="domain-name">The Incurable Wound</h4>
+        <p class="domain-desc">Herakles' stray arrow, dipped in the Lernaean hydra's venom, struck his knee — the healer whom no remedy could heal (Apollodorus, Library 2.5.4).</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">The Pelian Ash Spear</span>
-        <span class="symbol-meaning">The great spear of ash wood that Cheírōn cut on Pelion's peak and gave to <a href="/peleus/" class="crosslink" data-crosslink="peleus">Peleus</a> at his wedding — the same spear Achilles alone could wield (Iliad 16.143–144). The teacher's gift that arms the hero.</span>
+        <span class="symbol-meaning">The great spear of ash wood that Cheírōn cut on Pelion's peak and gave to Peleus at his wedding — the same spear Achilles alone could wield (Iliad 16.143–144). The teacher's gift that arms the hero.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The Cave on Mount Pelion</span>
-        <span class="symbol-meaning">His dwelling and school, the legendary academy of heroes where the gods themselves celebrated the wedding of Peleus and <a href="/thetis/" class="crosslink" data-crosslink="thetis">Thetis</a> (Pindar, Pythian 9.29–30).</span>
+        <span class="symbol-meaning">His dwelling and school, the legendary academy of heroes; the gods themselves feasted there at the wedding of Peleus and Thetis (Pindar, Pythian 3.86–95).</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The Lyre</span>
@@ -425,62 +336,19 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The Stars</span>
-        <span class="symbol-meaning"><a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> set him in the sky — remembered as Centaurus or Sagittarius — after he surrendered his immortality and died (Ovid, Fasti 5.379–414; Hyginus, Astronomica 2.38).</span>
+        <span class="symbol-meaning">Zeus set him in the sky — remembered as Centaurus or Sagittarius — after he surrendered his immortality and died (Ovid, Fasti 5.379–414; Hyginus, Astronomica 2.38).</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Cheírōn</p>
-        </div>
-        
-      <p class="lead-text">Cheírōn stands at the hinge of two orders: Titan-born yet honored by the Olympians, beast-bodied yet the very image of wisdom. His myths are the myths of transmission — what one generation hands to the next.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Birth</span>
-          <h3 class="myth-title">Son of Kronos and Philyra</h3>
-          <p class="myth-text">Kronos lay with the Oceanid Philyra in the shape of a horse, and from that union was born a child of double nature — half god, half horse: <em>Apollodorus, Library</em> 1.2.4. Pindar likewise names him the son of Philyra and Kronos, making Cheírōn the <strong>half-brother of Zeus</strong> (<em>Pythian</em> 4.102–103). Abandoned by his mother, who in shame was changed into a linden tree in later telling, he was reared by Apollo and <a href="/artemis/" class="crosslink" data-crosslink="artemis">Artemis</a>, from whom he learned the arts he would pass on. Thus the wisest of teachers begins as the child of deception and rejection.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The School of Pelion</span>
-          <h3 class="myth-title">Tutor of the Heroes</h3>
-          <p class="myth-text">Pindar gives the roll of his pupils: in his cave Cheírōn reared <strong>Iason</strong>, gentle-handed <strong>Asklepios</strong>, whom he taught the craft of remedies, and <strong>Achilles</strong>, whom he fed on the marrow of lions and wild boars to make him fierce (<em>Nemean</em> 3.43–58). Homer twice seals the bond: Achilles carries remedies 'that Cheiron gave to his father in friendship' (<em>Iliad</em> 4.218–219), and is the man 'whom Cheiron taught, the most just of the centaurs' — <em>δικαιότατος Κενταύρων</em> (<em>Iliad</em> 11.831–832). Actaeon and Herakles also passed through his tutelage. In Pindar's grief for Hieron, the poet wishes Cheírōn still lived in his cave, that another healer might come to Sicily (<em>Pythian</em> 3.1–7).</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Gift</span>
-          <h3 class="myth-title">The Spear for Peleus</h3>
-          <p class="myth-text">When Peleus married the sea-goddess Thetis, the wedding feast was held on Pelion at Cheírōn's cave, and the centaur gave the bridegroom a spear of mountain ash cut from Pelion's peak (<em>Iliad</em> 16.143–144). That spear passed to Achilles, and at Troy no other Achaean could wield it — Patroklos himself left it behind when he donned Achilles's armor, 'heavy, huge, and strong.' The teacher's gift thus runs through the whole <em>Iliad</em>: it is the one weapon that marks the hero he made. The marriage it honored also produced the child Cheírōn would raise.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Wound and the Stars</span>
-          <h3 class="myth-title">The Immortal Who Chose Death</h3>
-          <p class="myth-text">When Herakles fought the wild centaurs at the cave of Pholos, one of his arrows — tipped with the hydra's incurable venom — struck Cheírōn's knee (<em>Apollodorus, Library</em> 2.5.4). The poison that the great healer had no remedy for burned in his own flesh; immortal, he could neither heal nor die. Sophocles remembers the shaft as the one 'wherewith Cheiron was struck' (<em>Trachiniae</em> 714–716). At last he surrendered his immortality and was allowed to die, and Zeus set him among the stars — Ovid watches the father of heroes' education take his place in the sky (<em>Fasti</em> 5.379–414; cf. Hyginus, <em>Astronomica</em> 2.38). The teacher's last lesson is mortality itself.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -544,8 +412,150 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Χείρων</p>
+                <p class="card-body">The name in its original Greek form. <strong>Cheírōn</strong> (Χείρων) is attested in the source tradition — “Hand”. Its diphthongs, long vowels, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">chiron</p>
+                <p class="card-body">Reduced to plain <strong>chiron</strong>, the name loses everything that made it specific: diphthongs, long vowels, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Cheírōn</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Cheírōn</strong> restores diphthongs, long vowels, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Cheírōn.com → xn--chern-1sa78d.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Cheírōn</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Cheírōn</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Cheírōn</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Cheírōn</p>
+                    <p class="card-body">Restores <strong>Χείρων</strong>. The live temple domain — <strong>cheírōn.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">chiron</p>
+                    <p class="card-body">Flattens <strong>Χείρων</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Cheírōn was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/kʰéː.rɔːn/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Kh-</span>
+        <span class="phoneme-desc">aspirated k (χ), a hard stop released with a strong breath — not the fricative of modern Greek</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-eí-</span>
+        <span class="phoneme-desc">long close ē (ει), carrying the high pitch of the acute accent</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-rōn</span>
+        <span class="phoneme-desc">long open ō (ω) with final n</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'KHEH-rōn' — long ē, long ō, the pitch rising on the first syllable</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tier 1: the Greek original Χείρων carries both stress (the acute on ει) and long vowels (ει and ω). The restored form Cheírōn preserves both marks — the accent and the macron — that plain ASCII 'Cheiron' erases.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Cheírōn is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Χείρων</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Cheírōn is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -554,7 +564,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Cheírōn is the Greek answer to a question the centauromachy asks in stone at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a> and on the Parthenon: can nature be educated? He is a κένταυρος — the very type of ungoverned appetite — who is instead called <em>most just</em>. That he is Kronos's son and Zeus's half-brother matters: he belongs to the older, Titan order, yet serves the new one by raising its heroes, as if the wild past could be redeemed only by becoming a teacher. His unhealable wound completes the thought — the master of remedies cannot master his own pain, and immortality becomes not a privilege but a sentence. That he must surrender deathlessness to find release is among the most quietly radical moments in Greek myth: even an immortal may long for the human portion.</p>
+                <p class="pantheon-body">Cheírōn is the Greek answer to a question the centauromachy asks in stone at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a> and on the Parthenon: can nature be educated? He is a kentauros — the very type of ungoverned appetite — who is instead called most just. That he is Kronos's son and Zeus's half-brother matters: he belongs to the older, Titan order, yet serves the new one by raising its heroes, as if the wild past could be redeemed only by becoming a teacher. His unhealable wound completes the thought — the master of remedies cannot master his own pain, and immortality becomes not a privilege but a sentence. That he must surrender deathlessness to find release is among the most quietly radical moments in Greek myth: even an immortal may long for the human portion.</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -563,7 +573,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/chiron_mascot.webp" type="image/webp"><img src="../assets/chiron_mascot.png" alt="Cheírōn mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/chiron_mascot.webp" type="image/webp"><img src="../assets/chiron_mascot.png" alt="Cheírōn mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -601,7 +611,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/chiron_logomark.webp" type="image/webp"><img src="../assets/chiron_logomark.webp" alt="Cheírōn logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/chiron_logomark.webp" type="image/webp"><img src="../assets/chiron_logomark.webp" alt="Cheírōn logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

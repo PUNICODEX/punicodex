@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Gē — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Γῆ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Gē.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,140 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Γῆ</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Gē</strong> (Γῆ) is attested in the source tradition — “Earth”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">ge</p>
-                    <p class="card-body">Reduced to plain <strong>ge</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Gē</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Gē</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Gē.com → xn--g-pia.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Gē</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Gē</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Gē is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Γῆ</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Gē is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Gē</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Gē</p>
-                    <p class="card-body">Restores <strong>Γῆ</strong>. The live temple domain — <strong>gē.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">ge</p>
-                    <p class="card-body">Flattens <strong>Γῆ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Gē was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Gē</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/gɛː/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Gē</span>
-        <span class="phoneme-desc">Voiced velar stop [g] plus long eta [ɛː]. The name is a single long syllable, the earth named as one continuous thing.</span>
-      </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'GAY' — one long, level syllable, like the sustained note of a deep drum.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Γῆ (Gê/Gē), the earth as goddess and as solid ground</li><li><strong>PIE</strong> *dʰéǵʰōm, 'earth'; Greek γῆ and Latin humus are related derivatives</li><li><strong>Homeric</strong> Γαῖα (<a href="/gaia/" class="crosslink" data-crosslink="gaia">Gaîa</a>), the more metrical and later poetic form of the name</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Gē is Tier 1 because the Greek Γῆ bears the circumflex, which marks both stress and the long vowel (eta) in a single accent — both features the ASCII form loses. It is the older cultic form of the earth goddess, later often called Gaîa in poetry.</p></div>
+      <p class="lead-text">Gē is a <strong>primordial power</strong> whose myths are acts of generation and revenge. She creates without a mate, then conspires with her son <a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a> against her husband <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a> — and when the Titans fall, she arms the gods' last enemy.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Birth</span>
+          <h3 class="myth-title">Broad-Breasted, First of All</h3>
+          <p class="myth-text">First came <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a>; then <strong>Gē</strong>, 'broad-breasted,' the ever-sure seat of all the immortals who hold the peaks of snowy Olympus — and with her dark <a href="/tartaros/" class="crosslink" data-crosslink="tartaros">Tartaros</a> in the depths, and <a href="/eros/" class="crosslink" data-crosslink="eros">Eros</a>, fairest among the deathless gods (Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 116–122). Gē needs no consort for her first births: Ouranos, starry heaven, her equal in size, to cover her all around; the long Mountains, delightful haunts of the nymphs; and <a href="/pontos/" class="crosslink" data-crosslink="pontos">Pontos</a>, the barren deep with its swelling breast (Theogony 126–132). The reverence behind the poem is far older than Hesiod — the Mycenaean tablets already know <em>ma-ka</em>, Mother Earth — and the goddess is present wherever Greeks stood on ground, every oath sworn 'by Earth' being hers. Before any god ruled, there was ground; before any temple, a floor of her body. The Theogony's opening makes one quiet claim that the whole poem then obeys: everything in it, Olympians included, will be a tenant of Gē.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Revenge</span>
+          <h3 class="myth-title">The Sickle of Adamant</h3>
+          <p class="myth-text">Gē grew weary of Ouranos, who night after night covered her and pushed the children she bore back into her womb, giving them no light (Hesiod, Theogony 156–160). She fashioned the great sickle of adamant and unburdened herself to her sons, but only Kronos, the youngest and most terrible, took the weapon and lay in ambush; when Ouranos came down covering her, Kronos reached out and struck — and the drops of blood that fell on Gē produced the Erinyes, the great Giants, and the ash-tree nymphs, while what fell into the white foam of the sea produced <a href="/aphrodite/" class="crosslink" data-crosslink="aphrodite">Aphrodítē</a> (Theogony 173–200). Hesiod does not soften the scene: the mother arms the son against the father, and from that violence the next generation of powers is born. The cosmos changes hands not by negotiation but by surgery — and notice what Gē herself does with the power she wins. She does not seize the throne; she engineers the future and lets her children fight for it, remaining what she always was: the ground under every regime.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Cult</span>
+          <h3 class="myth-title">Kourotrophos, Nurse of Children</h3>
+          <p class="myth-text">For all her cosmic acts, Gē's worship in the Greek cities was domestic and quiet. At Athens her altar stood in the Agora beside that of Gē Kourotrophos, Earth the Child-Nurse, among the crossroads shrines — modest stone and ash where marble would have been pretentious, and the excavated altars of the Agora still mark the spot. At Delphi the Pythia opened her formal prayer with Earth first — 'first in my prayer I honor Earth, the first prophetess' (Aeschylus, Eumenides 1–2) — because the oracular succession of the sanctuary began, in tradition, with Gē herself, before <a href="/themis/" class="crosslink" data-crosslink="themis">Themis</a>, before Phoibe, before Apollo took the tripod. Oaths were sworn by her in court and treaty: she was the one power guaranteed to be standing under both parties' feet. The oldest goddess in Greece asks for almost nothing — which is exactly why she was never, anywhere, omitted.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Last Child</span>
+          <h3 class="myth-title">Typhon, Born in Anger</h3>
+          <p class="myth-text">When the Titans fell, Gē did not reconcile. Angry on her children's behalf, she lay with Tartaros in a hollow cave of Cilicia and bore her youngest and most terrible child: <strong>Typhoeus</strong> — a hundred serpent heads, fire for eyes, and voices that ranged from the language of gods to the bellowing of bulls (Hesiod, Theogony 820–835). The whole Olympian order trembled; <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> met the monster with thunderbolt and sickle, burned its hundred heads, and cast it down wounded beneath the earth — and the flames that pour from Mount Aetna are, Hesiod says, the monster's breath to this day (Theogony 853–868). Apollodorus tells the parallel story of the Gigantomachy (Bibliotheca 1.6.3): Gē armed her Giant sons against the gods and hunted the magic herb that would make them unbeatable — Zeus got to it first, on <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a>'s advice. The mother who produced the gods also produces their last enemy. For Gē, creation and rebellion are the same act repeated — the ground brings forth whatever the age requires, against whoever currently rules.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -372,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Earth Itself</h2>
             <p class="section-subtitle">Motherhood, Fertility, Primordial Ground</p>
         </div>
@@ -382,7 +296,7 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 16 18 28 18 40C18 48 24 56 32 56C40 56 46 48 46 40C46 28 40 16 32 8ZM32 32C28 32 24 36 24 40C24 44 28 48 32 48C36 48 40 44 40 40C40 36 36 32 32 32Z"></path></svg></div>
         <h4 class="domain-name">Mother of All</h4>
-        <p class="domain-desc">From Gē spring the Titans, the Giants, the Erinyes, and — with <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a> — the whole cosmos.</p>
+        <p class="domain-desc">From Gē spring the Titans, the Giants, the Erinyes, and — with Ouranos — the whole cosmos.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 48C16 36 24 32 32 32C40 32 48 36 56 48V56H8V48ZM32 20C24 20 18 26 18 34C18 38 20 42 24 44H40C44 42 46 38 46 34C46 26 40 20 32 20Z"></path></svg></div>
@@ -419,49 +333,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Gē</p>
-        </div>
-        
-      <p class="lead-text">Gē is a <strong>primordial power</strong> whose myths are acts of generation and revenge. She creates without a mate, then conspires with her son <a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a> against her husband Ouranos.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hesiod, Theogony</span>
-          <h3 class="myth-title">Birth of the Cosmos</h3>
-          <p class="myth-text">After <a href="/chaos/" class="crosslink" data-crosslink="chaos">Chaos</a> came Gē 'broad-breasted,' the ever-sure seat of all immortals. She gave birth to Ouranos, the mountains, and <a href="/pontos/" class="crosslink" data-crosslink="pontos">Pontos</a>, the sea. Alone she is generative; with Ouranos she becomes the mother of the Titans and the origin of the Olympian order.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hesiod, Theogony</span>
-          <h3 class="myth-title">The Castration of Ouranos</h3>
-          <p class="myth-text">Gē grew weary of Ouranos forcing her children back into her womb. She fashioned the adamantine sickle and persuaded Kronos to ambush his father. The blood from the wound produced the Erinyes, the Giants, and the ash-tree nymphs — new beings born from violence against the sky.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Cult</span>
-          <h3 class="myth-title">Gē Kourotrophos</h3>
-          <p class="myth-text">In Athens and other cities, Gē was worshipped as Kourotrophos, 'nurse of children,' and as Gē <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a>, the earth who receives offerings at the city's hearth. Her cult was quiet, universal, and older than the Olympian pantheon.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -525,8 +404,142 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Γῆ</p>
+                <p class="card-body">The name in its original Greek form. <strong>Gē</strong> (Γῆ) is attested in the source tradition — “Earth”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">ge</p>
+                <p class="card-body">Reduced to plain <strong>ge</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Gē</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Gē</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Gē.com → xn--g-pia.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Gē</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Gē</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Gē</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Gē</p>
+                    <p class="card-body">Restores <strong>Γῆ</strong>. The live temple domain — <strong>gē.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">ge</p>
+                    <p class="card-body">Flattens <strong>Γῆ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Gē was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/gɛː/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Gē</span>
+        <span class="phoneme-desc">Voiced velar stop [g] plus long eta [ɛː]. The name is a single long syllable, the earth named as one continuous thing.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'GAY' — one long, level syllable, like the sustained note of a deep drum.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Gē is Tier 1 because the Greek Γῆ bears the circumflex, which marks both stress and the long vowel (eta) in a single accent — both features the ASCII form loses. It is the older cultic form of the earth goddess, later often called Gaîa in poetry.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Gē is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Γῆ</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Gē is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -544,7 +557,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/ge_mascot.webp" type="image/webp"><img src="../assets/ge_mascot.png" alt="Gē mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ge_mascot.webp" type="image/webp"><img src="../assets/ge_mascot.png" alt="Gē mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -582,7 +595,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/ge_logomark.webp" type="image/webp"><img src="../assets/ge_logomark.webp" alt="Gē logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/ge_logomark.webp" type="image/webp"><img src="../assets/ge_logomark.webp" alt="Gē logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

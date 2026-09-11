@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Wawalag — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Wawalag</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Wawalag</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,143 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Wawalag</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Wawalag</strong> is the standard Aboriginal romanisation, documented in academic sources — “The two sisters”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">wawalag</p>
-                    <p class="card-body">The plain <strong>wawalag</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Wawalag</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Wawalag</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Wawalag.com → wawalag.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Wawalag</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Wawalag</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Wawalag is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Wawalag</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Wawalag</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Wawalag</p>
-                    <p class="card-body">The full Unicode restoration. <strong>wawalag.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Wawalag was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Wawalag</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈwawalag/</span>
-            <span class="ipa-label">Yolŋu Matha Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Wa-</span>
-        <span class="phoneme-desc">Open syllable with low central vowel [a] and labial-velar approximant [w]; Yolŋu Matha stress typically falls on the first syllable of a name.</span>
+      <p class="lead-text">The Wawalag sisters travel across Arnhem Land with their mother and a newborn child, and everything they do — every camp, every name spoken, every birth — becomes law, geography, and weather. The cycle is not a single fixed text but a song performed in ceremony, whose episodes encode land tenure, marriage class, and the coming of the wet season; the spellings Wawalag, Wauwalak, and Wawilak record different transcribers and different estates.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Travelling song cycle</span>
+          <h3 class="myth-title">The Journey and the Birth</h3>
+          <p class="myth-text">In the Arnhem Land song cycle, the two Wawalag sisters travel from the interior toward the coast, their mother with them and the younger sister heavy with child. Every camp is a future sacred site: they name the waterholes, gather yams and shellfish, dig for honey — and each ordinary act, performed at that place by those women, becomes the charter for a clan's ownership and a ceremony's script. The younger sister gives birth at a camp near the great python's waterhole, and the blood of childbirth, flowing with the storm-rain into the pool, is the event the whole country has been waiting for. W. Lloyd Warner recorded this cycle among the Yolŋu in the 1920s (A Black Civilization, 1937) under the spelling Wulareg; Ronald and Catherine Berndt later recorded Wawilak and Wauwalak versions (The Speaking Land, 1989). The journey's meaning is tenure: to walk the sisters' track and name their camps is to read the land's title deeds aloud, and to know which clan is responsible for which waterhole.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-wa-</span>
-        <span class="phoneme-desc">Medial open syllable, also [a]; the reduplicated syllable gives the name its rhythmic, song-like quality.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Rainbow Serpent</span>
+          <h3 class="myth-title">Yurlunggur Swallows the Sisters</h3>
+          <p class="myth-text">The blood reaches the waterhole, and Yurlunggur — the great Rainbow Serpent, in Warner's rendering of the python's name — rises. Attraction and anger are one movement: the serpent swallows the sisters, the child, and their mother. Inside the serpent, however, the story does not end; the sisters keep singing, and their songs within the belly become part of the sacred repertoire that men will later receive in initiation. The episode is not framed as punishment for impurity — the blood is powerful, not dirty; it is ancestral substance answering ancestral substance, and the serpent acts because the law of the land demands a response to the power in women's bodies. The myth carries a theology without sin: violation and response, swallowing and singing, are parts of one exchange between people and country. What swallows you also carries you, and what carries you transforms the world outside.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-lag</span>
-        <span class="phoneme-desc">Final syllable with lateral approximant [l] and open vowel [a] followed by a terminal velar stop [ɡ], here represented by g.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Creation</span>
+          <h3 class="myth-title">Regurgitation and the Clans</h3>
+          <p class="myth-text">Yurlunggur cannot keep what he has swallowed: he releases the sisters, and from that act of being taken in and given back comes the architecture of society — the moieties (in Warner's Murngin terminology, Dua and Yiritja), the marriage classes, and the rights and duties of each clan to its named places. The sisters' bodies mark the geography: this waterhole where he rose, that camp where she bore the child. The myth thereby solves, in narrative, the problem every human society must solve: how to divide the land without war. The division is a bodily memory — the country itself, taken in and given back, is the deed of title, and every ceremony that re-tells the swallowing re-issues it. Berndt and Berndt emphasized that versions differ by estate and that the deepest layers belong to initiated custodians; what is public is exactly this: the clans came out of the serpent, together.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Season</span>
+          <h3 class="myth-title">The Coming of the Wet</h3>
+          <p class="myth-text">The python's rising is the monsoon. The storm that breaks when the blood enters the waterhole is the wet season itself, and the flood that follows fills the swamps, breeds the geese and the fish, and greens the woodlands — the annual renewal on which everything in Arnhem Land life depends. To sing the Wawalag cycle, then, is meteorology as liturgy: the performers do not merely remember the first flood but summon the next one, timing the ceremony to the build-up of the season. Warner recorded how the song cycles move with the year's ecological rhythm, and the Berndts noted that the same narrative anchors rain-making rites. The myth's final meaning is ecological: the country is not scenery behind the story; it is the story's body. When the sisters bleed and the serpent rises, the rains come — because the law has been spoken, and the land always answers.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'WAH-wah-lag' — three even syllables, with the first syllable slightly stronger; keep the vowels open like 'father', not diphthongal like English 'way'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Yolŋu Matha</strong> Wawalag — the name by which the two sisters are remembered in north-eastern Arnhem Land song cycles and ritual narratives</li><li><strong>Common variant</strong> Wauwalak / Wawilak — alternate romanizations used in early ethnographic literature and in some clan estates</li><li><strong>Rainbow Serpent</strong> Yurlunggur / <a href="/ngalyod/" class="crosslink" data-crosslink="ngalyod">Ngalyod</a> — the great serpent whose encounter with the sisters transforms the land and the seasons</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The name is not Greek or Indo-European; the ASCII form 'wawalag' already encodes the same consonants and vowels used in scholarly romanization. Because no distinctive diacritic or special letter is required to recover the spoken name, the restoration 'Wawalag' is Tier 2: a conventional capitalized citation form rather than a phonetic restoration of lost information.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -374,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Two Sisters</h2>
             <p class="section-subtitle">Creators, Law-Givers, and the Monsoon</p>
         </div>
@@ -407,7 +318,7 @@
         <span class="symbol-meaning">The sacred well where the sisters' blood awakens Yurlunggur and where the rainbow serpent dwells</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Rainbow Serpent (Yurlunggur / Ngalyod)</span>
+        <span class="symbol-name">Rainbow Serpent (Yurlunggur / <a href="/ngalyod/" class="crosslink" data-crosslink="ngalyod">Ngalyod</a>)</span>
         <span class="symbol-meaning">The transformer who swallows the sisters and, in releasing them, establishes clan order and the monsoon</span>
       </div>
       <div class="symbol-item">
@@ -425,57 +336,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Wawalag</p>
-        </div>
-        
-      <p class="lead-text">The Wawalag sisters travel across Arnhem Land with their mother and a newborn child. Their story is not a single fixed text but a song cycle performed in ceremony, whose episodes encode land, law, and the seasonal pulse of the monsoon.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Travelling song cycle</span>
-          <h3 class="myth-title">The Journey and the Birth</h3>
-          <p class="myth-text">The two sisters set out from the interior, carrying their mother and a child. At each camp they name the country, gather food, and perform the actions that will later be repeated in ritual. The younger sister gives birth, and the blood from childbirth enters a waterhole — an event that is at once ordinary and cosmically charged, because the Rainbow Serpent Yurlunggur smells it and rises.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Rainbow Serpent</span>
-          <h3 class="myth-title">Yurlunggur Swallows the Sisters</h3>
-          <p class="myth-text">Yurlunggur, the great python/serpent of the waterhole, emerges and swallows the sisters, their child, and their mother. The act is not simple punishment; it is the ancestral power of the land responding to the power in women's bodies. Inside the serpent the sisters continue to sing, and their songs become part of the sacred repertoire that men later receive in initiation.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Creation</span>
-          <h3 class="myth-title">Regurgitation and the Clans</h3>
-          <p class="myth-text">Yurlunggur eventually releases the sisters, and from this act of swallowing and regurgitation come the divisions of clan and moiety, the pattern of marriage, and the rights to country. The myth makes the landscape itself a record of the sisters' bodies: each place where they camped, each waterhole where the serpent rose, is a title to land and a duty of care.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Season</span>
-          <h3 class="myth-title">The Coming of the Wet</h3>
-          <p class="myth-text">The flood that accompanies Yurlunggur's rising is the monsoon. The Wawalag narrative therefore encodes meteorological knowledge: the arrival of the rains, the filling of waterholes, the renewal of plant and animal life, and the calendar of ceremony. To tell the story is also to predict and welcome the wet season.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the aboriginal pantheon</p>
         </div>
@@ -539,8 +407,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Wawalag</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Wawalag</strong> is the standard Aboriginal romanisation, documented in academic sources — “The two sisters”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">wawalag</p>
+                <p class="card-body">The plain <strong>wawalag</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Wawalag</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Wawalag</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Wawalag.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Wawalag</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Wawalag</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Wawalag</p>
+                    <p class="card-body">The full Unicode restoration. <strong>wawalag.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Wawalag was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈwawalag/</span>
+            <span class="ipa-label">Yolŋu Matha Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Wa-</span>
+        <span class="phoneme-desc">Open syllable with low central vowel [a] and labial-velar approximant [w]; Yolŋu Matha stress typically falls on the first syllable of a name.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-wa-</span>
+        <span class="phoneme-desc">Medial open syllable, also [a]; the reduplicated syllable gives the name its rhythmic, song-like quality.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-lag</span>
+        <span class="phoneme-desc">Final syllable with lateral approximant [l] and open vowel [a] followed by a terminal velar stop [ɡ], here represented by g.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'WAH-wah-lag' — three even syllables, with the first syllable slightly stronger; keep the vowels open like 'father', not diphthongal like English 'way'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">The name is not Greek or Indo-European; the ASCII form 'wawalag' already encodes the same consonants and vowels used in scholarly romanization. Because no distinctive diacritic or special letter is required to recover the spoken name, the restoration 'Wawalag' is Tier 2: a conventional capitalized citation form rather than a phonetic restoration of lost information.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Wawalag is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Wawalag</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual aboriginal names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -558,7 +563,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/wawalag_mascot.webp" type="image/webp"><img src="../assets/wawalag_mascot.png" alt="Wawalag mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/wawalag_mascot.webp" type="image/webp"><img src="../assets/wawalag_mascot.png" alt="Wawalag mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -596,7 +601,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/wawalag_logomark.webp" type="image/webp"><img src="../assets/wawalag_logomark.webp" alt="Wawalag logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/wawalag_logomark.webp" type="image/webp"><img src="../assets/wawalag_logomark.webp" alt="Wawalag logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

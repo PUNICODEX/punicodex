@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Helheimr, Realm of the Dead. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/helheimr/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Helheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Helheimr is /ˈhɛlˌhɛi̯mr/ — approximately 'HEL-haymr' — a crisp initial h, then 'hell' and 'haymer' run together, with a light rolled r."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Helheimr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Helheimr means Hel's home (from Hel + heimr) in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Helheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Helheimr is associated with Gjallarbrú (The resounding bridge crossed by the dead on the way to Hel's hall), Hel's hall Éljúðnir (The hall named 'Sleet-Cold' where the goddess receives the dead), Threshold knife (Famine) (One of the named thresholds of Hel's hall, personifying starvation), Hooded or half-faced woman (Hel's own depiction, one side beautiful and one side corpse-pale), Náströnd shore (The corpse-strewn strand within Hel where oath-breakers suffer)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Helheimr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Helheimr is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Helheimr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Hermóðr Rides to Bring Back Baldr” — Helheimr's lore survives chiefly in Snorri's Gylfaginning and in the poems of the Poetic Edda, and the two sources share a consistent picture: a fenced realm of halls and high gates where the dead continue a diminished existence — fed from Hunger, cut with Famine — until the world's ending and, for some, beyond it. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/helheimr_logolockup.webp" type="image/webp"><img src="../../assets/helheimr_logolockup.png" alt="Helheimr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Helheimr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Helheimr.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/helheimr_mascot.webp" type="image/webp"><img src="../../assets/helheimr_mascot.png" alt="Helheimr — Realm of the Dead" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/helheimr_mascot.webp" type="image/webp"><img src="../../assets/helheimr_mascot.png" alt="Helheimr — Realm of the Dead" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -207,7 +258,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Helheimr</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="4" data-delay="300">
       <div class="etym-step-content">
@@ -216,11 +267,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Helheimr is a transparent Old Norse compound of Hel + heimr. It is Tier 2 because no vowel is marked long or stressed; the name relies on everyday Old Norse phonology. Modern English 'hell' descends from the same Germanic root but has lost the diphthong.</p>
+                <p class="etymology-note">PGmc *haljō "hidden one, underworld" + *haimaz "home". The realm of the dead.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old English</strong> — hell, the Anglo-Saxon underworld, cognate with Norse Hel</li><li><strong>Gothic</strong> — halja, the feminine noun for the underworld in Wulfila's Bible</li><li><strong>Old Norse</strong> — Hel, the goddess whose name also names her realm</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old English</strong> — hell, the Anglo-Saxon underworld, cognate with Norse Hel</li><li><strong>Gothic</strong> — halja, the feminine noun for the underworld in Wulfila's Bible</li><li><strong>Old Norse</strong> — Hel, the goddess whose name also names her realm</li><li><strong>Proto-Germanic</strong> — *haljō, 'the hidden (place)' — the feminine abstract from *helan-, 'to hide' (Kroonen, Etymological Dictionary of Proto-Germanic, s.v. *haljō-)</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -241,7 +292,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">H</td><td><code>U+0048</code></td><td>Latin Capital Letter H</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">h</td><td><code>U+0068</code></td><td>Latin Small Letter H</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="560"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Helheimr</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -253,24 +304,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">In the norse tradition, <strong>Helheimr</strong> governed realm of the dead. The name encodes a sphere of power that shaped ritual, narrative, and social order.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Helheimr in Later Traditions</h3><p class="cultural-card-body">Norse tradition absorbed and reworked Germanic, Celtic, and Christian influences; medieval Icelandic compilers preserved the myths while Christian frameworks shaped their presentation.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The name lives on in modern fantasy, Neopagan practice, Scandinavian heritage, and the global reception of Viking-Age literature. Restoring <em>Helheimr</em> in Unicode preserves the name's cultural specificity against the flattening force of plain ASCII. Helheimr survives in popular imagination as the Norse underworld, often conflated with Valhalla in modern media. The precise Unicode form <em>Helheimr</em> preserves the Old Norse spelling and the realm's identity as the quiet destination of ordinary dead.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Helheimr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Helheimr in Later Traditions</h3><p class="cultural-card-body">Helheimr's afterlife begins with a translation problem: Christian missionaries preaching to converts for whom the underworld already had a Germanic name found that <em>Hel</em> was ready-made. English <em>hell</em>, German <em>Hölle</em>, and Gothic <em>halja</em> all descend from the same root as Hel's realm (Proto-Germanic *<em>haljō</em>, 'the hidden place'), so the medieval Christian hell and the Norse Helheimr literally share a name — one reason Snorri's Christian-era presentation is so hard to peel apart from the older strata beneath it. The structural parallel with Greek <a href="/hades/" class="crosslink" data-crosslink="hades">Hades</a> is real and independent: as Hades is both a god and his house, so Hel is both goddess and realm. Modern Ásatrú has largely discarded the Christian colouring and recovered the older picture — a neutral receiving-hall rather than a torture-chamber — while popular culture has fixed Helheim as 'the Norse hell,' frozen, punitive, and often conflated with <a href="/niflheimr/" class="crosslink" data-crosslink="niflheimr">Niflheimr</a> or set as Valhalla's opposite, a flattening the medieval sources never quite committed.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Helheimr's legacy runs through language first: every English speaker says the goddess's name weekly without knowing it — <em>hell</em> is hers, borrowed through Old English <em>hel</em> from the same Germanic root, and the sagas made 'to go to Hel' a plain idiom for dying. The medieval Christian sermons of the conversion era repurposed the name as they found it, and much of what modern readers assume is 'Viking belief' about the underworld is actually that later fusion. The modern visual afterlife is enormous: Helheim — usually spelled without the final <em>r</em> — is a stock location in games, comics, and film, from Marvel's Asgard cycle to <em>God of War</em> (2018), where it is imagined, un-medievally, as a frozen realm; <em>Assassin's Creed Valhalla</em> and a shelf of Viking fiction repeat it. Fantasy literature's underworlds — Tolkien's Halls of Mandos, which owe a documented debt to the Norse receiving-halls, chief among them — descend from Snorri's grey hall even when they do not know it. Restoring <em>Helheimr</em> in full Old Norse form preserves the name as the poems and Snorri actually wrote it, against a flattening that has already cost it its final letter.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Viking-Age burial practice gives Helheimr its material context. The Lindholm Høje cemetery at Aalborg preserves hundreds of stone-ship settings and cremations, while Gotland picture stones such as the Tjängvide and Ardre VIII stones depict afterlife journeys, valkyries, and the otherworld. Runestones across Denmark, Sweden, and Norway record the dead by name and kin.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Helheimr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Helheimr is the afterlife of the unheroic — and that is its quiet profundity. The Norse did not promise most people a better world; they promised most people a grey hall, a dish named Hunger, a knife named Famine, and continuation without glory. Beside Valhöll's eternal tournament, Helheimr looks like a demotion. But the poems keep returning to it: it is the destination of <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>, the best of the gods, and the only realm whose door both <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a> must knock on.</p><p>There is an honesty here that later traditions softened: death is not a verdict but an address. Most lives end in bed, not battle; most souls arrive as petitioners, not champions. The myth of Hermóðr's embassy even makes the grey hall a place where negotiation is possible — where death, for one unforgettable moment, held a door open. Helheimr means that the ordinary dead were never forgotten by the poets who sang for the warriors.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Helheimr, Realm of the Dead, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Helheimr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Helheimr</strong> is /ˈhɛlˌhɛi̯mr/ — approximately 'HEL-haymr' — a crisp initial h, then 'hell' and 'haymer' run together, with a light rolled r..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Helheimr mean?</summary><div class="faq-answer"><p><strong>Helheimr</strong> means <strong>Hel's home (from Hel + heimr)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Helheimr?</summary><div class="faq-answer"><p>Helheimr is associated with <strong>Gjallarbrú</strong> (The resounding bridge crossed by the dead on the way to Hel's hall), <strong>Hel's hall Éljúðnir</strong> (The hall named 'Sleet-Cold' where the goddess receives the dead), <strong>Threshold knife (Famine)</strong> (One of the named thresholds of Hel's hall, personifying starvation), <strong>Hooded or half-faced woman</strong> (Hel's own depiction, one side beautiful and one side corpse-pale), <strong>Náströnd shore</strong> (The corpse-strewn strand within Hel where oath-breakers suffer).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Helheimr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>helheimr</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Helheimr?</summary><div class="faq-answer"><p>When <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> is killed by the mistletoe dart, the gods mourn so deeply that <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> sends his brother <a href="/hermod/" class="crosslink" data-crosslink="hermod">Hermóðr</a> to Helheimr to bargain for his return. Hermóðr takes <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s eight-legged horse <a href="/sleipnir/" class="crosslink" data-crosslink="sleipnir">Sleipnir</a> and rides for nine nights through valleys so dark and deep that he sees nothing, until he reaches the river Gjöll and the gold-floored bridge that leads to Hel's hall.Hel agrees to release Baldr only if every creature in the nine worlds weeps for him. Almost all do, but the giantess Þökk—widely understood to be <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a> in disguise—refuses, and Baldr must remain in Helheimr until <a href="/ragnarok/" class="crosslink" data-crosslink="ragnarok">Ragnarǫk</a>. The myth establishes Helheimr as a realm of fixed law, not arbitrary cruelty, and it makes the underworld's door a place where even gods can negotiate.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Helheimr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Helheimr</strong> is /ˈhɛlˌhɛi̯mr/ — approximately 'HEL-haymr' — a crisp initial h, then 'hell' and 'haymer' run together, with a light rolled r.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Helheimr mean?</summary><div class="faq-answer"><p><strong>Helheimr</strong> means <strong>Hel's home (from Hel + heimr)</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Helheimr?</summary><div class="faq-answer"><p>Helheimr is associated with <strong>Gjallarbrú</strong> (The resounding bridge crossed by the dead on the way to Hel's hall), <strong>Hel's hall Éljúðnir</strong> (The hall named 'Sleet-Cold' where the goddess receives the dead), <strong>Threshold knife (Famine)</strong> (One of the named thresholds of Hel's hall, personifying starvation), <strong>Hooded or half-faced woman</strong> (Hel's own depiction, one side beautiful and one side corpse-pale), <strong>Náströnd shore</strong> (The corpse-strewn strand within Hel where oath-breakers suffer).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Helheimr in Unicode?</summary><div class="faq-answer"><p><strong>Helheimr</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Helheimr?</summary><div class="faq-answer"><p>“Hermóðr Rides to Bring Back Baldr” — Helheimr's lore survives chiefly in Snorri's Gylfaginning and in the poems of the <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a>, and the two sources share a consistent picture: a fenced realm of halls and high gates where the dead continue a diminished existence — fed from Hunger, cut with Famine — until the world's ending and, for some, beyond it. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -279,7 +342,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,19 +361,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>The <em>Poetic Edda</em>; The <em>Prose Edda</em> of Snorri Sturluson.</cite></li><li><cite>Poetic Edda: Vafþrúðnismál (Óðinn's wisdom contest on the fate of the dead and the underworld)</cite></li><li><cite>Saxo Grammaticus, Gesta Danorum (Hadingus's descent to the realm of the dead)</cite></li><li><cite>Snorri Sturluson, Edda: Skáldskaparmál (kennings for Hel and the underworld journey)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Poetic Edda: <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a> 38–39, 44–45 (Náströnd; <a href="/garmr/" class="crosslink" data-crosslink="garmr">Garmr</a>'s howling); <a href="/texts/poetic-edda/#baldrs-draumar" class="crosslink citation-link" data-citation="baldrs-draumar">Baldrs draumar</a> (Óðinn's ride to Hel); <a href="/texts/poetic-edda/#grimnismol" class="crosslink citation-link" data-citation="grimnismol">Grímnismál</a> 4</cite></li><li><cite>Snorri Sturluson, <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a>: <a href="/texts/prose-edda/#gylfaginning-34" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 34</a>, 49, 51 (Hel and her hall; Hermóðr's embassy; Ragnarök)</cite></li><li><cite>Poetic Edda: <a href="/texts/poetic-edda/#vafthruthnismol" class="crosslink citation-link" data-citation="vafthruthnismol">Vafþrúðnismál</a> 51 (the golden gaming-pieces after Ragnarök)</cite></li><li><cite>Larrington, The Poetic Edda; Faulkes, Edda (translations)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Helheimr and related cults.</cite></li><li><cite>Viking-Age burial practice gives Helheimr its material context. The Lindholm Høje cemetery at Aalborg preserves hundreds of stone-ship settings and cremations, while Gotland picture stones such as the Tjängvide and Ardre VIII stones depict afterlife journeys, valkyries, and the otherworld. Runestones across Denmark, Sweden, and Norway record the dead by name and kin.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Helheimr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Beekes, R. S. P. <em>Etymological Dictionary of Greek.</em> Leiden: Brill, 2010.</cite></li><li><cite>Archaeological evidence includes runestones, grave goods, place-name distributions, and Viking-Age iconography across Scandinavia and the Norse diaspora.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lindow, Norse Mythology: A Guide; Simek, Dictionary of Northern Mythology — s.v. Hel, Helheimr, Garmr</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -371,7 +434,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/helheimr_logomark.webp" type="image/webp"><img src="../../assets/helheimr_logomark.webp" alt="Helheimr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/helheimr_logomark.webp" type="image/webp"><img src="../../assets/helheimr_logomark.webp" alt="Helheimr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

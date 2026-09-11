@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Tlāloc — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Tlāloc</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Tlāloc.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,148 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Tlāloc</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Tlāloc</strong> is the standard Nahuatl romanisation, documented in academic sources — “He who is made of earth”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">tlaloc</p>
-                    <p class="card-body">Reduced to plain <strong>tlaloc</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Tlāloc</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tlāloc</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Tlāloc.com → xn--tlloc-gwa.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Tlāloc</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tlāloc</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Tlāloc is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Tlāloc</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tlāloc</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Tlāloc</p>
-                    <p class="card-body">The live temple domain — <strong>tlāloc.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">tlaloc</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Tlāloc was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Tlāloc</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈtɬaː.lok/</span>
-            <span class="ipa-label">Classical Nahuatl Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">tl-</span>
-        <span class="phoneme-desc">Voiceless lateral affricate [tɬ], a single Nahuatl sound: 'tl' released with the tongue at the side teeth.</span>
+      <p class="lead-text">Tlāloc's myths turn on a single terrifying truth: the same rain that feeds can also drown, strike, or rot. He is generous and punitive in equal measure, and the Mexica state answered his moods with its most terrible gifts.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Marriage</span>
+          <h3 class="myth-title">The Abduction of Xōchiquetzal</h3>
+          <p class="myth-text">When the world was young, <a href="/xochiquetzal/" class="crosslink" data-crosslink="xochiquetzal">Xōchiquetzal</a> — goddess of flowers, of weaving, and of love's delight — was the wife of Tlāloc. The account preserved in the <em>Leyenda de los Soles</em> tells how <a href="/tezcatlipoca/" class="crosslink" data-crosslink="tezcatlipoca">Tezcatlipoca</a>, the lord of sorcery, desired her and abducted her to his own realm, and the tale spread widely enough to be retold in Ramírez de Fuenleal's <em>Histoyre du Méchique</em>. The marriage matters because it joins Tlāloc's water to the flowers — rain and blossom, the two halves of agricultural desire — and because its violence names a truth the farmers knew intimately. A god who can lose his bride to sorcery is a god whose gifts can be stolen too: the green world and the water world belong together, but nothing holds them together safely. The myth means that fertility is a marriage forever in danger of abduction.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ā-</span>
-        <span class="phoneme-desc"><a href="/long/" class="crosslink" data-crosslink="long">Long</a> [aː], macron marking reconstructed vowel length.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Flood</span>
+          <h3 class="myth-title">The Destruction of the Fourth Sun</h3>
+          <p class="myth-text">The Fourth Sun — the age called 4-Water — was the age of Tlāloc's consort <a href="/chalchiuhtlicue/" class="crosslink" data-crosslink="chalchiuhtlicue">Chalchiuhtlicue</a>, Jade-Her-Skirt, and it ended as a water-god's age must: in a flood. The <em>Leyenda de los Soles</em> tells that the sky broke and rain fell for fifty-two years, until the people of that world were changed into fish and only a remnant survived as the seed of the Fifth Sun. The <em>Histoyre du Méchique</em> deepens the tragedy: Chalchiuhtlicue, falsely accused by her husband the sun of adultery, wept blood for fifty-two years, and the weeping drowned the world. The colonial sources disagree in their details, and modern scholars read the whole Sun-cycle as an Aztec theology of impermanence — every world, even a watery one, is born to end. The myth means that Tlāloc's element is never only the gentle rain of the milpa; it is the universal solvent, and the giver of maize keeps the memory of drowning.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-loc</span>
-        <span class="phoneme-desc">[lok], final syllable; the name has been glossed as 'he who is made of earth' or 'he who is the embodiment of the earth'.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Sacrifice</span>
+          <h3 class="myth-title">The Children of the Mountain</h3>
+          <p class="myth-text">The hardest evidence of Tlāloc's gravity is the child sacrifice the Mexica performed in his name. Sahagún's informants described the rites around the <em>atezcalli</em>, the 'house of water': children chosen for their beauty were carried in procession to the mountaintop shrines, and priests wearing Tlāloc's goggle-eyed regalia wept as they raised them up, so that the mountain rain-jars would pour. Durán adds the omen-reading that makes the rite almost unbearable: the children's tears on the road up foretold the season — abundant tears, abundant rain. Modern archaeology has found the theology in fact: in the offering caches of the Templo Mayor, excavated under Leonardo López Luján, the remains of children lie beside marine shells and greenstone. The rite means that in Aztec reciprocity there was no gift more precious than the newest life — and it is precisely this that makes Tlāloc impossible to domesticate as a mere 'rain spirit'.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The State Cult</span>
+          <h3 class="myth-title">The Double Temple of Tenochtitlan</h3>
+          <p class="myth-text">At the center of Tenochtitlan rose the Templo Mayor, the double pyramid that married the city's two necessities. The south half, stained with red, belonged to <a href="/huitzilopochtli/" class="crosslink" data-crosslink="huitzilopochtli">Huitzilopochtli</a>, god of war and the sun's ardor; the north half, washed in blue and hung with white paper streamers, belonged to Tlāloc, god of rain. Durán describes the blue-painted façade guarded by figures of the Tlaloque, and López Luján's excavations of the offering caches found the two halves speaking different languages: the war god's chambers held warriors and sacrificial flint; Tlāloc's held fish, crocodiles, coral, shells and jade — a drowned cosmos buried under the mountain. The pairing means that the Aztec state understood itself as an armed negotiation with water. War conquered enemies, tribute filled the treasury, but rain — Tlāloc's mood, read in the mountain caves — conquered everyone, kings included.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'TLAH-lok' — start with the Nahuatl lateral affricate 'tl', hold the first 'a' long, and end with a firm 'ok'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Nahuatl</strong> Tlāloc, from tlālli ('earth') and a suffix suggesting quality or embodiment.</li><li><strong>Maya</strong> Chac, the hook-nosed rain god of the Classic <a href="/maya/" class="crosslink" data-crosslink="maya">Maya</a>.</li><li><strong>Zapotec</strong> Cocijo, the lightning-rain deity of Monte Albán.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tlāloc is Tier 1: the macron on ā preserves reconstructed Classical Nahuatl vowel length, and the initial tl- is a single distinctive phoneme impossible in English.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -379,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Lord of Rain and Mountain</h2>
             <p class="section-subtitle">Water, Lightning, and Agricultural Life</p>
         </div>
@@ -426,49 +332,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Tlāloc</p>
-        </div>
-        
-      <p class="lead-text">Tlāloc's myths turn on a single terrifying truth: the same rain that feeds can also drown, strike, or rot. He is generous and punitive in equal measure.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Marriage</span>
-          <h3 class="myth-title">The Abduction of Xōchiquetzal</h3>
-          <p class="myth-text">Colonial accounts make <a href="/xochiquetzal/" class="crosslink" data-crosslink="xochiquetzal">Xōchiquetzal</a>, the young goddess of flowers, weaving, and sexual love, the wife of Tlāloc before <a href="/tezcatlipoca/" class="crosslink" data-crosslink="tezcatlipoca">Tezcatlipoca</a> abducted her for her beauty (Leyenda de los Soles). The tradition bound the green growing world to the water that sustains it. But the marriage was also volatile, for Tlāloc's realm is one of thunder as much as gentle rain.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Flood</span>
-          <h3 class="myth-title">The Destruction of the Fourth Sun</h3>
-          <p class="myth-text">The Fourth Sun, the Sun of Water (4-Water), was ruled by Tlāloc's consort <a href="/chalchiuhtlicue/" class="crosslink" data-crosslink="chalchiuhtlicue">Chalchiuhtlicue</a>, and it ended in a flood that lasted fifty-two years. Humans were transformed into fish; the cosmos had to be remade. Water, Tlāloc's gift, became the instrument of annihilation.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Sacrifice</span>
-          <h3 class="myth-title">The Children of the Mountain</h3>
-          <p class="myth-text">Child sacrifices were offered to Tlāloc, especially during drought. The children, selected for their beauty, were believed to become Tlaloque who would bring rain from the mountain caves. It is one of the most horrifying aspects of Aztec religion, and one of the clearest evidence that Tlāloc was never a tame fertility spirit.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the nahuatl pantheon</p>
         </div>
@@ -532,8 +403,150 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Tlāloc</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Tlāloc</strong> is the standard Nahuatl romanisation, documented in academic sources — “He who is made of earth”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">tlaloc</p>
+                <p class="card-body">Reduced to plain <strong>tlaloc</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Tlāloc</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tlāloc</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Tlāloc.com → xn--tlloc-gwa.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Tlāloc</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tlāloc</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tlāloc</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Tlāloc</p>
+                    <p class="card-body">The live temple domain — <strong>tlāloc.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">tlaloc</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Tlāloc was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈtɬaː.lok/</span>
+            <span class="ipa-label">Classical Nahuatl Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">tl-</span>
+        <span class="phoneme-desc">Voiceless lateral affricate [tɬ], a single Nahuatl sound: 'tl' released with the tongue at the side teeth.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ā-</span>
+        <span class="phoneme-desc">Long [aː], macron marking reconstructed vowel length.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-loc</span>
+        <span class="phoneme-desc">[lok], final syllable; the name has been glossed as 'he who is made of earth' or 'he who is the embodiment of the earth'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'TLAH-lok' — start with the Nahuatl lateral affricate 'tl', hold the first 'a' long, and end with a firm 'ok'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tlāloc is Tier 1: the macron on ā preserves reconstructed Classical Nahuatl vowel length, and the initial tl- is a single distinctive phoneme impossible in English.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Tlāloc is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Tlāloc</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual nahuatl names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -551,7 +564,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/tlaloc_mascot.webp" type="image/webp"><img src="../assets/tlaloc_mascot.png" alt="Tlāloc mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tlaloc_mascot.webp" type="image/webp"><img src="../assets/tlaloc_mascot.png" alt="Tlāloc mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -589,7 +602,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/tlaloc_logomark.webp" type="image/webp"><img src="../assets/tlaloc_logomark.webp" alt="Tlāloc logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tlaloc_logomark.webp" type="image/webp"><img src="../assets/tlaloc_logomark.webp" alt="Tlāloc logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

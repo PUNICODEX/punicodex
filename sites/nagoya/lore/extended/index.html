@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Nagoya, Industrial Hub, Chūbu. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/nagoya/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Nagoya?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Nagoya is /na.ɡo.ja/ — approximately 'NAH-goh-yah' — three even syllables, with the middle vowel open and short."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Nagoya mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nagoya means Peaceful ancient house in the japanese tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Nagoya?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nagoya is associated with Shachihoko (The golden tiger-headed carp roof ornaments of Nagoya Castle — water beasts pressed into service as fire insurance, and the city's emblem on everything from manhole covers to baseball caps.), Nagoya Castle keep (The fortress that was never attacked in war: a 1612 message in stone, a 1959 concrete reconstruction, and since 2018 a document-faithful wooden Honmaru Palace rebuilt beside it.), Red miso (aka-dashi) (The dark, salty miso paste of the region, central to miso-katsu, miso-nikomi udon, and the local conviction that flavor should be deep rather than showy.), Ceramics and cloisonné (The long craft tradition of the Seto–Nagoya region — Noritake porcelain, Shippo-yaki cloisonné, and the Owari guild instincts that made 'made in Nagoya' a quiet synonym for quality.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Nagoya in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nagoya is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Nagoya?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Peaceful Ancient House” — Nagoya's mythology is more historical than divine: a crossroads named for a 'peaceful ancient house,' a castle built to end the age of war, a conference that settled Japan's succession, and a merchant city that traded the sword for the loom and then for the assembly line. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/nagoya_logolockup.webp" type="image/webp"><img src="../../assets/nagoya_logolockup.png" alt="Nagoya" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Nagoya</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Nagoya</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/nagoya_mascot.webp" type="image/webp"><img src="../../assets/nagoya_mascot.png" alt="Nagoya — Industrial Hub, Chūbu" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/nagoya_mascot.webp" type="image/webp"><img src="../../assets/nagoya_mascot.png" alt="Nagoya — Industrial Hub, Chūbu" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Nagoya, Industrial Hub, Chūbu</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">名古屋</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Nagoya</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/na.ɡo.ja/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Japanese</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Industrial Hub, Chūbu</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Peaceful ancient house</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Nagoya</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Shachihoko, Nagoya Castle keep, Miso, Ceramics</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">名古屋</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Nagoya</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/na.ɡo.ja/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Japanese</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Industrial Hub, Chūbu</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">Peaceful ancient house</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Nagoya</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Shachihoko, Nagoya Castle keep, Red miso (aka-dashi), Ceramics and cloisonné</span></div></div>
         </div>
     </div>
 </section>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Nagoya</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Nagoya is Tier 2: plain Hepburn. It is a major city whose name is explained by a folk etymology.</p>
+                <p class="etymology-note">The name <strong>Nagoya</strong> reaches the modern world through scholarly transliteration of the japanese tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Japanese</strong> — 名古屋 (Nagoya), 'peaceful ancient house'</li><li><strong>Castle</strong> — Nagoya-jō, the Tokugawa fortress and city symbol</li><li><strong>Region</strong> — Aichi Prefecture, Chūbu region</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Japanese</strong> — 名古屋 (Nagoya), traditionally glossed 'peaceful ancient house' — a folk etymology the city wears proudly</li><li><strong>Castle</strong> — Nagoya-jō, the Tokugawa fortress and city symbol</li><li><strong>Region</strong> — Aichi Prefecture, Chūbu region</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">N</td><td><code>U+004E</code></td><td>Latin Capital Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">g</td><td><code>U+0067</code></td><td>Latin Small Letter G</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">y</td><td><code>U+0079</code></td><td>Latin Small Letter Y</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Nagoya</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Nagoya</strong> is Japan's fourth-largest city and a historic center of commerce and craftsmanship. Built around the castle commissioned by Tokugawa Ieyasu in 1612, Nagoya grew into a hub of ceramics, textiles, automotive manufacturing, and trade. Its name, 'peaceful ancient house,' reflects a city that has long served as a stable crossroads.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Nagoya in Later Traditions</h3><p class="cultural-card-body">Nagoya sits at the intersection of samurai, merchant, and industrial Japan. Its castle expresses Tokugawa military architecture; its crafts draw on medieval guild traditions; and its modern economy powers the nation's manufacturing. The city is less a mythic symbol than a practical crossroads that accumulated meaning over centuries.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Nagoya is known today for its castle, its food, and its industrial might. The reconstructed castle keep attracts millions, and the city's cuisine has a national reputation. Nagoya's role as a transportation and manufacturing hub makes it a pillar of contemporary Japan.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Nagoya</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Nagoya in Later Traditions</h3><p class="cultural-card-body">Nagoya's identity is a three-layer alloy. The first layer is samurai: the Owari Tokugawa, the 'senior branch' (gosanke) held in reserve to supply a shogun should the main line fail, cultivated a deliberate persona of <em>shitsujitsu gōken</em> — sober, sturdy, unshowy — to reassure the shogunate and everyone else. The second layer is merchant: with the stipends gone, the castle town's energies flowed into the <em>chōnindō</em>, the way of the townsman, whose creed of thrift, calculation, and craft made Nagoya famous for quality rather than fashion. The third layer is industrial: Toyota and its satellites made the region synonymous with Japanese manufacturing and its methods. A city that began as a political message became an economic one; the shachihoko on the keep now watch over a supply chain.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Nagoya's reputation is food first: miso-katsu, tebasaki chicken wings, kishimen flat noodles, and the beloved 'morning' custom in which a coffee order arrives with toast, egg, and ogura toast. The Tokugawa Art Museum, on the castle grounds, holds the Genji Monogatari scrolls and the heirlooms of the Owari house. Toyota Motor Corporation — and with it the whole Chūkyō industrial zone — anchors an economy that still supplies a large share of Japan's exports; Central Japan Airport (Centrair), the 2005 World Exposition site, and the SCMaglev test line through the mountains behind the city all read as the modern descendants of the Tōkaidō junction Ieyasu chose in 1610. The castle, with its rebuilt wooden palace, remains the emblem — a message of peace that has outlasted every war it was built to prevent.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Honmaru Palace of Nagoya Castle survived in measured drawings and photographs until its destruction in 1945; excavations of its buried foundations (2009–2010) allowed a faithful wooden reconstruction, opened in 2018 — one of Japan's most celebrated modern traditional builds — while the 1959 concrete keep awaits its own re-evaluation. Excavation at Kiyosu Castle (2009) uncovered the buried stone bases of Nobunaga-era tenshu. The city's older sacred stratum survives at Atsuta Jingū, the great shrine south of the center that houses the Kusanagi sword and has drawn pilgrims for well over a millennium; the Tokugawa-en garden preserves the Owari lordly residence grounds. And the castle town's grid itself — one of Japan's classic jōkamachi plans — is the largest standing artifact.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Nagoya means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Not every sacred place begins holy. Some become important simply by being where roads meet — and Nagoya is the purest case in Japan. There was no ancient shrine city here, no imperial capital, no mythic island: a plain at the crossroads, a name meaning 'peaceful ancient house,' and a shogun's decision to build an unnecessary fortress. Yet crossroads accumulate meaning the way rivers accumulate silt. The castle made a market; the market made a merchant culture; the merchants made an industrial belt; the industry made a global city. The golden shachihoko swimming on the keep's ridge beam are the perfect emblem of the whole process — mythical beasts pressed into service as fire insurance, wonder made practical. Nagoya suggests that holiness, in the long run, may be nothing more mysterious than a place where human attention has gathered long enough to compound.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Nagoya, Industrial Hub, Chūbu, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Nagoya?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Nagoya</strong> is /na.ɡo.ja/ — approximately 'NAH-goh-yah' — three even syllables, with the middle vowel open and short..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Nagoya mean?</summary><div class="faq-answer"><p><strong>Nagoya</strong> means <strong>Peaceful ancient house</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Nagoya?</summary><div class="faq-answer"><p>Nagoya is associated with <strong>Shachihoko</strong> (The golden tiger-headed carp roof ornaments of Nagoya Castle), <strong>Nagoya Castle keep</strong> (The reconstructed fortress and city symbol), <strong>Miso</strong> (The red miso paste central to local cuisine), <strong>Ceramics</strong> (The long tradition of Seto and Nagoya-area pottery).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Nagoya in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>nagoya</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Nagoya?</summary><div class="faq-answer"><p>In 1612, Tokugawa Ieyasu ordered the construction of Nagoya Castle to secure the strategic Chūbu region and to house his son Yoshinao. The castle was built with materials from Sunpu and Kiyosu, and its golden shachihoko became a symbol of Tokugawa wealth and vigilance.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Nagoya?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Nagoya</strong> is /na.ɡo.ja/ — approximately 'NAH-goh-yah' — three even syllables, with the middle vowel open and short.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Nagoya mean?</summary><div class="faq-answer"><p><strong>Nagoya</strong> means <strong>Peaceful ancient house</strong> in the japanese tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Nagoya?</summary><div class="faq-answer"><p>Nagoya is associated with <strong>Shachihoko</strong> (The golden tiger-headed carp roof ornaments of Nagoya Castle — water beasts pressed into service as fire insurance, and the city's emblem on everything from manhole covers to baseball caps.), <strong>Nagoya Castle keep</strong> (The fortress that was never attacked in war: a 1612 message in stone, a 1959 concrete reconstruction, and since 2018 a document-faithful wooden Honmaru Palace rebuilt beside it.), <strong>Red miso (aka-dashi)</strong> (The dark, salty miso paste of the region, central to miso-katsu, miso-nikomi udon, and the local conviction that flavor should be deep rather than showy.), <strong>Ceramics and cloisonné</strong> (The long craft tradition of the Seto–Nagoya region — Noritake porcelain, Shippo-yaki cloisonné, and the Owari guild instincts that made 'made in Nagoya' a quiet synonym for quality.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Nagoya in Unicode?</summary><div class="faq-answer"><p><strong>Nagoya</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Nagoya?</summary><div class="faq-answer"><p>“The Peaceful Ancient House” — Nagoya's mythology is more historical than divine: a crossroads named for a 'peaceful ancient house,' a castle built to end the age of war, a conference that settled Japan's succession, and a merchant city that traded the sword for the loom and then for the assembly line. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hepburn</cite></li><li><cite>Kojiki</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hepburn</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Nihon Shoki and Kojiki (geographic references)</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/kojiki/" class="crosslink citation-link" data-citation="kojiki">Kojiki</a></cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Nagoya and related cults.</cite></li><li><cite>Nagoya Castle, originally completed in 1615 and reconstructed in concrete in 1959, is the city's dominant historical site. Excavations in the castle grounds and the older Kiyosu area have revealed medieval and early modern settlement layers. The region's ceramic kilns and industrial sites document its transformation into a manufacturing center.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Nagoya and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Tokugawa castle records</cite></li><li><cite>Aichi Prefecture historical surveys</cite></li></ul>
+                    <ul class="source-list"><li><cite>The Cambridge History of Japan, vol. 4: Early Modern Japan (Cambridge, 1991)</cite></li><li><cite>Totman, Conrad, Tokugawa Ieyasu: Shogun (Heian, 1983)</cite></li><li><cite>Berry, Mary Elizabeth, Hideyoshi (Harvard, 1982)</cite></li><li><cite>Nagoya-shi shi (History of the City of Nagoya), municipal history series</cite></li><li><cite>Kokushi taikei, standard editions of Owari-domain and Tōkaidō chronicles</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/nagoya_logomark.webp" type="image/webp"><img src="../../assets/nagoya_logomark.webp" alt="Nagoya logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/nagoya_logomark.webp" type="image/webp"><img src="../../assets/nagoya_logomark.webp" alt="Nagoya logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

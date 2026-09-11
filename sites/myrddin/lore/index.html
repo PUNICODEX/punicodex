@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Myrddin — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Myrddin</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Myrddin</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,147 +235,57 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Myrddin</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Myrddin</strong> is the standard Celtic romanisation, documented in academic sources — “Merlin”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">myrddin</p>
-                    <p class="card-body">The plain <strong>myrddin</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Myrddin</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Myrddin</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Myrddin.com → myrddin.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Myrddin</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Myrddin</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Myrddin is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Myrddin</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Myrddin</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Myrddin</p>
-                    <p class="card-body">The full Unicode restoration. <strong>myrddin.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Myrddin was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Myrddin</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈmər.ðɨn/</span>
-            <span class="ipa-label">Modern Welsh</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">M-</span>
-        <span class="phoneme-desc">Voiced bilabial nasal [m], exactly the English m; the name opens on the same sound as the place-name Caerfyrddin (Carmarthen) from which it descends.</span>
+      <p class="lead-text">Myrddin's dossier divides in two, and the tradition itself knew it: the northern prophet who went mad at Arfderydd and fled to Coed Celyddon, preserved in the Welsh Triads, the Annales Cambriae, and the Black Book poems; and Geoffrey of Monmouth's Merlinus, who carried the wild man into Latin and grafted him onto the Arthurian world. Gerald of Wales already separated them in the twelfth century: Merlinus Ambrosius, the boy prophet of Vortigern's tower, and Merlinus Celidonius — Sylvester — the wild man of the Caledonian forest.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Annales Cambriae / Trioedd Ynys Prydein</span>
+          <h3 class="myth-title">The Battle of Arfderydd</h3>
+          <p class="myth-text">The Annales Cambriae enter under the year 573 the battle of Arfderydd, fought in the north between the sons of Eliffer and Gwenddolau son of Ceidio — a historical-seeming conflict of the British Old North. The Welsh Triads count it among the futile battles of the Island of Britain, brought about, in the triad's famous understatement, for a lark's nest; and the triad records the consequence that matters here: Gwenddolau fell, and Myrddin became mad.</p><p class="myth-text">From that seed the whole legend grows. Myrddin son of Morfryn, his lord dead and his side defeated, flees the world of the mead-hall into Coed Celyddon, the Caledonian forest, and becomes Myrddin Wyllt — the Wild — living from the forest's gifts and speaking only in verse and prophecy.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-y-</span>
-        <span class="phoneme-desc">The Welsh clear y, an unstressed-quality central vowel [ə] — the 'uh' of English 'about' — because it stands in the stressed penult.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Black Book of Carmarthen</span>
+          <h3 class="myth-title">The Apple Trees and the Oianau</h3>
+          <p class="myth-text">The earliest Welsh manuscript, the Black Book of Carmarthen (c. 1250), preserves the poems that give the wild man his own voice. In Yr Afallennau, 'The Apple Trees', Myrddin addresses the sweet apple tree that shelters him: he laments Gwenddolau, slain in the bloodshed of Arfderydd; he grieves that he endures want while once he rode at the head of warriors; he hides from Rhydderch's men; and the refrain returns to the tree, his one companion and hiding-place.</p><p class="myth-text">The companion poem, Yr Oianau, keeps the same voice — the outcast prophet calling his mournful 'oian' through the forest, mourning his dead, marked out by madness as the gods' or fate's chosen sufferer. These are not narrative poems but laments with prophecy threaded through them; together they made Myrddin the patron and mouthpiece of the whole Welsh prophetic genre.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-dd-</span>
-        <span class="phoneme-desc">Voiced dental fricative [ð], the soft 'th' of English 'this'; Welsh writes the sound with the digraph dd, and it never hardens to a stop.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Red Book of Hergest</span>
+          <h3 class="myth-title">The Conversation of Myrddin and Gwenddydd</h3>
+          <p class="myth-text">The Cyfoesi Myrddin a Gwenddydd ei chwaer — 'The Conversation of Myrddin and His Sister Gwenddydd' — is the tradition's most human document. Gwenddydd, wife of Rhydderch and sister of the wild prophet, questions her brother across the gulf his madness has opened: she mourns the warrior he was, the mead-feasts he no longer honours, the lord they both have lost. Myrddin answers her with prophecy — the fate of Wales, the coming of its deliverers — but the prophecy keeps breaking against grief.</p><p class="myth-text">The dialogue fixes what the poems imply: the wild man is not forsaken but watched from the world he left. Gwenddydd survives in Geoffrey of Monmouth's Latin as Ganieda — Rhydderch's queen, Myrddin's sister, and, at the end of the Vita Merlini, his successor in prophecy itself.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-in</span>
-        <span class="phoneme-desc">Final unstressed syllable with the Welsh final-y sound [ɨ], a high central vowel between the i of 'bit' and the Welsh u, closing on [n].</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Vita Merlini</span>
+          <h3 class="myth-title">The Threefold Death and the Life of the Forest</h3>
+          <p class="myth-text">Geoffrey of Monmouth's Vita Merlini (c. 1150) is the wild man's fullest biography. Merlinus — poet, prophet, and king in Geoffrey's telling — loses his reason at a battle among the northern princes and flees to the Caledonian wood, where he lives as a silvester homo, a man of the forest, feeding on roots and fruit, snow on his shoulders, unknown to his own court. Rhydderch's men find him and drag him back; at court he laughs at things no one understands, and his laughter is always a prophecy. To a boy he foretells a threefold death: from a rock, in a tree, and in the water — and the boy, falling from a cliff, is caught by a tree with his head in the stream, dying all three deaths at once, as no human prudence could have guarded against.</p><p class="myth-text">The poem lets him go home to the forest at last. He appears riding a stag, driving the woodland herds before him like a shepherd of the wild; [[taliesin|<a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>]] — Telgesinus in the Latin — comes to him, and the two seers discourse at length on the winds, the waters, the fishes, and the making of the world. In the end Merlin gives his observatory to his sister Ganieda, who takes up the prophetic gift, and retires to the forest for good — the mad king become the wise wild man, the only sovereignty he can still keep.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="400">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Historia Regum Britanniae / Historia Brittonum</span>
+          <h3 class="myth-title">The Boy at Vortigern's Tower</h3>
+          <p class="myth-text">Geoffrey's other Merlin came from another book. The ninth-century Historia Brittonum of Nennius tells of the boy Ambrosius — a child without a father — brought to King Vortigern to be sacrificed so that his collapsing tower at Dinas Emrys might stand; the boy instead reveals the pool beneath the foundations and the two dragons, red and white, whose battle is the prophecy of Britain: the red dragon of the Britons, the white of the Saxons.</p><p class="myth-text">Geoffrey took Nennius's boy and gave him Myrddin's name: Merlinus Ambrosius. The graft made one figure of two traditions — the royal prophet of the tower and the mad prophet of the forest — and Gerald of Wales, a generation later, was already insisting they were two. The composite Merlin who results is the one the world inherited: prophet to Vortigern, architect of kings, and, in the romances that followed, counsellor of Arthur himself.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'MUR-thin' — stress the first syllable (the Welsh penult); the dd is the soft 'th' of 'this', and the whole name takes two short beats, never 'MER-lin'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Myrddin, the prophet and wild man of the Black Book of Carmarthen and the Red Book of Hergest; son of Morfryn in the Welsh Triads.</li><li><strong>Medieval Latin</strong> Merlinus — Geoffrey of Monmouth's Latinization (Historia Regum Britanniae, c. 1136; Vita Merlini, c. 1150), the form that conquered the world.</li><li><strong>Welsh epithets</strong> Myrddin Wyllt, 'Myrddin the Wild'; Myrddin Emrys, the Ambrosian prophet of Dinas Emrys.</li><li><strong>Name origin</strong> From the place-name Caerfyrddin (Carmarthen), itself from Roman Moridunum, 'sea-fort' — the person is named from the place, not the place from the person.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Myrddin is Tier 2 by the mechanical rule: the normalized Middle Welsh form is already plain ASCII — there is no diacritic and no distinctive atomic letter for the ASCII alphabet to lose, and the digraph dd is an orthographic convention, not a lost character. The capital alone distinguishes the temple form from the input; the prophet's standing in the tradition is beside the point.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -378,7 +293,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Wild Prophet of the Forest</h2>
             <p class="section-subtitle">Seer, Wild Man</p>
         </div>
@@ -429,65 +344,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Myrddin</p>
-        </div>
-        
-      <p class="lead-text">Myrddin's dossier divides in two, and the tradition itself knew it: the northern prophet who went mad at Arfderydd and fled to Coed Celyddon, preserved in the Welsh Triads, the Annales Cambriae, and the Black Book poems; and Geoffrey of Monmouth's Merlinus, who carried the wild man into Latin and grafted him onto the Arthurian world. Gerald of Wales already separated them in the twelfth century: Merlinus Ambrosius, the boy prophet of Vortigern's tower, and Merlinus Celidonius — Sylvester — the wild man of the Caledonian forest.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Annales Cambriae / Trioedd Ynys Prydein</span>
-          <h3 class="myth-title">The Battle of Arfderydd</h3>
-          <p class="myth-text">The Annales Cambriae enter under the year 573 the battle of Arfderydd, fought in the north between the sons of Eliffer and Gwenddolau son of Ceidio — a historical-seeming conflict of the British Old North. The Welsh Triads count it among the futile battles of the Island of Britain, brought about, in the triad's famous understatement, for a lark's nest; and the triad records the consequence that matters here: Gwenddolau fell, and Myrddin became mad.</p><p class="myth-text">From that seed the whole legend grows. Myrddin son of Morfryn, his lord dead and his side defeated, flees the world of the mead-hall into Coed Celyddon, the Caledonian forest, and becomes Myrddin Wyllt — the Wild — living from the forest's gifts and speaking only in verse and prophecy.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Black Book of Carmarthen</span>
-          <h3 class="myth-title">The Apple Trees and the Oianau</h3>
-          <p class="myth-text">The earliest Welsh manuscript, the Black Book of Carmarthen (c. 1250), preserves the poems that give the wild man his own voice. In Yr Afallennau, 'The Apple Trees', Myrddin addresses the sweet apple tree that shelters him: he laments Gwenddolau, slain in the bloodshed of Arfderydd; he grieves that he endures want while once he rode at the head of warriors; he hides from Rhydderch's men; and the refrain returns to the tree, his one companion and hiding-place.</p><p class="myth-text">The companion poem, Yr Oianau, keeps the same voice — the outcast prophet calling his mournful 'oian' through the forest, mourning his dead, marked out by madness as the gods' or fate's chosen sufferer. These are not narrative poems but laments with prophecy threaded through them; together they made Myrddin the patron and mouthpiece of the whole Welsh prophetic genre.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Red Book of Hergest</span>
-          <h3 class="myth-title">The Conversation of Myrddin and Gwenddydd</h3>
-          <p class="myth-text">The Cyfoesi Myrddin a Gwenddydd ei chwaer — 'The Conversation of Myrddin and His Sister Gwenddydd' — is the tradition's most human document. Gwenddydd, wife of Rhydderch and sister of the wild prophet, questions her brother across the gulf his madness has opened: she mourns the warrior he was, the mead-feasts he no longer honours, the lord they both have lost. Myrddin answers her with prophecy — the fate of Wales, the coming of its deliverers — but the prophecy keeps breaking against grief.</p><p class="myth-text">The dialogue fixes what the poems imply: the wild man is not forsaken but watched from the world he left. Gwenddydd survives in Geoffrey of Monmouth's Latin as Ganieda — Rhydderch's queen, Myrddin's sister, and, at the end of the Vita Merlini, his successor in prophecy itself.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Vita Merlini</span>
-          <h3 class="myth-title">The Threefold Death and the Life of the Forest</h3>
-          <p class="myth-text">Geoffrey of Monmouth's Vita Merlini (c. 1150) is the wild man's fullest biography. Merlinus — poet, prophet, and king in Geoffrey's telling — loses his reason at a battle among the northern princes and flees to the Caledonian wood, where he lives as a silvester homo, a man of the forest, feeding on roots and fruit, snow on his shoulders, unknown to his own court. Rhydderch's men find him and drag him back; at court he laughs at things no one understands, and his laughter is always a prophecy. To a boy he foretells a threefold death: from a rock, in a tree, and in the water — and the boy, falling from a cliff, is caught by a tree with his head in the stream, dying all three deaths at once, as no human prudence could have guarded against.</p><p class="myth-text">The poem lets him go home to the forest at last. He appears riding a stag, driving the woodland herds before him like a shepherd of the wild; [[taliesin|<a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>]] — Telgesinus in the Latin — comes to him, and the two seers discourse at length on the winds, the waters, the fishes, and the making of the world. In the end Merlin gives his observatory to his sister Ganieda, who takes up the prophetic gift, and retires to the forest for good — the mad king become the wise wild man, the only sovereignty he can still keep.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="400">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Historia Regum Britanniae / Historia Brittonum</span>
-          <h3 class="myth-title">The Boy at Vortigern's Tower</h3>
-          <p class="myth-text">Geoffrey's other Merlin came from another book. The ninth-century Historia Brittonum of Nennius tells of the boy Ambrosius — a child without a father — brought to King Vortigern to be sacrificed so that his collapsing tower at Dinas Emrys might stand; the boy instead reveals the pool beneath the foundations and the two dragons, red and white, whose battle is the prophecy of Britain: the red dragon of the Britons, the white of the Saxons.</p><p class="myth-text">Geoffrey took Nennius's boy and gave him Myrddin's name: Merlinus Ambrosius. The graft made one figure of two traditions — the royal prophet of the tower and the mad prophet of the forest — and Gerald of Wales, a generation later, was already insisting they were two. The composite Merlin who results is the one the world inherited: prophet to Vortigern, architect of kings, and, in the romances that followed, counsellor of Arthur himself.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -551,8 +415,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Myrddin</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Myrddin</strong> is the standard Celtic romanisation, documented in academic sources — “Merlin”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">myrddin</p>
+                <p class="card-body">The plain <strong>myrddin</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Myrddin</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Myrddin</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Myrddin.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Myrddin</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Myrddin</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Myrddin</p>
+                    <p class="card-body">The full Unicode restoration. <strong>myrddin.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Myrddin was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈmər.ðɨn/</span>
+            <span class="ipa-label">Modern Welsh</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">M-</span>
+        <span class="phoneme-desc">Voiced bilabial nasal [m], exactly the English m; the name opens on the same sound as the place-name Caerfyrddin (Carmarthen) from which it descends.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-y-</span>
+        <span class="phoneme-desc">The Welsh clear y, an unstressed-quality central vowel [ə] — the 'uh' of English 'about' — because it stands in the stressed penult.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-dd-</span>
+        <span class="phoneme-desc">Voiced dental fricative [ð], the soft 'th' of English 'this'; Welsh writes the sound with the digraph dd, and it never hardens to a stop.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-in</span>
+        <span class="phoneme-desc">Final unstressed syllable with the Welsh final-y sound [ɨ], a high central vowel between the i of 'bit' and the Welsh u, closing on [n].</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'MUR-thin' — stress the first syllable (the Welsh penult); the dd is the soft 'th' of 'this', and the whole name takes two short beats, never 'MER-lin'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Myrddin is Tier 2 by the mechanical rule: the normalized Middle Welsh form is already plain ASCII — there is no diacritic and no distinctive atomic letter for the ASCII alphabet to lose, and the digraph dd is an orthographic convention, not a lost character. The capital alone distinguishes the temple form from the input; the prophet's standing in the tradition is beside the point.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Myrddin is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Myrddin</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -570,7 +575,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/myrddin_mascot.webp" type="image/webp"><img src="../assets/myrddin_mascot.png" alt="Myrddin mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/myrddin_mascot.webp" type="image/webp"><img src="../assets/myrddin_mascot.png" alt="Myrddin mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -608,7 +613,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/myrddin_logomark.webp" type="image/webp"><img src="../assets/myrddin_logomark.webp" alt="Myrddin logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/myrddin_logomark.webp" type="image/webp"><img src="../assets/myrddin_logomark.webp" alt="Myrddin logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

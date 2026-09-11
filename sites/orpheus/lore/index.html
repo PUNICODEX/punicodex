@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Orpheús — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Ὀρφεύς</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Orpheús.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Ὀρφεύς</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Orpheús</strong> (Ὀρφεύς) is attested in the source tradition — “Darkness of the night”. Its aspirated consonants, diphthongs, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">orpheus</p>
-                    <p class="card-body">Reduced to plain <strong>orpheus</strong>, the name loses everything that made it specific: aspirated consonants, diphthongs, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Orpheús</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Orpheús</strong> restores aspirated consonants, diphthongs, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Orpheús.com → xn--orphes-tya.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Orpheús</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Orpheús</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Orpheús is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Ὀρφεύς</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Orpheús is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Orpheús</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Orpheús</p>
-                    <p class="card-body">Restores <strong>Ὀρφεύς</strong>. The live temple domain — <strong>orpheús.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">orpheus</p>
-                    <p class="card-body">Flattens <strong>Ὀρφεύς</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Orpheús was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Orpheús</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/or.pʰeús/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">or-FEWS — the stress lands on the last syllable.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Ὀρφεύς</li><li><strong>Latin</strong> Orpheus</li><li><strong>Owned form</strong> Orpheús</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Ὀρφεύς stresses the final syllable — Orpheús — and the restoration keeps the acute where the tradition puts it. The etymology is debated (perhaps from a root for "orphan" or the "darkness" of his descent); the name is older than its explanations, which is exactly right for the singer who is all voice.</p></div>
+      <p class="lead-text">Orpheús' myths are all about what music can and cannot do: it charms everything in nature, opens the underworld's doors, and saves nothing except itself. Epic, lyric, and Roman poetry, and finally the mystery-religion that took his name, turn one Thracian singer into the West's permanent anatomy of art, love, and loss.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Power</span>
+          <h3 class="myth-title">The Song that Moves Stones</h3>
+          <p class="myth-text">Genealogy made him art's aristocrat — son of Kalliopē, Muse of epic, by the Thracian king Oeagrus; or, in the version that flatters him more, by <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a> himself (Apollodorus 1.3.2). What he did with the inheritance became proverbial. When Orpheús played, the tradition insists, nature suspended its habits: trees unrooted and followed him down from Pieria, rivers halted mid-course, wild beasts lay down with sheep, and the oldest surviving witness, a line of Simonides (fr. 567 PMG), has 'the birds flying above him, the fishes leaping from the blue deep' — repeated almost verbatim by Apollonius Rhodius (Argonautica 1.23–34). The exaggeration is the point. No one claims Orpheús won a war; his was the one power the gods could not do better — harmony, which is to say the world persuaded rather than forced. Greek art never wrote a stronger claim for itself: song is not entertainment but government, over a jurisdiction that includes the stones.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Voyage</span>
+          <h3 class="myth-title">The Singer on the Argo</h3>
+          <p class="myth-text">Apollonius Rhodius gives the hero's gift its most practical use. On the Argo, Orpheús is not decoration: his lyre sets the rowers' time and stills the quarrels of heroes crowded on one deck (Argonautica 1.494–515, 1.540–546), and — at the passage of the Seirḗnes — his song saves the expedition outright, drowning the death-song in a nobler strain until the lethal shore is past (Argonautica 4.885–919). Pindar had already numbered him among the Argonauts (Pythian 4.176 ff.) as the one indispensable passenger who carried no weapon. The episode is the epic's quiet thesis: the most dangerous stretch of the most dangerous voyage in Greek legend is survived not by a blade but by a string, tuned. Every crew since — rowing, sailing, singing at the oars — has unknowingly rehearsed his passage, and every navy that still pipes its rowers keeps his discipline without his name.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Descent</span>
+          <h3 class="myth-title">The Look Back</h3>
+          <p class="myth-text"><a href="/eurydice/" class="crosslink" data-crosslink="eurydice">Eurydíkē</a> died of a viper's bite on their wedding day, and Orpheús answered with the act that defines him: he went down after her, alive. Katabasis was <a href="/odysseus/" class="crosslink" data-crosslink="odysseus">Odysseus</a>' desperate errand and <a href="/herakles/" class="crosslink" data-crosslink="herakles">Herakles</a>' labor; Orpheús went by the invitation of his own gift. His song stilled Charon's oar, silenced the triple throat of <a href="/cerberus/" class="crosslink" data-crosslink="cerberus">Cerberus</a>, and stopped the whips of the Erinyes mid-stroke; the shades wept, and <a href="/hades/" class="crosslink" data-crosslink="hades">Hádēs</a> himself relented — on one condition: she would follow behind him, and he must not turn to look until both stood in the upper light. The poets differ on the fatal instant — Virgil makes him 'conquered in mind' (Georgics 4.491), Ovid blames the forgetfulness of desperate love (<a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 10.56–57) — but all agree on the geography of the loss: the threshold. He looked. She fell back, already his, saying only 'farewell.' The West has been writing the sentence ever since: love almost defeats death — almost — and the whole distance between the two words is one glance.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The End</span>
+          <h3 class="myth-title">The Head that Sang</h3>
+          <p class="myth-text">The end matches the gift in strangeness. In Ovid's telling (Metamorphoses 10.78–11.66), Orpheús withdrew from all love after losing Eurydíkē — and the Thracian women, Maenads of <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a> or jilted brides, the versions disagree, tore him apart on the banks of the Hebrus in a Bacchic frenzy. Even dismembered he kept singing: the head floated down the river, still calling 'Eurydíkē,' out into the sea and ashore at Lesbos, where for ages it prophesied from a cave until Apóllōn silenced it; and the lyre, set in the sky, became the constellation Lyra (Ovid, Metamorphoses 11.1–66). The Orphics, whose own god died in pieces, found their patron in him — a singer who preaches the soul's journey and is himself the journey's price. The myth's last mercy is exact: the song survives the singer, and what killed him is precisely what he would not stop doing.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Singer of the World</h2>
             <p class="section-subtitle">Music, Poetry, the Descent, and the Lost Look Back</p>
         </div>
@@ -378,7 +296,7 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M22 10C18 24 18 36 24 44C28 50 36 50 40 44C46 36 46 24 42 10M22 10H26M38 10H42M28 18V40M36 18V40M26 44H38"></path></svg></div>
         <h4 class="domain-name">The Lyre</h4>
-        <p class="domain-desc">His instrument: the gift of <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a>, the sound that made nature stop to listen.</p>
+        <p class="domain-desc">His instrument: the gift of Apóllōn, the sound that made nature stop to listen.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 24C16 16 24 16 32 24C40 32 48 32 56 24M8 40C16 32 24 32 32 40C40 48 48 48 56 40"></path></svg></div>
@@ -398,70 +316,35 @@
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
         <span class="symbol-name">The lyre</span>
-        <span class="symbol-meaning">Art as the measure of the world — the cosmos tuned to a string</span>
+        <span class="symbol-meaning">Art as the measure of the world — the cosmos tuned to a string.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The laurel</span>
-        <span class="symbol-meaning">His prophetic-grove crown at Pieria</span>
+        <span class="symbol-meaning">The crown of his prophetic grove at Pieria, where trees learned to move.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The nightingale</span>
-        <span class="symbol-meaning">His bird — song persisting through darkness</span>
+        <span class="symbol-meaning">Song persisting through darkness — the bird of his native Thrace.</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The river Hebrus</span>
+        <span class="symbol-meaning">The stream that carried his still-singing head down to the sea and ashore at Lesbos.</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The constellation Lyra</span>
+        <span class="symbol-meaning">His lyre set among the stars — the only instrument in the sky.</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Orpheús</p>
-        </div>
-        
-      <p class="lead-text">Orpheús' myths are all about what music can and cannot do: it charms everything, and it saves nothing except itself.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Power</span>
-          <h3 class="myth-title">The Song that Moves Stones</h3>
-          <p class="myth-text">The tradition is unanimous: when Orpheús played, the trees uprooted themselves to follow, the rivers halted, the wild beasts lay down beside the sheep. Simonides' line — "the birds flew above him, the fish leapt from the water" — is the oldest surviving witness. His mother was the Muse Kalliopē; his lyre, some say, Apóllōn's own gift: music as the one power that rivals the gods'.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Voyage</span>
-          <h3 class="myth-title">The Singer on the Argo</h3>
-          <p class="myth-text">Apollonius Rhodius gives him the heroic use: on the Argo, his song timed the rowers, calmed the quarrels, and — at the Seirḗnes' shore — drowned the death-song in a nobler one. He is the epic's proof that the hero's tool is not always the sword: the Argonauts' most dangerous passage was survived by a string, not a blade.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Descent</span>
-          <h3 class="myth-title">The Look Back</h3>
-          <p class="myth-text">Eurydikē died of a snake's bite on their wedding day, and Orpheús did what no one does: went after her, alive. His song charmed Charon, <a href="/cerberus/" class="crosslink" data-crosslink="cerberus">Cerberus</a>, and the Furies' whips to stillness; <a href="/hades/" class="crosslink" data-crosslink="hades">Hádēs</a> himself relented — on one condition: she follows behind, and he must not look back until both stand in the light. At the threshold, he looked. She fell back, saying only "farewell." The West has been writing the sentence ever since: love almost defeats death — almost.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The End</span>
-          <h3 class="myth-title">The Head that Sang</h3>
-          <p class="myth-text">The Maenads of <a href="/dionysos/" class="crosslink" data-crosslink="dionysos">Dionysos</a> tore him apart — for refusing their god, or their beds, the versions disagree. His head, still singing, floated down the Hebrus to the sea and came ashore at Lesbos, where it prophesied until Apóllōn silenced it; his lyre was set among the stars. Even dismembered, the singer does not stop: the myth's last mercy is that the song survives the man.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -525,8 +408,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Ὀρφεύς</p>
+                <p class="card-body">The name in its original Greek form. <strong>Orpheús</strong> (Ὀρφεύς) is attested in the source tradition — “Darkness of the night”. Its aspirated consonants, diphthongs, and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">orpheus</p>
+                <p class="card-body">Reduced to plain <strong>orpheus</strong>, the name loses everything that made it specific: aspirated consonants, diphthongs, and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Orpheús</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Orpheús</strong> restores aspirated consonants, diphthongs, and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Orpheús.com → xn--orphes-tya.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Orpheús</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Orpheús</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Orpheús</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Orpheús</p>
+                    <p class="card-body">Restores <strong>Ὀρφεύς</strong>. The live temple domain — <strong>orpheús.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">orpheus</p>
+                    <p class="card-body">Flattens <strong>Ὀρφεύς</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Orpheús was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/or.pʰeús/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">or-FEWS — the stress lands on the last syllable.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Ὀρφεύς stresses the final syllable — Orpheús — and the restoration keeps the acute where the tradition puts it. The etymology is debated (perhaps from a root for 'orphan' or the 'darkness' of his descent); the name is older than its explanations, which is exactly right for the singer who is all voice.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Orpheús is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Ὀρφεύς</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Orpheús is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -535,7 +548,7 @@
             <div class="pantheon-text">
                 <span class="pantheon-eyebrow">Go Deeper</span>
                 <h2 class="pantheon-title">Extended Lore</h2>
-                <p class="pantheon-body">Orpheús is the patron of the almost. He got her back — almost. He sang the Furies to tears — and still lost. His question is the one every artist and every lover knows: when the rule is "do not look back," and the one thing you have is the looking — what are you willing to lose for one glimpse of what you love?</p>
+                <p class="pantheon-body">Orpheús is the patron of the almost. He retrieved her — almost. He sang the Erinyes to stillness — and still lost. His question is the one every artist and every lover knows: when the rule is 'do not look back,' and the one thing you possess is the looking, what are you willing to lose for a single glimpse of what you love?</p>
                 <a href="extended/" class="btn-primary btn-ghost">
                     <span>Enter Extended Lore</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -544,7 +557,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/orpheus_mascot.webp" type="image/webp"><img src="../assets/orpheus_mascot.png" alt="Orpheús mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/orpheus_mascot.webp" type="image/webp"><img src="../assets/orpheus_mascot.png" alt="Orpheús mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -582,7 +595,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/orpheus_logomark.webp" type="image/webp"><img src="../assets/orpheus_logomark.webp" alt="Orpheús logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/orpheus_logomark.webp" type="image/webp"><img src="../assets/orpheus_logomark.webp" alt="Orpheús logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Alalu, Primordial King, Heaven. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/alalu/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Alalu?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Alalu is /ˈa.la.lu/ — approximately 'AH-lah-loo' — three even syllables; the Hittite/Hurrian original is irrecoverable, so the reconstruction is conservative."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Alalu mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alalu means Unknown in the hittite tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Alalu?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alalu is associated with Throne (The first seat of divine kingship in heaven), Nine years (The fixed term of Alalu's reign and the cyclic rhythm of succession), Dark earth (The underworld or chthonic realm to which the fallen first king withdraws), Divine determinative (The cuneiform dingir (𒀭) that marks Alalu as a god in Hittite texts), Succession chain (Alalu → Anu → Kumarbi → Teššub, the Hittite parallel to Greek Ouranos → Kronos → Zeus)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Alalu in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alalu is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Alalu?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The First Reign” — Alalu's mythology is almost entirely contained in the 'Kingship in Heaven' narrative, but that single text is enough to make him one of the most important figures in Hittite and comparative mythology. He is the beginning of the dynasty of heaven. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/alalu_logolockup.webp" type="image/webp"><img src="../../assets/alalu_logolockup.png" alt="Alalu" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Alalu</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Alalu</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/alalu_mascot.webp" type="image/webp"><img src="../../assets/alalu_mascot.png" alt="Alalu — Primordial King, Heaven" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/alalu_mascot.webp" type="image/webp"><img src="../../assets/alalu_mascot.png" alt="Alalu — Primordial King, Heaven" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -201,7 +252,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Alalu</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Alalu is Tier 2: the restored form Alalu preserves only the capital A and the Latin alphabet; it carries no distinctive diacritic or non-ASCII letter. The name's Hittite/Hurrian pronunciation is unknown, and the plain form is the most defensible display.</p>
+                <p class="etymology-note">The name <strong>Alalu</strong> reaches the modern world through scholarly transliteration of the hittite tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -235,7 +286,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">A</td><td><code>U+0041</code></td><td>Latin Capital Letter A</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">a</td><td><code>U+0061</code></td><td>Latin Small Letter A</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">l</td><td><code>U+006C</code></td><td>Latin Small Letter L</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">u</td><td><code>U+0075</code></td><td>Latin Small Letter U</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Alalu</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Alalu</strong> is the first king of the gods in Hittite and Hurrian mythology, the original occupant of the celestial throne before Anu the sky-god and long before the storm-god Teššub. His reign is narrated in the 'Kingship in Heaven' myth, a Near Eastern succession story that parallels the Greek sequence of <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a>, <a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a>, and <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>. For nine years Alalu rules in heaven; then his servant <strong>Anu</strong> rises against him, and Alalu flees to the dark earth below. The kingship he loses becomes the inheritance that shapes the entire Hittite pantheon.</p><p class="lead-text">This temple treats Alalu as the <strong>archetype of primordial sovereignty</strong>: the ruler whose authority is ancient, legitimate, and yet destined to be overthrown. He is not a storm-god or a creator; he is the first holder of the mandate of heaven, the figure against whom every later king defines himself.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Alalu in Later Traditions</h3><p class="cultural-card-body">Alalu belongs to a widespread ancient Near Eastern and Mediterranean pattern of primordial king-gods who are overthrown by their successors.</p><p>The closest parallel is the Greek succession <em>Ouranos → Kronos → Zeus</em>: Ouranos, like Alalu, is the first sky/celestial ruler who is deposed by a younger power and withdraws from the active cosmos. The Hittite-Hurrian version, however, makes the process explicit and contractual: each king rules for nine years before being replaced. Roman <em> Saturnus</em> preserves a memory of the golden-age king deposed by Jupiter. In Mesopotamian tradition, the succession of divine kingship from Anu to <a href="/enlil/" class="crosslink" data-crosslink="enlil">Enlil</a> and later to <a href="/marduk/" class="crosslink" data-crosslink="marduk">Marduk</a> follows a comparable logic, though Alalu himself is foreign to Sumerian and Akkadian sources. The name Alalu has no secure etymology; it may be Hurrian, Hattic, or a substrate survival from an earlier Anatolian layer.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Alalu survives chiefly as a comparative-mythological type: the first king of heaven.</p><p>Modern scholars cite the 'Kingship in Heaven' text as a key witness for the Near Eastern background of Greek theogony, and Alalu is regularly compared to Ouranos and Saturnus. He appears in encyclopedias of mythology and in studies of Hittite religion, but has little direct afterlife in popular culture — precisely because his myth is about <em>abdication and memory</em> rather than heroic action. For PuniCodex, Alalu is a restoration of the <strong>origin-point of kingship</strong>: the name that marks where the mandate of heaven begins. The name still means: <strong>the throne before the throne.</strong></p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Alalu</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Alalu in Later Traditions</h3><p class="cultural-card-body">Alalu belongs to a widespread ancient Near Eastern and Mediterranean pattern of primordial king-gods who are overthrown by their successors.</p><p>The closest parallel is the Greek succession <em>Ouranos → <a href="/kronos/" class="crosslink" data-crosslink="kronos">Kronos</a> → <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a></em>: <a href="/ouranos/" class="crosslink" data-crosslink="ouranos">Ouranos</a>, like Alalu, is the first celestial ruler who is deposed by a younger power and withdraws from the active cosmos. The Hittite-Hurrian version, however, makes the process explicit and contractual: each king rules for nine years before being replaced. Roman <em>Saturnus</em> preserves a memory of the golden-age king deposed by Jupiter. In Mesopotamian tradition, the succession of divine kingship from Anu to <a href="/enlil/" class="crosslink" data-crosslink="enlil">Enlil</a> and later to <a href="/marduk/" class="crosslink" data-crosslink="marduk">Marduk</a> follows a comparable logic, though Alalu himself is foreign to Sumerian and Akkadian sources. The name Alalu has no secure etymology; it may be Hurrian, Hattic, or a substrate survival from an earlier Anatolian layer.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Alalu survives chiefly as a comparative-mythological type: the first king of heaven.</p><p>Modern scholars cite the 'Kingship in Heaven' text as a key witness for the Near Eastern background of Greek theogony, and Alalu is regularly compared to Ouranos and Saturnus. He appears in encyclopedias of mythology and in studies of Hittite religion, but has little direct afterlife in popular culture — precisely because his myth is about <em>abdication and memory</em> rather than heroic action. For PuniCodex, Alalu is a restoration of the <strong>origin-point of kingship</strong>: the name that marks where the mandate of heaven begins. The name still means: <strong>the throne before the throne.</strong></p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The 'Kingship in Heaven' myth is preserved in Hittite cuneiform tablets excavated at Boğazköy-Hattusa, the Hittite capital, notably KUB 33.120 with its duplicate and continuation. The tablets belong to the archives of the Hittite royal citadel and represent a Hittite translation or adaptation of a Hurrian original. No independent Hurrian manuscript has survived, so the Hittite copies are the sole direct witnesses to Alalu's myth.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Alalu means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Alalu matters to the modern reader precisely because he did nothing heroic. He held a throne for nine years, yielded it when his time was done, and withdrew into the dark earth — and for that withdrawal he became the patriarch of an entire pantheon. In an age that treats power as something to be seized, held, and defended to the last, Alalu embodies a radically older idea: that sovereignty is an <em>office</em>, not a possession, and that legitimacy includes the willingness to vacate.</p><p>The 'Kingship in Heaven' text makes this explicit in a way no other ancient theogony dares. Alalu is not murdered, mutilated, or imprisoned; he is <strong>succeeded</strong>. His fall is written into the order of things — a cosmic constitution in which every reign has a term, and every successor was once a servant standing in the courtier's posture, cup in hand. Revolution, the text says, is not the breakdown of order but its deep structure.</p><p>And there is a quieter lesson in the dark earth below. Alalu does not vanish when defeated; he endures, remembered, ancestral, the name from which the storm-god's whole lineage descends. He asks us to consider what becomes of leaders who learn to <strong>retire</strong> — and of cultures that know how to retire them. Perhaps a mandate is only truly legitimate if it can imagine its own end: the throne is sacred because it will one day hold someone else.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Alalu, Primordial King, Heaven, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Alalu?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Alalu</strong> is /ˈa.la.lu/ — approximately 'AH-lah-loo' — three even syllables; the Hittite/Hurrian original is irrecoverable, so the reconstruction is conservative..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Alalu mean?</summary><div class="faq-answer"><p><strong>Alalu</strong> means <strong>Unknown</strong> in the hittite tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Alalu?</summary><div class="faq-answer"><p>Alalu is associated with <strong>Throne</strong> (The first seat of divine kingship in heaven), <strong>Nine years</strong> (The fixed term of Alalu's reign and the cyclic rhythm of succession), <strong>Dark earth</strong> (The underworld or chthonic realm to which the fallen first king withdraws), <strong>Divine determinative</strong> (The cuneiform dingir (𒀭) that marks Alalu as a god in Hittite texts), <strong>Succession chain</strong> (Alalu → Anu → Kumarbi → Teššub, the Hittite parallel to Greek Ouranos → Kronos → Zeus).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Alalu in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>alalu</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Alalu?</summary><div class="faq-answer"><p>The Hittite 'Kingship in Heaven' myth (CTH 344) opens with Alalu seated on the throne in heaven. He is the first to hold kingship among the gods, and for nine years his word is law. The text, translated from a Hurrian original, presents kingship not as eternal but as a rotating office: even the highest god may be replaced when his term is fulfilled. Alalu's reign is therefore the prototype of legitimate rule, not its negation.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Alalu?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Alalu</strong> is /ˈa.la.lu/ — approximately 'AH-lah-loo' — three even syllables; the Hittite/Hurrian original is irrecoverable, so the reconstruction is conservative.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Alalu mean?</summary><div class="faq-answer"><p><strong>Alalu</strong> means <strong>Unknown</strong> in the hittite tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Alalu?</summary><div class="faq-answer"><p>Alalu is associated with <strong>Throne</strong> (The first seat of divine kingship in heaven), <strong>Nine years</strong> (The fixed term of Alalu's reign and the cyclic rhythm of succession), <strong>Dark earth</strong> (The underworld or chthonic realm to which the fallen first king withdraws), <strong>Divine determinative</strong> (The cuneiform dingir (𒀭) that marks Alalu as a god in Hittite texts), <strong>Succession chain</strong> (Alalu → Anu → Kumarbi → Teššub, the Hittite parallel to Greek Ouranos → Kronos → Zeus).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Alalu in Unicode?</summary><div class="faq-answer"><p><strong>Alalu</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Alalu?</summary><div class="faq-answer"><p>“The First Reign” — Alalu's mythology is almost entirely contained in the 'Kingship in Heaven' narrative, but that single text is enough to make him one of the most important figures in Hittite and comparative mythology. He is the beginning of the dynasty of heaven. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -298,7 +361,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Alalu and related cults.</cite></li><li><cite>The 'Kingship in Heaven' myth is preserved in Hittite cuneiform tablets excavated at Boğazköy-Hattusa, the Hittite capital, notably KUB 33.120 with its duplicate and continuation. The tablets belong to the archives of the Hittite royal citadel and represent a Hittite translation or adaptation of a Hurrian original. No independent Hurrian manuscript has survived, so the Hittite copies are the sole direct witnesses to Alalu's myth.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Alalu and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/alalu_logomark.webp" type="image/webp"><img src="../../assets/alalu_logomark.webp" alt="Alalu logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/alalu_logomark.webp" type="image/webp"><img src="../../assets/alalu_logomark.webp" alt="Alalu logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Hermóðr, Messenger, Courage. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/hermod/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Hermóðr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Hermóðr is /ˈher.moːðr/ — approximately HAIR-mohthr — the ó is long; the ð is the soft 'th' of 'this'; the final -r is the nominative ending, lightly sounded."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Hermóðr mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hermóðr means War-spirit in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Hermóðr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hermóðr is associated with Sleipnir's eight legs (The stride that crosses the boundary between worlds), The ring Draupnir (The token carried back from death as evidence and promise), The nine nights (The counted darkness of the road to Hel — the Edda's measure of a hero's patience)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Hermóðr in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII hermod strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Hermóðr?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Errand of the Nine Nights” — Hermóðr has essentially one story, and it is the noblest errand in the Edda: the ride to ransom Baldr, told in Gylfaginning with the plainness of a chronicle and the weight of a funeral. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/hermod_logolockup.webp" type="image/webp"><img src="../../assets/hermod_logolockup.png" alt="Hermóðr" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Hermóðr</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Hermóðr.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/hermod_mascot.webp" type="image/webp"><img src="../../assets/hermod_mascot.png" alt="Hermóðr — Messenger, Courage" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/hermod_mascot.webp" type="image/webp"><img src="../../assets/hermod_mascot.png" alt="Hermóðr — Messenger, Courage" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Old Norse Hermóðr is a transparent compound: herr ("host, army") + móðr ("spirit, mood, courage" — the same word as English "mood" and German "Mut"), whence the standard rendering "war-spirit." The restoration Hermóðr keeps the two things the ASCII form "Hermod" erases: the long ó and the letter ð (eth), the voiced dental fricative Old Norse wrote with its own character. Tier-1 by rule: two distinctive features preserved.</p>
+                <p class="etymology-note">The name <strong>Hermóðr</strong> carries the orthographic signature of the norse tradition: ᚼᛁᚱᛘᚢᚦᚱ. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — Hermóðr</li><li><strong>Modern Icelandic</strong> — Hermóður</li><li><strong>Old English cognate</strong> — Heremōd, the ill-fated Danish king of Beowulf</li><li><strong>Owned form</strong> — Hermóðr</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — Hermóðr, 'war-spirit' — herr, 'host, army' + móðr, 'spirit, courage'</li><li><strong>Modern Icelandic</strong> — Hermóður, the name's living form</li><li><strong>Old English cognate</strong> — Heremōd, the ill-fated Danish king of Beowulf — a namesake who kept the sound but not the honor</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -233,7 +284,7 @@
                 <thead>
                     <tr><th>Character</th><th>Unicode</th><th>Name</th><th>Block</th><th>Phonetic Role</th></tr>
                 </thead>
-                <tbody><tr class="reveal-up"><td class="char-cell">H</td><td><code>U+0048</code></td><td>Latin Capital Letter H</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">ó</td><td><code>U+00F3</code></td><td>Latin Small Letter O with Acute</td><td>Latin-1 Supplement</td><td><a href="/long/" class="crosslink" data-crosslink="long">Long</a> ó (ON ó = /oː/)</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">ðr</td><td><code>U+00F0</code></td><td>Character U+00F0</td><td>Latin-1 Supplement</td><td>Eth (ð) + nominative -r</td></tr></tbody>
+                <tbody><tr class="reveal-up"><td class="char-cell">H</td><td><code>U+0048</code></td><td>Latin Capital Letter H</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">m</td><td><code>U+006D</code></td><td>Latin Small Letter M</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">ó</td><td><code>U+00F3</code></td><td>Latin Small Letter O with Acute</td><td>Latin-1 Supplement</td><td>Long ó (ON ó = /oː/)</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">ðr</td><td><code>U+00F0</code></td><td>Character U+00F0</td><td>Latin-1 Supplement</td><td>Eth (ð) + nominative -r</td></tr></tbody>
             </table>
             <p class="breakdown-note">The <strong>Tier 1</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
         </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Hermóðr is <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a>'s son and the boldest rider of the Æsir: the god who volunteered, when <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a> lay dead, to mount Sleipnir and ride nine nights through darkness to the halls of Hel, to ransom the light of the world back from the land of the dead.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Hermóðr in Later Traditions</h3><p class="cultural-card-body">The temptation to compare Hermóðr with <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermēs</a> is as old as philology itself — the divine messenger riding between worlds looks like the Greek god's portrait. The comparison has been argued and abandoned for a century: the name is transparently Germanic (herr + móðr), not a borrowing, and the errand-rider is a role the North could grow on its own. What the comparison gets right is the shape of the job: where Hermēs is a psychopomp by office, Hermóðr becomes one for a single night, by courage. His cognate in the heroic record is Beowulf's Heremōd, and his kin in the pantheon are the other sons Óðinn spends on impossible errands — none of whom rode farther.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hermóðr left few traces outside the texts — no cult, no toponyms securely his — but the ride itself became one of the defining images of Norse myth: the nine nights, the golden bridge, the gate leapt in the dark. Modern retellings from Victorian mythographies to present-day novels and games cast him as the North's answer to <a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a>, the one who goes down to bargain with death and nearly wins. His name survives in the Icelandic given name Hermóður, and in scholarship as the standing example of the Edda's gift for making a minor god carry the grief of the whole world.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Hermóðr</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Hermóðr in Later Traditions</h3><p class="cultural-card-body">The temptation to compare Hermóðr with <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermēs</a> is as old as philology itself — the divine messenger riding between worlds looks like the Greek god's portrait. The comparison has been argued and abandoned for a century: the name is transparently Germanic (herr + móðr), not a borrowing, and the errand-rider is a role the North could grow on its own. What the comparison gets right is the shape of the job: where Hermēs is a psychopomp by office, Hermóðr becomes one for a single night, by courage. His cognate in the heroic record is <em>Beowulf</em>'s Heremōd, and his kin in the pantheon are the other sons <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> spends on impossible errands — none of whom rode farther.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Hermóðr left few traces outside the texts — no cult, no toponyms securely his — but the ride itself became one of the defining images of Norse myth: the nine nights, the golden bridge, the gate leapt in the dark. Modern retellings from Victorian mythographies to present-day novels and games cast him as the North's answer to <a href="/orpheus/" class="crosslink" data-crosslink="orpheus">Orpheus</a>, the one who goes down to bargain with death and nearly wins. His name survives in the Icelandic given name Hermóður, and in scholarship as the standing example of the Edda's gift for making a minor god carry the grief of the whole world.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Hermóðr is a textual figure: his attestations are the Codex Regius and its sister manuscripts of the <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> (13th–14th c.) and the <a href="/texts/poetic-edda/#hyndluljoth" class="crosslink citation-link" data-citation="hyndluljoth">Hyndluljóð</a>r preserved in the Flateyjarbók. No cult sites, toponyms, or inscriptions name him securely. The Gotland picture stones are his nearest material kin: the rider on the eight-legged horse on stones such as Ardre VIII is conventionally read as Óðinn or a hero on Sleipnir, and scholars have long wondered whether the image tradition knew the descent-ride that Gylfaginning tells.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Hermóðr means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Hermóðr is the patron of the necessary errand — the message someone has to carry, the door someone has to knock on, the descent someone has to volunteer for. He does everything right: the right horse, the right words, the right tokens. And still the answer is no. The Edda keeps him for that: proof that courage is owed regardless of the outcome, and that the errand, not the result, is what a name is made of.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Hermóðr, Messenger, Courage, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hermóðr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hermóðr</strong> is /ˈher.moːðr/ — approximately HAIR-mohthr — the ó is long; the ð is the soft 'th' of 'this'; the final -r is the nominative ending, lightly sounded..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hermóðr mean?</summary><div class="faq-answer"><p><strong>Hermóðr</strong> means <strong>War-spirit</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hermóðr?</summary><div class="faq-answer"><p>Hermóðr is associated with <strong>Sleipnir's eight legs</strong> (The stride that crosses the boundary between worlds), <strong>The ring Draupnir</strong> (The token carried back from death as evidence and promise), <strong>The nine nights</strong> (The counted darkness of the road to Hel — the Edda's measure of a hero's patience).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hermóðr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hermod</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hermóðr?</summary><div class="faq-answer"><p>When Baldr fell to the mistletoe dart and the gods' grief had spent itself, <a href="/frigg/" class="crosslink" data-crosslink="frigg">Frigg</a> asked who among the Æsir would ride the road to Hel and offer a ransom. Hermóðr the Bold, called Óðinn's sveinn — his lad, his attendant — stood up. They brought him Sleipnir, and he rode nine nights through valleys so dark and deep that he saw nothing until he reached the river Gjöll and the Gjallarbrú, the bridge roofed with glowing gold. There the maiden Móðguðr asked his name and lineage, and told him the bridge had thundered less under five companies of the dead the day before than under him alone.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Hermóðr?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Hermóðr</strong> is /ˈher.moːðr/ — approximately HAIR-mohthr — the ó is long; the ð is the soft 'th' of 'this'; the final -r is the nominative ending, lightly sounded.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Hermóðr mean?</summary><div class="faq-answer"><p><strong>Hermóðr</strong> means <strong>War-spirit</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Hermóðr?</summary><div class="faq-answer"><p>Hermóðr is associated with <strong>Sleipnir's eight legs</strong> (The stride that crosses the boundary between worlds), <strong>The ring Draupnir</strong> (The token carried back from death as evidence and promise), <strong>The nine nights</strong> (The counted darkness of the road to Hel — the Edda's measure of a hero's patience).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Hermóðr in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>hermod</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Hermóðr?</summary><div class="faq-answer"><p>“The Errand of the Nine Nights” — Hermóðr has essentially one story, and it is the noblest errand in the Edda: the ride to ransom <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>, told in Gylfaginning with the plainness of a chronicle and the weight of a funeral. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,19 +349,19 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Prose Edda (Gylfaginning)</cite></li><li><cite>Beowulf</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a></cite></li><li><cite>Prose Edda (<a href="/texts/prose-edda/#gylfaginning-49" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 49</a>)</cite></li><li><cite>Beowulf (Heremōd)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hermóðr and related cults.</cite></li><li><cite>Hermóðr is a textual figure: his attestations are the Codex Regius and its sister manuscripts of the Prose Edda (13th-14th c.) and the Hyndluljóðr preserved in the Flateyjarbók. No cult sites, toponyms, or inscriptions name him securely. The Gotland picture stones are his nearest material kin: the rider on the eight-legged horse on stones such as Ardre VIII is conventionally read as Óðinn or a hero on Sleipnir, and scholars have long wondered whether the image tradition knew the descent-ride that Gylfaginning tells.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Hermóðr and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/hermod_logomark.webp" type="image/webp"><img src="../../assets/hermod_logomark.webp" alt="Hermóðr logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/hermod_logomark.webp" type="image/webp"><img src="../../assets/hermod_logomark.webp" alt="Hermóðr logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

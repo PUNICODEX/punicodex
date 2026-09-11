@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Fúxī — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">伏羲</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Fúxī.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,191 +236,11 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">伏羲</p>
-                    <p class="card-body">The name in its original Chinese form. <strong>Fúxī</strong> (伏羲) is attested in the source tradition — “Hidden one”. Its macron-length vowels and acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">fuxi</p>
-                    <p class="card-body">Reduced to plain <strong>fuxi</strong>, the name loses everything that made it specific: macron-length vowels and acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Fúxī</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Fúxī</strong> restores macron-length vowels and acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Fúxī.com → xn--fx-rka1r.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Fúxī</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Fúxī</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Fúxī is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">伏羲</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Fúxī is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Fúxī</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Fúxī</p>
-                    <p class="card-body">Restores <strong>伏羲</strong>. The live temple domain — <strong>fúxī.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">fuxi</p>
-                    <p class="card-body">Flattens <strong>伏羲</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Fúxī was spoken</p>
-        </div>
-        
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/fu˧˥ ɕi˥/</span>
-            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">foo-shee, rising tone on fu, high level on xi.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Chinese</strong> 伏羲</li><li><strong>Variant writing</strong> 庖犧 (Páoxī)</li><li><strong>Owned form</strong> Fúxī</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Fúxī 伏羲 carries the rising tone on fú and the high level tone on xī in Mandarin; older romanizations write Fu-hsi. The first graph 伏 suggests "to subdue, to prostrate," the second 羲 a sacrificial term — a name older than its etymologies, borne by the first of the Three August Ones. The older romanization Fu-hsi records the same syllables; pinyin's x is the alveolo-palatal fricative of modern Mandarin.</p></div>
-        </div>
-      </div>
-    </div>
-</section>
-
-    <!-- Domains & Sacred Symbols -->
-    <section class="section section-symbols" id="symbols">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">05</span>
-            <h2 class="section-title">The First Teacher</h2>
-            <p class="section-subtitle">The Eight Trigrams, the Net, and the Marriage on the Mountain</p>
-        </div>
-        
-      <div class="domains-intro reveal-up"><p class="lead-text">Fúxī is where Chinese civilization says it learned to think: the sage-king who looked up at the heavens, down at the earth, and at the markings on birds and beasts — and abstracted the eight trigrams, the first writing of pattern itself.</p></div>
-      <div class="domains-grid">
-      <div class="domain-card reveal-up">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M14 14H50M14 26H26M38 26H50M14 38H50M14 50H26M38 50H50"></path></svg></div>
-        <h4 class="domain-name">The Eight Trigrams</h4>
-        <p class="domain-desc"><a href="/bagua/" class="crosslink" data-crosslink="bagua">Bāguà</a>: broken and unbroken lines in threes — the binary alphabet of the Yìjīng, attributed to his observation.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="100">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 20C12 20 8 26 8 32C8 38 12 44 20 44C28 44 36 20 44 20C52 20 56 26 56 32C56 38 52 44 44 44C36 44 28 20 20 20Z"></path></svg></div>
-        <h4 class="domain-name">The Net</h4>
-        <p class="domain-desc">He taught the people to knot cords into nets — fishing, hunting, and the technology of the snare.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="200">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M14 46C22 38 42 38 50 46M20 32C28 24 36 24 44 32M27 18H37M32 18V10"></path></svg></div>
-        <h4 class="domain-name">The Serpent Bodies</h4>
-        <p class="domain-desc">Han art shows him and <a href="/nuwa/" class="crosslink" data-crosslink="nuwa">Nǚwā</a> as serpents intertwined — the primal pair, measuring square and compass in hand.</p>
-      </div>
-      <div class="domain-card reveal-up" data-delay="300">
-        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 10V54M14 20H50M18 20L12 36H24L18 20ZM46 20L40 36H52L46 20ZM24 54H40"></path></svg></div>
-        <h4 class="domain-name">Marriage</h4>
-        <p class="domain-desc">He instituted the rites of marriage and the bride-price of deer skins — order after the flood.</p>
-      </div></div>
-      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
-      <div class="symbol-item">
-        <span class="symbol-name">The trigrams</span>
-        <span class="symbol-meaning">Pattern abstracted from nature — the seed of all Chinese correlative thought</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">The carpenter's square</span>
-        <span class="symbol-meaning">His emblem in Han art: the earth-measurer's tool (Nǚwā holds the compass of heaven)</span>
-      </div>
-      <div class="symbol-item">
-        <span class="symbol-name">The dragon-horse</span>
-        <span class="symbol-meaning">The creature from the Yellow River whose markings revealed the diagram</span>
-      </div></div></div>
-    </div>
-</section>
-
-    <!-- Mythology -->
+    <!-- Mythology — the heart of the lore page -->
     <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">01</span>
             <h2 class="section-title">Mythology</h2>
             <p class="section-subtitle">Stories of Fúxī</p>
         </div>
@@ -443,7 +268,7 @@
         <div class="myth-content">
           <span class="myth-tag">The Flood</span>
           <h3 class="myth-title">The Brother-Sister Marriage</h3>
-          <p class="myth-text">In the flood myth recorded among the Miao and in Tang collections, Fúxī and Nǚwā alone survive the waters, taking refuge on Mount <a href="/kunlun/" class="crosslink" data-crosslink="kunlun">Kūnlún</a>. Brother and sister, they divine heaven's will by rolling millstones and watching smoke columns join — and consent to marry, repopulating the drowned world. The myth explains both marriage's institution and humanity's second beginning.</p>
+          <p class="myth-text">In the flood myth of brother-sister survivors — recorded among the Miao peoples and in Tang-era collections, and later attached to Fúxī and <a href="/nuwa/" class="crosslink" data-crosslink="nuwa">Nǚwā</a> — the couple alone outlive the waters, taking refuge on Mount <a href="/kunlun/" class="crosslink" data-crosslink="kunlun">Kūnlún</a>. Versions differ on the test: they roll millstones down opposite slopes and watch the stones meet at the bottom, or light two fires and watch the smoke columns join above them. The divination read as consent: brother and sister marry and repopulate the drowned world. The myth explains both marriage institution and humanity second beginning. <strong>A nameless ancestral pair becomes the first couple only after the flood makes it necessary</strong> — and the divination that permits the union is itself Fúxī own art, pattern read from the behavior of things.</p>
         </div>
       </div>
       <div class="myth-card reveal-up" data-delay="300">
@@ -457,11 +282,61 @@
     </div>
 </section>
 
+    <!-- Domains & Sacred Symbols -->
+    <section class="section section-symbols" id="symbols">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">02</span>
+            <h2 class="section-title">The First Teacher</h2>
+            <p class="section-subtitle">The Eight Trigrams, the Net, and the Marriage on the Mountain</p>
+        </div>
+        
+      <div class="domains-intro reveal-up"><p class="lead-text">Fúxī is where Chinese civilization says it learned to think: the sage-king who looked up at the heavens, down at the earth, and at the markings on birds and beasts — and abstracted the eight trigrams, the first writing of pattern itself.</p></div>
+      <div class="domains-grid">
+      <div class="domain-card reveal-up">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M14 14H50M14 26H26M38 26H50M14 38H50M14 50H26M38 50H50"></path></svg></div>
+        <h4 class="domain-name">The Eight Trigrams</h4>
+        <p class="domain-desc"><a href="/bagua/" class="crosslink" data-crosslink="bagua">Bāguà</a>: broken and unbroken lines in threes — the binary alphabet of the Yìjīng, attributed to his observation.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="100">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 20C12 20 8 26 8 32C8 38 12 44 20 44C28 44 36 20 44 20C52 20 56 26 56 32C56 38 52 44 44 44C36 44 28 20 20 20Z"></path></svg></div>
+        <h4 class="domain-name">The Net</h4>
+        <p class="domain-desc">He taught the people to knot cords into nets — fishing, hunting, and the technology of the snare.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="200">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M14 46C22 38 42 38 50 46M20 32C28 24 36 24 44 32M27 18H37M32 18V10"></path></svg></div>
+        <h4 class="domain-name">The Serpent Bodies</h4>
+        <p class="domain-desc">Han art shows him and Nǚwā as serpents intertwined — the primal pair, measuring square and compass in hand.</p>
+      </div>
+      <div class="domain-card reveal-up" data-delay="300">
+        <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 10V54M14 20H50M18 20L12 36H24L18 20ZM46 20L40 36H52L46 20ZM24 54H40"></path></svg></div>
+        <h4 class="domain-name">Marriage</h4>
+        <p class="domain-desc">He instituted the rites of marriage and the bride-price of deer skins — order after the flood.</p>
+      </div></div>
+      <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
+      <div class="symbol-item">
+        <span class="symbol-name">The trigrams</span>
+        <span class="symbol-meaning">Pattern abstracted from nature — the seed of all Chinese correlative thought</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The carpenter's square</span>
+        <span class="symbol-meaning">His emblem in Han art: the earth-measurer's tool (Nǚwā holds the compass of heaven)</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">The dragon-horse</span>
+        <span class="symbol-meaning">The creature from the Yellow River whose markings revealed the diagram</span>
+      </div></div></div>
+    </div>
+</section>
+
+    <!-- In the Texts & Everyday Words -->
+    
+
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the chinese pantheon</p>
         </div>
@@ -525,8 +400,138 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">伏羲</p>
+                <p class="card-body">The name in its original Chinese form. <strong>Fúxī</strong> (伏羲) is attested in the source tradition — “Hidden one”. Its macron-length vowels and acute stress marks carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">fuxi</p>
+                <p class="card-body">Reduced to plain <strong>fuxi</strong>, the name loses everything that made it specific: macron-length vowels and acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Fúxī</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Fúxī</strong> restores macron-length vowels and acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Fúxī.com → xn--fx-rka1r.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Fúxī</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Fúxī</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Fúxī</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Fúxī</p>
+                    <p class="card-body">Restores <strong>伏羲</strong>. The live temple domain — <strong>fúxī.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">fuxi</p>
+                    <p class="card-body">Flattens <strong>伏羲</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Fúxī was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/fu˧˥ ɕi˥/</span>
+            <span class="ipa-label">Mandarin (Hanyu Pinyin with tones)</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">foo-shee, rising tone on fu, high level on xi.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Fúxī 伏羲 carries the rising tone on fú and the high level tone on xī in Mandarin; older romanizations write Fu-hsi. The first graph 伏 suggests "to subdue, to prostrate," the second 羲 a sacrificial term — a name older than its etymologies, borne by the first of the Three August Ones. The older romanization Fu-hsi records the same syllables; pinyin's x is the alveolo-palatal fricative of modern Mandarin.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Fúxī is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">伏羲</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Fúxī is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -544,7 +549,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/fuxi_mascot.webp" type="image/webp"><img src="../assets/fuxi_mascot.png" alt="Fúxī mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/fuxi_mascot.webp" type="image/webp"><img src="../assets/fuxi_mascot.png" alt="Fúxī mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -582,7 +587,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/fuxi_logomark.webp" type="image/webp"><img src="../assets/fuxi_logomark.webp" alt="Fúxī logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/fuxi_logomark.webp" type="image/webp"><img src="../assets/fuxi_logomark.webp" alt="Fúxī logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

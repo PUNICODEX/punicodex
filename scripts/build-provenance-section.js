@@ -175,7 +175,11 @@ function renderScholarlyColumn(prov) {
     </div>`;
 }
 
-function buildPlaceholderSection(entry, label) {
+function sectionNum(n) {
+  return String(n).padStart(2, '0');
+}
+
+function buildPlaceholderSection(entry, label, sectionNumber = 2) {
   const specimen = escapeHtml(getOriginalScript(entry) || entry.unicode || '');
   const note = SCRIPTLESS_PANTHEONS.has(entry.pantheon)
     ? `No indigenous writing system is securely attested for individual ${entry.pantheon} names. The form shown is a modern scholarly transliteration.`
@@ -187,7 +191,7 @@ function buildPlaceholderSection(entry, label) {
   <div class="section-bg-glow"></div>
   <div class="container">
     <div class="section-header reveal-up">
-      <span class="section-number">02</span>
+      <span class="section-number">${sectionNum(sectionNumber)}</span>
       <h2 class="section-title">Original Script & Provenance</h2>
       <p class="section-subtitle">How ${escapeHtml(entry.unicode || '')} is preserved in writing</p>
     </div>
@@ -203,12 +207,12 @@ function buildPlaceholderSection(entry, label) {
 </section>`;
 }
 
-function buildRichProvenanceSection(entry) {
+function buildRichProvenanceSection(entry, sectionNumber = 2) {
   const prov = getRichProvenance(entry);
   const label = getOriginalScriptLabel(entry);
 
   if (!prov) {
-    return buildPlaceholderSection(entry, label);
+    return buildPlaceholderSection(entry, label, sectionNumber);
   }
 
   const specimen = escapeHtml(prov.scriptSpecimen || '');
@@ -229,7 +233,7 @@ function buildRichProvenanceSection(entry) {
   <div class="section-bg-glow"></div>
   <div class="container">
     <div class="section-header reveal-up">
-      <span class="section-number">02</span>
+      <span class="section-number">${sectionNum(sectionNumber)}</span>
       <h2 class="section-title">Original Script & Provenance</h2>
       <p class="section-subtitle">How ${escapeHtml(entry.unicode || '')} travels from ancient script to the modern URL</p>
     </div>

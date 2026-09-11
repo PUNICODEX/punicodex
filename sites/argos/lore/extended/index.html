@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Árgos, Vigilance, Hera's Watcher. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/argos/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Árgos?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Árgos is /ár.gos/ — approximately 'AR-goss' — two short syllables, stress forward, like a light snapping on."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Árgos mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Árgos means Shining, swift in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Árgos?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Árgos is associated with The hundred eyes (Vigilance that never wholly sleeps), The peacock (Hera's bird; the eyes on its tail are his memorial), The white cow (Io transformed, the charge he was set to guard), The herdsman's staff (His gear as a common cowherd on the roads of the Argolid), The curved sword (The harpē of Hermês, by which the watcher was finally put to sleep)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Árgos in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII argos strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Árgos?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Hera Sets the Watch” — Árgos exists within a single great story — the wanderings of Io — but it is one of the oldest stories the Greeks told, already old when Homer gave Hermês the epithet Argeiphontēs, 'Slayer of Árgos' (Iliad 24.24). His myths are few because his function is single: he is watchfulness, given a hundred eyes and a herd. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/argos_logolockup.webp" type="image/webp"><img src="../../assets/argos_logolockup.png" alt="Árgos" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Árgos</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Árgos.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/argos_mascot.webp" type="image/webp"><img src="../../assets/argos_mascot.png" alt="Árgos — Vigilance, Hera's Watcher" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/argos_mascot.webp" type="image/webp"><img src="../../assets/argos_mascot.png" alt="Árgos — Vigilance, Hera's Watcher" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Árgos is Tier 2 because the Greek Ἄργος carries only the acute stress; both vowels are short, so a single feature separates the restoration from ASCII. The name belongs to the giant Argos Panoptes, Hera's watcher — not to the city of the Argolid, though the two share the shining root.</p>
+                <p class="etymology-note">The name <strong>Árgos</strong> carries the orthographic signature of the greek tradition: Ἄργος. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Árgos Panoptes is the perfect sentinel of Greek myth: a giant whose body was set with eyes that slept only in relays, so that some were always open. Hera chose him to guard the cow that had been Io. He is the myth's meditation on watchfulness — its power, its cost, and its strange afterlife in feathers.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Árgos in Later Traditions</h3><p class="cultural-card-body">Árgos never became a god and was never identified with foreign deities; his afterlife is in the natural world and in language. Rome kept him as Argus — Ovid's account in the Metamorphoses is the fullest surviving version — and made the transfer of his eyes the aition, the explanatory myth, of the peacock's plumage. Later readers saw in his hundred eyes the starry sky itself, set as heaven's watchman over the world. His name also lives disguised in <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermês</a>'s oldest epithet: Argeiphontēs appears already in the Iliad, proof that the story of the slain watcher was archaic before Homer sang.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">English keeps him in the phrase 'argus-eyed', watchful beyond fatigue. Newspapers across the English-speaking world took the name The Argus — the all-seeing press — and naturalists gave it to the argus pheasant, whose feathers are spotted with eyes in exact obedience to the myth. Every camera grid and sensor network re-enacts him: Árgos is the mythic ancestor of all surveillance, and his fate is its parable. The watcher who saw everything was undone by music and a story — the oldest recorded defeat of total vigilance by art.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Árgos</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Árgos in Later Traditions</h3><p class="cultural-card-body">Árgos never became a god and was never identified with foreign deities; his afterlife is in the natural world and in language. Rome kept him as Argus — Ovid's account in the <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> is the fullest surviving version — and made the transfer of his eyes the aition, the explanatory myth, of the peacock's plumage. Later readers saw in his hundred eyes the starry sky itself, set as heaven's watchman over the world. His name also lives disguised in <a href="/hermes/" class="crosslink" data-crosslink="hermes">Hermês</a>'s oldest epithet: Argeiphontēs appears already in the Iliad, proof that the story of the slain watcher was archaic before Homer sang.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">English keeps him in the phrase 'argus-eyed', watchful beyond fatigue. Newspapers across the English-speaking world took the name The Argus — the all-seeing press — and naturalists gave it to the argus pheasant, whose feathers are spotted with eyes in exact obedience to the myth. Every camera grid and sensor network re-enacts him: Árgos is the mythic ancestor of all surveillance, and his fate is its parable. The watcher who saw everything was undone by music and a story — the oldest recorded defeat of total vigilance by art. In the Argolid itself, his name still colors the landscape: the citadel of Árgos and the Heraion, sanctuary of his mistress, keep the shining root that named both the giant and the city.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Árgos Panoptes had no cult and no temple; the Greeks themselves knew him as a figure of the primeval Argolid, and his material presence is pictorial. Attic and South Italian vases of the fifth and fourth centuries BCE show him exactly as the poets describe — a herdsman whose body is seeded with eyes, standing guard over the cow Io, or falling beneath Hermês's sword. His landscape survives: the Heraion of Argos, the great sanctuary of his mistress, and the olive grove of Mycenae where the sources place his watch. The myth's honesty is part of its interest — the all-seeing watcher left nothing behind but pictures of his own watching.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Árgos means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>There is a peculiar pathos in Árgos. He is the one figure in the Io story without desire: <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> wants, Hera rages, Io suffers, but Árgos only watches. He is duty itself, a creature made of attention. The myth does not call him wicked; Hera's grief for him is real, and his memorial is beautiful. Yet the story knows that perfect vigilance is a kind of death-in-life — a mind with no interior, no sleep, no dream.</p><p>And so the manner of his fall matters. He is not overpowered; no hero wrestles him down. He is lulled — by music, and by a story about the music. The hundred eyes close one after another, like lamps in a city at midnight, and in the last of them the sword is already falling. It is the most civilized killing in Greek myth, and the most ominous: attention can be sung to sleep. Hera could preserve his eyes, but not his seeing. The peacock's tail is the most gorgeous surveillance apparatus in the world, and it watches nothing at all.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Árgos, Vigilance, Hera's Watcher, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Árgos?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Árgos</strong> is /ár.gos/ — approximately 'AR-goss' — two short syllables, stress forward, like a light snapping on..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Árgos mean?</summary><div class="faq-answer"><p><strong>Árgos</strong> means <strong>Shining, swift</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Árgos?</summary><div class="faq-answer"><p>Árgos is associated with <strong>The hundred eyes</strong> (Vigilance that never wholly sleeps), <strong>The peacock</strong> (Hera's bird; the eyes on its tail are his memorial), <strong>The white cow</strong> (Io transformed, the charge he was set to guard), <strong>The herdsman's staff</strong> (His gear as a common cowherd on the roads of the Argolid), <strong>The curved sword</strong> (The harpē of Hermês, by which the watcher was finally put to sleep).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Árgos in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>argos</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Árgos?</summary><div class="faq-answer"><p><a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> loved Io, daughter of the river-god Inachos, and to hide her from Hera — so the common telling runs — she was changed into a white cow. Hera was not deceived. She asked for the cow as a gift, and set over it Árgos Panoptes, the all-seeing giant, who tethered his prisoner to an olive tree in the grove of Mycenae and watched her without rest.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Árgos?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Árgos</strong> is /ár.gos/ — approximately 'AR-goss' — two short syllables, stress forward, like a light snapping on.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Árgos mean?</summary><div class="faq-answer"><p><strong>Árgos</strong> means <strong>Shining, swift</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Árgos?</summary><div class="faq-answer"><p>Árgos is associated with <strong>The hundred eyes</strong> (Vigilance that never wholly sleeps), <strong>The peacock</strong> (Hera's bird; the eyes on its tail are his memorial), <strong>The white cow</strong> (Io transformed, the charge he was set to guard), <strong>The herdsman's staff</strong> (His gear as a common cowherd on the roads of the Argolid), <strong>The curved sword</strong> (The harpē of Hermês, by which the watcher was finally put to sleep).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Árgos in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>argos</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Árgos?</summary><div class="faq-answer"><p>“Hera Sets the Watch” — Árgos exists within a single great story — the wanderings of Io — but it is one of the oldest stories the Greeks told, already old when Homer gave Hermês the epithet Argeiphontēs, 'Slayer of Árgos' (Iliad 24.24). His myths are few because his function is single: he is watchfulness, given a hundred eyes and a herd. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Apollodorus</cite></li><li><cite>Ovid</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lexical and philological sources for Árgos.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Apollodorus</cite></li><li><cite>Ovid</cite></li><li><cite>Aeschylus</cite></li><li><cite>Homer</cite></li></ul>
+                    <ul class="source-list"><li><cite>Apollodorus</cite></li><li><cite>Ovid</cite></li><li><cite>Apollodorus, Library 2.1.3</cite></li><li><cite>Ovid, Metamorphoses 1.583–723</cite></li><li><cite>Aeschylus, Suppliants</cite></li><li><cite>Homer, Iliad 24.24</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Árgos and related cults.</cite></li><li><cite>Árgos Panoptes had no cult and no temple; the Greeks themselves knew him as a figure of the primeval Argolid, and his material presence is pictorial. Attic and South Italian vases of the fifth and fourth centuries BCE show him exactly as the poets describe — a herdsman whose body is seeded with eyes, standing guard over the cow Io, or falling beneath Hermês's sword. His landscape survives: the Heraion of Argos, the great sanctuary of his mistress, and the olive grove of Mycenae where the sources place his watch. The myth's honesty is part of its interest — the all-seeing watcher left nothing behind but pictures of his own watching.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Árgos and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of greek religion and the place of Árgos within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Beekes, Etymological Dictionary of Greek</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/argos_logomark.webp" type="image/webp"><img src="../../assets/argos_logomark.webp" alt="Árgos logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/argos_logomark.webp" type="image/webp"><img src="../../assets/argos_logomark.webp" alt="Árgos logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

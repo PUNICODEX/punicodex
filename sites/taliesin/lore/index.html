@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Taliesin — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Taliesin</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Taliesin</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,147 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Taliesin</p>
-                    <p class="card-body">The name survives in scholarly transliteration. <strong>Taliesin</strong> is the standard Celtic romanisation, documented in academic sources — “Welsh bard”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">taliesin</p>
-                    <p class="card-body">The plain <strong>taliesin</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Taliesin</p>
-                    <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Taliesin</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Taliesin.com → taliesin.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Taliesin</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Taliesin</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Taliesin is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Taliesin</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Taliesin</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Canonical Restoration</h3>
-                    <p class="card-unicode">Taliesin</p>
-                    <p class="card-body">The full Unicode restoration. <strong>taliesin.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Taliesin was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Taliesin</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/talˈjɛsɪn/</span>
-            <span class="ipa-label">Modern Welsh Pronunciation</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Ta-</span>
-        <span class="phoneme-desc">Voiceless alveolar stop [t], plain and unaspirated as Welsh stops are, followed by a short open [a]; the first syllable is light and unstressed.</span>
+      <p class="lead-text">Taliesin's dossier divides into two figures the Welsh tradition never quite separated: the historical poet of sixth-century Rheged, and the wonder-child of the cauldron whose story is medieval but survives whole only in sixteenth-century manuscripts. The first is attested within three centuries of his life; the second is the fullest legendary biography any Celtic poet ever received. Between them the name becomes a theory of poetry itself.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Historia Brittonum §62; Book of Taliesin</span>
+          <h3 class="myth-title">The Poet of Urien</h3>
+          <p class="myth-text">The Historia Brittonum (c. 829) names five poets famed in the days of Ida of Bernicia, in the mid-sixth century: Talhaearn Tad Awen, Aneirin, Cian, Blwchfardd — 'and Taliesin, who is renowned in British poetry'. The Book of Taliesin preserves the substance behind the notice: a core of praise-poems to Urien of Rheged and his son Owain, court verse of the Old North, singing the wars of Rheged against the Bernician Angles. Ifor Williams's scholarship established the canon: a dozen poems of the Book stand as plausibly the work of a real Taliesin, court bard of Urien in the generation before Rheged fell.</p><p class="myth-text">This is the oldest Taliesin the record offers — not a wonder-child but a professional of the northern courts, remembered three centuries later as the very type of the famed poet. The legend did not invent him; it annexed him, and gave the court bard of Rheged a second birth out of a goddess's cauldron.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-l-</span>
-        <span class="phoneme-desc">Voiced alveolar lateral [l] — the ordinary Welsh l, not the voiceless fricative ll [ɬ]; Taliesin keeps the soft single lateral.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hanes Taliesin</span>
+          <h3 class="myth-title">The Cauldron and the Chase</h3>
+          <p class="myth-text"><a href="/ceridwen/" class="crosslink" data-crosslink="ceridwen">Ceridwen</a>, dwelling by Lake Tegid in the land of Gwynedd, had two children: Creirwy the fairest of maidens and Afagddu, called Morfran, the most ill-favored of men. To compensate her dark son she set a cauldron of inspiration and science to boil for a year and a day, put blind Morda to tend the fire, and set the boy Gwion Bach to stir. On the last day three drops of the charmed liquor flew from the cauldron onto Gwion's thumb; scalded, he put it in his mouth — and at once knew all things past and to come. The cauldron split, and all its virtue was spent on the wrong child.</p><p class="myth-text">What follows is the great transformation chase of Celtic literature. Gwion fled as a hare; Ceridwen pursued as a greyhound. He became a fish in the river; she came after as an otter. He rose as a bird; she stooped as a hawk. At last he dropped as a single grain onto a winnowing floor, and she came as a black hen and swallowed him. Nine months she bore him, and could not kill so fair a child when he was born; she sewed him in a skin coracle and cast him into the sea on the eve of May Day.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-ies-</span>
-        <span class="phoneme-desc">The stressed penult [jɛs]: a palatal glide into open-mid [ɛ], sounding exactly like English 'yes'; Welsh accent falls on the penultimate syllable.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Hanes Taliesin</span>
+          <h3 class="myth-title">The Weir and the Court of Maelgwn</h3>
+          <p class="myth-text">The coracle drifted into the salmon weir of Gwyddno Garanhir at the mouth of the Dyfi, where Gwyddno's son Elffin — the luckless, whose every venture failed — drew it from the water. Opening the skin, he saw a child's forehead shining from the folds and cried: 'behold a radiant brow!' — tal iesin — and so named him. The infant, not yet weaned, answered with his first poem, the Consolation of Elffin, and from that day Elffin's luck turned.</p><p class="myth-text">Years later, when Elffin boasted at Maelgwn Gwynedd's court that he had a wife more virtuous and a bard more skilled than any there, Maelgwn cast him into prison with thirteen locks and sent Rhun to test the wife; Rhun returned with a drugged servant-maid's finger and ring as false proof of her fall. Taliesin came to court, sat in a corner, put a finger to his lips and blew — 'blerwm blerwm' — and all the king's bards could only drone the same, save Heinin their chief. Then the child stood and sang, summoned a wind that shook the court and terrified the king, exposed the false finger, vindicated Elffin's wife, and sang the locks open. Elffin walked free, and Taliesin foretold the very end of the world.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-in</span>
-        <span class="phoneme-desc">Short close [ɪ] and a final alveolar nasal [n], lightly sounded — Welsh final syllables are never swallowed.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Book of Taliesin: Cad Goddeu; Preiddeu Annwfn</span>
+          <h3 class="myth-title">I Have Been in Many Shapes</h3>
+          <p class="myth-text">The legendary poems of the Book give Taliesin the widest voice in Celtic literature. In Cad Goddeu, the Battle of the Trees, he boasts of a hundred existences — sword in hand, rain in the sky, string of a harp, word among letters, eagle on the tide — while <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> enchants the trees of the wood to march and fight for the sons of Dôn. The poem's refrain is the poet's creed: I have been in many shapes before I attained a congenial form.</p><p class="myth-text">In Preiddeu Annwfn, the Spoils of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a>, he is the one survivor who can tell of Arthur's raid on the Otherworld for the cauldron of the Head of Annwn — the cauldron kindled by the breath of nine maidens, rimmed with pearls, that will not boil a coward's food. Three full shiploads went into Annwn; save seven, none returned. The poet who has been everything is the one who may speak of everything — and the two poems together are why medieval Wales called him not merely bard but Chief of Bards.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'tal-YES-in' — three syllables, the weight squarely on the middle one, the first a soft tap; exactly the living Welsh name.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Middle Welsh</strong> Taliesin — the spelling of the Book of Taliesin (NLW Peniarth MS 2), unchanged into modern Welsh.</li><li><strong>Historia Brittonum</strong> Taliesin, named among the five poets famed in the time of Ida of Bernicia — the name's oldest surviving notice.</li><li><strong>Welsh Triads</strong> Taliesin Ben Beirdd, 'Taliesin Chief of Bards', head of the Primary Chief Bards of the Isle of Britain.</li><li><strong>Etymology</strong> tal, 'forehead, brow' + iesin, 'radiant, shining' — the traditional gloss 'radiant brow', as discussed by Ifor Williams.</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Taliesin is Tier 2 by the mechanical rule: medieval Welsh writes the name in plain Latin letters — no diacritic, no distinctive letter for the ASCII alphabet to lose. The name's fame vastly outruns its orthography; only the capital distinguishes the restored form from the input.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -378,12 +285,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Poet, Shapeshifter</h2>
             <p class="section-subtitle">The Radiant Brow, Chief of Bards</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Taliesin is the supreme bard of Welsh tradition — twice-born master of the awen, the flowing spirit of poetic inspiration. As Gwion Bach he stirred <a href="/ceridwen/" class="crosslink" data-crosslink="ceridwen">Ceridwen</a>'s cauldron and caught the three drops meant for her son; as the grain the black hen swallowed he was reborn from the water with a brow so radiant that Elffin ap Gwyddno named him for it. Before Maelgwn Gwynedd's court he silenced the assembled bards with a puff of breath and freed his foster-father from thirteen locks; and behind the legend stands a historical poet of sixth-century Rheged, whose praise-songs to Urien the Historia Brittonum already knew. Poet and shapeshifter, child of the cauldron and voice of all he has ever been, Taliesin is the Welsh tradition's own answer to what a name is: a brow made radiant by what has passed through it.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Taliesin is the supreme bard of Welsh tradition — twice-born master of the awen, the flowing spirit of poetic inspiration. As Gwion Bach he stirred Ceridwen's cauldron and caught the three drops meant for her son; as the grain the black hen swallowed he was reborn from the water with a brow so radiant that Elffin ap Gwyddno named him for it. Before Maelgwn Gwynedd's court he silenced the assembled bards with a puff of breath and freed his foster-father from thirteen locks; and behind the legend stands a historical poet of sixth-century Rheged, whose praise-songs to Urien the Historia Brittonum already knew. Poet and shapeshifter, child of the cauldron and voice of all he has ever been, Taliesin is the Welsh tradition's own answer to what a name is: a brow made radiant by what has passed through it.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 26H44V40C44 46 38 50 32 50C26 50 20 46 20 40V26ZM24 22H40M28 18L32 12L36 18"></path></svg></div>
@@ -420,7 +327,7 @@
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The coracle in the weir</span>
-        <span class="symbol-meaning">The skin boat Elffin found among the salmon — the poet's second arrival, from the water like every gift of <a href="/annwn/" class="crosslink" data-crosslink="annwn">Annwn</a></span>
+        <span class="symbol-meaning">The skin boat Elffin found among the salmon — the poet's second arrival, from the water like every gift of Annwn</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">The silenced bards</span>
@@ -429,57 +336,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Taliesin</p>
-        </div>
-        
-      <p class="lead-text">Taliesin's dossier divides into two figures the Welsh tradition never quite separated: the historical poet of sixth-century Rheged, and the wonder-child of the cauldron whose story is medieval but survives whole only in sixteenth-century manuscripts. The first is attested within three centuries of his life; the second is the fullest legendary biography any Celtic poet ever received. Between them the name becomes a theory of poetry itself.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Historia Brittonum §62; Book of Taliesin</span>
-          <h3 class="myth-title">The Poet of Urien</h3>
-          <p class="myth-text">The Historia Brittonum (c. 829) names five poets famed in the days of Ida of Bernicia, in the mid-sixth century: Talhaearn Tad Awen, Aneirin, Cian, Blwchfardd — 'and Taliesin, who is renowned in British poetry'. The Book of Taliesin preserves the substance behind the notice: a core of praise-poems to Urien of Rheged and his son Owain, court verse of the Old North, singing the wars of Rheged against the Bernician Angles. Ifor Williams's scholarship established the canon: a dozen poems of the Book stand as plausibly the work of a real Taliesin, court bard of Urien in the generation before Rheged fell.</p><p class="myth-text">This is the oldest Taliesin the record offers — not a wonder-child but a professional of the northern courts, remembered three centuries later as the very type of the famed poet. The legend did not invent him; it annexed him, and gave the court bard of Rheged a second birth out of a goddess's cauldron.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hanes Taliesin</span>
-          <h3 class="myth-title">The Cauldron and the Chase</h3>
-          <p class="myth-text">Ceridwen, dwelling by Lake Tegid in the land of Gwynedd, had two children: Creirwy the fairest of maidens and Afagddu, called Morfran, the most ill-favored of men. To compensate her dark son she set a cauldron of inspiration and science to boil for a year and a day, put blind Morda to tend the fire, and set the boy Gwion Bach to stir. On the last day three drops of the charmed liquor flew from the cauldron onto Gwion's thumb; scalded, he put it in his mouth — and at once knew all things past and to come. The cauldron split, and all its virtue was spent on the wrong child.</p><p class="myth-text">What follows is the great transformation chase of Celtic literature. Gwion fled as a hare; Ceridwen pursued as a greyhound. He became a fish in the river; she came after as an otter. He rose as a bird; she stooped as a hawk. At last he dropped as a single grain onto a winnowing floor, and she came as a black hen and swallowed him. Nine months she bore him, and could not kill so fair a child when he was born; she sewed him in a skin coracle and cast him into the sea on the eve of May Day.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Hanes Taliesin</span>
-          <h3 class="myth-title">The Weir and the Court of Maelgwn</h3>
-          <p class="myth-text">The coracle drifted into the salmon weir of Gwyddno Garanhir at the mouth of the Dyfi, where Gwyddno's son Elffin — the luckless, whose every venture failed — drew it from the water. Opening the skin, he saw a child's forehead shining from the folds and cried: 'behold a radiant brow!' — tal iesin — and so named him. The infant, not yet weaned, answered with his first poem, the Consolation of Elffin, and from that day Elffin's luck turned.</p><p class="myth-text">Years later, when Elffin boasted at Maelgwn Gwynedd's court that he had a wife more virtuous and a bard more skilled than any there, Maelgwn cast him into prison with thirteen locks and sent Rhun to test the wife; Rhun returned with a drugged servant-maid's finger and ring as false proof of her fall. Taliesin came to court, sat in a corner, put a finger to his lips and blew — 'blerwm blerwm' — and all the king's bards could only drone the same, save Heinin their chief. Then the child stood and sang, summoned a wind that shook the court and terrified the king, exposed the false finger, vindicated Elffin's wife, and sang the locks open. Elffin walked free, and Taliesin foretold the very end of the world.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Book of Taliesin: Cad Goddeu; Preiddeu Annwfn</span>
-          <h3 class="myth-title">I Have Been in Many Shapes</h3>
-          <p class="myth-text">The legendary poems of the Book give Taliesin the widest voice in Celtic literature. In Cad Goddeu, the Battle of the Trees, he boasts of a hundred existences — sword in hand, rain in the sky, string of a harp, word among letters, eagle on the tide — while <a href="/gwydion/" class="crosslink" data-crosslink="gwydion">Gwydion</a> enchants the trees of the wood to march and fight for the sons of Dôn. The poem's refrain is the poet's creed: I have been in many shapes before I attained a congenial form.</p><p class="myth-text">In Preiddeu Annwfn, the Spoils of Annwn, he is the one survivor who can tell of Arthur's raid on the Otherworld for the cauldron of the Head of Annwn — the cauldron kindled by the breath of nine maidens, rimmed with pearls, that will not boil a coward's food. Three full shiploads went into Annwn; save seven, none returned. The poet who has been everything is the one who may speak of everything — and the two poems together are why medieval Wales called him not merely bard but Chief of Bards.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the celtic pantheon</p>
         </div>
@@ -543,8 +407,149 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Taliesin</p>
+                <p class="card-body">The name survives in scholarly transliteration. <strong>Taliesin</strong> is the standard Celtic romanisation, documented in academic sources — “Welsh bard”. Because the spelling uses only Latin letters, the form is the same in both ASCII and Unicode.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">taliesin</p>
+                <p class="card-body">The plain <strong>taliesin</strong> form is identical to the Unicode restoration. Because this name is already written in Latin letters, no diacritics, stress, or script information were lost — only capitalization differs.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Taliesin</p>
+                <p class="card-body">The Unicode restoration does not need to recover lost marks for <strong>Taliesin</strong>. Its value is canonical spelling and consistent cataloguing, not the reconstruction of erased orthography. The domain is readable as-is to both DNS and humanity.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">ASCII-Clean Name</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Taliesin.com</code>
+                    <p class="explainer-note">This restoration is written entirely in ASCII letters — no Punycode encoding stands between <strong>Taliesin</strong> and the DNS. The domain reads identically to machines and to human eyes.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Taliesin</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Canonical Restoration</h3>
+                    <p class="card-unicode">Taliesin</p>
+                    <p class="card-body">The full Unicode restoration. <strong>taliesin.com</strong> is not in the PuniCodex collection — it is watched for release; if it drops, this temple upgrades to an owned flagship.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Taliesin was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/talˈjɛsɪn/</span>
+            <span class="ipa-label">Modern Welsh Pronunciation</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Ta-</span>
+        <span class="phoneme-desc">Voiceless alveolar stop [t], plain and unaspirated as Welsh stops are, followed by a short open [a]; the first syllable is light and unstressed.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-l-</span>
+        <span class="phoneme-desc">Voiced alveolar lateral [l] — the ordinary Welsh l, not the voiceless fricative ll [ɬ]; Taliesin keeps the soft single lateral.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-ies-</span>
+        <span class="phoneme-desc">The stressed penult [jɛs]: a palatal glide into open-mid [ɛ], sounding exactly like English 'yes'; Welsh accent falls on the penultimate syllable.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-in</span>
+        <span class="phoneme-desc">Short close [ɪ] and a final alveolar nasal [n], lightly sounded — Welsh final syllables are never swallowed.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'tal-YES-in' — three syllables, the weight squarely on the middle one, the first a soft tap; exactly the living Welsh name.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Taliesin is Tier 2 by the mechanical rule: medieval Welsh writes the name in plain Latin letters — no diacritic, no distinctive letter for the ASCII alphabet to lose. The name's fame vastly outruns its orthography; only the capital distinguishes the restored form from the input.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Taliesin is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Taliesin</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual celtic names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -562,7 +567,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/taliesin_mascot.webp" type="image/webp"><img src="../assets/taliesin_mascot.png" alt="Taliesin mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/taliesin_mascot.webp" type="image/webp"><img src="../assets/taliesin_mascot.png" alt="Taliesin mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -600,7 +605,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/taliesin_logomark.webp" type="image/webp"><img src="../assets/taliesin_logomark.webp" alt="Taliesin logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/taliesin_logomark.webp" type="image/webp"><img src="../assets/taliesin_logomark.webp" alt="Taliesin logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Gnowee, Sun Goddess. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/gnowee/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Gnowee?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Gnowee is /ˈɡnoʊi/ — approximately 'GNOH-wee' — stress the first syllable, keep the final vowel bright and short. Some Woiwurrung speakers render the initial cluster closer to 'NOH-wee' or 'NYOH-wee'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Gnowee mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gnowee means The sun in the aboriginal tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Gnowee?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gnowee is associated with Bark torch (The sun itself; a domestic fire carried into the sky and kept alight across the day), Yam stick / digging stick (The tool that drew her away from her camp and set the search in motion), The southern sky path (Her track across the heavens, observed as the sun's daily arc), Darkness below (The earth that once swallowed her child and that she now lights from above)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Gnowee in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gnowee is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Gnowee?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Woman Who Became the Sun” — The Gnowee story belongs to the Wurundjeri-willam clan of the Woiwurrung language group. It explains the origin of the sun and the reason for its daily movement: the sun is not an indifferent orb but a woman still looking for her child. The myth is ecological as well as cosmological — it binds fire, food gathering, maternal care, and the rotation of day and night into a single narrative. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/gnowee_logolockup.webp" type="image/webp"><img src="../../assets/gnowee_logolockup.png" alt="Gnowee" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Gnowee</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Gnowee</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/gnowee_mascot.webp" type="image/webp"><img src="../../assets/gnowee_mascot.png" alt="Gnowee — Sun Goddess" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/gnowee_mascot.webp" type="image/webp"><img src="../../assets/gnowee_mascot.png" alt="Gnowee — Sun Goddess" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Gnowee</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The PuniCodex restoration is **Gnowee**, capitalizing the conventional Woiwurrung spelling. The ASCII form *gnowee* loses only the proper-name capitalization; it preserves all letters. Because no distinctive diacritic, length mark, or special letter is required to recover the spoken name, the entry is classified Tier 2. The Unicode form remains the scholarly citation form.</p>
+                <p class="etymology-note">The name <strong>Gnowee</strong> reaches the modern world through scholarly transliteration of the aboriginal tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">G</td><td><code>U+0047</code></td><td>Latin Capital Letter G</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">o</td><td><code>U+006F</code></td><td>Latin Small Letter O</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">w</td><td><code>U+0077</code></td><td>Latin Small Letter W</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">e</td><td><code>U+0065</code></td><td>Latin Small Letter E</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Gnowee</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Gnowee</strong> is the sun of the Wurundjeri people. In the Kulin telling she was once a woman who went up into the sky carrying a bark torch, searching for the child she had lost in the eternal darkness below. Her daily journey across the heavens is that search still in progress: when her torch burns bright, the world is day; when it dims and gutters, evening comes; when she stops to rekindle it, night falls. She is therefore light-giver, wanderer, and bereaved mother at once.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Gnowee in Later Traditions</h3><p class="cultural-card-body">Gnowee is a specifically Wurundjeri figure and is not equated with the sun deities of other Aboriginal nations, each of which owns its own solar narratives. She has sometimes been grouped with 'Mother Sun' figures in comparative anthologies, but such comparisons must respect the local ownership of the story. In contemporary Victoria she appears in educational and reconciliation materials as a Woiwurrung cultural teaching, not as a generic Aboriginal sun goddess.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The Gnowee story is one of the best-known narratives of the Wurundjeri people. It is told in Victorian schools, on Wurundjeri-led country walks, and in materials produced by the Wurundjeri Woi Wurrung Cultural Heritage Aboriginal Corporation. The figure has also inspired Australian children's literature, public art, and environmental education, where the sun-as-torch remains a potent image of renewable light and searching care.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Gnowee</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Gnowee in Later Traditions</h3><p class="cultural-card-body">Gnowee is a specifically Wurundjeri figure and is not equated with the sun deities of other Aboriginal nations, each of which owns its own solar narratives. She has sometimes been grouped with 'Mother Sun' figures in comparative anthologies, but such comparisons must respect the local ownership of the story. In contemporary Victoria she appears in educational and reconciliation materials as a Woiwurrung cultural teaching, not as a generic Aboriginal sun goddess.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The Gnowee story is one of the best-known narratives of the Wurundjeri people. It is told in Victorian schools, on Wurundjeri-led country walks, and in materials produced by the Wurundjeri Woi Wurrung Cultural Heritage Aboriginal Corporation. The figure has also inspired Australian children's literature, public art, and environmental education, where the sun-as-torch remains a potent image of renewable light and searching care.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The Gnowee narrative is preserved primarily in oral tradition and in nineteenth- and twentieth-century ethnographic records from the Melbourne region. No pre-contact written form exists; the material culture associated with the story includes bark torches, digging sticks, and the sky country itself as observed from Wurundjeri lands along the Yarra and its tributaries.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Gnowee means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Gnowee invites meditation on the inseparability of love and loss. The sun rises not because it is a machine but because a mother is still looking. That reading transforms the sky from a clock into a story: every dawn is the relighting of a torch, every noon the height of a search, every dusk the guttering of a flame that will be renewed.</p><p>There is also a lesson about fire. In the myth, fire is not stolen or given; it is carried. It must be gathered, tended, and passed on. The sun is therefore the largest campfire, and the obligations that govern a small fire on country scale up to the cosmos itself. To remember Gnowee is to remember that light is labor and that care can outlast even the longest night.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Gnowee, Sun Goddess, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Gnowee?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Gnowee</strong> is /ˈɡnoʊi/ — approximately 'GNOH-wee' — stress the first syllable, keep the final vowel bright and short. Some Woiwurrung speakers render the initial cluster closer to 'NOH-wee' or 'NYOH-wee'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Gnowee mean?</summary><div class="faq-answer"><p><strong>Gnowee</strong> means <strong>The sun</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Gnowee?</summary><div class="faq-answer"><p>Gnowee is associated with <strong>Bark torch</strong> (The sun itself; a domestic fire carried into the sky and kept alight across the day), <strong>Yam stick / digging stick</strong> (The tool that drew her away from her camp and set the search in motion), <strong>The southern sky path</strong> (Her track across the heavens, observed as the sun's daily arc), <strong>Darkness below</strong> (The earth that once swallowed her child and that she now lights from above).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Gnowee in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>gnowee</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Gnowee?</summary><div class="faq-answer"><p>In the time before the sun, the earth was dark. Gnowee left her small son sleeping beneath a tree while she went out to dig for yams with her digging stick. She wandered a long way, and when she looked back the country had closed behind her. She could not find her camp or her child. In despair she made a great torch of stringybark, climbed into the sky, and began to travel across it, searching for him. That torch is the sun; she carries it still.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Gnowee?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Gnowee</strong> is /ˈɡnoʊi/ — approximately 'GNOH-wee' — stress the first syllable, keep the final vowel bright and short. Some Woiwurrung speakers render the initial cluster closer to 'NOH-wee' or 'NYOH-wee'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Gnowee mean?</summary><div class="faq-answer"><p><strong>Gnowee</strong> means <strong>The sun</strong> in the aboriginal tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Gnowee?</summary><div class="faq-answer"><p>Gnowee is associated with <strong>Bark torch</strong> (The sun itself; a domestic fire carried into the sky and kept alight across the day), <strong>Yam stick / digging stick</strong> (The tool that drew her away from her camp and set the search in motion), <strong>The southern sky path</strong> (Her track across the heavens, observed as the sun's daily arc), <strong>Darkness below</strong> (The earth that once swallowed her child and that she now lights from above).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Gnowee in Unicode?</summary><div class="faq-answer"><p><strong>Gnowee</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Gnowee?</summary><div class="faq-answer"><p>“The Woman Who Became the Sun” — The Gnowee story belongs to the Wurundjeri-willam clan of the Woiwurrung language group. It explains the origin of the sun and the reason for its daily movement: the sun is not an indifferent orb but a woman still looking for her child. The myth is ecological as well as cosmological — it binds fire, food gathering, maternal care, and the rotation of day and night into a single narrative. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,13 +360,13 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Gnowee and related cults.</cite></li><li><cite>The Gnowee narrative is preserved primarily in oral tradition and in nineteenth- and twentieth-century ethnographic records from the Melbourne region. No pre-contact written form exists; the material culture associated with the story includes bark torches, digging sticks, and the sky country itself as observed from Wurundjeri lands along the Yarra and its tributaries.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Gnowee and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Massola, Aldo, <a href="/bunjil/" class="crosslink" data-crosslink="bunjil">Bunjil</a>'s Cave: Myths, Legends and Superstitions of the Aborigines of South-East Australia, Lansdowne Press, 1968</cite></li><li><cite>Reed, A. W., Aboriginal Myths, Legends and Fables, Reed Books, 1982</cite></li><li><cite>Parker, K. Langloh, Australian Legendary Tales, 1896</cite></li><li><cite>AIATSIS — Australian Institute of Aboriginal and Torres Strait Islander Studies</cite></li><li><cite>Wurundjeri Woi Wurrung Cultural Heritage Aboriginal Corporation</cite></li><li><cite>William Thomas, Assistant Protector of Aborigines, Port Phillip District, nineteenth-century field notes</cite></li></ul>
+                    <ul class="source-list"><li><cite>Massola, Aldo, <a href="/bunjil/" class="crosslink" data-crosslink="bunjil">Bunjil</a>'s Cave: Myths, Legends and Superstitions of the Aborigines of South-East Australia, Lansdowne Press, 1968</cite></li><li><cite>Reed, A. W., Aboriginal Myths, Legends and Fables, Reed Books, 1982</cite></li><li><cite>AIATSIS — Australian Institute of Aboriginal and Torres Strait Islander Studies</cite></li><li><cite>Wurundjeri Woi Wurrung Cultural Heritage Aboriginal Corporation</cite></li><li><cite>William Thomas, Assistant Protector of Aborigines, Port Phillip District, nineteenth-century field notes</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/gnowee_logomark.webp" type="image/webp"><img src="../../assets/gnowee_logomark.webp" alt="Gnowee logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/gnowee_logomark.webp" type="image/webp"><img src="../../assets/gnowee_logomark.webp" alt="Gnowee logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

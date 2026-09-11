@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Týchē, Fortune, Chance, Turning. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/tyche/lore/extended/">
 
@@ -72,6 +72,62 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Týchē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Týchē is /tý.kʰɛː/ — approximately TU-khee, stress on the first syllable with a long ē."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Týchē mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Týchē means 'That which happens' (from τυγχάνω) in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Týchē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Týchē is associated with The rudder (Steering without destination — guidance of the contingent), The cornucopia (Abundance as accident; the gifts no one earned), The mural crown (The city walls she wears — fortune as civic identity), The wheel (Roman addition — the turning that raises and ruins)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why are there different spellings of Týchē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each form is a historically attested restoration rather than a mistake: Tychē is the macron-only form (LSJ convention: length only, no stress mark). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Týchē in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII tyche strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Týchē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“Two Fathers” — Týchē has almost no myths — she is a goddess of situations, not stories. Her biography is the biography of the Hellenistic age: when empires rose and fell in a generation, chance needed a face. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +165,14 @@
                 <picture><source srcset="../../assets/tyche_logolockup.webp" type="image/webp"><img src="../../assets/tyche_logolockup.png" alt="Týchē" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +183,14 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#screen-appearances" class="nav-link extended-anchor">Screen</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +203,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Týchē</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Týchē.com</span>
@@ -157,7 +218,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/tyche_mascot.webp" type="image/webp"><img src="../../assets/tyche_mascot.png" alt="Týchē — Fortune, Chance, Turning" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/tyche_mascot.webp" type="image/webp"><img src="../../assets/tyche_mascot.png" alt="Týchē — Fortune, Chance, Turning" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +271,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Greek Τύχη bears the acute on the first syllable — Týchē — from τυγχάνω, "to happen, to hit the mark." The long eta of the second syllable is the standard macron; Stoic philosophers made her name the technical term for chance, and the word still means "outcome" in modern Greek. Modern Greek tychi keeps the meaning of outcome; the ancient accent on the first syllable is what the restoration marks.</p>
+                <p class="etymology-note">The name <strong>Týchē</strong> carries the orthographic signature of the greek tradition: Τύχη. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,26 +308,39 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Týchē is the last goddess added to the Greek pantheon and the most modern in feeling: the personification of what happens. When the old gods' plans no longer explained the Hellenistic world's upheavals, the Greeks enthroned accident itself — and gave her a cornucopia, a rudder, and a wheel.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Týchē in Later Traditions</h3><p class="cultural-card-body">Rome merged her with Fortuna — a native Italian goddess with far older roots — and the fusion produced antiquity's most worshipped abstraction: Fortuna Primigenia at Praeneste with her famous sortes (lot-oracle), Fortuna Redux for safe returns, Fortuna Augusta for the emperor's luck. On coins, every city from Palmyra to Alexandria stamped its Tyche-Fortuna: the mural-crowned figure became the standard icon of urban pride across three continents.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The word outlasted the cult: tyche is Aristotle's and the Stoics' technical term, and "stochastic" — from the sibling root for aiming — now names the mathematics of chance. Polybius made Tyche the playwright of history ("she brings all human affairs onto one stage"), and every discussion of black swans, tail risk, and algorithmic randomness is, unknowingly, her temple.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Týchē</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Týchē in Later Traditions</h3><p class="cultural-card-body">Rome merged her with Fortuna — a native Italian goddess with far older roots — and the fusion produced antiquity's most worshipped abstraction: Fortuna Primigenia at Praeneste with her famous sortes (lot-oracle), Fortuna Redux for safe returns, Fortuna Augusta for the emperor's luck. On coins, every city from Palmyra to Alexandria stamped its Tyche-Fortuna: the mural-crowned figure became the standard icon of urban pride across three continents.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">The word outlasted the cult: tyche is Aristotle's and the Stoics' technical term, and 'stochastic' — from the sibling root for aiming — now names the mathematics of chance. Polybius made Tyche the playwright of history ('she brings all human affairs onto one stage'), and every discussion of black swans, tail risk, and algorithmic randomness is, unknowingly, her temple.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Eutychides' bronze original is lost, but the Vatican and Louvre Roman copies preserve the Tyche of Antioch exactly, and the type is confirmed by Antiochene coins and the tiny bronze 'Antioch' statuettes. Praeneste's (Palestrina's) vast sanctuary of Fortuna Primigenia — a mountainside of terraces rediscovered after WWII bombing — shows the cult's architecture at full scale. Hundreds of civic coins bearing mural-crowned Tychai map the goddess's reach from Spain to Afghanistan.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Týchē means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Týchē is the honest goddess: she never promised to be fair. The Greeks' wisdom was to worship her anyway — to give chance a face so it could be addressed, appeased, and above all named. Every plan carries her signature in invisible ink; every city that crowned her understood that fortune is not the enemy of order but its weather.</p><p>To worship chance, the Hellenistic cities understood, is not to surrender to her but to be honest about her: the cornucopia and the rudder in the same hands, gifts and steering at once. Every risk model, every insurance premium, every prayer before a voyage is her liturgy translated — the human attempt to stand in a fair relation to what happens. She alone of the gods never pretended the world was just; that is why they trusted her.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     <section class="section section-name" id="screen-appearances">
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Screen Appearances</h2>
-            <p class="section-subtitle">Films, series, animations, and games featuring Týchē</p>
+            <span class="section-number">06</span>
+            <h2 class="section-title">Screen &amp; Culture</h2>
+            <p class="section-subtitle">Where Týchē echoes through film, television, and games — and how</p>
         </div>
         <div class="screen-appearances-grid"><a class="screen-appearance-card reveal-up" href="/screen/hades-2020/">
                 <span class="screen-appearance-year">2020</span>
                 <h3 class="screen-appearance-title">Hades</h3>
                 <span class="screen-appearance-type">Game</span>
                 <p class="screen-appearance-studio">Supergiant Games</p>
+                <p class="screen-appearance-summary">A roguelike action game in which Zagreus attempts to escape the Underworld, encountering most of the Olympian pantheon.</p>
             </a></div>
     </div>
 </section>
@@ -275,11 +349,11 @@
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Týchē, Fortune, Chance, Turning, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Týchē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Týchē</strong> is /tý.kʰɛː/ — approximately TU-khee, stress on the first syllable with a long ē..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Týchē mean?</summary><div class="faq-answer"><p><strong>Týchē</strong> means <strong>'That which happens' (from τυγχάνω)</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Týchē?</summary><div class="faq-answer"><p>Týchē is associated with <strong>The rudder</strong> (Steering without destination — guidance of the contingent), <strong>The cornucopia</strong> (Abundance as accident; the gifts no one earned), <strong>The mural crown</strong> (The city walls she wears — fortune as civic identity), <strong>The wheel</strong> (Roman addition — the turning that raises and ruins).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>What is the difference between Týchē.com?</summary><div class="faq-answer"><p>Each is a historically defensible restoration. <strong>Tychē.com</strong> is the macron-only form: LSJ convention: length only, no stress mark.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Týchē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>tyche</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Týchē?</summary><div class="faq-answer"><p>Hesiod makes her an Oceanid, daughter of Ōkeanos and Tēthys — chance as one of the primordial waters' three thousand daughters. Pindar, elevating her, calls her Týchē Sōteira, "saviour fortune," and a child of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> Eleutherios: luck ennobled into divine pedigree. The disagreement is the point — even the Greeks could not decide if chance is cosmic or capricious.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Týchē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Týchē</strong> is /tý.kʰɛː/ — approximately TU-khee, stress on the first syllable with a long ē.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Týchē mean?</summary><div class="faq-answer"><p><strong>Týchē</strong> means <strong>'That which happens' (from τυγχάνω)</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Týchē?</summary><div class="faq-answer"><p>Týchē is associated with <strong>The rudder</strong> (Steering without destination — guidance of the contingent), <strong>The cornucopia</strong> (Abundance as accident; the gifts no one earned), <strong>The mural crown</strong> (The city walls she wears — fortune as civic identity), <strong>The wheel</strong> (Roman addition — the turning that raises and ruins).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why are there different spellings of Týchē?</summary><div class="faq-answer"><p>Each form is a historically attested restoration rather than a mistake: <strong>Tychē</strong> is the macron-only form (LSJ convention: length only, no stress mark). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Týchē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>tyche</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Týchē?</summary><div class="faq-answer"><p>“Two Fathers” — Týchē has almost no myths — she is a goddess of situations, not stories. Her biography is the biography of the Hellenistic age: when empires rose and fell in a generation, chance needed a face. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -288,7 +362,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">08</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -301,25 +375,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li><li><cite>Pausanias</cite></li><li><cite>Polybius</cite></li></ul>
+                    <ul class="source-list"><li><cite>Liddell, H. G., Scott, R., &amp; Jones, H. S. <em>A Greek-English Lexicon.</em> Oxford: Clarendon Press, 9th ed. 1996.</cite></li><li><cite>Polybius</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Hesiod, Theogony</cite></li><li><cite>Pindar</cite></li><li><cite>Pausanias</cite></li></ul>
+                    <ul class="source-list"><li><cite>Pausanias</cite></li><li><cite>Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 360</cite></li><li><cite>Pindar, Olympian 12.1–2</cite></li><li><cite>Plutarch, Moralia 326–345 (De Alexandri fortuna aut virtute)</cite></li><li><cite>Pliny, Natural History 34.69; Pausanias</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Týchē and related cults.</cite></li><li><cite>Eutychides' bronze original is lost, but the Vatican and Louvre Roman copies preserve the Tyche of Antioch exactly, and the type is confirmed by Antiochene coins and the tiny bronze "Antioch" statuettes. Praeneste's (Palestrina's) vast sanctuary of Fortuna Primigenia — a mountainside of terraces rediscovered by WWII bombing — shows the cult's architecture at full scale. Hundreds of civic coins bearing mural-crowned Tychai map the goddess's reach from Spain to Afghanistan.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Týchē and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Aristotle</cite></li><li><cite>Polybius</cite></li></ul>
+                    <ul class="source-list"><li><cite>Aristotle, Physics 2.4–6 (195a–197b)</cite></li><li><cite>Polybius, Histories 1.4</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -380,7 +454,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/tyche_logomark.webp" type="image/webp"><img src="../../assets/tyche_logomark.webp" alt="Týchē logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/tyche_logomark.webp" type="image/webp"><img src="../../assets/tyche_logomark.webp" alt="Týchē logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

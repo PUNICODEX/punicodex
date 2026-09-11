@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Arachnē, Weaver, Turned into Spider. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/arachne/lore/extended/">
 
@@ -72,6 +72,62 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Arachnē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Arachnē is /a.rákʰ.nɛː/ — approximately 'ah-RAH-knay' — the middle syllable is stressed and higher-pitched; the final -ē is long."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Arachnē mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Arachnē means Mythological weaver who was transformed into a spider in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Arachnē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Arachnē is associated with Loom (The site of her contest with Athena and the instrument of her fame), Spider web (The eternal trace of her transformed body and her unceasing craft), Hanging thread (Arachne's attempted suicide by hanging, interrupted by Athena's metamorphosis), Tapestry of divine scandals (Her impious but accurate portrayal of Zeus's seductions and deceptions)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why are there different spellings of Arachnē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Each form is a historically attested restoration rather than a mistake: Aráchnē is the ideal form (Acute on the stressed short vowel, matching Greek Ἀράχνη; preserves stress where the canonical macron-only form records length only.). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Arachnē in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII arachne strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Arachnē?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Challenge” — Arachnē's myth turns on a contest of representation. She is not punished for bad weaving but for weaving too well — and for choosing a subject that shames the gods. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +165,13 @@
                 <picture><source srcset="../../assets/arachne_logolockup.webp" type="image/webp"><img src="../../assets/arachne_logolockup.png" alt="Arachnē" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +182,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +201,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Arachnē</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Arachnē.com</span>
@@ -157,7 +216,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/arachne_mascot.webp" type="image/webp"><img src="../../assets/arachne_mascot.png" alt="Arachnē — Weaver, Turned into Spider" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/arachne_mascot.webp" type="image/webp"><img src="../../assets/arachne_mascot.png" alt="Arachnē — Weaver, Turned into Spider" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +269,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Arachnē is Tier 1 because the Greek ἀράχνη contains both stress (acute on the short alpha of the second syllable, associated with long-final pattern) and length (final η). The aspirated rho is preserved in the classical spelling.</p>
+                <p class="etymology-note">The name <strong>Arachnē</strong> carries the orthographic signature of the greek tradition: Ἀράχνη. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +306,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Arachnē is the <strong>Lydian maiden whose weaving rivaled a goddess's</strong> and who was transformed into the first spider. Her myth is a meditation on skill, pride, and the dangerous boundary between human excellence and divine honor.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Arachnē in Later Traditions</h3><p class="cultural-card-body">Arachnē has few direct non-Greek parallels, but the motif of the transformed weaver appears in many traditions. The Greeks themselves gave her name to the spider class Arachnida. In Roman and Renaissance art she becomes an emblem of human artistry and its risks. Modern biology still uses 'arachnid' for spiders, scorpions, and mites, preserving her metamorphosis in scientific Latin.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Arachne's name lives in the word 'arachnid' and in every spiderweb glistening with dew. She is the patron spirit of artists who challenge authority, of women whose skill threatens the powerful, and of the punished genius. In feminist readings she is a victim of divine jealousy; in cautionary readings, a warning against hubris. Both readings agree on one point: her art was unforgettable.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Arachnē</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Arachnē in Later Traditions</h3><p class="cultural-card-body">Arachnē has few direct non-Greek parallels, but the motif of the transformed weaver appears in many traditions. The Greeks themselves gave her name to the spider class Arachnida. In Roman and Renaissance art she becomes an emblem of human artistry and its risks. Modern biology still uses 'arachnid' for spiders, scorpions, and mites, preserving her metamorphosis in scientific Latin.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Arachne's name lives in the word 'arachnid' and in every spiderweb glistening with dew. She is the patron spirit of artists who challenge authority, of women whose skill threatens the powerful, and of the punished genius. In feminist readings she is a victim of divine jealousy; in cautionary readings, a warning against hubris. Both readings agree on one point: her art was unforgettable.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">The myth of Arachnē was extremely popular in Roman wall painting and on sarcophagi, where the contest and transformation appear repeatedly — the House of the Labyrinth at Pompeii preserved a famous version. Greek vase painting more often shows <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> with weaving women than the specific Arachnē scene, but the goddess's patronage of the loom is constant from the Archaic period. Spiders and their webs appear as decorative motifs in Byzantine and Renaissance art, often carrying the moral weight of the myth.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Arachnē means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Arachnē is the artist as transgressor. Her fingers knew what her tongue could not safely say. The loom became her printing press, her courtroom, her rebellion. Athena did not destroy the tapestry; she destroyed the weaver — a sign that the work itself could not be answered.</p><p>The transformation into a spider is ambiguous. Is it punishment or preservation? Arachnē loses her human form but keeps her gift, weaving now without rivalry, without audience, without end. In that ceaseless making there is something like immortality, and something like loneliness. She is every creator whose excellence outruns their place.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Arachnē, Weaver, Turned into Spider, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Arachnē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Arachnē</strong> is /a.rákʰ.nɛː/ — approximately 'ah-RAH-knay' — the middle syllable is stressed and higher-pitched; the final -ē is long..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Arachnē mean?</summary><div class="faq-answer"><p><strong>Arachnē</strong> means <strong>Mythological weaver who was transformed into a spider</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Arachnē?</summary><div class="faq-answer"><p>Arachnē is associated with <strong>Loom</strong> (The site of her contest with <a href="/athena/" class="crosslink" data-crosslink="athena">Athena</a> and the instrument of her fame), <strong>Spider web</strong> (The eternal trace of her transformed body and her unceasing craft), <strong>Hanging thread</strong> (Arachne's attempted suicide by hanging, interrupted by Athena's metamorphosis), <strong>Tapestry of divine scandals</strong> (Her impious but accurate portrayal of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>'s seductions and deceptions).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>What is the difference between Arachnē.com?</summary><div class="faq-answer"><p>Each is a historically defensible restoration. <strong>Aráchnē.com</strong> is the ideal form: Acute on the stressed short vowel, matching Greek Ἀράχνη; preserves stress where the canonical macron-only form records length only..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Arachnē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>arachne</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Arachnē?</summary><div class="faq-answer"><p>Arachnē, a Lydian maiden, boasted that her skill surpassed Athena's. The goddess appeared as an old woman and warned her to repent. When Arachnē refused, Athena revealed herself and proposed a contest. Athena wove the glory of the gods; Arachnē wove their thefts and betrayals — Europa, Leda, Danaë, and others wronged by Olympian desire.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Arachnē?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Arachnē</strong> is /a.rákʰ.nɛː/ — approximately 'ah-RAH-knay' — the middle syllable is stressed and higher-pitched; the final -ē is long.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Arachnē mean?</summary><div class="faq-answer"><p><strong>Arachnē</strong> means <strong>Mythological weaver who was transformed into a spider</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Arachnē?</summary><div class="faq-answer"><p>Arachnē is associated with <strong>Loom</strong> (The site of her contest with Athena and the instrument of her fame), <strong>Spider web</strong> (The eternal trace of her transformed body and her unceasing craft), <strong>Hanging thread</strong> (Arachne's attempted suicide by hanging, interrupted by Athena's metamorphosis), <strong>Tapestry of divine scandals</strong> (Her impious but accurate portrayal of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>'s seductions and deceptions).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why are there different spellings of Arachnē?</summary><div class="faq-answer"><p>Each form is a historically attested restoration rather than a mistake: <strong>Aráchnē</strong> is the ideal form (Acute on the stressed short vowel, matching Greek Ἀράχνη; preserves stress where the canonical macron-only form records length only.). PUNICODEX registers the full set so the tradition is preserved under every defensible spelling.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>Why restore Arachnē in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>arachne</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">06</span>What is the most important myth about Arachnē?</summary><div class="faq-answer"><p>“The Challenge” — Arachnē's myth turns on a contest of representation. She is not punished for bad weaving but for weaving too well — and for choosing a subject that shames the gods. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +344,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,19 +363,19 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Ovid, Metamorphoses</cite></li><li><cite>Apollodorus, Bibliotheca</cite></li><li><cite>Virgil, Georgics</cite></li><li><cite>Pausanias, Description of Greece</cite></li></ul>
+                    <ul class="source-list"><li><cite>Ovid, <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 6.1–145</cite></li><li><cite>Virgil, Georgics 4.246</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Arachnē and related cults.</cite></li><li><cite>The myth of Arachnē was extremely popular in Roman wall painting and on sarcophagi, where the contest and transformation appear repeatedly. Greek vase painting more often shows Athena with weaving women than the specific Arachnē scene. Spiders and their webs appear as decorative motifs in Byzantine and Renaissance art, often carrying the moral weight of the myth.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Arachnē and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Beekes, Etymological Dictionary of Greek</cite></li></ul>
+                    <ul class="source-list"><li><cite>Beekes, Etymological Dictionary of Greek</cite></li><li><cite>Pliny, Natural History 11.28 (the spider that rivals Arachne)</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +436,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/arachne_logomark.webp" type="image/webp"><img src="../../assets/arachne_logomark.webp" alt="Arachnē logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/arachne_logomark.webp" type="image/webp"><img src="../../assets/arachne_logomark.webp" alt="Arachnē logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

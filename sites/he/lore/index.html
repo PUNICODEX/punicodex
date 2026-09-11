@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Hē — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">ἡ</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Hē.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,140 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">ἡ</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Hē</strong> (ἡ) is attested in the source tradition — “Feminine nominative singular article in Ancient Greek; in Orphic and Neoplatonic thought, the receptacle of divine overflow and counterpart to τὸ ἕν (<a href="/hen/" class="crosslink" data-crosslink="hen">Hén</a>).”. Its long vowels carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">he</p>
-                    <p class="card-body">Reduced to plain <strong>he</strong>, the name loses everything that made it specific: long vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Hē</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hē</strong> restores long vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Hē.com → xn--h-pia.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Hē</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hē</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Hē is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">ἡ</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Hē is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hē</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Hē</p>
-                    <p class="card-body">Restores <strong>ἡ</strong>. The live temple domain — <strong>hē.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">he</p>
-                    <p class="card-body">Flattens <strong>ἡ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Hē was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Hē</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/hɛː/</span>
-            <span class="ipa-label">Attic Greek Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Hē</span>
-        <span class="phoneme-desc">Rough breathing on long eta [hɛː]. The word is a single syllable, the feminine nominative singular article.</span>
-      </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'HAY' — one long syllable, beginning with a soft 'h' and drawn out like a breath.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> ἡ (hē), feminine nominative singular definite article, 'the'</li><li><strong>PIE</strong> *so-/*seh₂, the demonstrative stem giving Greek ὁ, ἡ, τό and Sanskrit sā</li><li><strong>Philosophical</strong> In Neoplatonism, Hē as the feminine principle of manifestation and reception</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Hē is Tier 2 because the Greek ἡ preserves the long vowel (eta) but is a grammatical particle, not a stressed lexical word in ordinary syntax. Its theological reinterpretation comes from later Platonism, which treated the article as a metaphysical principle.</p></div>
+      <p class="lead-text">Hē has <strong>no myth in the traditional sense</strong>. Its 'mythology' is the history of interpretation: how a tiny grammatical word became, for some philosophers, a divine name.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Plato, Timaeus</span>
+          <h3 class="myth-title">The Receptacle</h3>
+          <p class="myth-text">Plato calls the principle of becoming the <em>hupodochē</em>, the 'receptacle' (<em>Timaeus</em> 49a–51b): that in which things come to be and perish while it itself never alters — 'like a mother receiving seed.' The dialogue famously refuses to give it a stable name; it partakes of the intelligible 'in a most puzzling and difficult way,' being neither this nor that, yet all thises and thats appear in it. Aristotle reports the same pairing as Plato's own 'unwritten doctrines': the One and the Unlimited, the active and passive principles of all things (<em>Metaphysics</em> A 6, 987b). Later readers — Neoplatonists above all — identified this receptive principle with the feminine and, through the grammar of manifestation, with the word <strong>ἡ</strong> itself. The myth means that matter, whatever receives form, was philosophically gendered female from the very beginning of Western metaphysics — and the smallest word in Greek became its name.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Neoplatonism</span>
+          <h3 class="myth-title">Hē and Hén</h3>
+          <p class="myth-text">In Neoplatonic and theurgical texts the masculine <em>tò hén</em> (<a href="/hen/" class="crosslink" data-crosslink="hen">Hén</a>, the One) is paired with <strong>hē</strong>, the feminine principle of procession and manifestation — the dyad that follows unity and generates the multiplicity of the cosmos. The tradition read the pair out of Plato's own <em>Parmenides</em>, whose second hypothesis explores 'if the one is': the One-that-becomes-many. Iamblichus made the One and the dyad the first principles of number, and Proclus calls the dyad 'the cause of difference and the first multiplicity'; Damascius, last head of the Athenian school, named the dyad 'the Unlimited' itself, the first otherness from which all number and all form flow. The myth means the cosmos is born grammatically: unity speaks as masculine, manifestation as feminine — and the article 'she' becomes the name of everything the One is not.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Iamblichus, Theology of Arithmetic</span>
+          <h3 class="myth-title">The Dyad as Audacity</h3>
+          <p class="myth-text">The Pythagorean tradition, preserved in Nicomachus and Iamblichus (<em>Theology of Arithmetic</em>, on the dyad), gave the feminine number her most vivid character. The dyad is called <strong>audacity</strong> — daring, boldness, impulse, the boldness that separates from the One; it is also called matter and opinion, as against knowledge, and, in a phrase that fascinated and scandalized alike, 'the mother of the gods, but a virgin,' because it produces multiplicity while remaining in itself unchanged. Its traditional name, <em>Duas</em>, was paired with <em>Monas</em> exactly as Hē with Hén, and the same treatises praise the dyad as 'equal and unequal at once' — the first inequality, through which difference enters the world. The myth means the feminine principle was never merely passive in this tradition: she is the boldness of manifestation itself — the first risk the cosmos ever takes.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Grammar</span>
+          <h3 class="myth-title">The Article as Name</h3>
+          <p class="myth-text">In ordinary Greek, ἡ is simply 'the' before feminine nouns — among the commonest syllables in the language, never stressed, never capitalized in a manuscript. Its elevation to a theological name is linguistic mysticism in its purest form: the hypothesis that the deep structures of grammar map the deep structures of reality. The same instinct runs through late-antique allegory, from Stoic etymology to Neoplatonic exegesis of Homer, and reappears centuries later in Kabbalistic letter-meditation. Hē is thus a goddess born from philology rather than cult — a flagship in a lexicon of names that never had an altar. The myth asks what it means to deify a function: to discover, in the grammar of pointing — 'she, the one I mean' — the shadow of a cosmic principle.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -372,7 +286,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Feminine Principle</h2>
             <p class="section-subtitle">Receptivity, Manifestation, She Who Is</p>
         </div>
@@ -419,49 +333,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Hē</p>
-        </div>
-        
-      <p class="lead-text">Hē has <strong>no myth in the traditional sense</strong>. Its 'mythology' is the history of interpretation: how a tiny grammatical word became, for some philosophers, a divine name.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Plato, Timaeus</span>
-          <h3 class="myth-title">The Receptacle</h3>
-          <p class="myth-text">Plato calls the principle of matter the hupodochē, the 'receptacle' of all becoming. It receives forms the way a mother receives seed. Later readers — especially Neoplatonists and Renaissance mystics — identified this receptive principle with the feminine and, by extension, with the word ἡ.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Neoplatonism</span>
-          <h3 class="myth-title">Hē and Hén</h3>
-          <p class="myth-text">In Neoplatonic and theurgical texts, the masculine τὸ ἕν (Hén, the One) is paired with ἡ (Hē), the feminine principle of procession and manifestation. The dyad generates the multiplicity of the cosmos from the simplicity of the One.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Grammar</span>
-          <h3 class="myth-title">The Article as Name</h3>
-          <p class="myth-text">In ordinary Greek, ἡ is simply 'the' before feminine nouns. Its elevation to a theological name is an example of linguistic mysticism: the sounds and structures of language are treated as maps of reality. Hē is therefore a goddess born from philology as much as from cult.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek pantheon</p>
         </div>
@@ -525,8 +404,142 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">ἡ</p>
+                <p class="card-body">The name in its original Greek form. <strong>Hē</strong> (ἡ) is attested in the source tradition — “Feminine nominative singular article in Ancient Greek; in Orphic and Neoplatonic thought, the receptacle of divine overflow and counterpart to τὸ ἕν (Hén).”. Its long vowels carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">he</p>
+                <p class="card-body">Reduced to plain <strong>he</strong>, the name loses everything that made it specific: long vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Hē</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Hē</strong> restores long vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Hē.com → xn--h-pia.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Hē</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Hē</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Hē</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Hē</p>
+                    <p class="card-body">Restores <strong>ἡ</strong>. The live temple domain — <strong>hē.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">he</p>
+                    <p class="card-body">Flattens <strong>ἡ</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Hē was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/hɛː/</span>
+            <span class="ipa-label">Attic Greek Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Hē</span>
+        <span class="phoneme-desc">Rough breathing on long eta [hɛː]. The word is a single syllable, the feminine nominative singular article.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'HAY' — one long syllable, beginning with a soft 'h' and drawn out like a breath.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Hē is Tier 2 because the Greek ἡ preserves the long vowel (eta) but is a grammatical particle, not a stressed lexical word in ordinary syntax. Its theological reinterpretation comes from later Platonism, which treated the article as a metaphysical principle.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Hē is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">ἡ</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Hē is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -544,7 +557,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/he_mascot.webp" type="image/webp"><img src="../assets/he_mascot.png" alt="Hē mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/he_mascot.webp" type="image/webp"><img src="../assets/he_mascot.png" alt="Hē mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -582,7 +595,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/he_logomark.webp" type="image/webp"><img src="../assets/he_logomark.webp" alt="Hē logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/he_logomark.webp" type="image/webp"><img src="../assets/he_logomark.webp" alt="Hē logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

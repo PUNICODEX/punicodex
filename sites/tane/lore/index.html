@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Tāne — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Tāne</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Tāne.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,144 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Tāne</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Tāne</strong> is the standard Polynesian romanisation, documented in academic sources — “Man (from Proto-Polynesian *tane)”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">tane</p>
-                    <p class="card-body">Reduced to plain <strong>tane</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Tāne</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tāne</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Tāne.com → xn--tne-1oa.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Tāne</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tāne</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Tāne is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Tāne</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tāne</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Tāne</p>
-                    <p class="card-body">The live temple domain — <strong>tāne.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">tane</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Tāne was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Tāne</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/ˈtaː.ne/</span>
-            <span class="ipa-label">Māori/Proto-Polynesian Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Tā-</span>
-        <span class="phoneme-desc">Voiceless alveolar plosive [t] plus long open front [aː]; Māori t is unaspirated, and the macron marks vowel length.</span>
+      <p class="lead-text">Tāne's myths are central to Māori cosmogony. He is the active principle of separation, the ancestor of humankind, and the culture hero who brings knowledge from the sky. The narratives are preserved in nineteenth-century written versions of oral tradition.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Creation myth</span>
+          <h3 class="myth-title">The One Who Pushed the Sky</h3>
+          <p class="myth-text">Tāne was born in the darkness between <a href="/ranginui/" class="crosslink" data-crosslink="ranginui">Ranginui</a> and <a href="/papatuanuku/" class="crosslink" data-crosslink="papatuanuku">Papatūānuku</a>, and it was he who ended it. His brother <a href="/tumatauenga/" class="crosslink" data-crosslink="tumatauenga">Tūmatauenga</a> urged killing their parents; <a href="/rongo/" class="crosslink" data-crosslink="rongo">Rongo</a>, <a href="/tangaroa/" class="crosslink" data-crosslink="tangaroa">Tangaroa</a>, and Haumia-tiketike tried and failed to force them apart. Then <strong>Tāne lay on his back between the two great bodies and pressed upward with his legs</strong> — and Ranginui rose into the sky, and the space between became the world, and light came in. The recitations linger on the aftermath: Rangi's tears falling as rain, Papa's mist rising to meet him, and the new order's first casualty — the broken embrace. <a href="/tawhirimatea/" class="crosslink" data-crosslink="tawhirimatea">Tāwhirimātea</a>, refusing the separation, made war from the sky; it was Tāne who had to live with what his success cost. (Grey, Polynesian Mythology, ch. 1.) The myth's insight is that creation is violent even when no one is killed: to make room is to amputate an embrace.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ne</span>
-        <span class="phoneme-desc">Alveolar nasal [n] plus close-mid front [e], a short final syllable.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Origin myth</span>
+          <h3 class="myth-title">The Making of Hineahuone</h3>
+          <p class="myth-text">Tāne sought a companion and found none among the gods, so he made one from the earth. At <strong>Kurawaka</strong> — the place where Papatūānuku's female essence was understood to be concentrated — he took the red ochre clay and shaped it into the form of a woman: <strong>Hineahuone</strong>, 'Earth-formed woman.' Then he pressed his nose to hers in the <em>hongi</em> and breathed his own breath into her nostrils, and she woke, and the first couple stood together in the new world. Their daughter was Hinetītama, the dawn-maiden, and from her the whole human line descends. (Grey, Polynesian Mythology; Best, Māori Religion and Mythology.) The myth makes humanity a collaboration of body and breath — clay from the mother, spirit from the father — and locates the first birth at the earth's most emphatically female place.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Fall</span>
+          <h3 class="myth-title">The Daughter Who Became Night</h3>
+          <p class="myth-text">Hinetītama grew and married the great provider of the world — and then learned, from the murmuring of the forest creatures, that her husband was <strong>her own father, Tāne</strong>. Shattered, she fled the world of light and went down into the darkness, becoming <strong>Hine-nui-te-pō</strong>, 'Great woman of the night,' the guardian of the dead. Tāne followed her to the underworld's edge and pleaded for her return; her answer — that she would keep the dead, and that her descendants would come to her one by one — is the myth's explanation of mortality. (Grey, Polynesian Mythology; White, The Ancient History of the Māori I.) It is among the starkest incest-and-exile narratives in world myth, and its result is the kindest possible death: a goddess who was wronged keeps the door, and every mortal goes home to her.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Culture hero myth</span>
+          <h3 class="myth-title">The Ascent for the Baskets of Knowledge</h3>
+          <p class="myth-text">To make human life more than survival, Tāne climbed through the layered heavens — the whare-wānanga teachings count them variously, and their pre-contact antiquity is honestly debated — passing the guardian of each sky until he reached the hidden realm of <strong>Io</strong>. From Io's court he descended with the <strong>three baskets of knowledge</strong>: one holding ritual and incantation, one the memory of the ancestors and tribal tradition, one spiritual understanding; the priestly schools preserved variant names for each basket, faithfully recorded by Smith from different teaching lines. His return made learning possible and founded the authority of those who keep it. (Smith, The Lore of the Whare-wānanga; Best, The Māori School of Learning.) Knowledge, on this charter, is not discovered but <em>fetched</em> — a perilous ascent whose fruit is communal, carried down in baskets, by a god who climbed.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'TAH-neh' — hold the first vowel long, keep the t soft and unaspirated, and pronounce the final e as a clear 'eh.'</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Māori</strong> Tāne — from Proto-Polynesian *tane 'man, male, husband'</li><li><strong>Proto-Polynesian</strong> *tane, reconstructed word for 'man' or 'male person'</li><li><strong>Full title</strong> Tāne-mahuta, Tāne-nui-a-Rangi, Tāne-te-waiora — 'Tāne of the forest,' 'Great Tāne of the Sky,' 'Tāne the life-giver'</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tāne is one of the simplest and oldest theonyms in the corpus: a Proto-Polynesian common noun for 'man' or 'male' elevated to divine status. The macron on ā marks the long vowel that distinguishes the name in Māori. Tier 1: the single long vowel is the distinctive prosodic feature preserved in the Unicode restoration.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -375,7 +285,7 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Forests, Birds, First Man</h2>
             <p class="section-subtitle">Creator, Separator, and Ancestor</p>
         </div>
@@ -385,7 +295,7 @@
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C24 16 18 28 18 40C18 48 24 56 32 56C40 56 46 48 46 40C46 28 40 16 32 8ZM32 32C28 32 24 36 24 40C24 44 28 48 32 48C36 48 40 44 40 40C40 36 36 32 32 32Z"></path></svg></div>
         <h4 class="domain-name">Separator of Earth and Sky</h4>
-        <p class="domain-desc">He pushed <a href="/ranginui/" class="crosslink" data-crosslink="ranginui">Ranginui</a> upward with his legs, creating the space in which the world exists.</p>
+        <p class="domain-desc">He pushed Ranginui upward with his legs, creating the space in which the world exists.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M20 16H44V48H20V16ZM24 20V44M28 20V44M32 20V44M36 20V44M40 20V44"></path></svg></div>
@@ -395,12 +305,12 @@
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8L36 20H48L38 28L42 40L32 32L22 40L26 28L16 20H28L32 8Z"></path></svg></div>
         <h4 class="domain-name">Creator of Humankind</h4>
-        <p class="domain-desc">He formed the first woman, Hineahuone, from red clay and breathed life into her nostrils.</p>
+        <p class="domain-desc">He formed the first woman, Hineahuone, from red clay at Kurawaka and breathed life into her nostrils.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="300">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 12C22 12 14 20 14 32C14 44 22 52 32 56C42 52 50 44 50 32C50 20 42 12 32 12ZM32 20V44M20 32H44"></path></svg></div>
         <h4 class="domain-name">Seeker of Knowledge</h4>
-        <p class="domain-desc">He climbed through the twelve heavens to obtain the three baskets of knowledge for humankind.</p>
+        <p class="domain-desc">He climbed through the layered heavens to obtain the three baskets of knowledge for humankind.</p>
       </div></div>
       <div class="symbols-section reveal-up"><h3 class="symbols-title">Sacred Symbols</h3><div class="symbols-list">
       <div class="symbol-item">
@@ -418,45 +328,31 @@
       <div class="symbol-item">
         <span class="symbol-name">The three baskets of knowledge</span>
         <span class="symbol-meaning">The repositories of ritual, memory, and cosmic understanding brought down from the heavens</span>
+      </div>
+      <div class="symbol-item">
+        <span class="symbol-name">Tōtara and rātā, the forest's spine</span>
+        <span class="symbol-meaning">The great canopy trees whose trunks stand between earth and sky like his legs still holding them apart</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Tāne</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Tāne lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Tāne's myths are central to Māori cosmogony. He is the active principle of separation, the ancestor of humankind, and the culture hero who brings knowledge from the sky. The narratives are preserved in nineteenth-century written versions of oral tradition.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Creation myth</span>
-          <h3 class="myth-title">The Separation of Rangi and Papa</h3>
-          <p class="myth-text">Born in the darkness between Ranginui and <a href="/papatuanuku/" class="crosslink" data-crosslink="papatuanuku">Papatūānuku</a>, Tāne and his brothers longed for light and space. While <a href="/tu/" class="crosslink" data-crosslink="tu">Tū</a> urged violence, Tāne turned onto his back and pressed his feet against Ranginui, pushing the sky upward. The parents were separated, and the world was born in the space between them. Ranginui wept tears of rain; Papatūānuku's mist rose to meet him. (Grey, Polynesian Mythology.)</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/kumulipo/" class="source-badge">Kumulipo</a>
+                    <a href="https://punicodex.com/texts/polynesian-mythology/" class="source-badge">Polynesian Mythology</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Origin myth</span>
-          <h3 class="myth-title">The Making of Hineahuone</h3>
-          <p class="myth-text">Tāne sought to create a companion. He shaped Hineahuone, 'Earth-formed woman,' from red clay at Kurawaka, the place where the earth's female essence was most concentrated. He breathed into her nostrils through the hongi, the pressing of noses, and she came to life. Their daughter was Hinetītama, who later became Hine-nui-te-pō, guardian of the underworld. (Best, Māori Religion and Mythology.)</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Culture hero myth</span>
-          <h3 class="myth-title">The Ascent for the Baskets of Knowledge</h3>
-          <p class="myth-text">To bring wisdom to humankind, Tāne climbed through the twelve heavens, passing guardians and trials, until he reached the supreme realm of Io. There he obtained the three kete of knowledge: the kete of sacred rituals, the kete of memory and tradition, and the kete of spiritual understanding. His descent made human learning possible and established the priestly authority of those who guard the knowledge. (Smith, The Lore of the Whare-wananga.)</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -464,7 +360,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the polynesian pantheon</p>
         </div>
@@ -528,24 +424,145 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Tāne lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/kumulipo/" class="source-badge">Kumulipo</a>
-                    <a href="https://punicodex.com/texts/polynesian-mythology/" class="source-badge">Polynesian Mythology</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Tāne</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Tāne</strong> is the standard Polynesian romanisation, documented in academic sources — “Man (from Proto-Polynesian *tane)”. Its macron-length vowels preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">tane</p>
+                <p class="card-body">Reduced to plain <strong>tane</strong>, the name loses everything that made it specific: macron-length vowels. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Tāne</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Tāne</strong> restores macron-length vowels, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Tāne.com → xn--tne-1oa.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Tāne</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Tāne</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Tāne</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Tāne</p>
+                    <p class="card-body">The live temple domain — <strong>tāne.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">tane</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Tāne was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/ˈtaː.ne/</span>
+            <span class="ipa-label">Māori/Proto-Polynesian Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Tā-</span>
+        <span class="phoneme-desc">Voiceless alveolar plosive [t] plus long open front [aː]; Māori t is unaspirated, and the macron marks vowel length.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ne</span>
+        <span class="phoneme-desc">Alveolar nasal [n] plus close-mid front [e], a short final syllable.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'TAH-neh' — hold the first vowel long, keep the t soft and unaspirated, and pronounce the final e as a clear 'eh.'</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Tāne is one of the simplest and oldest theonyms in the corpus: a Proto-Polynesian common noun for 'man' or 'male' elevated to divine status. The macron on ā marks the long vowel that distinguishes the name in Māori. Tier 1: the single long vowel is the distinctive prosodic feature preserved in the Unicode restoration.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Tāne is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Tāne</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual polynesian names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -564,7 +581,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/tane_mascot.webp" type="image/webp"><img src="../assets/tane_mascot.png" alt="Tāne mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tane_mascot.webp" type="image/webp"><img src="../assets/tane_mascot.png" alt="Tāne mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -602,7 +619,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/tane_logomark.webp" type="image/webp"><img src="../assets/tane_logomark.webp" alt="Tāne logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/tane_logomark.webp" type="image/webp"><img src="../assets/tane_logomark.webp" alt="Tāne logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Olódùmarè — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     
                     <span class="title-trans">Olódùmarè</span>
@@ -212,8 +217,8 @@
                     <span class="meta-domain">Olódùmarè.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -230,156 +235,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Scholarly Transliteration</h3>
-                    <p class="card-greek">Olódùmarè</p>
-                    <p class="card-body">The name survives only in scholarly transliteration. <strong>Olódùmarè</strong> is the standard Yoruba romanisation, documented in academic sources — “Owner of the universe”. Its acute stress marks preserve distinctions lost in plain ASCII.</p>
-                    <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">olodumare</p>
-                    <p class="card-body">Reduced to plain <strong>olodumare</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Olódùmarè</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Olódùmarè</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Olódùmarè.com → xn--oldmar-8ua7frc.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Olódùmarè</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Olódùmarè</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Olódùmarè is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Olódùmarè</div>
-        <div class="script-label">Scholarly Transliteration</div>
-        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Olódùmarè</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Olódùmarè</p>
-                    <p class="card-body">The live temple domain — <strong>olódùmarè.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">olodumare</p>
-                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Olódùmarè was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Olódùmarè</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/o.ló.dù.ma.rè/</span>
-            <span class="ipa-label">Yoruba Reconstruction</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">O-</span>
-        <span class="phoneme-desc">Open-mid back rounded vowel [ɔ] with low tone; the initial vowel is written without dot below in the lexical form.</span>
+      <p class="lead-text">Olódùmarè's mythology is theology: the origin of the world, the distribution of destiny, and the hierarchy between the high god and the orishas who serve him.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Cosmogony</span>
+          <h3 class="myth-title">The Chain from Heaven</h3>
+          <p class="myth-text">At the beginning the world was water below and sky above, and Olódùmarè resolved to make a place for life. He charged Ọbatalá (Orishanla) with the task: descend the golden chain from heaven carrying a snail shell filled with sand, a five-toed hen, and a chameleon to test the ground. But at the threshold the trickster <a href="/eshu/" class="crosslink" data-crosslink="eshu">Ẹṣù</a> offered Ọbatalá palm wine; he drank, grew drowsy, and slept. His younger brother <a href="/oduduwa/" class="crosslink" data-crosslink="oduduwa">Odùduwà</a> seized the chain, the shell, and the hen, scattered the sand on the primordial flood, and the hen scratched it into the ridges of the earth (Ifá corpus; retold by E. Bolaji Idowu, <em>Olódùmarè: God in Yoruba Belief</em>, 1962). When Ọbatalá awoke and descended, the work was done; humbled, he accepted as his own share the moulding of human bodies from clay. The myth divides creation into command, execution, and embodiment: Olódùmarè wills the world, others build it, and the god whom failure humbled receives the clay of humanity.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">-ló-</span>
-        <span class="phoneme-desc">Voiced alveolar lateral approximant [l] followed by close-mid back rounded vowel [o] with high tone.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Destiny</span>
+          <h3 class="myth-title">The Potter Àjàlá and the Unborn Heads</h3>
+          <p class="myth-text">Before birth, every soul kneels in heaven to choose a destiny — àkúnlẹ̀yàn, 'that which is chosen kneeling' — from the moulds of Àjàlá, the divine potter of heads (orí). Ifá verses do not flatter the potter: Àjàlá is a drunkard whose wares are badly fired, and some heads are cracked, some crooked, while only the patient find the sound ones. The choice made, Olódùmarè himself ratifies it and breathes the éémí, the life-force, into the chosen head — and because the seal is his, destiny can be softened by sacrifice and wisdom but never revoked (Idowu 1962; Abimbola, <em>Ifá: An Exposition of Ifá Literary Corpus</em>, 1976). Idowu reads the myth as Yoruba theodicy in miniature: the world is not unjust because Olódùmarè is cruel, but because choosing is the price of being human — and heaven itself keeps a careless potter.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:200ms">
-        <span class="phoneme-symbol">-dù-</span>
-        <span class="phoneme-desc">Voiced alveolar stop [d] followed by close back rounded vowel [u] with low tone.</span>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Theodicy</span>
+          <h3 class="myth-title">The Flood and the Forgetful People</h3>
+          <p class="myth-text">Early accounts of Yoruba cosmogony record a flood sent by Olódùmarè when humanity grew numerous, neglected sacrifice, and forgot the source of its breath (J. Olumide Lucas, <em>The Religion of the Yorubas</em>, 1948; Idowu 1962). The waters rose until only a remnant remained; in the most told form a man, a woman, and a faithful dog endured, and from them the earth was repeopled. The tale belongs to the universal flood type, yet it answers a specifically Yoruba question: why does the most generous god become the most terrible? Because sustenance is a loan, not a possession — when gratitude fails entirely, the owner reclaims the universe he lent. The flood myth also explains Olódùmarè's remoteness as a mercy: a god this absolute cannot be approached directly, and the orishas exist precisely to stand between his justice and human fragility.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:300ms">
-        <span class="phoneme-symbol">-má-</span>
-        <span class="phoneme-desc">Voiced bilabial nasal [m] followed by open [a] with high tone.</span>
-      </div>
-      <div class="phoneme" style="--delay:400ms">
-        <span class="phoneme-symbol">-rè</span>
-        <span class="phoneme-desc">Voiced alveolar tap or trill [r] followed by mid front vowel [e] with low tone.</span>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Theology</span>
+          <h3 class="myth-title">Why the Owner of the Universe Needs No Temple</h3>
+          <p class="myth-text">Yoruba theologians explain the high god's cultlessness by turning it into doctrine: no carver can depict him, no drumbeat can summon him, and no sacrifice can add anything to him (Idowu 1962). Prayer reaches him through the sky itself; his witnesses are the sun and the rainbow-serpent, and his éémí already fills every living body. Idowu notes that the absence of a priesthood is the theology — Olódùmarè is complete in himself, and a god who needs nothing from mortals cannot be bargained with. Yet this absence structures the entire religion: because the owner of the universe will not come down, the orishas must. Every orisha festival thus honours him secondhand, and every breath of éémí is a liturgy no priest need perform. The mythology of his remoteness is thus the charter of Yoruba polytheism itself — one absolute source, and a world governed by delegates.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">aw-loh-doo-MAH-reh — low 'aw', high 'loh', low 'doo', high 'MAH', low 'reh'.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Yoruba</strong> Olódùmarè, the Supreme Creator and owner of the universe.</li><li><strong>Lucumí</strong> Olodumare, the remote high god who delegates the orishas.</li><li><strong>Related title</strong> Olodumare is sometimes addressed as Olorun ('Owner of Heaven').</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Olódùmarè is Tier 1: the acute accent on ó preserves a high tone and the grave accents on ù and è preserve low tones, distinctive features the ASCII form loses. Tonal distinctions are crucial to Yoruba meaning.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -387,12 +285,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">Owner of the Universe</h2>
             <p class="section-subtitle">Supreme Creator, Destiny, and Final Authority</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Olódùmarè</strong> is the high god of Yoruba religion, the sole creator who owns heaven and earth and everything that breathes. Unlike the orishas, who mediate between humans and the sacred, Olódùmarè is remote, self-sufficient, and without need of offerings. He delegates: the orishas govern the world, but they do so on his behalf.</p><p class="lead-text">He is the source of <em>àṣàyàn</em> (destiny) and the one before whom all orishas bow. In Yoruba theology he is not one god among many but the ground from which the many arise.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Olódùmarè</strong> is the high god of Yoruba religion — the sole creator and owner of heaven, earth, and every breath that moves within them. Remote and self-sufficient, he receives no images and depends on no offerings; the orishas govern the world, but only as his delegates. He assigns destiny and stands beyond all appeal.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C20 8 12 18 12 32C12 46 20 56 32 56C44 56 52 46 52 32C52 18 44 8 32 8Z"></path></svg></div>
@@ -402,7 +300,7 @@
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M16 16L24 24L16 32M48 16L40 24L48 32M32 8V56"></path></svg></div>
         <h4 class="domain-name">Destiny</h4>
-        <p class="domain-desc">He assigns àkúnlẹ̀yàn, the destiny chosen by each soul before birth.</p>
+        <p class="domain-desc">He assigns àkúnlẹ̀yàn, the destiny chosen by each soul before birth, and ratifies it with the breath of life.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="200">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M12 48C20 36 28 32 32 32C36 32 44 36 52 48V56H12V48Z"></path></svg></div>
@@ -420,55 +318,36 @@
         <span class="symbol-meaning">His visible throne; the firmament is his temple and his garment.</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">The rainbow (ọ̀ṣùmàrè)</span>
-        <span class="symbol-meaning">The serpent-arch that links heaven and earth, sometimes called his messenger.</span>
+        <span class="symbol-name">The rainbow-serpent (ọ̀ṣùmàrè)</span>
+        <span class="symbol-meaning">The celestial serpent-arch whose appearance seals the passage between heaven and earth; revered as an orisha in its own right and a sign of Olódùmarè's covenant with the sky.</span>
       </div>
       <div class="symbol-item">
-        <span class="symbol-name">Cool wind and breath</span>
-        <span class="symbol-meaning">The invisible life-force he breathes into the bodies shaped by Ọbatalá.</span>
+        <span class="symbol-name">Cool wind and breath (éémí)</span>
+        <span class="symbol-meaning">The invisible life-force he breathes into the bodies shaped by Ọbatalá; the felt proof of the remote god in every living chest.</span>
       </div>
       <div class="symbol-item">
         <span class="symbol-name">White light</span>
-        <span class="symbol-meaning">Pure, imageless presence; Olódùmarè has no anthropomorphic cult statue.</span>
+        <span class="symbol-meaning">Pure, imageless presence; Olódùmarè has no anthropomorphic cult statue anywhere in Yorubaland.</span>
       </div></div></div>
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Olódùmarè</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Olódùmarè lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">Olódùmarè's mythology is theology: it concerns the origin of the world, the distribution of destiny, and the hierarchy between the high god and the orishas.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Cosmogony</span>
-          <h3 class="myth-title">The Creation of the World</h3>
-          <p class="myth-text">Olódùmarè created the universe and then sent the orishas down to finish it. Ọbatalá shaped human bodies from clay, and Olódùmarè himself breathed life into them. The story preserves a strict division: the creator originates, the orishas administer, and humans receive both matter and spirit.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/nigerian-studies/" class="source-badge">Nigerian Studies — The Orisha Myths</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Destiny</span>
-          <h3 class="myth-title">The Distribution of Àyẹ̀wò</h3>
-          <p class="myth-text">Before birth, each soul travels to the house of Àjàláyé, the potter of heads, to choose a destiny. Olódùmarè authorises the choices and gives each person the breath that makes the destiny live. Once chosen, destiny can be mitigated by sacrifice and wisdom but not abolished. Olódùmarè is the final guarantor of this contract.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Theodicy</span>
-          <h3 class="myth-title">Why the High God is Remote</h3>
-          <p class="myth-text">Yoruba tradition explains Olódùmarè's distance by saying that he is too pure and too great to be approached directly. Humans therefore relate to him through the orishas, who are his ministers. This does not diminish his supremacy; it structures it. Olódùmarè is the king who rules through a court of divine officials.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -476,7 +355,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the yoruba pantheon</p>
         </div>
@@ -540,23 +419,157 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Olódùmarè lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/nigerian-studies/" class="source-badge">Nigerian Studies — The Orisha Myths</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Scholarly Transliteration</h3>
+                <p class="card-greek">Olódùmarè</p>
+                <p class="card-body">The name survives only in scholarly transliteration. <strong>Olódùmarè</strong> is the standard Yoruba romanisation, documented in academic sources — “Owner of the universe”. Its acute stress marks preserve distinctions lost in plain ASCII.</p>
+                <p class="card-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">olodumare</p>
+                <p class="card-body">Reduced to plain <strong>olodumare</strong>, the name loses everything that made it specific: acute stress marks. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Olódùmarè</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Olódùmarè</strong> restores acute stress marks, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Olódùmarè.com → xn--oldmar-8ua7frc.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Olódùmarè</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Olódùmarè</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Olódùmarè</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Olódùmarè</p>
+                    <p class="card-body">The live temple domain — <strong>olódùmarè.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">olodumare</p>
+                    <p class="card-body">The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Olódùmarè was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/o.ló.dù.ma.rè/</span>
+            <span class="ipa-label">Yoruba Reconstruction</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">O-</span>
+        <span class="phoneme-desc">Open-mid back rounded vowel [ɔ] with low tone; the initial vowel is written without dot below in the lexical form.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">-ló-</span>
+        <span class="phoneme-desc">Voiced alveolar lateral approximant [l] followed by close-mid back rounded vowel [o] with high tone.</span>
+      </div>
+      <div class="phoneme" style="--delay:200ms">
+        <span class="phoneme-symbol">-dù-</span>
+        <span class="phoneme-desc">Voiced alveolar stop [d] followed by close back rounded vowel [u] with low tone.</span>
+      </div>
+      <div class="phoneme" style="--delay:300ms">
+        <span class="phoneme-symbol">-má-</span>
+        <span class="phoneme-desc">Voiced bilabial nasal [m] followed by open [a] with high tone.</span>
+      </div>
+      <div class="phoneme" style="--delay:400ms">
+        <span class="phoneme-symbol">-rè</span>
+        <span class="phoneme-desc">Voiced alveolar tap or trill [r] followed by mid front vowel [e] with low tone.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">aw-loh-doo-MAH-reh — low 'aw', high 'loh', low 'doo', high 'MAH', low 'reh'.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Olódùmarè is Tier 1: the acute accent on ó preserves a high tone and the grave accents on ù and è preserve low tones, distinctive features the ASCII form loses. Tonal distinctions are crucial to Yoruba meaning.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Olódùmarè is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Olódùmarè</div>
+        <div class="script-label">Scholarly Transliteration</div>
+        <p class="script-placeholder-note">No indigenous writing system is securely attested for individual yoruba names. The form shown is a modern scholarly transliteration.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -575,7 +588,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/olodumare_mascot.webp" type="image/webp"><img src="../assets/olodumare_mascot.png" alt="Olódùmarè mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/olodumare_mascot.webp" type="image/webp"><img src="../assets/olodumare_mascot.png" alt="Olódùmarè mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -613,7 +626,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/olodumare_logomark.webp" type="image/webp"><img src="../assets/olodumare_logomark.webp" alt="Olódùmarè logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/olodumare_logomark.webp" type="image/webp"><img src="../assets/olodumare_logomark.webp" alt="Olódùmarè logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

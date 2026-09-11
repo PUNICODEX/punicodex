@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Thémis, Divine Law, Order, Custom. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/themis/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Thémis?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Thémis is /tʰé.mis/ — approximately 'THAY-miss' — the first syllable rises in pitch like a gavel; both vowels are short and quick."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Thémis mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Thémis means A Titaness, the personification of divine order, law, and established custom; a consort of Zeus and mother of the Seasons (Horae) and the Fates (Moirai). in the greek tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Thémis?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Thémis is associated with The scales (The balance of what is ordained; in later Greco-Roman art her figure merges with Justitia's, scales in hand.), The tripod (Her office at Delphi before Apollo took the oracle — the seat she held between Gaia and Phoebe.), The Horae (Her three daughters as her emblem: Order, Justice, and Peace — the visible seasons of a rightly governed life.), The Moirai (The Fates, her daughters by Zeus — spinners of the destiny even gods must accept; even Zeus 'gave them the greatest honor'.), The seat of assembly (Gods and mortals alike gather 'by Thémis' when they convene lawfully — her name is the Greek word for the lawful convocation itself.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Thémis in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII themis strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Thémis?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Titaness Who Married Order to Power” — Thémis's myths are myths of legitimacy — who may hold an oracle, who may marry whom, and what order survives a flood. A Titaness of the first generation, she appears wherever the question is not 'what is powerful?' but 'what is right?' Homer swears by her; Aeschylus seats her at Delphi; Pindar makes her save the cosmos with a single prophecy. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/themis_logolockup.webp" type="image/webp"><img src="../../assets/themis_logolockup.png" alt="Thémis" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Thémis</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Thémis</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/themis_mascot.webp" type="image/webp"><img src="../../assets/themis_mascot.png" alt="Thémis — Divine Law, Order, Custom" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/themis_mascot.webp" type="image/webp"><img src="../../assets/themis_mascot.png" alt="Thémis — Divine Law, Order, Custom" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -176,7 +227,7 @@
             <p class="section-subtitle">Essential information about Thémis, Divine Law, Order, Custom</p>
         </div>
         <div class="facts-grid reveal-up">
-            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">Θέμις</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Thémis</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/themis/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Divine Law, Order, Custom</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">A Titaness, the personification of divine order, law, and established custom; a consort of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> and mother of the Seasons (Horae) and the Fates (<a href="/moirai/" class="crosslink" data-crosslink="moirai">Moirai</a>).</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Thémis</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">Name, Domain</span></div></div>
+            <div class="facts-list"><div class="fact-card reveal-up"><span class="fact-label">Original Script</span><span class="fact-value script">Θέμις</span></div><div class="fact-card reveal-up"><span class="fact-label">Unicode Restoration</span><span class="fact-value ">Thémis</span></div><div class="fact-card reveal-up"><span class="fact-label">Reconstructed Pronunciation</span><span class="fact-value ">/tʰé.mis/</span></div><div class="fact-card reveal-up"><span class="fact-label">Pantheon</span><span class="fact-value ">Greek</span></div><div class="fact-card reveal-up"><span class="fact-label">Domain</span><span class="fact-value ">Divine Law, Order, Custom</span></div><div class="fact-card reveal-up"><span class="fact-label">Meaning</span><span class="fact-value ">A Titaness, the personification of divine order, law, and established custom; a consort of <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a> and mother of the Seasons (Horae) and the Fates (<a href="/moirai/" class="crosslink" data-crosslink="moirai">Moirai</a>).</span></div><div class="fact-card reveal-up"><span class="fact-label">Classification</span><span class="fact-value ">Tier 2</span></div><div class="fact-card reveal-up"><span class="fact-label">Primary Domain</span><span class="fact-value ">Thémis</span></div><div class="fact-card reveal-up"><span class="fact-label">Sacred Symbols</span><span class="fact-value ">The scales, The tripod, The Horae, The Moirai, The seat of assembly</span></div></div>
         </div>
     </div>
 </section>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">The ASCII form "themis" is a DNS compromise; the restoration "Themis" preserves the name's scholarly dignity.</p>
+                <p class="etymology-note">Law, right (from τίθημι)</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Modern Descendants</h4><ul><li><strong>themis</strong> — Modern English / international usage</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Greek</strong> — θέμις (thémis), 'divine right, that which is established; custom' — a common noun meaning 'ordained order' before it was a goddess's name</li><li><strong>PIE</strong> — *dʰeh₁- 'to set, place, establish' — the root of Greek τίθημι 'I set, place', Latin facere 'to make, do', and English 'do'</li><li><strong>Stem</strong> — θεματ- (themat-), 'that which is laid down' — the family of θέμα, 'theme', 'what is set'</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body"><strong>Themis</strong> is divine law, order, custom. The name means "A Titaness, the personification of divine order, law, and established custom; a consort of Zeus and mother of the Seasons (Horae) and the Fates (Moirai)." and belongs to the greek tradition.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Themis remains a touchstone for understanding greek religion, art, and identity.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Thémis</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Thémis in Later Traditions</h3><p class="cultural-card-body">Rome made no translation of Thémis — her name crossed into Latin unchanged, a rarity among the Titans, which tells us how abstractly the Romans took her: not a foreign goddess to be matched but a concept to be quoted. Cicero treats her as personified divine law, and late antique, medieval, and Renaissance art gradually fused her with <strong>Justitia</strong>, the Roman Justice whose scales and sword became the standard attributes of Lady Justice from the sixteenth century onward. The courthouse allegory of modernity — the robed figure with balanced scales — descends from this merger rather than from any classical cult image of Themis alone. In the Latin West her second life was thus juridical: she became the face the law chose for itself.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Every courthouse statue of a robed woman with scales descends from Thémis — filtered through Justitia and the Renaissance, but unmistakably the Titaness who made order divine. Her name passed directly into modern institutions: <strong>asteroid 24 Themis</strong> (1853), NASA's THEMIS mission (2007), and countless law reviews and legal institutes. In the Greek world her name lived on as a word for lawful right — Homer has mortals and gods act 'by thémis' — and in the modern imagination she stands for the principle that law is not invented but recognized: <strong>what is right is discovered, not made</strong>. Restoring Thémis restores the name of the oldest idea in law.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Pausanias records an altar of Themis among the Elean altars in the Altis at <a href="/olympia/" class="crosslink" data-crosslink="olympia">Olympia</a> (5.14), one of the few fixed points of her cult; she was worshipped chiefly in company — with the Horae, at the assembly-seat — rather than alone. Her true monument is theatrical: the opening speech of Aeschylus' <em>Eumenides</em> (458 BCE), performed before the very rock of the Areopagus, makes her the first keeper of Delphi. Vase painters show her occasionally among the assembled gods — at the wedding of <a href="/peleus/" class="crosslink" data-crosslink="peleus">Peleus</a> and <a href="/thetis/" class="crosslink" data-crosslink="thetis">Thetis</a>, in divine councils — recognizable by her modest bearing among the more flamboyant figures. The cult of 'the way things are done' leaves modest remains; which is, perhaps, exactly right.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Thémis means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Thémis is the most important figure in this lexicon that almost no one remembers. She has no epic adventures, no metamorphoses, no loves. She is simply <strong>what is established</strong> — the way things are rightly done, before anyone wrote it down. The Greeks could see that custom preceded law, that the unwritten order held where decrees failed, and they gave that order a mother: a Titaness, born before Zeus, honored after him.</p><p>There is something quietly radical in making order a goddess rather than a king. Kings die; Thémis remains. When Aeschylus traces the Delphi oracle through her hands, he is tracing legitimacy itself — the idea that authority is valid only when held rightly. In an age that writes new constitutions every decade, Thémis asks a harder question: what do you already know is right, before you vote on it?</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Thémis, Divine Law, Order, Custom, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Thémis?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Thémis</strong> is /themis/ — approximately Say "themis" with the stress and length implied by the scholarly restoration "Themis"..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Thémis mean?</summary><div class="faq-answer"><p><strong>Thémis</strong> means <strong>A Titaness, the personification of divine order, law, and established custom; a consort of Zeus and mother of the Seasons (Horae) and the Fates (Moirai).</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Thémis?</summary><div class="faq-answer"><p>Thémis is associated with <strong>Name</strong> (The restored form Themis, carrying scholarly and cultural weight.), <strong>Domain</strong> (Divine Law, Order, Custom).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Thémis in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>themis</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Thémis?</summary><div class="faq-answer"><p>Themis appears in greek tradition as divine law, order, custom. The name's meaning, "A Titaness, the personification of divine order, law, and established custom; a consort of Zeus and mother of the Seasons (Horae) and the Fates (Moirai).", shapes the narratives told about this figure.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Thémis?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Thémis</strong> is /tʰé.mis/ — approximately 'THAY-miss' — the first syllable rises in pitch like a gavel; both vowels are short and quick.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Thémis mean?</summary><div class="faq-answer"><p><strong>Thémis</strong> means <strong>A Titaness, the personification of divine order, law, and established custom; a consort of Zeus and mother of the Seasons (Horae) and the Fates (Moirai).</strong> in the greek tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Thémis?</summary><div class="faq-answer"><p>Thémis is associated with <strong>The scales</strong> (The balance of what is ordained; in later Greco-Roman art her figure merges with Justitia's, scales in hand.), <strong>The tripod</strong> (Her office at Delphi before Apollo took the oracle — the seat she held between <a href="/gaia/" class="crosslink" data-crosslink="gaia">Gaia</a> and <a href="/phoebe/" class="crosslink" data-crosslink="phoebe">Phoebe</a>.), <strong>The Horae</strong> (Her three daughters as her emblem: Order, Justice, and Peace — the visible seasons of a rightly governed life.), <strong>The Moirai</strong> (The Fates, her daughters by Zeus — spinners of the destiny even gods must accept; even Zeus 'gave them the greatest honor'.), <strong>The seat of assembly</strong> (Gods and mortals alike gather 'by Thémis' when they convene lawfully — her name is the Greek word for the lawful convocation itself.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Thémis in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>themis</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Thémis?</summary><div class="faq-answer"><p>“The Titaness Who Married Order to Power” — Thémis's myths are myths of legitimacy — who may hold an oracle, who may marry whom, and what order survives a flood. A Titaness of the first generation, she appears wherever the question is not 'what is powerful?' but 'what is right?' Homer swears by her; Aeschylus seats her at Delphi; Pindar makes her save the cosmos with a single prophecy. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -292,7 +355,7 @@
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Homer. <em>Iliad</em> and <em>Odyssey</em>; Hesiod. <em>Theogony</em> and <em>Works and Days</em>.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Hesiod, <a href="/texts/theogony/" class="crosslink citation-link" data-citation="theogony">Theogony</a> 132–136, 901–906</cite></li><li><cite>Aeschylus, Eumenides 1–8</cite></li><li><cite>Pindar, Isthmian 8.26–47</cite></li><li><cite>Aeschylus, <a href="/prometheus/" class="crosslink" data-crosslink="prometheus">Prometheus</a> Bound 873–900</cite></li><li><cite>Apollodorus, Bibliotheca 1.7.2, 3.13.5</cite></li><li><cite>Ovid, <a href="/texts/metamorphoses/" class="crosslink citation-link" data-citation="metamorphoses">Metamorphoses</a> 1.381–415</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -304,7 +367,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Comparative studies of greek religion and the place of Thémis within it.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Beekes, Etymological Dictionary of Greek</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/themis_logomark.webp" type="image/webp"><img src="../../assets/themis_logomark.webp" alt="Thémis logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/themis_logomark.webp" type="image/webp"><img src="../../assets/themis_logomark.webp" alt="Thémis logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

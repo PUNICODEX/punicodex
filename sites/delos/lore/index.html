@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Dêlos — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#texts-and-words" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Texts &amp; Words</span></a><a href="#related" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">08</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">Δῆλος</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Dêlos.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,136 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">Δῆλος</p>
-                    <p class="card-body">The name in its original Greek form. <strong>Dêlos</strong> (Δῆλος) is attested in the source tradition — “Clear, visible (from δῆλος)”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">delos</p>
-                    <p class="card-body">Reduced to plain <strong>delos</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Dêlos</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Dêlos</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Dêlos.com → xn--dlos-gpa.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Dêlos</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Dêlos</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Dêlos is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">Δῆλος</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Dêlos is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Dêlos</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Dêlos</p>
-                    <p class="card-body">Restores <strong>Δῆλος</strong>. The live temple domain — <strong>dêlos.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">delos</p>
-                    <p class="card-body">Flattens <strong>Δῆλος</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Dêlos was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Dêlos</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/dɛ̂ː.los/</span>
-            <span class="ipa-label">Attic Greek</span>
-          </div>
-          
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">DAY-los, with the circumflexed long e of Δῆλος.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Greek</strong> Δῆλος</li><li><strong>Latin</strong> Delos</li><li><strong>Owned form</strong> Dêlos</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Δῆλος scans with a long eta — Dêlos with the circumflex marks the stressed long vowel of the nominative exactly as ancient grammarians wrote it. The macron-only form Dēlos is the standard academic fallback (LSJ convention); both are defensible, and the circumflex form is the owned primary. Modern Greek says Dhilos with a fricative; the ancient quantity, not the modern sound, is what the restoration records.</p></div>
+      <p class="lead-text">The <a href="/texts/homeric-hymns/" class="crosslink citation-link" data-citation="homeric-hymns">Homeric Hymn</a> to <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a> gives the island a voice: Dêlos speaks, fears the god's power, and is promised eternal fame if she receives his birth — the founding charter of Aegean sanctity.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Refuge</span>
+          <h3 class="myth-title">The Island that Said Yes</h3>
+          <p class="myth-text">The Homeric Hymn to Apóllōn gives the island a voice. Hounded by <a href="/hera/" class="crosslink" data-crosslink="hera">Hēra</a>’s jealousy, the pregnant <a href="/leto/" class="crosslink" data-crosslink="leto">Lētō</a> was refused by every land that feared the goddess’s wrath, until she came to barren, drifting Dêlos — and Dêlos spoke up and accepted her, asking only that her son build his great temple there and that all who sail in honour him with sacrifices on the island (Homeric Hymn to Apóllōn 51–88). Lētō swore the great oath by the <a href="/styx/" class="crosslink" data-crosslink="styx">Styx</a>, grasped the palm tree beside the round lake, and after nine days and nights of labour bore the twins — <a href="/artemis/" class="crosslink" data-crosslink="artemis">Ártemis</a> first, to serve as midwife, then Apóllōn, whose first act was to take up his bow (Homeric Hymn to Apóllōn 14–18, 89–178). Of all the islands, only the insignificant one said yes, and it became the holiest place in the Greek world. In this myth, sanctity is not a property but a decision — and the decision, once made, cannot be unmade by any later empire.</p>
         </div>
       </div>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Anchoring</span>
+          <h3 class="myth-title">The Floating Isle Made Fast</h3>
+          <p class="myth-text">Before it was fixed, Dêlos wandered. Callimachus tells it in his Hymn to Dêlos: the island was once Astería, ‘the starry one,’ the Titaness who fled <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeus</a>’s pursuit across the sea by leaping into the waves and becoming an isle — and the isle kept drifting, unmoored, visible in no fixed place, until Lētō’s labour pinned it to the sea floor (Callimachus, Hymn to Dêlos 36–54; Hyginus, Fabulae 53). The myth explains the island’s double name, its ancient epiclesis, and its bareness in one stroke: a rock that was once a fugitive goddess is not required to be fertile — only faithful. Every teller keeps the image of the island still at sea, a fixed point that had refused to be one; the god’s birth is what finally holds the world still, and the smallest territory in the Aegean carries the weight of that anchoring ever after.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Purifications</span>
+          <h3 class="myth-title">No Birth, No Death</h3>
+          <p class="myth-text">Twice the Athenians purified the island. Peisístratos removed the graves within sight of the temple; then, in 426/5 BCE, in the middle of the Peloponnesian War, the Athenians decreed that no one might be born or die on Dêlos — all burials were opened, the dead ferried across to Rheneia, and the pregnant and the dying shipped out before the end (Thucydides 1.8; 3.104; Diodorus 12.58.3). The island was to belong to the god alone: a sanctuary so absolute that the human cycle itself was exported to the neighbouring rock. No other Greek polity attempted a holiness of this kind — purity not as ritual but as jurisdiction, enforced by ferries. The decree is usually read as Athenian theatre, a war-time claim on Apóllōn’s neutrality; but it stands in the record as the purest experiment in sacred exclusion the ancient world ever ran, and it ran for as long as the god’s ownership was acknowledged.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">The Treasury</span>
+          <h3 class="myth-title">The Delian League</h3>
+          <p class="myth-text">After the Persian Wars the Greek allies against Persia needed a neutral bank, and they chose the god’s island: the common treasury of the alliance was lodged in Apóllōn’s sanctuary on Dêlos — sacred ground, safe from every city’s seizure (Thucydides 1.96–97). In 454 BCE Athens moved the funds to the Parthenon, and the ‘alliance’ became an empire whose tribute was still collected in the god’s name. The transfer is one of history’s cleanest demonstrations of how sacred neutrality gets spent: Dêlos’s sanctity had made the treasury untouchable; Athens simply decided the sanctity was portable. The island’s political star faded — Rome would later give it commerce instead — but the lesson Thucydides drew from its treasury stands at the head of every later history of alliances: the common fund outlives the common cause only until someone stronger finds a better temple for it.</p>
+        </div>
+      </div></div>
     </div>
 </section>
 
@@ -368,17 +286,17 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Unmoved Island</h2>
             <p class="section-subtitle">Birthplace of Light, Sacred Harbour, and Open Market</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text">Dêlos is the smallest great place in Greek religion: a bare rock of about 3.4 km² (roughly 1.3 square miles) that became the holiest island in the Aegean — the birthplace of <a href="/apollon/" class="crosslink" data-crosslink="apollon">Apóllōn</a> and <a href="/artemis/" class="crosslink" data-crosslink="artemis">Ártemis</a> — and then, by a turn of history, the busiest free port of the Hellenistic world.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text">Dêlos is the smallest great place in Greek religion: a bare rock of about 3.4 km² (roughly 1.3 square miles) that became the holiest island in the Aegean — the birthplace of Apóllōn and Ártemis — and then, by a turn of history, the busiest free port of the Hellenistic world.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 20A12 12 0 1 0 32 44A12 12 0 1 0 32 20M32 4V12M32 52V60M4 32H12M52 32H60M12 12L18 18M46 46L52 52M52 12L46 18M18 46L12 52"></path></svg></div>
         <h4 class="domain-name">Birth of the Twins</h4>
-        <p class="domain-desc"><a href="/leto/" class="crosslink" data-crosslink="leto">Lētō</a>, refused by every land fearing <a href="/hera/" class="crosslink" data-crosslink="hera">Hēra</a>, found refuge on the floating isle — and light was born there twice.</p>
+        <p class="domain-desc">Lētō, refused by every land fearing Hēra, found refuge on the floating isle — and light was born there twice.</p>
       </div>
       <div class="domain-card reveal-up" data-delay="100">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M8 52L24 20L32 34L40 16L56 52Z"></path></svg></div>
@@ -411,49 +329,22 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
+    <!-- In the Texts & Everyday Words -->
+    <section class="section section-related" id="texts-and-words">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Dêlos</p>
+            <span class="section-number">03</span>
+            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
+            <p class="section-subtitle">Where Dêlos lives in the sacred library and in the words you still speak</p>
         </div>
-        
-      <p class="lead-text">The Homeric Hymn to Apóllōn gives the island a voice: Dêlos speaks, fears the god's power, and is promised eternal fame if she receives his birth — the founding charter of Aegean sanctity.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Refuge</span>
-          <h3 class="myth-title">The Island that Said Yes</h3>
-          <p class="myth-text">Hounded by Hēra's jealousy, the pregnant Lētō was refused by every island and mainland city until barren, drifting Dêlos accepted her — asking only that Apóllōn build his great temple there. Lētō swore by the <a href="/styx/" class="crosslink" data-crosslink="styx">Styx</a>, clasped a palm tree, and after nine days of labour bore Apóllōn and Ártemis between the mountain and the lake.</p>
+        <div class="sources-section">
+            <div class="reveal-up">
+                <h3 class="symbols-title">In the Texts</h3>
+                <div class="sources-list">
+                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Anchoring</span>
-          <h3 class="myth-title">The Floating Isle Made Fast</h3>
-          <p class="myth-text">Pindar and Callimachus preserve the tradition that Dêlos once floated freely over the sea, visible in no fixed place, until the twins' birth pinned her down — <a href="/zeus/" class="crosslink" data-crosslink="zeus">Zeús</a> fastened her with adamant chains to the sea floor. Her other ancient name, Astería ("the starry"), recalls the wandering light that became a fixed point.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Purifications</span>
-          <h3 class="myth-title">No Birth, No Death</h3>
-          <p class="myth-text">To keep the god's birthplace pure, Athens purified Dêlos twice: Peisístratos removed the graves visible from the temple, and in 426/5 BCE the Athenians cleared the whole island of burials and forbade anyone to be born or to die there — the sick and pregnant ferried to Rheneia. A law of hospitality: the island belonged to the god alone.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="300">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">The Treasury</span>
-          <h3 class="myth-title">The Delian League</h3>
-          <p class="myth-text">After the Persian Wars, the Greek alliance against Persia kept its common treasury in Apóllōn's sanctuary on Dêlos — the neutral sacred bank of the Aegean. In 454 BCE Athens moved the funds to the Parthenon, converting an alliance into an empire; the island's political star faded even as its sanctity endured.</p>
-        </div>
-      </div></div>
     </div>
 </section>
 
@@ -461,7 +352,7 @@
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">04</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the greek-location pantheon</p>
         </div>
@@ -525,23 +416,137 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
-    <section class="section section-related" id="texts-and-words">
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">08</span>
-            <h2 class="section-title">In the Texts &amp; Everyday Words</h2>
-            <p class="section-subtitle">Where Dêlos lives in the sacred library and in the words you still speak</p>
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
         </div>
-        <div class="sources-section">
-            <div class="reveal-up">
-                <h3 class="symbols-title">In the Texts</h3>
-                <div class="sources-list">
-                    <a href="https://punicodex.com/texts/homeric-hymns/" class="source-badge">Homeric Hymns</a>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
                 </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">Δῆλος</p>
+                <p class="card-body">The name in its original Greek form. <strong>Dêlos</strong> (Δῆλος) is attested in the source tradition — “Clear, visible (from δῆλος)”. Its long vowels and acute accents carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">delos</p>
+                <p class="card-body">Reduced to plain <strong>delos</strong>, the name loses everything that made it specific: long vowels and acute accents. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Dêlos</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Dêlos</strong> restores long vowels and acute accents, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
             </div>
         </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Dêlos.com → xn--dlos-gpa.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Dêlos</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Dêlos</em>.</p>
+                </div>
+            </div>
     </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Dêlos</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Dêlos</p>
+                    <p class="card-body">Restores <strong>Δῆλος</strong>. The live temple domain — <strong>dêlos.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">delos</p>
+                    <p class="card-body">Flattens <strong>Δῆλος</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Dêlos was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/dɛ̂ː.los/</span>
+            <span class="ipa-label">Attic Greek</span>
+          </div>
+          
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">DAY-los, with the circumflexed long e of Δῆλος.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Greek Δῆλος scans with a long eta — Dêlos with the circumflex marks the stressed long vowel of the nominative exactly as ancient grammarians wrote it. The macron-only form Dēlos is the standard academic fallback (LSJ convention); both are defensible, and the circumflex form is the owned primary. Modern Greek says Dhilos with a fricative; the ancient quantity, not the modern sound, is what the restoration records.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
+    
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">08</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Dêlos is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">Δῆλος</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Dêlos is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
 </section>
 
     <!-- Extended Lore CTA -->
@@ -560,7 +565,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/delos_mascot.webp" type="image/webp"><img src="../assets/delos_mascot.png" alt="Dêlos mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/delos_mascot.webp" type="image/webp"><img src="../assets/delos_mascot.png" alt="Dêlos mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -598,7 +603,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/delos_logomark.webp" type="image/webp"><img src="../assets/delos_logomark.webp" alt="Dêlos logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/delos_logomark.webp" type="image/webp"><img src="../assets/delos_logomark.webp" alt="Dêlos logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

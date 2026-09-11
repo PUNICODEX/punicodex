@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Myrddin, Seer, Wild Man. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/myrddin/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Myrddin?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Myrddin is /ˈmər.ðɨn/ — approximately 'MUR-thin' — stress the first syllable (the Welsh penult); the dd is the soft 'th' of 'this', and the whole name takes two short beats, never 'MER-lin'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Myrddin mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Myrddin means Merlin in the celtic tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Myrddin?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Myrddin is associated with The apple tree (The wild man's shelter and confidant — prophecy spoken from hiding, sweet and bitter at once), The forest of Celyddon (The Caledonian wood — madness, exile, and second sight in one landscape), The stag (The wild mount he rides to court in the Vita Merlini, driving the forest's herds before him), Rock, tree, and water (The three elements of the foretold death — prophecy that cannot miss, however it is guarded against), Gwenddydd's questions (The sister's dialogue — prophecy as the speech left between the mad and those who loved them)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Myrddin in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Myrddin is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Myrddin?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Battle of Arfderydd” — Myrddin's dossier divides in two, and the tradition itself knew it: the northern prophet who went mad at Arfderydd and fled to Coed Celyddon, preserved in the Welsh Triads, the Annales Cambriae, and the Black Book poems; and Geoffrey of Monmouth's Merlinus, who carried the wild man into Latin and grafted him onto the Arthurian world. Gerald of Wales already separated them in the twelfth century: Merlinus Ambrosius, the boy prophet of Vortigern's tower, and Merlinus Celidonius — Sylvester — the wild man of the Caledonian forest. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/myrddin_logolockup.webp" type="image/webp"><img src="../../assets/myrddin_logolockup.png" alt="Myrddin" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -141,7 +192,7 @@
                     
                     <span class="title-trans">Myrddin</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 2</span>
                     <span class="meta-domain">Myrddin</span>
@@ -156,7 +207,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/myrddin_mascot.webp" type="image/webp"><img src="../../assets/myrddin_mascot.png" alt="Myrddin — Seer, Wild Man" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/myrddin_mascot.webp" type="image/webp"><img src="../../assets/myrddin_mascot.png" alt="Myrddin — Seer, Wild Man" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -200,7 +251,7 @@
       <div class="etym-step-content">
         <span class="etym-lang">Unicode Restoration</span>
         <span class="etym-form">Myrddin</span>
-        <span class="etym-gloss">Restored stress, length, and script</span>
+        <span class="etym-gloss">Canonical scholarly spelling — ASCII-identical</span>
       </div>
     </div><div class="etymology-step reveal-up" data-step="3" data-delay="200">
       <div class="etym-step-content">
@@ -209,7 +260,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Myrddin is Tier 2 by the mechanical rule: the normalized Middle Welsh form is already plain ASCII — there is no diacritic and no distinctive atomic letter for the ASCII alphabet to lose, and the digraph dd is an orthographic convention, not a lost character. The capital alone distinguishes the temple form from the input; the prophet's standing in the tradition is beside the point.</p>
+                <p class="etymology-note">The name <strong>Myrddin</strong> reaches the modern world through scholarly transliteration of the celtic tradition. Because the conventional spelling uses only Latin letters, its Unicode and ASCII forms coincide — the tradition it carries is in the name itself, not in diacritics.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -234,7 +285,7 @@
                 </thead>
                 <tbody><tr class="reveal-up"><td class="char-cell">M</td><td><code>U+004D</code></td><td>Latin Capital Letter M</td><td>Basic Latin</td><td>Same, capitalized</td></tr><tr class="reveal-up" data-delay="80"><td class="char-cell">y</td><td><code>U+0079</code></td><td>Latin Small Letter Y</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="160"><td class="char-cell">r</td><td><code>U+0072</code></td><td>Latin Small Letter R</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="240"><td class="char-cell">d</td><td><code>U+0064</code></td><td>Latin Small Letter D</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="320"><td class="char-cell">d</td><td><code>U+0064</code></td><td>Latin Small Letter D</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="400"><td class="char-cell">i</td><td><code>U+0069</code></td><td>Latin Small Letter I</td><td>Basic Latin</td><td>Same</td></tr><tr class="reveal-up" data-delay="480"><td class="char-cell">n</td><td><code>U+006E</code></td><td>Latin Small Letter N</td><td>Basic Latin</td><td>Same</td></tr></tbody>
             </table>
-            <p class="breakdown-note">The <strong>Tier 2</strong> classification reflects how much of the original phonology this restoration preserves — stress and vowel length for Greek names, distinctive letters and diacritics for every other tradition.</p>
+            <p class="breakdown-note">The <strong>Tier 2</strong> classification here reflects fidelity to the attested tradition, not recovered diacritics: every character of <strong>Myrddin</strong> already survives in ASCII. What the restoration preserves is the canonical spelling itself — the form scholarship standardised.</p>
         </div>
     </div>
 </section>
@@ -246,24 +297,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Myrddin is the original Welsh form of the name the world knows as Merlin: the prophet who went mad at the battle of Arfderydd in 573, fled into the Caledonian forest, and lived there as a wild man — lamenting his dead lord Gwenddolau, sheltering beneath an apple tree, and uttering the prophecies that made him the canonical voice of Welsh vaticination before Geoffrey of Monmouth made him the wizard of the Arthurian world.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Myrddin in Later Traditions</h3><p class="cultural-card-body">Myrddin's comparisons run north, not east. The twelfth-century Life of St Kentigern by Jocelyn of Furness knows a mad prophet at the court of Rhydderch Hael named Lailoken, who foretold his own threefold death; a fragmentary Latin life of 'Merlin the Wild' preserved in the Cotton collection tells the same penitence, conversion by Kentigern, and triple end — stoned, fallen on a stake, drowned in the Tweed. Nikolai Tolstoy's Quest for Merlin argued that Lailoken and Myrddin Wyllt are two records of one north-British wild-man figure, and the modern handbooks treat the kinship as real, its exact shape unproven. The Irish tradition offers no namesake — the wild men of the Irish tales, Suibhne Geilt above all, share the type rather than the name: the king driven mad by battle who lives in trees, speaks in verse, and is watched by the court he left. Within the Welsh corpus his truest kin is [[taliesin|<a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>]], the other great prophetic poet, with whom the Vita Merlini pairs him in discourse; and his own tradition split him in two, as Gerald of Wales records — Merlinus Ambrosius of Dinas Emrys and Merlinus Celidonius of the Caledonian forest, the tower-boy and the wild man the romances later fused.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">No Celtic figure has had a stranger second life. Geoffrey's Prophetiae Merlini — the seventh book of the Historia — circulated separately for centuries and became the most copied political prophecy of the Latin Middle Ages, mined for omens by kings and rebels alike; the romances then turned the prophet into the enchanter, and by the thirteenth-century Vulgate cycle Merlin is Arthur's maker: arranger of Uther's night at Tintagel, keeper of the Round Table's founding, and prisoner of the Lady of the Lake. Lady Charlotte Guest's Mabinogion (1838–49) and the nineteenth-century Arthurian revival carried the Welsh roots back into English view, and modern scholarship — Jarman above all — rebuilt the northern prophet behind the wizard. In Welsh memory the original never disappeared: Caerfyrddin, 'Myrddin's fortress', still bears the folk etymology Geoffrey loved, and the Myrddin of the Black Book remains the patron of Welsh prophecy — the figure every later brud quietly pretended to be. The name now means the wizard worldwide; the temple's task is to hand the name back to the wild man it began with.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Myrddin</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Myrddin in Later Traditions</h3><p class="cultural-card-body">Myrddin's comparisons run north, not east. The twelfth-century Life of St Kentigern by Jocelyn of Furness knows a mad prophet at the court of Rhydderch Hael named Lailoken, who foretold his own threefold death; a fragmentary Latin life of 'Merlin the Wild' preserved in the Cotton collection tells the same penitence, conversion by Kentigern, and triple end — stoned, fallen on a stake, drowned in the Tweed. Nikolai Tolstoy's Quest for Merlin argued that Lailoken and Myrddin Wyllt are two records of one north-British wild-man figure, and the modern handbooks treat the kinship as real, its exact shape unproven. The Irish tradition offers no namesake — the wild men of the Irish tales, Suibhne Geilt above all, share the type rather than the name: the king driven mad by battle who lives in trees, speaks in verse, and is watched by the court he left. Within the Welsh corpus his truest kin is [[taliesin|<a href="/taliesin/" class="crosslink" data-crosslink="taliesin">Taliesin</a>]], the other great prophetic poet, with whom the Vita Merlini pairs him in discourse; and his own tradition split him in two, as Gerald of Wales records — Merlinus Ambrosius of Dinas Emrys and Merlinus Celidonius of the Caledonian forest, the tower-boy and the wild man the romances later fused.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">No Celtic figure has had a stranger second life. Geoffrey's Prophetiae Merlini — the seventh book of the Historia — circulated separately for centuries and became the most copied political prophecy of the Latin Middle Ages, mined for omens by kings and rebels alike; the romances then turned the prophet into the enchanter, and by the thirteenth-century Vulgate cycle Merlin is Arthur's maker: arranger of Uther's night at Tintagel, keeper of the Round Table's founding, and prisoner of the Lady of the Lake. Lady Charlotte Guest's Mabinogion (1838–49) and the nineteenth-century Arthurian revival carried the Welsh roots back into English view, and modern scholarship — Jarman above all — rebuilt the northern prophet behind the wizard. In Welsh memory the original never disappeared: Caerfyrddin, 'Myrddin's fortress', still bears the folk etymology Geoffrey loved, and the Myrddin of the Black Book remains the patron of Welsh prophecy — the figure every later brud quietly pretended to be. The name now means the wizard worldwide; the temple's task is to hand the name back to the wild man it began with.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">Myrddin is a textual figure, and his witnesses are among the most precisely identified in Welsh letters. The Afallennau and Oianau stand in the Black Book of Carmarthen (Aberystwyth, NLW Peniarth MS 1, c. 1250), the earliest surviving manuscript in Welsh; the Cyfoesi Myrddin a Gwenddydd stands in the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410); Geoffrey's Vita Merlini survives complete in a single manuscript (British Library, Cotton Vespasian E.iv, thirteenth century). The landscape behind the texts is real and partly recoverable: Arfderydd is traditionally identified with Arthuret near Longtown in Cumbria, in the Old North the poems remember; Caerfyrddin (Carmarthen) overlays the Roman fort of Moridunum, 'sea-fort', attested in the Antonine Itinerary and confirmed by excavation — the place-name from which, on the scholarly account, the prophet's name derives; and Dinas Emrys, the hillfort in Gwynedd where Nennius sets the fatherless boy and the dragons, yielded post-Roman occupation material in Savory's excavations of 1954–56. No inscription names Myrddin, and none would be expected: the early stones of Wales record the dead, not prophets.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Myrddin means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Myrddin is the figure who paid for knowledge with the ordinary world. Every version of him loses something before he sees: a lord, a battle, his reason, his hall. The tradition is strikingly honest about the transaction — the prophecy is real, and so is the madness, and the same event, the slaughter at Arfderydd, gives him both. He is the answer Celtic literature gives to the question of what a seer is: not a priest with a technique but a survivor whom grief has put outside the human settlement, close enough to the trees that the future can get a word in. His sister comes to the edge of the forest to ask what will happen; he tells her, and stays. That is the shape of the gift — the future, at the price of the present.</p><p>And his name tells the same story in miniature. It is not a theonym but a place-name: Caerfyrddin, the sea-fort, Moridunum, given to a man. The wild prophet carries a fortress in his name — the ordered world he was driven out of, remembered every time anyone calls him.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Myrddin, Seer, Wild Man, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Myrddin?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Myrddin</strong> is /ˈmər.ðɨn/ — approximately 'MUR-thin' — stress the first syllable (the Welsh penult); the dd is the soft 'th' of 'this', and the whole name takes two short beats, never 'MER-lin'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Myrddin mean?</summary><div class="faq-answer"><p><strong>Myrddin</strong> means <strong>Merlin</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Myrddin?</summary><div class="faq-answer"><p>Myrddin is associated with <strong>The apple tree</strong> (The wild man's shelter and confidant — prophecy spoken from hiding, sweet and bitter at once), <strong>The forest of Celyddon</strong> (The Caledonian wood — madness, exile, and second sight in one landscape), <strong>The stag</strong> (The wild mount he rides to court in the Vita Merlini, driving the forest's herds before him), <strong>Rock, tree, and water</strong> (The three elements of the foretold death — prophecy that cannot miss, however it is guarded against), <strong>Gwenddydd's questions</strong> (The sister's dialogue — prophecy as the speech left between the mad and those who loved them).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Myrddin in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>myrddin</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Myrddin?</summary><div class="faq-answer"><p>The Annales Cambriae enter under the year 573 the battle of Arfderydd, fought in the north between the sons of Eliffer and Gwenddolau son of Ceidio — a historical-seeming conflict of the British Old North. The Welsh Triads count it among the futile battles of the Island of Britain, brought about, in the triad's famous understatement, for a lark's nest; and the triad records the consequence that matters here: Gwenddolau fell, and Myrddin became mad.From that seed the whole legend grows. Myrddin son of Morfryn, his lord dead and his side defeated, flees the world of the mead-hall into Coed Celyddon, the Caledonian forest, and becomes Myrddin Wyllt — the Wild — living from the forest's gifts and speaking only in verse and prophecy.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Myrddin?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Myrddin</strong> is /ˈmər.ðɨn/ — approximately 'MUR-thin' — stress the first syllable (the Welsh penult); the dd is the soft 'th' of 'this', and the whole name takes two short beats, never 'MER-lin'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Myrddin mean?</summary><div class="faq-answer"><p><strong>Myrddin</strong> means <strong>Merlin</strong> in the celtic tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Myrddin?</summary><div class="faq-answer"><p>Myrddin is associated with <strong>The apple tree</strong> (The wild man's shelter and confidant — prophecy spoken from hiding, sweet and bitter at once), <strong>The forest of Celyddon</strong> (The Caledonian wood — madness, exile, and second sight in one landscape), <strong>The stag</strong> (The wild mount he rides to court in the Vita Merlini, driving the forest's herds before him), <strong>Rock, tree, and water</strong> (The three elements of the foretold death — prophecy that cannot miss, however it is guarded against), <strong>Gwenddydd's questions</strong> (The sister's dialogue — prophecy as the speech left between the mad and those who loved them).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Myrddin in Unicode?</summary><div class="faq-answer"><p><strong>Myrddin</strong> is written entirely in ASCII letters, so its restoration is about canonical fidelity rather than recovered diacritics: the temple fixes the name in its scholarly standard spelling, attested in the source tradition, instead of leaving it to drift.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Myrddin?</summary><div class="faq-answer"><p>“The Battle of Arfderydd” — Myrddin's dossier divides in two, and the tradition itself knew it: the northern prophet who went mad at Arfderydd and fled to Coed Celyddon, preserved in the Welsh Triads, the Annales Cambriae, and the Black Book poems; and Geoffrey of Monmouth's Merlinus, who carried the wild man into Latin and grafted him onto the Arthurian world. Gerald of Wales already separated them in the twelfth century: Merlinus Ambrosius, the boy prophet of Vortigern's tower, and Merlinus Celidonius — Sylvester — the wild man of the Caledonian forest. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -272,7 +335,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -297,7 +360,7 @@
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Myrddin and related cults.</cite></li><li><cite>Myrddin is a textual figure, and his witnesses are among the most precisely identified in Welsh letters. The Afallennau and Oianau stand in the Black Book of Carmarthen (Aberystwyth, NLW Peniarth MS 1, c. 1250), the earliest surviving manuscript in Welsh; the Cyfoesi Myrddin a Gwenddydd stands in the Red Book of Hergest (Oxford, Jesus College MS 111, c. 1382–1410); Geoffrey's Vita Merlini survives complete in a single manuscript (British Library, Cotton Vespasian E.iv, thirteenth century). The landscape behind the texts is real and partly recoverable: Arfderydd is traditionally identified with Arthuret near Longtown in Cumbria, in the Old North the poems remember; Caerfyrddin (Carmarthen) overlays the Roman fort of Moridunum, 'sea-fort', attested in the Antonine Itinerary and confirmed by excavation — the place-name from which, on the scholarly account, the prophet's name derives; and Dinas Emrys, the hillfort in Gwynedd where Nennius sets the fatherless boy and the dragons, yielded post-Roman occupation material in Savory's excavations of 1954–56. No inscription names Myrddin, and none would be expected: the early stones of Wales record the dead, not prophets.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Myrddin and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
@@ -364,7 +427,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/myrddin_logomark.webp" type="image/webp"><img src="../../assets/myrddin_logomark.webp" alt="Myrddin logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/myrddin_logomark.webp" type="image/webp"><img src="../../assets/myrddin_logomark.webp" alt="Myrddin logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

@@ -18,7 +18,7 @@
     <link rel="preload" href="/assets/fonts/lato-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../styles.css?v=perf20">
+    <link rel="stylesheet" href="../styles.css?v=perf21">
 
     <style>
         .pantheon-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -184,6 +184,11 @@
         </ol>
     </nav>
 
+    <nav class="lore-chapters" aria-label="Chapters of the lore">
+    <span class="chapters-eyebrow">Lǎozǐ — Table of Contents</span>
+    <div class="chapters-row"><a href="#mythology" class="chapter-link"><span class="chapter-num">01</span><span class="chapter-label">Mythology</span></a><a href="#symbols" class="chapter-link"><span class="chapter-num">02</span><span class="chapter-label">Powers &amp; Symbols</span></a><a href="#related" class="chapter-link"><span class="chapter-num">03</span><span class="chapter-label">Kin</span></a><a href="#the-name" class="chapter-link"><span class="chapter-num">04</span><span class="chapter-label">The Name</span></a><a href="#name-variations" class="chapter-link"><span class="chapter-num">05</span><span class="chapter-label">Variations</span></a><a href="#pronunciation" class="chapter-link"><span class="chapter-num">06</span><span class="chapter-label">Pronunciation</span></a><a href="#provenance" class="chapter-link"><span class="chapter-num">07</span><span class="chapter-label">Provenance</span></a><a href="extended/" class="chapter-link chapter-link-extended"><span class="chapter-num">→</span><span class="chapter-label">Extended Lore</span></a></div>
+</nav>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../" class="nav-link">Home</a>
@@ -201,7 +206,7 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <p class="hero-eyebrow reveal-up">The Authentic Orthography</p>
+                <p class="hero-eyebrow reveal-up">The Living Myth</p>
                 <h1 class="hero-title reveal-up">
                     <span class="title-greek">老子</span>
                     <span class="title-divider"></span>
@@ -213,8 +218,8 @@
                     <span class="meta-domain">Lǎozǐ.com</span>
                 </div>
                 <div class="hero-cta reveal-up">
-                    <a href="#the-name" class="btn-primary">
-                        <span>Enter the Temple</span>
+                    <a href="#mythology" class="btn-primary">
+                        <span>Enter the Myth</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M7 17L17 7M17 7H7M17 7V17"></path>
                         </svg>
@@ -231,144 +236,49 @@
         </div>
     </section>
 
-    <!-- The Name Section -->
-    <section class="section section-name" id="the-name">
-        <div class="section-bg-glow"></div>
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">01</span>
-                <h2 class="section-title">The Authentic Name</h2>
-                <p class="section-subtitle">Unicode restoration and ASCII comparison</p>
-            </div>
-
-            <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Original Script</h3>
-                    <p class="card-greek">老子</p>
-                    <p class="card-body">The name in its original Taoist form. <strong>Lǎozǐ</strong> (老子) is attested in the source tradition — “Old master”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
-                    
-                </div>
-
-                <div class="name-card reveal-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">ASCII Constraint</h3>
-                    <p class="card-ascii">laozi</p>
-                    <p class="card-body">Reduced to plain <strong>laozi</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
-                </div>
-
-                <div class="name-card reveal-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 6v6l4 2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Unicode Restoration</h3>
-                    <p class="card-unicode">Lǎozǐ</p>
-                    <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Lǎozǐ</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
-                </div>
-            </div>
-
-            <div class="punycode-explainer reveal-up">
-                <div class="explainer-label">Punycode Encoding</div>
-                <div class="explainer-box">
-                    <code class="explainer-code">Lǎozǐ.com → xn--loz-hdbm.com</code>
-                    <p class="explainer-note">The non-ASCII characters in <strong>Lǎozǐ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Lǎozǐ</em>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Original Script Provenance -->
-    
-<!-- Original Script Provenance -->
-<section class="section section-provenance section-provenance-placeholder" id="provenance">
-  <div class="section-bg-glow"></div>
-  <div class="container">
-    <div class="section-header reveal-up">
-      <span class="section-number">02</span>
-      <h2 class="section-title">Original Script &amp; Provenance</h2>
-      <p class="section-subtitle">How Lǎozǐ is preserved in writing</p>
-    </div>
-    <div class="provenance-panel reveal-up">
-      <div class="script-altar script-altar-placeholder">
-        <div class="script-specimen">老子</div>
-        <div class="script-label">Original Script</div>
-        <p class="script-placeholder-note">A bespoke provenance study for Lǎozǐ is being prepared by the PUNICODEX scholarly team.</p>
-        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Name Variations -->
-    <section class="section section-name" id="name-variations">
+    <!-- Mythology — the heart of the lore page -->
+    <section class="section section-mythology" id="mythology">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">03</span>
-            <h2 class="section-title">Name Variations</h2>
-            <p class="section-subtitle">Owned, ideal, and ASCII forms of Lǎozǐ</p>
-        </div>
-        <div class="name-grid">
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">Owned · Primary</h3>
-                    <p class="card-unicode">Lǎozǐ</p>
-                    <p class="card-body">Restores <strong>老子</strong>. The live temple domain — <strong>lǎozǐ.com</strong>.</p>
-                </div>
-                <div class="name-card reveal-up">
-                    <h3 class="card-title">ASCII Form</h3>
-                    <p class="card-unicode">laozi</p>
-                    <p class="card-body">Flattens <strong>老子</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
-                </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Pronunciation -->
-    <section class="section section-pronunciation" id="pronunciation">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">04</span>
-            <h2 class="section-title">Pronunciation</h2>
-            <p class="section-subtitle">How Lǎozǐ was spoken</p>
+            <span class="section-number">01</span>
+            <h2 class="section-title">Mythology</h2>
+            <p class="section-subtitle">Stories of Lǎozǐ</p>
         </div>
         
-      <div class="pronunciation-grid">
-        <div class="pronunciation-main reveal-up">
-          <div class="ipa-display">
-            <span class="ipa-text">/laʊ̯˨˩ tsi˨˩/</span>
-            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
-          </div>
-          <div class="pronunciation-breakdown">
-      <div class="phoneme" style="--delay:0ms">
-        <span class="phoneme-symbol">Lǎo</span>
-        <span class="phoneme-desc">Syllable with lateral approximant [l], diphthong [aʊ̯] (like 'ow' in 'cow'), and Tone 3 (falling-rising, ˨˩). The character 老 means 'old'.</span>
+      <p class="lead-text">Lǎozǐ's mythology is inseparable from the biography invented for him by later tradition and from the enigmatic poems of the <em>Dàodé Jīng</em>. The sage is less a character in narrative than the voice of a teaching, but stories gathered around him to give that teaching a body.</p>
+      <div class="myths-timeline">
+      <div class="myth-card reveal-up">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Shiji 63</span>
+          <h3 class="myth-title">The Departure at Hán Gǔ Guān</h3>
+          <p class="myth-text">Sīmǎ Qiān's <em>Shǐjì</em> (chapter 63) records the most influential biography of Lǎozǐ, and it is a story about a book. Weary of the Zhou court's decay, the old archivist mounted a water buffalo and rode west toward the frontier. At Hán Gǔ Guān, the pass keeper Yīn Xī — who had divined that a sage would pass and had watched the sky for a purple vapor — recognized him and would not let him through without leaving a record. Lǎozǐ sat and wrote five thousand characters in eighty-one short chapters, the <em>Dàodé Jīng</em>, 'Classic of the Way and its Power,' then passed beyond the pass and was never reliably seen again. The story turns the text into a deposit: wisdom compelled to leave one artifact at the edge of the known world before disappearing into the wilderness it describes. Later tradition made the crossing cosmic — the sage leaving history for the realm where the <a href="/dao/" class="crosslink" data-crosslink="dao">Dào</a> has no name — and the water buffalo became his fixed attribute in a thousand paintings.</p>
+        </div>
       </div>
-      <div class="phoneme" style="--delay:100ms">
-        <span class="phoneme-symbol">zǐ</span>
-        <span class="phoneme-desc">Syllable with unaspirated alveolo-palatal affricate [ts], high front vowel [i], and Tone 3 (falling-rising). The character 子 is an honorific 'master' or 'venerable'.</span>
+      <div class="myth-card reveal-up" data-delay="100">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Dàodé Jīng 1, 25, 40, 42</span>
+          <h3 class="myth-title">The Nameless Origin</h3>
+          <p class="myth-text">The opening of the <em>Dàodé Jīng</em> is not a narrative myth but a cosmogony, and it dissolves the genre as it speaks: 'The Dào that can be told is not the eternal Dào; the name that can be named is not the eternal name. The nameless is the beginning of heaven and earth; the named is the mother of the ten thousand things' (ch. 1). Chapter 42 sketches the generation in three lines — 'The Dào gives birth to One; One gives birth to Two; Two gives birth to Three; Three gives birth to the ten thousand things' — and immediately grounds that cosmos in paired opposites, yīn and yáng, 'harmonized by the blending of breaths.' Chapter 25 names the source itself: 'There is something formed from chaos, born before heaven and earth... I do not know its name, so I style it Dào.' Chapter 40 gives the whole process its motion: 'Reversal is the movement of the Dào.' The myth's point is anti-mythic: any story of the world's origin is already one of the ten thousand things, and the source keeps its silence.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="200">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Religious Daoism</span>
+          <h3 class="myth-title">The Deification of Lǎozǐ</h3>
+          <p class="myth-text">By the Han dynasty, Lǎozǐ had been transformed from philosopher to god. The <em>Tàipíng Jīng</em> and the emerging Daoist canon identified him as the embodiment of the Dào itself, an eternal being who descends in successive bodies to reveal saving teachings whenever the world decays — the Dào become substance, substance become Lǎozǐ, as the later formula has it. The Táng imperial house, surnamed Lǐ, claimed descent from him; Emperor Gāozōng honored him in 666 CE as <a href="/taishang/" class="crosslink" data-crosslink="taishang">Tàishàng</a> Xuányuán <a href="/huangdi/" class="crosslink" data-crosslink="huangdi">Huángdì</a>, 'Supreme Emperor of the Mysterious Origin,' and temples received state support. In organized Daoism he became Tàishàng <a href="/laojun/" class="crosslink" data-crosslink="laojun">Lǎojūn</a>, 'the Most High Lord Lao,' enthroned among the highest deities of the pantheon — the uncarved archivist made into the fixed center of a religion's heaven. The apotheosis completed the journey in one direction: the man who wrote that 'the sage has no fixed heart-mind' became a celestial bureaucracy's most fixed star.</p>
+        </div>
+      </div>
+      <div class="myth-card reveal-up" data-delay="300">
+        <div class="myth-marker"></div>
+        <div class="myth-content">
+          <span class="myth-tag">Shiji 63 / <a href="/zhuangzi/" class="crosslink" data-crosslink="zhuangzi">Zhuangzi</a> 13, 21</span>
+          <h3 class="myth-title">The Dragon and the Teacher of Rites</h3>
+          <p class="myth-text">The <em>Shǐjì</em> sets Lǎozǐ's one recorded meeting against the greatest name in Chinese education. <a href="/kongzi/" class="crosslink" data-crosslink="kongzi">Confucius</a>, says Sīmǎ Qiān, came to the capital to consult the archivist about the rites of antiquity — and Lǎozǐ received the question with open disdain: 'The men about whom you talk have mouldered, their bones are dust; only their words remain. Remove your pride and your many desires, your studied manner and your over-fond heart — these profit you nothing. That is all I have to say to you' (Shiji 63). Confucius withdrew and told his disciples: 'I know how birds fly, how fishes swim, how beasts run... but of the dragon I can say nothing — today I have seen Lǎozǐ, and he is like the dragon' (Shiji 63; Zhuāngzǐ 13 and 21 tell the meeting with variations). The scene gave Chinese philosophy its two poles in a single encounter: the teacher of ritual standing silent before the teacher of the wordless Way — and admitting that he had met something his categories could not hold.</p>
+        </div>
       </div></div>
-        </div>
-        <div class="pronunciation-sidebar reveal-up" data-delay="150">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Modern Approximation</h3>
-            <p class="sidebar-text">'LAOW-dzuh' — 'lao' like 'loud' without the final 'd', with a dipping tone (down then up); 'zi' like 'dzuh' with the same dipping tone.</p>
-            <div class="sidebar-divider"></div><h3 class="sidebar-title">Etymological Kin</h3><ul class="kin-list"><li><strong>Traditional</strong> 老子</li><li><strong>Wade-Giles</strong> Lao Tzu</li><li><strong>Earlier name</strong> Li Er (李耳), the personal name traditionally given to the sage</li><li><strong>Related title</strong> Daode Tianzun (道德天尊), the deified Laozi of religious Daoism</li></ul>
-          </div>
-          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Lǎozǐ is Tier 1: the tone marks on both syllables preserve the Mandarin citation tones — diacritics the ASCII form loses. The name means 'Old Master,' an honorific rather than a personal name. Whether Lǎozǐ was a historical figure, a composite, or a symbolic founder remains debated among scholars.</p></div>
-        </div>
-      </div>
     </div>
 </section>
 
@@ -376,12 +286,12 @@
     <section class="section section-symbols" id="symbols">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">02</span>
             <h2 class="section-title">The Old Master</h2>
             <p class="section-subtitle">Dao, Wuwei, and the Art of Ruling by Not Ruling</p>
         </div>
         
-      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Lǎozǐ</strong> is the legendary author of the <em>Dàodé Jīng</em>, the founding text of Daoism and one of the most translated books in world literature. His name means simply 'Old Master,' and the figure behind it is as elusive as the philosophy he teaches. Whether he was a real archivist of the Zhou court, a constellation of early Daoist teachers, or a literary creation, Lǎozǐ gave classical Chinese thought its most radical statement: the way that can be told is not the eternal way.</p><p class="lead-text">His teaching centers on <em>dào</em> (the way), <em>wúwéi</em> (non-coercive action), <em>zìrán</em> (spontaneity), and the return to an uncarved simplicity that precedes all names and schemes.</p></div>
+      <div class="domains-intro reveal-up"><p class="lead-text"><strong>Lǎozǐ</strong> is the legendary author of the <em>Dàodé Jīng</em>, the founding text of Daoism and one of the most translated books on earth. His name means simply 'Old Master,' and the figure behind it is as elusive as the philosophy he teaches. Whether archivist, composite, or symbol, he gave Chinese thought its most radical sentence: the way that can be told is not the eternal way.</p></div>
       <div class="domains-grid">
       <div class="domain-card reveal-up">
         <div class="domain-icon"><svg viewBox="0 0 64 64" fill="none" stroke="var(--primary)" stroke-width="1.5"><path d="M32 8C20 8 12 18 12 32C12 46 20 56 32 56C44 56 52 46 52 32C52 18 44 8 32 8ZM32 20V44"></path></svg></div>
@@ -427,49 +337,14 @@
     </div>
 </section>
 
-    <!-- Mythology -->
-    <section class="section section-mythology" id="mythology">
-    <div class="container">
-        <div class="section-header reveal-up">
-            <span class="section-number">06</span>
-            <h2 class="section-title">Mythology</h2>
-            <p class="section-subtitle">Stories of Lǎozǐ</p>
-        </div>
-        
-      <p class="lead-text">Lǎozǐ's mythology is inseparable from the biography invented for him by later tradition and from the enigmatic poems of the <em>Dàodé Jīng</em>. The sage is less a character in narrative than the voice of a teaching, but stories gathered around him to give that teaching a body.</p>
-      <div class="myths-timeline">
-      <div class="myth-card reveal-up">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Shiji</span>
-          <h3 class="myth-title">The Departure at Hán Gǔ Guān</h3>
-          <p class="myth-text">Sīmǎ Qiān's <em>Shǐjì</em> records the most influential biography of Lǎozǐ. Weary of the Zhou court's decay, the old sage mounted a water buffalo and rode west toward the frontier. At Hán Gǔ Guān, the gatekeeper Yīn Xī recognized him and asked him to leave a record of his wisdom before disappearing into the wilderness. Lǎozǐ wrote the five thousand characters of the <em>Dàodé Jīng</em> and then passed beyond the pass, never to be seen again. The story turns the text into a gift given at the edge of the known world.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="100">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Dàodé Jīng</span>
-          <h3 class="myth-title">The Nameless Origin</h3>
-          <p class="myth-text">The opening of the <em>Dàodé Jīng</em> is not a myth in the usual sense but a cosmogonic statement: 'The Dao that can be told is not the eternal Dao; the name that can be named is not the eternal name.' From the nameless comes the origin of heaven and earth; from the named comes the mother of the ten thousand things. This framing dissolves the distinction between creator and creation, offering a process cosmology in which all things arise and return to the Dao.</p>
-        </div>
-      </div>
-      <div class="myth-card reveal-up" data-delay="200">
-        <div class="myth-marker"></div>
-        <div class="myth-content">
-          <span class="myth-tag">Religious Daoism</span>
-          <h3 class="myth-title">The Deification of Lǎozǐ</h3>
-          <p class="myth-text">By the Han dynasty, Lǎozǐ had been transformed from philosopher to god. The Tàipíng Jīng and later Daoist scriptures identified him as the embodiment of the Dao, an eternal being who periodically descends to reveal saving teachings. The Táng imperial house claimed descent from him, and in religious Daoism he became <a href="/taishang/" class="crosslink" data-crosslink="taishang">Tàishàng</a> <a href="/laojun/" class="crosslink" data-crosslink="laojun">Lǎojūn</a> or Dàodé Tiānzūn, one of the highest deities of the pantheon. This apotheosis completed the journey from obscure archivist to cosmic savior.</p>
-        </div>
-      </div></div>
-    </div>
-</section>
+    <!-- In the Texts & Everyday Words -->
+    
 
     <!-- Related Names -->
     <section class="section section-related" id="related">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">07</span>
+            <span class="section-number">03</span>
             <h2 class="section-title">Related Names</h2>
             <p class="section-subtitle">Other figures in the taoist pantheon</p>
         </div>
@@ -533,8 +408,146 @@
     </div>
 </section>
 
-    <!-- In the Texts & Everyday Words -->
+    <!-- The Name (original script / ASCII / Unicode restoration) -->
+    <section class="section section-name" id="the-name">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">04</span>
+            <h2 class="section-title">The Name</h2>
+            <p class="section-subtitle">From the original script to the living URL</p>
+        </div>
+
+        <div class="name-grid">
+            <div class="name-card reveal-up">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Original Script</h3>
+                <p class="card-greek">老子</p>
+                <p class="card-body">The name in its original Taoist form. <strong>Lǎozǐ</strong> (老子) is attested in the source tradition — “Old master”. Its original diacritics and script distinctions carry the full phonetic and orthographic weight of the source tradition.</p>
+                
+            </div>
+
+            <div class="name-card reveal-up" data-delay="100">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <path d="M4 7V4h3M4 17v3h3M20 7V4h-3M20 17v3h-3M9 9h6v6H9z"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">ASCII Constraint</h3>
+                <p class="card-ascii">laozi</p>
+                <p class="card-body">Reduced to plain <strong>laozi</strong>, the name loses everything that made it specific: original diacritics and script distinctions. What remains is an ASCII string that machines can parse but that no longer speaks with its original voice.</p>
+            </div>
+
+            <div class="name-card reveal-up" data-delay="200">
+                <div class="card-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="card-title">Unicode Restoration</h3>
+                <p class="card-unicode">Lǎozǐ</p>
+                <p class="card-body">The Unicode restoration recovers what ASCII flattened. <strong>Lǎozǐ</strong> restores original diacritics and script distinctions, returning the name to its original written dignity. The domain encodes to Punycode, but the browser displays the truth.</p>
+            </div>
+        </div>
+
+        <div class="punycode-explainer reveal-up">
+                <div class="explainer-label">Punycode Encoding</div>
+                <div class="explainer-box">
+                    <code class="explainer-code">Lǎozǐ.com → xn--loz-hdbm.com</code>
+                    <p class="explainer-note">The non-ASCII characters in <strong>Lǎozǐ</strong> are encoded while the ASCII remains visible. To the DNS, it is Punycode. To humanity, it is <em>Lǎozǐ</em>.</p>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!-- Name Variations -->
+    <section class="section section-name" id="name-variations">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Name Variations</h2>
+            <p class="section-subtitle">Owned, ideal, and ASCII forms of Lǎozǐ</p>
+        </div>
+        <div class="name-grid">
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">Owned · Primary</h3>
+                    <p class="card-unicode">Lǎozǐ</p>
+                    <p class="card-body">Restores <strong>老子</strong>. The live temple domain — <strong>lǎozǐ.com</strong>.</p>
+                </div>
+                <div class="name-card reveal-up">
+                    <h3 class="card-title">ASCII Form</h3>
+                    <p class="card-unicode">laozi</p>
+                    <p class="card-body">Flattens <strong>老子</strong>. The plain ASCII fallback — what DNS and legacy systems see.</p>
+                </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Pronunciation -->
+    <section class="section section-pronunciation" id="pronunciation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Pronunciation</h2>
+            <p class="section-subtitle">How Lǎozǐ was spoken</p>
+        </div>
+        
+      <div class="pronunciation-grid">
+        <div class="pronunciation-main reveal-up">
+          <div class="ipa-display">
+            <span class="ipa-text">/laʊ̯˨˩ tsi˨˩/</span>
+            <span class="ipa-label">Modern Standard Mandarin (Pinyin)</span>
+          </div>
+          <div class="pronunciation-breakdown">
+      <div class="phoneme" style="--delay:0ms">
+        <span class="phoneme-symbol">Lǎo</span>
+        <span class="phoneme-desc">Syllable with lateral approximant [l], diphthong [aʊ̯] (like 'ow' in 'cow'), and Tone 3 (falling-rising, ˨˩). The character 老 means 'old'.</span>
+      </div>
+      <div class="phoneme" style="--delay:100ms">
+        <span class="phoneme-symbol">zǐ</span>
+        <span class="phoneme-desc">Syllable with unaspirated alveolo-palatal affricate [ts], high front vowel [i], and Tone 3 (falling-rising). The character 子 is an honorific 'master' or 'venerable'.</span>
+      </div></div>
+        </div>
+        <div class="pronunciation-sidebar reveal-up" data-delay="150">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Modern Approximation</h3>
+            <p class="sidebar-text">'LAOW-dzuh' — 'lao' like 'loud' without the final 'd', with a dipping tone (down then up); 'zi' like 'dzuh' with the same dipping tone.</p>
+            <p class="sidebar-text sidebar-crosslink">The full word family — cognates, derivatives, and variant spellings — is traced in <a href="extended/#etymology">Extended Lore → Etymology</a>.</p>
+          </div>
+          <div class="sidebar-card accent-card"><h3 class="sidebar-title">The Accent / Script Rule</h3><p class="sidebar-text">Lǎozǐ is Tier 1: the tone marks on both syllables preserve the Mandarin citation tones — diacritics the ASCII form loses. The name means 'Old Master,' an honorific rather than a personal name. Whether Lǎozǐ was a historical figure, a composite, or a symbolic founder remains debated among scholars.</p></div>
+        </div>
+      </div>
+    </div>
+</section>
+
+    <!-- Original Script Provenance -->
     
+<!-- Original Script Provenance -->
+<section class="section section-provenance section-provenance-placeholder" id="provenance">
+  <div class="section-bg-glow"></div>
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-number">07</span>
+      <h2 class="section-title">Original Script &amp; Provenance</h2>
+      <p class="section-subtitle">How Lǎozǐ is preserved in writing</p>
+    </div>
+    <div class="provenance-panel reveal-up">
+      <div class="script-altar script-altar-placeholder">
+        <div class="script-specimen">老子</div>
+        <div class="script-label">Original Script</div>
+        <p class="script-placeholder-note">A bespoke provenance study for Lǎozǐ is being prepared by the PUNICODEX scholarly team.</p>
+        <a class="btn-secondary" href="/scholars/login/">Contribute scholarly provenance →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Extended Lore CTA -->
     <section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
@@ -552,7 +565,7 @@
                 </a>
             </div>
             <div class="pantheon-mascot">
-                <picture><source srcset="../assets/laozi_mascot.webp" type="image/webp"><img src="../assets/laozi_mascot.png" alt="Lǎozǐ mascot" class="pantheon-mascot-img" width="1024" height="1536" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/laozi_mascot.webp" type="image/webp"><img src="../assets/laozi_mascot.png" alt="Lǎozǐ mascot" class="pantheon-mascot-img"></picture>
             </div>
         </div>
     </div>
@@ -590,7 +603,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../assets/laozi_logomark.webp" type="image/webp"><img src="../assets/laozi_logomark.webp" alt="Lǎozǐ logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../assets/laozi_logomark.webp" type="image/webp"><img src="../assets/laozi_logomark.webp" alt="Lǎozǐ logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

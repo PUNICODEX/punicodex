@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Móði, Wrath, Son of Thor. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/modi/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Móði?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Móði is /ˈmoːði/ — approximately 'MOH-thi' — hold the 'o' long like 'mow' without the glide, then say the voiced 'th' of 'father' and end with a short 'ee'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Móði mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Móði means The angry one in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Móði?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Móði is associated with Mjölnir (The inherited hammer that links Móði to his father's protective role), Sword or axe (The weapons of a young warrior-god in a world rebuilt after Ragnarök), Flame or reddened face (The visible sign of móð, the wrath or courage that gives him his name), Giant lineage (His mother Járnsaxa marks him as part jotunn, bridging divine and giant blood)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Móði in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII modi strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Móði?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Sons Who Survive” — Móði is not a god of independent myths. His entire dossier is a handful of verses: his name in a list of survivors, his place in a genealogy, and the skalds' habit of naming Þórr as his father. His significance lies in what he represents — the wrath that inherits the hammer — and in what his survival promises after Ragnarök. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/modi_logolockup.webp" type="image/webp"><img src="../../assets/modi_logolockup.png" alt="Móði" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Móði</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Móði.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/modi_mascot.webp" type="image/webp"><img src="../../assets/modi_mascot.png" alt="Móði — Wrath, Son of Thor" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/modi_mascot.webp" type="image/webp"><img src="../../assets/modi_mascot.png" alt="Móði — Wrath, Son of Thor" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,7 +261,7 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Móði is Tier 1: the acute on ó and the eth (ð) are distinctive features the ASCII form loses, the eth preserving the Old Norse voiced dental fricative. The name is also the common noun for 'wrath' or 'courage', making the god an embodiment of the quality itself.</p>
+                <p class="etymology-note">The name <strong>Móði</strong> carries the orthographic signature of the norse tradition: ᛘᚢᚦᛁ. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Móði is the <strong>son of Þórr, the personification of wrath and courage</strong>. He appears in only a handful of passages, yet his role is consequential: he survives Ragnarök alongside his brother Magni and inherits their father's hammer Mjölnir. Where Magni is 'mighty,' Móði is 'fierce' — the emotional force that drives the thunder-god's line forward into the new world.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Móði in Later Traditions</h3><p class="cultural-card-body">Móði has no clear non-Norse counterpart. His function — the personification of wrath or courage — resembles other Indo-European personified forces, such as the Greek <em>Thumos</em> or the Roman <em>Furor</em>, but he is specifically embedded in the genealogy of Þórr. His survival after Ragnarök places him in the small company of gods who bridge the old world and the new. In modern retellings he is often overshadowed by his brother Magni and his father Þórr, but his name preserves an important Norse idea: that wrath, rightly directed, is a form of power.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Móði remains a minor figure in popular reception, usually appearing as Magni's brother or as one of the survivors of Ragnarök. In video games, comics, and modern Heathenry, he is sometimes developed as a god of berserk courage or youthful fury. His inheritance of Mjölnir alongside Magni is a favorite detail in retellings of the end of the world: the thunder does not cease; it is passed to the next generation. For psychologists and poets, his name is a reminder that wrath and courage are etymologically and mythologically intertwined in Norse thought.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Móði</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Móði in Later Traditions</h3><p class="cultural-card-body">Móði has no clear non-Norse counterpart. His function — the personification of wrath or courage — resembles other Indo-European personified forces, such as the Greek <em>Thumos</em> or the Roman <em>Furor</em>, but he is specifically embedded in the genealogy of Þórr. His survival after Ragnarök places him in the small company of gods who bridge the old world and the new. In modern retellings he is often overshadowed by his brother Magni and his father Þórr, but his name preserves an important Norse idea: that wrath, rightly directed, is a form of power.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Móði remains a minor figure in popular reception, usually appearing as Magni's brother or as one of the survivors of Ragnarök. In video games, comics, and modern Heathenry, he is sometimes developed as a god of berserk courage or youthful fury. His inheritance of Mjölnir alongside Magni is a favorite detail in retellings of the end of the world: the thunder does not cease; it is passed to the next generation. For psychologists and poets, his name is a reminder that wrath and courage are etymologically and mythologically intertwined in Norse thought.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">In the Earth</h3><p class="cultural-card-body">No archaeological find names Móði directly; his existence rests on the medieval manuscript tradition — the Codex Regius of the <a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a> (c. 1270) and Snorri's <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> (c. 1220). But his world is richly material: tens of thousands of Viking-Age Mjöllnir pendants, from Iceland to Russia, attest the hammer cult his myth inherits, and the picture-stones and rune-stones of Gotland and Sweden preserve the thunder-god's exploits that frame his sons' fame. The broader context — the warrior ethos that made <em>móðr</em>, battle-courage, a quality worth deifying — is documented across the whole material culture of Scandinavian heathendom.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Móði means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Móði is the anger that survives. He does not have his father's epic battles or his brother's astonishing strength; what he has is the fury that keeps going after the world ends. In a pantheon full of larger-than-life actors, he is a small but necessary figure: the emotion that outlives the body.</p><p>The survival of Móði and Magni suggests that Þórr's power is not only physical but emotional. Might and wrath together inherit the hammer. The new world will need both: the strength to rebuild and the fire to protect what is rebuilt. Móði is that fire, banked but not extinguished, waiting for the next age.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Móði, Wrath, Son of Thor, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Móði?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Móði</strong> is /ˈmoːði/ — approximately 'MOH-thi' — hold the 'o' long like 'mow' without the glide, then say the voiced 'th' of 'father' and end with a short 'ee'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Móði mean?</summary><div class="faq-answer"><p><strong>Móði</strong> means <strong>The angry one</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Móði?</summary><div class="faq-answer"><p>Móði is associated with <strong>Mjölnir</strong> (The inherited hammer that links Móði to his father's protective role), <strong>Sword or axe</strong> (The weapons of a young warrior-god in a world rebuilt after Ragnarök), <strong>Flame or reddened face</strong> (The visible sign of móð, the wrath or courage that gives him his name), <strong>Giant lineage</strong> (His mother Járnsaxa marks him as part jotunn, bridging divine and giant blood).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Móði in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>modi</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Móði?</summary><div class="faq-answer"><p><em>Völuspá</em> prophesies that after Ragnarök, a few gods will survive to people the renewed world: <a href="/vidarr/" class="crosslink" data-crosslink="vidarr">Víðarr</a>, <a href="/vali/" class="crosslink" data-crosslink="vali">Váli</a>, <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>, <a href="/hodr/" class="crosslink" data-crosslink="hodr">Höðr</a>, and the sons of Þórr, Magni and Móði. They will inherit Mjölnir and the memory of their father's battles. Móði's survival means that Þórr's line does not end in the serpent's venom.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Móði?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Móði</strong> is /ˈmoːði/ — approximately 'MOH-thi' — hold the 'o' long like 'mow' without the glide, then say the voiced 'th' of 'father' and end with a short 'ee'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Móði mean?</summary><div class="faq-answer"><p><strong>Móði</strong> means <strong>The angry one</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Móði?</summary><div class="faq-answer"><p>Móði is associated with <strong>Mjölnir</strong> (The inherited hammer that links Móði to his father's protective role), <strong>Sword or axe</strong> (The weapons of a young warrior-god in a world rebuilt after Ragnarök), <strong>Flame or reddened face</strong> (The visible sign of móð, the wrath or courage that gives him his name), <strong>Giant lineage</strong> (His mother Járnsaxa marks him as part jotunn, bridging divine and giant blood).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Móði in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>modi</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Móði?</summary><div class="faq-answer"><p>“The Sons Who Survive” — Móði is not a god of independent myths. His entire dossier is a handful of verses: his name in a list of survivors, his place in a genealogy, and the skalds' habit of naming Þórr as his father. His significance lies in what he represents — the wrath that inherits the hammer — and in what his survival promises after Ragnarök. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,25 +349,25 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda: Völuspá (Móði and Magni survive Ragnarök)</cite></li><li><cite>Snorri Sturluson, Prose Edda: Gylfaginning (genealogy and inheritance of Mjölnir)</cite></li><li><cite>Snorri Sturluson, Prose Edda: Skáldskaparmál (kennings for Þórr's sons)</cite></li></ul>
+                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Poetic Edda: <a href="/texts/poetic-edda/#vafthruthnismol" class="crosslink citation-link" data-citation="vafthruthnismol">Vafþrúðnismál</a> 51 (Móði and Magni inherit Mjölnir)</cite></li><li><cite>Snorri Sturluson, Prose Edda: <a href="/texts/prose-edda/#gylfaginning-51" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 51</a> and 53 (<a href="/hrungnir/" class="crosslink" data-crosslink="hrungnir">Hrungnir</a>; the survivors)</cite></li><li><cite>Snorri Sturluson, Prose Edda: <a href="/texts/prose-edda/#skaldskaparmal-14" class="crosslink citation-link" data-citation="skaldskaparmal">Skáldskaparmál 14</a> (kennings and genealogy)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
                         <h3>Archaeology &amp; Art History</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Móði and related cults.</cite></li><li><cite>No archaeological find names Móði directly. His existence depends on the medieval manuscript tradition, especially the Codex Regius of the Poetic Edda and Snorri's Prose Edda. The broader context — Þórr's cult, Mjöllnir amulets, and the warrior ethos of Viking-Age Scandinavia — provides the material world in which a son of the thunder-god would be imagined as inheriting his father's protective role.</cite></li></ul>
+                    <ul class="source-list"><li><cite>Material evidence — iconography, inscriptions, and temple archaeology — for Móði and related cults.</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. móði</cite></li><li><cite>Zoëga, A Concise Dictionary of Old Icelandic (1910), s.v. móði</cite></li><li><cite>Simek, Rudolf, Dictionary of Northern Mythology</cite></li><li><cite>Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby &amp; Vigfusson, An Icelandic-English Dictionary (1874), s.v. móðr</cite></li><li><cite>Simek, Rudolf, Dictionary of Northern Mythology</cite></li><li><cite>Lindow, John, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/modi_logomark.webp" type="image/webp"><img src="../../assets/modi_logomark.webp" alt="Móði logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/modi_logomark.webp" type="image/webp"><img src="../../assets/modi_logomark.webp" alt="Móði logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>

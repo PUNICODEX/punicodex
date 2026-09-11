@@ -16,8 +16,8 @@
     <meta name="description" content="The definitive scholarly guide to Váli, Vengeance, Son of Odin. Etymology, reconstructed pronunciation, Unicode orthography, cultural significance, and primary sources.">
     <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
     <link rel="stylesheet" href="/css/temple-base.css?v=perf22">
-    <link rel="stylesheet" href="../../styles.css?v=perf20">
-    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf20">
+    <link rel="stylesheet" href="../../styles.css?v=perf21">
+    <link rel="stylesheet" href="../../../../css/extended-lore.css?v=perf22">
 
     <link rel="canonical" href="https://punicodex.com/vali/lore/extended/">
 
@@ -72,6 +72,54 @@
   ]
 }
     </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+        "@type": "Question",
+        "name": "How do you pronounce Váli?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In reconstructed pronunciation, Váli is /ˈwɑːli/ — approximately 'WAH-lee' — begin with a 'w' as in 'water', hold the 'ah' long, and end with a light 'lee'."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What does Váli mean?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Váli means The chosen in the norse tradition."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What are the symbols of Váli?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Váli is associated with Bow (The weapon with which he avenges Baldr.), Mistletoe (The plant that killed Baldr and set Váli's vengeance in motion.), Wolf (Loki's son Váli is transformed into a wolf to tear his brother Nari (Narfi) — a namesake of Óðinn's son.), Bonds (The fetters made from Narfi's entrails, holding Loki until Ragnarök.)."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "Why restore Váli in Unicode?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plain ASCII vali strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity."
+        }
+    },
+    {
+        "@type": "Question",
+        "name": "What is the most important myth about Váli?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "“The Ride to Hel” — Váli appears briefly but decisively in the Norse corpus. His myths are episodes in the larger tragedy of Baldr and the doom of the gods — a prophecy, a one-day life, a namesake's horror, and a quiet seat in the world after the end. The full telling lives on the lore page."
+        }
+    }
+]
+}
+    </script>
 <!-- PUNICODEX-HERALD-BEACON-START -->
 <link rel="stylesheet" href="/css/herald-beacon.css?v=1" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/css/herald-beacon.css?v=1"></noscript>
@@ -109,12 +157,13 @@
                 <picture><source srcset="../../assets/vali_logolockup.webp" type="image/webp"><img src="../../assets/vali_logolockup.png" alt="Váli" class="nav-logo-img" width="1536" height="1024"></picture>
             </a>
             <div class="nav-links">
-                <a href="../../" class="nav-link">Home</a>
-                <a href="#quick-facts" class="nav-link">Quick Facts</a>
-                <a href="#etymology" class="nav-link">Etymology</a>
-                <a href="#cultural-significance" class="nav-link">Culture</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#sources" class="nav-link">Sources</a>
+                <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
             </div>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-controls="temple-mobile-menu">
                 <span></span><span></span><span></span>
@@ -125,11 +174,13 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu temple-mobile-menu" id="temple-mobile-menu" aria-hidden="true" inert="">
         <a href="../index.html" class="nav-link">Back to Lore</a>
-        <a href="#quick-facts" class="nav-link">Quick Facts</a>
-        <a href="#etymology" class="nav-link">Etymology</a>
-        <a href="#cultural-significance" class="nav-link">Culture</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#sources" class="nav-link">Sources</a>
+        <a href="#quick-facts" class="nav-link extended-anchor">Facts</a>
+                <a href="#etymology" class="nav-link extended-anchor">Etymology</a>
+                <a href="#unicode-breakdown" class="nav-link extended-anchor">Orthography</a>
+                <a href="#cultural-significance" class="nav-link extended-anchor">Culture</a>
+                <a href="#meditation" class="nav-link extended-anchor">Meditation</a>
+                <a href="#faq" class="nav-link extended-anchor">FAQ</a>
+                <a href="#sources" class="nav-link extended-anchor">Sources</a>
     </div>
 
     <!-- Hero Section -->
@@ -142,7 +193,7 @@
                     <span class="title-divider"></span>
                     <span class="title-trans">Váli</span>
                 </h1>
-                <p class="hero-subtitle reveal-up">Etymology · Phonology · Orthography · Cultural Legacy · Primary Sources</p>
+                <p class="hero-subtitle reveal-up">Etymology · Orthography · Cultural Legacy · Reception · Primary Sources</p>
                 <div class="hero-meta reveal-up">
                     <span class="meta-badge">Tier 1</span>
                     <span class="meta-domain">Váli.com</span>
@@ -157,7 +208,7 @@
                 </div>
             </div>
             <div class="hero-mascot reveal-scale">
-                <picture><source srcset="../../assets/vali_mascot.webp" type="image/webp"><img src="../../assets/vali_mascot.png" alt="Váli — Vengeance, Son of Odin" class="mascot-img" fetchpriority="high" decoding="async" width="1024" height="1536"></picture>
+                <picture><source srcset="../../assets/vali_mascot.webp" type="image/webp"><img src="../../assets/vali_mascot.png" alt="Váli — Vengeance, Son of Odin" class="mascot-img" fetchpriority="high" decoding="async"></picture>
                 <div class="mascot-glow"></div>
             </div>
         </div>
@@ -210,11 +261,11 @@
         <span class="etym-gloss">Plain-ASCII fallback</span>
       </div>
     </div></div>
-                <p class="etymology-note">Váli is Tier 1: the acute accent on á marks stress and length — a distinctive diacritic the ASCII form loses. Old Norse tone accent is not registrable in the DNS root zone.</p>
+                <p class="etymology-note">The name <strong>Váli</strong> carries the orthographic signature of the norse tradition: ᚢᛅᛚᛁ. Unicode restoration recovers what ASCII flattens.</p>
             </div>
             <aside class="derivatives-sidebar reveal-up" data-delay="150">
                 <h3 class="derivatives-title">Derivatives &amp; Descendants</h3>
-                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — Váli, son of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and Rindr, avenger of <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>.</li><li><strong>Proto-Germanic</strong> — *Wālīʀ, related to words for 'chosen' or 'slayer'.</li><li><strong>Note</strong> — Váli must be distinguished from Váli, son of <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>, who appears only in Prose Edda genealogy.</li></ul></div></div>
+                <div class="derivatives-grid"><div class="derivative-group"><h4>Etymological Kin</h4><ul><li><strong>Old Norse</strong> — Váli, son of <a href="/odinn/" class="crosslink" data-crosslink="odinn">Óðinn</a> and Rindr, avenger of <a href="/baldr/" class="crosslink" data-crosslink="baldr">Baldr</a>.</li><li><strong>Proto-Germanic</strong> — *Wālīʀ, related to words for 'chosen' or 'slayer'.</li><li><strong>Note</strong> — Váli must be distinguished from Váli, son of <a href="/loki/" class="crosslink" data-crosslink="loki">Loki</a>, who appears only in <a href="/texts/prose-edda/" class="crosslink citation-link" data-citation="prose-edda">Prose Edda</a> genealogy.</li></ul></div></div>
             </aside>
         </div>
     </div>
@@ -247,24 +298,36 @@
         <div class="section-header reveal-up">
             <span class="section-number">04</span>
             <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern Unicode</p>
+            <p class="section-subtitle">From ancient cult to modern memory</p>
         </div>
-        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Ancient Domain</h3><p class="cultural-card-body">Váli is the <strong>son of Óðinn by the giantess Rindr, born to avenge Baldr's death</strong>. He grows to adulthood in a single day, kills the blind <a href="/hodr/" class="crosslink" data-crosslink="hodr">Höðr</a>, and survives Ragnarök to inherit the new world. His life is compressed into a single mythic function: the necessary violence that follows an unforgivable killing.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Váli in Later Traditions</h3><p class="cultural-card-body">Váli has no clear non-Germanic counterpart, but his function resembles the Indo-European avenger figure: a youthful warrior born to settle a blood-debt. He is sometimes confused with Váli, the son of Loki and <a href="/sigyn/" class="crosslink" data-crosslink="sigyn">Sigyn</a>, a much less prominent figure. Romantic-era scholars and Wagnerian opera tended to ignore him, preferring the more dramatic figures of Baldr, Loki, and Sigyn.</p></article><article class="cultural-card reveal-up " data-delay="200"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Váli remains a minor but haunting figure in modern retellings of Norse myth. He embodies the idea that some violence is inescapable, that vengeance can be both righteous and tragic. His one-day childhood has made him a symbol of compressed destiny, and his namesake's part in binding Loki keeps the name alive whenever the cycle of revenge is told.</p></article><article class="cultural-card reveal-up " data-delay="300"><h3 class="cultural-card-title">Unicode Restoration as Cultural Act</h3><p class="cultural-card-body">Restoring <strong>Váli</strong> in a domain name is more than orthographic accuracy. It is a statement that the internet should recognize the full range of human writing — not only the ASCII keyboard.</p></article></div>
+        <div class="cultural-grid"><article class="cultural-card reveal-up feature-card"><h3 class="cultural-card-title">Váli in Later Traditions</h3><p class="cultural-card-body">Váli has no secure non-Germanic counterpart, but his function — the avenger born to settle a blood-debt — has deep Indo-European pedigree, and Saxo Grammaticus preserves the euhemerized version: in <em>Gesta Danorum</em> (3.4) the hero Bous, son of Othinus and the reluctant Rinda, is begotten to avenge Balderus and dies in the very duel that kills Hotherus — the same chapter shows Christianity rewriting the story, Balderus mourned like a Christ. Romantic scholarship noted the resemblance between Váli's instantaneous childhood and other born-fully-armed avengers, while Wagner quietly discarded him: the <em>Ring</em>'s Siegfried is, in effect, a Váli who was allowed to grow up. Modern comics and fantasy, following Snorri's ambiguity, have merged him with his namesake — the wolf-son of Loki — into a single shape-shifting avenger that neither manuscript actually describes.</p></article><article class="cultural-card reveal-up " data-delay="100"><h3 class="cultural-card-title">Modern Legacy</h3><p class="cultural-card-body">Váli remains a minor but haunting figure in modern retellings of Norse myth. He embodies the idea that some violence is inescapable, that vengeance can be both righteous and tragic — a whole life compressed into a single duty. His one-day childhood made him an emblem of weaponized innocence, and modern fantasy keeps rediscovering him whenever it needs a child raised as an instrument: the engineered-avenger trope descends through figures like him. His namesake's part in the binding of Loki keeps the name alive in every retelling of that scene, usually with the two Vális conflated. In Ásatrú and Heathen practice he appears chiefly within the great liturgy of Baldr's death and the binding, where his function — necessary, unsentimental justice — is still the point.</p></article></div>
     </div>
 </section>
 
-    <!-- Screen Appearances -->
+    <!-- The Meditation -->
+    <section class="section section-victory" id="meditation">
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">05</span>
+            <h2 class="section-title">The Meditation</h2>
+            <p class="section-subtitle">What Váli means — beyond the dictionary</p>
+        </div>
+        <div class="meditation-body reveal-up"><p>Váli is the god of necessary violence. He does not choose his mission; he is born into it. His entire life — if one day can be called a life — is shaped by a crime committed before he existed. In this he is less a hero than a mechanism: the cosmic balance demanding blood for blood.</p><p>Yet Váli also survives. After the twilight, after the binding and the battle, he walks in the new world. The old debts are paid, and the avenger is allowed a future. Perhaps that is the real meaning of his myth: vengeance cannot be escaped, but it can be survived.</p></div>
+    </div>
+</section>
+
+    <!-- Screen & Culture -->
     
 
     <!-- FAQ -->
     <section class="section section-victory" id="faq">
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">05</span>
+            <span class="section-number">06</span>
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Common questions about Váli, Vengeance, Son of Odin, and Unicode restoration</p>
         </div>
-        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Váli?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Váli</strong> is /ˈwɑːli/ — approximately 'WAH-lee' — begin with a 'w' as in 'water', hold the 'ah' long, and end with a light 'lee'..</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Váli mean?</summary><div class="faq-answer"><p><strong>Váli</strong> means <strong>The chosen</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Váli?</summary><div class="faq-answer"><p>Váli is associated with <strong>Bow</strong> (The weapon with which he avenges Baldr.), <strong>Mistletoe</strong> (The plant that killed Baldr and set Váli's vengeance in motion.), <strong>Wolf</strong> (Loki's son Váli is transformed into a wolf to tear his brother Nari (Narfi) — a namesake of Óðinn's son.), <strong>Bonds</strong> (The fetters made from Narfi's entrails, holding Loki until Ragnarök.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Váli in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>vali</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Váli?</summary><div class="faq-answer"><p>After Baldr is slain, the gods cannot simply kill Höðr, for he is one of their own and acted in blindness. Óðinn therefore fathers Váli on Rindr, a reluctant giantess. Váli grows to full strength in a single day, takes up his bow, and slays Höðr in the holy place. The killing is ritually necessary and morally ambiguous: it rights one wrong with another.</p></div></details></div>
+        <div class="faq-list"><details class="faq-item reveal-up" open=""><summary class="faq-question"><span class="faq-number">01</span>How do you pronounce Váli?</summary><div class="faq-answer"><p>In reconstructed pronunciation, <strong>Váli</strong> is /ˈwɑːli/ — approximately 'WAH-lee' — begin with a 'w' as in 'water', hold the 'ah' long, and end with a light 'lee'.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">02</span>What does Váli mean?</summary><div class="faq-answer"><p><strong>Váli</strong> means <strong>The chosen</strong> in the norse tradition.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">03</span>What are the symbols of Váli?</summary><div class="faq-answer"><p>Váli is associated with <strong>Bow</strong> (The weapon with which he avenges Baldr.), <strong>Mistletoe</strong> (The plant that killed Baldr and set Váli's vengeance in motion.), <strong>Wolf</strong> (Loki's son Váli is transformed into a wolf to tear his brother Nari (Narfi) — a namesake of Óðinn's son.), <strong>Bonds</strong> (The fetters made from Narfi's entrails, holding Loki until Ragnarök.).</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">04</span>Why restore Váli in Unicode?</summary><div class="faq-answer"><p>Plain ASCII <strong>vali</strong> strips the stress, length, and script that make the name specific. Unicode restoration returns the name to its original written dignity.</p></div></details><details class="faq-item reveal-up"><summary class="faq-question"><span class="faq-number">05</span>What is the most important myth about Váli?</summary><div class="faq-answer"><p>“The Ride to Hel” — Váli appears briefly but decisively in the Norse corpus. His myths are episodes in the larger tragedy of Baldr and the doom of the gods — a prophecy, a one-day life, a namesake's horror, and a quiet seat in the world after the end. The full telling lives on <a href="../#mythology">the lore page</a>.</p></div></details></div>
     </div>
 </section>
 
@@ -273,7 +336,7 @@
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
-            <span class="section-number">06</span>
+            <span class="section-number">07</span>
             <h2 class="section-title">Scholarly Sources</h2>
             <p class="section-subtitle">The philological foundations of this restoration</p>
         </div>
@@ -286,13 +349,13 @@
                         <span class="source-icon">◈</span>
                         <h3>Lexicography &amp; Philology</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda</cite></li><li><cite>Cleasby-Vigfusson</cite></li></ul>
+                    <ul class="source-list"><li><cite>Cleasby-Vigfusson</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◎</span>
                         <h3>Primary Texts</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Poetic Edda, Völuspá</cite></li><li><cite>Poetic Edda, Baldrs draumar</cite></li><li><cite>Snorri Sturluson, Prose Edda</cite></li></ul>
+                    <ul class="source-list"><li><cite><a href="/texts/poetic-edda/" class="crosslink citation-link" data-citation="poetic-edda">Poetic Edda</a></cite></li><li><cite>Poetic Edda, <a href="/texts/poetic-edda/#voluspo" class="crosslink citation-link" data-citation="voluspo">Völuspá</a></cite></li><li><cite>Poetic Edda, <a href="/texts/poetic-edda/#baldrs-draumar" class="crosslink citation-link" data-citation="baldrs-draumar">Baldrs draumar</a></cite></li><li><cite>Poetic Edda, <a href="/texts/poetic-edda/#vafthruthnismol" class="crosslink citation-link" data-citation="vafthruthnismol">Vafþrúðnismál</a> 51 (Rindr bears Váli)</cite></li><li><cite>Snorri Sturluson, Prose Edda, <a href="/texts/prose-edda/#gylfaginning-49" class="crosslink citation-link" data-citation="gylfaginning">Gylfaginning 49</a>–50, 53</cite></li><li><cite>Saxo Grammaticus, Gesta Danorum 3.4 (Bous, son of Othinus and Rinda)</cite></li></ul>
                 </div><div class="source-category reveal-up">
                     <div class="source-category-header">
                         <span class="source-icon">◉</span>
@@ -304,7 +367,7 @@
                         <span class="source-icon">✦</span>
                         <h3>Religious Studies</h3>
                     </div>
-                    <ul class="source-list"><li><cite>Cleasby-Vigfusson, Icelandic Dictionary</cite></li><li><cite>Lindow, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs</cite></li></ul>
+                    <ul class="source-list"><li><cite>Lindow, Norse Mythology: A Guide to the Gods, Heroes, Rituals, and Beliefs</cite></li></ul>
                 </div></div>
         </div>
     </div>
@@ -365,7 +428,7 @@
             </div>
             <div class="footer-newsletter" data-newsletter="temple"></div>
             <div class="footer-seal">
-                <picture><source srcset="../../assets/vali_logomark.webp" type="image/webp"><img src="../../assets/vali_logomark.webp" alt="Váli logomark" class="footer-logomark" width="1024" height="1024" loading="lazy" decoding="async"></picture>
+                <picture><source srcset="../../assets/vali_logomark.webp" type="image/webp"><img src="../../assets/vali_logomark.webp" alt="Váli logomark" class="footer-logomark"></picture>
             </div>
             <div class="footer-bottom">
                 <p class="footer-credit">The gods have returned · The internet is merely the first temple</p>
