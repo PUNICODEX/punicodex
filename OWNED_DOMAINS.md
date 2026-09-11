@@ -1,6 +1,6 @@
 # PUNICODEX — Owned Domain Inventory
 > Canonical record of all domains owned by PUNICODEX.
-> Auto-generated: 2026-09-06
+> Auto-generated: 2026-09-11
 > Source: `platform/db/owned-domains.json` + `js/archetypes-v2.js` + `middleware.js` DOMAIN_MAP
 > Tier system: The Definitive Tier System (CANONICAL) — see AGENTS.md
 

@@ -1,8 +1,8 @@
 # PuniCodex Oracle — Model Card
 
 **Model family:** PuniCodex Oracle (specialized language model)  
-**Data version:** 2.0.152  
-**Generated:** 2026-09-03T07:38:08.489Z  
+**Data version:** 2.0.155  
+**Generated:** 2026-09-11T12:02:12.059Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
@@ -17,8 +17,8 @@
 
 | Split | Examples | File |
 |-------|----------|------|
-| Train | 65,689 | `data/corpus/chat-train.jsonl` |
-| Evaluation | 16,464 | `data/corpus/chat-eval.jsonl` |
+| Train | 65,672 | `data/corpus/chat-train.jsonl` |
+| Evaluation | 16,481 | `data/corpus/chat-eval.jsonl` |
 | **Total** | **82,153** | — |
 
 Source corpora:
@@ -72,8 +72,8 @@ Do not use this model to generate deceptive domains, impersonate brands, or evad
 
 Before supervised fine-tuning, domain-adapt the base model on the raw scholarly corpus:
 
-- `data/corpus/pretrain.jsonl` — 6,018 training documents (802,121 whitespace tokens).
-- `data/corpus/pretrain-validation.jsonl` — 301 validation documents (40,269 whitespace tokens).
+- `data/corpus/pretrain.jsonl` — 6,011 training documents (1,093,908 whitespace tokens).
+- `data/corpus/pretrain-validation.jsonl` — 308 validation documents (54,399 whitespace tokens).
 - HuggingFace-compatible splits in `data/corpus/huggingface/`.
 
 Documents are drawn from structured entry records, flagship lore, original-script provenance, pronunciation notes, the source catalog, mythology synthesis, oracle reflections, symbolic correspondences, and scientific analogies. Strip HTML and normalize whitespace before tokenization. This step teaches the model the domain's scripts, diacritics, scholarly vocabulary, and canonical source style before chat-format SFT.
