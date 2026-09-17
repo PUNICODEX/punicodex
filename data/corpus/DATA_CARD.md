@@ -1,7 +1,7 @@
 # PuniCodex AI Training Corpus — Data Card
 
-**Data version:** 2.0.155  
-**Generated:** 2026-09-11T12:02:12.059Z  
+**Data version:** 2.0.156  
+**Generated:** 2026-09-17T13:26:21.252Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose

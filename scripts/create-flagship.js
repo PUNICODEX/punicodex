@@ -1759,15 +1759,20 @@ function buildRelatedNamesSection(entry, sectionNumber) {
 }
 
 function buildExtendedLoreCTA(entry, catalogEntry) {
-  let body = '';
-  if (catalogEntry?.extendedMeditation) {
-    const firstP = catalogEntry.extendedMeditation.match(/<p[\s\S]*?<\/p>/);
-    body = firstP ? firstP[0] : catalogEntry.extendedMeditation;
-  }
-  if (!body) {
-    body = `<p>The lore you have read is the surface — the living myth. Beneath it lies the scholarship: etymology, reconstructed pronunciation, Unicode character breakdown, and the cultural legacy of <strong>${entry.unicode}</strong>.</p>`;
-  }
-  const bodyHtml = body.replace(/<p>/g, '<p class="pantheon-body">');
+  // Teaser copy is composed from entry facts — never quoted from catalog prose
+  // fields, so no sentence on this page repeats inside Extended Lore.
+  const has = (k) => Boolean(catalogEntry?.[k]);
+  const vault = [];
+  if (has('cult') || has('archaeology')) vault.push('the cult and its material remains');
+  if (has('iconography')) vault.push('a history of the image');
+  if (has('reception') || has('syncretism')) vault.push('the name after antiquity');
+  if (has('extendedMeditation')) vault.push('a meditation on what the name still means');
+  vault.push('the full scholarly apparatus — etymology, orthography, sources');
+  const list =
+    vault.length > 1
+      ? `${vault.slice(0, -1).join(', ')}, and ${vault[vault.length - 1]}`
+      : vault[0];
+  const bodyHtml = `<p class="pantheon-body">The lore you have read is the living myth. Extended Lore opens the scholarly vault beneath it: ${list}.</p>`;
   return `<section class="section section-pantheon" id="extended-lore-cta" style="background: linear-gradient(180deg, var(--void) 0%, var(--void-deep) 100%);">
     <div class="container">
         <div class="pantheon-content reveal-up">
@@ -2117,35 +2122,82 @@ function buildUnicodeBreakdownSection(entry, sectionNumber = 3) {
 </section>`;
 }
 
-function buildCulturalSignificanceSection(entry, catalogEntry, sectionNumber = 4) {
-  const cards = [];
-  if (catalogEntry?.syncretism) {
-    cards.push({
-      title: `${entry.unicode} in Later Traditions`,
-      body: stripOuterPTag(catalogEntry.syncretism),
-    });
-  }
-  if (catalogEntry?.culturalLegacy) {
-    cards.push({ title: 'Modern Legacy', body: stripOuterPTag(catalogEntry.culturalLegacy) });
-  }
-  if (catalogEntry?.archaeology) {
-    cards.push({ title: 'In the Earth', body: stripOuterPTag(catalogEntry.archaeology) });
-  }
+// ── Extended-page exclusive deep-dive sections ──
+// Each of these renders catalog prose that appears NOWHERE else: the lore
+// page never quotes them, so lore → extended carries zero verbatim
+// repetition by construction.
+
+function cardGrid(cards) {
   const grid = cards
     .map(
       (c, i) =>
         `<article class="cultural-card reveal-up ${i === 0 ? 'feature-card' : ''}" ${i > 0 ? `data-delay="${i * 100}"` : ''}><h3 class="cultural-card-title">${c.title}</h3><p class="cultural-card-body">${c.body}</p></article>`
     )
     .join('');
-  return `<section class="section section-name" id="cultural-significance">
+  return `<div class="cultural-grid">${grid}</div>`;
+}
+
+function buildCultSection(_entry, catalogEntry, sectionNumber) {
+  const cards = [];
+  if (catalogEntry?.cult) {
+    cards.push({ title: 'The Cult', body: stripOuterPTag(catalogEntry.cult) });
+  }
+  if (catalogEntry?.archaeology) {
+    cards.push({ title: 'In the Earth', body: stripOuterPTag(catalogEntry.archaeology) });
+  }
+  if (!cards.length) return '';
+  return `<section class="section section-name" id="cult">
     <div class="section-bg-glow"></div>
     <div class="container">
         <div class="section-header reveal-up">
             <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
-            <h2 class="section-title">Cultural Significance</h2>
-            <p class="section-subtitle">From ancient cult to modern memory</p>
+            <h2 class="section-title">Cult &amp; Worship</h2>
+            <p class="section-subtitle">How the sacred was kept — rites, sanctuaries, remains</p>
         </div>
-        <div class="cultural-grid">${grid}</div>
+        ${cardGrid(cards)}
+    </div>
+</section>`;
+}
+
+function buildIconographySection(entry, catalogEntry, sectionNumber) {
+  if (!catalogEntry?.iconography) return '';
+  return `<section class="section section-name" id="iconography">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">Iconography</h2>
+            <p class="section-subtitle">How ${entry.unicode} was imaged across the ages</p>
+        </div>
+        ${cardGrid([{ title: 'The Image', body: stripOuterPTag(catalogEntry.iconography) }])}
+    </div>
+</section>`;
+}
+
+function buildReceptionSection(_entry, catalogEntry, sectionNumber) {
+  const cards = [];
+  if (catalogEntry?.reception) {
+    cards.push({ title: 'Afterlives', body: stripOuterPTag(catalogEntry.reception) });
+  }
+  if (catalogEntry?.syncretism) {
+    cards.push({
+      title: 'Identifications Across Traditions',
+      body: stripOuterPTag(catalogEntry.syncretism),
+    });
+  }
+  if (catalogEntry?.culturalLegacy) {
+    cards.push({ title: 'Modern Legacy', body: stripOuterPTag(catalogEntry.culturalLegacy) });
+  }
+  if (!cards.length) return '';
+  return `<section class="section section-name" id="reception">
+    <div class="section-bg-glow"></div>
+    <div class="container">
+        <div class="section-header reveal-up">
+            <span class="section-number">${String(sectionNumber).padStart(2, '0')}</span>
+            <h2 class="section-title">Reception &amp; Transformation</h2>
+            <p class="section-subtitle">The name after its own age — transmission, translation, survival</p>
+        </div>
+        ${cardGrid(cards)}
     </div>
 </section>`;
 }
@@ -2232,7 +2284,7 @@ function buildFaqItems(entry, catalogEntry) {
     const m = catalogEntry.mythology.myths[0];
     items.push({
       q: `What is the most important myth about ${entry.unicode}?`,
-      a: `“${m.title}” — ${stripOuterPTag(catalogEntry.mythology.lead).replace(/<[^>]+>/g, '')} The full telling lives on <a href="../#mythology">the lore page</a>.`,
+      a: `“${m.title}” — the ${m.tag ? `${m.tag.replace(/^The\\s+/i, '').replace(/^A\\s+/i, '')} story that anchors the mythology of` : 'foundational myth of'} <strong>${entry.unicode}</strong>, told in full on <a href="../#mythology">the lore page</a>.`,
     });
   }
   return items;
@@ -3780,12 +3832,20 @@ function generateExtendedPage(entry, palette, templateDir, catalog) {
     QUICK_FACTS: buildQuickFactsSection(entry, catalogEntry, next()),
     ETYMOLOGY: buildEtymologySection(entry, catalogEntry, next()),
     UNICODE_BREAKDOWN: buildUnicodeBreakdownSection(entry, next()),
-    CULTURAL_SIGNIFICANCE: buildCulturalSignificanceSection(entry, catalogEntry, next()),
+    CULT: '',
+    ICONOGRAPHY: '',
+    RECEPTION: '',
     MEDITATION: '',
     SCREEN_APPEARANCES: '',
     FAQ: '',
     SOURCES: '',
   };
+  vars.CULT = buildCultSection(entry, catalogEntry, next());
+  if (!vars.CULT) n -= 1;
+  vars.ICONOGRAPHY = buildIconographySection(entry, catalogEntry, next());
+  if (!vars.ICONOGRAPHY) n -= 1;
+  vars.RECEPTION = buildReceptionSection(entry, catalogEntry, next());
+  if (!vars.RECEPTION) n -= 1;
   vars.MEDITATION = buildMeditationSection(entry, catalogEntry, next());
   if (!vars.MEDITATION) n -= 1;
   vars.SCREEN_APPEARANCES = buildScreenAppearancesSection(entry, next());
@@ -3809,8 +3869,10 @@ function buildExtendedNavLinks(vars) {
     ['#quick-facts', 'Facts'],
     ['#etymology', 'Etymology'],
     ['#unicode-breakdown', 'Orthography'],
-    ['#cultural-significance', 'Culture'],
   ];
+  if (vars.CULT) links.push(['#cult', 'Cult']);
+  if (vars.ICONOGRAPHY) links.push(['#iconography', 'Iconography']);
+  if (vars.RECEPTION) links.push(['#reception', 'Reception']);
   if (vars.MEDITATION) links.push(['#meditation', 'Meditation']);
   if (vars.SCREEN_APPEARANCES) links.push(['#screen-appearances', 'Screen']);
   links.push(['#faq', 'FAQ'], ['#sources', 'Sources']);
