@@ -722,7 +722,7 @@ if (!fs.existsSync(sitemapPath)) {
   addUrl('/tiers/');
   addUrl('/realms/');
   addUrl('/codex/');
-  addUrl('/search/');
+  // /search/ is noindex,follow — noindexed pages are never sitemap entries.
   addUrl('/about/');
   addUrl('/contact/');
   addUrl('/store/');

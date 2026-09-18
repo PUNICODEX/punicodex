@@ -356,6 +356,12 @@ function main() {
       execFileSync(NPM, ['run', 'generate:check'], {
         cwd: ROOT,
         stdio: ['ignore', 'ignore', 'pipe'],
+        // `npm run generate` prints hundreds of KB (per-site flagship regen
+        // lines). The execFileSync default 1 MiB maxBuffer aborts the child
+        // with ERR_CHILD_PROCESS_STDIO_MAXBUFFER mid-generate — surfaced as a
+        // spurious "out of sync" — once output crosses the cap. Size the
+        // buffer for the worst-case run instead.
+        maxBuffer: 64 * 1024 * 1024,
         ...SHELL_OPT,
       });
       console.log(`  ${C.green}✓${C.reset} Divergence Gate ${C.dim}(${((Date.now() - start) / 1000).toFixed(1)}s)${C.reset}`);
