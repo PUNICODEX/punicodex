@@ -1139,10 +1139,28 @@ const OWNED_DOMAINS = (() => {
 })();
 const OWNED_DOMAINS_SET = new Set(OWNED_DOMAINS.map((d) => d.toLowerCase().normalize('NFC')));
 
+let ARCHETYPE_MAP_CACHE = null;
+function getArchetypeById(id) {
+  if (!ARCHETYPE_MAP_CACHE) {
+    ARCHETYPE_MAP_CACHE = new Map();
+    for (const a of loadArchetypes()) ARCHETYPE_MAP_CACHE.set(a.id, a);
+  }
+  return ARCHETYPE_MAP_CACHE.get(id);
+}
+
 function getOwnedForms(entry) {
   const candidates = [entry.unicode];
   for (const v of entry.variants || []) {
     if (v?.unicode) candidates.push(v.unicode);
+  }
+  // Archetype-wired domains (domainAlt / domainUnicode) are canonical too —
+  // e.g. Nike's original-script νίκη.com lives only here, not in the lexicon
+  // variants, and must surface in Name Variations and the footer.
+  const arch = getArchetypeById(entry.id);
+  if (arch) {
+    for (const d of [arch.domainUnicode, ...(arch.domainAlt || [])]) {
+      if (typeof d === 'string') candidates.push(d.replace(/\.com$/i, ''));
+    }
   }
   const seen = new Set();
   const forms = [];
@@ -2074,7 +2092,7 @@ function buildUnicodeBreakdownSection(entry, sectionNumber = 3) {
     rows = breakdown
       .map((b, i) => {
         if (!b.to) {
-          return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell">—</td><td><code>N/A</code></td><td>Dropped character</td><td>${(entry.pantheon || 'Original').replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())} orthography</td><td>${b.note || 'Not represented in the original script'}</td></tr>`;
+          return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell" data-label="Character">—</td><td data-label="Unicode"><code>N/A</code></td><td data-label="Name">Dropped character</td><td data-label="Block">${(entry.pantheon || 'Original').replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())} orthography</td><td data-label="Phonetic Role">${b.note || 'Not represented in the original script'}</td></tr>`;
         }
         const info = getUnicodeInfo(b.to);
         let role = b.note || '';
@@ -2085,7 +2103,7 @@ function buildUnicodeBreakdownSection(entry, sectionNumber = 3) {
           else if (asciiOnly) role = 'Already ASCII — no restoration needed';
           else role = 'Preserves the base letter';
         }
-        return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell">${b.to}</td><td><code>${info.hex}</code></td><td>${info.name}</td><td>${info.block}</td><td>${role}</td></tr>`;
+        return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell" data-label="Character">${b.to}</td><td data-label="Unicode"><code>${info.hex}</code></td><td data-label="Name">${info.name}</td><td data-label="Block">${info.block}</td><td data-label="Phonetic Role">${role}</td></tr>`;
       })
       .join('');
   } else {
@@ -2093,7 +2111,7 @@ function buildUnicodeBreakdownSection(entry, sectionNumber = 3) {
       .split('')
       .map((ch, i) => {
         const info = getUnicodeInfo(ch);
-        return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell">${ch}</td><td><code>${info.hex}</code></td><td>${info.name}</td><td>${info.block}</td><td>${asciiOnly ? 'Already ASCII — no restoration needed' : 'Restored character'}</td></tr>`;
+        return `<tr class="reveal-up" ${i > 0 ? `data-delay="${i * 80}"` : ''}><td class="char-cell" data-label="Character">${ch}</td><td data-label="Unicode"><code>${info.hex}</code></td><td data-label="Name">${info.name}</td><td data-label="Block">${info.block}</td><td data-label="Phonetic Role">${asciiOnly ? 'Already ASCII — no restoration needed' : 'Restored character'}</td></tr>`;
       })
       .join('');
   }
@@ -2131,7 +2149,7 @@ function cardGrid(cards) {
   const grid = cards
     .map(
       (c, i) =>
-        `<article class="cultural-card reveal-up ${i === 0 ? 'feature-card' : ''}" ${i > 0 ? `data-delay="${i * 100}"` : ''}><h3 class="cultural-card-title">${c.title}</h3><p class="cultural-card-body">${c.body}</p></article>`
+        `<article class="cultural-card reveal-up ${i === 0 ? 'feature-card' : ''}" ${i > 0 ? `data-delay="${i * 100}"` : ''}${c.attrs ? ` ${c.attrs}` : ''}><h3 class="cultural-card-title">${c.title}</h3><p class="cultural-card-body">${c.body}</p></article>`
     )
     .join('');
   return `<div class="cultural-grid">${grid}</div>`;
@@ -2169,7 +2187,13 @@ function buildIconographySection(entry, catalogEntry, sectionNumber) {
             <h2 class="section-title">Iconography</h2>
             <p class="section-subtitle">How ${entry.unicode} was imaged across the ages</p>
         </div>
-        ${cardGrid([{ title: 'The Image', body: stripOuterPTag(catalogEntry.iconography) }])}
+        ${cardGrid([
+          {
+            title: 'The Image',
+            body: stripOuterPTag(catalogEntry.iconography),
+            attrs: `data-watermark="${escapeHtml(entry.unicode)}"`,
+          },
+        ])}
     </div>
 </section>`;
 }
@@ -2890,8 +2914,23 @@ function buildNameVariationsSection(entry, sectionNumber) {
                 </div>`);
   };
 
+  // Original-script forms (Greek νίκη, cuneiform 𒀭𒂍, …) are Latin-
+  // transliteration domains' source script — badge them as such. Latin
+  // Extended blocks (ꜥ, ḥ, ǫ…) are still transliteration, not script.
+  const isOriginalScriptForm = (form) =>
+    /[^\u0000-\u024F\u0250-\u02AF\u1E00-\u1EFF\uA720-\uA7FF]/.test(form);
+
   ownedForms.forEach((form, i) => {
     const domain = `${form.toLowerCase()}.com`;
+    if (isOriginalScriptForm(form)) {
+      const scriptLabel = source ? escapeHtml(source) : 'the source tradition';
+      pushCard(
+        'Owned · Original Script',
+        form,
+        `The original script itself — <strong>${scriptLabel}</strong> — live as a domain: <strong>${escapeHtml(domain)}</strong>.`
+      );
+      return;
+    }
     const why =
       i === 0
         ? `${restores}The live temple domain — <strong>${escapeHtml(domain)}</strong>.`

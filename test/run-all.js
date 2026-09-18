@@ -377,6 +377,11 @@ const SUITES = [
     cmd: 'node test/flagship-content-quality.test.js',
     timeout: 120000,
   },
+  {
+    name: 'Extended Lore Structure Tests',
+    cmd: 'node test/extended-lore-structure.test.js',
+    timeout: 120000,
+  },
   { name: 'Similarity Service Tests', cmd: 'node test/similarity-service.test.js' },
   { name: 'Connection Taxonomy Tests', cmd: 'node test/connection-taxonomy.test.js' },
   { name: 'Connections Page Tests', cmd: 'node test/connections-page.test.js' },
