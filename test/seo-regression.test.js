@@ -12,8 +12,9 @@
  *   - store: single-escaped metas, absolute JSON-LD images, BreadcrumbList,
  *     OG/Twitter, stage-image CWV attributes
  *   - sitemap/robots: no .html locs, no /search-v2/, blog lastmod present,
- *     image extension, no glob disallows, /api/ + /auth/ + search disallowed
- *     with an /api/v1/docs/ exception
+ *     image extension, no glob disallows, /api/ + /auth/ disallowed with an
+ *     /api/v1/docs/ exception; /sites/ and search stay crawlable (301 / noindex
+ *     consolidation — never robots-hide a redirect or a noindex page)
  *   - scholars portal: app surfaces noindex, public pages canonical
  *   - hand pages: oracle live title, creatives canonical, homepage
  *     WebSite+Organization JSON-LD, search-v2 consolidation, mobile noindex
@@ -393,14 +394,22 @@ test('base temple /search/?q= links are rel="nofollow" (crawl budget)', () => {
   );
 });
 
-test('robots.txt: /api/ disallowed with a docs exception, /auth/ + search disallowed', () => {
+test('robots.txt: /api/ disallowed with a docs exception, /auth/ disallowed, search noindexed-not-disallowed', () => {
   const robots = read('robots.txt');
   assert.ok(/^Disallow: \/api\/$/m.test(robots), 'missing Disallow: /api/');
   // The Swagger UI is a public docs surface — it must stay crawlable.
   assert.ok(/^Allow: \/api\/v1\/docs\/$/m.test(robots), 'missing Allow: /api/v1/docs/');
   assert.ok(/^Disallow: \/auth\/$/m.test(robots), 'missing Disallow: /auth/');
-  assert.ok(/^Disallow: \/search\/$/m.test(robots), 'missing Disallow: /search/');
-  assert.ok(/^Disallow: \/search-v2\/$/m.test(robots), 'missing Disallow: /search-v2/');
+  // Search pages are noindex,follow — they must NOT be robots-disallowed:
+  // a crawler must fetch the page to see the noindex (the 2026-09 GSC lesson).
+  assert.ok(
+    !/^Disallow: \/search\/?$/m.test(robots),
+    'search must not be disallowed (noindex instead)'
+  );
+  assert.ok(
+    !/^Disallow: \/search-v2\/?$/m.test(robots),
+    'search-v2 must not be disallowed (noindex instead)'
+  );
 });
 
 test('scholars portal: app surfaces noindex, public pages carry canonicals', () => {
@@ -584,12 +593,14 @@ function walkHtml(dir, cb) {
   }
 }
 
-test('robots.txt: /sites/ disallowed with asset exception', () => {
+test('robots.txt: /sites/ must stay crawlable so legacy 301s consolidate', () => {
   const robots = read('robots.txt');
-  assert.ok(/^Allow: \/sites\/\*\/assets\/$/m.test(robots), 'missing Allow: /sites/*/assets/');
-  assert.ok(/^Disallow: \/sites\/$/m.test(robots), 'missing Disallow: /sites/');
-  // The Allow must appear before or alongside the Disallow so longest-match
-  // crawlers process it; order does not matter for Google, but both must exist.
+  // The 2026-09 GSC lesson: middleware 301s every legacy /sites/{id}/* page
+  // request to the clean /{id}/ canonical, but a crawler can only follow a
+  // redirect it may fetch. Disallowing /sites/ froze hundreds of legacy URLs
+  // in the index as "Blocked by robots.txt" and blocked recrawl-based
+  // validation. Never re-add the disallow.
+  assert.ok(!/^Disallow: \/sites\/?$/m.test(robots), '/sites/ must not be disallowed');
 });
 
 test('no public page links to non-canonical /sites/{id}/.../ paths', () => {

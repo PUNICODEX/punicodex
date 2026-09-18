@@ -87,6 +87,10 @@ const EXCLUDE_PATTERNS = [
   // Canonical-consolidated into /search/ — kept on disk but no longer a
   // sitemap entry.
   /^search-v2\//,
+  // /search/ carries noindex,follow — noindexed pages are never sitemap
+  // entries (a robots-disallowed or noindexed sitemap URL is a direct
+  // Google Search Console conflict).
+  /^search\//,
   /^account\//,
   /scholars\/(login|apply|dashboard|review|admin|institution|dept-admin)\//,
   /creatives\/creator\.html$/,
@@ -171,6 +175,36 @@ function run() {
       /Sitemap:\s*https:\/\/punicodex\.com\/sitemap\.xml/i.test(robots),
       'must reference sitemap.xml'
     );
+  });
+
+  test('no sitemap URL is blocked by robots.txt (longest-match rule)', () => {
+    const robots = fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf8');
+    const rules = [];
+    for (const raw of robots.split('\n')) {
+      const line = raw.replace(/#.*$/, '').trim();
+      const m = line.match(/^(allow|disallow)\s*:\s*(\S*)/i);
+      if (m && m[2]) rules.push({ type: m[1].toLowerCase(), path: m[2] });
+    }
+    const isBlocked = (urlPath) => {
+      let best = null;
+      for (const r of rules) {
+        if (urlPath.startsWith(r.path) && (!best || r.path.length > best.path.length)) best = r;
+      }
+      return best?.type === 'disallow';
+    };
+    const blocked = urls.filter((u) => isBlocked(new URL(u).pathname));
+    assert.deepStrictEqual(
+      blocked.slice(0, 10),
+      [],
+      `${blocked.length} sitemap URLs blocked by robots.txt`
+    );
+  });
+
+  test('no sitemap URL uses the legacy /sites/ prefix or index.html form', () => {
+    const bad = urls.filter(
+      (u) => u.includes('/sites/') || u.includes('index.html') || !u.startsWith('https://')
+    );
+    assert.deepStrictEqual(bad.slice(0, 10), [], `${bad.length} non-canonical sitemap URLs`);
   });
 
   console.log(`\nSitemap & Robots: ${passed} passed, ${failed} failed (${urls.length} URLs)`);
