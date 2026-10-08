@@ -14,6 +14,7 @@ const {
 const { validateCreativeDimensions } = require('./image-meta');
 const { writeWebpSibling, webpSiblingPath } = require('./image-webp');
 const { ensureUploadsDir, storeCreativeBuffer } = require('./upload-storage');
+const { guardImageBuffer, MAX_INPUT_PIXELS } = require('./upload-guard');
 const sharp = require('sharp');
 
 /**
@@ -22,11 +23,24 @@ const sharp = require('sharp');
  * slot dimensions (retina). Returns a PNG buffer. This is the server-side
  * guarantee behind the page's "it will be cropped to fit" promise; the
  * client-side normalizer is only a payload optimization.
+ *
+ * Security: the guard runs before the decoder (magic bytes + header-only
+ * dimension check — image bombs rejected for bytes of work), and sharp gets
+ * an explicit input-pixel budget as the backstop. The re-encode means the
+ * output is freshly-encoded pixels: any payload smuggled into the input
+ * bytes does not survive.
  */
 async function normalizeCreativeBuffer(buffer, slotWidth, slotHeight) {
   const targetW = Math.max(1, slotWidth * 2);
   const targetH = Math.max(1, slotHeight * 2);
-  let img = sharp(buffer, { failOn: 'none' }).rotate();
+  const guard = guardImageBuffer(buffer, null);
+  if (guard.error) throw new Error(guard.error);
+  let img = sharp(buffer, {
+    failOn: 'none',
+    limitInputPixels: MAX_INPUT_PIXELS,
+    pages: 1,
+    sequentialRead: true,
+  }).rotate();
   const meta = await img.metadata();
   if (!meta.width || !meta.height) throw new Error('Could not read image dimensions');
   const slotRatio = targetW / targetH;
@@ -52,6 +66,11 @@ function parseBase64Image(image) {
   if (buffer.length > 4 * 1024 * 1024) {
     return { error: 'Image must be under 4MB' };
   }
+  // Magic-byte + header check before anything else: the declared MIME is not
+  // trusted, and dimension bombs are rejected for a header parse instead of
+  // a full decode. normalizeCreativeBuffer re-applies the same guard.
+  const guard = guardImageBuffer(buffer, mimeType);
+  if (guard.error) return { error: guard.error };
   return { mimeType, buffer };
 }
 

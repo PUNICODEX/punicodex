@@ -402,6 +402,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Space agencies, astronomy, and the orbital economy.',
     note: 'The space industry already names its missions after these figures — Apollo, Artemis, and Selene are flown programs, not metaphors.',
     entries: [
+      { id: 'mars', weight: 2, why: 'The blood-red planet keeps his name in every sky chart, and every lander and orbiter sent there — Pathfinder to Perseverance — works a site the Romans named after their war god.' },
       { id: 'viracocha', weight: 1, why: 'Resonant seat: Wiraqucha shares symbolic territory with space astronomy.' },
 
       { id: 'svarog', weight: 1, why: 'Resonant seat: Svarog shares symbolic territory with space astronomy.' },
@@ -477,6 +478,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Defense contracting, security services, and strategic studies.',
     note: 'War gods and watchmen define the oldest security market; their strategies and warnings are still taught in war colleges.',
     entries: [
+      { id: 'mars', weight: 2, why: 'War as a Roman office — the hasta in the Regia, the Salii dancing with the shields, Mars Ultor crowning the trophy: the god of disciplined war is the industry\'s own patron.' },
       { id: 'zmeygorynych', weight: 2, why: 'Primary seat: Zmey Gorynych embodies three-headed dragon — the core of defense.' },
 
       { id: 'yongwang', weight: 2, why: 'Primary seat: Yongwang embodies dragon king, sea — the core of defense.' },
@@ -752,6 +754,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Farming, grain, food production, and agtech.',
     note: 'Harvest deities feed civilizations; grain gods and earth mothers are the founding brand of every food economy.',
     entries: [
+      { id: 'mars', weight: 2, why: 'Guardian of fields and boundaries before he was a battlefield god: Cato\'s farmers purified their land with a prayer to Mars, and the October Horse closed his agricultural year.' },
       { id: 'zmeygorynych', weight: 1, why: 'Resonant seat: Zmey Gorynych shares symbolic territory with agriculture food.' },
 
       { id: 'xipe', weight: 2, why: 'Primary seat: Xipe embodies spring, agriculture, flayed — the core of agriculture food.' },
@@ -1192,6 +1195,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Medicine, pharmaceuticals, and public health.',
     note: 'Healing deities and health personified; the bowl of Hygieia still stands on every pharmacy sign.',
     entries: [
+      { id: 'huangdi', weight: 2, why: 'The Huangdi Neijing — the Inner Canon of the Yellow Emperor — is the foundational text of Chinese medicine, cast as his dialogues with the physician Qibo; two thousand years of healers have studied under his name.' },
       { id: 'hiiaka', weight: 2, why: 'Primary seat: Hiiaka embodies hula, magic, healing — the core of healthcare pharma.' },
 
       { id: 'gula', weight: 2, why: 'Primary seat: Gula embodies healing, medicine — the core of healthcare pharma.' },
@@ -1388,6 +1392,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Biotechnology, longevity research, and regenerative medicine.',
     note: 'Immortality is the industry’s stated goal; the symbols of life and the immortals who achieved it are its mythic prospectus.',
     entries: [
+      { id: 'huangdi', weight: 1, why: 'The first to cultivate the Way: taught by Guangchengzi to \'guard the One,\' he lives twelve hundred years, and his ascent on a yellow dragon is China\'s founding longevity myth.' },
       { id: 'hiiaka', weight: 1, why: 'Resonant seat: Hiiaka shares symbolic territory with biotech longevity.' },
 
       { id: 'gula', weight: 1, why: 'Resonant seat: Gula shares symbolic territory with biotech longevity.' },
@@ -1847,6 +1852,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Athletics, fitness brands, and competitive leagues.',
     note: 'Victory and strength are the industry’s entire product; one goddess’s name is on more shoes than any other word on earth.',
     entries: [
+      { id: 'mars', weight: 1, why: 'Martial contest — drill, discipline, and victory won under rules — descends from the Campus Martius, his consecrated field of trials and races.' },
       { id: 'zmeygorynych', weight: 1, why: 'Resonant seat: Zmey Gorynych shares symbolic territory with sports athletics.' },
 
       { id: 'yongwang', weight: 1, why: 'Resonant seat: Yongwang shares symbolic territory with sports athletics.' },
@@ -2271,6 +2277,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Government, executive leadership, and statecraft.',
     note: 'Kingship was invented here; supreme gods and model kings are the case studies of every leadership curriculum.',
     entries: [
+      { id: 'huangdi', weight: 2, why: 'The paragon founding sovereign — victor at Banquan and Zhuolu, maker of officials and emblems — whose reign the Shiji frames as the template every dynasty measured itself against.' },
+      { id: 'mars', weight: 1, why: 'Father of Rōmulus and ancestor of the state: his cult was Roman governance itself, from the spear that moved when the republic marched to the Forum of Augustus.' },
       { id: 'marduk', weight: 2, why: "Marduk is the paradigmatic sovereign of the Mesopotamian pantheon: the deity who receives kingship from the gods, exercises it through decree and combat, and serves as the divine model for Babylonian rulership." },
 
       { id: 'alalu', weight: 2, why: "Alalu is the first holder of divine kingship in heaven; his nine-year reign and overthrow by Anu are the Hittite/Hurrian case study in sovereignty, succession, and the mandate of heaven." },
@@ -2348,6 +2356,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Museums, archives, libraries, and the record-keeping professions.',
     note: 'Memory itself has patrons in every pantheon — the keepers of the record, from the Muse of History to the divine scribes.',
     entries: [
+      { id: 'huangdi', weight: 1, why: 'His reign charters the record-keeping arts: writing by his scribe Cang Jie, the sexagenary calendar by Da Nao, weights, measures, and the tripod of legitimate rule.' },
       { id: 'zmeygorynych', weight: 1, why: 'Resonant seat: Zmey Gorynych shares symbolic territory with history archives.' },
 
       { id: 'yongwang', weight: 1, why: 'Resonant seat: Yongwang shares symbolic territory with history archives.' },
@@ -2570,6 +2579,7 @@ const INDUSTRY_GROUPS = [
     tagline: 'Genealogy, heritage research, and DNA ancestry.',
     note: 'Progenitors and patriarchs; the ancestry industry sells what these figures began.',
     entries: [
+      { id: 'huangdi', weight: 2, why: 'The literal ancestor of a civilization: yanhuang zisun, \'descendants of Yan and Huang,\' is the self-designation of the Chinese people, and his tomb at Qiaoshan is honored as the root of every lineage.' },
       { id: 'lahamu', weight: 1, why: "Lahamu stands at the root of the Mesopotamian divine family tree as the first female principle, mother of Anshar and Kishar and ancestor of every great god." },
 
       { id: "don", weight: 2, why: "Plant Dôn — the Welsh divine house organized around a mothers name." },
@@ -2754,6 +2764,8 @@ const INDUSTRY_GROUPS = [
     tagline: 'Watches, calendars, and time sciences.',
     note: 'Time has a Titan and day has a goddess; every chronograph carries the prefix of his name.',
     entries: [
+      { id: 'huangdi', weight: 1, why: 'He \'calculated the sun with counting-rods\' and his chronologer fixed the sixty-year cycle of stems and branches that still names the years of the traditional calendar.' },
+      { id: 'mars', weight: 1, why: 'The old Roman year opened in his month, and dies Martis survives in French mardi, Spanish martes, and Italian martedì — Tuesday still marches under his name.' },
       { id: "niamh", weight: 2, why: "Three years in Tír na nÓg, three hundred in Ireland — time itself bends around her." },
       { id: 'sani', weight: 2, why: 'The slow planet; 29.5 years of audit per orbit.' },
       { id: 'xiuhtecuhtli', weight: 2, why: 'The 52-year New Fire cycle; time restarted by hand.' },

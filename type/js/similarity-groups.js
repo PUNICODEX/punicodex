@@ -86,7 +86,7 @@ const FUNCTION_GROUPS = [
     ids: [
       'ares', 'athena', 'tyr', 'odinn', 'sekhmet', 'durga', 'morrigan', 'ishtar',
       'ashur', 'tu', 'hachiman', 'huitzilopochtli', 'ogun', 'anat', 'nezha', 'kratos',
-      'narasimha', 'thrudr', 'marishiten',
+      'narasimha', 'thrudr', 'marishiten', 'mars',
     ],
   },
   {
@@ -282,7 +282,7 @@ const FUNCTION_GROUPS = [
     strength: 2,
     note: 'Culture heroes who slay monsters, found cities, and establish social order.',
     ids: [
-      'theseus', 'herakles', 'perseus', 'gilgamesh',
+      'theseus', 'herakles', 'perseus', 'gilgamesh', 'huangdi',
     ],
   },
   {
@@ -469,6 +469,8 @@ const CURATED_PAIRS = [
   { sourceId: 'kannon', targetId: 'avalokiteshvara', relationship: 'Same bodhisattva, two traditions', category: 'identity', strength: 3, bidirectional: true, note: 'Kannon is Avalokiteśvara received in Japanese Buddhism — the same compassionate savior under a different transmission.' },
   { sourceId: 'marishiten', targetId: 'hachiman', relationship: 'Warrior-protector deities of Japan', category: 'function', strength: 3, bidirectional: true, note: 'Marishiten the solar warrior goddess of invisibility and Hachiman the god of war both protect armies and rulers in Japanese tradition.' },
   { sourceId: 'sarutahiko', targetId: 'amenouzume', relationship: 'Crossroads guardian and dawn dancer', category: 'narrative-role', strength: 3, bidirectional: true, note: 'Sarutahiko the long-nosed crossroads kami meets Ame-no-Uzume the dawn dancer at the road between heaven and earth.' },
+  { sourceId: 'ares', targetId: 'mars', relationship: 'War / battle', category: 'function', strength: 3, bidirectional: true, note: 'Árēs the raw battle fury and Mārs the disciplined guardian of legion and field — the Greek and Roman faces of war, from Iliad panic to SPQR discipline.' },
+  { sourceId: 'yandi', targetId: 'huangdi', relationship: 'Mythic hero / monster-slayer / city-founder', category: 'narrative-role', strength: 3, bidirectional: true, note: 'The Flame Emperor and the Yellow Emperor — Yándì and Huángdì, the two sovereign ancestors whose pairing names the Chinese people (炎黃子孫, descendants of Yán and Huáng).' },
 ];
 
 function validateGroups(groups) {

@@ -349,6 +349,160 @@ test('lease-expiry cron runs the creative purge and reports it', () => {
   assert.ok(src.includes('endedCreativesPurged'), 'purge results reported');
 });
 
+// ─────────────────────────────────────────────────────────────
+// Upload guard: malware-shaped and bomb-shaped inputs never reach a decoder.
+// ─────────────────────────────────────────────────────────────
+
+const {
+  guardImageBuffer,
+  sniffImageType,
+  MAX_DIMENSION,
+} = require('../platform/api/upload-guard.js');
+
+function fakePngDataUrl(width, height) {
+  // A structurally valid PNG header (correct signature + IHDR) claiming huge
+  // dimensions — imageSize reads these from the header without decoding any
+  // pixels, which is exactly what a dimension bomb relies on.
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(width, 0);
+  ihdr.writeUInt32BE(height, 4);
+  ihdr[8] = 8; // bit depth
+  ihdr[9] = 2; // color type truecolor
+  const chunk = (type, data) => {
+    const len = Buffer.alloc(4);
+    len.writeUInt32BE(data.length, 0);
+    const body = Buffer.concat([Buffer.from(type, 'ascii'), data]);
+    const crc = Buffer.alloc(4); // bogus CRC is fine: imageSize does not verify it
+    return Buffer.concat([len, body, crc]);
+  };
+  const png = Buffer.concat([
+    Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
+    chunk('IHDR', ihdr),
+    chunk('IDAT', Buffer.from([0x78, 0x9c])),
+    chunk('IEND', Buffer.alloc(0)),
+  ]);
+  return `data:image/png;base64,${png.toString('base64')}`;
+}
+
+test('guard: magic bytes are sniffed, not trusted', async () => {
+  const { createCanvas } = require('canvas');
+  const canvas = createCanvas(4, 4);
+  canvas.getContext('2d').fillRect(0, 0, 4, 4);
+  const realPng = canvas.toBuffer('image/png');
+  const realJpg = canvas.toBuffer('image/jpeg');
+
+  assert.strictEqual(sniffImageType(realPng), 'png');
+  assert.strictEqual(sniffImageType(realJpg), 'jpg');
+  const webp = await require('sharp')(realPng).webp().toBuffer();
+  assert.strictEqual(sniffImageType(webp), 'webp');
+
+  assert.strictEqual(sniffImageType(Buffer.from('MZ\x90\x00'.padEnd(64, '\x00'), 'binary')), null);
+  assert.strictEqual(sniffImageType(Buffer.from('PK\x03\x04'.padEnd(64, '\x00'), 'binary')), null);
+  assert.strictEqual(sniffImageType(Buffer.from('<svg onload="alert(1)"/>', 'utf8')), null);
+
+  // Declared MIME must match sniffed content.
+  const mismatch = guardImageBuffer(realPng, 'image/jpeg');
+  assert.ok(mismatch.error, 'png labeled as jpeg is rejected');
+  const exe = guardImageBuffer(Buffer.from('MZ\x90\x00'.padEnd(64, '\x00'), 'binary'), 'image/png');
+  assert.ok(exe.error, 'executable labeled as png is rejected');
+});
+
+test('guard: dimension bombs rejected at header-parse cost', async () => {
+  const bomb = Buffer.from(
+    fakePngDataUrl(MAX_DIMENSION * 8, MAX_DIMENSION * 8).split(',')[1],
+    'base64'
+  );
+  const result = guardImageBuffer(bomb, 'image/png');
+  assert.ok(result.error, 'oversized-dimension bomb rejected');
+  assert.ok(result.error.includes('exceed the maximum'), `unexpected error: ${result.error}`);
+});
+
+async function makePendingBooking() {
+  // Fresh pending_upload booking: earlier suite tests move the shared fixture
+  // out of the upload-allowed statuses.
+  const slot = await get(
+    'SELECT id, site_slug, width, height FROM ad_slots WHERE width = 1200 AND height = 400 LIMIT 1'
+  );
+  const token = `sectoken${Date.now()}${Math.floor(Math.random() * 1e6)}`;
+  await run(
+    `INSERT INTO bookings (slot_id, email, company_name, analytics_token, status, lease_months, site_slug)
+     VALUES ($1, 'sec@test.co', 'Sec Co', $2, 'pending_upload', 12, $3)`,
+    [slot.id, token, slot.site_slug]
+  );
+  return { token };
+}
+
+test('booking upload: executable and bomb payloads get a 400, not a decode', async () => {
+  const { token } = await makePendingBooking();
+  const exe = `data:image/png;base64,${Buffer.from('MZ\x90\x00'.padEnd(256, '\x00'), 'binary').toString('base64')}`;
+  const bad = await uploadBookingCreative(
+    token,
+    {
+      image: exe,
+      filename: 'evil.exe',
+    },
+    { notifyAdminPending: async () => {} }
+  );
+  assert.strictEqual(bad.status, 400, 'executable rejected');
+  assert.ok(bad.body.error.includes('do not match'), `unexpected error: ${bad.body.error}`);
+
+  const bomb = await uploadBookingCreative(
+    token,
+    {
+      image: fakePngDataUrl(50000, 50000),
+      filename: 'bomb.png',
+    },
+    { notifyAdminPending: async () => {} }
+  );
+  assert.strictEqual(bomb.status, 400, 'dimension bomb rejected');
+  assert.ok(bomb.body.error.includes('exceed the maximum'), `unexpected error: ${bomb.body.error}`);
+});
+
+test('booking upload: re-encode strips anything appended to the input bytes', async () => {
+  const { token } = await makePendingBooking();
+  const { createCanvas } = require('canvas');
+  const canvas = createCanvas(1200, 400);
+  canvas.getContext('2d').fillStyle = '#abcdef';
+  canvas.getContext('2d').fillRect(0, 0, 1200, 400);
+  const marker = 'EVIL_PAYLOAD_MARKER_7f3a9c';
+  const polluted = Buffer.concat([canvas.toBuffer('image/png'), Buffer.from(marker, 'utf8')]);
+  assert.strictEqual(sniffImageType(polluted), 'png', 'trailing bytes do not break the sniff');
+
+  const ok = await uploadBookingCreative(
+    token,
+    {
+      image: `data:image/png;base64,${polluted.toString('base64')}`,
+      filename: 'polluted.png',
+    },
+    { notifyAdminPending: async () => {} }
+  );
+  assert.strictEqual(ok.status, 200, `upload failed: ${JSON.stringify(ok.body)}`);
+
+  // The stored file is a fresh sharp re-encode — the marker cannot survive.
+  const rel = ok.body.path.replace('/uploads/', '');
+  const stored = fs.readFileSync(path.join('platform/api/public/uploads', rel));
+  assert.ok(!stored.includes(marker), 'payload stripped by re-encode');
+  const dims = require('image-size').imageSize(stored);
+  assert.strictEqual(dims.width, 1200, 'kept at slot width (same aspect, no upscale)');
+});
+
+test('marketplace validateImage: sniffs magic bytes and enforces bomb ceilings', async () => {
+  const { validateImage } = require('../platform/api/creative-watermark.js');
+  const { createCanvas } = require('canvas');
+  const canvas = createCanvas(400, 400);
+  canvas.getContext('2d').fillRect(0, 0, 400, 400);
+
+  assert.ok(validateImage(canvas.toBuffer('image/png')).dimensions, 'real png accepted');
+  assert.ok(
+    validateImage(Buffer.from('MZ\x90\x00'.padEnd(256, '\x00'), 'binary')).error,
+    'executable rejected before decode'
+  );
+  const bomb = Buffer.from(fakePngDataUrl(60000, 60000).split(',')[1], 'base64');
+  const bombResult = validateImage(bomb);
+  assert.ok(bombResult.error, 'bomb rejected before loadImage decode');
+  assert.ok(bombResult.error.includes('exceed the maximum'), `unexpected: ${bombResult.error}`);
+});
+
 async function runSuite() {
   let passed = 0;
   let failed = 0;

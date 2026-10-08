@@ -11769,6 +11769,52 @@ const ARCHETYPES = [
         hasAdSite: true,
         darkPunchline: false
     },
+
+            {
+        id: "mars",
+        rentalTier: "SSS",
+        name: "Mārs",
+        greek: "—",
+        domain: "God of War, Father of Rome",
+        tagline: "Father of Rome · The Red Planet",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "roman",
+        folder: "mars",
+        domainUnicode: "mārs.com",
+        domainPunycode: "xn--mrs-1oa.com",
+        domainAlt: [],
+        colors: { primary: "#C0392B", secondary: "#D4AF37", glow: "rgba(192,57,43,0.3)" },
+        mascotPath: "/sites/mars/assets/mars_mascot.webp",
+        mascotFallback: "/sites/mars/assets/mars_mascot.webp",
+        logomarkPath: "/sites/mars/assets/mars_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
+
+        {
+        id: "huangdi",
+        rentalTier: "S",
+        name: "Huángdì",
+        greek: "黄帝",
+        domain: "The Yellow Emperor, Ancestor of the Chinese",
+        tagline: "The Yellow Emperor · Lord of the Center",
+        tier: "tier-1",
+        tierDetail: "single-tier",
+        pantheon: "chinese",
+        folder: "huangdi",
+        domainUnicode: "huángdì.com",
+        domainPunycode: "xn--hungd-yqa4f.com",
+        domainAlt: [],
+        colors: { primary: "#E6B800", secondary: "#0F7B6C", glow: "rgba(230,184,0,0.3)" },
+        mascotPath: "/sites/huangdi/assets/huangdi_mascot.webp",
+        mascotFallback: "/sites/huangdi/assets/huangdi_mascot.webp",
+        logomarkPath: "/sites/huangdi/assets/huangdi_logomark.webp",
+        built: true,
+        hasAdSite: true,
+        darkPunchline: false
+    },
 ];
 
 if (typeof module !== 'undefined' && module.exports) {

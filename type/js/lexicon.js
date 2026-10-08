@@ -34606,9 +34606,10 @@ const LEXICON = [
   },
   {
     "id": "huangdi",
+    hasAdSite: true,
     "ascii": "huangdi",
     "unicode": "Huángdì",
-    "greek": "皇帝",
+    "greek": "黄帝",
     "pantheon": "chinese",
     "tier": "1",
     "tierLabel": "Tier 1",

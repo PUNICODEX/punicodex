@@ -50,6 +50,8 @@ const {
 const { processCreativeUpload } = require('./creative-watermark');
 const { moderateAsset } = require('./creative-moderation');
 const { existingWebpFor } = require('./image-webp');
+const { checkRateLimit } = require('./api-rate-limiter');
+const { getClientIp } = require('./client-ip');
 const { createCreativeCheckoutSession } = require('./stripe');
 const {
   recordMerchConsent,
@@ -265,6 +267,14 @@ router.post(
   '/',
   requireAuth,
   asyncHandler(async (req, res) => {
+    // Uploads carry multi-MB base64 bodies and full decodes: cap each
+    // account+IP to a few submissions a minute so a stolen session cannot
+    // be turned into a decoder/storage burn loop.
+    const key = `creatives-upload:${req.user.id}:${getClientIp(req)}`;
+    const rl = await checkRateLimit(key, 'public');
+    if (!rl.allowed) {
+      return res.status(429).json(error('Too many uploads. Please slow down.', 429));
+    }
     const institution = req.user.institutionId ? getInstitutionById(req.user.institutionId) : null;
     if (!canSubmitCreative(req.user, institution)) {
       return res.status(403).json(error('You do not have permission to submit creative assets'));

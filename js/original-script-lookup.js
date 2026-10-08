@@ -2164,7 +2164,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "huangdi": {
-    "originalScript": "皇帝",
+    "originalScript": "黄帝",
     "scriptName": "Chinese characters",
     "scriptLabel": "Original Script"
   },

@@ -10,6 +10,7 @@ const path = require('node:path');
 const { createCanvas, loadImage } = require('canvas');
 const { imageSize } = require('image-size');
 const { writeWebpSibling } = require('./image-webp');
+const { sniffImageType, MAX_DIMENSION, MAX_INPUT_PIXELS } = require('./upload-guard');
 
 const UPLOADS_DIR = path.join(__dirname, '..', 'public', 'uploads', 'creatives');
 const MAX_FILE_BYTES = 8 * 1024 * 1024;
@@ -36,6 +37,13 @@ function parseBase64Image(image) {
 }
 
 function validateImage(buffer) {
+  // Magic bytes first: the declared data-URI MIME is not trusted — the
+  // buffer must actually be PNG/JPEG/WebP before any decoder touches it.
+  const sniffed = sniffImageType(buffer);
+  if (!sniffed) {
+    return { error: 'File contents do not match an allowed image format (PNG, JPG, WebP).' };
+  }
+
   let dimensions;
   try {
     dimensions = imageSize(buffer);
@@ -53,6 +61,20 @@ function validateImage(buffer) {
 
   if (dimensions.width < 200 || dimensions.height < 200) {
     return { error: 'Image must be at least 200 × 200 px' };
+  }
+
+  // Dimension-bomb ceilings: loadImage() decodes the FULL image into memory,
+  // so these header-only checks are the only thing standing between a tiny
+  // crafted file and a multi-gigabyte decode.
+  if (dimensions.width > MAX_DIMENSION || dimensions.height > MAX_DIMENSION) {
+    return {
+      error: `Image dimensions (${dimensions.width}×${dimensions.height}) exceed the maximum ${MAX_DIMENSION}px per side.`,
+    };
+  }
+  if (dimensions.width * dimensions.height > MAX_INPUT_PIXELS) {
+    return {
+      error: `Image has too many pixels (${dimensions.width}×${dimensions.height}); maximum is ${MAX_INPUT_PIXELS / 1024 / 1024}MP.`,
+    };
   }
 
   return { dimensions };

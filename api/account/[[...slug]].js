@@ -56,6 +56,29 @@ async function checkAuthRateLimit(req, res, bucket) {
   return true;
 }
 
+// Upload-shaped change requests (image swaps carry multi-MB base64 bodies
+// and decode work): per-account + per-IP budget on the standard public tier
+// so a compromised session alone cannot burn the decoder or the storage.
+async function checkUploadRateLimit(req, res, account) {
+  const key = `account-requests:${account.id}:${getClientIp(req)}`;
+  const result = await checkRateLimit(key, 'public');
+
+  res.setHeader('X-RateLimit-Limit', String(result.limit));
+  res.setHeader('X-RateLimit-Remaining', String(result.remaining));
+  res.setHeader('X-RateLimit-Reset', String(Math.floor(result.resetAt / 1000)));
+
+  if (!result.allowed) {
+    const retryAfter = Math.ceil((result.resetAt - Date.now()) / 1000);
+    res.setHeader('Retry-After', String(retryAfter));
+    res.status(429).json({
+      error: 'Too many requests. Please slow down.',
+      retryAfter,
+    });
+    return false;
+  }
+  return true;
+}
+
 module.exports = async (req, res) => {
   setCors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -128,6 +151,7 @@ module.exports = async (req, res) => {
       }
       if (req.method === 'POST') {
         const { type, target, payload } = body;
+        if (type === 'image' && !(await checkUploadRateLimit(req, res, account))) return;
         const request = await tenantPortal.createChangeRequest(account, { type, target, payload });
         return res.status(201).json({ request });
       }

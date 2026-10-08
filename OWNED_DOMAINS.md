@@ -1,6 +1,6 @@
 # PUNICODEX — Owned Domain Inventory
 > Canonical record of all domains owned by PUNICODEX.
-> Auto-generated: 2026-09-18
+> Auto-generated: 2026-10-08
 > Source: `platform/db/owned-domains.json` + `js/archetypes-v2.js` + `middleware.js` DOMAIN_MAP
 > Tier system: The Definitive Tier System (CANONICAL) — see AGENTS.md
 
@@ -8,14 +8,14 @@
 
 ## Overview
 
-- **Total unique owned domains:** 358
-  - **Temple domains:** 357
-    - **Primary (canonical) domains:** 331
+- **Total unique owned domains:** 360
+  - **Temple domains:** 359
+    - **Primary (canonical) domains:** 333
     - **Variant / alternate domains:** 26
   - **Platform domains:** 1
-- **Flagship temples covered:** 330
+- **Flagship temples covered:** 332
   - Dual-tier: 3
-  - Single-tier Tier-1: 295
+  - Single-tier Tier-1: 297
   - Single-tier Tier-2: 32
 - **Base temples covered:** 1
 - **Unmapped owned domains:** 0
@@ -69,6 +69,7 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | guandi | Guāndì | `guāndì.com` | chinese | A |
 | guanyin | Guānyīn | `guānyīn.com` | chinese | S |
 | houyi | Hòuyì | `hòuyì.com` | chinese | A |
+| huangdi | Huángdì | `huángdì.com` | chinese | S |
 | kongzi | Kǒngzǐ | `kǒngzǐ.com` | chinese | A |
 | long | Lóng | `lóng.com` | chinese | S |
 | longwang | Lóngwáng | `lóngwáng.com` | chinese | A |
@@ -265,6 +266,7 @@ Mechanically information-rich: Greek has both stress AND long vowel; non-Greek p
 | ianus | Iānus | `iānus.com` | roman | A |
 | iuno | Iūnō | `iūnō.com` | roman | A |
 | iuppiter | Iūpiter | `iūpiter.com` | roman | S |
+| mars | Mārs | `mārs.com` | roman | SSS |
 | neptunus | Neptūnus | `neptūnus.com` | roman | S |
 | pluto | Plūtō | `plūtō.com` | roman | A |
 | vulcanus | Vulcānus | `vulcānus.com` | roman | A |

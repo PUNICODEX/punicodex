@@ -40,6 +40,7 @@ const { notifyLive } = require('./email');
 const { getTempleTraffic, getOverview } = require('./site-analytics');
 const { logAction } = require('./admin-actions');
 const { writeWebpSibling } = require('./image-webp');
+const { guardImageBuffer } = require('./upload-guard');
 
 const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 const TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours (set-password / reset)
@@ -937,6 +938,10 @@ function parseBase64Image(image) {
   if (buffer.length > MAX_IMAGE_BYTES) {
     return { error: 'Image must be under 2MB' };
   }
+  // Same guard as the booking pipeline: sniffed magic bytes must match the
+  // declared type, and header dimensions must fit the bomb ceilings.
+  const guard = guardImageBuffer(buffer, match[1]);
+  if (guard.error) return { error: guard.error };
   return { mimeType: match[1], buffer };
 }
 

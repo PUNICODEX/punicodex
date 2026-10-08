@@ -136,7 +136,10 @@ async function run() {
       {}
     );
     assert.strictEqual(corrupt.status, 400);
-    assert.match(corrupt.body.error, /could not process/i);
+    // The guard rejects non-image bytes before the decoder: the message is
+    // more precise than the old generic decode failure, but the contract —
+    // unreadable data refused with an honest message — is the same.
+    assert.match(corrupt.body.error, /could not process|do not match an allowed image format/i);
 
     // Exact-size PNG generated with canvas must upload and convert.
     const { createCanvas } = require('canvas');
