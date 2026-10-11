@@ -75,9 +75,9 @@ test('classify flags mixed-script input', () => {
   assert.strictEqual(result.severity, SEVERITIES.HIGH);
 });
 
-test('classify returns unknown for random safe term', () => {
+test('classify returns clean for random safe term', () => {
   const result = classify('xyzbrand');
-  assert.strictEqual(result.verdict, VERDICTS.UNKNOWN);
+  assert.strictEqual(result.verdict, VERDICTS.CLEAN);
   assert.strictEqual(result.severity, SEVERITIES.NONE);
 });
 
@@ -142,7 +142,7 @@ test('keyboard warns before sending a spoof', () => {
 test('keyboard does not warn for plain text', () => {
   const check = keyboardShouldWarn('Hello friend');
   assert.strictEqual(check.warn, false);
-  assert.strictEqual(check.result.verdict, VERDICTS.UNKNOWN);
+  assert.strictEqual(check.result.verdict, VERDICTS.CLEAN);
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
