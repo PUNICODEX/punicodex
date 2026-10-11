@@ -198,8 +198,9 @@ public class PunyKeyboardService extends InputMethodService {
     private static final long REPEAT_ACCELERATE_THRESHOLD_MS = 900;
     private static final long REPEAT_WORD_THRESHOLD_MS = 1800;
 
-    private PopupWindow keyPopup;
     private TextView keyPopupText;
+    private boolean keyPopupMeasured;
+    private final int[] cachedLoc = new int[2];
     private PopupWindow accentPopup;
     private Handler longPressHandler = new Handler(Looper.getMainLooper());
     private Runnable longPressRunnable;
@@ -274,6 +275,12 @@ public class PunyKeyboardService extends InputMethodService {
     private VibrationEffect cachedHapticLight;
     private VibrationEffect cachedHapticMedium;
     private VibrationEffect cachedHapticHeavy;
+    // Cached service handles + capabilities: getSystemService is a lookup and
+    // hasVibrator() is a binder call — both were being made on EVERY keypress,
+    // adding IPC latency to the typing hot path that Gboard does not have.
+    private Vibrator cachedVibrator;
+    private boolean hasVibratorCached;
+    private AudioManager cachedAudioManager;
 
     // Performance: suggestion chip pool
     private final List<LinearLayout> chipPool = new ArrayList<>();
@@ -300,6 +307,11 @@ public class PunyKeyboardService extends InputMethodService {
         soundEnabled = getSharedPreferences("puny_keyboard_prefs", Context.MODE_PRIVATE)
             .getBoolean("sound_enabled", true);
 
+        // Cache service handles once — never in the key-press hot path.
+        cachedVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        hasVibratorCached = cachedVibrator != null && cachedVibrator.hasVibrator();
+        cachedAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
         accentPrefs = getSharedPreferences(ACCENT_PREFS_NAME, Context.MODE_PRIVATE);
         loadCustomAccents();
 
@@ -320,7 +332,11 @@ public class PunyKeyboardService extends InputMethodService {
         ipcThread.start();
         ipcHandler = new Handler(ipcThread.getLooper());
 
-        // Pre-build reusable key popup
+        // Pre-build reusable key preview bubble. It lives INSIDE the keyboard
+        // view tree (not a PopupWindow): a PopupWindow does a WindowManager
+        // add/removeView transaction on every keystroke, which is the main
+        // source of input jank under fast typing. Toggling visibility of an
+        // in-tree view costs a fraction of that.
         keyPopupText = new TextView(this);
         keyPopupText.setTextSize(32);
         keyPopupText.setTextColor(0xFFFFFFFF);
@@ -329,8 +345,7 @@ public class PunyKeyboardService extends InputMethodService {
         keyPopupText.setMinWidth(dp(56));
         keyPopupText.setMinHeight(dp(56));
         keyPopupText.setPadding(dp(12), dp(8), dp(12), dp(8));
-        keyPopup = new PopupWindow(keyPopupText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, false);
-        keyPopup.setClippingEnabled(false);
+        keyPopupText.setVisibility(View.GONE);
     }
 
     @Override
@@ -353,6 +368,16 @@ public class PunyKeyboardService extends InputMethodService {
             root.addView(keyboardView);
             root.addView(symbolKeyboardView);
             symbolKeyboardView.setVisibility(View.GONE);
+            // Key preview bubble rides in the same FrameLayout, on top.
+            // onCreateInputView can be called again on theme/recreation —
+            // detach from any previous root before re-adding.
+            if (keyPopupText.getParent() != null) {
+                ((ViewGroup) keyPopupText.getParent()).removeView(keyPopupText);
+            }
+            FrameLayout.LayoutParams popupParams = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            keyPopupText.setLayoutParams(popupParams);
+            root.addView(keyPopupText);
 
             suggestionRow = keyboardView.findViewById(R.id.suggestion_row);
             typedWordView = keyboardView.findViewById(R.id.typed_word);
@@ -686,7 +711,39 @@ public class PunyKeyboardService extends InputMethodService {
     }
 
     private void togglePaletteMultiSelect() {
-        paletteMultiSelectMode = !paletteMultiSelectMode;
+        if (paletteMultiSelectMode) {
+            // Turning off with a non-empty buffer must not silently strand the
+            // queued characters: ask whether to insert, clear, or keep going.
+            if (paletteBuffer.length() > 0) {
+                confirmExitMultiSelect();
+                return;
+            }
+            setPaletteMultiSelect(false);
+        } else {
+            setPaletteMultiSelect(true);
+        }
+    }
+
+    private void confirmExitMultiSelect() {
+        int count = paletteBuffer.codePointCount(0, paletteBuffer.length());
+        new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_NoActionBar)
+            .setTitle("Turn off multi-select?")
+            .setMessage("You have " + count + " character" + (count == 1 ? "" : "s") +
+                " in the buffer: " + paletteBuffer)
+            .setPositiveButton("Insert & turn off", (d, w) -> {
+                setPaletteMultiSelect(false);
+                commitPaletteBuffer();
+            })
+            .setNegativeButton("Clear & turn off", (d, w) -> {
+                clearPaletteBuffer();
+                setPaletteMultiSelect(false);
+            })
+            .setNeutralButton("Cancel", null)
+            .show();
+    }
+
+    private void setPaletteMultiSelect(boolean on) {
+        paletteMultiSelectMode = on;
         hapticMedium();
         playKeySound();
         updatePuniButtonVisual();
@@ -695,19 +752,26 @@ public class PunyKeyboardService extends InputMethodService {
             renderPaletteGrid((GridLayout) paletteDialog.findViewById(R.id.palette_grid),
                 (TextView) paletteDialog.findViewById(R.id.palette_empty));
         }
+        updatePaletteBufferViews();
         Toast.makeText(this,
-            paletteMultiSelectMode ? "Multi-select mode on — tap symbols to build a sequence" : "Multi-select mode off",
+            paletteMultiSelectMode ? "Multi-select ON — tap symbols to build a sequence" : "Multi-select OFF",
             Toast.LENGTH_SHORT).show();
     }
 
     private void updatePuniButtonVisual() {
         if (puniBtn != null) {
             puniBtn.setText(paletteMultiSelectMode ? "Ω+" : "Ω");
-            puniBtn.setTextColor(paletteMultiSelectMode ? 0xFFE8C96A : 0xFFD4AF37);
+            puniBtn.setTextColor(paletteMultiSelectMode ? 0xFF000000 : 0xFFD4AF37);
+            puniBtn.setBackgroundResource(paletteMultiSelectMode
+                ? R.drawable.palette_item_selected_bg
+                : R.drawable.accent_key_bg);
         }
         if (symPuniBtn != null) {
             symPuniBtn.setText(paletteMultiSelectMode ? "Ω+" : "Ω");
-            symPuniBtn.setTextColor(paletteMultiSelectMode ? 0xFFE8C96A : 0xFFD4AF37);
+            symPuniBtn.setTextColor(paletteMultiSelectMode ? 0xFF000000 : 0xFFD4AF37);
+            symPuniBtn.setBackgroundResource(paletteMultiSelectMode
+                ? R.drawable.palette_item_selected_bg
+                : R.drawable.accent_key_bg);
         }
     }
 
@@ -871,22 +935,29 @@ public class PunyKeyboardService extends InputMethodService {
         String text = key.getText().toString();
         if (isShifted || capsLock) text = text.toUpperCase();
         keyPopupText.setText(text);
-        keyPopupText.measure(
-            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-        );
+        // Measure once (widest common glyph) instead of running a full
+        // measure() pass on every keypress — the bubble is fixed 32sp text,
+        // and a few px of over-width on the bubble is invisible.
+        if (!keyPopupMeasured) {
+            keyPopupText.measure(
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            );
+            keyPopupMeasured = true;
+        }
 
-        int[] loc = new int[2];
-        key.getLocationInWindow(loc);
-        int popupX = loc[0] + key.getWidth() / 2 - keyPopupText.getMeasuredWidth() / 2;
-        int popupY = loc[1] - dp(POPUP_OFFSET_DP);
+        key.getLocationInWindow(cachedLoc);
+        int popupX = cachedLoc[0] + key.getWidth() / 2 - keyPopupText.getMeasuredWidth() / 2;
+        int popupY = cachedLoc[1] - dp(POPUP_OFFSET_DP);
         popupX = clampPopupX(popupX, keyPopupText.getMeasuredWidth());
 
-        if (keyPopup.isShowing()) {
-            keyPopup.update(popupX, popupY, -1, -1);
-        } else {
-            keyPopup.showAtLocation(keyboardView, Gravity.NO_GRAVITY, popupX, popupY);
-        }
+        keyPopupText.setX(popupX);
+        keyPopupText.setY(popupY);
+        keyPopupText.setVisibility(View.VISIBLE);
+    }
+
+    private void hideKeyPopup() {
+        keyPopupText.setVisibility(View.GONE);
     }
 
     private int clampPopupX(int desiredX, int popupWidth) {
@@ -896,10 +967,6 @@ public class PunyKeyboardService extends InputMethodService {
         int maxX = screenWidth - popupWidth - margin;
         if (maxX < minX) maxX = minX;
         return Math.max(minX, Math.min(desiredX, maxX));
-    }
-
-    private void hideKeyPopup() {
-        if (keyPopup.isShowing()) keyPopup.dismiss();
     }
 
     private void showAccentPopup(Button key) {
@@ -1299,17 +1366,20 @@ public class PunyKeyboardService extends InputMethodService {
         lastKeyTime = System.currentTimeMillis();
         InputConnection ic = getCurrentInputConnection();
         if (ic != null) {
-            int action = EditorInfo.IME_ACTION_UNSPECIFIED;
-            if (currentEditorInfo != null) {
-                action = currentEditorInfo.actionId != 0
-                    ? currentEditorInfo.actionId
-                    : (currentEditorInfo.imeOptions & EditorInfo.IME_MASK_ACTION);
-            }
-            if (action != 0 && action != EditorInfo.IME_ACTION_UNSPECIFIED) {
-                ic.performEditorAction(action);
+            boolean multiline = currentEditorInfo != null
+                && (currentEditorInfo.inputType & EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE) != 0;
+            int options = currentEditorInfo != null ? currentEditorInfo.imeOptions : 0;
+            boolean noEnterAction = (options & EditorInfo.IME_FLAG_NO_ENTER_ACTION) != 0;
+            int action = options & EditorInfo.IME_MASK_ACTION;
+
+            // Multi-line fields and editors without an explicit action take a
+            // literal newline. Committing "\n" as text is far more reliable
+            // across apps than KEYCODE_ENTER key events, which WebViews and
+            // many chat/social apps silently drop.
+            if (multiline || noEnterAction || action == 0 || action == EditorInfo.IME_ACTION_UNSPECIFIED) {
+                ic.commitText("\n", 1);
             } else {
-                ic.sendKeyEvent(new android.view.KeyEvent(android.view.KeyEvent.ACTION_DOWN, android.view.KeyEvent.KEYCODE_ENTER));
-                ic.sendKeyEvent(new android.view.KeyEvent(android.view.KeyEvent.ACTION_UP, android.view.KeyEvent.KEYCODE_ENTER));
+                ic.performEditorAction(action);
             }
         }
         currentWord.setLength(0);
@@ -1946,7 +2016,13 @@ public class PunyKeyboardService extends InputMethodService {
 
             TextView charView = cell.findViewById(R.id.palette_item_char);
             TextView nameView = cell.findViewById(R.id.palette_item_name);
-            charView.setText(entry.character);
+            // Combining marks render on top of the previous glyph — shown
+            // alone in a cell they are invisible, which read as "missing".
+            // Prefix the dotted circle U+25CC so the mark is visible, exactly
+            // as Unicode charts display it. Commit still sends the bare mark.
+            charView.setText(isCombiningMark(entry.character)
+                ? "◌" + entry.character
+                : entry.character);
             nameView.setText(entry.name);
 
             boolean isSelected = paletteSelectedCharacters.contains(entry.character);
@@ -1985,6 +2061,15 @@ public class PunyKeyboardService extends InputMethodService {
             footer.setLayoutParams(footerParams);
             grid.addView(footer);
         }
+    }
+
+    private static boolean isCombiningMark(String character) {
+        if (character == null || character.isEmpty()) return false;
+        int cp = character.codePointAt(0);
+        int type = Character.getType(cp);
+        return type == Character.NON_SPACING_MARK
+            || type == Character.COMBINING_SPACING_MARK
+            || type == Character.ENCLOSING_MARK;
     }
 
     private void commitPaletteCharacter(String character) {
@@ -2029,6 +2114,9 @@ public class PunyKeyboardService extends InputMethodService {
         }
         if (paletteMultiSelectToggle != null) {
             paletteMultiSelectToggle.setSelected(paletteMultiSelectMode);
+            // Explicit ON/OFF label — the old static "Multi-select" chip was
+            // indistinguishable between states at a glance.
+            paletteMultiSelectToggle.setText(paletteMultiSelectMode ? "Multi-select: ON" : "Multi-select: OFF");
             paletteMultiSelectToggle.setTextColor(paletteMultiSelectMode ? 0xFF000000 : 0xFFD4AF37);
         }
     }
@@ -2164,40 +2252,36 @@ public class PunyKeyboardService extends InputMethodService {
     // ═══════════════════════════════════════════════
 
     private void hapticLight() {
-        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        if (v == null || !v.hasVibrator()) return;
+        if (!hasVibratorCached) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && cachedHapticLight != null) {
-            v.vibrate(cachedHapticLight);
+            cachedVibrator.vibrate(cachedHapticLight);
         } else {
-            v.vibrate(8);
+            cachedVibrator.vibrate(8);
         }
     }
 
     private void hapticMedium() {
-        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        if (v == null || !v.hasVibrator()) return;
+        if (!hasVibratorCached) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && cachedHapticMedium != null) {
-            v.vibrate(cachedHapticMedium);
+            cachedVibrator.vibrate(cachedHapticMedium);
         } else {
-            v.vibrate(10);
+            cachedVibrator.vibrate(10);
         }
     }
 
     private void hapticHeavy() {
-        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        if (v == null || !v.hasVibrator()) return;
+        if (!hasVibratorCached) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && cachedHapticHeavy != null) {
-            v.vibrate(cachedHapticHeavy);
+            cachedVibrator.vibrate(cachedHapticHeavy);
         } else {
-            v.vibrate(15);
+            cachedVibrator.vibrate(15);
         }
     }
 
     private void playKeySound() {
         if (!soundEnabled) return;
-        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        if (am != null) {
-            am.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD, -1);
+        if (cachedAudioManager != null) {
+            cachedAudioManager.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD, -1);
         }
     }
 
