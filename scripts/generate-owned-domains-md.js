@@ -378,9 +378,27 @@ sections.push('- Run `node scripts/generate-owned-domains-md.js` (or `npm run ge
 sections.push('');
 
 const markdown = sections.join('\n');
-fs.writeFileSync(OUTPUT_PATH, markdown, 'utf8');
 
-console.log(`✓ Generated ${OUTPUT_PATH}`);
+// Byte-stability: the daily date stamp would make every generate run diverge
+// from the committed file (failing the CI divergence gate and blocking
+// deploys) even when no domain data changed. If the existing file differs
+// ONLY in the Auto-generated date, keep the existing bytes.
+const DATE_LINE = /^> Auto-generated: \d{4}-\d{2}-\d{2}$/m;
+let write = true;
+try {
+  const existing = fs.readFileSync(OUTPUT_PATH, 'utf8');
+  if (existing.replace(DATE_LINE, '') === markdown.replace(DATE_LINE, '')) {
+    write = false;
+  }
+} catch {
+  // No existing file — write.
+}
+if (write) {
+  fs.writeFileSync(OUTPUT_PATH, markdown, 'utf8');
+  console.log(`✓ Generated ${OUTPUT_PATH}`);
+} else {
+  console.log(`✓ ${OUTPUT_PATH} unchanged (date stamp only — keeping committed bytes)`);
+}
 console.log(`  Total owned domains:  ${totalUniqueOwned}`);
 console.log(`    Temple domains:     ${totalTempleDomains}`);
 console.log(`      Primary:          ${totalTempleDomains - totalVariantDomains}`);

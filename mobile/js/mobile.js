@@ -588,9 +588,14 @@
             addToHistory(entry);
         });
 
-        // Fetch domain status (with cache)
+        // Fetch domain status (with cache). The card always links to the
+        // temple page — the URL is deterministic, so even when the API is
+        // unreachable (always, inside the app sandbox) this is a live link,
+        // not a "No domain data" dead end.
         const domainCard = document.getElementById('detail-domain-card');
         const domainValue = document.getElementById('detail-domain-value');
+        domainCard.style.cursor = 'pointer';
+        domainCard.onclick = () => openExternalUrl(templePath(entry.id));
         const cached = domainCache.get(entry.id);
         if (cached) {
             domainCard.classList.remove('unknown');
@@ -608,18 +613,20 @@
                 let result = { className: '', text: '' };
                 if (isFlagship) {
                     domainCard.classList.add('owned');
-                    result = { className: 'owned', text: '🏛️ Owned & Operated' };
+                    result = { className: 'owned', text: '🏛️ Owned & Operated — open temple →' };
                 } else if (hasTenant) {
                     domainCard.classList.add('owned');
-                    result = { className: 'owned', text: '🔷 Leased Property' };
+                    result = { className: 'owned', text: '🔷 Leased Property — open temple →' };
                 } else {
                     domainCard.classList.add('available');
-                    result = { className: 'available', text: '🔑 Available for Lease' };
+                    result = { className: 'available', text: '🔑 Available for Lease — open temple →' };
                 }
                 domainValue.textContent = result.text;
                 domainCache.set(entry.id, result);
             } catch {
-                domainValue.textContent = 'No domain data';
+                domainCard.classList.remove('unknown');
+                domainCard.classList.add('owned');
+                domainValue.textContent = `🏛️ Open ${entry.unicode}’s temple →`;
             }
         }
     }
