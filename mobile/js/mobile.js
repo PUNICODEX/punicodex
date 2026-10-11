@@ -17,6 +17,14 @@
     const SITE_ORIGIN = 'https://punicodex.com';
     function templePath(id) { return `${SITE_ORIGIN}/${encodeURIComponent(id)}/`; }
 
+    // Most canonical owned domain per flagship (synced from
+    // js/archetypes-v2.js domainUnicode). Base temples have no archetype —
+    // their ideal form is the restoration + .com.
+    const OWNED_DOMAINS = typeof PUNICODEX_OWNED_DOMAINS !== 'undefined' ? PUNICODEX_OWNED_DOMAINS : {};
+    function primaryDomain(entry) {
+        return OWNED_DOMAINS[entry.id] || `${nfc(entry.unicode)}.com`;
+    }
+
     // Open a link in the real browser. Inside the Android app the Capacitor
     // webview only serves mobile/, so site links must escape via the native
     // plugin; on the deployed PWA a plain new tab works.
@@ -591,17 +599,30 @@
         // Fetch domain status (with cache). The card always links to the
         // temple page — the URL is deterministic, so even when the API is
         // unreachable (always, inside the app sandbox) this is a live link,
-        // not a "No domain data" dead end.
+        // not a "No domain data" dead end. The bundled owned-domains map
+        // (synced from js/archetypes-v2.js domainUnicode — the MOST canonical
+        // variant) provides the real Unicode .com offline.
         const domainCard = document.getElementById('detail-domain-card');
         const domainValue = document.getElementById('detail-domain-value');
         domainCard.style.cursor = 'pointer';
         domainCard.onclick = () => openExternalUrl(templePath(entry.id));
+        const ownedDomainName = OWNED_DOMAINS[entry.id];
+        const isOwned = !!ownedDomainName;
+        const fallbackText = isOwned
+            ? `🏛️ ${ownedDomainName} — open temple →`
+            : `🔑 ${primaryDomain(entry)} — open temple →`;
         const cached = domainCache.get(entry.id);
         if (cached) {
             domainCard.classList.remove('unknown');
             domainCard.classList.add(cached.className);
             domainValue.textContent = cached.text;
         } else {
+            // Show the map-derived answer immediately — no "Checking..." dead
+            // air in the app — then refine from the API when reachable.
+            domainCard.classList.remove('unknown');
+            domainCard.classList.add(isOwned ? 'owned' : 'available');
+            domainValue.textContent = fallbackText;
+            domainCache.set(entry.id, { className: isOwned ? 'owned' : 'available', text: fallbackText });
             try {
                 const res = await fetch(`${API_BASE}/api/entry/${encodeURIComponent(entry.id)}`);
                 const data = await res.json();
@@ -609,24 +630,22 @@
                 const isFlagship = hasSite && data.sites.some(s => s.is_flagship === 1 || s.isFlagship === true);
                 const hasTenant = hasSite && data.sites.some(s => s.tenant_name || s.tenant);
 
-                domainCard.classList.remove('unknown');
+                domainCard.classList.remove('unknown', 'owned', 'available');
                 let result = { className: '', text: '' };
-                if (isFlagship) {
+                if (isFlagship || isOwned) {
                     domainCard.classList.add('owned');
-                    result = { className: 'owned', text: '🏛️ Owned & Operated — open temple →' };
+                    result = { className: 'owned', text: `🏛️ ${primaryDomain(entry)} — open temple →` };
                 } else if (hasTenant) {
                     domainCard.classList.add('owned');
-                    result = { className: 'owned', text: '🔷 Leased Property — open temple →' };
+                    result = { className: 'owned', text: `🔷 Leased — ${primaryDomain(entry)} — open temple →` };
                 } else {
                     domainCard.classList.add('available');
-                    result = { className: 'available', text: '🔑 Available for Lease — open temple →' };
+                    result = { className: 'available', text: `🔑 Available — ${primaryDomain(entry)} — open temple →` };
                 }
                 domainValue.textContent = result.text;
                 domainCache.set(entry.id, result);
             } catch {
-                domainCard.classList.remove('unknown');
-                domainCard.classList.add('owned');
-                domainValue.textContent = `🏛️ Open ${entry.unicode}’s temple →`;
+                // Keep the map-derived fallback already shown.
             }
         }
     }
@@ -748,22 +767,25 @@
 
     function renderDomainBadge(status, entry) {
         const url = templePath(entry.id);
+        const domain = primaryDomain(entry);
+        const isOwned = !!OWNED_DOMAINS[entry.id];
         let badge;
         if (!status) {
             // API unreachable (always the case inside the app sandbox) — the
-            // temple link is deterministic, so offer it instead of a dead end.
-            badge = `<div class="domain-badge owned">🏛️ Open ${esc(entry.unicode)}’s temple →</div>`;
+            // bundled owned-domains map still knows the canonical .com, and
+            // the temple link is deterministic. Never a dead end.
+            badge = `<div class="domain-badge ${isOwned ? 'owned' : 'available'}">${isOwned ? '🏛️' : '🔑'} ${esc(domain)} — open temple →</div>`;
         } else {
             const hasSite = status.sites && status.sites.length > 0;
             const isFlagship = hasSite && status.sites.some(s => s.is_flagship === 1 || s.isFlagship === true);
             const hasTenant = hasSite && status.sites.some(s => s.tenant_name || s.tenant);
 
-            if (isFlagship) {
-                badge = `<div class="domain-badge owned">🏛️ Owned & Operated — ${esc(entry.domain || entry.unicode + '.com')} · temple →</div>`;
+            if (isFlagship || isOwned) {
+                badge = `<div class="domain-badge owned">🏛️ ${esc(domain)} — open temple →</div>`;
             } else if (hasTenant) {
-                badge = `<div class="domain-badge owned">🔷 Leased — ${esc(entry.domain || entry.unicode + '.com')} · temple →</div>`;
+                badge = `<div class="domain-badge owned">🔷 Leased — ${esc(domain)} — open temple →</div>`;
             } else {
-                badge = `<div class="domain-badge available">🔑 Available — ${esc(entry.domain || entry.unicode + '.com')} · temple →</div>`;
+                badge = `<div class="domain-badge available">🔑 Available — ${esc(domain)} — open temple →</div>`;
             }
         }
         resultDomainStatus.innerHTML = badge;

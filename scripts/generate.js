@@ -47,6 +47,7 @@ const allScripts = [
   'scripts/sync-shared-lexicon.js',
   'scripts/sync-shared-engine.js',
   'scripts/sync-mobile-classifier.js',
+  'scripts/sync-mobile-owned-domains.js',
   'scripts/build-android-assets.js',
   'scripts/export-platform-lexicon.js',
   'scripts/generate-similarities.js',
