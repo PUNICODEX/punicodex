@@ -24,6 +24,8 @@ const EXCLUDE = [
   // The extension source tree is excluded, but extension/index.html is a
   // public teaser page and carries the beacon like every other public page.
   /^extension\/(?!index\.html$)/,
+  // Internal Play Store marketing-kit bake templates — not public pages.
+  /^Marketing\//,
   /^extension-v2\//,
   /^mobile\//,
   /^android\//,
