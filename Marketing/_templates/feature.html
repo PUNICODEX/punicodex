@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: 'Cinzel Decorative';
+    src: url('file:///C:/projects/punicodex/assets/fonts/cinzel-decorative-900-normal-latin.woff2') format('woff2');
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: 'Cinzel';
+    src: url('file:///C:/projects/punicodex/assets/fonts/cinzel-400-normal-latin.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Cormorant';
+    src: url('file:///C:/projects/punicodex/assets/fonts/cormorant-garamond-600-normal-latin.woff2') format('woff2');
+    font-weight: 600;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1024px; height: 500px; overflow: hidden; }
+  body { position: relative; background: #050505; font-family: 'Cinzel', serif; }
+  .backdrop {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center 25%;
+    filter: blur(10px) brightness(0.55);
+    opacity: 0.4;
+  }
+  .veil {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 700px 420px at 24% 45%, rgba(212,175,55,0.16), transparent 65%),
+      linear-gradient(90deg, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0.6) 55%, rgba(5,5,5,0.85) 100%);
+  }
+  .meander {
+    position: absolute; left: 0; right: 0; height: 10px;
+    background:
+      repeating-linear-gradient(90deg,
+        #d4af37 0 18px, transparent 18px 24px,
+        #d4af37 24px 31px, #d4af37 31px 34px, transparent 34px 42px,
+        #d4af37 42px 46px, transparent 46px 64px);
+    opacity: 0.55;
+  }
+  .meander.top { top: 22px; } .meander.bottom { bottom: 22px; }
+  .left {
+    position: absolute; left: 56px; top: 0; bottom: 0; width: 580px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .brandline { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .brandline img { height: 44px; width: 44px; }
+  .brandline .word {
+    font-family: 'Cinzel', serif;
+    font-size: 30px; letter-spacing: 0.34em; color: #d4af37;
+    text-shadow: 0 0 18px rgba(212,175,55,0.35);
+  }
+  .headline {
+    font-family: 'Cinzel Decorative', 'Segoe UI Symbol', serif; font-weight: 900;
+    font-size: 50px; line-height: 1.1;
+    background: linear-gradient(180deg, #f7ecc0 0%, #e8c96a 40%, #d4af37 65%, #8a6d1c 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 14px rgba(212,175,55,0.3));
+    margin-bottom: 12px;
+  }
+  .tag {
+    font-family: 'Cormorant', serif; font-weight: 600;
+    font-size: 22px; color: #cfc6ae; line-height: 1.28; margin-bottom: 18px;
+    max-width: 540px;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; max-width: 560px; }
+  .chip {
+    font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #e8c96a; border: 1px solid rgba(212,175,55,0.55);
+    padding: 7px 13px; border-radius: 999px;
+    background: rgba(212,175,55,0.07);
+    white-space: nowrap;
+  }
+  .phone {
+    position: absolute; right: 64px; top: 26px;
+    width: 226px; height: 448px;
+    border-radius: 30px; padding: 8px;
+    background: linear-gradient(160deg, #3a3a3a, #0c0c0c);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.8), 0 0 60px rgba(212,175,55,0.14),
+      inset 0 0 0 1.5px rgba(212,175,55,0.3);
+  }
+  .phone .screen { width: 100%; height: 100%; border-radius: 24px; overflow: hidden; background: #000; }
+  .phone img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+</style>
+</head>
+<body>
+  <div class="backdrop" style="background-image:url('file:///C:/projects/punicodex/assets/og/apollon.jpg')"></div>
+  <div class="veil"></div>
+  <div class="meander top"></div>
+  <div class="meander bottom"></div>
+  <div class="left">
+    <div class="brandline">
+      <img src="file:///C:/projects/punicodex/assets/brand/01-logos/punicodex-emblem-gold.png">
+      <div class="word">PUNICODEX</div>
+    </div>
+    <div class="headline">1,700+ symbols.<br>980 gods.</div>
+    <div class="tag">One Ω key away — the scholarly Unicode keyboard. 26 symbol categories, a restored name and a living temple for every deity.</div>
+    <div class="chips">
+      <div class="chip">1,700+ Symbols</div>
+      <div class="chip">26 Categories</div>
+      <div class="chip">980 Names</div>
+      <div class="chip">25 Pantheons</div>
+      <div class="chip">Zero Keylogging</div>
+    </div>
+  </div>
+  <div class="phone"><div class="screen"><img src="file:///C:/projects/punicodex/marketing/_work/crop_all.png"></div></div>
+</body>
+</html>
