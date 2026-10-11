@@ -290,7 +290,9 @@ function punycodeDecodeLabel(label) {
 function decodeHost(host) {
   return String(host)
     .split('.')
-    .map((label) => (label.toLowerCase().startsWith('xn--') ? punycodeDecodeLabel(label.slice(4)) : label))
+    .map((label) =>
+      label.toLowerCase().startsWith('xn--') ? punycodeDecodeLabel(label.slice(4)) : label
+    )
     .join('.');
 }
 
