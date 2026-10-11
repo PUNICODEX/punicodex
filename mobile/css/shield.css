@@ -123,3 +123,125 @@
   width: 22px;
   height: 22px;
 }
+
+/* Header: back button + bundled logomark (no /assets/ dependency — the
+ * Android app serves only this directory, so absolute site paths 404) */
+.header-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  margin-right: 0.25rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.header-back svg {
+  width: 22px;
+  height: 22px;
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-subtitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(212, 175, 55, 0.85);
+}
+
+/* History */
+.shield-history {
+  margin-top: 1.5rem;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.history-list {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.85rem;
+}
+
+.history-input {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.history-verdict {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.history-item.severity-critical .history-verdict {
+  color: #ff4d4d;
+}
+
+.history-item.severity-high .history-verdict {
+  color: #ff9f43;
+}
+
+.history-item.severity-medium .history-verdict {
+  color: #feca57;
+}
+
+.history-item.severity-low .history-verdict {
+  color: #54a0ff;
+}
+
+.history-empty {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+}
+
+/* Result extras */
+.shield-target {
+  margin-top: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.shield-target strong {
+  color: #d4af37;
+  margin-left: 0.35rem;
+}
+
+.shield-alternatives {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.shield-alternatives a {
+  color: #d4af37;
+  word-break: break-all;
+}
