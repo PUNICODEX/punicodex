@@ -207,6 +207,7 @@ public class PunyKeyboardService extends InputMethodService {
     private Button activeKey;
     private boolean longPressFired = false;
     private boolean soundEnabled = true;
+    private boolean hapticsEnabled = true;
 
     private final Runnable cachedLongPressRunnable = () -> {
         longPressFired = true;
@@ -306,6 +307,8 @@ public class PunyKeyboardService extends InputMethodService {
         }
         soundEnabled = getSharedPreferences("puny_keyboard_prefs", Context.MODE_PRIVATE)
             .getBoolean("sound_enabled", true);
+        hapticsEnabled = getSharedPreferences("puny_keyboard_prefs", Context.MODE_PRIVATE)
+            .getBoolean("haptics_enabled", true);
 
         // Cache service handles once — never in the key-press hot path.
         cachedVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
@@ -2252,7 +2255,7 @@ public class PunyKeyboardService extends InputMethodService {
     // ═══════════════════════════════════════════════
 
     private void hapticLight() {
-        if (!hasVibratorCached) return;
+        if (!hapticsEnabled || !hasVibratorCached) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && cachedHapticLight != null) {
             cachedVibrator.vibrate(cachedHapticLight);
         } else {
@@ -2261,7 +2264,7 @@ public class PunyKeyboardService extends InputMethodService {
     }
 
     private void hapticMedium() {
-        if (!hasVibratorCached) return;
+        if (!hapticsEnabled || !hasVibratorCached) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && cachedHapticMedium != null) {
             cachedVibrator.vibrate(cachedHapticMedium);
         } else {
@@ -2270,7 +2273,7 @@ public class PunyKeyboardService extends InputMethodService {
     }
 
     private void hapticHeavy() {
-        if (!hasVibratorCached) return;
+        if (!hapticsEnabled || !hasVibratorCached) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && cachedHapticHeavy != null) {
             cachedVibrator.vibrate(cachedHapticHeavy);
         } else {
