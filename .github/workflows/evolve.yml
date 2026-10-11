@@ -62,6 +62,11 @@ jobs:
           # gitignored binary asset steps (multi-GB composites) that otherwise
           # dominate the cycle without affecting any committed artifact.
           PUNICODEX_GENERATE_SKIP_BINARY: 1
+          # Same hard-won config as ci.yml: the parallel phase can exhaust the
+          # GitHub-hosted runner (silent process exit / flaky suites), and CI
+          # frequently runs concurrently with this cycle on the same push.
+          PUNICODEX_TEST_PARALLELISM: 1
+          NODE_OPTIONS: --max-old-space-size=5120
         run: |
           FLAGS=""
           if [ "${{ github.event.inputs.operational }}" = "true" ]; then
