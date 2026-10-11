@@ -71,7 +71,6 @@
     font-family: 'Cormorant', serif;
     font-size: 30px; color: #cfc6ae; text-align: center; margin-bottom: 34px;
   }
-  /* Laptop mockup */
   .laptop { position: relative; }
   .lid {
     width: 1180px; border-radius: 18px 18px 0 0; padding: 12px 12px 0 12px;
@@ -115,22 +114,22 @@
 </style>
 </head>
 <body>
-  <div class="backdrop" style="background-image:url('file:///C:/projects/punicodex/assets/og/zeus.jpg')"></div>
+  <div class="backdrop" id="backdrop"></div>
   <div class="veil"></div>
   <div class="meander top"></div>
   <div class="meander bottom"></div>
   <div class="content">
-    <div class="kicker">Also on the Web</div>
-    <div class="headline">punicodex.com — the full type temple</div>
-    <div class="sub">Every name, every temple, every domain — free in the browser.</div>
+    <div class="kicker" id="kicker"></div>
+    <div class="headline" id="headline"></div>
+    <div class="sub" id="sub"></div>
     <div class="laptop">
       <div class="lid">
         <div class="browser">
           <div class="bar">
             <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
-            <div class="url">punicodex.com/type/</div>
+            <div class="url" id="url">punicodex.com</div>
           </div>
-          <div class="viewport"><img src="file:///C:/projects/punicodex/marketing/_work/desktop_type.png"></div>
+          <div class="viewport"><img id="shot"></div>
         </div>
       </div>
       <div class="base"><div class="notch"></div></div>
@@ -140,5 +139,14 @@
     <img src="file:///C:/projects/punicodex/assets/brand/01-logos/punicodex-emblem-gold.png">
     <div class="domain">punicodex.com</div>
   </div>
+  <script>
+    const q = new URLSearchParams(location.search);
+    document.getElementById('kicker').textContent = q.get('kicker') || '';
+    document.getElementById('headline').textContent = q.get('headline') || '';
+    document.getElementById('sub').textContent = q.get('sub') || '';
+    document.getElementById('url').textContent = q.get('url') || 'punicodex.com';
+    document.getElementById('shot').src = q.get('shot');
+    document.getElementById('backdrop').style.backgroundImage = 'url(' + q.get('backdrop') + ')';
+  </script>
 </body>
 </html>
