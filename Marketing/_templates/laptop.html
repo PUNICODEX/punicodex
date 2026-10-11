@@ -95,6 +95,42 @@
   }
   .browser .viewport { height: 620px; overflow: hidden; background: #000; }
   .browser .viewport img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  /* mode=app: the laptop screen shows a desktop with the APP in a window */
+  .desktop-screen {
+    height: 620px; position: relative; overflow: hidden;
+    background:
+      radial-gradient(ellipse 700px 420px at 70% 25%, rgba(212,175,55,0.10), transparent 60%),
+      linear-gradient(160deg, #0b0b10 0%, #070709 55%, #0c0a08 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .desktop-screen .appwin {
+    width: 330px; height: 560px; border-radius: 12px; overflow: hidden;
+    background: #0d0d0f;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.75), 0 0 50px rgba(212,175,55,0.10),
+      0 0 0 1px rgba(255,255,255,0.08);
+  }
+  .desktop-screen .appwin .tb {
+    height: 34px; display: flex; align-items: center; gap: 8px;
+    background: #15151a; padding: 0 12px; border-bottom: 1px solid #202024;
+  }
+  .desktop-screen .appwin .tb img { width: 18px; height: 18px; border-radius: 5px; }
+  .desktop-screen .appwin .tb .n { font-size: 12px; color: #cfcfcf; letter-spacing: 0.08em; font-family: 'Cinzel', serif; }
+  .desktop-screen .appwin .tb .dots { margin-left: auto; display: flex; gap: 8px; }
+  .desktop-screen .appwin .tb .dots span { width: 9px; height: 9px; border-radius: 50%; background: #33333a; }
+  .desktop-screen .appwin .body { height: 526px; background: #000; display: flex; align-items: center; justify-content: center; }
+  .desktop-screen .appwin .body img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .desktop-screen .taskbar {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 34px;
+    background: rgba(10,10,14,0.95); border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .desktop-screen .taskbar .ti {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: linear-gradient(160deg, #26262e, #131318);
+    border: 1px solid rgba(212,175,55,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: #d4af37;
+  }
   .base {
     width: 1320px; height: 26px; margin-left: -70px;
     background: linear-gradient(180deg, #3a3a3a, #0a0a0a);
@@ -124,12 +160,12 @@
     <div class="sub" id="sub"></div>
     <div class="laptop">
       <div class="lid">
-        <div class="browser">
+        <div class="browser" id="browserBox">
           <div class="bar">
             <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
             <div class="url" id="url">punicodex.com</div>
           </div>
-          <div class="viewport"><img id="shot"></div>
+          <div class="viewport" id="viewport"><img id="shot"></div>
         </div>
       </div>
       <div class="base"><div class="notch"></div></div>
@@ -145,8 +181,20 @@
     document.getElementById('headline').textContent = q.get('headline') || '';
     document.getElementById('sub').textContent = q.get('sub') || '';
     document.getElementById('url').textContent = q.get('url') || 'punicodex.com';
-    document.getElementById('shot').src = q.get('shot');
     document.getElementById('backdrop').style.backgroundImage = 'url(' + q.get('backdrop') + ')';
+    if (q.get('mode') === 'app') {
+      // Swap the browser chrome for a desktop-with-app-window screen.
+      document.getElementById('browserBox').outerHTML =
+        '<div class="desktop-screen">' +
+        '<div class="appwin">' +
+        '<div class="tb"><img src="file:///C:/projects/punicodex/assets/images/icon192.png"><div class="n">PuniCodex</div><div class="dots"><span></span><span></span><span></span></div></div>' +
+        '<div class="body"><img src="' + q.get('shot') + '"></div>' +
+        '</div>' +
+        '<div class="taskbar"><div class="ti">⌂</div><div class="ti" style="border-color:#d4af37">Ω</div><div class="ti">✉</div></div>' +
+        '</div>';
+    } else {
+      document.getElementById('shot').src = q.get('shot');
+    }
   </script>
 </body>
 </html>
