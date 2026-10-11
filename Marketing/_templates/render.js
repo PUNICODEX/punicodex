@@ -21,7 +21,10 @@ const SHOTS = [
   },
   {
     file: 'screenshot-2-latin.png',
-    shot: `${W}/crop_pal_first.png`,
+    // Full-bleed device capture (status bar + tabs + keyboard) — the earlier
+    // crop_pal_first was pre-cropped ~85px per side, which read as zoomed-in
+    // and cut off in the frame.
+    shot: `${W}/final2_latin.png`,
     backdrop: `${OG}/athena.jpg`,
     kicker: 'First Category · Latin',
     headline: 'Á Æ È É Ê — all of it',
@@ -29,7 +32,8 @@ const SHOTS = [
   },
   {
     file: 'screenshot-3-letterlike.png',
-    shot: `${W}/crop_pal_last.png`,
+    // Full-bleed capture, Directory section at top (no broken-logo app header).
+    shot: `${W}/final2_letter.png`,
     backdrop: `${OG}/hekate.jpg`,
     kicker: 'Last Category · Letterlike',
     headline: '…to ℞ № ™ ℀',
@@ -37,7 +41,8 @@ const SHOTS = [
   },
   {
     file: 'screenshot-4-convert.png',
-    shot: `${W}/crop_type.png`,
+    // Full-bleed capture; broken logo icon patched out (shot_type_clean).
+    shot: `${W}/shot_type_clean.png`,
     backdrop: `${OG}/zeus.jpg`,
     kicker: 'Scholarly Unicode',
     headline: 'Type “apoll”. Get Apóllōn.',
@@ -89,11 +94,24 @@ const SIZES = [
     executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
   });
 
+  // Optional selective re-bake: --only screenshot-2-latin.png,... --sizes phone,tablet-7in
+  const onlyIdx = process.argv.indexOf('--only');
+  const only = onlyIdx > -1 ? new Set(process.argv[onlyIdx + 1].split(',')) : null;
+  const sizesIdx = process.argv.indexOf('--sizes');
+  const sizesFilter =
+    sizesIdx > -1 ? new Set(process.argv[sizesIdx + 1].split(',')) : null;
+  const shots = only ? SHOTS.filter((s) => only.has(s.file)) : SHOTS;
+  const sizes = sizesFilter ? SIZES.filter((s) => sizesFilter.has(s.dir)) : SIZES;
+  if (!shots.length || !sizes.length) {
+    console.log('nothing selected');
+    process.exit(1);
+  }
+
   const fs = require('fs');
-  for (const size of SIZES) {
+  for (const size of sizes) {
     const outDir = `${ROOT}/marketing/google-play/${size.dir}`;
     fs.mkdirSync(outDir, { recursive: true });
-    for (const s of SHOTS) {
+    for (const s of shots) {
       const page = await browser.newPage({
         viewport: { width: size.w, height: size.h },
         deviceScaleFactor: 1,
@@ -113,7 +131,12 @@ const SIZES = [
       await page.screenshot({ path: `${outDir}/${s.file}` });
       await page.close();
     }
-    console.log(`rendered ${SHOTS.length} shots @ ${size.w}x${size.h} -> ${size.dir}/`);
+    console.log(`rendered ${shots.length} shots @ ${size.w}x${size.h} -> ${size.dir}/`);
+  }
+
+  if (only || sizesFilter) {
+    await browser.close();
+    return;
   }
 
   const fg = await browser.newPage({
