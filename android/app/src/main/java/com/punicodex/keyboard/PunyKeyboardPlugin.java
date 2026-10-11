@@ -8,6 +8,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
+import com.punicodex.app.R;
+
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -77,6 +79,19 @@ public class PunyKeyboardPlugin extends Plugin {
         JSObject ret = new JSObject();
         ret.put("totalCompletions", prefs.getInt("total_completions", 0));
         ret.put("favoriteChar", prefs.getString("favorite_char", "—"));
+        call.resolve(ret);
+    }
+
+    /**
+     * Large-form-factor flag (sw840dp: tablets, Chromebooks, desktop windows).
+     * The web app hides the keyboard tab and IME-specific surfaces there —
+     * a soft keyboard is meaningless on a physical-keyboard device.
+     */
+    @PluginMethod
+    public void getFormFactor(PluginCall call) {
+        boolean large = getContext().getResources().getBoolean(R.bool.punicodex_large_form_factor);
+        JSObject ret = new JSObject();
+        ret.put("largeFormFactor", large);
         call.resolve(ret);
     }
 

@@ -683,6 +683,36 @@
         else if (mode === 'keyboard') renderKeyboardPanel();
     }
 
+    // ── Desktop / large-form-factor adaptation ──────────────────────────
+    // A soft keyboard is meaningless on physical-keyboard devices, so on
+    // desktops/Chromebooks/large tablets the app presents as the lexicon
+    // tool: the Keyboard tab is removed and keyboard-mode logic is inert.
+    let desktopMode = false;
+    function applyDesktopMode() {
+        if (!desktopMode) return;
+        document.body.classList.add('puny-desktop');
+        navBtns.forEach(btn => {
+            if (btn.dataset.mode === 'keyboard') btn.remove();
+        });
+        if (currentMode === 'keyboard') setMode('type');
+    }
+    (async () => {
+        const nativeBridge = typeof Capacitor !== 'undefined' && Capacitor.Plugins && Capacitor.Plugins.PunyKeyboard;
+        if (nativeBridge) {
+            try {
+                const r = await Capacitor.Plugins.PunyKeyboard.getFormFactor();
+                desktopMode = !!r.largeFormFactor;
+            } catch { /* fall through to heuristic */ }
+        }
+        if (!desktopMode) {
+            // Deployed PWA in a desktop browser (no "Mobile" in the UA), or
+            // any viewport that is clearly not phone-sized.
+            desktopMode = !/Mobile|Android|iPhone/i.test(navigator.userAgent)
+                || Math.min(window.screen.width, window.screen.height) >= 1600;
+        }
+        applyDesktopMode();
+    })();
+
     navBtns.forEach(btn => {
         btn.addEventListener('click', () => { vibrate(5); setMode(btn.dataset.mode); });
     });
