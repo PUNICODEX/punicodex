@@ -3,6 +3,7 @@ package com.punicodex.keyboard;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
@@ -77,5 +78,29 @@ public class PunyKeyboardPlugin extends Plugin {
         ret.put("totalCompletions", prefs.getInt("total_completions", 0));
         ret.put("favoriteChar", prefs.getString("favorite_char", "—"));
         call.resolve(ret);
+    }
+
+    /**
+     * Open a URL in the system browser. The Capacitor webview sandbox only
+     * serves mobile/, so in-app links to punicodex.com (temple pages etc.)
+     * must go out to a real browser instead of loading inside the webview.
+     * Scheme-restricted to http/https; never throws into the bridge.
+     */
+    @PluginMethod
+    public void openUrl(PluginCall call) {
+        String url = call.getString("url");
+        if (url == null || !(url.startsWith("https://") || url.startsWith("http://"))) {
+            call.reject("invalid_url");
+            return;
+        }
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(intent);
+            call.resolve();
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to open URL: " + url, e);
+            call.reject("open_failed");
+        }
     }
 }

@@ -12,6 +12,26 @@
     const trie = engine.buildTrie(LEXICON);
     const API_BASE = '';
 
+    // Every lexicon entry has a temple page at the canonical clean URL.
+    // Deterministic — no API call needed, works fully offline in the app.
+    const SITE_ORIGIN = 'https://punicodex.com';
+    function templePath(id) { return `${SITE_ORIGIN}/${encodeURIComponent(id)}/`; }
+
+    // Open a link in the real browser. Inside the Android app the Capacitor
+    // webview only serves mobile/, so site links must escape via the native
+    // plugin; on the deployed PWA a plain new tab works.
+    async function openExternalUrl(url) {
+        if (typeof Capacitor !== 'undefined' && Capacitor.Plugins && Capacitor.Plugins.PunyKeyboard) {
+            try {
+                await Capacitor.Plugins.PunyKeyboard.openUrl({ url });
+                return;
+            } catch {
+                // fall through to window.open
+            }
+        }
+        window.open(url, '_blank', 'noopener');
+    }
+
     // Pantheon accent colors
     const PANTHEON_COLORS = {
         greek: '#c9a96e', norse: '#87aee8', egyptian: '#e8c97e',
@@ -499,6 +519,10 @@
                     <span class="action-icon">↗</span>
                     <span class="action-label">Share</span>
                 </button>
+                <button class="action-btn" id="detail-temple">
+                    <span class="action-icon">🏛️</span>
+                    <span class="action-label">Temple</span>
+                </button>
             </div>
         `;
 
@@ -555,6 +579,12 @@
                 const copied = await copyToClipboard(text);
                 showToast(copied ? 'Copied to clipboard' : 'Share not available');
             }
+            addToHistory(entry);
+        });
+
+        document.getElementById('detail-temple').addEventListener('click', () => {
+            vibrate(8);
+            openExternalUrl(templePath(entry.id));
             addToHistory(entry);
         });
 
@@ -710,21 +740,28 @@
     }
 
     function renderDomainBadge(status, entry) {
+        const url = templePath(entry.id);
+        let badge;
         if (!status) {
-            resultDomainStatus.innerHTML = `<div class="domain-badge unknown">No domain data</div>`;
-            return;
-        }
-        const hasSite = status.sites && status.sites.length > 0;
-        const isFlagship = hasSite && status.sites.some(s => s.is_flagship === 1 || s.isFlagship === true);
-        const hasTenant = hasSite && status.sites.some(s => s.tenant_name || s.tenant);
-
-        if (isFlagship) {
-            resultDomainStatus.innerHTML = `<div class="domain-badge owned">🏛️ Owned & Operated — ${esc(entry.domain || entry.unicode + '.com')}</div>`;
-        } else if (hasTenant) {
-            resultDomainStatus.innerHTML = `<div class="domain-badge owned">🔷 Leased — ${esc(entry.domain || entry.unicode + '.com')}</div>`;
+            // API unreachable (always the case inside the app sandbox) — the
+            // temple link is deterministic, so offer it instead of a dead end.
+            badge = `<div class="domain-badge owned">🏛️ Open ${esc(entry.unicode)}’s temple →</div>`;
         } else {
-            resultDomainStatus.innerHTML = `<div class="domain-badge available">🔑 Available — ${esc(entry.domain || entry.unicode + '.com')}</div>`;
+            const hasSite = status.sites && status.sites.length > 0;
+            const isFlagship = hasSite && status.sites.some(s => s.is_flagship === 1 || s.isFlagship === true);
+            const hasTenant = hasSite && status.sites.some(s => s.tenant_name || s.tenant);
+
+            if (isFlagship) {
+                badge = `<div class="domain-badge owned">🏛️ Owned & Operated — ${esc(entry.domain || entry.unicode + '.com')} · temple →</div>`;
+            } else if (hasTenant) {
+                badge = `<div class="domain-badge owned">🔷 Leased — ${esc(entry.domain || entry.unicode + '.com')} · temple →</div>`;
+            } else {
+                badge = `<div class="domain-badge available">🔑 Available — ${esc(entry.domain || entry.unicode + '.com')} · temple →</div>`;
+            }
         }
+        resultDomainStatus.innerHTML = badge;
+        resultDomainStatus.style.cursor = 'pointer';
+        resultDomainStatus.onclick = () => openExternalUrl(url);
     }
 
     function renderVariants(entry) {
@@ -828,8 +865,12 @@
         const cached = domainCache.get(entry.id);
         if (cached) {
             resultDomainStatus.innerHTML = `<div class="domain-badge ${cached.className}">${cached.text}</div>`;
+            resultDomainStatus.style.cursor = 'pointer';
+            resultDomainStatus.onclick = () => openExternalUrl(templePath(entry.id));
         } else {
             resultDomainStatus.innerHTML = `<div class="domain-badge unknown">Checking domain...</div>`;
+            resultDomainStatus.onclick = null;
+            resultDomainStatus.style.cursor = '';
             try {
                 const res = await fetch(`${API_BASE}/api/entry/${encodeURIComponent(entry.id)}`);
                 const data = await res.json();
