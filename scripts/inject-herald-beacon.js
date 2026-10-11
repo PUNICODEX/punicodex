@@ -116,10 +116,12 @@ for (const rel of files) {
 }
 
 // Files locked by the OS (AV/indexer) during the main pass usually free up
-// by the time it finishes — sweep them in a few extra passes.
-for (let pass = 0; pass < 3 && pending.length > 0; pass++) {
+// by the time it finishes — sweep them in extra passes. Windows Defender can
+// hold a lock for several seconds on freshly written files, so keep sweeping
+// (bounded) instead of giving up after three short passes.
+for (let pass = 0; pass < 12 && pending.length > 0; pass++) {
   const start = Date.now();
-  while (Date.now() - start < 500) {}
+  while (Date.now() - start < 2000) {}
   const retry = pending;
   pending = [];
   for (const rel of retry) {
