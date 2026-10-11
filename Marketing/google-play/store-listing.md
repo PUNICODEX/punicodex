@@ -3,15 +3,13 @@
 ## App name (30 characters max)
 
 ```
-PuniCodex: Unicode Type & Gods
+PuniCodex: The Gods' Keyboard
 ```
-
-(Alternative: `PuniCodex — Unicode Type & Gods` — same length, em dash flavour.)
 
 ## Short description (80 characters max)
 
 ```
-Type Apóllōn, not "apollon" — scholarly Unicode keyboard. Zero keylogging.
+The Unicode keyboard of the gods — 980 names, 1,700+ symbols, living temples.
 ```
 
 ## Full description (4000 characters max)
