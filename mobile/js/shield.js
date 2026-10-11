@@ -111,7 +111,14 @@
     severityEl.style.backgroundColor = severityColor(result.severity);
     severityEl.className = `severity-badge severity-${result.severity}`;
     verdictEl.textContent = result.label || result.verdict;
-    explanationEl.textContent = result.explanation || '';
+    // Show WHY: the classifier's reasons are the substance of the verdict.
+    const reasons = (result.reasons || []).filter(Boolean);
+    const why = result.explanation
+      ? reasons.length
+        ? `${result.explanation} ${reasons.join(' · ')}`
+        : result.explanation
+      : reasons.join(' · ');
+    explanationEl.textContent = why;
 
     recommendationsEl.innerHTML = '';
     for (const rec of result.recommendations || []) {

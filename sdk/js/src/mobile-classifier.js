@@ -17,6 +17,7 @@ const VERDICTS = {
   MIXED_SCRIPT_SPOOF: 'mixed-script-spoof',
   UNSAFE: 'unsafe',
   UNKNOWN: 'unknown',
+  CLEAN: 'clean',
 };
 
 const SEVERITIES = {
@@ -34,6 +35,7 @@ const LABELS = {
   [VERDICTS.MIXED_SCRIPT_SPOOF]: 'Mixed-Script Spoof',
   [VERDICTS.UNSAFE]: 'Unsafe',
   [VERDICTS.UNKNOWN]: 'Unknown',
+  [VERDICTS.CLEAN]: 'Looks Clean',
 };
 
 const EXPLANATIONS = {
@@ -43,6 +45,7 @@ const EXPLANATIONS = {
   [VERDICTS.MIXED_SCRIPT_SPOOF]: 'Combines characters from multiple writing systems.',
   [VERDICTS.UNSAFE]: 'Contains blocked patterns, invisible characters, or bidirectional overrides.',
   [VERDICTS.UNKNOWN]: 'No protected identity or spoofing signals detected.',
+  [VERDICTS.CLEAN]: 'No spoofing signals detected — single script, visible characters only.',
 };
 
 const RECOMMENDATIONS = {
@@ -50,6 +53,7 @@ const RECOMMENDATIONS = {
   [VERDICTS.MIXED_SCRIPT_SPOOF]: ['Inspect every character carefully', 'Verify the source'],
   [VERDICTS.UNSAFE]: ['Block or delete this input', 'Report it to your security team'],
   [VERDICTS.UNKNOWN]: [],
+  [VERDICTS.CLEAN]: [],
   [VERDICTS.STYLED]: [],
   [VERDICTS.RECOGNIZED_VARIANT]: [],
 };
@@ -220,14 +224,80 @@ function skeletonSimilarity(a, b) {
   return matches / longer.length;
 }
 
+// Minimal RFC 3492 punycode decoder — enough to inspect xn-- host labels
+// in browsers (no node:url available) and everywhere else.
+const PUNY_BASE = 36;
+const PUNY_TMIN = 1;
+const PUNY_TMAX = 26;
+const PUNY_SKEW = 38;
+const PUNY_DAMP = 700;
+const PUNY_INITIAL_BIAS = 72;
+const PUNY_INITIAL_N = 128;
+
+function punyAdapt(delta, numPoints, firstTime) {
+  delta = firstTime ? Math.floor(delta / PUNY_DAMP) : delta >> 1;
+  delta += Math.floor(delta / numPoints);
+  let k = 0;
+  while (delta > Math.floor(((PUNY_BASE - PUNY_TMIN) * PUNY_TMAX) / 2)) {
+    delta = Math.floor(delta / (PUNY_BASE - PUNY_TMIN));
+    k += PUNY_BASE;
+  }
+  return k + Math.floor(((PUNY_BASE - PUNY_TMIN + 1) * delta) / (delta + PUNY_SKEW));
+}
+
+function punyDigitToCode(d) {
+  return d < 26 ? d + 97 : d + 22; // 0-25 -> a-z, 26-35 -> 0-9
+}
+
+function punycodeDecodeLabel(label) {
+  const input = String(label);
+  // RFC 3492: [literal basic code points][delimiter '-'][encoded deltas].
+  const dpos = input.lastIndexOf('-');
+  const basic = dpos === -1 ? '' : input.slice(0, dpos);
+  const enc = dpos === -1 ? input : input.slice(dpos + 1);
+  const output = [];
+  for (const ch of basic) output.push(ch.codePointAt(0));
+  if (!enc) return String.fromCodePoint(...output);
+
+  let n = PUNY_INITIAL_N;
+  let i = 0;
+  let bias = PUNY_INITIAL_BIAS;
+  let idx = 0;
+  while (idx < enc.length) {
+    const oldi = i;
+    let w = 1;
+    for (let k = PUNY_BASE; ; k += PUNY_BASE) {
+      if (idx >= enc.length) return input; // malformed
+      const cp = enc[idx++].codePointAt(0);
+      const digit = cp >= 48 && cp <= 57 ? cp - 22 : cp >= 97 && cp <= 122 ? cp - 97 : PUNY_BASE;
+      if (digit >= PUNY_BASE) return input; // malformed
+      i += digit * w;
+      const t = k <= bias ? PUNY_TMIN : k >= bias + PUNY_TMAX ? PUNY_TMAX : k - bias;
+      if (digit < t) break;
+      w *= PUNY_BASE - t;
+    }
+    const outLen = output.length + 1;
+    bias = punyAdapt(i - oldi, outLen, oldi === 0);
+    n += Math.floor(i / outLen);
+    if (n > 0x10ffff || n < 0) return input; // overflow: malformed label
+    i %= outLen;
+    output.splice(i, 0, n);
+    i++;
+  }
+  return String.fromCodePoint(...output);
+}
+
+function decodeHost(host) {
+  return String(host)
+    .split('.')
+    .map((label) => (label.toLowerCase().startsWith('xn--') ? punycodeDecodeLabel(label.slice(4)) : label))
+    .join('.');
+}
+
 function extractHost(url) {
   try {
     const host = new URL(url).hostname;
-    if (typeof require !== 'undefined') {
-      const { domainToUnicode } = require('node:url');
-      return domainToUnicode(host) || host;
-    }
-    return host;
+    return decodeHost(host);
   } catch {
     return null;
   }
@@ -403,9 +473,9 @@ function classify(input, options = {}) {
 
   return buildVerdict({
     input: raw,
-    verdict: VERDICTS.UNKNOWN,
+    verdict: VERDICTS.CLEAN,
     severity: SEVERITIES.NONE,
-    reasons: ['No protected identity or spoofing signals detected'],
+    reasons: ['No spoofing signals detected'],
     decomposition,
   });
 }
@@ -430,6 +500,8 @@ const mobileClassifier = {
   decompose,
   foldSkeleton,
   skeletonSimilarity,
+  punycodeDecodeLabel,
+  decodeHost,
 };
 
 if (typeof module === 'object' && module.exports) {
