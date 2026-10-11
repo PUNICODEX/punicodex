@@ -22,18 +22,25 @@ public class PunyKeyboardPlugin extends Plugin {
     public void isKeyboardEnabled(PluginCall call) {
         Log.d(TAG, "isKeyboardEnabled called");
         Context ctx = getContext();
-        InputMethodManager imm = (InputMethodManager) ctx.getSystemService(Context.INPUT_METHOD_SERVICE);
-        String packageName = ctx.getPackageName();
         boolean enabled = false;
-
-        if (imm != null) {
-            String enabledInputMethods = Settings.Secure.getString(
-                ctx.getContentResolver(),
-                Settings.Secure.ENABLED_INPUT_METHODS
-            );
-            if (enabledInputMethods != null) {
-                enabled = enabledInputMethods.contains(packageName);
+        try {
+            // Must NOT read Settings.Secure.ENABLED_INPUT_METHODS directly:
+            // it throws SecurityException on targetSdk 34+ and the uncaught
+            // exception on the CapacitorPlugins thread kills the whole app.
+            // InputMethodManager.getEnabledInputMethodList() is the public API
+            // for exactly this check.
+            InputMethodManager imm = (InputMethodManager) ctx.getSystemService(Context.INPUT_METHOD_SERVICE);
+            String packageName = ctx.getPackageName();
+            if (imm != null) {
+                for (android.view.inputmethod.InputMethodInfo info : imm.getEnabledInputMethodList()) {
+                    if (packageName.equals(info.getPackageName())) {
+                        enabled = true;
+                        break;
+                    }
+                }
             }
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to check keyboard status", e);
         }
 
         JSObject ret = new JSObject();
