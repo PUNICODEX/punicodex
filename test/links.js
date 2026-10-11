@@ -43,6 +43,9 @@ function collectHtml(dir) {
           '.backup',
           '.vercel',
           'templates',
+          // Internal screenshot-baking templates for the Play Store marketing
+          // kit (file:// asset URLs, never shipped).
+          'Marketing',
           // External brand-kit source material (untracked, read-only, never
           // shipped) — its kit-internal snippet links are not site links.
           'Kimi_Agent_punicodex扩展',

@@ -71,6 +71,9 @@ const EXCLUDE_PATTERNS = [
   // The extension source tree is excluded, but extension/index.html is now a
   // public teaser page (in the canonical nav) and belongs in the sitemap.
   /^extension\/(?!index\.html$)/,
+  // Internal Play Store marketing-kit bake templates — file:// asset URLs,
+  // not site pages.
+  /^Marketing\//,
   /^extension-v2\//,
   /^mobile\//,
   /^android\//,
