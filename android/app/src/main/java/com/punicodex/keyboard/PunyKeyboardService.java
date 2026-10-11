@@ -1225,8 +1225,21 @@ public class PunyKeyboardService extends InputMethodService {
     // INPUT HANDLING
     // ═══════════════════════════════════════════════
 
+    private boolean paletteSearchActive = false;
+
     private void onKey(String key) {
         lastKeyTime = System.currentTimeMillis();
+        // Palette search mode: the palette lives inside this IME, so the
+        // system IME can never serve its EditText (requesting it restarts
+        // this IME, which tears the dialog down). Instead the search field
+        // refuses the soft keyboard and our own keys feed it directly.
+        if (paletteSearchActive && paletteDialog != null && paletteDialog.isShowing()) {
+            android.widget.EditText search = paletteDialog.findViewById(R.id.palette_search);
+            if (search != null) {
+                search.append(key); // TextWatcher re-filters the grid
+                return;
+            }
+        }
         InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
         ic.commitText(key, 1);
@@ -1278,6 +1291,22 @@ public class PunyKeyboardService extends InputMethodService {
         hapticMedium();
         playKeySound();
         lastKeyTime = System.currentTimeMillis();
+
+        // Palette search mode: delete from the query; on an empty query,
+        // exit search mode instead of touching the app's text.
+        if (paletteSearchActive && paletteDialog != null && paletteDialog.isShowing()) {
+            android.widget.EditText search = paletteDialog.findViewById(R.id.palette_search);
+            if (search != null) {
+                android.text.Editable query = search.getText();
+                if (query.length() > 0) {
+                    query.delete(query.length() - 1, query.length());
+                } else {
+                    paletteSearchActive = false;
+                    search.clearFocus();
+                }
+                return;
+            }
+        }
 
         InputConnection ic = getCurrentInputConnection();
         if (ic != null) {
@@ -1367,6 +1396,14 @@ public class PunyKeyboardService extends InputMethodService {
         hapticHeavy();
         playKeySound();
         lastKeyTime = System.currentTimeMillis();
+        // Enter while searching: leave search mode rather than committing a
+        // newline into the app's text field.
+        if (paletteSearchActive && paletteDialog != null && paletteDialog.isShowing()) {
+            paletteSearchActive = false;
+            android.widget.EditText search = paletteDialog.findViewById(R.id.palette_search);
+            if (search != null) search.clearFocus();
+            return;
+        }
         InputConnection ic = getCurrentInputConnection();
         if (ic != null) {
             boolean multiline = currentEditorInfo != null
@@ -1860,6 +1897,18 @@ public class PunyKeyboardService extends InputMethodService {
 
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_palette_picker, null);
         EditText searchInput = view.findViewById(R.id.palette_search);
+        // The palette lives inside this IME, so the system soft keyboard can
+        // never serve the search field — requesting it restarts this very IME
+        // and the resulting onStartInputView tears the dialog down (the
+        // "search exits the directory" bug). Refuse the soft keyboard and
+        // route this keyboard's own keystrokes into the field instead.
+        searchInput.setShowSoftInputOnFocus(false);
+        searchInput.setCursorVisible(true);
+        searchInput.setOnFocusChangeListener((v, hasFocus) -> paletteSearchActive = hasFocus);
+        searchInput.setOnClickListener(v -> {
+            paletteSearchActive = true;
+            searchInput.requestFocus();
+        });
         LinearLayout categoryRow = view.findViewById(R.id.palette_category_row);
         GridLayout grid = view.findViewById(R.id.palette_grid);
         TextView emptyView = view.findViewById(R.id.palette_empty);
@@ -1951,8 +2000,13 @@ public class PunyKeyboardService extends InputMethodService {
             win.setType(android.view.WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
             win.addFlags(android.view.WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
             win.setBackgroundDrawableResource(android.R.color.transparent);
+            // Pin to the TOP of the window: with a fixed-height grid the dialog
+            // content is shorter than the available space, and the default
+            // center-gravity pushed the whole directory down the screen.
+            win.setGravity(Gravity.TOP);
             android.view.WindowManager.LayoutParams lp = win.getAttributes();
             lp.token = getWindow().getWindow().getDecorView().getWindowToken();
+            lp.y = dp(12);
             win.setAttributes(lp);
         }
         paletteDialog.show();
@@ -2050,20 +2104,25 @@ public class PunyKeyboardService extends InputMethodService {
             grid.addView(cell);
         }
 
+        // Footer is ALWAYS shown (even when everything fits) so the dialog
+        // height never shifts when switching categories — small categories
+        // used to collapse the grid area and move every control.
+        TextView footer = new TextView(this);
         if (filteredPalette.size() > PALETTE_PAGE_SIZE) {
-            TextView footer = new TextView(this);
             footer.setText("Showing " + PALETTE_PAGE_SIZE + " of " + filteredPalette.size() + " — search or pick a category");
-            footer.setTextColor(0xFF888888);
-            footer.setTextSize(11);
-            footer.setGravity(Gravity.CENTER);
-            footer.setPadding(0, dp(10), 0, dp(4));
-            GridLayout.LayoutParams footerParams = new GridLayout.LayoutParams(
-                GridLayout.spec(GridLayout.UNDEFINED, 1f),
-                GridLayout.spec(GridLayout.UNDEFINED, columnCount));
-            footerParams.width = GridLayout.LayoutParams.MATCH_PARENT;
-            footer.setLayoutParams(footerParams);
-            grid.addView(footer);
+        } else {
+            footer.setText(filteredPalette.size() + " symbols");
         }
+        footer.setTextColor(0xFF888888);
+        footer.setTextSize(11);
+        footer.setGravity(Gravity.CENTER);
+        footer.setPadding(0, dp(10), 0, dp(4));
+        GridLayout.LayoutParams footerParams = new GridLayout.LayoutParams(
+            GridLayout.spec(GridLayout.UNDEFINED, 1f),
+            GridLayout.spec(GridLayout.UNDEFINED, columnCount));
+        footerParams.width = GridLayout.LayoutParams.MATCH_PARENT;
+        footer.setLayoutParams(footerParams);
+        grid.addView(footer);
     }
 
     private static boolean isCombiningMark(String character) {
@@ -2172,6 +2231,7 @@ public class PunyKeyboardService extends InputMethodService {
     }
 
     private void dismissPaletteDialog() {
+        paletteSearchActive = false;
         if (paletteDialog != null) {
             paletteDialog.dismiss();
             paletteDialog = null;
