@@ -3,13 +3,17 @@
 ## App name (30 characters max)
 
 ```
-PuniCodex: The Gods' Keyboard
+PuniCodex: Unicode Keyboard
 ```
+
+Both high-value search terms sit in the title (Play's heaviest indexing
+field): "unicode" and "keyboard". The gods-epic lives in the short
+description, which Play also indexes.
 
 ## Short description (80 characters max)
 
 ```
-The Unicode keyboard of the gods — 980 names, 1,700+ symbols, living temples.
+The keyboard of the gods — 980 names, 1,700+ symbols, living temples.
 ```
 
 ## Full description (4000 characters max)
