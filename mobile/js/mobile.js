@@ -731,21 +731,29 @@
         return engine.findExactMatch(trie, input, { pantheonFilter: activePantheon });
     }
 
+    // The trie is ASCII-keyed. Committed keyboard suggestions arrive as full
+    // Unicode names (Apóllōn), so engine lookups run on the diacritic-stripped
+    // lowercase key while the field keeps the scholarly spelling on screen.
+    function typeKey(str) {
+        return String(str).normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+    }
+
     function renderTypePreview() {
         if (!currentInput) {
             typePreview.innerHTML = '';
             typeInput.classList.remove('preview-active');
             return;
         }
-        const entry = findExactMatch(currentInput);
+        const key = typeKey(currentInput);
+        const entry = findExactMatch(key);
         if (entry) {
             typePreview.innerHTML = `<span class="preview-convert">${esc(nfc(entry.unicode))}</span>`;
             typeInput.classList.add('preview-active');
         } else {
             typeInput.classList.remove('preview-active');
-            const comps = getCompletions(currentInput, 1);
+            const comps = getCompletions(key, 1);
             if (comps.length > 0) {
-                const remaining = comps[0].ascii.slice(currentInput.length);
+                const remaining = comps[0].ascii.slice(key.length);
                 typePreview.innerHTML = `<span class="preview-typed">${esc(currentInput)}</span><span class="preview-hint">${esc(remaining)}</span>`;
             } else {
                 typePreview.innerHTML = '';
@@ -754,7 +762,7 @@
     }
 
     function renderSuggestions() {
-        const chars = getValidNextChars(currentInput);
+        const chars = getValidNextChars(typeKey(currentInput));
         if (chars.length === 0 || !currentInput) {
             suggestionsRow.innerHTML = '';
             return;
@@ -765,15 +773,16 @@
     }
 
     function renderCompletions() {
-        const completions = getCompletions(currentInput, 5);
+        const key = typeKey(currentInput);
+        const completions = getCompletions(key, 5);
         if (completions.length === 0 || !currentInput) {
             completionsList.innerHTML = '';
             return;
         }
         completionsList.innerHTML = completions.map((entry, i) => {
-            const matchIndex = entry.ascii.toLowerCase().indexOf(currentInput.toLowerCase());
-            const before = entry.ascii.slice(0, matchIndex + currentInput.length);
-            const after = entry.ascii.slice(matchIndex + currentInput.length);
+            const matchIndex = entry.ascii.toLowerCase().indexOf(key);
+            const before = entry.ascii.slice(0, matchIndex + key.length);
+            const after = entry.ascii.slice(matchIndex + key.length);
             const emoji = engine.getPantheonEmoji(entry.pantheon);
             return `
                 <div class="completion-item" data-id="${entry.id}">
@@ -899,7 +908,7 @@
     }
 
     async function renderResult() {
-        const entry = findExactMatch(currentInput);
+        const entry = findExactMatch(typeKey(currentInput));
         currentTypeEntry = entry;
         if (!entry) { resultCard.classList.add('hidden'); return; }
 
@@ -982,7 +991,10 @@
 
     typeInput.addEventListener('input', (e) => {
         const val = e.target.value;
-        const cleaned = val.replace(/[^a-zA-Z]/g, '');
+        // Letters + combining marks only. Unicode names committed from the
+        // keyboard's suggestion bar (Apóllōn) must survive — the old
+        // [^a-zA-Z] filter silently stripped them to "Apolln".
+        const cleaned = val.replace(/[^\p{L}\p{M}]/gu, '');
         if (val !== cleaned) typeInput.value = cleaned;
         currentInput = cleaned;
         debouncedUpdateTypeAll();
@@ -991,8 +1003,8 @@
     typeInput.addEventListener('keydown', (e) => {
         if (e.key.length > 1 || e.ctrlKey || e.metaKey || e.altKey) return;
         const char = e.key.toLowerCase();
-        if (!/^[a-z]$/.test(char)) return;
-        const prospective = currentInput + char;
+        if (!/^[\p{L}]$/u.test(char)) return;
+        const prospective = typeKey(currentInput) + typeKey(char);
         const comps = getCompletions(prospective, 1);
         if (comps.length === 0) {
             e.preventDefault();
@@ -1693,6 +1705,11 @@
             if (typeof Capacitor !== 'undefined' && Capacitor.Plugins && Capacitor.Plugins.PunyKeyboard) {
                 try {
                     await Capacitor.Plugins.PunyKeyboard.showInputMethodPicker();
+                    // Re-check shortly after — some devices don't fire an
+                    // appStateChange for the inline picker.
+                    setTimeout(() => {
+                        if (currentMode === 'keyboard') renderKeyboardPanel();
+                    }, 1200);
                 } catch (err) {
                     showToast('Could not open keyboard picker');
                 }
@@ -1702,6 +1719,21 @@
             vibrate(12);
         });
     }
+
+    // The panel only re-renders on setMode('keyboard'), so switching the IME
+    // from the system picker/settings left it stale until you left the tab
+    // and came back. Re-check whenever the app regains foreground.
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && currentMode === 'keyboard') renderKeyboardPanel();
+    });
+    try {
+        const appPlugin = typeof Capacitor !== 'undefined' && Capacitor.Plugins && Capacitor.Plugins.App;
+        if (appPlugin && typeof appPlugin.addListener === 'function') {
+            appPlugin.addListener('appStateChange', ({ isActive }) => {
+                if (isActive && currentMode === 'keyboard') renderKeyboardPanel();
+            });
+        }
+    } catch { /* App plugin unavailable — visibilitychange still covers most cases */ }
 
     // ═══════════════════════════════════════════════
     //  ONBOARDING

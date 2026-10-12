@@ -1226,6 +1226,27 @@ public class PunyKeyboardService extends InputMethodService {
     // ═══════════════════════════════════════════════
 
     private boolean paletteSearchActive = false;
+    // Debounced palette search: rebuilding up to 200 grid cells on every
+    // keystroke re-enters layout from inside the key handler, which janked
+    // (and on slower devices killed) the IME while typing fast.
+    private GridLayout paletteGridRef;
+    private TextView paletteEmptyRef;
+    private String palettePendingQuery = "";
+    private final Runnable paletteFilterRunnable = () -> {
+        try {
+            if (paletteGridRef != null && paletteEmptyRef != null) {
+                filterPalette(palettePendingQuery, paletteGridRef, paletteEmptyRef);
+            }
+        } catch (Exception e) {
+            android.util.Log.e("PunyKeyboard", "Palette filter failed", e);
+        }
+    };
+
+    private void schedulePaletteFilter(String query) {
+        palettePendingQuery = query;
+        suggestionHandler.removeCallbacks(paletteFilterRunnable);
+        suggestionHandler.postDelayed(paletteFilterRunnable, 120);
+    }
 
     private void onKey(String key) {
         lastKeyTime = System.currentTimeMillis();
@@ -1350,6 +1371,15 @@ public class PunyKeyboardService extends InputMethodService {
         hapticLight();
         playKeySound();
         lastKeyTime = System.currentTimeMillis();
+        // Palette search mode: a space belongs in the query, not in the app's
+        // text field behind the dialog (and it must not trigger autocorrect).
+        if (paletteSearchActive && paletteDialog != null && paletteDialog.isShowing()) {
+            android.widget.EditText search = paletteDialog.findViewById(R.id.palette_search);
+            if (search != null) {
+                search.append(" ");
+                return;
+            }
+        }
         if (maybeAutoCorrectWord(" ")) {
             debouncedUpdateSuggestions();
             updateSpaceBar();
@@ -1912,6 +1942,8 @@ public class PunyKeyboardService extends InputMethodService {
         LinearLayout categoryRow = view.findViewById(R.id.palette_category_row);
         GridLayout grid = view.findViewById(R.id.palette_grid);
         TextView emptyView = view.findViewById(R.id.palette_empty);
+        paletteGridRef = grid;
+        paletteEmptyRef = emptyView;
 
         paletteBufferBar = view.findViewById(R.id.palette_buffer_bar);
         paletteBufferText = view.findViewById(R.id.palette_buffer_text);
@@ -1961,7 +1993,7 @@ public class PunyKeyboardService extends InputMethodService {
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
             @Override
             public void afterTextChanged(android.text.Editable s) {
-                filterPalette(s.toString(), grid, emptyView);
+                schedulePaletteFilter(s.toString());
             }
         });
 
@@ -2232,6 +2264,9 @@ public class PunyKeyboardService extends InputMethodService {
 
     private void dismissPaletteDialog() {
         paletteSearchActive = false;
+        suggestionHandler.removeCallbacks(paletteFilterRunnable);
+        paletteGridRef = null;
+        paletteEmptyRef = null;
         if (paletteDialog != null) {
             paletteDialog.dismiss();
             paletteDialog = null;
