@@ -2128,6 +2128,12 @@ html, body {
     border: 1px solid rgba(192, 108, 84, 0.2);
 }
 
+/* Enabled in system settings but not the active IME — amber standby. */
+.keyboard-status-banner.standby {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.04));
+    border: 1px solid rgba(212, 175, 55, 0.28);
+}
+
 .status-icon {
     width: 44px;
     height: 44px;
@@ -2143,6 +2149,7 @@ html, body {
 .keyboard-status-banner.enabled .status-icon { color: var(--green); }
 .keyboard-status-banner.disabled .status-icon { color: var(--ember); }
 .keyboard-status-banner.unknown .status-icon { color: var(--text-muted); }
+.keyboard-status-banner.standby .status-icon { color: var(--gold, #d4af37); }
 
 .status-text {
     font-size: 1rem;
@@ -2152,6 +2159,7 @@ html, body {
 
 .keyboard-status-banner.enabled .status-text { color: var(--green); }
 .keyboard-status-banner.disabled .status-text { color: var(--ember); }
+.keyboard-status-banner.standby .status-text { color: var(--gold, #d4af37); }
 
 .keyboard-quick-actions {
     display: flex;

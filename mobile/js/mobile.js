@@ -676,11 +676,12 @@
         navBtns.forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
         modePanels.forEach(p => p.classList.toggle('active', p.id === `panel-${mode}`));
 
+        if (mode !== 'keyboard') stopKeyboardPolling();
         if (mode === 'type') setTimeout(() => typeInput.focus(), 50);
         else if (mode === 'compose') setTimeout(() => composeTextarea.focus(), 50);
         else if (mode === 'saved') renderSaved();
         else if (mode === 'directory') renderDirectory();
-        else if (mode === 'keyboard') renderKeyboardPanel();
+        else if (mode === 'keyboard') { renderKeyboardPanel(); startKeyboardPolling(); }
     }
 
     // ── Desktop / large-form-factor adaptation ──────────────────────────
@@ -1638,33 +1639,72 @@
         }
 
         // Check status
-        if (typeof Capacitor !== 'undefined' && Capacitor.Plugins && Capacitor.Plugins.PunyKeyboard) {
-            Capacitor.Plugins.PunyKeyboard.isKeyboardEnabled()
-                .then(res => {
-                    updateKeyboardStatus(res.enabled);
-                })
-                .catch(() => {
-                    updateKeyboardStatus(false);
-                });
+        refreshKeyboardStatus();
+    }
 
-            // Fetch stats
-            Capacitor.Plugins.PunyKeyboard.getKeyboardStats()
-                .then(res => {
-                    if (nativeTotalEl) nativeTotalEl.textContent = res.totalCompletions || 0;
-                    if (nativeFavoriteEl) nativeFavoriteEl.textContent = res.favoriteChar || '—';
-                })
-                .catch(() => {
-                    if (nativeTotalEl) nativeTotalEl.textContent = '—';
-                    if (nativeFavoriteEl) nativeFavoriteEl.textContent = '—';
-                });
+    // ── Live status polling ──────────────────────────────────────────────
+    // The system input-method picker and the IME-settings activity are
+    // overlays: they never pause the webview, so no lifecycle event fires
+    // when the user switches keyboards. The panel would stay stale until
+    // the tab was re-entered. Poll cheap plugin reads while the tab is
+    // visible and update the moment the state actually changes.
+    let kbdPollTimer = null;
+    let lastKbdEnabled = null;
+    let lastKbdSelected = null;
+
+    function refreshKeyboardStatus() {
+        if (typeof Capacitor === 'undefined' || !Capacitor.Plugins || !Capacitor.Plugins.PunyKeyboard) return;
+        Capacitor.Plugins.PunyKeyboard.isKeyboardEnabled()
+            .then(res => {
+                const enabled = !!res.enabled;
+                const selected = !!res.selected;
+                if (enabled !== lastKbdEnabled || selected !== lastKbdSelected) {
+                    lastKbdEnabled = enabled;
+                    lastKbdSelected = selected;
+                    updateKeyboardStatus(enabled, selected);
+                }
+            })
+            .catch(() => {
+                if (lastKbdEnabled !== false) {
+                    lastKbdEnabled = false;
+                    updateKeyboardStatus(false, false);
+                }
+            });
+
+        Capacitor.Plugins.PunyKeyboard.getKeyboardStats()
+            .then(res => {
+                if (nativeTotalEl) nativeTotalEl.textContent = res.totalCompletions || 0;
+                if (nativeFavoriteEl) nativeFavoriteEl.textContent = res.favoriteChar || '—';
+            })
+            .catch(() => {
+                if (nativeTotalEl) nativeTotalEl.textContent = '—';
+                if (nativeFavoriteEl) nativeFavoriteEl.textContent = '—';
+            });
+    }
+
+    function startKeyboardPolling() {
+        refreshKeyboardStatus();
+        if (kbdPollTimer) return;
+        kbdPollTimer = setInterval(refreshKeyboardStatus, 800);
+    }
+
+    function stopKeyboardPolling() {
+        if (kbdPollTimer) {
+            clearInterval(kbdPollTimer);
+            kbdPollTimer = null;
         }
     }
 
-    function updateKeyboardStatus(enabled) {
+    function updateKeyboardStatus(enabled, selected) {
         if (!kbdStatusBanner) return;
-        kbdStatusBanner.className = 'keyboard-status-banner ' + (enabled ? 'enabled' : 'disabled');
-        kbdStatusIcon.textContent = enabled ? '✓' : '◈';
-        kbdStatusText.textContent = enabled ? 'PuniCodex keyboard is enabled' : 'PuniCodex keyboard is not enabled';
+        const active = enabled && selected;
+        kbdStatusBanner.className = 'keyboard-status-banner ' + (active ? 'enabled' : selected ? 'standby' : 'disabled');
+        kbdStatusIcon.textContent = active ? '✓' : '◈';
+        kbdStatusText.textContent = active
+            ? 'PuniCodex keyboard is your active keyboard'
+            : enabled
+                ? 'Enabled — switch to PuniCodex from the keyboard picker'
+                : 'PuniCodex keyboard is not enabled';
 
         // Update setup steps
         const step1 = document.getElementById('setup-step-1');
@@ -1672,16 +1712,16 @@
         const step3 = document.getElementById('setup-step-3');
 
         if (step1) {
-            step1.classList.toggle('done', true);
-            step1.querySelector('.step-check').textContent = '✓';
+            step1.classList.toggle('done', enabled);
+            step1.querySelector('.step-check').textContent = enabled ? '✓' : '○';
         }
         if (step2) {
-            step2.classList.toggle('done', enabled);
-            step2.querySelector('.step-check').textContent = enabled ? '✓' : '○';
+            step2.classList.toggle('done', selected);
+            step2.querySelector('.step-check').textContent = selected ? '✓' : '○';
         }
         if (step3) {
-            step3.classList.toggle('done', enabled);
-            step3.querySelector('.step-check').textContent = enabled ? '✓' : '○';
+            step3.classList.toggle('done', active);
+            step3.querySelector('.step-check').textContent = active ? '✓' : '○';
         }
     }
 
@@ -1705,11 +1745,8 @@
             if (typeof Capacitor !== 'undefined' && Capacitor.Plugins && Capacitor.Plugins.PunyKeyboard) {
                 try {
                     await Capacitor.Plugins.PunyKeyboard.showInputMethodPicker();
-                    // Re-check shortly after — some devices don't fire an
-                    // appStateChange for the inline picker.
-                    setTimeout(() => {
-                        if (currentMode === 'keyboard') renderKeyboardPanel();
-                    }, 1200);
+                    // Polling picks up the switch within a second — no
+                    // one-shot needed here.
                 } catch (err) {
                     showToast('Could not open keyboard picker');
                 }

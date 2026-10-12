@@ -26,6 +26,7 @@ public class PunyKeyboardPlugin extends Plugin {
         Log.d(TAG, "isKeyboardEnabled called");
         Context ctx = getContext();
         boolean enabled = false;
+        boolean selected = false;
         try {
             // Must NOT read Settings.Secure.ENABLED_INPUT_METHODS directly:
             // it throws SecurityException on targetSdk 34+ and the uncaught
@@ -34,10 +35,13 @@ public class PunyKeyboardPlugin extends Plugin {
             // for exactly this check.
             InputMethodManager imm = (InputMethodManager) ctx.getSystemService(Context.INPUT_METHOD_SERVICE);
             String packageName = ctx.getPackageName();
+            // Readable without permissions (unlike ENABLED_INPUT_METHODS).
+            String defaultId = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);
             if (imm != null) {
                 for (android.view.inputmethod.InputMethodInfo info : imm.getEnabledInputMethodList()) {
                     if (packageName.equals(info.getPackageName())) {
                         enabled = true;
+                        selected = defaultId != null && defaultId.equals(info.getId());
                         break;
                     }
                 }
@@ -48,6 +52,7 @@ public class PunyKeyboardPlugin extends Plugin {
 
         JSObject ret = new JSObject();
         ret.put("enabled", enabled);
+        ret.put("selected", selected);
         call.resolve(ret);
     }
 

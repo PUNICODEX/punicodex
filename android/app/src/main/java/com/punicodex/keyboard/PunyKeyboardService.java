@@ -45,8 +45,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class PunyKeyboardService extends InputMethodService {
 
@@ -288,7 +286,6 @@ public class PunyKeyboardService extends InputMethodService {
     private int chipPoolUsed = 0;
 
     // Word boundary pattern
-    private static final Pattern WORD_PATTERN = Pattern.compile("[a-zA-Z]+$");
 
     @Override
     public void onCreate() {
@@ -1179,10 +1176,7 @@ public class PunyKeyboardService extends InputMethodService {
             if (ic != null) {
                 CharSequence before = ic.getTextBeforeCursor(50, 0);
                 if (before != null) {
-                    Matcher m = WORD_PATTERN.matcher(before.toString());
-                    if (m.find()) {
-                        temp.append(m.group());
-                    }
+                    temp.append(getTrailingWordNormalized(before));
                 }
             }
             final String word = temp.toString();
@@ -1206,19 +1200,43 @@ public class PunyKeyboardService extends InputMethodService {
         CharSequence before = ic.getTextBeforeCursor(50, 0);
         currentWord.setLength(0);
         if (before == null) return;
-        String text = before.toString();
-        Matcher m = WORD_PATTERN.matcher(text);
-        if (m.find()) {
-            currentWord.append(m.group());
-        }
+        currentWord.append(getTrailingWordNormalized(before));
     }
 
-    private String getTrailingWord(CharSequence beforeCursor) {
-        if (beforeCursor == null) return "";
-        String text = beforeCursor.toString();
-        Matcher m = WORD_PATTERN.matcher(text);
-        if (m.find()) return m.group();
-        return "";
+    // Length in chars of the trailing word at the end of text: letters and
+    // combining marks only. A committed restoration (Apóllōn) is ONE word —
+    // the old [a-zA-Z]+$ pattern treated only its trailing "n" as the word,
+    // which made the next suggestion pill eat that letter and glue the new
+    // name onto the mangled remainder.
+    private static int trailingWordLength(CharSequence text) {
+        if (text == null) return 0;
+        int len = 0;
+        for (int i = text.length(); i > 0; ) {
+            int cp = Character.codePointBefore(text, i);
+            int type = Character.getType(cp);
+            boolean wordChar = Character.isLetter(cp)
+                || type == Character.NON_SPACING_MARK
+                || type == Character.COMBINING_SPACING_MARK
+                || type == Character.ENCLOSING_MARK;
+            if (!wordChar) break;
+            len += Character.charCount(cp);
+            i -= Character.charCount(cp);
+        }
+        return len;
+    }
+
+    // Diacritic-insensitive trailing word: Apóllōn → apollon. Lets the word
+    // tracker recognise a committed Unicode restoration as the name it is
+    // instead of latching onto its trailing ASCII letter.
+    private String getTrailingWordNormalized(CharSequence beforeCursor) {
+        int len = trailingWordLength(beforeCursor);
+        if (len == 0) return "";
+        String suffix = beforeCursor
+            .subSequence(beforeCursor.length() - len, beforeCursor.length())
+            .toString();
+        return java.text.Normalizer.normalize(suffix, java.text.Normalizer.Form.NFD)
+            .replaceAll("\\p{M}+", "")
+            .toLowerCase(Locale.ROOT);
     }
 
     // ═══════════════════════════════════════════════
@@ -1412,8 +1430,15 @@ public class PunyKeyboardService extends InputMethodService {
         InputConnection ic = getCurrentInputConnection();
         if (ic == null) return false;
 
-        // Delete the typed ASCII word and replace it with the Unicode restoration.
-        ic.deleteSurroundingText(typed.length(), 0);
+        // Delete the trailing word — measured on the real text (a committed
+        // restoration differs in length from its ASCII key) — and only when
+        // it actually matches what we tracked.
+        CharSequence before = ic.getTextBeforeCursor(Math.max(64, typed.length() + 8), 0);
+        int trailLen = trailingWordLength(before);
+        if (trailLen == 0 || !getTrailingWordNormalized(before).equalsIgnoreCase(typed)) {
+            return false;
+        }
+        ic.deleteSurroundingText(trailLen, 0);
         ic.commitText(exact.unicode, 1);
         if (separator != null && !separator.isEmpty()) {
             ic.commitText(separator, 1);
@@ -2289,10 +2314,10 @@ public class PunyKeyboardService extends InputMethodService {
         ipcHandler.post(() -> {
             String tracked = currentWord.toString();
             if (tracked.length() > 0) {
-                CharSequence before = ic.getTextBeforeCursor(tracked.length() + 2, 0);
-                String actual = getTrailingWord(before);
-                if (actual.equalsIgnoreCase(tracked)) {
-                    ic.deleteSurroundingText(actual.length(), 0);
+                CharSequence before = ic.getTextBeforeCursor(Math.max(64, tracked.length() + 8), 0);
+                int trailLen = trailingWordLength(before);
+                if (trailLen > 0 && getTrailingWordNormalized(before).equalsIgnoreCase(tracked)) {
+                    ic.deleteSurroundingText(trailLen, 0);
                 }
             }
             ic.commitText(commitText, 1);
