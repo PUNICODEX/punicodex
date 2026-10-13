@@ -128,6 +128,7 @@ for (const e of UNICODE_DIR) {
     catCounts[e.category] = (catCounts[e.category] || 0) + 1;
     palette.push({
         char: e.char,
+        code: e.code,
         name: e.name,
         category: e.category,
         keywords: e.keywords
@@ -143,6 +144,7 @@ for (const e of UNICODE_DIR) {
     catCounts[e.category]++;
     palette.push({
         char: e.char,
+        code: e.code,
         name: e.name,
         category: e.category,
         keywords: e.keywords

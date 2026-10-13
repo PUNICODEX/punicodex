@@ -1244,7 +1244,7 @@ public class PunyKeyboardService extends InputMethodService {
     // ═══════════════════════════════════════════════
 
     private boolean paletteSearchActive = false;
-    // Debounced palette search: rebuilding up to 200 grid cells on every
+    // Debounced palette search: rebuilding up to 1,000 grid cells on every
     // keystroke re-enters layout from inside the key handler, which janked
     // (and on slower devices killed) the IME while typing fast.
     private GridLayout paletteGridRef;
@@ -2011,6 +2011,15 @@ public class PunyKeyboardService extends InputMethodService {
             categoryRow.addView(chip);
         }
 
+        // All-view customizer: pick up to 6 categories to pin to the front
+        // of the All listing, in pick order. Persisted across sessions.
+        allPinnedCategories.clear();
+        allPinnedCategories.addAll(loadAllPinnedCategories());
+        paletteAllCustomizer = view.findViewById(R.id.palette_all_customizer);
+        paletteAllCustomizerRow = view.findViewById(R.id.palette_all_customizer_row);
+        paletteAllCustomizerLabel = view.findViewById(R.id.palette_all_customizer_label);
+        buildAllCustomizerChips(seen, grid, emptyView);
+
         searchInput.addTextChangedListener(new android.text.TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -2084,8 +2093,103 @@ public class PunyKeyboardService extends InputMethodService {
         return chip;
     }
 
+    private List<String> loadAllPinnedCategories() {
+        List<String> out = new ArrayList<>();
+        String raw = getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE)
+            .getString(PREF_ALL_PINNED_CATEGORIES, "");
+        if (raw != null && !raw.isEmpty()) {
+            for (String part : raw.split(",")) {
+                String trimmed = part.trim();
+                if (!trimmed.isEmpty()) out.add(trimmed);
+            }
+        }
+        return out;
+    }
+
+    private void saveAllPinnedCategories() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < allPinnedCategories.size(); i++) {
+            if (i > 0) sb.append(',');
+            sb.append(allPinnedCategories.get(i));
+        }
+        getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE).edit()
+            .putString(PREF_ALL_PINNED_CATEGORIES, sb.toString())
+            .apply();
+    }
+
+    private boolean isAllPinned(String category) {
+        for (String pinned : allPinnedCategories) {
+            if (pinned.equalsIgnoreCase(category)) return true;
+        }
+        return false;
+    }
+
+    private void buildAllCustomizerChips(LinkedHashSet<String> categories, GridLayout grid, TextView emptyView) {
+        if (paletteAllCustomizerRow == null) return;
+        paletteAllCustomizerRow.removeAllViews();
+        final List<String> categoriesList = new ArrayList<>(categories);
+        List<TextView> chipViews = new ArrayList<>();
+        for (final String category : categories) {
+            TextView chip = createCategoryChip(category);
+            boolean pinned = isAllPinned(category);
+            chip.setSelected(pinned);
+            chip.setTextColor(pinned ? 0xFF000000 : 0xFFD4AF37);
+            chip.setTextSize(11);
+            chip.setOnClickListener(v -> {
+                hapticLight();
+                if (isAllPinned(category)) {
+                    // Remove: keep every other pin's relative order intact.
+                    for (int i = allPinnedCategories.size() - 1; i >= 0; i--) {
+                        if (allPinnedCategories.get(i).equalsIgnoreCase(category)) {
+                            allPinnedCategories.remove(i);
+                        }
+                    }
+                } else if (allPinnedCategories.size() >= ALL_MAX_PINNED_CATEGORIES) {
+                    Toast.makeText(this, "Up to " + ALL_MAX_PINNED_CATEGORIES
+                        + " categories in All — remove one first", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    allPinnedCategories.add(category);
+                }
+                saveAllPinnedCategories();
+                for (int i = 0; i < chipViews.size(); i++) {
+                    TextView cv = chipViews.get(i);
+                    String cat = categoriesList.get(i);
+                    boolean nowPinned = isAllPinned(cat);
+                    cv.setSelected(nowPinned);
+                    cv.setTextColor(nowPinned ? 0xFF000000 : 0xFFD4AF37);
+                }
+                updateAllCustomizerLabel();
+                android.widget.EditText search = paletteDialog != null
+                    ? paletteDialog.findViewById(R.id.palette_search) : null;
+                String query = search != null ? search.getText().toString() : "";
+                filterPalette(query, grid, emptyView);
+            });
+            chipViews.add(chip);
+            paletteAllCustomizerRow.addView(chip);
+        }
+        updateAllCustomizerLabel();
+    }
+
+    private void updateAllCustomizerLabel() {
+        if (paletteAllCustomizerLabel == null) return;
+        if (allPinnedCategories.isEmpty()) {
+            paletteAllCustomizerLabel.setText("All starts with — pick up to "
+                + ALL_MAX_PINNED_CATEGORIES + " categories");
+            return;
+        }
+        StringBuilder sb = new StringBuilder("All starts with: ");
+        for (int i = 0; i < allPinnedCategories.size(); i++) {
+            if (i > 0) sb.append(" · ");
+            String cat = allPinnedCategories.get(i);
+            sb.append(cat.substring(0, 1).toUpperCase(Locale.ROOT)).append(cat.substring(1));
+        }
+        paletteAllCustomizerLabel.setText(sb.toString());
+    }
+
     private void filterPalette(String query, GridLayout grid, TextView emptyView) {
         String normalized = query.trim().toLowerCase(Locale.ROOT);
+        paletteQueryActive = !normalized.isEmpty();
         filteredPalette.clear();
         for (PaletteEntry entry : palette) {
             boolean matchesCategory = selectedCategory == null
@@ -2093,15 +2197,47 @@ public class PunyKeyboardService extends InputMethodService {
             boolean matchesQuery = normalized.isEmpty()
                 || (entry.name != null && entry.name.toLowerCase(Locale.ROOT).contains(normalized))
                 || (entry.keywords != null && entry.keywords.toLowerCase(Locale.ROOT).contains(normalized))
+                || (entry.code != null && entry.code.toLowerCase(Locale.ROOT).contains(normalized))
                 || (entry.character != null && entry.character.toLowerCase(Locale.ROOT).contains(normalized));
             if (matchesCategory && matchesQuery) {
                 filteredPalette.add(entry);
+            }
+        }
+        // Customised All: pinned categories lead the listing, in pick order.
+        if (selectedCategory == null && !allPinnedCategories.isEmpty()) {
+            List<PaletteEntry> pinned = new ArrayList<>();
+            List<PaletteEntry> rest = new ArrayList<>();
+            for (PaletteEntry entry : filteredPalette) {
+                if (isAllPinned(entry.category)) pinned.add(entry);
+                else rest.add(entry);
+            }
+            if (!pinned.isEmpty()) {
+                filteredPalette.clear();
+                for (String cat : allPinnedCategories) {
+                    for (PaletteEntry entry : pinned) {
+                        if (entry.category.equalsIgnoreCase(cat)) filteredPalette.add(entry);
+                    }
+                }
+                filteredPalette.addAll(rest);
             }
         }
         renderPaletteGrid(grid, emptyView);
     }
 
     private static final int PALETTE_PAGE_SIZE = 200;
+    // The All view is the browse-everything surface: it gets a much larger
+    // first page so scrolling (not search) is a viable way to explore.
+    private static final int PALETTE_ALL_PAGE_SIZE = 1000;
+    // The All view can be customised: up to this many categories are pinned
+    // to the front of All, in the order the user picked them.
+    private static final int ALL_MAX_PINNED_CATEGORIES = 6;
+    private static final String KBD_PREFS_NAME = "puny_keyboard_prefs";
+    private static final String PREF_ALL_PINNED_CATEGORIES = "palette_all_pinned_categories";
+    private LinearLayout paletteAllCustomizer;
+    private LinearLayout paletteAllCustomizerRow;
+    private TextView paletteAllCustomizerLabel;
+    private final List<String> allPinnedCategories = new ArrayList<>();
+    private boolean paletteQueryActive = false;
 
     private void renderPaletteGrid(GridLayout grid, TextView emptyView) {
         grid.removeAllViews();
@@ -2116,7 +2252,13 @@ public class PunyKeyboardService extends InputMethodService {
         int columnCount = grid.getColumnCount();
         int width = getResources().getDisplayMetrics().widthPixels - dp(24);
         int cellWidth = width / columnCount;
-        int displayCount = Math.min(filteredPalette.size(), PALETTE_PAGE_SIZE);
+        boolean isAllView = selectedCategory == null;
+        int pageSize = isAllView ? PALETTE_ALL_PAGE_SIZE : PALETTE_PAGE_SIZE;
+        int displayCount = Math.min(filteredPalette.size(), pageSize);
+
+        if (paletteAllCustomizer != null) {
+            paletteAllCustomizer.setVisibility(isAllView && !paletteQueryActive ? View.VISIBLE : View.GONE);
+        }
 
         for (int i = 0; i < displayCount; i++) {
             PaletteEntry entry = filteredPalette.get(i);
@@ -2130,6 +2272,7 @@ public class PunyKeyboardService extends InputMethodService {
 
             TextView charView = cell.findViewById(R.id.palette_item_char);
             TextView nameView = cell.findViewById(R.id.palette_item_name);
+            TextView codeView = cell.findViewById(R.id.palette_item_code);
             // Combining marks render on top of the previous glyph — shown
             // alone in a cell they are invisible, which read as "missing".
             // Prefix the dotted circle U+25CC so the mark is visible, exactly
@@ -2138,6 +2281,9 @@ public class PunyKeyboardService extends InputMethodService {
                 ? "◌" + entry.character
                 : entry.character);
             nameView.setText(entry.name);
+            // Every cell identifies itself by codepoint — the U+ ID is the
+            // portable handle for "add this character" references.
+            codeView.setText(entry.code);
 
             boolean isSelected = paletteSelectedCharacters.contains(entry.character);
             updatePaletteCellSelection(cell, charView, nameView, isSelected);
@@ -2155,7 +2301,7 @@ public class PunyKeyboardService extends InputMethodService {
                 }
             });
             cell.setOnLongClickListener(v -> {
-                Toast.makeText(this, entry.name + " — " + entry.category, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, entry.name + " — " + entry.code, Toast.LENGTH_SHORT).show();
                 return true;
             });
             grid.addView(cell);
@@ -2165,8 +2311,8 @@ public class PunyKeyboardService extends InputMethodService {
         // height never shifts when switching categories — small categories
         // used to collapse the grid area and move every control.
         TextView footer = new TextView(this);
-        if (filteredPalette.size() > PALETTE_PAGE_SIZE) {
-            footer.setText("Showing " + PALETTE_PAGE_SIZE + " of " + filteredPalette.size() + " — search or pick a category");
+        if (filteredPalette.size() > pageSize) {
+            footer.setText("Showing " + pageSize + " of " + filteredPalette.size() + " — search or pick a category");
         } else {
             footer.setText(filteredPalette.size() + " symbols");
         }

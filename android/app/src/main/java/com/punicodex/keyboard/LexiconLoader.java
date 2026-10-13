@@ -76,8 +76,19 @@ public class LexiconLoader {
             JSONArray array = new JSONArray(json);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject obj = array.getJSONObject(i);
+                String character = obj.getString("char");
+                // Older bundles predate the code field — derive it from the
+                // character so every cell can still show its U+ ID.
+                String code = obj.optString("code", "");
+                if (code.isEmpty() && !character.isEmpty()) {
+                    int cp = character.codePointAt(0);
+                    String hex = Integer.toHexString(cp).toUpperCase(java.util.Locale.ROOT);
+                    while (hex.length() < 4) hex = "0" + hex;
+                    code = "U+" + hex;
+                }
                 entries.add(new PaletteEntry(
-                    obj.getString("char"),
+                    character,
+                    code,
                     obj.getString("name"),
                     obj.optString("category", ""),
                     obj.optString("keywords", "")
