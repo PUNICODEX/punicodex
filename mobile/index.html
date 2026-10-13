@@ -37,10 +37,10 @@
                         <div class="demo-input">
                             <span class="demo-typed">apoll</span><span class="demo-cursor">|</span>
                         </div>
-                        <div class="demo-chip">apóllōn</div>
+                        <div class="demo-chip">Apóllōn <span class="demo-chip-sub">apóllōn.com ↗</span></div>
                     </div>
                     <h2 class="slide-title">Type Mode</h2>
-                    <p class="slide-desc">Search any name. Tap the suggestion chip to copy the Unicode form. Long-press a chip to see scholarly variants.</p>
+                    <p class="slide-desc">Search any name, tap the suggestion chip for the scholarly Unicode form — then open its flagship temple and domain.</p>
                 </div>
                 <!-- Slide 3: Compose -->
                 <div class="onboarding-slide" data-slide="2">
@@ -55,17 +55,26 @@
                 <div class="onboarding-slide" data-slide="3">
                     <div class="slide-visual keyboard-visual">
                         <div class="demo-kbd-row">
-                            <div class="demo-kbd-key">q</div><div class="demo-kbd-key">w</div><div class="demo-kbd-key">e</div>
+                            <div class="demo-kbd-key">a</div><div class="demo-kbd-key accent">á</div><div class="demo-kbd-key omega">Ω</div><div class="demo-kbd-key">↵</div>
                         </div>
                         <div class="demo-kbd-row">
-                            <div class="demo-kbd-key accent">á</div><div class="demo-kbd-key space"></div><div class="demo-kbd-key">↵</div>
+                            <div class="demo-kbd-key chip">Apóllōn</div><div class="demo-kbd-key chip dim">Hekátē</div>
                         </div>
                     </div>
                     <h2 class="slide-title">System Keyboard</h2>
-                    <p class="slide-desc">Install PuniCodex as your Android keyboard for Unicode suggestions in any app — messages, notes, anywhere.</p>
+                    <p class="slide-desc">PuniCodex as your Android keyboard: scholarly suggestions in any app, long-press accents on every letter, and the Ω directory one tap away.</p>
                 </div>
-                <!-- Slide 5: Get Started -->
+                <!-- Slide 5: Omega Directory -->
                 <div class="onboarding-slide" data-slide="4">
+                    <div class="slide-visual omega-visual">
+                        <div class="demo-omega-glyphs">𓂀 ᚱ ᛟ 𒀭 𝛀 ℵ ⏣ ⚗ ✶</div>
+                        <div class="demo-omega-count">7,728 characters · 49 categories</div>
+                    </div>
+                    <h2 class="slide-title">The Ω Directory</h2>
+                    <p class="slide-desc">Greek, runes, hieroglyphs, cuneiform, math, alchemical signs and more — every character with its name and U+ code, searchable from the keyboard.</p>
+                </div>
+                <!-- Slide 6: Get Started -->
+                <div class="onboarding-slide" data-slide="5">
                     <div class="slide-visual ready-visual">
                         <svg class="slide-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 6L9 17l-5-5"/>
@@ -78,6 +87,7 @@
             </div>
             <div class="onboarding-dots" id="onboarding-dots">
                 <span class="dot active"></span>
+                <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -370,61 +380,122 @@
                     </div>
                 </div>
 
-                <!-- Visual Keyboard Diagram -->
-                <div class="keyboard-section-title">Interface Guide</div>
-                <div class="keyboard-diagram">
-                    <div class="kbd-row">
-                        <div class="kbd-key">q</div><div class="kbd-key">w</div><div class="kbd-key">e</div><div class="kbd-key">r</div><div class="kbd-key">t</div><div class="kbd-key">y</div><div class="kbd-key">u</div><div class="kbd-key">i</div><div class="kbd-key">o</div><div class="kbd-key">p</div>
-                    </div>
-                    <div class="kbd-row">
-                        <div class="kbd-key">a</div><div class="kbd-key">s</div><div class="kbd-key">d</div><div class="kbd-key">f</div><div class="kbd-key">g</div><div class="kbd-key">h</div><div class="kbd-key">j</div><div class="kbd-key">k</div><div class="kbd-key">l</div>
-                    </div>
-                    <div class="kbd-row">
-                        <div class="kbd-key shift">⇧</div><div class="kbd-key">z</div><div class="kbd-key">x</div><div class="kbd-key">c</div><div class="kbd-key">v</div><div class="kbd-key">b</div><div class="kbd-key">n</div><div class="kbd-key">m</div><div class="kbd-key backspace">⌫</div>
-                    </div>
-                    <div class="kbd-row">
-                        <div class="kbd-key sym">123</div>
-                        <div class="kbd-key space">space</div>
-                        <div class="kbd-key return">↵</div>
-                    </div>
-                    <!-- Suggestion bar overlay -->
-                    <div class="kbd-suggestion-bar">
-                        <div class="kbd-chip">apóllōn <span class="kbd-chip-hint">▼</span></div>
-                        <div class="kbd-chip dim">apollōn</div>
-                    </div>
-                </div>
+                <!-- ═══════════════════════════════════════════════
+                     FIELD GUIDE — the complete keyboard manual
+                     ═══════════════════════════════════════════════ -->
+                <div class="keyboard-section-title">Field Guide</div>
+                <p class="fg-intro">The full manual. Every key, gesture and mode — accurate for the current keyboard. Revisit any time from the Keyboard tab.</p>
 
-                <!-- Feature Callouts -->
-                <div class="guide-callouts">
-                    <div class="callout">
-                        <span class="callout-dot" style="background:var(--gold)"></span>
-                        <div class="callout-text">
-                            <strong>Suggestion Chips</strong>
-                            <span>Tap to commit Unicode instantly. Long-press for scholarly variants (ideal, macron-only, attested).</span>
+                <!-- Chapter 1: Anatomy -->
+                <details class="fg-chapter" open>
+                    <summary><span class="fg-num">1</span> Layout anatomy<span class="fg-chev">›</span></summary>
+                    <div class="fg-body">
+                        <div class="keyboard-diagram fg-diagram">
+                            <div class="kbd-row fg-suggest-row">
+                                <div class="kbd-key fg-typed">apoll</div>
+                                <div class="kbd-key fg-grow chip">Apóllōn</div>
+                                <div class="kbd-key fg-grow chip dim">Apollōn</div>
+                                <div class="kbd-key fg-collapse">▼</div>
+                            </div>
+                            <div class="kbd-row">
+                                <div class="kbd-key">q</div><div class="kbd-key">w</div><div class="kbd-key">e</div><div class="kbd-key">r</div><div class="kbd-key">t</div><div class="kbd-key">y</div><div class="kbd-key">u</div><div class="kbd-key">i</div><div class="kbd-key">o</div><div class="kbd-key">p</div>
+                            </div>
+                            <div class="kbd-row">
+                                <div class="kbd-key">a</div><div class="kbd-key">s</div><div class="kbd-key">d</div><div class="kbd-key">f</div><div class="kbd-key">g</div><div class="kbd-key">h</div><div class="kbd-key">j</div><div class="kbd-key">k</div><div class="kbd-key">l</div>
+                            </div>
+                            <div class="kbd-row">
+                                <div class="kbd-key shift">⇧</div><div class="kbd-key">z</div><div class="kbd-key">x</div><div class="kbd-key">c</div><div class="kbd-key">v</div><div class="kbd-key">b</div><div class="kbd-key">n</div><div class="kbd-key">m</div><div class="kbd-key backspace">⌫</div>
+                            </div>
+                            <div class="kbd-row">
+                                <div class="kbd-key sym">123</div>
+                                <div class="kbd-key omega">Ω</div>
+                                <div class="kbd-key punct">,</div>
+                                <div class="kbd-key space">␣</div>
+                                <div class="kbd-key punct">.</div>
+                                <div class="kbd-key punct">?</div>
+                                <div class="kbd-key return">↵</div>
+                            </div>
                         </div>
+                        <ul class="fg-legend">
+                            <li><strong>Suggestion bar</strong> — echoes your word and offers scholarly Unicode completions. Tap to commit, long-press for variants and the temple card. <em>▼ appears only while the Ω directory is open — it collapses the keys (not the suggestions) so you can see behind the directory.</em></li>
+                            <li><strong>Ω</strong> — the Unicode directory: 7,728 characters across 49 categories. Chapter 4.</li>
+                            <li><strong>123</strong> — numbers &amp; symbols panel (its own long-press variants). Chapter 6.</li>
+                            <li><strong>⇧</strong> — tap for one capital, double-tap for caps lock.</li>
+                            <li><strong>⌫</strong> — tap deletes one character; hold to repeat, hold longer to accelerate, hold longest to delete whole words.</li>
+                            <li><strong>␣</strong> — the space bar doubles as a status line: it shows the word currently being tracked.</li>
+                            <li><strong>, . ?</strong> — tap for the mark; long-press for its typographic relatives (…, ¿, ‽, and more).</li>
+                            <li><strong>↵</strong> — enter / new line.</li>
+                        </ul>
                     </div>
-                    <div class="callout">
-                        <span class="callout-dot" style="background:var(--blue)"></span>
-                        <div class="callout-text">
-                            <strong>Accent Popups</strong>
-                            <span>Long-press any letter key for accented variants — á, é, í, ó, ú, and more.</span>
-                        </div>
+                </details>
+
+                <!-- Chapter 2: Suggestions & temples -->
+                <details class="fg-chapter">
+                    <summary><span class="fg-num">2</span> Suggestions &amp; temples<span class="fg-chev">›</span></summary>
+                    <div class="fg-body">
+                        <p>The keyboard carries the whole PuniCodex lexicon. Type any god, goddess or mythological name in ordinary letters, anywhere — Messages, Notes, any app — and the suggestion bar offers the scholarly Unicode spelling.</p>
+                        <ul class="fg-legend">
+                            <li><strong>Tap a chip</strong> to replace what you typed with the full restoration: <code>apollon</code> → <code>Apóllōn</code>, <code>hera</code> → <code>Hēra</code>, <code>zeus</code> → <code>Zeús</code>.</li>
+                            <li><strong>Long-press a chip</strong> for the scholarly variant sheet — full restoration, circumflex form, macron-only (LSJ convention) and plain ASCII — each with its punycode domain.</li>
+                            <li><strong>Temple card</strong> — every suggestion links to its flagship temple on punicodex.com: the domain in Unicode, the name's meaning, pantheon and sources. The keyboard is a doorway into the whole ecosystem.</li>
+                            <li><strong>Completions improve as you type</strong> — the bar re-ranks with every keystroke and follows your cursor, so you can commit a name mid-sentence.</li>
+                        </ul>
                     </div>
-                    <div class="callout">
-                        <span class="callout-dot" style="background:var(--green)"></span>
-                        <div class="callout-text">
-                            <strong>Shift & Caps</strong>
-                            <span>Tap ⇧ for single capital. Double-tap within 350ms for caps lock.</span>
-                        </div>
+                </details>
+
+                <!-- Chapter 3: Long-press everywhere -->
+                <details class="fg-chapter">
+                    <summary><span class="fg-num">3</span> Long-press, everywhere<span class="fg-chev">›</span></summary>
+                    <div class="fg-body">
+                        <p>Every key on both panels hides a curated variant sheet behind a long-press. Press and hold, slide to the character you want, release.</p>
+                        <ul class="fg-legend">
+                            <li><strong>Letters</strong> — 5–10 scholarly forms per letter, separately curated for lower and upper case. Hold <code>a</code> for á à â ä ã å ā ă ǎ; hold <code>h</code> for ĥ ḥ ḫ ẖ ħ; hold <code>t</code> for þ; hold <code>s</code> for ß and ṣ. The classics (é, ñ, ü…) are all there.</li>
+                            <li><strong>Digits</strong> — Roman numerals: hold <code>1</code> for Ⅰ, Ⅱ, Ⅲ…</li>
+                            <li><strong>Symbols</strong> — hold <code>$</code> for ¢ € £ ¥ ₹; <code>"</code> for “ ” « »; <code>'</code> for ‘ ’ ′; <code>-</code> for – — −; <code>&lt;</code> for ≤ ≪ ⟨; and so on across the whole symbol panel.</li>
+                            <li><strong>Punctuation</strong> — <code>.</code> offers …; <code>?</code> offers ¿ and ‽; <code>,</code> offers its typographic relatives.</li>
+                            <li><strong>Your own additions</strong> — any variant you pin via the Ω directory joins the sheet in orange, ahead of the defaults. Chapter 5.</li>
+                        </ul>
                     </div>
-                    <div class="callout">
-                        <span class="callout-dot" style="background:var(--purple)"></span>
-                        <div class="callout-text">
-                            <strong>Symbol Keyboard</strong>
-                            <span>Tap 123 for numbers and symbols. Tap ABC to return to letters.</span>
-                        </div>
+                </details>
+
+                <!-- Chapter 4: The Ω directory -->
+                <details class="fg-chapter">
+                    <summary><span class="fg-num">4</span> The Ω directory<span class="fg-chev">›</span></summary>
+                    <div class="fg-body">
+                        <p>Tap <strong>Ω</strong> (it lights purple) to open a complete Unicode workbench: <strong>7,728 characters in 49 categories</strong> — Greek, Coptic and Glagolitic scripts, runes, Egyptian hieroglyphs, cuneiform, Linear B, Gothic, Ogham, Phoenician, Baybayin, math symbols, arrows, technical signs, braille, alchemical sigils, dominoes, enclosed alphanumerics, combining marks and more. Every cell shows the glyph, its name and its <code>U+</code> code point.</p>
+                        <ul class="fg-legend">
+                            <li><strong>Insert</strong> — tap any character: it is typed into your field and the directory closes. The keyboard stays live while the directory is open.</li>
+                            <li><strong>Categories</strong> — chips along the top. The directory remembers the category you were in and reopens there, even days later.</li>
+                            <li><strong>All view</strong> — the first 1,000 characters, fronted by the categories you pin in the customizer box (up to 6, your order). Chapter 5.</li>
+                            <li><strong>Search</strong> — focus the search field and type with this keyboard; results match names, keywords and code points.</li>
+                            <li><strong>Multi-select</strong> — the <em>Multi-select</em> toggle (or long-press Ω) queues characters instead of inserting: build a string, then <strong>Copy</strong>, <strong>Insert</strong> or <strong>Clear</strong> from the buffer bar.</li>
+                            <li><strong>Move &amp; resize</strong> — drag the <em>PuniCodex Directory</em> header to reposition; <strong>− / +</strong> resize the grid; <strong>◐</strong> toggles the see-through background so you can read the field behind it. Size and opacity are remembered.</li>
+                            <li><strong>Collapse</strong> — <strong>▼</strong> (in the suggestion bar) hides the key rows while keeping suggestions live, giving the directory room; <strong>▲</strong> brings the keys back.</li>
+                            <li><strong>Close</strong> — tap Ω again (it glows purple while the directory is open). The keyboard keeps working the whole time the directory is up.</li>
+                        </ul>
                     </div>
-                </div>
+                </details>
+
+                <!-- Chapter 5: Personalise -->
+                <details class="fg-chapter">
+                    <summary><span class="fg-num">5</span> Make it yours<span class="fg-chev">›</span></summary>
+                    <div class="fg-body">
+                        <ul class="fg-legend">
+                            <li><strong>Pin any character to any key</strong> — in the Ω directory, <em>long-press</em> the character you want. The keyboard glows orange and a banner shows what is pending. Tap the target key and the character joins that key's long-press sheet (letters pin to both cases). Tap ✕ to cancel.</li>
+                            <li><strong>Remove a custom variant</strong> — long-press the key, then long-press the <em>orange</em> variant in its sheet and confirm <strong>Delete</strong>. Built-in defaults are permanent; only your additions can be removed.</li>
+                            <li><strong>Customise the All view</strong> — in the directory's <em>All starts with</em> box, tap up to 6 categories to pin them (and their order) to the front of All. Untap to release. Your arrangement is saved.</li>
+                            <li><strong>Everything persists</strong> — pins, deletions, All arrangement, directory size, opacity and last category all survive restarts and updates.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Chapter 6: Numbers & symbols panel -->
+                <details class="fg-chapter">
+                    <summary><span class="fg-num">6</span> Numbers &amp; symbols<span class="fg-chev">›</span></summary>
+                    <div class="fg-body">
+                        <p><strong>123</strong> swaps to the symbols panel: digits, brackets, currency marks, operators and arrows — every single-character key with its own long-press sheet (Roman numerals on digits, currency on <code>$</code>, typographic quotes, ≤ ≥ ≠ ≈ on the operators). <strong>ABC</strong> returns to letters; <strong>⇧</strong> on that panel cycles its shifted set; Ω works there too.</p>
+                    </div>
+                </details>
 
                 <!-- Native Stats -->
                 <div class="keyboard-section-title">Keyboard Stats</div>

@@ -273,6 +273,9 @@ public class PunyKeyboardService extends InputMethodService {
     private static final int PALETTE_GRID_HEIGHT_MAX_DP = 640;
     private static final String PREF_PALETTE_OPAQUE_BG = "palette_opaque_bg";
     private boolean paletteOpaqueMode = true;
+    // Remembered directory category: the dialog reopens exactly where the
+    // user left it, like the persisted size/opacity. "All" is stored literally.
+    private static final String PREF_PALETTE_LAST_CATEGORY = "palette_last_category";
     private TextView paletteBufferText;
     private TextView paletteBufferCopy;
     private TextView paletteBufferInsert;
@@ -547,7 +550,10 @@ public class PunyKeyboardService extends InputMethodService {
             }
 
             shiftBtn = keyboardView.findViewById(R.id.key_shift);
-            if (shiftBtn != null) shiftBtn.setOnClickListener(v -> onShiftTap());
+            if (shiftBtn != null) shiftBtn.setOnClickListener(v -> {
+                if (pendingAssignChar != null) { hapticLight(); return; }
+                onShiftTap();
+            });
 
             Button backspaceBtn = keyboardView.findViewById(R.id.key_backspace);
             if (backspaceBtn != null) {
@@ -764,8 +770,16 @@ public class PunyKeyboardService extends InputMethodService {
     private static final int ASSIGN_TINT = 0x55FF5722;
 
     private void enterAssignMode(String ch) {
-        pendingAssignChar = ch;
         dismissPaletteDialog();
+        // Clear any in-flight assignment first: dismissing the old banner fires
+        // its teardown listener, which must see a clean (null) pending char.
+        if (assignBanner != null) {
+            PopupWindow stale = assignBanner;
+            assignBanner = null;
+            stale.dismiss();
+        }
+        exitAssignMode();
+        pendingAssignChar = ch;
         setAssignTint(true);
         showAssignBanner(ch);
         hapticMedium();
@@ -828,10 +842,15 @@ public class PunyKeyboardService extends InputMethodService {
 
         assignBanner = new PopupWindow(container,
             ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, false);
-        assignBanner.setOutsideTouchable(true);
+        // Do NOT setOutsideTouchable: an outside-touch dismissal fires BEFORE the
+        // key's touch handler, clearing pendingAssignChar so the tap types the
+        // letter instead of assigning the variant. Outside touches must fall
+        // through to the keyboard, whose handlers call exitAssignMode().
         assignBanner.setFocusable(false);
-        // Any dismissal path (✕, outside touch, popup teardown) ends the mode.
-        assignBanner.setOnDismissListener(this::exitAssignMode);
+        // Teardown by the system (not the ✕) should still clear the tint.
+        assignBanner.setOnDismissListener(() -> {
+            if (pendingAssignChar != null) exitAssignMode();
+        });
         assignBanner.showAtLocation(keyboardView, Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, dp(10));
     }
 
@@ -970,6 +989,9 @@ public class PunyKeyboardService extends InputMethodService {
         btn.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    // Assign mode only accepts letter/symbol keys — swallow the
+                    // tap so space/return/etc. can't type through the mode.
+                    if (pendingAssignChar != null) { hapticLight(); return true; }
                     hapticLight();
                     playKeySound();
                     btn.setPressed(true);
@@ -999,6 +1021,8 @@ public class PunyKeyboardService extends InputMethodService {
         btn.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    // Assign mode: Ω is not an assignable key — swallow.
+                    if (pendingAssignChar != null) { hapticLight(); return true; }
                     activeKey = btn;
                     longPressFired = false;
                     hapticLight();
@@ -1142,6 +1166,8 @@ public class PunyKeyboardService extends InputMethodService {
         btn.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    // Assign mode: backspace is not an assignable key — swallow.
+                    if (pendingAssignChar != null) { hapticLight(); return true; }
                     btn.setPressed(true);
                     startBackspaceRepeat();
                     return true;
@@ -2312,7 +2338,6 @@ public class PunyKeyboardService extends InputMethodService {
 
         filteredPalette.clear();
         filteredPalette.addAll(palette);
-        selectedCategory = null;
 
         List<String> categories = new ArrayList<>();
         categories.add("All");
@@ -2324,15 +2349,31 @@ public class PunyKeyboardService extends InputMethodService {
         }
         categories.addAll(seen);
 
+        // Reopen on the category the user last browsed (persisted, like the
+        // dialog size/opacity). Falls back to All when the stored category no
+        // longer exists in the palette.
+        String lastCategory = getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE)
+            .getString(PREF_PALETTE_LAST_CATEGORY, null);
+        if (lastCategory != null && !lastCategory.isEmpty()
+            && ("All".equals(lastCategory) || containsIgnoreCase(seen, lastCategory))) {
+            selectedCategory = "All".equals(lastCategory) ? null : lastCategory;
+        } else {
+            selectedCategory = null;
+        }
+
         List<TextView> categoryViews = new ArrayList<>();
         for (String category : categories) {
             TextView chip = createCategoryChip(category);
             boolean isAll = "All".equals(category);
-            chip.setSelected(isAll);
-            chip.setTextColor(isAll ? 0xFF000000 : 0xFFD4AF37);
+            boolean initiallySelected = isAll ? selectedCategory == null
+                : category.equalsIgnoreCase(selectedCategory == null ? "" : selectedCategory);
+            chip.setSelected(initiallySelected);
+            chip.setTextColor(initiallySelected ? 0xFF000000 : 0xFFD4AF37);
             chip.setOnClickListener(v -> {
                 hapticLight();
                 selectedCategory = isAll ? null : category;
+                getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE).edit()
+                    .putString(PREF_PALETTE_LAST_CATEGORY, category).apply();
                 for (TextView cv : categoryViews) {
                     boolean selected = cv == chip;
                     cv.setSelected(selected);
@@ -2468,6 +2509,13 @@ public class PunyKeyboardService extends InputMethodService {
         params.setMargins(0, 0, dp(8), 0);
         chip.setLayoutParams(params);
         return chip;
+    }
+
+    private static boolean containsIgnoreCase(Iterable<String> items, String target) {
+        for (String item : items) {
+            if (item != null && item.equalsIgnoreCase(target)) return true;
+        }
+        return false;
     }
 
     private List<String> loadAllPinnedCategories() {
