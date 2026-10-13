@@ -16,7 +16,7 @@ const SHOTS = [
     shot: `${W}/crop_palette.png`,
     backdrop: `${OG}/apollon.jpg`,
     kicker: 'The Unicode Directory',
-    headline: '1,700+ symbols. One Ω key.',
+    headline: '6,000+ symbols. One Ω key.',
     sub: 'Greek, runes, hieroglyphs, math, combining marks — searchable, categorized, offline.',
   },
   {

@@ -9,7 +9,7 @@ PuniCodex: The Gods' Keyboard
 ## Short description (80 characters max)
 
 ```
-The Unicode keyboard of the gods — 980 names, 1,700+ symbols, living temples.
+The Unicode keyboard of the gods — 980 names, 6,000+ symbols, living temples.
 ```
 
 Keyword strategy: the title carries the brand + epic (and "UNICODE" is
@@ -46,7 +46,7 @@ pronunciation, name variations, and the god's real Unicode domain
 (e.g. apóllōn.com). The keyboard is the doorway; the temple is the home.
 
 🔣 THE UNICODE DIRECTORY (Ω KEY)
-1,700+ curated symbols, one gold key away: every precomposed Latin
+6,000+ curated symbols, one gold key away: every precomposed Latin
 diacritic, Greek and Coptic, Cyrillic, runes, Egyptian hieroglyphs,
 cuneiform, Gothic, Linear B, Braille, Baybayin, math, arrows, currency,
 combining marks (shown on dotted circles) — searchable and categorized,
@@ -106,7 +106,7 @@ outreach, or press.
 
 Screenshot order (same in every class) — lead with the download hook:
 
-1. `screenshot-1-directory.png` — the Ω Unicode directory (1,700+ symbols)
+1. `screenshot-1-directory.png` — the Ω Unicode directory (6,000+ symbols)
 2. `screenshot-2-latin.png` — Latin, the first category
 3. `screenshot-3-letterlike.png` — Letterlike, the last category
 4. `screenshot-4-convert.png` — type conversion (apoll → Apóllōn)

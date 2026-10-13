@@ -42,38 +42,41 @@ console.log(`Wrote ${slimLexicon.length} lexicon entries`);
 // Load unicode directory and build keyboard palette
 const { UNICODE_DIR } = require(path.join(__dirname, '..', 'mobile', 'shared', 'unicode-dir.js'));
 
-// Curate keyboard palette: all categories with sensible per-category limits
-const PALETTE_LIMITS = {
-    // Scholarly scripts are the keyboard's reason to exist: include them fully.
-    latin: 500,
-    greek: 300,
-    cyrillic: 82,
-    runic: 81,
-    gothic: 27,
-    // The rest are bounded to keep the initial grid usable, but searchable.
-    math: 60,
-    arrows: 30,
-    symbols: 40,
-    currency: 30,
-    supsub: 25,
-    roman: 32,
-    enclosed: 60,
-    hieroglyphs: 1200,
-    alchemical: 20,
-    // Previously missing categories — now included
-    baybayin: 21,
-    blocks: 22,
-    box: 30,
-    braille: 30,
-    combining: 30,
-    cuneiform: 40,
-    dingbats: 40,
-    domino: 30,
-    letterlike: 30,
-    linearb: 30,
-    punctuation: 40,
-    shapes: 30,
-};
+// The keyboard palette ships the ENTIRE curated directory — no per-category
+// caps. The grid paginates (200 per page with an explicit "showing N of M"
+// footer) and every entry is searchable, so depth costs nothing in the UI.
+// Curation (which scripts/blocks make the list at all) remains the gate, and
+// it lives in the unicode-dir source, not here.
+const PALETTE_CATEGORIES_INCLUDED = [
+    // Scholarly scripts are the keyboard's reason to exist.
+    'latin',
+    'greek',
+    'cyrillic',
+    'runic',
+    'gothic',
+    'baybayin',
+    // Symbols, technical and game sets.
+    'math',
+    'arrows',
+    'symbols',
+    'currency',
+    'supsub',
+    'roman',
+    'enclosed',
+    'hieroglyphs',
+    'alchemical',
+    'blocks',
+    'box',
+    'braille',
+    'combining',
+    'cuneiform',
+    'dingbats',
+    'domino',
+    'letterlike',
+    'linearb',
+    'punctuation',
+    'shapes',
+];
 
 // Build a set of characters actually needed to type the lexicon Unicode forms
 // so we never truncate them out of the palette.
@@ -85,7 +88,7 @@ for (const e of LEXICON) {
     }
 }
 
-const PALETTE_CATEGORIES = new Set(Object.keys(PALETTE_LIMITS));
+const PALETTE_CATEGORIES = new Set(PALETTE_CATEGORIES_INCLUDED);
 const palette = [];
 const addedChars = new Set();
 const catCounts = {};
@@ -109,9 +112,7 @@ for (const e of UNICODE_DIR) {
 for (const e of UNICODE_DIR) {
     if (!PALETTE_CATEGORIES.has(e.category)) continue;
     if (addedChars.has(e.char)) continue;
-    const limit = PALETTE_LIMITS[e.category];
     catCounts[e.category] = catCounts[e.category] || 0;
-    if (catCounts[e.category] >= limit) continue;
     addedChars.add(e.char);
     catCounts[e.category]++;
     palette.push({

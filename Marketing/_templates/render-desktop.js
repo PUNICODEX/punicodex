@@ -11,7 +11,7 @@ const W = 'file:///' + ROOT + '/Marketing/_work';
 const OUT = ROOT + '/Marketing/google-play/desktop';
 
 const SHOTS = [
-  { file: 'desktop-1-directory.png', shot: W + '/wide_directory.png', backdrop: OG + '/apollon.jpg', kicker: 'The Unicode Directory', headline: '1,700+ symbols. One Ω key.', sub: 'Greek, runes, hieroglyphs, math, combining marks — searchable, categorized, offline.' },
+  { file: 'desktop-1-directory.png', shot: W + '/wide_directory.png', backdrop: OG + '/apollon.jpg', kicker: 'The Unicode Directory', headline: '6,000+ symbols. One Ω key.', sub: 'Greek, runes, hieroglyphs, math, combining marks — searchable, categorized, offline.' },
   { file: 'desktop-2-latin.png', shot: W + '/wide_latin.png', backdrop: OG + '/athena.jpg', kicker: 'First Category · Latin', headline: 'Á Æ È É Ê — all of it', sub: 'Every precomposed Latin diacritic, plus combining marks for the rest.' },
   { file: 'desktop-3-letterlike.png', shot: W + '/wide_letterlike.png', backdrop: OG + '/hekate.jpg', kicker: 'Last Category · Letterlike', headline: '…to ℞ № ™ ℀', sub: 'Twenty-six categories deep — currency, cuneiform, Braille, Baybayin and more.' },
   { file: 'desktop-4-convert.png', shot: W + '/wide_convert.png', backdrop: OG + '/zeus.jpg', kicker: 'Scholarly Unicode', headline: 'Type “apoll”. Get Apóllōn.', sub: '980 restored names across 25 pantheons — accents, macrons, the works.' },
