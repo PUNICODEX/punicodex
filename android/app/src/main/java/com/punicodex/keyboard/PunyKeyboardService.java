@@ -271,6 +271,8 @@ public class PunyKeyboardService extends InputMethodService {
     private static final int PALETTE_GRID_HEIGHT_MIN_DP = 160;
     private static final int PALETTE_GRID_HEIGHT_STEP_DP = 112;
     private static final int PALETTE_GRID_HEIGHT_MAX_DP = 640;
+    private static final String PREF_PALETTE_OPAQUE_BG = "palette_opaque_bg";
+    private boolean paletteOpaqueMode = true;
     private TextView paletteBufferText;
     private TextView paletteBufferCopy;
     private TextView paletteBufferInsert;
@@ -958,6 +960,12 @@ public class PunyKeyboardService extends InputMethodService {
         scroll.setLayoutParams(lp);
     }
 
+    private void applyPaletteOpacity(View root, boolean opaque) {
+        paletteOpaqueMode = opaque;
+        // Near-opaque by default (readability); fully transparent on toggle.
+        root.setBackgroundColor(opaque ? 0xF2080808 : 0x00000000);
+    }
+
     private void attachSimpleTouchListener(Button btn, Runnable action) {
         btn.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
@@ -1086,6 +1094,7 @@ public class PunyKeyboardService extends InputMethodService {
         hapticMedium();
         playKeySound();
         updatePuniButtonVisual();
+        updateMultiSelectToggleVisual();
         if (paletteDialog != null && paletteDialog.isShowing() && paletteBufferBar != null) {
             updatePaletteBufferBarVisibility();
             renderPaletteGrid((GridLayout) paletteDialog.findViewById(R.id.palette_grid),
@@ -1095,6 +1104,14 @@ public class PunyKeyboardService extends InputMethodService {
         Toast.makeText(this,
             paletteMultiSelectMode ? "Multi-select ON — tap symbols to build a sequence" : "Multi-select OFF",
             Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateMultiSelectToggleVisual() {
+        if (paletteMultiSelectToggle == null) return;
+        boolean on = paletteMultiSelectMode;
+        paletteMultiSelectToggle.setSelected(on);
+        paletteMultiSelectToggle.setText(on ? "Multi-select: ON" : "Multi-select");
+        paletteMultiSelectToggle.setTextColor(on ? 0xFF000000 : 0xFFD4AF37);
     }
 
     private void updatePuniButtonVisual() {
@@ -2390,6 +2407,10 @@ public class PunyKeyboardService extends InputMethodService {
         if (win != null) {
             win.setType(android.view.WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
             win.addFlags(android.view.WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+            // Touches in the window's empty (transparent) regions must reach
+            // the keyboard behind it — otherwise the collapse key and every
+            // other key feel dead while the directory is open.
+            win.addFlags(android.view.WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
             win.setBackgroundDrawableResource(android.R.color.transparent);
             // Pin to the TOP of the window: with a fixed-height grid the dialog
             // content is shorter than the available space, and the default
@@ -2410,6 +2431,24 @@ public class PunyKeyboardService extends InputMethodService {
         int savedHeightDp = getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE)
             .getInt(PREF_PALETTE_GRID_HEIGHT_DP, PALETTE_GRID_HEIGHT_DEFAULT_DP);
         applyPaletteGridHeight(view.findViewById(R.id.palette_grid_scroll), savedHeightDp);
+
+        // Opacity: default near-opaque for readability; the ◐ button toggles
+        // to fully transparent so the app shows through while dragging.
+        boolean opaque = getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE)
+            .getBoolean(PREF_PALETTE_OPAQUE_BG, true);
+        applyPaletteOpacity(view, opaque);
+        TextView opacityToggle = view.findViewById(R.id.palette_opacity_toggle);
+        if (opacityToggle != null) {
+            opacityToggle.setText(opaque ? "◐" : "○");
+            opacityToggle.setOnClickListener(v -> {
+                boolean next = !paletteOpaqueMode;
+                applyPaletteOpacity(view, next);
+                getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE).edit()
+                    .putBoolean(PREF_PALETTE_OPAQUE_BG, next).apply();
+                opacityToggle.setText(next ? "◐" : "○");
+                hapticLight();
+            });
+        }
 
         updatePuniKeyHighlight(true);
         setCollapseButtonsVisible(true);
@@ -2648,6 +2687,12 @@ public class PunyKeyboardService extends InputMethodService {
             GridLayout.spec(GridLayout.UNDEFINED, columnCount));
         footerParams.width = GridLayout.LayoutParams.MATCH_PARENT;
         paletteFooterView.setLayoutParams(footerParams);
+        // recyclePaletteCells deliberately keeps the footer attached to the
+        // grid, so it must be detached before re-adding — addView on a child
+        // that already has a parent throws IllegalStateException.
+        if (paletteFooterView.getParent() != null) {
+            ((ViewGroup) paletteFooterView.getParent()).removeView(paletteFooterView);
+        }
         grid.addView(paletteFooterView);
     }
 
