@@ -16,8 +16,8 @@ const SHOTS = [
     shot: `${W}/crop_palette.png`,
     backdrop: `${OG}/apollon.jpg`,
     kicker: 'The Unicode Directory',
-    headline: '6,000+ symbols. One Ω key.',
-    sub: 'Greek, runes, hieroglyphs, math, combining marks — searchable, categorized, offline.',
+    headline: '7,000+ symbols. One Ω key.',
+    sub: 'Greek, Hebrew, Arabic, runes, hieroglyphs, math — searchable, categorized, offline.',
   },
   {
     file: 'screenshot-2-latin.png',
@@ -37,7 +37,7 @@ const SHOTS = [
     backdrop: `${OG}/hekate.jpg`,
     kicker: 'Last Category · Letterlike',
     headline: '…to ℞ № ™ ℀',
-    sub: 'Twenty-six categories deep — currency, cuneiform, Braille, Baybayin and more.',
+    sub: 'Forty-nine categories deep — Hebrew, Arabic, Cherokee, cuneiform, Braille and more.',
   },
   {
     file: 'screenshot-4-convert.png',

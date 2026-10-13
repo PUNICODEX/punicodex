@@ -34,6 +34,31 @@ function range(start, end, category, categoryLabel, namePrefix, keywords = '') {
   return chars;
 }
 
+// Assigned-only variant of range(): sweeps a whole block but skips
+// unassigned, control/format, separator, private-use, surrogate and
+// non-character codepoints, so gap-ridden script blocks can be included
+// wholesale without shipping empty slots.
+const ASSIGNED_RE = /^[\p{L}\p{M}\p{N}\p{P}\p{S}]$/u;
+function assignedRange(start, end, category, categoryLabel, namePrefix, keywords = '') {
+  const chars = [];
+  for (let cp = start; cp <= end; cp++) {
+    if (cp >= 0xfdd0 && cp <= 0xfdef) continue;
+    if ((cp & 0xfffe) === 0xfffe) continue;
+    const char = String.fromCodePoint(cp);
+    if (!ASSIGNED_RE.test(char)) continue;
+    const hex = `U+${cp.toString(16).toUpperCase().padStart(4, '0')}`;
+    chars.push({
+      char,
+      code: hex,
+      name: `${namePrefix} ${hex}`,
+      category,
+      categoryLabel,
+      keywords,
+    });
+  }
+  return chars;
+}
+
 const ALL = [];
 
 // === EXISTING 16 CATEGORIES ===
@@ -4565,6 +4590,932 @@ ALL.push(
 ALL.push(...range(0x2c60, 0x2c7f, 'latin', 'Latin Extended-C', 'Latin', 'latin extended accent'));
 ALL.push(
   ...range(0xa720, 0xa7ff, 'latin', 'Latin Extended-D', 'Latin', 'latin extended egyptological')
+);
+
+// === 37. WORLD SCRIPTS & ANCIENT SETS (v3 expansion) ===
+// Living scripts make "type any language" true; ancient sets match the
+// mythology brand. Hand-named alphabets stay searchable by letter name;
+// large uniform blocks sweep through assignedRange (assignment-aware, so
+// gap-ridden blocks never ship unassigned slots).
+
+// Hebrew — 05D0..05EA letters, 05B0..05C3 points, 05F0..05F4 signs
+ALL.push(
+  ...individual(
+    [
+      [0x05d0, 'Hebrew letter alef'],
+      [0x05d1, 'Hebrew letter bet'],
+      [0x05d2, 'Hebrew letter gimel'],
+      [0x05d3, 'Hebrew letter dalet'],
+      [0x05d4, 'Hebrew letter he'],
+      [0x05d5, 'Hebrew letter vav'],
+      [0x05d6, 'Hebrew letter zayin'],
+      [0x05d7, 'Hebrew letter het'],
+      [0x05d8, 'Hebrew letter tet'],
+      [0x05d9, 'Hebrew letter yod'],
+      [0x05da, 'Hebrew letter final kaf'],
+      [0x05db, 'Hebrew letter kaf'],
+      [0x05dc, 'Hebrew letter lamed'],
+      [0x05dd, 'Hebrew letter final mem'],
+      [0x05de, 'Hebrew letter mem'],
+      [0x05df, 'Hebrew letter final nun'],
+      [0x05e0, 'Hebrew letter nun'],
+      [0x05e1, 'Hebrew letter samekh'],
+      [0x05e2, 'Hebrew letter ayin'],
+      [0x05e3, 'Hebrew letter final pe'],
+      [0x05e4, 'Hebrew letter pe'],
+      [0x05e5, 'Hebrew letter final tsadi'],
+      [0x05e6, 'Hebrew letter tsadi'],
+      [0x05e7, 'Hebrew letter qof'],
+      [0x05e8, 'Hebrew letter resh'],
+      [0x05e9, 'Hebrew letter shin'],
+      [0x05ea, 'Hebrew letter tav'],
+      [0x05b0, 'Hebrew point sheva'],
+      [0x05b1, 'Hebrew point hataf segol'],
+      [0x05b2, 'Hebrew point hataf patah'],
+      [0x05b3, 'Hebrew point hataf qamats'],
+      [0x05b4, 'Hebrew point hiriq'],
+      [0x05b5, 'Hebrew point tsere'],
+      [0x05b6, 'Hebrew point segol'],
+      [0x05b7, 'Hebrew point patah'],
+      [0x05b8, 'Hebrew point qamats'],
+      [0x05b9, 'Hebrew point holam'],
+      [0x05bb, 'Hebrew point qubuts'],
+      [0x05bc, 'Hebrew point dagesh'],
+      [0x05bd, 'Hebrew point meteg'],
+      [0x05be, 'Hebrew punctuation maqef'],
+      [0x05bf, 'Hebrew point rafe'],
+      [0x05c0, 'Hebrew punctuation paseq'],
+      [0x05c1, 'Hebrew point shin dot'],
+      [0x05c2, 'Hebrew point sin dot'],
+      [0x05c3, 'Hebrew punctuation sof pasuq'],
+      [0x05f0, 'Hebrew double vav'],
+      [0x05f1, 'Hebrew vav yod'],
+      [0x05f2, 'Hebrew double yod'],
+      [0x05f3, 'Hebrew punctuation geresh'],
+      [0x05f4, 'Hebrew punctuation gershayim'],
+    ],
+    'hebrew',
+    'Hebrew',
+    'hebrew jewish alphabet letter israel vowel point'
+  )
+);
+
+// Arabic — 0621..064A letters, 064B..0653 vowel marks, two digit sets
+ALL.push(
+  ...individual(
+    [
+      [0x0621, 'Arabic letter hamza'],
+      [0x0622, 'Arabic letter alef with madda above'],
+      [0x0623, 'Arabic letter alef with hamza above'],
+      [0x0624, 'Arabic letter waw with hamza'],
+      [0x0625, 'Arabic letter alef with hamza below'],
+      [0x0626, 'Arabic letter yeh with hamza'],
+      [0x0627, 'Arabic letter alef'],
+      [0x0628, 'Arabic letter beh'],
+      [0x0629, 'Arabic letter teh marbuta'],
+      [0x062a, 'Arabic letter teh'],
+      [0x062b, 'Arabic letter theh'],
+      [0x062c, 'Arabic letter jeem'],
+      [0x062d, 'Arabic letter hah'],
+      [0x062e, 'Arabic letter khah'],
+      [0x062f, 'Arabic letter dal'],
+      [0x0630, 'Arabic letter thal'],
+      [0x0631, 'Arabic letter reh'],
+      [0x0632, 'Arabic letter zain'],
+      [0x0633, 'Arabic letter seen'],
+      [0x0634, 'Arabic letter sheen'],
+      [0x0635, 'Arabic letter sad'],
+      [0x0636, 'Arabic letter dad'],
+      [0x0637, 'Arabic letter tah'],
+      [0x0638, 'Arabic letter zah'],
+      [0x0639, 'Arabic letter ain'],
+      [0x063a, 'Arabic letter ghain'],
+      [0x0640, 'Arabic tatweel kashida'],
+      [0x0641, 'Arabic letter feh'],
+      [0x0642, 'Arabic letter qaf'],
+      [0x0643, 'Arabic letter kaf'],
+      [0x0644, 'Arabic letter lam'],
+      [0x0645, 'Arabic letter meem'],
+      [0x0646, 'Arabic letter noon'],
+      [0x0647, 'Arabic letter heh'],
+      [0x0648, 'Arabic letter waw'],
+      [0x0649, 'Arabic letter alef maksura'],
+      [0x064a, 'Arabic letter yeh'],
+      [0x064b, 'Arabic fathatan'],
+      [0x064c, 'Arabic dammatan'],
+      [0x064d, 'Arabic kasratan'],
+      [0x064e, 'Arabic fatha'],
+      [0x064f, 'Arabic damma'],
+      [0x0650, 'Arabic kasra'],
+      [0x0651, 'Arabic shadda'],
+      [0x0652, 'Arabic sukun'],
+      [0x0653, 'Arabic maddah above'],
+    ],
+    'arabic',
+    'Arabic',
+    'arabic alphabet letter islam persian urdu vowel mark'
+  )
+);
+ALL.push(...range(0x0660, 0x0669, 'arabic', 'Arabic', 'Arabic-Indic digit', 'arabic digit number'));
+ALL.push(
+  ...range(
+    0x06f0,
+    0x06f9,
+    'arabic',
+    'Arabic',
+    'Extended Arabic-Indic digit',
+    'arabic persian digit number'
+  )
+);
+
+// Devanagari — letters, vowel signs, digits
+ALL.push(
+  ...individual(
+    [
+      [0x0901, 'Devanagari sign candrabindu'],
+      [0x0902, 'Devanagari sign anusvara'],
+      [0x0903, 'Devanagari sign visarga'],
+      [0x0905, 'Devanagari letter a'],
+      [0x0906, 'Devanagari letter aa'],
+      [0x0907, 'Devanagari letter i'],
+      [0x0908, 'Devanagari letter ii'],
+      [0x0909, 'Devanagari letter u'],
+      [0x090a, 'Devanagari letter uu'],
+      [0x090b, 'Devanagari letter vocalic r'],
+      [0x090f, 'Devanagari letter e'],
+      [0x0910, 'Devanagari letter ai'],
+      [0x0913, 'Devanagari letter o'],
+      [0x0914, 'Devanagari letter au'],
+      [0x0915, 'Devanagari letter ka'],
+      [0x0916, 'Devanagari letter kha'],
+      [0x0917, 'Devanagari letter ga'],
+      [0x0918, 'Devanagari letter gha'],
+      [0x0919, 'Devanagari letter nga'],
+      [0x091a, 'Devanagari letter ca'],
+      [0x091b, 'Devanagari letter cha'],
+      [0x091c, 'Devanagari letter ja'],
+      [0x091d, 'Devanagari letter jha'],
+      [0x091e, 'Devanagari letter nya'],
+      [0x091f, 'Devanagari letter tta'],
+      [0x0920, 'Devanagari letter ttha'],
+      [0x0921, 'Devanagari letter dda'],
+      [0x0922, 'Devanagari letter ddha'],
+      [0x0923, 'Devanagari letter nna'],
+      [0x0924, 'Devanagari letter ta'],
+      [0x0925, 'Devanagari letter tha'],
+      [0x0926, 'Devanagari letter da'],
+      [0x0927, 'Devanagari letter dha'],
+      [0x0928, 'Devanagari letter na'],
+      [0x092a, 'Devanagari letter pa'],
+      [0x092b, 'Devanagari letter pha'],
+      [0x092c, 'Devanagari letter ba'],
+      [0x092d, 'Devanagari letter bha'],
+      [0x092e, 'Devanagari letter ma'],
+      [0x092f, 'Devanagari letter ya'],
+      [0x0930, 'Devanagari letter ra'],
+      [0x0932, 'Devanagari letter la'],
+      [0x0933, 'Devanagari letter lla'],
+      [0x0935, 'Devanagari letter va'],
+      [0x0936, 'Devanagari letter sha'],
+      [0x0937, 'Devanagari letter ssa'],
+      [0x0938, 'Devanagari letter sa'],
+      [0x0939, 'Devanagari letter ha'],
+      [0x093e, 'Devanagari vowel sign aa'],
+      [0x093f, 'Devanagari vowel sign i'],
+      [0x0940, 'Devanagari vowel sign ii'],
+      [0x0941, 'Devanagari vowel sign u'],
+      [0x0942, 'Devanagari vowel sign uu'],
+      [0x0947, 'Devanagari vowel sign e'],
+      [0x0948, 'Devanagari vowel sign ai'],
+      [0x094b, 'Devanagari vowel sign o'],
+      [0x094c, 'Devanagari vowel sign au'],
+      [0x094d, 'Devanagari sign virama'],
+    ],
+    'devanagari',
+    'Devanagari',
+    'devanagari hindi sanskrit marathi nepali alphabet letter'
+  )
+);
+ALL.push(
+  ...range(
+    0x0966,
+    0x096f,
+    'devanagari',
+    'Devanagari',
+    'Devanagari digit',
+    'devanagari hindi digit number'
+  )
+);
+
+// Tamil — letters, vowel signs, digits (block has unassigned slots: use individual)
+ALL.push(
+  ...individual(
+    [
+      [0x0b82, 'Tamil sign anusvara'],
+      [0x0b83, 'Tamil sign visarga'],
+      [0x0b85, 'Tamil letter a'],
+      [0x0b86, 'Tamil letter aa'],
+      [0x0b87, 'Tamil letter i'],
+      [0x0b88, 'Tamil letter ii'],
+      [0x0b89, 'Tamil letter u'],
+      [0x0b8a, 'Tamil letter uu'],
+      [0x0b8e, 'Tamil letter e'],
+      [0x0b8f, 'Tamil letter ee'],
+      [0x0b90, 'Tamil letter ai'],
+      [0x0b92, 'Tamil letter o'],
+      [0x0b93, 'Tamil letter oo'],
+      [0x0b94, 'Tamil letter au'],
+      [0x0b95, 'Tamil letter ka'],
+      [0x0b99, 'Tamil letter nga'],
+      [0x0b9a, 'Tamil letter ca'],
+      [0x0b9e, 'Tamil letter nya'],
+      [0x0b9f, 'Tamil letter tta'],
+      [0x0ba3, 'Tamil letter nna'],
+      [0x0ba4, 'Tamil letter ta'],
+      [0x0ba8, 'Tamil letter na'],
+      [0x0ba9, 'Tamil letter nnna'],
+      [0x0baa, 'Tamil letter pa'],
+      [0x0bae, 'Tamil letter ma'],
+      [0x0baf, 'Tamil letter ya'],
+      [0x0bb0, 'Tamil letter ra'],
+      [0x0bb1, 'Tamil letter rra'],
+      [0x0bb2, 'Tamil letter la'],
+      [0x0bb3, 'Tamil letter lla'],
+      [0x0bb4, 'Tamil letter llla'],
+      [0x0bb5, 'Tamil letter zha'],
+      [0x0bb7, 'Tamil letter ssa'],
+      [0x0bb8, 'Tamil letter sa'],
+      [0x0bb9, 'Tamil letter ha'],
+      [0x0bbe, 'Tamil vowel sign aa'],
+      [0x0bbf, 'Tamil vowel sign i'],
+      [0x0bc0, 'Tamil vowel sign ii'],
+      [0x0bc1, 'Tamil vowel sign u'],
+      [0x0bc2, 'Tamil vowel sign uu'],
+      [0x0bc6, 'Tamil vowel sign e'],
+      [0x0bc7, 'Tamil vowel sign ee'],
+      [0x0bc8, 'Tamil vowel sign ai'],
+      [0x0bca, 'Tamil vowel sign o'],
+      [0x0bcb, 'Tamil vowel sign oo'],
+      [0x0bcc, 'Tamil vowel sign au'],
+      [0x0bcd, 'Tamil sign pulli virama'],
+    ],
+    'tamil',
+    'Tamil',
+    'tamil alphabet letter south india'
+  )
+);
+ALL.push(...range(0x0be6, 0x0bef, 'tamil', 'Tamil', 'Tamil digit', 'tamil digit number'));
+
+// Thai — consonants, vowels, signs, digits
+ALL.push(
+  ...individual(
+    [
+      [0x0e01, 'Thai letter ko kai'],
+      [0x0e02, 'Thai letter kho khai'],
+      [0x0e03, 'Thai letter kho khuat'],
+      [0x0e04, 'Thai letter kho khon'],
+      [0x0e05, 'Thai letter kho rakhang'],
+      [0x0e06, 'Thai letter ngo ngu'],
+      [0x0e07, 'Thai letter co chan'],
+      [0x0e08, 'Thai letter cho ching'],
+      [0x0e09, 'Thai letter cho chang'],
+      [0x0e0a, 'Thai letter so so'],
+      [0x0e0b, 'Thai letter cho choe'],
+      [0x0e0c, 'Thai letter yo ying'],
+      [0x0e0d, 'Thai letter do chada'],
+      [0x0e0e, 'Thai letter to patak'],
+      [0x0e0f, 'Thai letter tho than'],
+      [0x0e10, 'Thai letter tho nangmontho'],
+      [0x0e11, 'Thai letter tho phuthao'],
+      [0x0e12, 'Thai letter no nen'],
+      [0x0e13, 'Thai letter do dek'],
+      [0x0e14, 'Thai letter to tao'],
+      [0x0e15, 'Thai letter tho thung'],
+      [0x0e16, 'Thai letter tho thahan'],
+      [0x0e17, 'Thai letter tho thong'],
+      [0x0e18, 'Thai letter no nu'],
+      [0x0e19, 'Thai letter bo baimai'],
+      [0x0e1a, 'Thai letter po pla'],
+      [0x0e1b, 'Thai letter pho phueng'],
+      [0x0e1c, 'Thai letter fo fa'],
+      [0x0e1d, 'Thai letter pho phan'],
+      [0x0e1e, 'Thai letter fo fan'],
+      [0x0e1f, 'Thai letter pho samphao'],
+      [0x0e20, 'Thai letter mo ma'],
+      [0x0e21, 'Thai letter yo yak'],
+      [0x0e22, 'Thai letter ro rua'],
+      [0x0e23, 'Thai letter lo ling'],
+      [0x0e24, 'Thai letter wo waen'],
+      [0x0e25, 'Thai letter so sala'],
+      [0x0e26, 'Thai letter so rusi'],
+      [0x0e27, 'Thai letter so sua'],
+      [0x0e28, 'Thai letter ho hip'],
+      [0x0e29, 'Thai letter lo chula'],
+      [0x0e2a, 'Thai letter o ang'],
+      [0x0e2b, 'Thai letter ho nokhuk'],
+      [0x0e2f, 'Thai character paiyannoi'],
+      [0x0e30, 'Thai vowel sign sara a'],
+      [0x0e31, 'Thai vowel sign mai han-akat'],
+      [0x0e32, 'Thai vowel sign sara aa'],
+      [0x0e33, 'Thai vowel sign sara am'],
+      [0x0e34, 'Thai vowel sign sara i'],
+      [0x0e35, 'Thai vowel sign sara ii'],
+      [0x0e36, 'Thai vowel sign sara ue'],
+      [0x0e37, 'Thai vowel sign sara uee'],
+      [0x0e38, 'Thai vowel sign sara u'],
+      [0x0e39, 'Thai vowel sign sara uu'],
+      [0x0e40, 'Thai vowel sign sara e'],
+      [0x0e41, 'Thai vowel sign sara ae'],
+      [0x0e42, 'Thai vowel sign sara o'],
+      [0x0e43, 'Thai vowel sign sara ai maimuan'],
+      [0x0e44, 'Thai vowel sign sara ai maimalai'],
+      [0x0e45, 'Thai character lakkhangyao'],
+      [0x0e46, 'Thai character maiyamok'],
+      [0x0e47, 'Thai character maitaikhu'],
+      [0x0e4d, 'Thai character nikhahit'],
+      [0x0e4f, 'Thai character fazman'],
+      [0x0e3a, 'Thai character phinthu'],
+      [0x0e5a, 'Thai character phanthak'],
+      [0x0e5b, 'Thai character thanthakhat'],
+    ],
+    'thai',
+    'Thai',
+    'thai alphabet letter thailand'
+  )
+);
+ALL.push(...range(0x0e50, 0x0e59, 'thai', 'Thai', 'Thai digit', 'thai digit number'));
+
+// Tibetan — full block sweep (letters, digits, marks, punctuation)
+ALL.push(
+  ...assignedRange(
+    0x0f00,
+    0x0fff,
+    'tibetan',
+    'Tibetan',
+    'Tibetan',
+    'tibetan alphabet letter digit mark'
+  )
+);
+
+// Armenian — upper and lower case
+ALL.push(
+  ...individual(
+    [
+      [0x0531, 'Armenian capital letter ayb'],
+      [0x0532, 'Armenian capital letter ben'],
+      [0x0533, 'Armenian capital letter gim'],
+      [0x0534, 'Armenian capital letter da'],
+      [0x0535, 'Armenian capital letter ech'],
+      [0x0536, 'Armenian capital letter za'],
+      [0x0537, 'Armenian capital letter eh'],
+      [0x0538, 'Armenian capital letter et'],
+      [0x0539, 'Armenian capital letter to'],
+      [0x053a, 'Armenian capital letter zhe'],
+      [0x053b, 'Armenian capital letter ini'],
+      [0x053c, 'Armenian capital letter liwn'],
+      [0x053d, 'Armenian capital letter xeh'],
+      [0x053e, 'Armenian capital letter ca'],
+      [0x053f, 'Armenian capital letter ken'],
+      [0x0540, 'Armenian capital letter ho'],
+      [0x0541, 'Armenian capital letter ja'],
+      [0x0542, 'Armenian capital letter gad'],
+      [0x0543, 'Armenian capital letter cheh'],
+      [0x0544, 'Armenian capital letter men'],
+      [0x0545, 'Armenian capital letter yi'],
+      [0x0546, 'Armenian capital letter now'],
+      [0x0547, 'Armenian capital letter sha'],
+      [0x0548, 'Armenian capital letter vo'],
+      [0x0549, 'Armenian capital letter cha'],
+      [0x054a, 'Armenian capital letter peh'],
+      [0x054b, 'Armenian capital letter jheh'],
+      [0x054c, 'Armenian capital letter ra'],
+      [0x054d, 'Armenian capital letter seh'],
+      [0x054e, 'Armenian capital letter vew'],
+      [0x054f, 'Armenian capital letter tiwn'],
+      [0x0550, 'Armenian capital letter reh'],
+      [0x0551, 'Armenian capital letter co'],
+      [0x0552, 'Armenian capital letter yiwn'],
+      [0x0553, 'Armenian capital letter piwr'],
+      [0x0554, 'Armenian capital letter keh'],
+      [0x0555, 'Armenian capital letter oh'],
+      [0x0556, 'Armenian capital letter feh'],
+      [0x0561, 'Armenian small letter ayb'],
+      [0x0562, 'Armenian small letter ben'],
+      [0x0563, 'Armenian small letter gim'],
+      [0x0564, 'Armenian small letter da'],
+      [0x0565, 'Armenian small letter ech'],
+      [0x0566, 'Armenian small letter za'],
+      [0x0567, 'Armenian small letter eh'],
+      [0x0568, 'Armenian small letter et'],
+      [0x0569, 'Armenian small letter to'],
+      [0x056a, 'Armenian small letter zhe'],
+      [0x056b, 'Armenian small letter ini'],
+      [0x056c, 'Armenian small letter liwn'],
+      [0x056d, 'Armenian small letter xeh'],
+      [0x056e, 'Armenian small letter ca'],
+      [0x056f, 'Armenian small letter ken'],
+      [0x0570, 'Armenian small letter ho'],
+      [0x0571, 'Armenian small letter ja'],
+      [0x0572, 'Armenian small letter gad'],
+      [0x0573, 'Armenian small letter cheh'],
+      [0x0574, 'Armenian small letter men'],
+      [0x0575, 'Armenian small letter yi'],
+      [0x0576, 'Armenian small letter now'],
+      [0x0577, 'Armenian small letter sha'],
+      [0x0578, 'Armenian small letter vo'],
+      [0x0579, 'Armenian small letter cha'],
+      [0x057a, 'Armenian small letter peh'],
+      [0x057b, 'Armenian small letter jheh'],
+      [0x057c, 'Armenian small letter ra'],
+      [0x057d, 'Armenian small letter seh'],
+      [0x057e, 'Armenian small letter vew'],
+      [0x057f, 'Armenian small letter tiwn'],
+      [0x0580, 'Armenian small letter reh'],
+      [0x0581, 'Armenian small letter co'],
+      [0x0582, 'Armenian small letter yiwn'],
+      [0x0583, 'Armenian small letter piwr'],
+      [0x0584, 'Armenian small letter keh'],
+      [0x0585, 'Armenian small letter oh'],
+      [0x0586, 'Armenian small letter feh'],
+    ],
+    'armenian',
+    'Armenian',
+    'armenian alphabet letter hayastan'
+  )
+);
+
+// Georgian (Mkhedruli)
+ALL.push(
+  ...individual(
+    [
+      [0x10d0, 'Georgian letter an'],
+      [0x10d1, 'Georgian letter ban'],
+      [0x10d2, 'Georgian letter gan'],
+      [0x10d3, 'Georgian letter don'],
+      [0x10d4, 'Georgian letter en'],
+      [0x10d5, 'Georgian letter vin'],
+      [0x10d6, 'Georgian letter zen'],
+      [0x10d7, 'Georgian letter tan'],
+      [0x10d8, 'Georgian letter in'],
+      [0x10d9, 'Georgian letter kan'],
+      [0x10da, 'Georgian letter las'],
+      [0x10db, 'Georgian letter man'],
+      [0x10dc, 'Georgian letter nar'],
+      [0x10dd, 'Georgian letter on'],
+      [0x10de, 'Georgian letter par'],
+      [0x10df, 'Georgian letter zar'],
+      [0x10e0, 'Georgian letter rae'],
+      [0x10e1, 'Georgian letter san'],
+      [0x10e2, 'Georgian letter tar'],
+      [0x10e3, 'Georgian letter un'],
+      [0x10e4, 'Georgian letter phar'],
+      [0x10e5, 'Georgian letter khar'],
+      [0x10e6, 'Georgian letter ghan'],
+      [0x10e7, 'Georgian letter qar'],
+      [0x10e8, 'Georgian letter shin'],
+      [0x10e9, 'Georgian letter chin'],
+      [0x10ea, 'Georgian letter tsan'],
+      [0x10eb, 'Georgian letter dzil'],
+      [0x10ec, 'Georgian letter tsil'],
+      [0x10ed, 'Georgian letter char'],
+      [0x10ee, 'Georgian letter khan'],
+      [0x10ef, 'Georgian letter jhan'],
+      [0x10f0, 'Georgian letter hae'],
+      [0x10f1, 'Georgian letter he'],
+      [0x10f2, 'Georgian letter hie'],
+      [0x10f3, 'Georgian letter we'],
+      [0x10f4, 'Georgian letter har'],
+      [0x10f5, 'Georgian letter hoe'],
+      [0x10f6, 'Georgian letter fi'],
+      [0x10f7, 'Georgian letter yn'],
+      [0x10f8, 'Georgian letter elifi'],
+      [0x10f9, 'Georgian letter turned gan'],
+      [0x10fa, 'Georgian letter ain'],
+      [0x10fd, 'Georgian letter aen'],
+      [0x10fe, 'Georgian hard sign'],
+      [0x10ff, 'Georgian labial sign'],
+    ],
+    'georgian',
+    'Georgian',
+    'georgian mkhedruli alphabet letter kartuli'
+  )
+);
+
+// Cherokee — syllabary block sweep
+ALL.push(
+  ...assignedRange(
+    0x13a0,
+    0x13f5,
+    'cherokee',
+    'Cherokee',
+    'Cherokee syllable',
+    'cherokee syllabary letter'
+  )
+);
+ALL.push(
+  ...assignedRange(
+    0x13f8,
+    0x13fd,
+    'cherokee',
+    'Cherokee',
+    'Cherokee small syllable',
+    'cherokee small letter'
+  )
+);
+
+// Hangul Jamo — modern choseong, jungseong, jongseong
+ALL.push(
+  ...individual(
+    [
+      [0x1100, 'Hangul choseong giyeok'],
+      [0x1101, 'Hangul choseong ssanggieok'],
+      [0x1102, 'Hangul choseong nieun'],
+      [0x1103, 'Hangul choseong digeut'],
+      [0x1104, 'Hangul choseong ssangdigeut'],
+      [0x1105, 'Hangul choseong rieul'],
+      [0x1106, 'Hangul choseong mieum'],
+      [0x1107, 'Hangul choseong bieup'],
+      [0x1108, 'Hangul choseong ssangbieup'],
+      [0x1109, 'Hangul choseong siot'],
+      [0x110a, 'Hangul choseong ssangsiot'],
+      [0x110b, 'Hangul choseong ieung'],
+      [0x110c, 'Hangul choseong jieut'],
+      [0x110d, 'Hangul choseong ssangjieut'],
+      [0x110e, 'Hangul choseong chieut'],
+      [0x110f, 'Hangul choseong kieuk'],
+      [0x1110, 'Hangul choseong tieut'],
+      [0x1111, 'Hangul choseong pieup'],
+      [0x1112, 'Hangul choseong hieut'],
+      [0x1161, 'Hangul jungseong a'],
+      [0x1162, 'Hangul jungseong ae'],
+      [0x1163, 'Hangul jungseong ya'],
+      [0x1164, 'Hangul jungseong yae'],
+      [0x1165, 'Hangul jungseong eo'],
+      [0x1166, 'Hangul jungseong e'],
+      [0x1167, 'Hangul jungseong yeo'],
+      [0x1168, 'Hangul jungseong ye'],
+      [0x1169, 'Hangul jungseong o'],
+      [0x116a, 'Hangul jungseong wa'],
+      [0x116b, 'Hangul jungseong wae'],
+      [0x116c, 'Hangul jungseong oe'],
+      [0x116d, 'Hangul jungseong yo'],
+      [0x116e, 'Hangul jungseong u'],
+      [0x116f, 'Hangul jungseong wo'],
+      [0x1170, 'Hangul jungseong we'],
+      [0x1171, 'Hangul jungseong wi'],
+      [0x1172, 'Hangul jungseong yu'],
+      [0x1173, 'Hangul jungseong eu'],
+      [0x1174, 'Hangul jungseong yi'],
+      [0x1175, 'Hangul jungseong i'],
+      [0x11a8, 'Hangul jongseong giyeok'],
+      [0x11a9, 'Hangul jongseong ssanggieok'],
+      [0x11aa, 'Hangul jongseong giyeok-siot'],
+      [0x11ab, 'Hangul jongseong nieun'],
+      [0x11ac, 'Hangul jongseong nieun-jieut'],
+      [0x11ad, 'Hangul jongseong nieun-hieuh'],
+      [0x11ae, 'Hangul jongseong digeut'],
+      [0x11af, 'Hangul jongseong rieul'],
+      [0x11b0, 'Hangul jongseong rieul-giyeok'],
+      [0x11b1, 'Hangul jongseong rieul-mieum'],
+      [0x11b2, 'Hangul jongseong rieul-bieup'],
+      [0x11b3, 'Hangul jongseong rieul-siot'],
+      [0x11b4, 'Hangul jongseong rieul-tieut'],
+      [0x11b5, 'Hangul jongseong rieul-pieup'],
+      [0x11b6, 'Hangul jongseong rieul-hieuh'],
+      [0x11b7, 'Hangul jongseong mieum'],
+      [0x11b8, 'Hangul jongseong bieup'],
+      [0x11b9, 'Hangul jongseong bieup-siot'],
+      [0x11ba, 'Hangul jongseong siot'],
+      [0x11bb, 'Hangul jongseong ssangsiot'],
+      [0x11bc, 'Hangul jongseong ieung'],
+      [0x11bd, 'Hangul jongseong jieut'],
+      [0x11be, 'Hangul jongseong chieut'],
+      [0x11bf, 'Hangul jongseong kieuk'],
+      [0x11c0, 'Hangul jongseong tieut'],
+      [0x11c1, 'Hangul jongseong pieup'],
+      [0x11c2, 'Hangul jongseong hieuh'],
+    ],
+    'hangul',
+    'Hangul Jamo',
+    'hangul korean jameo jamo alphabet letter choseong jungseong jongseong'
+  )
+);
+
+// Bopomofo (Zhuyin)
+ALL.push(
+  ...individual(
+    [
+      [0x3105, 'Bopomofo b'],
+      [0x3106, 'Bopomofo p'],
+      [0x3107, 'Bopomofo m'],
+      [0x3108, 'Bopomofo f'],
+      [0x3109, 'Bopomofo d'],
+      [0x310a, 'Bopomofo t'],
+      [0x310b, 'Bopomofo n'],
+      [0x310c, 'Bopomofo l'],
+      [0x310d, 'Bopomofo g'],
+      [0x310e, 'Bopomofo k'],
+      [0x310f, 'Bopomofo h'],
+      [0x3110, 'Bopomofo j'],
+      [0x3111, 'Bopomofo q'],
+      [0x3112, 'Bopomofo x'],
+      [0x3113, 'Bopomofo zh'],
+      [0x3114, 'Bopomofo ch'],
+      [0x3115, 'Bopomofo sh'],
+      [0x3116, 'Bopomofo r'],
+      [0x3117, 'Bopomofo z'],
+      [0x3118, 'Bopomofo c'],
+      [0x3119, 'Bopomofo s'],
+      [0x311a, 'Bopomofo a'],
+      [0x311b, 'Bopomofo o'],
+      [0x311c, 'Bopomofo e'],
+      [0x311d, 'Bopomofo eh'],
+      [0x311e, 'Bopomofo ai'],
+      [0x311f, 'Bopomofo ei'],
+      [0x3120, 'Bopomofo au'],
+      [0x3121, 'Bopomofo ou'],
+      [0x3122, 'Bopomofo an'],
+      [0x3123, 'Bopomofo en'],
+      [0x3124, 'Bopomofo ang'],
+      [0x3125, 'Bopomofo eng'],
+      [0x3126, 'Bopomofo er'],
+      [0x3127, 'Bopomofo i'],
+      [0x3128, 'Bopomofo u'],
+      [0x3129, 'Bopomofo iu'],
+      [0x312a, 'Bopomofo v'],
+      [0x312b, 'Bopomofo ng'],
+      [0x312c, 'Bopomofo gn'],
+      [0x312d, 'Bopomofo ih'],
+    ],
+    'bopomofo',
+    'Bopomofo',
+    'bopomofo zhuyin taiwan phonetic alphabet letter'
+  )
+);
+
+// Mongolian — letters, digits, format controls
+ALL.push(
+  ...individual(
+    [
+      [0x1820, 'Mongolian letter a'],
+      [0x1821, 'Mongolian letter e'],
+      [0x1822, 'Mongolian letter i'],
+      [0x1823, 'Mongolian letter o'],
+      [0x1824, 'Mongolian letter u'],
+      [0x1825, 'Mongolian letter oe'],
+      [0x1826, 'Mongolian letter ue'],
+      [0x1827, 'Mongolian letter ee'],
+      [0x1828, 'Mongolian letter na'],
+      [0x1829, 'Mongolian letter ang'],
+      [0x182a, 'Mongolian letter ba'],
+      [0x182b, 'Mongolian letter pa'],
+      [0x182c, 'Mongolian letter qa'],
+      [0x182d, 'Mongolian letter ga'],
+      [0x182e, 'Mongolian letter ma'],
+      [0x182f, 'Mongolian letter la'],
+      [0x1830, 'Mongolian letter sa'],
+      [0x1831, 'Mongolian letter sha'],
+      [0x1832, 'Mongolian letter ta'],
+      [0x1833, 'Mongolian letter da'],
+      [0x1834, 'Mongolian letter cha'],
+      [0x1835, 'Mongolian letter ja'],
+      [0x1836, 'Mongolian letter ya'],
+      [0x1837, 'Mongolian letter ra'],
+      [0x1838, 'Mongolian letter wa'],
+      [0x1839, 'Mongolian letter fa'],
+      [0x183a, 'Mongolian letter ka'],
+      [0x183b, 'Mongolian letter kha'],
+      [0x183c, 'Mongolian letter tsa'],
+      [0x183d, 'Mongolian letter za'],
+      [0x183e, 'Mongolian letter haa'],
+      [0x183f, 'Mongolian letter zra'],
+      [0x1840, 'Mongolian letter lha'],
+      [0x1841, 'Mongolian letter zhi'],
+      [0x1842, 'Mongolian letter chi'],
+      [0x1800, 'Mongolian birga'],
+      [0x1801, 'Mongolian ellipses'],
+      [0x1802, 'Mongolian comma'],
+      [0x1803, 'Mongolian full stop'],
+      [0x1804, 'Mongolian colon'],
+      [0x1805, 'Mongolian four dots'],
+      [0x1806, 'Mongolian todo soft hyphen'],
+      [0x1807, 'Mongolian sieve stop'],
+      [0x1808, 'Mongolian manchu comma'],
+      [0x1809, 'Mongolian manchu full stop'],
+      [0x180a, 'Mongolian nirugu'],
+      [0x180e, 'Mongolian vowel separator'],
+    ],
+    'mongolian',
+    'Mongolian',
+    'mongolian alphabet letter traditional script'
+  )
+);
+ALL.push(
+  ...range(0x1810, 0x1819, 'mongolian', 'Mongolian', 'Mongolian digit', 'mongolian digit number')
+);
+
+// Phoenician — the alphabet behind the Canaanite pantheon
+ALL.push(
+  ...individual(
+    [
+      [0x10900, 'Phoenician letter alaph'],
+      [0x10901, 'Phoenician letter beth'],
+      [0x10902, 'Phoenician letter gamal'],
+      [0x10903, 'Phoenician letter dalth'],
+      [0x10904, 'Phoenician letter he'],
+      [0x10905, 'Phoenician letter waw'],
+      [0x10906, 'Phoenician letter zai'],
+      [0x10907, 'Phoenician letter heth'],
+      [0x10908, 'Phoenician letter teth'],
+      [0x10909, 'Phoenician letter yod'],
+      [0x1090a, 'Phoenician letter kaph'],
+      [0x1090b, 'Phoenician letter lamd'],
+      [0x1090c, 'Phoenician letter mem'],
+      [0x1090d, 'Phoenician letter nun'],
+      [0x1090e, 'Phoenician letter semk'],
+      [0x1090f, 'Phoenician letter ain'],
+      [0x10910, 'Phoenician letter pe'],
+      [0x10911, 'Phoenician letter tsade'],
+      [0x10912, 'Phoenician letter qoph'],
+      [0x10913, 'Phoenician letter rosh'],
+      [0x10914, 'Phoenician letter shin'],
+      [0x10915, 'Phoenician letter taw'],
+      [0x1091f, 'Phoenician word separator'],
+    ],
+    'phoenician',
+    'Phoenician',
+    'phoenician canaanite alphabet letter ancient semitic'
+  )
+);
+
+// Coptic — Egyptian Greek-script heritage
+ALL.push(
+  ...assignedRange(
+    0x2c80,
+    0x2cff,
+    'coptic',
+    'Coptic',
+    'Coptic',
+    'coptic egyptian alphabet letter mark'
+  )
+);
+
+// Glagolitic — the oldest Slavic alphabet
+ALL.push(
+  ...assignedRange(
+    0x2c00,
+    0x2c5f,
+    'glagolitic',
+    'Glagolitic',
+    'Glagolitic letter',
+    'glagolitic slavic alphabet letter'
+  )
+);
+
+// Ogham — the Celtic tree alphabet
+ALL.push(
+  ...assignedRange(
+    0x1680,
+    0x169f,
+    'ogham',
+    'Ogham',
+    'Ogham',
+    'ogham celtic irish tree alphabet letter mark'
+  )
+);
+
+// Old Italic — Etruscan, Oscan, Latin's neighbours
+ALL.push(
+  ...assignedRange(
+    0x10300,
+    0x10330,
+    'olditalic',
+    'Old Italic',
+    'Old Italic letter',
+    'old italic etruscan oscan ancient alphabet'
+  )
+);
+
+// Ugaritic — cuneiform alphabet, Canaanite cousin
+ALL.push(
+  ...assignedRange(
+    0x10380,
+    0x1039f,
+    'ugaritic',
+    'Ugaritic',
+    'Ugaritic',
+    'ugaritic cuneiform canaanite alphabet letter'
+  )
+);
+
+// Old Persian — cuneiform script of the Achaemenids
+ALL.push(
+  ...assignedRange(
+    0x103a0,
+    0x103c3,
+    'oldpersian',
+    'Old Persian',
+    'Old Persian sign',
+    'old persian cuneiform avestan achaemenid'
+  )
+);
+ALL.push(
+  ...assignedRange(
+    0x103c8,
+    0x103cf,
+    'oldpersian',
+    'Old Persian',
+    'Old Persian sign',
+    'old persian cuneiform number'
+  )
+);
+ALL.push(
+  ...assignedRange(
+    0x103d0,
+    0x103d5,
+    'oldpersian',
+    'Old Persian',
+    'Old Persian',
+    'old persian cuneiform divider number'
+  )
+);
+
+// Ancient Greek numerals — the brand's home turf
+ALL.push(
+  ...assignedRange(
+    0x10140,
+    0x1018e,
+    'greeknumbers',
+    'Ancient Greek Numbers',
+    'Greek numeral',
+    'greek attic acrophonic numeral number'
+  )
+);
+
+// Aegean numerals — with Linear B
+ALL.push(
+  ...assignedRange(
+    0x10100,
+    0x1013f,
+    'aegean',
+    'Aegean Numbers',
+    'Aegean numeral',
+    'aegean linear number digit'
+  )
+);
+
+// Misc Technical — ⌘ ⌥ ⌫ ⏎ and friends
+ALL.push(
+  ...assignedRange(
+    0x2300,
+    0x23ff,
+    'technical',
+    'Misc Technical',
+    'Technical symbol',
+    'technical command option delete return key symbol'
+  )
+);
+
+// CJK punctuation — brackets used far beyond CJK
+ALL.push(
+  ...individual(
+    [
+      [0x3001, 'Ideographic comma'],
+      [0x3002, 'Ideographic full stop'],
+      [0x3003, 'Ditto mark'],
+      [0x3005, 'Ideographic iteration mark'],
+      [0x3006, 'Ideographic closing mark'],
+      [0x3007, 'Ideographic number zero'],
+      [0x3008, 'Left angle bracket'],
+      [0x3009, 'Right angle bracket'],
+      [0x300a, 'Left double angle bracket'],
+      [0x300b, 'Right double angle bracket'],
+      [0x300c, 'Left corner bracket'],
+      [0x300d, 'Right corner bracket'],
+      [0x300e, 'Left white corner bracket'],
+      [0x300f, 'Right white corner bracket'],
+      [0x3010, 'Left black lenticular bracket'],
+      [0x3011, 'Right black lenticular bracket'],
+      [0x3012, 'Postal mark'],
+      [0x3013, 'Geta mark'],
+      [0x3014, 'Left tortoise shell bracket'],
+      [0x3015, 'Right tortoise shell bracket'],
+      [0x3016, 'Left white lenticular bracket'],
+      [0x3017, 'Right white lenticular bracket'],
+      [0x3018, 'Left white tortoise shell bracket'],
+      [0x3019, 'Right white tortoise shell bracket'],
+      [0x301a, 'Left white square bracket'],
+      [0x301b, 'Right white square bracket'],
+      [0x301c, 'Wave dash'],
+      [0x301d, 'Reversed double prime quotation mark'],
+      [0x301e, 'Double prime quotation mark'],
+      [0x301f, 'Low double prime quotation mark'],
+      [0x3030, 'Wavy dash'],
+    ],
+    'cjkpunct',
+    'CJK Punctuation',
+    'cjk japanese chinese bracket punctuation corner lenticular quote'
+  )
 );
 
 // Remove duplicate characters while keeping the first (best-named) occurrence.

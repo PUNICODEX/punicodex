@@ -76,6 +76,32 @@ const PALETTE_CATEGORIES_INCLUDED = [
     'linearb',
     'punctuation',
     'shapes',
+    // World scripts (v3 expansion) — type any language.
+    'hebrew',
+    'arabic',
+    'devanagari',
+    'tamil',
+    'thai',
+    'tibetan',
+    'armenian',
+    'georgian',
+    'cherokee',
+    'hangul',
+    'bopomofo',
+    'mongolian',
+    // Ancient sets — the mythology brand's home turf.
+    'phoenician',
+    'coptic',
+    'glagolitic',
+    'ogham',
+    'olditalic',
+    'ugaritic',
+    'oldpersian',
+    'greeknumbers',
+    'aegean',
+    // Utility symbol sets.
+    'technical',
+    'cjkpunct',
 ];
 
 // Build a set of characters actually needed to type the lexicon Unicode forms
