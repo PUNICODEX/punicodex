@@ -130,6 +130,41 @@ public class PunyKeyboardService extends InputMethodService {
         ACCENT_MAP.put("8", new String[]{"Ⅷ","ⅷ"});
         ACCENT_MAP.put("9", new String[]{"Ⅸ","ⅸ"});
         ACCENT_MAP.put("0", new String[]{"Ⅹ","ⅹ","Ⅼ","ⅼ","Ⅽ","ⅽ","Ⅾ","ⅾ","Ⅿ","ⅿ"});
+
+        // Long-press variants for the symbol keys. Every key on the symbols
+        // page answers to a long press with its typographically closest
+        // Unicode relatives (currency for $, fullwidth for @, dashes for -,
+        // smart quotes for ", and so on).
+        ACCENT_MAP.put("!", new String[]{"¡","‼","⁉","ǃ","❢"});
+        ACCENT_MAP.put("@", new String[]{"＠","™","©","®","℗","℠","℡"});
+        ACCENT_MAP.put("#", new String[]{"№","♯","＃"});
+        ACCENT_MAP.put("$", new String[]{"¢","£","€","¥","₿","₹","₽","₩","฿","₺","₪","＄"});
+        ACCENT_MAP.put("%", new String[]{"‰","‱"});
+        ACCENT_MAP.put("^", new String[]{"°","ˆ","ˇ","ˉ","＾"});
+        ACCENT_MAP.put("&", new String[]{"＆","⁊","⅋"});
+        ACCENT_MAP.put("*", new String[]{"★","☆","✳","✻","✢","×","＊"});
+        ACCENT_MAP.put("(", new String[]{"[","{","⟨","《","（","❨"});
+        ACCENT_MAP.put(")", new String[]{"]","}","⟩","》","）","❩"});
+        ACCENT_MAP.put("-", new String[]{"–","—","−","‑","‐"});
+        ACCENT_MAP.put("_", new String[]{"‗","＿"});
+        ACCENT_MAP.put("=", new String[]{"≠","≈","≡","≤","≥","＝"});
+        ACCENT_MAP.put("+", new String[]{"±","∓","÷","×","⊕","＋"});
+        ACCENT_MAP.put("[", new String[]{"【","〔","［","⟦"});
+        ACCENT_MAP.put("]", new String[]{"】","〕","］","⟧"});
+        ACCENT_MAP.put("{", new String[]{"｛","⟨","❴"});
+        ACCENT_MAP.put("}", new String[]{"｝","⟩","❵"});
+        ACCENT_MAP.put("|", new String[]{"¦","‖","∣","｜"});
+        ACCENT_MAP.put(":", new String[]{"ː","∶","："});
+        ACCENT_MAP.put(";", new String[]{"⁏","；"});
+        ACCENT_MAP.put("\"", new String[]{"«","»","“","”","„","＂"});
+        ACCENT_MAP.put("'", new String[]{"‘","’","′","″","´","ʹ","＇"});
+        ACCENT_MAP.put("/", new String[]{"÷","⁄","∕","／"});
+        ACCENT_MAP.put("\\", new String[]{"∖","＼"});
+        ACCENT_MAP.put("<", new String[]{"≤","«","‹","⟨","＜"});
+        ACCENT_MAP.put(">", new String[]{"≥","»","›","⟩","＞"});
+        ACCENT_MAP.put("?", new String[]{"¿","ʔ","‽","？"});
+        ACCENT_MAP.put(".", new String[]{"…","·","․","｡"});
+        ACCENT_MAP.put(",", new String[]{"‚","‹","⸲","、","，"});
     }
 
     private static final String[] LETTER_IDS = {
@@ -190,7 +225,6 @@ public class PunyKeyboardService extends InputMethodService {
     private static final long RAPID_KEY_THRESHOLD_MS = 80;
 
     private static final long REPEAT_INITIAL_DELAY_MS = 300;
-    private static final long REPEAT_INTERVAL_MS = 80;
     private static final long REPEAT_BASE_INTERVAL_MS = 90;
     private static final long REPEAT_FAST_INTERVAL_MS = 45;
     private static final long REPEAT_ACCELERATE_THRESHOLD_MS = 900;
@@ -200,6 +234,10 @@ public class PunyKeyboardService extends InputMethodService {
     private boolean keyPopupMeasured;
     private final int[] cachedLoc = new int[2];
     private PopupWindow accentPopup;
+    // Palette "assign" mode: a character long-pressed in the directory waits
+    // here until the user taps a key, which pins it as a long-press variant.
+    private String pendingAssignChar = null;
+    private PopupWindow assignBanner;
     private Handler longPressHandler = new Handler(Looper.getMainLooper());
     private Runnable longPressRunnable;
     private Button activeKey;
@@ -231,22 +269,8 @@ public class PunyKeyboardService extends InputMethodService {
     private final Set<String> paletteSelectedCharacters = new LinkedHashSet<>();
 
     private final Handler repeatHandler = new Handler(Looper.getMainLooper());
-    private Runnable repeatRunnable;
-    private Runnable currentRepeatAction;
+    // Shared first-fire flag for the backspace auto-repeat.
     private boolean repeatFired = false;
-
-    private final Runnable cachedRepeatRunnable = () -> {
-        if (!repeatFired) {
-            repeatFired = true;
-            hapticLight();
-        }
-        if (currentRepeatAction != null) {
-            currentRepeatAction.run();
-        }
-        if (repeatRunnable != null) {
-            repeatHandler.postDelayed(repeatRunnable, REPEAT_INTERVAL_MS);
-        }
-    };
 
     private Runnable backspaceRepeatRunnable;
     private long backspaceRepeatStartTime;
@@ -513,13 +537,13 @@ public class PunyKeyboardService extends InputMethodService {
             if (puniBtn != null) attachPuniTouchListener(puniBtn);
 
             Button commaBtn = keyboardView.findViewById(R.id.key_comma);
-            if (commaBtn != null) attachRepeatingTouchListener(commaBtn, () -> onPunct(","), this::onRepeatComma);
+            if (commaBtn != null) attachPunctKeyListener(commaBtn, () -> onPunct(","));
 
             Button periodBtn = keyboardView.findViewById(R.id.key_period);
-            if (periodBtn != null) attachRepeatingTouchListener(periodBtn, () -> onPunct("."), this::onRepeatPeriod);
+            if (periodBtn != null) attachPunctKeyListener(periodBtn, () -> onPunct("."));
 
             Button questionBtn = keyboardView.findViewById(R.id.key_question);
-            if (questionBtn != null) attachRepeatingTouchListener(questionBtn, () -> onPunct("?"), this::onRepeatQuestion);
+            if (questionBtn != null) attachPunctKeyListener(questionBtn, () -> onPunct("?"));
         } catch (Exception e) {
             android.util.Log.e("PunyKeyboard", "setupKeys failed", e);
         }
@@ -538,12 +562,16 @@ public class PunyKeyboardService extends InputMethodService {
                 Button btn = symbolKeyboardView.findViewById(resId);
                 if (btn == null) continue;
                 String label = btn.getText().toString();
-                // Digit keys get long-press Roman-numeral popups; everything else
-                // is a plain symbol key.
-                if (label.length() == 1 && Character.isDigit(label.charAt(0))) {
+                // Every single-character symbol key gets a long-press variant
+                // popup (digits keep their Roman numerals; $, @, ", etc. gain
+                // their typographic relatives). Tap still commits the symbol.
+                if (label.length() == 1) {
                     attachSymbolLongPressTouchListener(btn);
                 } else {
-                    btn.setOnClickListener(v -> onSymbolKey(btn.getText().toString()));
+                    btn.setOnClickListener(v -> {
+                        if (pendingAssignChar != null) { assignToKey(btn); return; }
+                        onSymbolKey(btn.getText().toString());
+                    });
                 }
             }
 
@@ -559,10 +587,10 @@ public class PunyKeyboardService extends InputMethodService {
             if (symReturn != null) attachSimpleTouchListener(symReturn, this::onReturn);
 
             Button symComma = symbolKeyboardView.findViewById(R.id.key_sym_comma);
-            if (symComma != null) attachRepeatingTouchListener(symComma, () -> onPunct(","), this::onRepeatComma);
+            if (symComma != null) attachPunctKeyListener(symComma, () -> onPunct(","));
 
             Button symPeriod = symbolKeyboardView.findViewById(R.id.key_sym_period);
-            if (symPeriod != null) attachRepeatingTouchListener(symPeriod, () -> onPunct("."), this::onRepeatPeriod);
+            if (symPeriod != null) attachPunctKeyListener(symPeriod, () -> onPunct("."));
 
             Button abcBtn = symbolKeyboardView.findViewById(R.id.key_abc);
             if (abcBtn != null) attachSimpleTouchListener(abcBtn, this::onSymbolsToggle);
@@ -581,6 +609,7 @@ public class PunyKeyboardService extends InputMethodService {
         btn.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    if (pendingAssignChar != null) { assignToKey(btn); return true; }
                     activeKey = btn;
                     longPressFired = false;
                     showKeyPopup(btn);
@@ -619,6 +648,7 @@ public class PunyKeyboardService extends InputMethodService {
         btn.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    if (pendingAssignChar != null) { assignToKey(btn); return true; }
                     activeKey = btn;
                     longPressFired = false;
                     showKeyPopup(btn);
@@ -649,6 +679,151 @@ public class PunyKeyboardService extends InputMethodService {
             }
             return false;
         });
+    }
+
+    /**
+     * Punctuation keys: tap commits the punctuation (with autocorrect), a long
+     * press opens the variant popup (… for period, ¿/‽ for ?, and so on).
+     * Hold-to-repeat was retired — the period's "…" repeat moved into the
+     * popup as its first variant.
+     */
+    private void attachPunctKeyListener(Button btn, Runnable tapAction) {
+        btn.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    if (pendingAssignChar != null) { assignToKey(btn); return true; }
+                    activeKey = btn;
+                    longPressFired = false;
+                    showKeyPopup(btn);
+                    hapticLight();
+                    playKeySound();
+                    btn.setPressed(true);
+                    longPressRunnable = cachedLongPressRunnable;
+                    longPressHandler.postDelayed(longPressRunnable, LONG_PRESS_DELAY);
+                    return true;
+
+                case MotionEvent.ACTION_UP:
+                    longPressHandler.removeCallbacks(longPressRunnable);
+                    btn.setPressed(false);
+                    hideKeyPopup();
+                    if (!longPressFired) {
+                        tapAction.run();
+                    }
+                    activeKey = null;
+                    return true;
+
+                case MotionEvent.ACTION_CANCEL:
+                    longPressHandler.removeCallbacks(longPressRunnable);
+                    btn.setPressed(false);
+                    hideKeyPopup();
+                    dismissAccentPopup();
+                    activeKey = null;
+                    return true;
+            }
+            return false;
+        });
+    }
+
+    // ═══════════════════════════════════════════════
+    //  PALETTE ASSIGN MODE
+    //  Long-press a character in the directory, then tap any key to pin it
+    //  as a long-press variant of that key. The keyboard tints orange-red
+    //  while the assignment is pending so the mode is unmistakable.
+    // ═══════════════════════════════════════════════
+
+    private static final int ASSIGN_TINT = 0x55FF5722;
+
+    private void enterAssignMode(String ch) {
+        pendingAssignChar = ch;
+        dismissPaletteDialog();
+        setAssignTint(true);
+        showAssignBanner(ch);
+        hapticMedium();
+    }
+
+    private void exitAssignMode() {
+        pendingAssignChar = null;
+        setAssignTint(false);
+        if (assignBanner != null) {
+            assignBanner.dismiss();
+            assignBanner = null;
+        }
+    }
+
+    private void setAssignTint(boolean on) {
+        applyAssignTint(keyboardView, on);
+        if (symbolKeyboardView != null) applyAssignTint(symbolKeyboardView, on);
+    }
+
+    private void applyAssignTint(View view, boolean on) {
+        if (view == null) return;
+        if (view instanceof Button) {
+            view.setBackgroundTintList(on
+                ? android.content.res.ColorStateList.valueOf(ASSIGN_TINT)
+                : null);
+        } else if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) {
+                applyAssignTint(group.getChildAt(i), on);
+            }
+        }
+    }
+
+    private void showAssignBanner(String ch) {
+        LinearLayout container = new LinearLayout(this);
+        container.setOrientation(LinearLayout.HORIZONTAL);
+        container.setGravity(Gravity.CENTER_VERTICAL);
+        container.setBackgroundResource(R.drawable.accent_popup_bg);
+        container.setPadding(dp(12), dp(8), dp(12), dp(8));
+
+        TextView charView = new TextView(this);
+        charView.setText(ch);
+        charView.setTextSize(26);
+        charView.setTextColor(0xFFFF7043);
+        container.addView(charView);
+
+        TextView hint = new TextView(this);
+        hint.setText("  Tap a key to pin it to that key's long press");
+        hint.setTextSize(13);
+        hint.setTextColor(0xFFCCCCCC);
+        container.addView(hint);
+
+        TextView cancel = new TextView(this);
+        cancel.setText("✕");
+        cancel.setTextSize(18);
+        cancel.setTextColor(0xFF888888);
+        cancel.setPadding(dp(12), 0, 0, 0);
+        cancel.setOnClickListener(v -> exitAssignMode());
+        container.addView(cancel);
+
+        assignBanner = new PopupWindow(container,
+            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, false);
+        assignBanner.setOutsideTouchable(true);
+        assignBanner.setFocusable(false);
+        // Any dismissal path (✕, outside touch, popup teardown) ends the mode.
+        assignBanner.setOnDismissListener(this::exitAssignMode);
+        assignBanner.showAtLocation(keyboardView, Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, dp(10));
+    }
+
+    private void assignToKey(Button btn) {
+        String ch = pendingAssignChar;
+        if (ch == null || ch.isEmpty()) { exitAssignMode(); return; }
+        String base = btn.getText().toString();
+        if (base.isEmpty()) { exitAssignMode(); return; }
+        if (base.length() > 1) base = base.substring(0, 1);
+        if (Character.isLetter(base.charAt(0))) {
+            // Letters have separate lower/upper popup tables — pin to both so
+            // the variant is reachable regardless of shift state.
+            String lower = base.toLowerCase(Locale.ROOT);
+            String upper = base.toUpperCase(Locale.ROOT);
+            saveCustomAccent(lower, ch);
+            saveCustomAccent(upper, ch);
+        } else {
+            saveCustomAccent(base, ch);
+        }
+        exitAssignMode();
+        Toast.makeText(this, ch + " pinned to long-press of " + base, Toast.LENGTH_SHORT).show();
+        hapticMedium();
     }
 
     private void attachSimpleTouchListener(Button btn, Runnable action) {
@@ -773,54 +948,6 @@ public class PunyKeyboardService extends InputMethodService {
                 ? R.drawable.palette_item_selected_bg
                 : R.drawable.accent_key_bg);
         }
-    }
-
-    /**
-     * Touch listener that treats a quick tap as a single action and a held press
-     * as an auto-repeating action. This gives native key-repeat behavior for
-     * backspace (delete whole words) and punctuation such as period (ellipsis).
-     */
-    private void attachRepeatingTouchListener(Button btn, Runnable tapAction, Runnable repeatAction) {
-        btn.setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    btn.setPressed(true);
-                    startRepeat(repeatAction);
-                    return true;
-                case MotionEvent.ACTION_UP:
-                    btn.setPressed(false);
-                    stopRepeat();
-                    if (!repeatFired) {
-                        tapAction.run();
-                    } else {
-                        postSyncWordFromCursor();
-                        debouncedUpdateSuggestions();
-                        updateSpaceBar();
-                    }
-                    return true;
-                case MotionEvent.ACTION_CANCEL:
-                    btn.setPressed(false);
-                    stopRepeat();
-                    return true;
-            }
-            return false;
-        });
-    }
-
-    private void startRepeat(Runnable action) {
-        stopRepeat();
-        currentRepeatAction = action;
-        repeatFired = false;
-        repeatRunnable = cachedRepeatRunnable;
-        repeatHandler.postDelayed(repeatRunnable, REPEAT_INITIAL_DELAY_MS);
-    }
-
-    private void stopRepeat() {
-        if (repeatRunnable != null) {
-            repeatHandler.removeCallbacks(repeatRunnable);
-            repeatRunnable = null;
-        }
-        currentRepeatAction = null;
     }
 
     /**
@@ -985,6 +1112,12 @@ public class PunyKeyboardService extends InputMethodService {
         int cols = Math.min(5, accents.length);
         int rows = (int) Math.ceil((double) accents.length / cols);
 
+        // Custom (user-pinned) variants render in orange and can be removed
+        // by long-pressing them; built-in defaults cannot be deleted.
+        Set<String> customForBase = customAccents.get(baseKey);
+        final Set<String> customSet = customForBase == null
+            ? java.util.Collections.emptySet() : customForBase;
+
         for (int r = 0; r < rows; r++) {
             LinearLayout row = new LinearLayout(this);
             row.setOrientation(LinearLayout.HORIZONTAL);
@@ -1004,6 +1137,13 @@ public class PunyKeyboardService extends InputMethodService {
                     debouncedUpdateSuggestions();
                     updateSpaceBar();
                 });
+                if (customSet.contains(ch)) {
+                    tv.setTextColor(0xFFFF7043);
+                    tv.setOnLongClickListener(v -> {
+                        confirmRemoveAccent(baseKey, ch);
+                        return true;
+                    });
+                }
                 row.addView(tv);
             }
             container.addView(row);
@@ -1023,6 +1163,16 @@ public class PunyKeyboardService extends InputMethodService {
         addTv.setLayoutParams(addParams);
         addRow.addView(addTv);
         container.addView(addRow);
+
+        if (!customSet.isEmpty()) {
+            TextView hint = new TextView(this);
+            hint.setText("Orange = yours — hold one to remove it");
+            hint.setTextSize(9);
+            hint.setTextColor(0xFF777777);
+            hint.setGravity(Gravity.CENTER);
+            hint.setPadding(0, dp(4), 0, 0);
+            container.addView(hint);
+        }
 
         accentPopup = new PopupWindow(container, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, false);
         accentPopup.setOutsideTouchable(true);
@@ -1088,7 +1238,35 @@ public class PunyKeyboardService extends InputMethodService {
     private void saveCustomAccent(String base, String ch) {
         Set<String> set = customAccents.computeIfAbsent(base, k -> new HashSet<>());
         set.add(ch);
-        accentPrefs.edit().putStringSet(CUSTOM_ACCENT_PREFIX + base, set).apply();
+        // Persist a copy: putStringSet keeps a reference to the live set on
+        // some API levels and silently skips the write for the same instance.
+        accentPrefs.edit().putStringSet(CUSTOM_ACCENT_PREFIX + base, new HashSet<>(set)).apply();
+    }
+
+    private void removeCustomAccent(String base, String ch) {
+        Set<String> set = customAccents.get(base);
+        if (set == null) return;
+        set.remove(ch);
+        if (set.isEmpty()) {
+            customAccents.remove(base);
+            accentPrefs.edit().remove(CUSTOM_ACCENT_PREFIX + base).apply();
+        } else {
+            accentPrefs.edit().putStringSet(CUSTOM_ACCENT_PREFIX + base, new HashSet<>(set)).apply();
+        }
+    }
+
+    private void confirmRemoveAccent(String base, String ch) {
+        dismissAccentPopup();
+        new AlertDialog.Builder(this)
+            .setTitle("Remove " + ch + "?")
+            .setMessage("Delete this character from the long-press options of " + base
+                + "? Built-in variants cannot be removed.")
+            .setPositiveButton("Delete", (dialog, which) -> {
+                removeCustomAccent(base, ch);
+                Toast.makeText(this, ch + " removed from " + base, Toast.LENGTH_SHORT).show();
+            })
+            .setNegativeButton("Cancel", null)
+            .show();
     }
 
     private void showAddAccentDialog(String base) {
@@ -1306,24 +1484,6 @@ public class PunyKeyboardService extends InputMethodService {
         currentWord.setLength(0);
         debouncedUpdateSuggestions();
         updateSpaceBar();
-    }
-
-    private void onRepeatPeriod() {
-        commitRepeatText("…");
-    }
-
-    private void onRepeatComma() {
-        commitRepeatText(",");
-    }
-
-    private void onRepeatQuestion() {
-        commitRepeatText("?");
-    }
-
-    private void commitRepeatText(String text) {
-        InputConnection ic = getCurrentInputConnection();
-        if (ic != null) ic.commitText(text, 1);
-        currentWord.setLength(0);
     }
 
     private void onBackspace() {
@@ -2301,7 +2461,9 @@ public class PunyKeyboardService extends InputMethodService {
                 }
             });
             cell.setOnLongClickListener(v -> {
-                Toast.makeText(this, entry.name + " — " + entry.code, Toast.LENGTH_SHORT).show();
+                // Long-press a directory character to pin it: the keyboard
+                // tints orange-red and the next key tapped becomes its home.
+                enterAssignMode(entry.character);
                 return true;
             });
             grid.addView(cell);
@@ -2449,6 +2611,7 @@ public class PunyKeyboardService extends InputMethodService {
         dismissAccentPopup();
         dismissVariantPopup();
         dismissPaletteDialog();
+        if (pendingAssignChar != null) exitAssignMode();
     }
 
     private void commitSuggestion(String commitText) {
@@ -2617,7 +2780,7 @@ public class PunyKeyboardService extends InputMethodService {
 
         Button comma = createFallbackKey(",");
         comma.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-        attachRepeatingTouchListener(comma, () -> onPunct(","), this::onRepeatComma);
+        attachPunctKeyListener(comma, () -> onPunct(","));
         bottomRow.addView(comma);
 
         Button space = createFallbackKey(" ");
@@ -2627,12 +2790,12 @@ public class PunyKeyboardService extends InputMethodService {
 
         Button period = createFallbackKey(".");
         period.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-        attachRepeatingTouchListener(period, () -> onPunct("."), this::onRepeatPeriod);
+        attachPunctKeyListener(period, () -> onPunct("."));
         bottomRow.addView(period);
 
         Button question = createFallbackKey("?");
         question.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f));
-        attachRepeatingTouchListener(question, () -> onPunct("?"), this::onRepeatQuestion);
+        attachPunctKeyListener(question, () -> onPunct("?"));
         bottomRow.addView(question);
 
         Button retBtn = createFallbackKey("↵");
