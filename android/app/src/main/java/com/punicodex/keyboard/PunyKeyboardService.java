@@ -260,6 +260,17 @@ public class PunyKeyboardService extends InputMethodService {
     private final StringBuilder paletteBuffer = new StringBuilder();
     private Button puniBtn;
     private Button symPuniBtn;
+    private Button collapseBtn;
+    private Button symCollapseBtn;
+    private boolean keyboardCollapsed = false;
+    // Directory dialog chrome: drag offsets + persisted grid height.
+    private float paletteDragLastX;
+    private float paletteDragLastY;
+    private static final String PREF_PALETTE_GRID_HEIGHT_DP = "palette_grid_height_dp";
+    private static final int PALETTE_GRID_HEIGHT_DEFAULT_DP = 384;
+    private static final int PALETTE_GRID_HEIGHT_MIN_DP = 160;
+    private static final int PALETTE_GRID_HEIGHT_STEP_DP = 112;
+    private static final int PALETTE_GRID_HEIGHT_MAX_DP = 640;
     private TextView paletteBufferText;
     private TextView paletteBufferCopy;
     private TextView paletteBufferInsert;
@@ -412,6 +423,17 @@ public class PunyKeyboardService extends InputMethodService {
             bottomSpacer = keyboardView.findViewById(R.id.bottom_spacer);
             symBottomSpacer = symbolKeyboardView.findViewById(R.id.symbols_bottom_spacer);
 
+            // Directory companion: collapses the key area while the omega
+            // dialog is open, freeing the screen so it can be dragged around.
+            collapseBtn = keyboardView.findViewById(R.id.key_collapse);
+            if (collapseBtn != null) {
+                collapseBtn.setOnClickListener(v -> toggleKeyboardCollapsed());
+            }
+            symCollapseBtn = symbolKeyboardView.findViewById(R.id.key_sym_collapse);
+            if (symCollapseBtn != null) {
+                symCollapseBtn.setOnClickListener(v -> toggleKeyboardCollapsed());
+            }
+
             // Adjust bottom spacer to match system navigation bar / gesture area
             int navBarHeight = getNavigationBarHeight();
             if (bottomSpacer != null && navBarHeight > 0) {
@@ -425,6 +447,12 @@ public class PunyKeyboardService extends InputMethodService {
 
             setupKeys();
             setupSymbolKeys();
+            // Recreated view (theme/config change): restore the directory's
+            // companion chrome — omega highlight, collapse button, state.
+            boolean dialogLive = paletteDialog != null && paletteDialog.isShowing();
+            updatePuniKeyHighlight(dialogLive);
+            setCollapseButtonsVisible(dialogLive);
+            if (keyboardCollapsed) setKeyboardCollapsed(true);
             return root;
         } catch (Exception e) {
             android.util.Log.e("PunyKeyboard", "Inflate failed, using fallback", e);
@@ -826,6 +854,110 @@ public class PunyKeyboardService extends InputMethodService {
         hapticMedium();
     }
 
+    // ── Keyboard collapse (directory companion) ─────────────────────────
+
+    private void toggleKeyboardCollapsed() {
+        setKeyboardCollapsed(!keyboardCollapsed);
+        hapticLight();
+        playKeySound();
+    }
+
+    private void setKeyboardCollapsed(boolean collapsed) {
+        keyboardCollapsed = collapsed;
+        applyKeyboardCollapsed(keyboardView, R.id.keyboard_content);
+        applyKeyboardCollapsed(symbolKeyboardView, R.id.symbols_keyboard_content);
+        String icon = collapsed ? "▲" : "▼";
+        if (collapseBtn != null) collapseBtn.setText(icon);
+        if (symCollapseBtn != null) symCollapseBtn.setText(icon);
+    }
+
+    private void applyKeyboardCollapsed(View keyboard, int contentId) {
+        if (keyboard == null) return;
+        ViewGroup content = keyboard.findViewById(contentId);
+        if (content == null) return;
+        // Child 0 is the suggestion bar — it stays visible as the anchor;
+        // everything below it (divider, key rows) collapses away.
+        for (int i = 1; i < content.getChildCount(); i++) {
+            content.getChildAt(i).setVisibility(keyboardCollapsed ? View.GONE : View.VISIBLE);
+        }
+    }
+
+    private void setCollapseButtonsVisible(boolean visible) {
+        if (collapseBtn != null) collapseBtn.setVisibility(visible ? View.VISIBLE : View.GONE);
+        if (symCollapseBtn != null) symCollapseBtn.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    // ── Omega key visual state ──────────────────────────────────────────
+
+    private static final int PALETTE_ACTIVE_TINT = 0x99A78BFA; // soft purple
+
+    private void updatePuniKeyHighlight(boolean active) {
+        if (puniBtn != null) {
+            puniBtn.setBackgroundTintList(active
+                ? android.content.res.ColorStateList.valueOf(PALETTE_ACTIVE_TINT) : null);
+        }
+        if (symPuniBtn != null) {
+            symPuniBtn.setBackgroundTintList(active
+                ? android.content.res.ColorStateList.valueOf(PALETTE_ACTIVE_TINT) : null);
+        }
+    }
+
+    // ── Directory dialog drag + resize ──────────────────────────────────
+
+    private void attachPaletteDragHandle(View header) {
+        if (header == null) return;
+        header.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    paletteDragLastX = event.getRawX();
+                    paletteDragLastY = event.getRawY();
+                    return true;
+                case MotionEvent.ACTION_MOVE:
+                    if (paletteDialog == null) return true;
+                    android.view.Window window = paletteDialog.getWindow();
+                    if (window == null) return true;
+                    float dx = event.getRawX() - paletteDragLastX;
+                    float dy = event.getRawY() - paletteDragLastY;
+                    paletteDragLastX = event.getRawX();
+                    paletteDragLastY = event.getRawY();
+                    android.view.WindowManager.LayoutParams lp = window.getAttributes();
+                    lp.x += (int) dx;
+                    lp.y += (int) dy;
+                    // Keep the header reachable on all sides.
+                    int screenW = getResources().getDisplayMetrics().widthPixels;
+                    int screenH = getResources().getDisplayMetrics().heightPixels;
+                    int xRange = screenW - dp(120);
+                    lp.x = Math.max(-xRange, Math.min(xRange, lp.x));
+                    lp.y = Math.max(0, Math.min(screenH - dp(240), lp.y));
+                    window.setAttributes(lp);
+                    return true;
+                default:
+                    return false;
+            }
+        });
+    }
+
+    private void resizePaletteGrid(int direction) {
+        if (paletteDialog == null) return;
+        android.widget.ScrollView scroll = paletteDialog.findViewById(R.id.palette_grid_scroll);
+        if (scroll == null || scroll.getLayoutParams() == null) return;
+        float density = getResources().getDisplayMetrics().density;
+        int currentDp = Math.round(scroll.getLayoutParams().height / density);
+        int targetDp = Math.max(PALETTE_GRID_HEIGHT_MIN_DP, Math.min(
+            PALETTE_GRID_HEIGHT_MAX_DP, currentDp + direction * PALETTE_GRID_HEIGHT_STEP_DP));
+        applyPaletteGridHeight(scroll, targetDp);
+        getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE).edit()
+            .putInt(PREF_PALETTE_GRID_HEIGHT_DP, targetDp).apply();
+        hapticLight();
+    }
+
+    private void applyPaletteGridHeight(android.widget.ScrollView scroll, int heightDp) {
+        if (scroll == null) return;
+        ViewGroup.LayoutParams lp = scroll.getLayoutParams();
+        lp.height = dp(heightDp);
+        scroll.setLayoutParams(lp);
+    }
+
     private void attachSimpleTouchListener(Button btn, Runnable action) {
         btn.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
@@ -871,7 +1003,12 @@ public class PunyKeyboardService extends InputMethodService {
                     longPressHandler.removeCallbacks(longPressRunnable);
                     btn.setPressed(false);
                     if (!longPressFired) {
-                        showPalettePicker();
+                        // Tap toggles: open the directory, or close it again.
+                        if (paletteDialog != null && paletteDialog.isShowing()) {
+                            dismissPaletteDialog();
+                        } else {
+                            showPalettePicker();
+                        }
                     }
                     activeKey = null;
                     return true;
@@ -886,22 +1023,48 @@ public class PunyKeyboardService extends InputMethodService {
     }
 
     private void togglePaletteMultiSelect() {
-        if (paletteMultiSelectMode) {
-            // Turning off with a non-empty buffer must not silently strand the
-            // queued characters: ask whether to insert, clear, or keep going.
-            if (paletteBuffer.length() > 0) {
-                confirmExitMultiSelect();
-                return;
+        try {
+            if (paletteMultiSelectMode) {
+                // Turning off with a non-empty buffer must not silently strand the
+                // queued characters: ask whether to insert, clear, or keep going.
+                if (paletteBuffer.length() > 0) {
+                    confirmExitMultiSelect();
+                    return;
+                }
+                setPaletteMultiSelect(false);
+            } else {
+                setPaletteMultiSelect(true);
             }
-            setPaletteMultiSelect(false);
-        } else {
-            setPaletteMultiSelect(true);
+        } catch (Exception e) {
+            // Never let a chrome glitch take the directory down with it.
+            android.util.Log.e("PunyKeyboard", "Multi-select toggle failed", e);
+            Toast.makeText(this, "Multi-select hit a glitch — try again", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * Dialogs shown from an IME need the attached-dialog window type and the
+     * IME's token — a plain .show() throws BadTokenException and kills the
+     * input method. Route every IME-lifespan AlertDialog through here.
+     */
+    private void showImeDialog(AlertDialog dialog) {
+        dialog.create(); // forces window creation so getWindow() is non-null
+        android.view.Window w = dialog.getWindow();
+        if (w != null) {
+            w.setType(android.view.WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
+            w.addFlags(android.view.WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+            android.view.WindowManager.LayoutParams lp = w.getAttributes();
+            if (lp.token == null) {
+                lp.token = getWindow().getWindow().getDecorView().getWindowToken();
+            }
+            w.setAttributes(lp);
+        }
+        dialog.show();
     }
 
     private void confirmExitMultiSelect() {
         int count = paletteBuffer.codePointCount(0, paletteBuffer.length());
-        new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_NoActionBar)
+        AlertDialog dialog = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_NoActionBar)
             .setTitle("Turn off multi-select?")
             .setMessage("You have " + count + " character" + (count == 1 ? "" : "s") +
                 " in the buffer: " + paletteBuffer)
@@ -914,7 +1077,8 @@ public class PunyKeyboardService extends InputMethodService {
                 setPaletteMultiSelect(false);
             })
             .setNeutralButton("Cancel", null)
-            .show();
+            .create();
+        showImeDialog(dialog);
     }
 
     private void setPaletteMultiSelect(boolean on) {
@@ -1257,16 +1421,17 @@ public class PunyKeyboardService extends InputMethodService {
 
     private void confirmRemoveAccent(String base, String ch) {
         dismissAccentPopup();
-        new AlertDialog.Builder(this)
+        AlertDialog dialog = new AlertDialog.Builder(this)
             .setTitle("Remove " + ch + "?")
             .setMessage("Delete this character from the long-press options of " + base
                 + "? Built-in variants cannot be removed.")
-            .setPositiveButton("Delete", (dialog, which) -> {
+            .setPositiveButton("Delete", (d, which) -> {
                 removeCustomAccent(base, ch);
                 Toast.makeText(this, ch + " removed from " + base, Toast.LENGTH_SHORT).show();
             })
             .setNegativeButton("Cancel", null)
-            .show();
+            .create();
+        showImeDialog(dialog);
     }
 
     private void showAddAccentDialog(String base) {
@@ -1290,16 +1455,7 @@ public class PunyKeyboardService extends InputMethodService {
         });
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
-        AlertDialog dialog = builder.create();
-        android.view.Window win = dialog.getWindow();
-        if (win != null) {
-            win.setType(android.view.WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
-            win.addFlags(android.view.WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-            android.view.WindowManager.LayoutParams lp = win.getAttributes();
-            lp.token = getWindow().getWindow().getDecorView().getWindowToken();
-            win.setAttributes(lp);
-        }
-        dialog.show();
+        showImeDialog(builder.create());
     }
 
     private String parseSingleChar(String raw) {
@@ -2221,6 +2377,15 @@ public class PunyKeyboardService extends InputMethodService {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_NoActionBar);
         builder.setView(view);
         paletteDialog = builder.create();
+        // The directory is a work surface, not a modal: stray touches must not
+        // kill it, and any dismissal path cleans up its companion chrome.
+        paletteDialog.setCanceledOnTouchOutside(false);
+        paletteDialog.setOnDismissListener(d -> {
+            updatePuniKeyHighlight(false);
+            setCollapseButtonsVisible(false);
+            if (keyboardCollapsed) setKeyboardCollapsed(false);
+            paletteSearchActive = false;
+        });
         android.view.Window win = paletteDialog.getWindow();
         if (win != null) {
             win.setType(android.view.WindowManager.LayoutParams.TYPE_APPLICATION_ATTACHED_DIALOG);
@@ -2235,6 +2400,19 @@ public class PunyKeyboardService extends InputMethodService {
             lp.y = dp(12);
             win.setAttributes(lp);
         }
+
+        // Drag the whole dialog from the header row; −/+ resize the grid.
+        attachPaletteDragHandle(view.findViewById(R.id.palette_header));
+        TextView shrinkBtn = view.findViewById(R.id.palette_shrink);
+        if (shrinkBtn != null) shrinkBtn.setOnClickListener(v -> resizePaletteGrid(-1));
+        TextView growBtn = view.findViewById(R.id.palette_grow);
+        if (growBtn != null) growBtn.setOnClickListener(v -> resizePaletteGrid(1));
+        int savedHeightDp = getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE)
+            .getInt(PREF_PALETTE_GRID_HEIGHT_DP, PALETTE_GRID_HEIGHT_DEFAULT_DP);
+        applyPaletteGridHeight(view.findViewById(R.id.palette_grid_scroll), savedHeightDp);
+
+        updatePuniKeyHighlight(true);
+        setCollapseButtonsVisible(true);
         paletteDialog.show();
     }
 
@@ -2255,8 +2433,16 @@ public class PunyKeyboardService extends InputMethodService {
 
     private List<String> loadAllPinnedCategories() {
         List<String> out = new ArrayList<>();
-        String raw = getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE)
-            .getString(PREF_ALL_PINNED_CATEGORIES, "");
+        SharedPreferences prefs = getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE);
+        // First run (key absent): lead with Greek — the brand's home script —
+        // so "All starts with" is meaningful before the user customises it.
+        // Once the user has toggled anything, their exact choice is honoured
+        // (including an intentional empty pick).
+        if (!prefs.contains(PREF_ALL_PINNED_CATEGORIES)) {
+            out.add("greek");
+            return out;
+        }
+        String raw = prefs.getString(PREF_ALL_PINNED_CATEGORIES, "");
         if (raw != null && !raw.isEmpty()) {
             for (String part : raw.split(",")) {
                 String trimmed = part.trim();

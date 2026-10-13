@@ -4,10 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#080808"
+    android:background="@android:color/transparent"
     android:padding="12dp">
 
+    <!-- Drag handle: holding and moving anywhere on this header row drags
+         the whole dialog. -->
     <LinearLayout
+        android:id="@+id/palette_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -18,10 +21,32 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="PuniCodex Directory"
+            android:text="⠿ PuniCodex Directory"
             android:textColor="#D4AF37"
             android:textSize="16sp"
             android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/palette_shrink"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/palette_chip_bg"
+            android:text="−"
+            android:textColor="#D4AF37"
+            android:textSize="18sp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/palette_grow"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/palette_chip_bg"
+            android:text="+"
+            android:textColor="#D4AF37"
+            android:textSize="18sp"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/palette_multi_select_toggle"
@@ -86,7 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#0e0e0e"
+        android:background="@android:color/transparent"
         android:padding="8dp"
         android:layout_marginTop="8dp">
 
