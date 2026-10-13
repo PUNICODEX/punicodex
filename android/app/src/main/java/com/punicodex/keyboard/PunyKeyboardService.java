@@ -2355,10 +2355,10 @@ public class PunyKeyboardService extends InputMethodService {
             boolean matchesCategory = selectedCategory == null
                 || selectedCategory.equalsIgnoreCase(entry.category);
             boolean matchesQuery = normalized.isEmpty()
-                || (entry.name != null && entry.name.toLowerCase(Locale.ROOT).contains(normalized))
-                || (entry.keywords != null && entry.keywords.toLowerCase(Locale.ROOT).contains(normalized))
-                || (entry.code != null && entry.code.toLowerCase(Locale.ROOT).contains(normalized))
-                || (entry.character != null && entry.character.toLowerCase(Locale.ROOT).contains(normalized));
+                || entry.nameLower.contains(normalized)
+                || entry.keywordsLower.contains(normalized)
+                || entry.code.contains(normalized)
+                || entry.characterLower.contains(normalized);
             if (matchesCategory && matchesQuery) {
                 filteredPalette.add(entry);
             }
@@ -2398,9 +2398,23 @@ public class PunyKeyboardService extends InputMethodService {
     private TextView paletteAllCustomizerLabel;
     private final List<String> allPinnedCategories = new ArrayList<>();
     private boolean paletteQueryActive = false;
+    // Rendering: cells are built programmatically (XML inflation of 1,000
+    // layouts is what made opening the directory lag), pooled across
+    // re-renders, and bound in per-frame chunks so the dialog paints
+    // immediately and the rest of the grid fills in behind it.
+    private static final int PALETTE_CHUNK_SIZE = 250;
+    private final List<View> paletteCellPool = new ArrayList<>();
+    private TextView paletteFooterView;
+    private int paletteRenderGeneration = 0;
+    private int paletteDisplayCount = 0;
+    private int paletteCellHeightPx = -1;
 
     private void renderPaletteGrid(GridLayout grid, TextView emptyView) {
-        grid.removeAllViews();
+        // Invalidate any in-flight chunk from a previous render FIRST — even
+        // the empty-state early return must cancel it, or stale cells would
+        // re-appear under "No symbols found".
+        paletteRenderGeneration++;
+        recyclePaletteCells(grid);
         if (filteredPalette.isEmpty()) {
             emptyView.setVisibility(View.VISIBLE);
             grid.setVisibility(View.GONE);
@@ -2410,85 +2424,176 @@ public class PunyKeyboardService extends InputMethodService {
         grid.setVisibility(View.VISIBLE);
 
         int columnCount = grid.getColumnCount();
-        int width = getResources().getDisplayMetrics().widthPixels - dp(24);
-        int cellWidth = width / columnCount;
         boolean isAllView = selectedCategory == null;
         int pageSize = isAllView ? PALETTE_ALL_PAGE_SIZE : PALETTE_PAGE_SIZE;
-        int displayCount = Math.min(filteredPalette.size(), pageSize);
+        paletteDisplayCount = Math.min(filteredPalette.size(), pageSize);
 
         if (paletteAllCustomizer != null) {
             paletteAllCustomizer.setVisibility(isAllView && !paletteQueryActive ? View.VISIBLE : View.GONE);
         }
 
-        for (int i = 0; i < displayCount; i++) {
-            PaletteEntry entry = filteredPalette.get(i);
-            View cell = LayoutInflater.from(this).inflate(R.layout.palette_item, grid, false);
-            GridLayout.LayoutParams cellParams = new GridLayout.LayoutParams(
-                GridLayout.spec(GridLayout.UNDEFINED, 1f),
-                GridLayout.spec(GridLayout.UNDEFINED, 1f));
-            cellParams.width = 0;
-            cellParams.height = dp(64);
-            cell.setLayoutParams(cellParams);
-
-            TextView charView = cell.findViewById(R.id.palette_item_char);
-            TextView nameView = cell.findViewById(R.id.palette_item_name);
-            TextView codeView = cell.findViewById(R.id.palette_item_code);
-            // Combining marks render on top of the previous glyph — shown
-            // alone in a cell they are invisible, which read as "missing".
-            // Prefix the dotted circle U+25CC so the mark is visible, exactly
-            // as Unicode charts display it. Commit still sends the bare mark.
-            charView.setText(isCombiningMark(entry.character)
-                ? "◌" + entry.character
-                : entry.character);
-            nameView.setText(entry.name);
-            // Every cell identifies itself by codepoint — the U+ ID is the
-            // portable handle for "add this character" references.
-            codeView.setText(entry.code);
-
-            boolean isSelected = paletteSelectedCharacters.contains(entry.character);
-            updatePaletteCellSelection(cell, charView, nameView, isSelected);
-
-            cell.setOnClickListener(v -> {
-                hapticMedium();
-                playKeySound();
-                if (paletteMultiSelectMode) {
-                    addToPaletteBuffer(entry.character);
-                    boolean nowSelected = paletteSelectedCharacters.contains(entry.character);
-                    updatePaletteCellSelection(cell, charView, nameView, nowSelected);
-                } else {
-                    commitPaletteCharacter(entry.character);
-                    dismissPaletteDialog();
-                }
-            });
-            cell.setOnLongClickListener(v -> {
-                // Long-press a directory character to pin it: the keyboard
-                // tints orange-red and the next key tapped becomes its home.
-                enterAssignMode(entry.character);
-                return true;
-            });
-            grid.addView(cell);
+        // Bind the first chunk synchronously so the dialog paints at once;
+        // the remaining cells land frame-by-frame. Rendering all 1,000 up
+        // front is what janked the IME when opening the directory.
+        if (paletteCellHeightPx < 0) paletteCellHeightPx = dp(64);
+        int firstChunk = Math.min(paletteDisplayCount, PALETTE_CHUNK_SIZE);
+        for (int i = 0; i < firstChunk; i++) bindPaletteCell(grid, i);
+        if (paletteDisplayCount > firstChunk) {
+            schedulePaletteChunk(grid, firstChunk, paletteRenderGeneration);
         }
 
         // Footer is ALWAYS shown (even when everything fits) so the dialog
         // height never shifts when switching categories — small categories
         // used to collapse the grid area and move every control.
-        TextView footer = new TextView(this);
-        if (filteredPalette.size() > pageSize) {
-            footer.setText("Showing " + pageSize + " of " + filteredPalette.size() + " — search or pick a category");
-        } else {
-            footer.setText(filteredPalette.size() + " symbols");
+        if (paletteFooterView == null) {
+            paletteFooterView = new TextView(this);
+            paletteFooterView.setTextColor(0xFF888888);
+            paletteFooterView.setTextSize(11);
+            paletteFooterView.setGravity(Gravity.CENTER);
+            paletteFooterView.setPadding(0, dp(10), 0, dp(4));
         }
-        footer.setTextColor(0xFF888888);
-        footer.setTextSize(11);
-        footer.setGravity(Gravity.CENTER);
-        footer.setPadding(0, dp(10), 0, dp(4));
+        if (filteredPalette.size() > pageSize) {
+            paletteFooterView.setText("Showing " + pageSize + " of " + filteredPalette.size() + " — search or pick a category");
+        } else {
+            paletteFooterView.setText(filteredPalette.size() + " symbols");
+        }
         GridLayout.LayoutParams footerParams = new GridLayout.LayoutParams(
             GridLayout.spec(GridLayout.UNDEFINED, 1f),
             GridLayout.spec(GridLayout.UNDEFINED, columnCount));
         footerParams.width = GridLayout.LayoutParams.MATCH_PARENT;
-        footer.setLayoutParams(footerParams);
-        grid.addView(footer);
+        paletteFooterView.setLayoutParams(footerParams);
+        grid.addView(paletteFooterView);
     }
+
+    // ── Pooled, chunked palette grid ────────────────────────────────────
+
+    private void recyclePaletteCells(GridLayout grid) {
+        for (int i = grid.getChildCount() - 1; i >= 0; i--) {
+            View child = grid.getChildAt(i);
+            if (child == paletteFooterView) continue;
+            child.setTag(null);
+            grid.removeViewAt(i);
+            paletteCellPool.add(child);
+        }
+    }
+
+    private View obtainPaletteCell() {
+        View cell = paletteCellPool.isEmpty()
+            ? createPaletteCell()
+            : paletteCellPool.remove(paletteCellPool.size() - 1);
+        GridLayout.LayoutParams cellParams = new GridLayout.LayoutParams(
+            GridLayout.spec(GridLayout.UNDEFINED, 1f),
+            GridLayout.spec(GridLayout.UNDEFINED, 1f));
+        cellParams.width = 0;
+        cellParams.height = paletteCellHeightPx;
+        cell.setLayoutParams(cellParams);
+        return cell;
+    }
+
+    private View createPaletteCell() {
+        LinearLayout cell = new LinearLayout(this);
+        cell.setOrientation(LinearLayout.VERTICAL);
+        cell.setGravity(Gravity.CENTER);
+        int pad = dp(4);
+        cell.setPadding(pad, pad, pad, pad);
+        cell.setBackgroundResource(R.drawable.accent_key_bg);
+
+        TextView charView = new TextView(this);
+        charView.setGravity(Gravity.CENTER);
+        charView.setTextColor(0xFFD4AF37);
+        charView.setTextSize(23);
+        cell.addView(charView);
+
+        TextView nameView = new TextView(this);
+        nameView.setGravity(Gravity.CENTER);
+        nameView.setSingleLine(true);
+        nameView.setEllipsize(android.text.TextUtils.TruncateAt.END);
+        nameView.setTextColor(0xFF888888);
+        nameView.setTextSize(8);
+        cell.addView(nameView);
+
+        TextView codeView = new TextView(this);
+        codeView.setGravity(Gravity.CENTER);
+        codeView.setSingleLine(true);
+        codeView.setTextColor(0xFF555555);
+        codeView.setTextSize(7);
+        cell.addView(codeView);
+
+        cell.setOnClickListener(paletteCellClickListener);
+        cell.setOnLongClickListener(paletteCellLongClickListener);
+        return cell;
+    }
+
+    private void bindPaletteCell(GridLayout grid, int index) {
+        PaletteEntry entry = filteredPalette.get(index);
+        View cell = obtainPaletteCell();
+        // The index is the entry's identity for the shared listeners; entries
+        // are re-resolved at tap time so pooled cells survive re-sorts.
+        cell.setTag(index);
+        ViewGroup cellGroup = (ViewGroup) cell;
+        TextView charView = (TextView) cellGroup.getChildAt(0);
+        TextView nameView = (TextView) cellGroup.getChildAt(1);
+        TextView codeView = (TextView) cellGroup.getChildAt(2);
+        // Combining marks render on top of the previous glyph — shown
+        // alone in a cell they are invisible, which read as "missing".
+        // Prefix the dotted circle U+25CC so the mark is visible, exactly
+        // as Unicode charts display it. Commit still sends the bare mark.
+        charView.setText(isCombiningMark(entry.character)
+            ? "◌" + entry.character
+            : entry.character);
+        nameView.setText(entry.name);
+        // Every cell identifies itself by codepoint — the U+ ID is the
+        // portable handle for "add this character" references.
+        codeView.setText(entry.code);
+        updatePaletteCellSelection(cell, charView, nameView,
+            paletteSelectedCharacters.contains(entry.character));
+        grid.addView(cell);
+    }
+
+    private void schedulePaletteChunk(GridLayout grid, int start, int generation) {
+        suggestionHandler.post(() -> {
+            // A newer render (search keystroke, category switch) supersedes us.
+            if (generation != paletteRenderGeneration) return;
+            if (paletteDialog == null || !paletteDialog.isShowing()) return;
+            int end = Math.min(paletteDisplayCount, start + PALETTE_CHUNK_SIZE);
+            for (int i = start; i < end; i++) bindPaletteCell(grid, i);
+            if (end < paletteDisplayCount) schedulePaletteChunk(grid, end, generation);
+        });
+    }
+
+    private PaletteEntry paletteEntryFromTag(View v) {
+        Object tag = v.getTag();
+        if (!(tag instanceof Integer)) return null;
+        int index = (Integer) tag;
+        if (index < 0 || index >= filteredPalette.size()) return null;
+        return filteredPalette.get(index);
+    }
+
+    private final View.OnClickListener paletteCellClickListener = v -> {
+        PaletteEntry entry = paletteEntryFromTag(v);
+        if (entry == null) return;
+        hapticMedium();
+        playKeySound();
+        if (paletteMultiSelectMode) {
+            addToPaletteBuffer(entry.character);
+            ViewGroup cellGroup = (ViewGroup) v;
+            updatePaletteCellSelection(v, (TextView) cellGroup.getChildAt(0),
+                (TextView) cellGroup.getChildAt(1),
+                paletteSelectedCharacters.contains(entry.character));
+        } else {
+            commitPaletteCharacter(entry.character);
+            dismissPaletteDialog();
+        }
+    };
+
+    private final View.OnLongClickListener paletteCellLongClickListener = v -> {
+        PaletteEntry entry = paletteEntryFromTag(v);
+        if (entry == null) return false;
+        // Long-press a directory character to pin it: the keyboard
+        // tints orange-red and the next key tapped becomes its home.
+        enterAssignMode(entry.character);
+        return true;
+    };
 
     private static boolean isCombiningMark(String character) {
         if (character == null || character.isEmpty()) return false;
