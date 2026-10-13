@@ -3,7 +3,7 @@
  * Cache-first strategy for offline-first experience.
  */
 
-const CACHE_NAME = 'punicodex-mobile-v11';
+const CACHE_NAME = 'punicodex-mobile-v12';
 const ASSETS = [
     './',
     './index.html',

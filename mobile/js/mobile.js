@@ -40,6 +40,25 @@
         window.open(url, '_blank', 'noopener');
     }
 
+    // Prefilled share payload for a lexicon entry: the scholarly spelling,
+    // its meaning, the real Unicode domain, and the living temple link.
+    // The URL is duplicated inside the text because several share targets
+    // render only the text field.
+    function templeShareMessage(entry) {
+        const name = nfc(entry.unicode);
+        const meaning = entry.meaning ? ` — ${entry.meaning}` : '';
+        return `${name}${meaning}\nReal Unicode domain: ${primaryDomain(entry)}\nLiving temple: ${templePath(entry.id)}`;
+    }
+
+    async function shareEntryTemple(entry) {
+        const ok = await shareText(templeShareMessage(entry), `${nfc(entry.unicode)} — PuniCodex`, templePath(entry.id));
+        if (!ok) {
+            const copied = await copyToClipboard(templeShareMessage(entry));
+            showToast(copied ? 'Copied — paste to share' : 'Share not available');
+        }
+        addToHistory(entry);
+    }
+
     // Pantheon accent colors
     const PANTHEON_COLORS = {
         greek: '#c9a96e', norse: '#87aee8', egyptian: '#e8c97e',
@@ -302,8 +321,9 @@
         }
     }
 
-    async function shareText(text, title) {
+    async function shareText(text, title, url) {
         const shareData = { title: title || 'PuniCodex', text };
+        if (url) shareData.url = url;
         try {
             if (navigator.share) {
                 await navigator.share(shareData);
@@ -581,13 +601,8 @@
         });
 
         document.getElementById('detail-share').addEventListener('click', async () => {
-            const text = nfc(entry.unicode);
-            const ok = await shareText(`${text} — ${entry.meaning || entry.domain}`, text);
-            if (!ok) {
-                const copied = await copyToClipboard(text);
-                showToast(copied ? 'Copied to clipboard' : 'Share not available');
-            }
-            addToHistory(entry);
+            vibrate(8);
+            await shareEntryTemple(entry);
         });
 
         document.getElementById('detail-temple').addEventListener('click', () => {
@@ -1058,13 +1073,8 @@
     shareTypeBtn.addEventListener('click', async () => {
         const entry = currentTypeEntry;
         if (!entry) return;
-        const text = nfc(entry.unicode);
-        const ok = await shareText(`${text} — ${entry.meaning || entry.domain}`, text);
-        if (!ok) {
-            const copied = await copyToClipboard(text);
-            showToast(copied ? 'Copied to clipboard' : 'Share unavailable');
-        }
-        addToHistory(entry);
+        vibrate(8);
+        await shareEntryTemple(entry);
     });
 
     // Swipe to clear
