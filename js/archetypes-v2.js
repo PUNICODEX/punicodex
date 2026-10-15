@@ -1,7 +1,7 @@
 /**
  * PuniCodex — Central Archetype Database
  * Handcrafted flagship temples only.
- * 542 handcrafted archetypes (542 built, 0 awaiting).
+ * 548 handcrafted archetypes (548 built, 0 awaiting).
  */
 
 const ARCHETYPES = [

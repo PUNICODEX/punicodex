@@ -1,7 +1,7 @@
 # PuniCodex AI Training Corpus — Data Card
 
-**Data version:** 2.0.157  
-**Generated:** 2026-10-08T14:36:28.567Z  
+**Data version:** 2.0.159  
+**Generated:** 2026-10-15T17:53:45.997Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Purpose
@@ -34,7 +34,7 @@ This corpus is the foundational training and evaluation data for a specialized A
 | pretrain.jsonl | 6,011 | 7.50 MB | Raw-text continual pretraining corpus, 95% split (Phase 15). |
 | pretrain-validation.jsonl | 310 | 392.5 KB | Held-out raw-text validation split, 5% (Phase 15). |
 | huggingface/train.jsonl | 6,011 | 6.70 MB | HuggingFace-compatible continual pretraining split (Phase 15). |
-| huggingface/validation.jsonl | 310 | 350.6 KB | HuggingFace-compatible validation split (Phase 15). |
+| huggingface/validation.jsonl | 310 | 350.7 KB | HuggingFace-compatible validation split (Phase 15). |
 | manifest.json | 334 | 10.4 KB | Machine-readable corpus manifest. |
 
 ## Phase Summary

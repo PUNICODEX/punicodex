@@ -127,8 +127,11 @@
   // ═══════════════════════════════════════════════════════════
 
   function initStatAnimation() {
-    const statsSection = document.querySelector('.origin-stats');
-    if (!statsSection) return;
+    // Two separate .origin-stats blocks exist on the page; querySelector
+    // only ever matched the first, leaving the second block's counters
+    // (Lexicon Entries, Pantheon Traditions) stuck at 0.
+    const statsSections = document.querySelectorAll('.origin-stats');
+    if (statsSections.length === 0) return;
 
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
@@ -138,7 +141,7 @@
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            statsSection.querySelectorAll('.stat-number').forEach((el) => {
+            entry.target.querySelectorAll('.stat-number').forEach((el) => {
               const target = parseInt(el.dataset.count, 10);
               if (target && !el.classList.contains('animated')) {
                 el.classList.add('animated');
@@ -156,7 +159,7 @@
       { threshold: 0.3 }
     );
 
-    statObserver.observe(statsSection);
+    statsSections.forEach((section) => statObserver.observe(section));
   }
 
   if (document.readyState === 'loading') {

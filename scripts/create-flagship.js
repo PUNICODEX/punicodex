@@ -1445,8 +1445,6 @@ function buildOriginalScriptCardNote(entry) {
 // ---------------------------------------------------------------------------
 
 const PRONUNCIATION_RULE_LINES = {
-  greek: 'Final -ē is never silent in Greek — every vowel is sounded.',
-  'greek-location': 'Final -ē is never silent in Greek — every vowel is sounded.',
   nahuatl: 'tl is one sound in Nahuatl — a single lateral affricate, never t + l.',
   norse: 'Old Norse stress always falls on the first syllable.',
   sanskrit: 'Aspirates are single consonants — bh, dh, gh are one breathy sound each.',
@@ -1457,6 +1455,16 @@ const PRONUNCIATION_RULE_LINES = {
   taoist:
     'Mandarin is tonal — the mark over each vowel is the pitch pattern: ā level, á rising, ǎ dipping, à falling.',
 };
+
+// Greek rule line: the -ē line only makes sense for names that actually end
+// in -ē; other Greek names get the pitch-accent rule instead. (Previously the
+// -ē line fired for every Greek temple, including Zeús and Apóllōn.)
+function greekRuleLine(entry) {
+  const endsInLongE = entry.unicode.normalize('NFD').endsWith('e\u0304');
+  return endsInLongE
+    ? 'Final -ē is never silent in Greek — every vowel is sounded.'
+    : 'The accent marks pitch, not volume — the acute is a rise, the circumflex a rise-and-fall.';
+}
 
 function buildPronunciationPanel(entry) {
   const derived = derivePronunciation(entry);
@@ -1478,7 +1486,10 @@ function buildPronunciationPanel(entry) {
     .slice(0, 3)
     .map((note) => `<li>${escapeHtml(note)}</li>`)
     .join('\n                        ');
-  const rule = PRONUNCIATION_RULE_LINES[entry.pantheon] || '';
+  const rule =
+    entry.pantheon === 'greek' || entry.pantheon === 'greek-location'
+      ? greekRuleLine(entry)
+      : PRONUNCIATION_RULE_LINES[entry.pantheon] || '';
   const conventionalBadge = derived.conventional
     ? '<span class="pronunciation-conventional">Conventional reading</span>'
     : '';

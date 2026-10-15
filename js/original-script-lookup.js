@@ -804,7 +804,7 @@ const ORIGINAL_SCRIPT_LOOKUP = {
     "scriptLabel": "Original Script"
   },
   "sia": {
-    "originalScript": "𓋴𓂝",
+    "originalScript": "𓋴𓇌𓄿",
     "scriptName": "Hieroglyphs",
     "scriptLabel": "Original Script"
   },
