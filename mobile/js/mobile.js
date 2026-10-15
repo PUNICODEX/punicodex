@@ -113,7 +113,7 @@
     // Directory
     const dirSearch = document.getElementById('dir-search');
     const dirSearchClear = document.getElementById('dir-search-clear');
-    const dirPills = document.querySelectorAll('#dir-pills .pill');
+    const dirPillsNav = document.getElementById('dir-pills');
     const dirGrid = document.getElementById('dir-grid');
     const dirCount = document.getElementById('dir-count');
 
@@ -1515,6 +1515,27 @@
     //  DIRECTORY MODE
     // ═══════════════════════════════════════════════
 
+    // Category glyphs: use a visible base glyph for categories whose first
+    // character is invisible on its own (combining marks).
+    const DIR_PILL_GLYPH_OVERRIDE = { combining: '◌̈' };
+
+    function buildDirPills() {
+        const seen = new Set(['all']);
+        const frag = document.createDocumentFragment();
+        for (const c of UNICODE_DIR) {
+            if (seen.has(c.category)) continue;
+            seen.add(c.category);
+            const btn = document.createElement('button');
+            btn.className = 'pill';
+            btn.dataset.value = c.category;
+            const glyph = DIR_PILL_GLYPH_OVERRIDE[c.category] || c.char;
+            btn.textContent = `${glyph} ${c.categoryLabel}`;
+            frag.appendChild(btn);
+        }
+        dirPillsNav.appendChild(frag);
+    }
+    buildDirPills();
+
     function getDirectoryChars() {
         let chars = UNICODE_DIR;
         if (activeDirCategory !== 'all') {
@@ -1620,9 +1641,9 @@
         vibrate(5);
     });
 
-    dirPills.forEach(pill => {
+    dirPillsNav.querySelectorAll('.pill').forEach(pill => {
         pill.addEventListener('click', () => {
-            dirPills.forEach(p => p.classList.remove('active'));
+            dirPillsNav.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
             pill.classList.add('active');
             activeDirCategory = pill.dataset.value;
             renderDirectory();
