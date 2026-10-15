@@ -981,8 +981,18 @@ public class PunyKeyboardService extends InputMethodService {
 
     private void applyPaletteOpacity(View root, boolean opaque) {
         paletteOpaqueMode = opaque;
-        // Near-opaque by default (readability); fully transparent on toggle.
-        root.setBackgroundColor(opaque ? 0xF2080808 : 0x00000000);
+        // Near-opaque by default (readability); translucent on toggle so the
+        // app shows through for orientation while the surface stays readable.
+        root.setBackgroundColor(opaque ? 0xF2080808 : 0xA6080808);
+    }
+
+    // Icon-only controls carry no text label; a long press reveals a small
+    // toast naming the control so its purpose is discoverable.
+    private void labelOnLongPress(View v, String label) {
+        v.setOnLongClickListener(btn -> {
+            android.widget.Toast.makeText(this, label, android.widget.Toast.LENGTH_SHORT).show();
+            return true;
+        });
     }
 
     private void attachSimpleTouchListener(Button btn, Runnable action) {
@@ -2466,15 +2476,21 @@ public class PunyKeyboardService extends InputMethodService {
         // Drag the whole dialog from the header row; −/+ resize the grid.
         attachPaletteDragHandle(view.findViewById(R.id.palette_header));
         TextView shrinkBtn = view.findViewById(R.id.palette_shrink);
-        if (shrinkBtn != null) shrinkBtn.setOnClickListener(v -> resizePaletteGrid(-1));
+        if (shrinkBtn != null) {
+            shrinkBtn.setOnClickListener(v -> resizePaletteGrid(-1));
+            labelOnLongPress(shrinkBtn, "Shrink");
+        }
         TextView growBtn = view.findViewById(R.id.palette_grow);
-        if (growBtn != null) growBtn.setOnClickListener(v -> resizePaletteGrid(1));
+        if (growBtn != null) {
+            growBtn.setOnClickListener(v -> resizePaletteGrid(1));
+            labelOnLongPress(growBtn, "Enlarge");
+        }
         int savedHeightDp = getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE)
             .getInt(PREF_PALETTE_GRID_HEIGHT_DP, PALETTE_GRID_HEIGHT_DEFAULT_DP);
         applyPaletteGridHeight(view.findViewById(R.id.palette_grid_scroll), savedHeightDp);
 
-        // Opacity: default near-opaque for readability; the ◐ button toggles
-        // to fully transparent so the app shows through while dragging.
+        // Opacity: near-opaque by default for readability; the ◐ button
+        // switches to a translucent surface so the app shows through.
         boolean opaque = getSharedPreferences(KBD_PREFS_NAME, MODE_PRIVATE)
             .getBoolean(PREF_PALETTE_OPAQUE_BG, true);
         applyPaletteOpacity(view, opaque);
@@ -2489,6 +2505,7 @@ public class PunyKeyboardService extends InputMethodService {
                 opacityToggle.setText(next ? "◐" : "○");
                 hapticLight();
             });
+            labelOnLongPress(opacityToggle, "Transparency");
         }
 
         updatePuniKeyHighlight(true);

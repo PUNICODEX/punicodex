@@ -790,9 +790,16 @@
 
     function renderCompletions() {
         const key = typeKey(currentInput);
-        const completions = getCompletions(key, 5);
-        if (completions.length === 0 || !currentInput) {
+        if (!currentInput) {
             completionsList.innerHTML = '';
+            return;
+        }
+        const completions = getCompletions(key, 5);
+        if (completions.length === 0) {
+            // Genuine miss — say so instead of leaving the area blank.
+            completionsList.innerHTML = findExactMatch(key)
+                ? ''
+                : '<div class="completion-empty">No match found — check the spelling or try another pantheon</div>';
             return;
         }
         completionsList.innerHTML = completions.map((entry, i) => {
@@ -909,17 +916,21 @@
             resultLore.classList.add('hidden');
             return;
         }
-        let html = '<div class="result-lore-header">Flagship Lore</div>';
+        let sections = '';
         if (lore.summary) {
-            html += `<div class="result-lore-section"><div class="result-lore-title">Overview</div><p>${esc(lore.summary)}</p></div>`;
+            sections += `<div class="result-lore-section"><div class="result-lore-title">Overview</div><p>${esc(lore.summary)}</p></div>`;
         }
         if (lore.pronunciation && lore.pronunciation.guide) {
-            html += `<div class="result-lore-section"><div class="result-lore-title">Pronunciation</div><p>${esc(lore.pronunciation.guide)}</p></div>`;
+            sections += `<div class="result-lore-section"><div class="result-lore-title">Pronunciation</div><p>${esc(lore.pronunciation.guide)}</p></div>`;
         }
         if (lore.mythology && lore.mythology.summary) {
-            html += `<div class="result-lore-section"><div class="result-lore-title">Mythology</div><p>${esc(lore.mythology.summary)}</p></div>`;
+            sections += `<div class="result-lore-section"><div class="result-lore-title">Mythology</div><p>${esc(lore.mythology.summary)}</p></div>`;
         }
-        resultLore.innerHTML = html;
+        if (!sections) {
+            resultLore.classList.add('hidden');
+            return;
+        }
+        resultLore.innerHTML = '<div class="result-lore-header">Flagship Lore</div>' + sections;
         resultLore.classList.remove('hidden');
     }
 
@@ -1095,6 +1106,17 @@
         return text.split(/([\s\n\r]+|[.,!?;:"()[\]{}<>@#$%^&*+=_|~`\\/\-]+)/);
     }
 
+    // Ordinary English words that must never be offered as symbol conversions.
+    // (Directory keyword strings contain prose like "the", which previously
+    // matched the word "the" in a sentence and offered a fraction.)
+    const DIR_STOPWORDS = new Set([
+        'the', 'and', 'for', 'are', 'but', 'not', 'you', 'all', 'can', 'had', 'her',
+        'was', 'one', 'our', 'out', 'has', 'have', 'been', 'were', 'they', 'them',
+        'this', 'that', 'these', 'those', 'with', 'from', 'what', 'when', 'where',
+        'which', 'while', 'than', 'then', 'them', 'his', 'she', 'who', 'did', 'its',
+        'also', 'into', 'over', 'such', 'some', 'other', 'more', 'most', 'each',
+    ]);
+
     function findWordsToConvert(text) {
         const tokens = tokenizeWords(text);
         const matches = [];
@@ -1125,6 +1147,7 @@
                 const token = tokens[i];
                 if (!token || !/^[a-zA-Z]+$/.test(token)) continue;
                 const lower = token.toLowerCase();
+                if (lower.length < 3 || DIR_STOPWORDS.has(lower)) continue;
                 if (seen.has('dir:' + lower)) continue;
 
                 const dirMatch = UNICODE_DIR.find(c =>
@@ -1866,6 +1889,21 @@
     // ═══════════════════════════════════════════════
     //  INIT
     // ═══════════════════════════════════════════════
+
+    // Android hardware Back: dismiss the topmost overlay instead of exiting
+    // the app — detail sheet first, then onboarding, otherwise minimize.
+    const AppPlugin = typeof Capacitor !== 'undefined' && Capacitor.Plugins && Capacitor.Plugins.App;
+    if (AppPlugin && AppPlugin.addListener) {
+        AppPlugin.addListener('backButton', () => {
+            if (detailModal && !detailModal.classList.contains('hidden')) {
+                closeDetailModal();
+            } else if (onboardingOverlay && !onboardingOverlay.classList.contains('hidden')) {
+                closeOnboarding();
+            } else {
+                AppPlugin.minimizeApp();
+            }
+        });
+    }
 
     initAmbientCanvas();
     renderQuickRecents();
