@@ -2132,6 +2132,9 @@ public class PunyKeyboardService extends InputMethodService {
     }
 
     private boolean hasScholarlyVariants(LexiconEntry entry) {
+        // The variant popup also carries the original script, so an entry with a
+        // script but no spelling variants still earns the long-press.
+        if (entry.originalScript != null && !entry.originalScript.isEmpty()) return true;
         if (entry.variants == null || entry.variants.isEmpty()) return false;
         for (LexiconEntry.Variant v : entry.variants) {
             if (!"ascii".equals(v.type)) return true;
@@ -2226,6 +2229,15 @@ public class PunyKeyboardService extends InputMethodService {
                     color = 0xFF888888;
                     label = "Macron (LSJ)";
                     break;
+                case "original-script":
+                    // Label honesty is data-driven: "Original Script" only for
+                    // attested scripts; scriptless traditions read "Scholarly
+                    // Transliteration" (canonical rule — never mislabel).
+                    color = 0xFFB388FF;
+                    label = (entry.scriptLabel != null && !entry.scriptLabel.isEmpty())
+                            ? entry.scriptLabel
+                            : "Original Script";
+                    break;
                 default:
                     color = 0xFF888888;
                     label = form.type;
@@ -2244,6 +2256,10 @@ public class PunyKeyboardService extends InputMethodService {
                     note = v.note;
                     break;
                 }
+            }
+            if (note == null && "original-script".equals(form.type)
+                    && entry.scriptName != null && !entry.scriptName.isEmpty()) {
+                note = entry.scriptName;
             }
             if (note != null) {
                 TextView noteTv = new TextView(this);

@@ -104,7 +104,10 @@ public class SuggestionEngine {
         return categoryIndex.containsKey(name.toLowerCase());
     }
 
-    /** Return all displayable forms of an entry: ASCII, primary unicode + variants, sorted by preference. */
+    /**
+     * Return all displayable forms of an entry: ASCII, primary unicode + variants,
+     * plus the original script when one is attested. Sorted by preference.
+     */
     public List<Form> getEntryForms(LexiconEntry entry) {
         List<Form> forms = new ArrayList<>();
         forms.add(new Form(entry.ascii, entry.greek, "ascii"));
@@ -112,6 +115,18 @@ public class SuggestionEngine {
         for (LexiconEntry.Variant v : entry.getSortedVariants()) {
             if (!v.unicode.equals(entry.unicode)) {
                 forms.add(new Form(v.unicode, entry.greek, v.type));
+            }
+        }
+        // Original script (canonical resolution) — appended last, deduped against
+        // every spelling already listed. Label honesty travels with the entry:
+        // "Original Script" for attested scripts, "Scholarly Transliteration" otherwise.
+        if (entry.originalScript != null && !entry.originalScript.isEmpty()) {
+            boolean dup = false;
+            for (Form f : forms) {
+                if (f.unicode.equals(entry.originalScript)) { dup = true; break; }
+            }
+            if (!dup) {
+                forms.add(new Form(entry.originalScript, entry.greek, "original-script"));
             }
         }
         return forms;

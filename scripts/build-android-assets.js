@@ -21,11 +21,22 @@ if (!fs.existsSync(OUT_DIR)) {
 // Load lexicon
 const { LEXICON } = require(path.join(__dirname, '..', 'mobile', 'shared', 'lexicon.js'));
 
+// Canonical original-script resolution — the legacy `greek` field is reliable
+// only for Greek/Devanagari/CJK; elsewhere it is "—" or a transliteration.
+const {
+    getOriginalScript,
+    getOriginalScriptLabel,
+    getScriptName,
+} = require(path.join(__dirname, '..', 'type', 'js', 'original-scripts.js'));
+
 // Filter and slim lexicon for keyboard (keep fields needed for suggestions + variant display)
 const slimLexicon = LEXICON.map(e => ({
     ascii: e.ascii,
     unicode: e.unicode,
     greek: e.greek || "",
+    originalScript: getOriginalScript(e) || "",
+    scriptLabel: getOriginalScriptLabel(e),
+    scriptName: e.pantheon ? getScriptName(e) : "",
     pantheon: e.pantheon,
     tier: e.tier,
     id: e.id || e.ascii,

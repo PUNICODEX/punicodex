@@ -7,6 +7,9 @@ public class LexiconEntry {
     public final String ascii;
     public final String unicode;
     public final String greek;
+    public final String originalScript;
+    public final String scriptLabel;
+    public final String scriptName;
     public final String pantheon;
     public final String tier;
     public final String id;
@@ -24,10 +27,13 @@ public class LexiconEntry {
         }
     }
 
-    public LexiconEntry(String ascii, String unicode, String greek, String pantheon, String tier, String id, List<Variant> variants) {
+    public LexiconEntry(String ascii, String unicode, String greek, String originalScript, String scriptLabel, String scriptName, String pantheon, String tier, String id, List<Variant> variants) {
         this.ascii = ascii;
         this.unicode = unicode;
         this.greek = greek;
+        this.originalScript = originalScript;
+        this.scriptLabel = scriptLabel;
+        this.scriptName = scriptName;
         this.pantheon = pantheon;
         this.tier = tier;
         this.id = id;
