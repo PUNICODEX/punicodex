@@ -15,7 +15,7 @@
  * admin retry after failure does NOT resend the confirmation.
  */
 
-const { setStoreOrderStatus, resolveProduct, getStoreOrderById } = require('./store-orders');
+const { setStoreOrderStatus, resolveProduct, getStoreOrderById, artworkFileFor } = require('./store-orders');
 
 async function fulfillStoreOrder(order) {
   const { notifyStoreOrderConfirmation } = require('./email');
@@ -46,7 +46,14 @@ async function fulfillStoreOrder(order) {
         );
       }
       const { createAndConfirmOrder } = require('./printful-orders');
-      const result = await createAndConfirmOrder(order, syncVariantId);
+      // The chosen artwork (if any) overrides the sync variant's default
+      // print file — a Logomark order must not ship with the Mascot file.
+      const artFile = artworkFileFor(order.product_id, order.artwork_key);
+      const result = await createAndConfirmOrder(
+        order,
+        syncVariantId,
+        artFile ? [artFile] : undefined,
+      );
       fulfilled = setStoreOrderStatus(order.id, 'sent_to_fulfillment', {
         printfulOrderId: result.id,
         printfulStatus: result.status,

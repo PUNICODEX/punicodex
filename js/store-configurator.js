@@ -10,9 +10,13 @@
  *
  * Two preview modes:
  *  - overlay: garment kinds with a real mockup photo (placement != null and
- *    hasMockup). The mockup is the garment base; the chosen transparent art
- *    is layered on top at the placement geometry and the base is recoloured
- *    with a CSS filter per selected colour (INTERIM — see the CSS).
+ *    hasMockup). The stage base is the BLANK garment photo for the selected
+ *    colour (colors[].mockup from store/base-colors.json — square flat-lays
+ *    rendered by scripts/generate-store-base-mockups.js); the chosen
+ *    transparent art is layered on top at the placement geometry, so every
+ *    art × colour combination previews instantly from N+M assets. Colours
+ *    without a base mockup fall back to the composite photo with the interim
+ *    CSS-filter approximation (store-configurator.css).
  *  - swap: everything else. The stage image itself swaps per art chip
  *    (each art is a distinct image); colours still drive variant selection
  *    but do not recolour the preview.
@@ -125,10 +129,15 @@
   // ── Stage: art overlay or art swap ──
   var overlayImg = null;
   var tintLayer = null;
+  var hasBase = false; // stage currently shows a blank colour base (not the composite)
 
   function artByKey(key) {
     for (var i = 0; i < ARTS.length; i++) if (ARTS[i].key === key) return ARTS[i];
     return ARTS[0];
+  }
+  function colorEntry(name) {
+    for (var i = 0; i < COLORS.length; i++) if (COLORS[i].name === name) return COLORS[i];
+    return null;
   }
 
   function applyArt() {
@@ -146,10 +155,10 @@
         stageImg.parentNode.insertBefore(overlayImg, stageImg.nextSibling);
       }
       if (overlayImg.getAttribute('src') !== art.src) overlayImg.setAttribute('src', art.src);
-      // The base mockup already shows the default art printed on the garment;
-      // only show the live overlay for a NON-default choice (interim — P3
-      // base blanks replace this with true per-combo mockups).
-      overlayImg.style.display = art.key === data.defaultArtwork ? 'none' : '';
+      // On a blank base the overlay is the only print — always show it. On
+      // the composite mockup (colour without a base image) the default art
+      // is already printed on the garment, so hide the overlay for it.
+      overlayImg.style.display = !hasBase && art.key === data.defaultArtwork ? 'none' : '';
     } else if (stageImg) {
       if (stageImg.getAttribute('src') !== art.src) stageImg.setAttribute('src', art.src);
     }
@@ -160,43 +169,53 @@
     }
   }
 
-  // INTERIM recolor: CSS-filter approximations over the garment photo — see
-  // store-configurator.css for the full disclaimer.
   function applyColor() {
     var color = activeColor();
     if (MODE !== 'overlay' || !stageImg) return;
-    var hex = null;
-    for (var i = 0; i < COLORS.length; i++) {
-      if (COLORS[i].name === color) hex = COLORS[i].hex;
+    var entry = colorEntry(color);
+    var note = document.getElementById('colour-note');
+    if (note) {
+      note.textContent = color
+        ? `Shown in ${color} — the design prints the same on every colour.`
+        : data.colors && data.colors.length
+          ? `Shown in ${data.colors[0].name} — the design prints the same on every colour.`
+          : '';
     }
+
+    // Strip interim tint state — a real base mockup replaces it.
     stageImg.className = stageImg.className
       .split(/\s+/)
       .filter(function (c) {
         return c && c.indexOf('cfg-tint-') !== 0;
       })
       .join(' ');
-    if (tintLayer) tintLayer.parentNode.removeChild(tintLayer);
-    tintLayer = null;
-    var note = document.getElementById('colour-note');
-    if (!color) {
-      if (note && data.colors && data.colors.length) {
-        note.textContent = `Shown in ${data.colors[0].name} — the design prints the same on every colour.`;
+    if (tintLayer) {
+      tintLayer.parentNode.removeChild(tintLayer);
+      tintLayer = null;
+    }
+
+    var base = entry && entry.mockup ? entry.mockup : null;
+    if (base) {
+      hasBase = true;
+      if (stageImg.getAttribute('src') !== base) stageImg.setAttribute('src', base);
+    } else {
+      hasBase = false;
+      if (stageImg.getAttribute('src') !== data.stageSrc) stageImg.setAttribute('src', data.stageSrc);
+      // INTERIM fallback for colours with no base mockup: CSS-filter
+      // approximations over the composite photo (see the CSS disclaimer).
+      var hex = entry ? entry.hex : null;
+      var key = color ? color.toLowerCase() : '';
+      if (key === 'white') {
+        stageImg.className = (stageImg.className + ' cfg-tint-white').trim();
+      } else if (key && key !== 'black' && hex) {
+        tintLayer = document.createElement('div');
+        tintLayer.className = 'cfg-tint-mix';
+        tintLayer.setAttribute('aria-hidden', 'true');
+        tintLayer.style.background = hex;
+        stageImg.parentNode.insertBefore(tintLayer, stageImg.nextSibling);
       }
-      return;
     }
-    if (note) {
-      note.textContent = `Shown in ${color} — the design prints the same on every colour.`;
-    }
-    var key = color.toLowerCase();
-    if (key === 'white') {
-      stageImg.className = (stageImg.className + ' cfg-tint-white').trim();
-    } else if (key !== 'black' && hex) {
-      tintLayer = document.createElement('div');
-      tintLayer.className = 'cfg-tint-mix';
-      tintLayer.setAttribute('aria-hidden', 'true');
-      tintLayer.style.background = hex;
-      stageImg.parentNode.insertBefore(tintLayer, stageImg.nextSibling);
-    }
+    applyArt();
   }
 
   function applySizes() {

@@ -170,8 +170,13 @@ const RULES = [
     // page re-render. (generate-store-pages.js is added here because the
     // broad store rule above only matches scripts/*printful*.)
     pattern:
-      /^store\/products\.json$|^scripts\/generate-pod-products\.js$|^scripts\/printful-color-table\.js$|^scripts\/generate-store-pages\.js$|^js\/store-configurator/,
-    suites: ['Store Configurator Data Tests', 'Store Structure Tests'],
+      /^store\/products\.json$|^scripts\/generate-pod-products\.js$|^scripts\/printful-color-table\.js$|^scripts\/generate-store-pages\.js$|^js\/store-configurator|^css\/store-configurator|^store\/creative-artworks\.json$|^assets\/store-creatives\/|^assets\/store-base\/|^scripts\/sync-store-creatives\.js$|^scripts\/fetch-store-base-images\.js$|^platform\/api\/(store-orders|store-fulfillment|printful-orders)\.js$/,
+    suites: [
+      'Store Configurator Data Tests',
+      'Store Structure Tests',
+      'Store Creative Artworks Tests',
+      'Store Checkout Tests',
+    ],
   },
   {
     pattern: /^platform\/models\/authenticity|^platform\/edge\/authenticity|^extension-v2\//,

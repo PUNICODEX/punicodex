@@ -30,6 +30,59 @@ function generateOrderRef() {
 }
 
 /**
+ * Resolve the Printful print file for a chosen artwork. Returns
+ * { url, type } or null (null → the order prints with the sync variant's
+ * default file, i.e. the behaviour before artwork choice existed).
+ * 'creative:<id>' keys (P4 licensed temple creatives) are resolved from the
+ * committed creative-artworks index, not the product's brand arts.
+ */
+function artworkFileFor(productId, artworkKey) {
+  if (!artworkKey || typeof artworkKey !== 'string') return null;
+  const kind = String(productId).split('-').pop();
+  const fileType = kind === 'cap' ? 'embroidery_front' : 'default';
+
+  if (artworkKey.startsWith('creative:')) {
+    const creativeId = artworkKey.slice('creative:'.length);
+    const entry = creativeIndexEntry(productId, creativeId);
+    if (!entry || !entry.printUrl) return null;
+    return { url: entry.printUrl, type: fileType };
+  }
+
+  const entry = PRODUCT_CATALOG.products.find((p) => p.id === productId);
+  if (!entry) return null;
+  const art = (entry.artworks || []).find((a) => a.key === artworkKey);
+  if (!art) return null;
+  const png = String(art.src || '').replace(/\.webp$/, '.png');
+  if (!png.startsWith('/')) return null;
+  const MASTERS_BASE = process.env.PRINTFUL_MASTERS_BASE || 'https://punycodex-masters.vercel.app';
+  const url = png.startsWith('/sites/')
+    ? `${MASTERS_BASE}/${path.posix.basename(png)}`
+    : `https://punicodex.com${png}`;
+  return { url, type: fileType };
+}
+
+// P4 licensed-creatives index (store/creative-artworks.json, committed by
+// scripts/sync-store-creatives.js). { temple: { productId-unaware list } } —
+// entries carry the temple so a creative only fulfils on its own temple's
+// products.
+let CREATIVE_INDEX = null;
+function creativeIndex() {
+  if (CREATIVE_INDEX === null) {
+    try {
+      CREATIVE_INDEX = require(path.join(__dirname, '..', '..', 'store', 'creative-artworks.json'));
+    } catch {
+      CREATIVE_INDEX = {};
+    }
+  }
+  return CREATIVE_INDEX;
+}
+function creativeIndexEntry(productId, creativeId) {
+  const temple = String(productId).split('-')[0];
+  const list = creativeIndex()[temple] || [];
+  return list.find((c) => String(c.id) === String(creativeId)) || null;
+}
+
+/**
  * Resolve a purchasable product: static catalog entry, or a live creator
  * merch product (`creator-{id}`). Throws with `.status` for HTTP mapping.
  */
@@ -347,6 +400,7 @@ module.exports = {
   getStoreOrderBySessionId,
   getStoreOrderByPrintfulId,
   attachStripeSession,
+  artworkFileFor,
   markStoreOrderPaid,
   setStoreOrderStatus,
   estimateFeesCents,

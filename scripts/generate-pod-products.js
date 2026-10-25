@@ -18,7 +18,7 @@ const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
-const { hexForColor, isColorWord } = require(path.join(__dirname, 'printful-color-table.js'));
+const { hexForColor, isColorWord, normalizeColorName } = require(path.join(__dirname, 'printful-color-table.js'));
 
 function templeAssets(a) {
   const base = `/sites/${a.id}/assets/${a.id}`;
@@ -128,7 +128,31 @@ function buildArtworks(assets) {
     .map((k) => ({ key: k, label: ARTWORK_LABELS[k] || k, src: assets[k] }));
 }
 
-function buildColors(product, unknown) {
+// Blank-garment base mockups per kind+colour (scripts/fetch-store-base-images.js
+// or scripts/generate-store-base-mockups.js). Absent file → no mockup joins,
+// colours still render as chips and the configurator falls back to the
+// interim filter path.
+function loadBaseColors() {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'base-colors.json'), 'utf8'));
+  } catch {
+    return {};
+  }
+}
+const BASE_COLORS = loadBaseColors();
+
+// Licensed temple creatives (store/creative-artworks.json, committed by
+// scripts/sync-store-creatives.js). Absent file → no creative chips.
+function loadCreativeArtworks() {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'creative-artworks.json'), 'utf8'));
+  } catch {
+    return {};
+  }
+}
+const CREATIVE_ARTWORKS = loadCreativeArtworks();
+
+function buildColors(product, kind, unknown) {
   const names = new Set();
   for (const label of Object.keys(product.printfulVariants || {})) {
     if (label.includes(' / ')) {
@@ -137,17 +161,39 @@ function buildColors(product, unknown) {
       names.add(label);
     }
   }
+  const baseByName = new Map(
+    (BASE_COLORS[kind] || []).map((c) => [normalizeColorName(c.name), c]),
+  );
   return [...names].sort((a, b) => a.localeCompare(b, 'en')).map((name) => {
-    const hex = hexForColor(name);
+    const base = baseByName.get(normalizeColorName(name));
+    // The catalog color_code is Printful's own exact tone — it wins over the
+    // hand table; the table remains the fallback for names the base index
+    // doesn't carry.
+    const hex = (base && base.hex) || hexForColor(name);
     if (hex === null && unknown) unknown.add(name);
-    return { name, hex };
+    const out = { name, hex };
+    if (base && base.image) out.mockup = base.image;
+    return out;
   });
 }
 
 function decorateProduct(product) {
   const kind = product.id.split('-').pop();
   product.artworks = buildArtworks(product.assets);
-  product.colors = buildColors(product, decorateProduct.unknownColors);
+  // Licensed temple creatives (P4) join the art chips — the rights gate ran
+  // at sync time (approved + merch_consent + temple link), so anything in the
+  // index is safe to offer here.
+  const temple = product.temple || product.id.split('-').slice(0, -1).join('-');
+  for (const c of CREATIVE_ARTWORKS[temple] || []) {
+    product.artworks.push({
+      key: `creative:${c.id}`,
+      label: c.title,
+      src: c.src,
+      license: 'temple-creative',
+      creator: c.creator || undefined,
+    });
+  }
+  product.colors = buildColors(product, kind, decorateProduct.unknownColors);
   product.placement = PLACEMENTS[kind] && OVERLAY_KINDS.has(kind) ? { ...PLACEMENTS[kind] } : null;
 }
 

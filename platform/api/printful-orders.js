@@ -71,19 +71,25 @@ async function getOrderByExternalId(externalId) {
  * Create + confirm a Printful order for a paid store order.
  * @param {object} order — store_orders row (needs order_ref, quantity, shipping fields)
  * @param {number} syncVariantId — Printful sync variant to fulfill
+ * @param {Array<{url: string, type: string}>} [files] — per-art print file
+ *   override (artwork_key choice); omitted → the sync variant's default file
  * @returns {{ id: number, status: string }}
  */
-async function createAndConfirmOrder(order, syncVariantId) {
+async function createAndConfirmOrder(order, syncVariantId, files) {
   const recipient = toRecipient({ name: order.shipping_name, address: order.shipping_address });
   if (!recipient) {
     throw new Error('shipping address incomplete — cannot create Printful order');
+  }
+  const item = { sync_variant_id: syncVariantId, quantity: order.quantity };
+  if (Array.isArray(files) && files.length) {
+    item.files = files.map((f) => ({ type: f.type || 'default', url: f.url }));
   }
   let created;
   try {
     created = await api('POST', '/orders', {
       external_id: order.order_ref,
       recipient,
-      items: [{ sync_variant_id: syncVariantId, quantity: order.quantity }],
+      items: [item],
     });
   } catch (err) {
     // Duplicate external_id: a previous attempt created the order but the

@@ -106,9 +106,17 @@ async function main() {
     const colors = [];
     for (const [name, variant] of byColor) {
       try {
-        const image = await downloadVariantImage(variant, kind, name);
-        colors.push({ name, hex: variant.color_code || null, image });
-        console.log(`  ${kind} · ${name} → ${path.basename(image)}`);
+        const photo = await downloadVariantImage(variant, kind, name);
+        colors.push({
+          name,
+          hex: variant.color_code || null,
+          catalogVariantId: variant.id,
+          // Interim on-model catalog photo; scripts/generate-store-base-mockups.js
+          // renders the square flat-lay blank into `image` (the configurator
+          // base) — the PDP stage is square, so only `image` is wired in.
+          photo,
+        });
+        console.log(`  ${kind} · ${name} → ${path.basename(photo)}`);
       } catch (err) {
         console.error(`  ✗ ${kind} · ${name}: ${err.message}`);
       }

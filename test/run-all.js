@@ -77,6 +77,11 @@ const SUITES = [
     timeout: 60000,
   },
   {
+    name: 'Store Creative Artworks Tests',
+    cmd: 'node test/store-creative-artworks.test.js',
+    timeout: 60000,
+  },
+  {
     name: 'Newsletter Subscribe Tests',
     cmd: 'node test/newsletter-subscribe.test.js',
     timeout: 60000,

@@ -44,6 +44,10 @@ const DRY_RUN = args.includes('--dry-run');
 // P3 full-color expansion: --full-palette syncs the wide curated palette
 // (scripts/printful-palette.js) instead of the historic curated minimum.
 const FULL_PALETTE = args.includes('--full-palette');
+// Parallel rollout: --shard I/N processes only targets whose catalog index
+// mod N equals I. Each worker checkpoints independently; shards never touch
+// each other's products. Combined with --refresh for wide palette passes.
+const SHARD = argValue('--shard') ? argValue('--shard').split('/') .map(Number) : null;
 
 function argValue(flag) {
   const i = args.indexOf(flag);
@@ -97,16 +101,23 @@ function assetUrlFor(product, assetKey) {
 
 function loadState() {
   try {
-    return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+    return JSON.parse(fs.readFileSync(stateFile(), 'utf8'));
   } catch {
     return { uploadedFiles: {}, done: {}, catalog: {} };
   }
 }
 
 function saveState(state) {
-  const tmp = `${STATE_FILE}.tmp`;
+  const tmp = `${stateFile()}.tmp`;
   fs.writeFileSync(tmp, JSON.stringify(state, null, 2));
-  fs.renameSync(tmp, STATE_FILE);
+  fs.renameSync(tmp, stateFile());
+}
+
+// Sharded workers keep independent checkpoints (see --shard): concurrent
+// writes to one shared file would lose each other's done-markers.
+function stateFile() {
+  const shard = argValue('--shard');
+  return shard ? STATE_FILE.replace(/\.json$/, `.shard-${shard.replace('/', '-')}.json`) : STATE_FILE;
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -286,14 +297,116 @@ async function refreshProduct(state, product, catalogList) {
   return product.printfulProductId;
 }
 
+/**
+ * Fast palette refresh (P3): ONE PUT per changed product, no per-product GET.
+ *
+ * products.json already carries every sync variant id from the last backfill
+ * (printfulVariants: label → syncId — the same map checkout fulfils from), so
+ * the refresh can be assembled locally:
+ *   - kept variants   → { id: syncId }            (price/files untouched —
+ *                                                    {id}-only entries are
+ *                                                    server-side no-ops, ~1s)
+ *   - added variants  → { variant_id, retail_price, files }
+ *   - omitted variants are REMOVED (PUT is a wholesale replace)
+ * Products whose local variant labels already equal the wanted palette are
+ * skipped entirely (zero requests). Products with fallback (synthetic) ids
+ * fall back to the GET-based refreshProduct.
+ */
+async function fastRefreshProduct(state, product, wantedByKind, catalogList) {
+  const kind = product.kind;
+  const wanted = wantedByKind.get(kind);
+  if (!wanted) throw new Error(`no local palette for kind "${kind}"`);
+
+  const current = product.printfulVariants || {};
+  const currentLabels = new Set(Object.keys(current));
+  // Fallback variants carry synthetic ids in [900M, 1B); real Printful sync
+  // ids are larger (10-digit). Synthetic-id products need the GET-based path.
+  const fakeIds = Object.values(current).some(
+    (id) => Number(id) >= 900_000_000 && Number(id) < 1_000_000_000,
+  );
+  if (fakeIds || !currentLabels.size) {
+    return refreshProduct(state, product, catalogList); // GET-based, re-resolves catalog id
+  }
+  if (!state.force) {
+    let same = currentLabels.size === wanted.size;
+    if (same) for (const label of wanted.keys()) if (!currentLabels.has(label)) { same = false; break; }
+    if (same) return 'unchanged';
+  }
+
+  const byArea = new Map();
+  for (const pl of product.design.placements) byArea.set(pl.area, pl.asset);
+  const files = [];
+  for (const [area, assetKey] of byArea) {
+    const url = assetUrlFor(product, assetKey);
+    if (!url) throw new Error(`print master missing for ${product.id}: ${assetKey}`);
+    files.push({ type: area === 'back' ? 'back' : KIND_FRONT_FILE_TYPE[kind] || 'default', url });
+  }
+
+  const added = [];
+  const kept = [];
+  for (const [label, catalogVariant] of wanted) {
+    if (current[label] != null) kept.push({ id: current[label] });
+    else {
+      added.push({
+        variant_id: catalogVariant.id,
+        retail_price: product.price.toFixed(2),
+        files,
+        ...(KIND_OPTIONS[kind] ? { options: KIND_OPTIONS[kind] } : {}),
+      });
+    }
+  }
+
+  const body = {
+    sync_product: { name: product.name, external_id: product.id },
+    sync_variants: [...kept, ...added],
+  };
+  const t0 = Date.now();
+  try {
+    await api('PUT', `/store/products/${product.printfulProductId}`, body);
+  } catch (err) {
+    if (!/Incorrect file type/.test(err.message) || files.length < 2) throw err;
+    body.sync_variants = body.sync_variants.map((v) =>
+      v.variant_id ? { ...v, files: [files[0]] } : v,
+    );
+    await api('PUT', `/store/products/${product.printfulProductId}`, body);
+  }
+  const ms = Date.now() - t0;
+  console.log(
+    `  ${product.id}: kept ${kept.length}, added ${added.length} (${ms}ms)${ms > 10000 ? ' — slow' : ''}`,
+  );
+  return product.printfulProductId;
+}
+
+/** Fetch the wanted palette per kind once (13 GETs) as label → catalog variant. */
+async function wantedPalettes() {
+  const { variantLabel } = require('./build-variant-pricing');
+  const { paletteVariants } = require('./printful-palette');
+  const map = new Map();
+  for (const [kind, catalogId] of Object.entries(KIND_CATALOG)) {
+    const detail = await api('GET', `/products/${catalogId.id}`);
+    const byLabel = new Map();
+    for (const v of paletteVariants(detail.variants || [], kind)) {
+      byLabel.set(variantLabel(v), v);
+    }
+    map.set(kind, byLabel);
+  }
+  return map;
+}
+
 async function main() {
   const catalog = JSON.parse(fs.readFileSync(CATALOG_FILE, 'utf8'));
   const state = loadState();
   const REFRESH = args.includes('--refresh');
+  const FAST_REFRESH = args.includes('--fast-refresh');
+  state.force = args.includes('--force');
 
-  let pending = REFRESH
+  let pending = REFRESH || FAST_REFRESH
     ? catalog.products.filter((p) => p.printfulProductId)
     : catalog.products.filter((p) => !p.printfulProductId && !state.done[p.id]);
+  if (SHARD) {
+    const [i, n] = SHARD;
+    pending = pending.filter((_, idx) => idx % n === i);
+  }
   if (ONLY) pending = pending.filter((p) => (p.temple || 'punicodex') === ONLY);
   if (KINDS) pending = pending.filter((p) => KINDS.includes(p.id.split('-').pop()));
   if (LIMIT) pending = pending.slice(0, LIMIT);
@@ -315,11 +428,47 @@ async function main() {
   const catalogList = await api('GET', '/products');
   console.log(`Printful catalog: ${catalogList.length} base products available.`);
 
+  let wantedByKind = null;
+  if (FAST_REFRESH) {
+    wantedByKind = await wantedPalettes();
+    // Skip products this campaign already refreshed — their local variant
+    // map is stale (backfill reconciles it later) and re-adding wanted
+    // variants would duplicate the ones already added at Printful.
+    const refreshed = new Set(Object.keys(state.done || {}));
+    for (const f of fs.readdirSync(path.join(ROOT, 'session-debug'))) {
+      const m = f.match(/^printful-sync-state\.shard-[\d-]+\.json$/);
+      if (!m) continue;
+      try {
+        for (const id of Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, 'session-debug', f), 'utf8')).done || {})) {
+          refreshed.add(id);
+        }
+      } catch { /* unreadable shard state — ignore */ }
+    }
+    const before = pending.length;
+    pending = pending.filter((p) => !refreshed.has(p.id));
+    console.log(`Fast refresh: local palettes resolved — 1 PUT per changed product, unchanged skipped; ${before - pending.length} already refreshed this campaign.`);
+  }
+
   let done = 0;
+  let skipped = 0;
   for (const product of pending) {
     const kind = product.id.split('-').pop();
     product.kind = kind; // used by syncProduct/refreshProduct
     try {
+      if (FAST_REFRESH) {
+        const result = await fastRefreshProduct(state, product, wantedByKind, catalogList);
+        if (result === 'unchanged') {
+          skipped++;
+          state.done[product.id] = true;
+          saveState(state);
+          continue;
+        }
+        state.done[product.id] = true;
+        saveState(state);
+        done++;
+        if (done % 25 === 0) console.log(`  … ${done} refreshed, ${skipped} unchanged (${done + skipped}/${pending.length})`);
+        continue;
+      }
       const printfulId = REFRESH
         ? await refreshProduct(state, product, catalogList)
         : await syncProduct(state, product, catalogList);
@@ -336,7 +485,7 @@ async function main() {
     }
   }
   flushCatalog(catalog);
-  console.log(`Done: ${done} product(s) ${REFRESH ? 'refreshed' : 'synced'}, catalog updated.`);
+  console.log(`Done: ${done} product(s) ${REFRESH || FAST_REFRESH ? 'refreshed' : 'synced'}${FAST_REFRESH ? `, ${skipped} already matching` : ''}, catalog updated.`);
 }
 
 function flushCatalog(catalog) {
