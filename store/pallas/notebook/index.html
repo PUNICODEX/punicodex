@@ -230,6 +230,7 @@ a:hover{color:var(--gold-bright)}
     </div>
     <script src="/js/px-core.js?v=perf21" defer></script>
     <script src="/js/main.js?v=perf12" defer></script>
+<link rel="stylesheet" href="/css/store-configurator.css?v=af83704a04">
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/pallas/">Pállas</a> · <span style="color:var(--gold)">Notebook</span></div>
 <div class="wrap pdp">
   <div><div class="stage"><img id="stage-img" src="/sites/pallas/assets/pallas_mascot.webp" alt="Pállas Temple Notebook" width="1024" height="1536" fetchpriority="high" decoding="async"></div></div>
@@ -238,6 +239,8 @@ a:hover{color:var(--gold-bright)}
     <h1>Pállas Temple Notebook</h1>
     <p style="color:var(--dim)">The Pállas lockup on the cover, the seal at the spine. A5 dotted journal.</p>
     <div class="price" id="pdp-price">$18.00</div>
+    <div id="cfg-mount" hidden></div>
+    <script type="application/json" id="cfg-data">{"productId":"pallas-notebook","productName":"Pállas Temple Notebook","kind":"notebook","stageSrc":"/sites/pallas/assets/pallas_mascot.webp","hasMockup":false,"defaultArtwork":"compNotebook","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/pallas/assets/pallas_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/pallas/assets/pallas_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/pallas/assets/pallas_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
     
     
     <div class="opt-group">
@@ -305,7 +308,12 @@ a:hover{color:var(--gold-bright)}
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: "pallas-notebook", variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({
+          productId: "pallas-notebook",
+          variantLabel: currentLabel(),
+          quantity: qty,
+          artworkKey: window.storeConfigurator ? window.storeConfigurator.selection.artworkKey : undefined
+        })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));
@@ -317,6 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
+<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

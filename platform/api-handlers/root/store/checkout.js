@@ -1,8 +1,12 @@
 /**
  * /api/store/checkout — create a Stripe checkout session for a merch order.
  *
- * POST { productId, variantLabel?, quantity?, email? }
+ * POST { productId, variantLabel?, quantity?, email?, artworkKey? }
  *   → { sessionUrl, sessionId, orderRef }
+ *
+ * artworkKey is the configurator's chosen art (mascot/logomark/…); it is
+ * validated against the catalog entry and recorded on the order + Stripe
+ * metadata as fulfillment intent (per-art printfiles land in P3).
  *
  * Rate-limited with the stricter public bucket (Stripe outbound work), same
  * pattern as the patrons checkout. The store_orders migration is idempotent
@@ -51,9 +55,15 @@ module.exports = async (req, res) => {
 
   try {
     if (!(await checkCheckoutRateLimit(req, res))) return;
-    const { productId, variantLabel, quantity, email } = req.body || {};
+    const { productId, variantLabel, quantity, email, artworkKey } = req.body || {};
 
-    const { order, product } = createStoreOrder({ productId, variantLabel, quantity, email });
+    const { order, product } = createStoreOrder({
+      productId,
+      variantLabel,
+      quantity,
+      email,
+      artworkKey,
+    });
     const session = await createStoreCheckoutSession({ order, product });
     attachStripeSession(order.id, session.sessionId);
 

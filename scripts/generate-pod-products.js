@@ -18,6 +18,7 @@ const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
 const { ARCHETYPES } = require(path.join(ROOT, 'js', 'archetypes-v2.js'));
+const { hexForColor, isColorWord } = require(path.join(__dirname, 'printful-color-table.js'));
 
 function templeAssets(a) {
   const base = `/sites/${a.id}/assets/${a.id}`;
@@ -85,6 +86,69 @@ function fallbackVariantId(productId, i) {
   let h = 0;
   for (const c of productId) h = (h * 31 + c.charCodeAt(0)) >>> 0;
   return 900_000_000 + ((h + i) % 99_000_000);
+}
+
+// ─── Configurator decorations (artworks / colors / placement) ───
+// The Reliquary PDP configurator (js/store-configurator.js) is data-driven off
+// these fields. artworks lists the transparent brand arts a buyer can choose
+// between (print-only `_comp-` composites are excluded — they are pre-baked
+// print masters, not choosable overlay art). colors derives from the variant
+// map the same way the PDP always has (slash labels + bare color words) and
+// joins the Printful color table for hex chips. placement is per-kind garment
+// geometry for the live mockup overlay; object kinds get null and the
+// configurator falls back to art-swap preview.
+
+const OVERLAY_KINDS = new Set(['tee', 'hoodie', 'crewneck', 'cap', 'tote']);
+
+// widthPct/topPct/leftPct position the art overlay on the garment base image
+// (percent of stage width/height; leftPct 50 = centred, translateX(-50%)).
+const PLACEMENTS = {
+  tee: { area: 'front', widthPct: 38, topPct: 28, leftPct: 50 },
+  hoodie: { area: 'front', widthPct: 18, topPct: 27, leftPct: 34 },
+  crewneck: { area: 'front', widthPct: 42, topPct: 30, leftPct: 50 },
+  cap: { area: 'front', widthPct: 24, topPct: 34, leftPct: 50 },
+  tote: { area: 'front', widthPct: 46, topPct: 26, leftPct: 50 },
+};
+
+const ARTWORK_LABELS = {
+  mascot: 'Mascot',
+  logomark: 'Logomark',
+  logolockup: 'Logo lockup',
+  wordmark: 'Wordmark',
+  wordmarkSolid: 'Wordmark (solid)',
+  emblem: 'Emblem',
+  glyph: 'Glyph',
+  lockupH: 'Lockup (horizontal)',
+  lockupS: 'Lockup (stacked)',
+};
+
+function buildArtworks(assets) {
+  return Object.keys(assets)
+    .filter((k) => !k.startsWith('comp'))
+    .map((k) => ({ key: k, label: ARTWORK_LABELS[k] || k, src: assets[k] }));
+}
+
+function buildColors(product, unknown) {
+  const names = new Set();
+  for (const label of Object.keys(product.printfulVariants || {})) {
+    if (label.includes(' / ')) {
+      names.add(label.split(' / ')[0]);
+    } else if (isColorWord(label)) {
+      names.add(label);
+    }
+  }
+  return [...names].sort((a, b) => a.localeCompare(b, 'en')).map((name) => {
+    const hex = hexForColor(name);
+    if (hex === null && unknown) unknown.add(name);
+    return { name, hex };
+  });
+}
+
+function decorateProduct(product) {
+  const kind = product.id.split('-').pop();
+  product.artworks = buildArtworks(product.assets);
+  product.colors = buildColors(product, decorateProduct.unknownColors);
+  product.placement = PLACEMENTS[kind] && OVERLAY_KINDS.has(kind) ? { ...PLACEMENTS[kind] } : null;
 }
 
 function applyFallbackVariants(product) {
@@ -398,6 +462,7 @@ function main() {
   }
 
   const products = [];
+  decorateProduct.unknownColors = new Set();
   for (const a of ARCHETYPES) {
     if (a.built === false) continue;
     const assets = templeAssets(a);
@@ -421,6 +486,7 @@ function main() {
         ...preserved.get(id),
       };
       applyFallbackVariants(product);
+      decorateProduct(product);
       products.push(product);
     }
   }
@@ -442,7 +508,17 @@ function main() {
       ...preserved.get(id),
     };
     applyFallbackVariants(product);
+    decorateProduct(product);
     products.push(product);
+  }
+
+  // Unknown Printful color names are a first-class result (hex null → neutral
+  // chip swatch), but they deserve a generation-time summary so the table can
+  // be extended on the next backfill wave. Never fails the build.
+  if (decorateProduct.unknownColors.size) {
+    console.log(
+      `POD configurator colors without a hex entry: ${[...decorateProduct.unknownColors].sort().join(', ')}`
+    );
   }
 
   const out = {

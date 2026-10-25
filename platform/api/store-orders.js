@@ -88,6 +88,7 @@ function resolveProduct(productId) {
     variantLabels,
     variantMap: entry.printfulVariants || {},
     variantPricing: entry.variantPricing || null,
+    artworkKeys: (entry.artworks || []).map((a) => a.key),
     requiresVariant: variantLabels.length > 1,
   };
 }
@@ -122,9 +123,27 @@ function validateOrder({ product, variantLabel, quantity }) {
   return { quantity: qty, variantLabel: label };
 }
 
-function createStoreOrder({ productId, variantLabel, quantity, email }) {
+function validateArtwork(product, artworkKey) {
+  if (artworkKey === undefined || artworkKey === null || artworkKey === '') return null;
+  if (typeof artworkKey !== 'string') {
+    const err = new Error('artworkKey must be a string');
+    err.status = 400;
+    throw err;
+  }
+  // Products without artworks data (older catalog entries, test fixtures)
+  // accept any key; catalog products constrain to their real artworks.
+  if (product.artworkKeys?.length && !product.artworkKeys.includes(artworkKey)) {
+    const err = new Error(`artworkKey must be one of: ${product.artworkKeys.join(', ')}`);
+    err.status = 400;
+    throw err;
+  }
+  return artworkKey;
+}
+
+function createStoreOrder({ productId, variantLabel, quantity, email, artworkKey }) {
   const product = resolveProduct(productId);
   const validated = validateOrder({ product, variantLabel, quantity });
+  const validatedArtwork = validateArtwork(product, artworkKey);
   const unitPriceCents = unitPriceFor(product, validated.variantLabel);
   const grossCents = unitPriceCents * validated.quantity;
   const ref = generateOrderRef();
@@ -134,8 +153,8 @@ function createStoreOrder({ productId, variantLabel, quantity, email }) {
       `INSERT INTO store_orders
         (order_ref, product_id, product_name, variant_label, quantity,
          unit_price_cents, gross_cents, base_cents, customer_email,
-         creator_product_id, status)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending_payment')`
+         creator_product_id, artwork_key, status)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending_payment')`
     )
     .run(
       ref,
@@ -147,7 +166,8 @@ function createStoreOrder({ productId, variantLabel, quantity, email }) {
       grossCents,
       product.baseCents,
       email || null,
-      product.creatorProductId
+      product.creatorProductId,
+      validatedArtwork
     );
   const order = db.prepare('SELECT * FROM store_orders WHERE id = ?').get(result.lastInsertRowid);
   return { order, product: { ...product, unitPriceCents } };

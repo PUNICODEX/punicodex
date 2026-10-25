@@ -230,6 +230,7 @@ a:hover{color:var(--gold-bright)}
     </div>
     <script src="/js/px-core.js?v=perf21" defer></script>
     <script src="/js/main.js?v=perf12" defer></script>
+<link rel="stylesheet" href="/css/store-configurator.css?v=af83704a04">
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/odysseus/">Odysseús</a> · <span style="color:var(--gold)">Enamel Pin</span></div>
 <div class="wrap pdp">
   <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/odysseus-pin.jpg" alt="Odysseús Seal Enamel Pin" width="1000" height="1000" fetchpriority="high" decoding="async"></div></div>
@@ -238,6 +239,8 @@ a:hover{color:var(--gold-bright)}
     <h1>Odysseús Seal Enamel Pin</h1>
     <p style="color:var(--dim)">The Odysseús temple mark as a hard enamel pin, gold on obsidian — reads at 25 mm.</p>
     <div class="price" id="pdp-price">from $12.00</div>
+    <div id="cfg-mount" hidden></div>
+    <script type="application/json" id="cfg-data">{"productId":"odysseus-pin","productName":"Odysseús Seal Enamel Pin","kind":"pin","stageSrc":"https://punycodex-masters.vercel.app/mockups/odysseus-pin.jpg","hasMockup":true,"defaultArtwork":"logomark","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/odysseus/assets/odysseus_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/odysseus/assets/odysseus_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/odysseus/assets/odysseus_logolockup.webp"}],"colors":[{"name":"White","hex":"#f5f2ea"}],"placement":null,"labels":["White / 1.25″","White / 2.25″"]}</script>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="1.25″">1.25″</button><button class="opt" data-s="2.25″">2.25″</button></div></div>
     <div class="opt-group">
@@ -305,7 +308,12 @@ a:hover{color:var(--gold-bright)}
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: "odysseus-pin", variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({
+          productId: "odysseus-pin",
+          variantLabel: currentLabel(),
+          quantity: qty,
+          artworkKey: window.storeConfigurator ? window.storeConfigurator.selection.artworkKey : undefined
+        })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));
@@ -317,6 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
+<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

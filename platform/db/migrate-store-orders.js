@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS store_orders (
   tracking_url TEXT,
   carrier TEXT,
   error TEXT,
+  artwork_key TEXT,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -55,6 +56,12 @@ CREATE INDEX IF NOT EXISTS idx_store_orders_printful ON store_orders(printful_or
 
 function migrate(db) {
   db.exec(STORE_ORDERS_SCHEMA);
+  // Column added after the table first shipped — ALTER-guard so existing
+  // databases (local dev, ephemeral /tmp on Vercel) pick it up idempotently.
+  const cols = db.prepare('PRAGMA table_info(store_orders)').all();
+  if (!cols.some((c) => c.name === 'artwork_key')) {
+    db.exec('ALTER TABLE store_orders ADD COLUMN artwork_key TEXT');
+  }
 }
 
 function runStandalone() {

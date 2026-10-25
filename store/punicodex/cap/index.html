@@ -230,14 +230,17 @@ a:hover{color:var(--gold-bright)}
     </div>
     <script src="/js/px-core.js?v=perf21" defer></script>
     <script src="/js/main.js?v=perf12" defer></script>
+<link rel="stylesheet" href="/css/store-configurator.css?v=af83704a04">
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/punicodex/">PuniCodex</a> · <span style="color:var(--gold)">Cap</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/punicodex-cap.jpg" alt="PuniCodex Glyph Cap" width="1000" height="1000" fetchpriority="high" decoding="async"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/punicodex-cap.jpg" alt="PuniCodex Glyph Cap" width="1000" height="1000" fetchpriority="high" decoding="async"></div><p id="colour-note" style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Cap</span> <span class="pill">PuniCodex</span>
     <h1>PuniCodex Glyph Cap</h1>
     <p style="color:var(--dim)">Six-panel cap, the gold glyph embroidered front and centre.</p>
     <div class="price" id="pdp-price">$26.00</div>
+    <div id="cfg-mount" hidden></div>
+    <script type="application/json" id="cfg-data">{"productId":"punicodex-cap","productName":"PuniCodex Glyph Cap","kind":"cap","stageSrc":"https://punycodex-masters.vercel.app/mockups/punicodex-cap.jpg","hasMockup":true,"defaultArtwork":"glyph","artworks":[{"key":"wordmark","label":"Wordmark","src":"/assets/brand/01-logos/punicodex-wordmark-camel-gold.webp"},{"key":"wordmarkSolid","label":"Wordmark (solid)","src":"/assets/brand/01-logos/punicodex-wordmark-gold-solid.webp"},{"key":"emblem","label":"Emblem","src":"/assets/brand/01-logos/punicodex-emblem-gold.webp"},{"key":"glyph","label":"Glyph","src":"/assets/brand/01-logos/punicodex-emblem-glyph-gold.webp"},{"key":"lockupH","label":"Lockup (horizontal)","src":"/assets/brand/01-logos/punicodex-lockup-horizontal-gold.webp"},{"key":"lockupS","label":"Lockup (stacked)","src":"/assets/brand/01-logos/punicodex-lockup-stacked-gold.webp"}],"colors":[{"name":"Black","hex":"#1a1a1a"},{"name":"White","hex":"#f5f2ea"}],"placement":{"area":"front","widthPct":24,"topPct":34,"leftPct":50},"labels":["Black","White"]}</script>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -305,7 +308,12 @@ a:hover{color:var(--gold-bright)}
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: "punicodex-cap", variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({
+          productId: "punicodex-cap",
+          variantLabel: currentLabel(),
+          quantity: qty,
+          artworkKey: window.storeConfigurator ? window.storeConfigurator.selection.artworkKey : undefined
+        })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));
@@ -317,6 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
+<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

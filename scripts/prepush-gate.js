@@ -166,6 +166,14 @@ const RULES = [
     ],
   },
   {
+    // Configurator data + PDP template: products.json shape and every store
+    // page re-render. (generate-store-pages.js is added here because the
+    // broad store rule above only matches scripts/*printful*.)
+    pattern:
+      /^store\/products\.json$|^scripts\/generate-pod-products\.js$|^scripts\/printful-color-table\.js$|^scripts\/generate-store-pages\.js$|^js\/store-configurator/,
+    suites: ['Store Configurator Data Tests', 'Store Structure Tests'],
+  },
+  {
     pattern: /^platform\/models\/authenticity|^platform\/edge\/authenticity|^extension-v2\//,
     suites: [
       'Authenticity Service Tests',

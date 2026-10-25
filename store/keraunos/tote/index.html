@@ -230,14 +230,17 @@ a:hover{color:var(--gold-bright)}
     </div>
     <script src="/js/px-core.js?v=perf21" defer></script>
     <script src="/js/main.js?v=perf12" defer></script>
+<link rel="stylesheet" href="/css/store-configurator.css?v=af83704a04">
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/keraunos/">Keraunós</a> · <span style="color:var(--gold)">Tote</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/keraunos-tote.jpg" alt="Keraunós Temple Tote" width="1000" height="1000" fetchpriority="high" decoding="async"></div><p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/keraunos-tote.jpg" alt="Keraunós Temple Tote" width="1000" height="1000" fetchpriority="high" decoding="async"></div><p id="colour-note" style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Tote</span> <span class="pill">Keraunós</span>
     <h1>Keraunós Temple Tote</h1>
     <p style="color:var(--dim)">The Keraunós lockup large, the deity tagged below. Heavy canvas carry-all.</p>
     <div class="price" id="pdp-price">$26.00</div>
+    <div id="cfg-mount" hidden></div>
+    <script type="application/json" id="cfg-data">{"productId":"keraunos-tote","productName":"Keraunós Temple Tote","kind":"tote","stageSrc":"https://punycodex-masters.vercel.app/mockups/keraunos-tote.jpg","hasMockup":true,"defaultArtwork":"compTote","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/keraunos/assets/keraunos_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/keraunos/assets/keraunos_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/keraunos/assets/keraunos_logolockup.webp"}],"colors":[{"name":"Black","hex":"#1a1a1a"},{"name":"Camel","hex":"#b8956a"},{"name":"White","hex":"#f5f2ea"}],"placement":{"area":"front","widthPct":46,"topPct":26,"leftPct":50},"labels":["Black","Camel","White"]}</script>
     <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="Camel">Camel</button><button class="opt" data-c="White">White</button></div></div>
     
     <div class="opt-group">
@@ -305,7 +308,12 @@ a:hover{color:var(--gold-bright)}
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: "keraunos-tote", variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({
+          productId: "keraunos-tote",
+          variantLabel: currentLabel(),
+          quantity: qty,
+          artworkKey: window.storeConfigurator ? window.storeConfigurator.selection.artworkKey : undefined
+        })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));
@@ -317,6 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
+<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

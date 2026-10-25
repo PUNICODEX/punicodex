@@ -24,6 +24,9 @@ const LORE = require(path.join(ROOT, 'scripts', 'lore-catalog.json'));
 const { fullNavHtml } = require('./sync-desktop-nav.js');
 const { menuForPage } = require('./sync-mobile-menu.js');
 const { footerHtml } = require('./sync-footer.js');
+// Single source for bare-label color detection (historic COLOR_WORDS set),
+// shared with the products.json colors derivation in generate-pod-products.js.
+const { COLOR_WORDS } = require('./printful-color-table.js');
 
 const KIND_ORDER = [
   'tee',
@@ -173,10 +176,6 @@ function kindLabel(kind) {
 // Split a Printful variant label into colour/size dimensions.
 function parseVariants(product) {
   const labels = Object.keys(product.printfulVariants || {});
-  const COLOR_WORDS = new Set([
-    'white', 'black', 'camel', 'navy', 'red', 'royal', 'heather', 'charcoal',
-    'grey', 'gray', 'glossy', 'clear', 'natural', 'forest', 'maroon', 'gold',
-  ]);
   const colors = new Set();
   const sizes = new Set();
   for (const label of labels) {
@@ -730,8 +729,26 @@ function renderProduct(id, kind, product) {
   }
   const colourNote =
     v.colors.length > 1
-      ? `<p style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p>`
+      ? `<p id="colour-note" style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in ${v.colors[0]} — the design prints the same on every colour.</p>`
       : '';
+
+  // ── Configurator payload (js/store-configurator.js) ──
+  // The mount point stays `hidden` without JS; the base colour/size buttons
+  // remain the no-JS purchase path. JSON is `<`-escaped so no src can break
+  // out of the script element.
+  const cfgData = {
+    productId: product.id,
+    productName: product.name,
+    kind,
+    stageSrc: stageImg,
+    hasMockup: Boolean(product.mockupImage),
+    defaultArtwork: product.design.placements[0] ? product.design.placements[0].asset : null,
+    artworks: product.artworks || [],
+    colors: product.colors || [],
+    placement: product.placement || null,
+    labels: v.labels,
+  };
+  const cfgJson = JSON.stringify(cfgData).replace(/</g, '\\u003c');
 
   return `${head({
     title: `${product.name} | PUNICODEX Reliquary`,
@@ -743,6 +760,7 @@ function renderProduct(id, kind, product) {
     imageHeight: stageDims[1],
     css: `.pdp .stage{aspect-ratio:${stageDims[0]} / ${stageDims[1]}}`,
   })}
+<link rel="stylesheet" href="/css/store-configurator.css?v=af83704a04">
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/${id}/">${esc(meta.name)}</a> · <span style="color:var(--gold)">${esc(kindLabel(kind))}</span></div>
 <div class="wrap pdp">
   <div><div class="stage"><img id="stage-img" src="${esc(stageImg)}" alt="${esc(product.name)}" width="${stageDims[0]}" height="${stageDims[1]}" fetchpriority="high" decoding="async"></div>${colourNote}</div>
@@ -751,6 +769,8 @@ function renderProduct(id, kind, product) {
     <h1>${esc(product.name)}</h1>
     <p style="color:var(--dim)">${esc(product.blurb)}</p>
     <div class="price"${bakedPrices ? ' id="pdp-price"' : ''}>${fromCents ? `from ${money(fromCents / 100)}` : money(product.price)}</div>
+    <div id="cfg-mount" hidden></div>
+    <script type="application/json" id="cfg-data">${cfgJson}</script>
     ${colorBlock}
     ${sizeBlock}
     <div class="opt-group">
@@ -823,7 +843,12 @@ ${breadcrumbScript([
       var res = await fetch('/api/store/checkout/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: ${JSON.stringify(product.id)}, variantLabel: currentLabel(), quantity: qty })
+        body: JSON.stringify({
+          productId: ${JSON.stringify(product.id)},
+          variantLabel: currentLabel(),
+          quantity: qty,
+          artworkKey: window.storeConfigurator ? window.storeConfigurator.selection.artworkKey : undefined
+        })
       });
       var json = await res.json().catch(function(){ return {}; });
       if (!res.ok) throw new Error(json.error || ('checkout failed (' + res.status + ')'));
@@ -835,6 +860,7 @@ ${breadcrumbScript([
   });
 })();
 </script>
+<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
     ${footerHtml()}
 </body></html>
 `;

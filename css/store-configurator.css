@@ -1,0 +1,139 @@
+/**
+ * PuniCodex Reliquary — PDP product configurator styles (P1/P2 companion to
+ * js/store-configurator.js). Loaded only on generated store product pages.
+ *
+ * INTERIM RECOLOR DISCLAIMER (P1/P2)
+ * ──────────────────────────────────
+ * Printful-realistic base mockups per kind × colour are a P3 deliverable
+ * (docs/store-configurator-design.md §2). Until the transparent base-garment
+ * set exists, the garment base IS the PDP's existing mockup photo (usually a
+ * BLACK garment with the art already printed on it) and colour selection is
+ * approximated with CSS filters:
+ *
+ *   - White: invert(1) hue-rotate(180deg) turns the black base white. The
+ *     already-printed art on the base photo inverts with the garment (the
+ *     live art overlay above it does not — it stays gold). Read this as a
+ *     colour simulation, not a print proof.
+ *   - Black: no filter — most base mockups are already black.
+ *   - Other colours: a multiply tint layer in the colour's hex over the base.
+ *     On a black base multiply cannot lighten, so dark colours barely read —
+ *     known limitation until P3 base blanks ship.
+ *   - Unknown colours (hex null): no visual change; the chip is a neutral
+ *     swatch with the colour name as tooltip.
+ */
+
+.pdp .stage {
+  position: relative;
+}
+
+.cfg-group {
+  margin: 1.2rem 0 0;
+}
+.cfg-lbl {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim, #9a948a);
+  margin-bottom: 0.45rem;
+}
+
+.cfg-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Chips are real buttons with radio semantics (see JS radiogroup wiring). */
+.cfg-chip {
+  appearance: none;
+  padding: 0;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: #0e0e12;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.cfg-chip:hover {
+  border-color: var(--gold, #d4af37);
+}
+.cfg-chip:focus-visible {
+  outline: 2px solid var(--gold-bright, #f0d878);
+  outline-offset: 2px;
+}
+.cfg-chip[aria-checked='true'] {
+  border-color: var(--gold, #d4af37);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.55);
+}
+
+.cfg-chip--art {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.cfg-chip--art img {
+  max-width: 36px;
+  max-height: 36px;
+  object-fit: contain;
+  display: block;
+}
+
+.cfg-chip--color {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--chip-hex, transparent);
+}
+.cfg-chip--color.cfg-chip--unknown {
+  background: repeating-conic-gradient(#3a3a3c 0% 25%, #26262a 0% 50%) 0 0 / 12px 12px;
+}
+
+/* The text colour buttons (and their label) are superseded by hex chips while
+   JS runs; the markup stays in the DOM as the no-JS fallback and the state
+   source. */
+.opt-group.cfg-superseded {
+  display: none;
+}
+
+/* Sizes unavailable for the chosen colour. */
+#opts-size .opt[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+#opts-size .opt[disabled]:hover {
+  border-color: rgba(212, 175, 55, 0.25);
+  color: var(--ink, #e8e4dc);
+}
+
+/* ── Live mockup stage ── */
+.cfg-art {
+  position: absolute;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* INTERIM White simulation — see the disclaimer at the top of this file. */
+#stage-img.cfg-tint-white {
+  filter: invert(1) hue-rotate(180deg) brightness(1.04);
+}
+
+/* INTERIM colour multiply tint — sits over the garment base, under the art. */
+.cfg-tint-mix {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  mix-blend-mode: multiply;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+@media (max-width: 820px) {
+  .cfg-chip--art {
+    width: 40px;
+    height: 40px;
+  }
+}

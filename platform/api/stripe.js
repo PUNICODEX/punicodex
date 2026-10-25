@@ -282,11 +282,13 @@ async function createStoreCheckoutSession({ order, product }) {
     metadata: {
       type: 'store_order',
       order_ref: order.order_ref,
+      ...(order.artwork_key ? { artwork_key: order.artwork_key } : {}),
     },
     payment_intent_data: {
       metadata: {
         type: 'store_order',
         order_ref: order.order_ref,
+        ...(order.artwork_key ? { artwork_key: order.artwork_key } : {}),
       },
     },
   });

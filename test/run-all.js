@@ -72,6 +72,11 @@ const SUITES = [
   { name: 'Patterns Atlas Tests', cmd: 'node test/patterns-atlas.test.js', timeout: 60000 },
   { name: 'Store Structure Tests', cmd: 'node test/store-structure.test.js', timeout: 120000 },
   {
+    name: 'Store Configurator Data Tests',
+    cmd: 'node test/store-configurator-data.test.js',
+    timeout: 60000,
+  },
+  {
     name: 'Newsletter Subscribe Tests',
     cmd: 'node test/newsletter-subscribe.test.js',
     timeout: 60000,

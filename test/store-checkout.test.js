@@ -179,6 +179,69 @@ test('successful checkout creates order, session, and links them', async () => {
   assert.match(params.success_url, /order=SO-/);
 });
 
+test('configurator artworkKey is validated and recorded as order metadata', async () => {
+  // Fixture WITH an artworks list — validation constrains to those keys.
+  PRODUCT_CATALOG.products.push({
+    id: 'co-art-tee',
+    name: 'Artwork Test Tee',
+    category: 'apparel',
+    price: 38.0,
+    blurb: 'test',
+    image: '/x.webp',
+    assets: {},
+    templeUrl: null,
+    design: { placements: [] },
+    printfulProductId: 999003,
+    printfulVariants: { 'Black / M': 301 },
+    artworks: [
+      { key: 'mascot', label: 'Mascot', src: '/x.webp' },
+      { key: 'logomark', label: 'Logomark', src: '/x.webp' },
+    ],
+  });
+
+  const resOk = createMockRes();
+  await checkoutHandler(
+    req({
+      headers: { 'x-forwarded-for': '203.0.113.50' },
+      body: { productId: 'co-art-tee', variantLabel: 'Black / M', artworkKey: 'logomark' },
+    }),
+    resOk
+  );
+  assert.strictEqual(resOk.statusCode, 200);
+  const order = getDb()
+    .prepare('SELECT * FROM store_orders WHERE order_ref = ?')
+    .get(resOk.body.orderRef);
+  assert.strictEqual(order.artwork_key, 'logomark');
+  const params = createdSessions.at(-1);
+  assert.strictEqual(params.metadata.artwork_key, 'logomark');
+  assert.strictEqual(params.payment_intent_data.metadata.artwork_key, 'logomark');
+
+  const resBad = createMockRes();
+  await checkoutHandler(
+    req({
+      headers: { 'x-forwarded-for': '203.0.113.51' },
+      body: { productId: 'co-art-tee', variantLabel: 'Black / M', artworkKey: 'hacked' },
+    }),
+    resBad
+  );
+  assert.strictEqual(resBad.statusCode, 400);
+
+  // Products without artworks data accept no validation but still record.
+  const resPlain = createMockRes();
+  await checkoutHandler(
+    req({
+      headers: { 'x-forwarded-for': '203.0.113.52' },
+      body: { productId: 'co-tee', variantLabel: 'M', artworkKey: 'mascot' },
+    }),
+    resPlain
+  );
+  assert.strictEqual(resPlain.statusCode, 200);
+  const plainOrder = getDb()
+    .prepare('SELECT * FROM store_orders WHERE order_ref = ?')
+    .get(resPlain.body.orderRef);
+  assert.strictEqual(plainOrder.artwork_key, 'mascot');
+});
+
 test('rate limit headers are set on checkout responses', async () => {
   const res = createMockRes();
   await checkoutHandler(req({ body: { productId: 'co-tee', variantLabel: 'L' } }), res);
