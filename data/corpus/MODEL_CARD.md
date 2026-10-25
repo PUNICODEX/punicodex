@@ -1,8 +1,8 @@
 # PuniCodex Oracle — Model Card
 
 **Model family:** PuniCodex Oracle (specialized language model)  
-**Data version:** 2.0.159  
-**Generated:** 2026-10-15T17:53:45.997Z  
+**Data version:** 2.0.160  
+**Generated:** 2026-10-25T15:55:41.658Z  
 **License:** CC BY 4.0 for dataset; ISC for software (see root LICENSE).
 
 ## Intended Use
