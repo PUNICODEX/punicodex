@@ -73,10 +73,12 @@ test('herald page carries current fleet counts', () => {
   const { temples, entries, pantheons, domains } = loadStats();
   const html = read('herald/index.html');
   assert.ok(
-    html.includes(
-      `${entries} lexicon entries. ${temples} flagship temples. ${pantheons} pantheons. ${domains} domains owned`
-    ),
-    `herald must list current fleet counts`
+    html.includes(`${entries} lexicon entries across the restored traditions`),
+    `herald must list the current lexicon count (${entries})`,
+  );
+  assert.ok(
+    new RegExp(`has become ${temples} flagship temples`).test(html),
+    `herald must list the current flagship count (${temples})`,
   );
 });
 

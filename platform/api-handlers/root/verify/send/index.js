@@ -18,6 +18,11 @@ module.exports = async (req, res) => {
     if (!(await checkPublicRateLimitByReq(req, res, 'verify-send', { tier: 'verify-send' })))
       return;
     const body = req.body || {};
+    // Fuzz guard: a mutated payload (array/object/number email) must be a
+    // 400, never a SQLite bind TypeError 500 downstream.
+    if (typeof body.email !== 'string' || body.email.length === 0) {
+      return res.status(400).json({ error: 'A valid email address is required' });
+    }
     // Per-email cooldown on top of the per-IP bucket (shared with the
     // Express server in verified-sessions.js).
     const remaining = await verifySendCooldownRemaining(body.email);

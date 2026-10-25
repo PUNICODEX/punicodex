@@ -215,4 +215,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { TARGETS, EXPLORE, RESOURCES, CONNECT, footerHtml };
+module.exports = { TARGETS, EXPLORE, RESOURCES, CONNECT, footerHtml, syncPage };

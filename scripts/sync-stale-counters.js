@@ -78,6 +78,8 @@ const replacements = [
     file: 'herald/index.html',
     rules: [
       [/(\d+) lexicon entries\. (\d+) flagship temples\. (\d+) pantheons\. (\d+) domains owned/g, `${entries} lexicon entries. ${temples} flagship temples. ${pantheons} pantheons. ${domains} domains owned`],
+      [/(\d+) lexicon entries across the restored traditions/g, `${entries} lexicon entries across the restored traditions`],
+      [/has become (\d+) flagship temples/g, `has become ${temples} flagship temples`],
       [/(\d+) flagship temples — each a complete scholarly edition/g, `${temples} flagship temples — each a complete scholarly edition`],
       [/two hundred sixty-six flagship temples/g, `${temples} flagship temples`],
       [/two hundred sixty-six times over/g, `${temples} times over`],

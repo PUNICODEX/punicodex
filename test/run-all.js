@@ -223,6 +223,7 @@ const SUITES = [
   { name: 'Collaborators Strip Tests', cmd: 'node test/collaborators-strip.test.js' },
   { name: 'Menu Consistency Tests', cmd: 'node test/menu-consistency.test.js' },
   { name: 'Footer Consistency Tests', cmd: 'node test/footer-consistency.test.js' },
+  { name: 'Stale Counter Tests', cmd: 'node test/stale-counters.test.js' },
   { name: 'Texts Section Tests', cmd: 'node test/texts-section.test.js' },
   { name: 'Cookie Consent Tests', cmd: 'node test/cookie-consent.test.js' },
   { name: 'Lexicon Meaning Style Tests', cmd: 'node test/lexicon-meaning-style.test.js' },

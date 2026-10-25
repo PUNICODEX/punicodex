@@ -361,4 +361,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { TARGETS, PRIMARY, MORE, navLinksHtml, fullNavHtml };
+module.exports = { TARGETS, PRIMARY, MORE, navLinksHtml, fullNavHtml, syncPage };

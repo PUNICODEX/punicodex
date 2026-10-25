@@ -155,7 +155,9 @@ test('redemption cannot be replayed beyond max_uses even concurrently', async ()
       })
     )
   );
-  const succeeded = attempts.filter((a) => a.status === 'fulfilled').length;
+  // redeem() resolves (never rejects) with { ok:false } for the losers of
+  // the race — count actual winners, not merely fulfilled promises.
+  const succeeded = attempts.filter((a) => a.status === 'fulfilled' && a.value && a.value.ok).length;
   assert.strictEqual(succeeded, 1, `exactly one redemption may win the race, got ${succeeded}`);
   const after = await discountService.getCodeById(code.id);
   assert.strictEqual(after.used_count, 1);

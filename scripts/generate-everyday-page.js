@@ -334,8 +334,13 @@ function main() {
   writeFileWithRetry(OUT, html, 'utf8');
   // Emit the canonical mobile menu directly — standalone runs of this
   // generator must not leave a non-canonical menu behind for parallel test
-  // phases to trip over (see sync-mobile-menu.js syncOne).
+  // phases to trip over (see sync-mobile-menu.js syncOne). Same for the
+  // desktop nav + footer: the inline templates drift, so the canonical sync
+  // runs here as the pipeline's post-steps would.
   require('./sync-mobile-menu').syncOne(OUT, '/everyday/');
+  const rel = path.relative(ROOT, OUT);
+  require('./sync-desktop-nav').syncPage(rel, { active: '/everyday/', replaceNav: true });
+  require('./sync-footer').syncPage(rel);
   console.log(`Everyday register: ${total} words (${falseFriends} false friends) → everyday/index.html`);
 }
 
