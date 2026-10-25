@@ -165,6 +165,14 @@ console.log('╔═════════════════════�
 console.log('║  PuniCodex — Flywheel Integrity Validator              ║');
 console.log('╚════════════════════════════════════════════════════════╝');
 
+// Original-script resolution — mirrors build-android-assets.js so the
+// expected android lexicon.json shape never drifts from the generator.
+const {
+  getOriginalScript,
+  getOriginalScriptLabel,
+  getScriptName,
+} = require(path.join(ROOT, 'type', 'js', 'original-scripts.js'));
+
 const lexicon = loadLexicon();
 const archetypes = loadArchetypes();
 const ownedDomains = loadOwnedDomains();
@@ -386,6 +394,12 @@ const expectedAndroid = lexicon.map(e => ({
   ascii: e.ascii,
   unicode: e.unicode,
   greek: e.greek || '',
+  // Original-script fields added by build-android-assets.js (keyboard variant
+  // popup) — the validator must mirror the generator exactly or every
+  // canonical-source push fails on a stale expectation.
+  originalScript: getOriginalScript(e) || '',
+  scriptLabel: getOriginalScriptLabel(e),
+  scriptName: e.pantheon ? getScriptName(e) : '',
   pantheon: e.pantheon,
   tier: e.tier,
   id: e.id || e.ascii,
