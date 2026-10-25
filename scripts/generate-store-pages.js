@@ -516,9 +516,13 @@ const KIND_GROUPS = [
 
 function renderCollection(id, products) {
   const meta = templeMeta(id);
-  const sorted = products
-    .slice()
-    .sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
+  // Alphabetical by product kind within each group (aigyptos: cap, canvas,
+  // crewneck, hoodie…) — visitors scan by name, not by our internal order.
+  const sorted = products.slice().sort((a, b) => {
+    const ka = a.id.split('-').pop();
+    const kb = b.id.split('-').pop();
+    return ka.localeCompare(kb);
+  });
   const cardHtml = (p) => {
     const kind = p.id.split('-').pop();
     return `<a class="card" href="/store/${id}/${kind}/" data-product-id="${esc(p.id)}">
