@@ -332,6 +332,10 @@ function main() {
 
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   writeFileWithRetry(OUT, html, 'utf8');
+  // Emit the canonical mobile menu directly — standalone runs of this
+  // generator must not leave a non-canonical menu behind for parallel test
+  // phases to trip over (see sync-mobile-menu.js syncOne).
+  require('./sync-mobile-menu').syncOne(OUT, '/everyday/');
   console.log(`Everyday register: ${total} words (${falseFriends} false friends) → everyday/index.html`);
 }
 

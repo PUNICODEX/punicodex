@@ -224,6 +224,17 @@ function syncFile(filePath, activeHref) {
   return 'updated';
 }
 
+/**
+ * Normalize one page's mobile menu to the canonical block. Exported so page
+ * generators (generate-herald, generate-everyday-page) can emit canonical
+ * output directly — without this, tests that run a single generator in
+ * isolation leave a non-canonical menu behind until the next full sync, and
+ * parallel test phases race on the shared file.
+ */
+function syncOne(filePath, activeHref) {
+  return syncFile(filePath, activeHref);
+}
+
 function main() {
   let updated = 0;
   let unchanged = 0;
@@ -258,4 +269,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { CANONICAL_MENU, MENU_OPEN, TARGETS, findBalancedDivEnd, menuForPage };
+module.exports = { CANONICAL_MENU, MENU_OPEN, TARGETS, findBalancedDivEnd, menuForPage, syncOne };

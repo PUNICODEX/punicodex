@@ -732,6 +732,10 @@ function main() {
     TOC_ITEMS: renderTocItems(edition.chapters),
   };
   writeFile(path.join(OUT_DIR, 'index.html'), applyReplacements(landingTemplate, landingReplacements));
+  // Emit the canonical mobile menu directly — standalone runs of this
+  // generator must not leave a non-canonical menu behind for parallel test
+  // phases to trip over (see sync-mobile-menu.js syncOne).
+  require('./sync-mobile-menu').syncOne(path.join(OUT_DIR, 'index.html'), '/herald/');
 
   // Book edition cover/TOC duplicate
   const editionIndexTitle = `${baseTitle} — ${edition.label} (${edition.quarter}) | PuniCodex`;
