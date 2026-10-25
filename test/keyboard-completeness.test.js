@@ -45,6 +45,20 @@ const javaSource = fs.readFileSync(
   ),
   'utf8'
 );
+const mobileJs = fs.readFileSync(path.join(__dirname, '../mobile/js/mobile.js'), 'utf8');
+const mobileCss = fs.readFileSync(path.join(__dirname, '../mobile/css/mobile.css'), 'utf8');
+const keyboardLayout = fs.readFileSync(
+  path.join(__dirname, '../android/app/src/main/res/layout/keyboard_view.xml'),
+  'utf8'
+);
+const symbolsKeyboardLayout = fs.readFileSync(
+  path.join(__dirname, '../android/app/src/main/res/layout/keyboard_view_symbols.xml'),
+  'utf8'
+);
+const paletteLayout = fs.readFileSync(
+  path.join(__dirname, '../android/app/src/main/res/layout/dialog_palette_picker.xml'),
+  'utf8'
+);
 
 // Extract every character string from the ACCENT_MAP block.
 const accentMapChars = new Set();
@@ -132,6 +146,64 @@ test('hieroglyph names use official Unicode catalog names, not invented labels',
       `${bad.length} hieroglyph(s) have non-Unicode names: ${bad.slice(0, 10).join(', ')}`
     );
   }
+});
+
+test('Directory detail sheet closes from visible DOM state and touch-safe events', () => {
+  assert.match(
+    mobileJs,
+    /function closeDetailModal\(\) \{\s*\/\/ Close from the DOM/,
+    'detail close must not depend only on the in-memory modal flag'
+  );
+  assert.ok(
+    mobileJs.includes("detailModalBackdrop.addEventListener('pointerup', handleDetailCloseEvent)"),
+    'backdrop must close on pointerup as well as click'
+  );
+  assert.ok(
+    mobileJs.includes("closeButton.addEventListener('pointerup', handleDetailCloseEvent)"),
+    'the generated close button must close on pointerup as well as click'
+  );
+});
+
+test('keyboard suggestion strips keep readable typed text and gold hint text', () => {
+  for (const [name, layout] of [
+    ['letter', keyboardLayout],
+    ['symbols', symbolsKeyboardLayout],
+  ]) {
+    assert.ok(
+      layout.includes('android:textColor="#E0E0E0"'),
+      `${name} keyboard typed text should be bright enough on #080808`
+    );
+    assert.ok(
+      layout.includes('android:textColorHint="#D4AF37"'),
+      `${name} keyboard hint should use explicit readable gold`
+    );
+  }
+});
+
+test('mobile source badges use full-strength gold instead of 62% gold', () => {
+  const badge = mobileCss.match(/\.source-badge \{[\s\S]*?\}/);
+  assert.ok(badge, '.source-badge rule should exist');
+  assert.match(
+    badge[0],
+    /color:\s*var\(--gold\)/,
+    'source badge text should be full-strength gold'
+  );
+  assert.doesNotMatch(
+    badge[0],
+    /color:\s*rgba\(212, 175, 55, 0\.62\)/,
+    'source badge text should not regress to low-contrast 62% gold'
+  );
+});
+
+test('Omega All customizer label explains the category ordering', () => {
+  assert.ok(
+    paletteLayout.includes('Show these first in All — pick up to 6 categories'),
+    'static customizer label should explain that pinned categories lead All'
+  );
+  assert.ok(
+    javaSource.includes('new StringBuilder("Show first in All: ")'),
+    'dynamic customizer label should name the pinned categories explicitly'
+  );
 });
 
 test('hieroglyph palette includes the full Egyptian block (no invented animal swaps)', () => {

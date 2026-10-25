@@ -6,7 +6,7 @@ const { getPatronById } = require('./patron-service');
 async function processWebhook(rawBody, signature) {
   const result = await handleWebhook(rawBody, signature);
 
-  if (result && result.type === 'booking' && result.booking) {
+  if (result && result.type === 'booking' && result.booking && !result.booking.replayed) {
     const booking = await getBookingByToken(result.booking.analytics_token);
     if (booking) {
       const { notifyUploadReady } = require('./email');

@@ -170,9 +170,7 @@ function seedSite(db, siteSlug, slots) {
   return { siteSlug, slots: insertedIds.length };
 }
 
-function main() {
-  const db = new Database(DB_PATH);
-
+function migrate(db) {
   // Ensure site_slug column exists (idempotent)
   try {
     db.exec("ALTER TABLE ad_slots ADD COLUMN site_slug TEXT DEFAULT 'nike'");
@@ -252,15 +250,29 @@ function main() {
     }
   }
 
-  db.close();
-
   console.log('\n─── Migration complete ───');
   console.log(`Reseeded: ${reseeded.length}`);
   console.log(`Skipped:  ${skipped.length}`);
   if (errors.length > 0) {
     console.log(`Errors:   ${errors.length}`);
-    process.exit(1);
+    const err = new Error(`${errors.length} site(s) failed to seed`);
+    err.errors = errors;
+    throw err;
+  }
+  return { reseeded, skipped };
+}
+
+function main() {
+  const db = new Database(DB_PATH);
+  try {
+    migrate(db);
+  } finally {
+    db.close();
   }
 }
 
-main();
+module.exports = { migrate, seedSite, parseSlotsFromHtml, SLOT_TYPES };
+
+if (require.main === module) {
+  main();
+}

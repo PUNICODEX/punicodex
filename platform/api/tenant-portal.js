@@ -1257,6 +1257,25 @@ async function reviewChangeRequest(id, action, { note = null, reviewer = null } 
             WHERE id = $3`,
           [payload.creativePath, payload.originalName || null, row.target_id]
         );
+        // A swap on an on-air or publish-ready placement is a content change,
+        // exactly like saveCreative enforces: it returns to review, and live
+        // frames come off the air until re-approval (same shape as
+        // updateOwnBookingMeta). pending_upload/pending_approval/rejected
+        // targets stay as-is — they are already off-air or unpublished.
+        if (['live', 'approved'].includes(booking.status)) {
+          await tRun(
+            `UPDATE bookings SET status = 'pending_approval', updated_at = CURRENT_TIMESTAMP
+             WHERE id = $1`,
+            [row.target_id]
+          );
+          if (booking.status === 'live') {
+            await tRun(
+              `UPDATE ad_slots SET status = 'reserved', updated_at = CURRENT_TIMESTAMP
+               WHERE current_booking_id = $1`,
+              [row.target_id]
+            );
+          }
+        }
       } else {
         const patron = await tGet('SELECT id, email FROM patrons WHERE id = $1', [row.target_id]);
         if (!patron || normalizeEmail(patron.email) !== row.account_email) {

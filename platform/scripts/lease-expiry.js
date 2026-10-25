@@ -1,6 +1,7 @@
 const { all } = require('../db/operational');
 const { endBooking, sweepStaleReservations } = require('../api/bookings');
 const { runCreativePurge } = require('../api/creative-purge');
+const { notifyRevoked } = require('../api/email');
 
 // Live leases past their window, plus paused ones (status 'approved' with a
 // stamped lease window) whose ends_at elapsed while off the air — otherwise a
@@ -22,6 +23,25 @@ async function getLiveExpiredBookings() {
   );
 }
 
+// Sponsor-requested cancels (cancel_at_end) whose lease window has elapsed —
+// including bookings that re-entered review (pending_upload / pending_approval)
+// and whose window passed while they held the frame. Live/approved rows were
+// already ended by the sweep above; this catches the rest through the same
+// endBooking path (Stripe subscription cancel included).
+async function getCancelAtEndExpiredBookings() {
+  return all(
+    `
+      SELECT b.*, s.name as slot_name
+      FROM bookings b
+      JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.cancel_at_end = 1
+        AND b.ends_at IS NOT NULL
+        AND b.ends_at <= CURRENT_TIMESTAMP
+        AND b.status IN ('live', 'approved', 'pending_upload', 'pending_approval')
+    `
+  );
+}
+
 async function runLeaseExpiry() {
   const expired = await getLiveExpiredBookings();
   let ended = 0;
@@ -31,8 +51,48 @@ async function runLeaseExpiry() {
     try {
       await endBooking(booking.id);
       ended++;
+      // The sponsor asked for this end (cancel-at-end): they always hear
+      // about it. Email failure must not count as an end failure.
+      if (booking.cancel_at_end === 1) {
+        try {
+          await notifyRevoked({
+            email: booking.email,
+            slotName: booking.slot_name,
+            companyName: booking.company_name,
+            siteSlug: booking.site_slug,
+          });
+        } catch (mailErr) {
+          console.error(`Revocation email failed for booking ${booking.id}:`, mailErr.message);
+        }
+      }
     } catch (err) {
       console.error(`Failed to end booking ${booking.id}:`, err.message);
+      errors++;
+    }
+  }
+
+  // Honor sponsor-requested cancels: end them (which cancels any remaining
+  // Stripe subscription) and tell the sponsor. Every step is failure-isolated
+  // per booking so one bad end or email never stops the sweep.
+  const cancelAtEndExpired = await getCancelAtEndExpiredBookings();
+  let cancelAtEndEnded = 0;
+
+  for (const booking of cancelAtEndExpired) {
+    try {
+      await endBooking(booking.id);
+      cancelAtEndEnded++;
+      try {
+        await notifyRevoked({
+          email: booking.email,
+          slotName: booking.slot_name,
+          companyName: booking.company_name,
+          siteSlug: booking.site_slug,
+        });
+      } catch (mailErr) {
+        console.error(`Revocation email failed for booking ${booking.id}:`, mailErr.message);
+      }
+    } catch (err) {
+      console.error(`Failed to end cancel-at-end booking ${booking.id}:`, err.message);
       errors++;
     }
   }
@@ -61,6 +121,8 @@ async function runLeaseExpiry() {
   return {
     checked: expired.length,
     ended,
+    cancelAtEndChecked: cancelAtEndExpired.length,
+    cancelAtEndEnded,
     errors,
     staleCanceled: swept.canceled,
     slotsReleased: swept.slotsReleased,

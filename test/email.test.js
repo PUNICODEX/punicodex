@@ -10,7 +10,7 @@ process.env.PLATFORM_URL = 'https://punicodex.com';
 
 const {
   escapeHtml,
-  notifyPaymentPending,
+  getDashboardUrl,
   notifyRejected,
   notifyScholarsAccountProvisioned,
   sendBookingConfirmation,
@@ -53,16 +53,6 @@ test('escapeHtml escapes HTML metacharacters', () => {
 test('escapeHtml coerces null and undefined to empty string', () => {
   assert.strictEqual(escapeHtml(null), '');
   assert.strictEqual(escapeHtml(undefined), '');
-});
-
-test('notifyPaymentPending escapes company and slot names', async () => {
-  const result = await notifyPaymentPending({
-    email: 'test@example.com',
-    slotName: '<b>Bad Slot</b>',
-    companyName: '<i>Evil Co</i>',
-    stripeUrl: 'https://stripe.com/?a=1&b=2',
-  });
-  assert.strictEqual(result.mocked, true);
 });
 
 test('notifyRejected escapes rejection note', async () => {
@@ -227,6 +217,109 @@ test('notifyAdminPasswordReset sends temp password and admin-portal login URL th
     else delete process.env.RESEND_API_KEY;
     delete require.cache[emailPath];
   }
+});
+
+/**
+ * Run `fn` against a freshly-required email module whose sendEmail calls are
+ * captured at the fetch boundary (RESEND_API_KEY set, global fetch stubbed).
+ * Returns the array of captured Resend payloads ({to, subject, html, ...}).
+ */
+async function withCapturedEmails(fn) {
+  const emailPath = require.resolve('../platform/api/email.js');
+  const originalFetch = globalThis.fetch;
+  const hadKey = 'RESEND_API_KEY' in process.env;
+  const priorKey = process.env.RESEND_API_KEY;
+
+  const sent = [];
+  globalThis.fetch = async (_url, options) => {
+    sent.push(JSON.parse(options.body));
+    return { ok: true, json: async () => ({ id: 'resend-test-id' }) };
+  };
+
+  try {
+    process.env.RESEND_API_KEY = 'test-resend-key';
+    delete require.cache[emailPath];
+    const freshEmail = require(emailPath);
+    await fn(freshEmail);
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (hadKey) process.env.RESEND_API_KEY = priorKey;
+    else delete process.env.RESEND_API_KEY;
+    delete require.cache[emailPath];
+  }
+  return sent;
+}
+
+test('getDashboardUrl falls back to the plain account index, never a token dead end', () => {
+  const url = getDashboardUrl('analytics-tok-123', null);
+  assert.strictEqual(url, 'https://punicodex.com/account/');
+  assert.ok(!url.includes('analytics-tok-123'), 'an analytics token must not be appended');
+});
+
+test('notifyUploadReady and notifyLive render the actual lease months', async () => {
+  const sent = await withCapturedEmails(async (email) => {
+    await email.notifyUploadReady({
+      email: 'u@example.com',
+      slotName: 'Hero Frame',
+      leaseMonths: 3,
+      siteSlug: 'nike',
+    });
+    await email.notifyLive({
+      email: 'l@example.com',
+      slotName: 'Hero Frame',
+      leaseMonths: 6,
+      siteSlug: 'nike',
+    });
+    await email.notifyLive({
+      email: 's@example.com',
+      slotName: 'Hero Frame',
+      leaseMonths: 1,
+      siteSlug: 'nike',
+    });
+  });
+  assert.ok(sent[0].html.includes('(3 months)'), '3-month term renders as "3 months"');
+  assert.ok(
+    sent[1].html.includes('<strong>6 months</strong>'),
+    '6-month term renders as "6 months"'
+  );
+  assert.ok(sent[2].html.includes('<strong>1 month</strong>'), '1-month term stays singular');
+});
+
+test('notifyStoreOrderConfirmation is honest about fulfillment_failed', async () => {
+  const sent = await withCapturedEmails(async (email) => {
+    await email.notifyStoreOrderConfirmation({
+      email: 'buyer@example.com',
+      orderRef: 'PCX-42',
+      productName: 'Temple Tee',
+      quantity: 1,
+      status: 'fulfillment_failed',
+    });
+  });
+  assert.strictEqual(sent.length, 1);
+  assert.match(sent[0].subject, /hit a snag/, 'subject must not claim confirmation');
+  assert.ok(
+    sent[0].html.includes('We hit a snag fulfilling your order'),
+    'body explains the failure and the retry'
+  );
+  assert.ok(!sent[0].html.includes('Order Confirmed'), 'body must not say the order is confirmed');
+});
+
+test('notifyPaymentFailed links the dashboard and escapes its fields', async () => {
+  const sent = await withCapturedEmails(async (email) => {
+    await email.notifyPaymentFailed('sponsor@example.com', {
+      slotName: '<b>Bad</b> Frame',
+      siteName: 'Níkē',
+      dashboardUrl: 'https://punicodex.com/nike/dashboard/?token=tok',
+    });
+  });
+  assert.strictEqual(sent.length, 1);
+  assert.ok(sent[0].html.includes('Update Payment Method'));
+  assert.ok(
+    sent[0].html.includes('https://punicodex.com/nike/dashboard/?token=tok'),
+    'dashboard link present for updating the payment method'
+  );
+  assert.ok(sent[0].html.includes('&lt;b&gt;Bad&lt;/b&gt; Frame'), 'slot name is escaped');
+  assert.ok(!sent[0].html.includes('<b>Bad</b>'), 'no raw HTML injection');
 });
 
 run();

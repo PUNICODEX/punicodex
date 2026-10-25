@@ -190,6 +190,7 @@ const SUITES = [
     timeout: 900000,
   },
   { name: 'Booking Service Tests', cmd: 'node test/booking-service.test.js' },
+  { name: 'Booking Battle Tests', cmd: 'node test/booking-battle.test.js', timeout: 180000 },
   { name: 'Booking Validation Tests', cmd: 'node test/booking-validation.test.js' },
   { name: 'Flagship Slots Tests', cmd: 'node --test test/flagship-slots.test.js' },
   {
@@ -357,6 +358,11 @@ const SUITES = [
     name: 'Slots Payload Contract Tests',
     cmd: 'node test/slots-payload-contract.test.js',
     timeout: 60000,
+  },
+  {
+    name: 'Slots Seeded Tests',
+    cmd: 'node test/slots-seeded.test.js',
+    timeout: 120000,
   },
   {
     name: 'Sponsorship Email Trigger Tests',

@@ -621,8 +621,33 @@ async function redeem({ codeId, bookingId, email, originalCents, finalCents }) {
     return { ok: true, redemptionId };
   } catch (err) {
     if (err.code === 'exhausted') return { ok: false, reason: 'max_uses_reached' };
+    // Concurrent redemption under WAL: surface a clean retryable conflict
+    // instead of a raw 'database is locked' 500 (battle test A2).
+    if (err.code === 'SQLITE_BUSY') return { ok: false, reason: 'busy_retry' };
     throw err;
   }
+}
+
+/**
+ * Compensating inverse of redeem() for the approval flow: when the Stripe
+ * checkout session cannot be created after a redemption succeeded, roll the
+ * usage counter back so an outage does not burn the code. The guarded UPDATE
+ * (used_count > 0) mirrors redeem()'s atomic style; the redemption row is
+ * removed so the code's usage history reflects the rollback.
+ */
+async function unredeem({ codeId, bookingId }) {
+  await ensureSchema();
+  await transaction(async ({ run: tRun }) => {
+    await tRun(
+      'UPDATE discount_codes SET used_count = used_count - 1 WHERE id = $1 AND used_count > 0',
+      [codeId]
+    );
+    await tRun('DELETE FROM discount_redemptions WHERE code_id = $1 AND booking_id = $2', [
+      codeId,
+      bookingId,
+    ]);
+  });
+  return { ok: true };
 }
 
 module.exports = {
@@ -639,5 +664,6 @@ module.exports = {
   resetCodeUses,
   redemptions,
   redeem,
+  unredeem,
   sanitizeCode,
 };

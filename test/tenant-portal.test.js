@@ -17,7 +17,8 @@ process.env.PLATFORM_URL = 'https://punicodex.com';
 process.env.STRIPE_WEBHOOK_SECRET = 'whsec_dummy';
 process.env.PUNICODEX_BCRYPT_ROUNDS = '4';
 
-const { prepareTestDb } = require('./helpers/test-db.js');
+const Database = require('better-sqlite3');
+const { prepareTestDb, getTestDbPath } = require('./helpers/test-db.js');
 prepareTestDb(__filename);
 
 // Mock the Stripe SDK before the webhook handler loads it.
@@ -708,7 +709,19 @@ async function runTests() {
       `creative_path now points at the staged file: ${updated.creative_path}`
     );
     assert.strictEqual(updated.creative_original_name, 'new-creative.png');
-    assert.strictEqual(updated.status, 'live', 'live booking stays live');
+    // UPDATED for the live-swap review fix: approving a creative change on a
+    // live placement returns it to pending_approval (same rule as saveCreative
+    // enforces) — the old assertion encoded the bug that let an approved swap
+    // publish with no review.
+    assert.strictEqual(
+      updated.status,
+      'pending_approval',
+      'a creative change on a live placement returns to review'
+    );
+    const frame = new Database(getTestDbPath(__filename))
+      .prepare('SELECT status FROM ad_slots WHERE id = ?')
+      .get(bookingA.slot_id);
+    assert.strictEqual(frame.status, 'reserved', 'the frame is reserved until re-approval');
   });
 
   await test('double review is rejected with 409', async () => {

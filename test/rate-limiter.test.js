@@ -107,4 +107,12 @@ test('unknown tier falls back to free limits', async () => {
   assert.strictEqual(r.limit, 100);
 });
 
+test('verify-send bucket is 5/hour — far tighter than the free tier', async () => {
+  resetLimiters();
+  const r = await checkRateLimit('verify-send-tier-test', 'verify-send');
+  assert.strictEqual(r.limit, 5);
+  assert.strictEqual(r.allowed, true);
+  resetLimiters();
+});
+
 run();

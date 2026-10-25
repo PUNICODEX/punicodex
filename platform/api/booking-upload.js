@@ -3,6 +3,7 @@
  * (platform/server.js) and the Vercel API handler (api/bookings/[[...slug]].js).
  */
 
+const crypto = require('node:crypto');
 const path = require('node:path');
 const {
   getBookingByToken,
@@ -121,7 +122,10 @@ async function uploadBookingCreative(token, { image, filename }, { notifyAdminPe
   }
 
   const slotDir = ensureUploadsDir(String(booking.id));
-  const safeName = `${Date.now()}.png`;
+  // Date.now() alone collides on a double-click/retry within the same
+  // millisecond — the random suffix (same scheme as tenant-portal stageImage)
+  // makes every stored key unique.
+  const safeName = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}.png`;
   const stored = await storeCreativeBuffer(String(booking.id), safeName, finalBuffer, 'image/png');
   // The WebP sibling is a local-file optimization; Blob serves the
   // normalized PNG directly from the CDN.
@@ -204,7 +208,7 @@ async function uploadSlotCreative(token, slotId, { image, filename }) {
 
   const slotSubdir = `${booking.id}/${slotId}`;
   const slotDir = ensureUploadsDir(slotSubdir);
-  const safeName = `${Date.now()}.png`;
+  const safeName = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}.png`;
   const stored = await storeCreativeBuffer(slotSubdir, safeName, finalBuffer, 'image/png');
   const webpWritten = stored.url.startsWith('/uploads/')
     ? await writeWebpSibling(path.join(slotDir, safeName), finalBuffer)

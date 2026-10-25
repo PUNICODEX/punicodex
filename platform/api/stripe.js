@@ -22,6 +22,12 @@ function getStripe() {
 const PRICE_BASE = 1500; // $15.00 in cents
 const PRICE_PREMIUM = 3500; // $35.00 in cents
 
+function addMonthsUtc(date, months) {
+  const d = new Date(date);
+  d.setUTCMonth(d.getUTCMonth() + months);
+  return d;
+}
+
 async function createCheckoutSession({ claimId, email, unicodeVariant, templateType }) {
   const amount = templateType === 'premium' ? PRICE_PREMIUM : PRICE_BASE;
 
@@ -100,8 +106,13 @@ async function createBookingCheckoutSession({
   if (isTrial) {
     sessionConfig.mode = 'subscription';
     lineItem.price_data.recurring = { interval: 'month' };
+    // Belt-and-braces lease termination: even if our expiry cron never runs,
+    // Stripe stops billing when the paid lease term ends (creation + lease
+    // months — the same window goLive stamps into bookings.ends_at).
+    const leaseEnd = addMonthsUtc(new Date(), leaseMonths);
     sessionConfig.subscription_data = {
       trial_period_days: trialMonths * 30,
+      cancel_at: Math.floor(leaseEnd.getTime() / 1000),
       metadata: {
         booking_id: String(bookingId),
       },
@@ -283,6 +294,24 @@ async function createStoreCheckoutSession({ order, product }) {
   return { sessionUrl: session.url, sessionId: session.id };
 }
 
+/**
+ * Resolve a sponsor booking from a Stripe subscription id. Sponsorship
+ * subscriptions (monthly/annual leases) persist their subscription id on the
+ * booking row at payment time.
+ */
+async function findBookingBySubscriptionId(subscriptionId) {
+  const { get } = require('../db/operational');
+  return get(
+    `
+      SELECT b.*, s.name AS slot_name, s.slug AS slot_slug
+      FROM bookings b
+      JOIN ad_slots s ON b.slot_id = s.id
+      WHERE b.stripe_subscription_id = $1
+    `,
+    [subscriptionId]
+  );
+}
+
 async function handleWebhook(payload, signature) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!webhookSecret) {
@@ -321,8 +350,28 @@ async function handleWebhook(payload, signature) {
     if (metadata.type === 'booking_renewal') {
       const bookingId = parseInt(metadata.booking_id, 10);
       const extensionMonths = parseInt(metadata.extension_months, 10) || 12;
-      const booking = await extendBooking(bookingId, extensionMonths, session.amount_total || 0);
-      return { event: 'payment.success', type: 'booking_renewal', booking };
+      const renewal = await extendBooking(
+        bookingId,
+        extensionMonths,
+        session.amount_total || 0,
+        session.id
+      );
+      if (renewal?.extended) {
+        const { notifyRenewalConfirmed } = require('./email');
+        notifyRenewalConfirmed({
+          email: renewal.booking.email,
+          slotName: renewal.booking.slot_name,
+          siteSlug: renewal.booking.site_slug,
+          amountCents: session.amount_total || 0,
+          newEndDate: renewal.booking.ends_at,
+          bookingToken: renewal.booking.analytics_token,
+        }).catch(() => {});
+      }
+      return {
+        event: 'payment.success',
+        type: 'booking_renewal',
+        booking: renewal?.booking ?? null,
+      };
     }
     if (metadata.type === 'creative_purchase') {
       const { markCreativePurchasePaid } = require('./creative-marketplace-db');
@@ -347,11 +396,51 @@ async function handleWebhook(payload, signature) {
     return { event: 'payment.success', type: 'claim', claim };
   }
 
+  if (event.type === 'invoice.payment_failed') {
+    const invoice = event.data.object;
+    const subscriptionId = invoice.subscription || null;
+    // Dunning: when a sponsor's subscription invoice fails, mark the booking
+    // past_due and tell them why — otherwise billing silently stops and the
+    // placement dies later at lease expiry with no explanation.
+    if (subscriptionId) {
+      const booking = await findBookingBySubscriptionId(subscriptionId);
+      if (booking) {
+        const { setBillingStatus } = require('./bookings');
+        await setBillingStatus(booking.id, 'past_due');
+        const { notifyPaymentFailed, getDashboardUrl, getSiteDisplayName } = require('./email');
+        notifyPaymentFailed(booking.email, {
+          slotName: booking.slot_name,
+          siteName: getSiteDisplayName(booking.site_slug),
+          dashboardUrl: getDashboardUrl(booking.analytics_token, booking.site_slug),
+        }).catch(() => {});
+        return { event: 'invoice.payment_failed', type: 'booking', booking };
+      }
+    }
+    return { event: event.type, claim: null, booking: null, patron: null };
+  }
+
   if (event.type === 'customer.subscription.deleted') {
     const subscription = event.data.object;
     const patron = await cancelPatronBySubscriptionId(subscription.id);
     if (patron) {
       return { event: 'subscription.cancelled', type: 'patron', patron };
+    }
+    // A sponsor who cancels through the Stripe portal: end the placement and
+    // tell them it ended. The subscription is ALREADY deleted, so skip the
+    // Stripe cancel inside endBooking — it aborts the whole end when the
+    // cancel call fails, and cancelling a deleted subscription fails.
+    const booking = await findBookingBySubscriptionId(subscription.id);
+    if (booking && ['live', 'approved'].includes(booking.status)) {
+      const { endBooking } = require('./bookings');
+      await endBooking(booking.id, { skipStripeCancel: true });
+      const { notifyRevoked } = require('./email');
+      notifyRevoked({
+        email: booking.email,
+        slotName: booking.slot_name,
+        companyName: booking.company_name,
+        siteSlug: booking.site_slug,
+      }).catch(() => {});
+      return { event: 'subscription.cancelled', type: 'booking', bookingId: booking.id };
     }
   }
 

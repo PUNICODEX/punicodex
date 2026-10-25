@@ -178,7 +178,8 @@ test('rejectBooking includes the admin reason in the mail', async () => {
 });
 
 test('rejectBooking without a note falls back to the default reason', async () => {
-  const { id } = await makeBooking();
+  // Reject requires a pending-decision status; a creative stages pending_approval.
+  const { id } = await makeBooking({ creative: true });
   sent.length = 0;
   await rejectBooking(id, undefined, 'test-admin-token');
   assert.strictEqual(sent.length, 1);

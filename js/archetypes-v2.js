@@ -2488,7 +2488,7 @@ const ARCHETYPES = [
         mascotFallback: "/sites/om/assets/om_mascot.webp",
         logomarkPath: "/sites/om/assets/om_logomark.webp",
         built: true,
-        hasAdSite: false,
+        hasAdSite: true,
         darkPunchline: false
     },
     {

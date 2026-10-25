@@ -560,8 +560,7 @@
         vibrate(8);
 
         // Attach close handlers
-        document.getElementById('detail-close').addEventListener('click', closeDetailModal);
-        detailModalBackdrop.addEventListener('click', closeDetailModal);
+        bindDetailCloseButton();
 
         // Variant copy handlers
         detailModalContent.querySelectorAll('.detail-variant-card').forEach(card => {
@@ -666,10 +665,46 @@
     }
 
     function closeDetailModal() {
-        if (!modalOpen) return;
+        // Close from the DOM, not only the in-memory flag: WebView recreation
+        // or stale cached JS can otherwise leave a visible sheet undismissable.
+        if (detailModal.classList.contains('hidden')) {
+            modalOpen = false;
+            return;
+        }
         modalOpen = false;
         detailModal.classList.add('hidden');
         document.body.style.overflow = '';
+    }
+
+    function handleDetailCloseEvent(event) {
+        if (event.type === 'pointerup' && event.button !== 0) return;
+        if (event.type === 'click') {
+            event.stopPropagation();
+            closeDetailModal();
+            return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        closeDetailModal();
+        // Pointerup hides the overlay before the browser's synthetic click.
+        // Capture that click so it cannot retarget the cell underneath and
+        // immediately reopen the sheet.
+        const suppressRetargetedClick = (clickEvent) => {
+            clickEvent.preventDefault();
+            clickEvent.stopPropagation();
+        };
+        document.addEventListener('click', suppressRetargetedClick, { capture: true, once: true });
+        setTimeout(() => document.removeEventListener('click', suppressRetargetedClick, { capture: true }), 0);
+    }
+
+    detailModalBackdrop.addEventListener('click', handleDetailCloseEvent);
+    detailModalBackdrop.addEventListener('pointerup', handleDetailCloseEvent);
+
+    function bindDetailCloseButton() {
+        const closeButton = document.getElementById('detail-close');
+        if (!closeButton) return;
+        closeButton.addEventListener('click', handleDetailCloseEvent);
+        closeButton.addEventListener('pointerup', handleDetailCloseEvent);
     }
 
     // Swipe to close modal
@@ -1608,8 +1643,7 @@
         document.body.style.overflow = 'hidden';
         vibrate(8);
 
-        document.getElementById('detail-close').addEventListener('click', closeDetailModal);
-        detailModalBackdrop.addEventListener('click', closeDetailModal);
+        bindDetailCloseButton();
 
         document.getElementById('char-copy').addEventListener('click', async () => {
             const ok = await copyToClipboard(char.char);

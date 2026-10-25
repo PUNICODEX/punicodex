@@ -343,6 +343,110 @@ test('creative purge: ended placements lose stored files after the grace period'
   }
 });
 
+// The dead 'canceled' literal matched nothing (the CHECK constraint spells it
+// 'cancelled'), so swept unpaid bookings' staged creatives lived forever.
+test('creative purge: cancelled bookings are actually purged', async () => {
+  const { purgeEndedCreatives } = require('../platform/api/creative-purge.js');
+  const { ensureUploadsDir } = require('../platform/api/upload-storage.js');
+
+  const dir = ensureUploadsDir('purge-cancelled-test');
+  const file = path.join(dir, 'cancelled.png');
+  fs.writeFileSync(file, Buffer.from([137, 80, 78, 71]));
+  const token = `purgecancelled${Date.now()}`;
+  await run(
+    `INSERT INTO bookings (slot_id, email, company_name, analytics_token, status, site_slug, creative_path, updated_at)
+     VALUES ($1, 'purge-cancelled@test.co', 'Purge Cancelled Co', $2, 'cancelled', 'nike', '/uploads/purge-cancelled-test/cancelled.png', '2020-01-01 00:00:00')`,
+    [booking.slot.id, token]
+  );
+  const victim = await get('SELECT id FROM bookings WHERE analytics_token = $1', [token]);
+
+  const result = await purgeEndedCreatives({ graceDays: 30 });
+  assert.ok(result.purged >= 1, 'the cancelled booking was purged');
+  assert.ok(!fs.existsSync(file), 'the stored file was deleted');
+  const after = await get('SELECT creative_path FROM bookings WHERE id = $1', [victim.id]);
+  assert.strictEqual(after.creative_path, null, 'creative reference cleared');
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+// Rejected creatives are publicly fetchable until purged; they get a shorter
+// 7-day grace so a sponsor can still resubmit a fixed creative.
+test('creative purge: rejected creatives survive 7 days, then are purged', async () => {
+  const { purgeEndedCreatives } = require('../platform/api/creative-purge.js');
+  const { ensureUploadsDir } = require('../platform/api/upload-storage.js');
+
+  const dir = ensureUploadsDir('purge-rejected-test');
+  const freshFile = path.join(dir, 'fresh-reject.png');
+  const oldFile = path.join(dir, 'old-reject.png');
+  fs.writeFileSync(freshFile, Buffer.from([1]));
+  fs.writeFileSync(oldFile, Buffer.from([2]));
+
+  const freshToken = `purgerejf${Date.now()}`;
+  const oldToken = `purgerejo${Date.now()}`;
+  await run(
+    `INSERT INTO bookings (slot_id, email, company_name, analytics_token, status, site_slug, creative_path, updated_at)
+     VALUES ($1, 'purge-rej-fresh@test.co', 'Fresh Reject Co', $2, 'rejected', 'nike', '/uploads/purge-rejected-test/fresh-reject.png', CURRENT_TIMESTAMP)`,
+    [booking.slot.id, freshToken]
+  );
+  await run(
+    `INSERT INTO bookings (slot_id, email, company_name, analytics_token, status, site_slug, creative_path, updated_at)
+     VALUES ($1, 'purge-rej-old@test.co', 'Old Reject Co', $2, 'rejected', 'nike', '/uploads/purge-rejected-test/old-reject.png', $3)`,
+    [
+      booking.slot.id,
+      oldToken,
+      new Date(Date.now() - 8 * 86400000).toISOString().replace('T', ' ').slice(0, 19),
+    ]
+  );
+  const fresh = await get('SELECT id FROM bookings WHERE analytics_token = $1', [freshToken]);
+  const old = await get('SELECT id FROM bookings WHERE analytics_token = $1', [oldToken]);
+
+  const result = await purgeEndedCreatives({ graceDays: 30, rejectedGraceDays: 7 });
+  assert.ok(result.purged >= 1, 'the stale rejected creative was purged');
+  assert.ok(fs.existsSync(freshFile), 'inside the 7-day grace: fresh rejected creative kept');
+  assert.ok(!fs.existsSync(oldFile), 'past the 7-day grace: rejected file deleted');
+
+  const freshAfter = await get('SELECT creative_path FROM bookings WHERE id = $1', [fresh.id]);
+  const oldAfter = await get('SELECT creative_path FROM bookings WHERE id = $1', [old.id]);
+  assert.ok(freshAfter.creative_path, 'fresh rejected booking keeps its reference');
+  assert.strictEqual(oldAfter.creative_path, null, 'stale rejected reference cleared');
+
+  // Cleanup both rows and files so the fixture slot stays reusable.
+  await run('DELETE FROM bookings WHERE id IN ($1, $2)', [fresh.id, old.id]);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+// Date.now() filenames collided within the same millisecond (double-click /
+// retry), letting one booking point at another request's bytes. The random
+// suffix makes every stored key unique even when the clock does not advance.
+test('concurrent uploads in the same millisecond get distinct stored keys', async () => {
+  const realNow = Date.now;
+  Date.now = () => 1700000000000; // freeze the clock — both uploads share one ms
+  try {
+    await run("UPDATE bookings SET status = 'pending_upload' WHERE id = $1", [booking.id]);
+    const first = await uploadBookingCreative(
+      booking.token,
+      { image: pngDataUrl(1200, 400), filename: 'same-ms-1.png' },
+      {}
+    );
+    await run("UPDATE bookings SET status = 'pending_upload' WHERE id = $1", [booking.id]);
+    const second = await uploadBookingCreative(
+      booking.token,
+      { image: pngDataUrl(1200, 400), filename: 'same-ms-2.png' },
+      {}
+    );
+    assert.strictEqual(first.status, 200, JSON.stringify(first.body));
+    assert.strictEqual(second.status, 200, JSON.stringify(second.body));
+    assert.notStrictEqual(first.body.path, second.body.path, 'same-millisecond keys must differ');
+    const parsed1 = path.parse(first.body.path).base;
+    const parsed2 = path.parse(second.body.path).base;
+    assert.match(parsed1, /^1700000000000-[0-9a-f]{12}\.png$/, 'timestamped + random suffix shape');
+    assert.match(parsed2, /^1700000000000-[0-9a-f]{12}\.png$/);
+    const saved = path.join(ROOT, 'platform', 'api', 'public', first.body.path);
+    fs.rmSync(path.dirname(saved), { recursive: true, force: true });
+  } finally {
+    Date.now = realNow;
+  }
+});
+
 test('lease-expiry cron runs the creative purge and reports it', () => {
   const src = read('platform/scripts/lease-expiry.js');
   assert.ok(src.includes('runCreativePurge'), 'purge wired into the daily cron');

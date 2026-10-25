@@ -157,7 +157,15 @@ test('approve: applies the staged creative atomically and the swap is visible in
   const booking = await getBookingById(id);
   assert.strictEqual(booking.creative_path, request.payload.creativePath, 'staged file applied');
   assert.strictEqual(booking.creative_original_name, 'approved-swap.png');
-  assert.strictEqual(booking.status, 'approved', 'approval never moves the booking status');
+  // UPDATED for the live-swap review fix: an approved target is publish-ready,
+  // so an approved creative swap on it returns it to review — the new creative
+  // must not reach the temple without a second look. (The old assertion
+  // encoded the bug: the swap published with no review state.)
+  assert.strictEqual(
+    booking.status,
+    'pending_approval',
+    'swap on a publish-ready placement returns it to review'
+  );
 
   const slot = (await getSlots(siteSlug)).find((s) => s.id === slotId);
   assert.ok(slot, 'slot present in the public listing');
@@ -165,6 +173,68 @@ test('approve: applies the staged creative atomically and the swap is visible in
     slot.creative_path,
     request.payload.creativePath,
     'the public payload serves the approved creative'
+  );
+});
+
+// Defect fix: approving a creative swap on a LIVE booking used to swap the
+// creative and leave the booking live — the new creative published with no
+// review. Same rule as saveCreative: the placement returns to review and the
+// frames come off the air in the same transaction.
+test('approve: a swap on a live booking returns it to review and reserves the frame', async () => {
+  const account = await makeAccount(nextEmail('liveswap'));
+  const { id, slotId } = await makeBooking(account.email, 'live');
+  const d = db();
+  d.prepare("UPDATE ad_slots SET status = 'live', current_booking_id = ? WHERE id = ?").run(
+    id,
+    slotId
+  );
+  d.close();
+
+  const request = await tenantPortal.createChangeRequest(account, {
+    type: 'image',
+    target: id,
+    payload: { image: PNG_1X1, filename: 'live-swap.png' },
+  });
+  await tenantPortal.reviewChangeRequest(request.id, 'approve', {
+    reviewer: { user: { id: 1, email: 'admin@punicodex.com' } },
+  });
+
+  const booking = await getBookingById(id);
+  assert.strictEqual(booking.creative_path, request.payload.creativePath, 'staged file applied');
+  assert.strictEqual(
+    booking.status,
+    'pending_approval',
+    'the changed creative must pass review before it can serve'
+  );
+
+  const d2 = db();
+  const slot = d2
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  d2.close();
+  assert.strictEqual(slot.status, 'reserved', 'the frame stops serving until re-approval');
+  assert.strictEqual(slot.current_booking_id, id, 'the booking keeps its hold');
+});
+
+// Off-air targets are already unpublished: approving a swap must not bounce
+// them into (another) review cycle.
+test('approve: a swap on a pending_upload target leaves the status untouched', async () => {
+  const account = await makeAccount(nextEmail('offair'));
+  const { id } = await makeBooking(account.email, 'pending_upload');
+  const request = await tenantPortal.createChangeRequest(account, {
+    type: 'image',
+    target: id,
+    payload: { image: PNG_1X1, filename: 'off-air-swap.png' },
+  });
+  await tenantPortal.reviewChangeRequest(request.id, 'approve', {
+    reviewer: { user: { id: 1, email: 'admin@punicodex.com' } },
+  });
+  const booking = await getBookingById(id);
+  assert.strictEqual(booking.creative_path, request.payload.creativePath, 'staged file applied');
+  assert.strictEqual(
+    booking.status,
+    'pending_upload',
+    'an unpublished placement stays in its own pipeline stage'
   );
 });
 

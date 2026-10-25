@@ -28,7 +28,7 @@ const {
   sandboxPanelUrl,
 } = require('./email');
 const { getAllBookings, getBookingCount, getBookingStats, getRevenueStats } = require('./admin');
-const { run } = require('../db/operational');
+const { run, transaction } = require('../db/operational');
 const discountService = require('./discount-service');
 const { runTrialReminders } = require('../scripts/trial-reminders');
 const { runLeaseExpiry } = require('../scripts/lease-expiry');
@@ -166,6 +166,9 @@ async function createBookingAdmin(
     if (err.status === 409) {
       throw new AdminBookingError(409, err.message);
     }
+    if (err.code === 'SQLITE_BUSY') {
+      throw new AdminBookingError(409, 'This space was just claimed — please retry');
+    }
     throw err;
   }
   const { id, token } = bookingResult;
@@ -250,6 +253,13 @@ async function approveApplication(id, adminToken) {
     } else {
       discountNote = `Discount code ${booking.discount_code} not applied (${check.reason}); full price charged.`;
     }
+  }
+
+  // The effective free term (raw trial + code-granted months) must stay
+  // strictly inside the lease — the same rule the customer path enforces — so
+  // a code can never push billing to/past the lease end.
+  if (effectiveTrial >= months) {
+    throw new AdminBookingError(400, 'Effective trial must be shorter than the lease');
   }
 
   // ── Complimentary redemption (founding-sponsor pitches) ────────────────
@@ -345,17 +355,35 @@ async function approveApplication(id, adminToken) {
     }
   }
 
-  const stripeResult = await createBookingCheckoutSession({
-    bookingId: booking.id,
-    email: booking.email,
-    slotName: slot.name,
-    amountCents,
-    token: booking.analytics_token,
-    leaseMonths: months,
-    trialMonths: effectiveTrial,
-    siteSlug,
-    siteName,
-  });
+  let stripeResult;
+  try {
+    stripeResult = await createBookingCheckoutSession({
+      bookingId: booking.id,
+      email: booking.email,
+      slotName: slot.name,
+      amountCents,
+      token: booking.analytics_token,
+      leaseMonths: months,
+      trialMonths: effectiveTrial,
+      siteSlug,
+      siteName,
+    });
+  } catch (stripeErr) {
+    // The redemption already happened; without compensation a Stripe outage
+    // burns the code while the sponsor was never charged. Roll it back and
+    // rethrow so the admin can retry the approval.
+    if (appliedDiscount) {
+      try {
+        await discountService.unredeem({
+          codeId: appliedDiscount.codeId,
+          bookingId: booking.id,
+        });
+      } catch (rollbackErr) {
+        console.error(`Discount rollback failed for booking ${booking.id}:`, rollbackErr.message);
+      }
+    }
+    throw stripeErr;
+  }
 
   await updateBookingStripeSession(booking.id, stripeResult.sessionId);
   // Append the dead-code note without clobbering the sponsor's application
@@ -444,24 +472,53 @@ async function approveBooking(id, note, adminToken, { notify = true } = {}) {
 async function rejectBooking(id, note, adminToken) {
   const booking = await getBookingById(id);
   if (!booking) throw new AdminBookingError(404, 'Booking not found');
+  // Rejection is only meaningful while the booking awaits payment, an
+  // application decision, or creative review. Rejecting a live/ended booking
+  // would run the slot-release below against inventory that may since have
+  // been resold — the exact wipe this guard prevents.
+  if (!['pending_application', 'pending_approval', 'pending_upload'].includes(booking.status)) {
+    throw new AdminBookingError(400, `Cannot reject a booking in status: ${booking.status}`);
+  }
   const reason = note || 'Does not meet guidelines';
-  await setBookingStatus(id, 'rejected', reason);
 
-  // Rejecting always frees the frame — a rejected booking must never keep a
-  // slot reserved. Bundles release every member frame too.
-  await run(
-    `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
-    [booking.slot_id]
-  );
-  if (await isBundleSlot(booking.slot_id)) {
-    const members = await getBundleMembers(booking.slot_id);
-    for (const memberId of members) {
-      await run(
-        `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
-        [memberId]
+  // Stop the money before touching the DB: abort entirely when Stripe is
+  // unreachable so the admin can retry without a half-rejected booking.
+  if (booking.stripe_subscription_id) {
+    try {
+      const { getStripe } = require('./stripe');
+      await getStripe().subscriptions.cancel(booking.stripe_subscription_id);
+    } catch (stripeErr) {
+      throw new AdminBookingError(
+        502,
+        `Stripe unreachable — subscription NOT cancelled, booking NOT rejected, retry (${stripeErr.message})`
       );
     }
   }
+
+  const members = (await isBundleSlot(booking.slot_id))
+    ? await getBundleMembers(booking.slot_id)
+    : [];
+
+  await transaction(async ({ run: tRun }) => {
+    await tRun(
+      `UPDATE bookings SET status = 'rejected', admin_note = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2`,
+      [reason, id]
+    );
+
+    // Rejecting always frees the frame — a rejected booking must never keep a
+    // slot reserved. The current_booking_id predicate ensures a slot that has
+    // since been resold to a newer booking is untouched.
+    await tRun(
+      `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1 AND current_booking_id = $2`,
+      [booking.slot_id, id]
+    );
+    for (const memberId of members) {
+      await tRun(
+        `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1 AND current_booking_id = $2`,
+        [memberId, id]
+      );
+    }
+  });
 
   await logAction({
     ...auditActor(adminToken),
@@ -539,11 +596,17 @@ async function endBookingAdmin(id, adminToken) {
       const { getStripe } = require('./stripe');
       await getStripe().subscriptions.cancel(booking.stripe_subscription_id);
     } catch (stripeErr) {
-      console.error('Stripe cancel error:', stripeErr.message);
+      // ABORT the whole End: an ended booking can never be retried (the
+      // already-ended guard above blocks it), so proceeding would strand a
+      // live subscription behind a dead lease with no way back.
+      throw new AdminBookingError(
+        502,
+        `Stripe unreachable — booking NOT ended, retry (${stripeErr.message})`
+      );
     }
   }
 
-  await endBooking(id);
+  await endBooking(id, { skipStripeCancel: true });
 
   // The sponsor always hears about a revocation: placement ends immediately,
   // the creative is purged after the 30-day grace period (lease-expiry cron).

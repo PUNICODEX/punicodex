@@ -105,29 +105,15 @@ function getSiteDisplayName(siteSlug) {
 function getDashboardUrl(token, siteSlug) {
   const slug = resolveSiteSlug(siteSlug);
   if (!slug) {
-    // Last-resort fallback: the account index, never a wrong temple (a wrong
-    // temple in a customer email is worse than a generic page).
+    // Last-resort fallback: the plain account index, never a wrong temple (a
+    // wrong temple in a customer email is worse than a generic page) and
+    // never /account/?token=<analytics_token> — the account router forwards
+    // any token to the tenant set-password flow, which rejects analytics
+    // tokens, dead-ending the customer.
     console.warn('[EMAIL] dashboard link built without a site slug — falling back to /account/');
-    return `${PLATFORM_URL}/account/?token=${token}`;
+    return `${PLATFORM_URL}/account/`;
   }
   return `${PLATFORM_URL}/${slug}/dashboard/?token=${token}`;
-}
-
-async function notifyPaymentPending({ email, slotName, companyName, stripeUrl, siteSlug }) {
-  const siteName = getSiteDisplayName(siteSlug);
-  return sendEmail({
-    to: email,
-    subject: `Complete your reservation for ${slotName}`,
-    html: `
-      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Reservation Pending</h2>
-        <p>Hi ${escapeHtml(companyName || 'there')},</p>
-        <p>Your reservation for <strong>${escapeHtml(slotName)}</strong> is waiting for payment.</p>
-        <p><a href="${escapeHtml(stripeUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Complete Payment</a></p>
-        <p style="color:#666;font-size:13px;">This link expires in 24 hours.</p>
-      </div>
-    `,
-  });
 }
 
 async function notifyUploadReady({
@@ -138,7 +124,7 @@ async function notifyUploadReady({
   leaseMonths = 1,
   siteSlug,
 }) {
-  const duration = leaseMonths === 12 ? '12 months' : '1 month';
+  const duration = `${leaseMonths} month${leaseMonths === 1 ? '' : 's'}`;
   const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: email,
@@ -193,6 +179,84 @@ async function notifyAdminApplication({
         ${applicationNote ? `<p><strong>Note:</strong> ${escapeHtml(applicationNote)}</p>` : ''}
         <p>Booking ID: <code>${escapeHtml(bookingId)}</code></p>
         <p><a href="${escapeHtml(`${PLATFORM_URL}/admin-bookings.html`)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Review Application</a></p>
+      </div>
+    `,
+  });
+}
+
+/**
+ * Operator alert for payment/booking mismatches that need a human: a renewal
+ * that arrived on a booking which can no longer accept it, or a payment that
+ * landed after the stale-reservation sweep cancelled it. Skipped when
+ * ADMIN_EMAIL is unset (same convention as the other admin notifications).
+ */
+async function notifyAdminPaymentConflict({
+  bookingId,
+  email,
+  slotName,
+  status,
+  sessionId,
+  amountCents,
+  reason,
+}) {
+  const adminEmail = process.env.ADMIN_EMAIL;
+  if (!adminEmail) return { success: true, skipped: true };
+  const label = slotName || `booking ${bookingId}`;
+  const subject =
+    reason === 'paid_after_cancellation'
+      ? `Payment received for a cancelled booking — ${label}`
+      : `Renewal received for a '${status}' booking — ${label}`;
+  return sendEmail({
+    to: adminEmail,
+    subject,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PuniCodex Admin — Payment Needs Review</h2>
+        <p>A Stripe checkout completed against a booking that can no longer accept it.</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin:1rem 0;">
+          <tr><td style="padding:6px;color:#666;">Booking</td><td style="padding:6px;text-align:right;font-weight:600;">${escapeHtml(bookingId)}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Sponsor</td><td style="padding:6px;text-align:right;">${escapeHtml(email || 'unknown')}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Slot</td><td style="padding:6px;text-align:right;">${escapeHtml(slotName || 'unknown')}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Booking status</td><td style="padding:6px;text-align:right;">${escapeHtml(status || 'unknown')}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Stripe session</td><td style="padding:6px;text-align:right;font-family:monospace;">${escapeHtml(sessionId || 'unknown')}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Amount</td><td style="padding:6px;text-align:right;">$${((amountCents || 0) / 100).toFixed(2)}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Reason</td><td style="padding:6px;text-align:right;">${escapeHtml(reason)}</td></tr>
+        </table>
+        <p>The money was taken but the booking was NOT extended. Verify in Stripe and refund or reconcile manually.</p>
+      </div>
+    `,
+  });
+}
+
+async function notifyRenewalConfirmed({
+  email,
+  slotName,
+  siteSlug,
+  amountCents,
+  newEndDate,
+  bookingToken,
+}) {
+  const siteName = getSiteDisplayName(siteSlug);
+  const dashboardUrl = getDashboardUrl(bookingToken, siteSlug);
+  const amountLabel = `$${((amountCents || 0) / 100).toFixed(2)}`;
+  const endDate = newEndDate
+    ? new Date(newEndDate).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
+    : 'the end of your extended lease';
+  return sendEmail({
+    to: email,
+    subject: `Your ${slotName} renewal is confirmed`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">${escapeHtml(siteName)} — Renewal Confirmed</h2>
+        <p>Hi,</p>
+        <p>Your renewal payment of <strong>${escapeHtml(amountLabel)}</strong> for <strong>${escapeHtml(slotName)}</strong> on ${escapeHtml(siteName)} is confirmed.</p>
+        <p>Your placement now runs until <strong>${escapeHtml(endDate)}</strong>.</p>
+        <p><a href="${escapeHtml(dashboardUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">View Dashboard</a></p>
+        <p style="color:#666;font-size:0.8rem;">PuniCodex · support@punicodex.com</p>
       </div>
     `,
   });
@@ -298,6 +362,23 @@ async function notifyRevoked({ email, slotName, companyName, siteSlug }) {
   });
 }
 
+async function notifyPaymentFailed(email, { slotName, siteName, dashboardUrl } = {}) {
+  return sendEmail({
+    to: email,
+    subject: `Payment issue with your ${slotName} placement`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">${escapeHtml(siteName || 'PuniCodex')} — Payment Update Needed</h2>
+        <p>Hi,</p>
+        <p>We were unable to process the latest payment for your placement on <strong>${escapeHtml(slotName)}</strong>. Your ad is still running, but the subscription is now past due.</p>
+        <p>Please update your payment method to avoid any interruption:</p>
+        <p><a href="${escapeHtml(dashboardUrl)}" style="display:inline-block;background:#d4af37;color:#000;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;">Update Payment Method</a></p>
+        <p style="color:#666;font-size:13px;">Questions? Reply to this email and a human will help.</p>
+      </div>
+    `,
+  });
+}
+
 async function notifyLive({
   email,
   slotName,
@@ -306,7 +387,7 @@ async function notifyLive({
   leaseMonths = 1,
   siteSlug,
 }) {
-  const duration = leaseMonths === 12 ? '12 months' : '1 month';
+  const duration = `${leaseMonths} month${leaseMonths === 1 ? '' : 's'}`;
   const siteName = getSiteDisplayName(siteSlug);
   return sendEmail({
     to: email,
@@ -584,18 +665,23 @@ async function notifyStoreOrderConfirmation({
   status,
 }) {
   const orderUrl = `${PLATFORM_URL}/store/?order=${encodeURIComponent(orderRef)}`;
-  const statusLine =
-    status === 'sent_to_fulfillment'
+  const failed = status === 'fulfillment_failed';
+  // Honest failure copy: fulfillment_failed must never read as "confirmed".
+  const statusLine = failed
+    ? "We hit a snag fulfilling your order — our team has been notified and will retry. You'll get a shipping email the moment your order is on its way."
+    : status === 'sent_to_fulfillment'
       ? 'Your order is confirmed and already on its way to the print house.'
       : status === 'fulfillment_queued'
         ? 'Your order is confirmed — our studio prepares this handcrafted piece for printing.'
         : 'Your order is confirmed. You will hear from us as it moves.';
   return sendEmail({
     to: email,
-    subject: `PuniCodex order ${orderRef} confirmed`,
+    subject: failed
+      ? `PuniCodex order ${orderRef} — we hit a snag`
+      : `PuniCodex order ${orderRef} confirmed`,
     html: `
       <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
-        <h2 style="color:#d4af37;">PuniCodex — Order Confirmed</h2>
+        <h2 style="color:#d4af37;">PuniCodex — ${failed ? 'Fulfillment Snag' : 'Order Confirmed'}</h2>
         <p>Hi there,</p>
         <p>${escapeHtml(statusLine)}</p>
         <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin:1rem 0;">
@@ -933,13 +1019,15 @@ async function notifyPatronCancelled({ email, displayName, siteSlug }) {
 
 module.exports = {
   sendEmail,
-  notifyPaymentPending,
   notifyUploadReady,
   notifyAdminPending,
   notifyAdminApplication,
+  notifyAdminPaymentConflict,
+  notifyRenewalConfirmed,
   notifyApproved,
   notifyRejected,
   notifyRevoked,
+  notifyPaymentFailed,
   notifyPanelReady,
   notifyLive,
   notifyTrialStarted,

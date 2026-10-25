@@ -2640,11 +2640,11 @@ public class PunyKeyboardService extends InputMethodService {
     private void updateAllCustomizerLabel() {
         if (paletteAllCustomizerLabel == null) return;
         if (allPinnedCategories.isEmpty()) {
-            paletteAllCustomizerLabel.setText("All starts with — pick up to "
+            paletteAllCustomizerLabel.setText("Show these first in All — pick up to "
                 + ALL_MAX_PINNED_CATEGORIES + " categories");
             return;
         }
-        StringBuilder sb = new StringBuilder("All starts with: ");
+        StringBuilder sb = new StringBuilder("Show first in All: ");
         for (int i = 0; i < allPinnedCategories.size(); i++) {
             if (i > 0) sb.append(" · ");
             String cat = allPinnedCategories.get(i);

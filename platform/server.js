@@ -56,16 +56,11 @@ const {
   getBookingByToken,
   getBookingById,
   updateBookingStripeSession,
-  markBookingPaid,
   setBookingStatus,
   goLive,
-  endBooking,
   getBookingsByEmail,
   getDashboardMetrics,
   getSlotCreatives,
-  updateSlotMeta,
-  isBundleSlot,
-  setCancelAtEnd,
 } = require('./api/bookings');
 const adAnalytics = require('./api/ad-analytics');
 const { get, run } = require('./db/operational');
@@ -79,7 +74,13 @@ const {
 } = require('./api/admin');
 const { logAction } = require('./api/admin-actions');
 const { createPublicRateLimit } = require('./api/public-rate-limiter');
-const { createVerifiedSession, consumeVerifiedSession } = require('./api/verified-sessions');
+const { checkRateLimit } = require('./api/api-rate-limiter');
+const { getClientIp } = require('./api/client-ip');
+const {
+  consumeVerifiedSession,
+  verifySendCooldownRemaining,
+  stampVerifySend,
+} = require('./api/verified-sessions');
 const {
   listKeys,
   createKey,
@@ -89,11 +90,7 @@ const {
   getKeyUsage,
   getKeyStats,
 } = require('./api/api-key-admin');
-const {
-  createBookingCheckoutSession,
-  createRenewalCheckoutSession,
-  createPatronCheckoutSession,
-} = require('./api/stripe');
+const { createBookingCheckoutSession, createPatronCheckoutSession } = require('./api/stripe');
 const { processWebhook } = require('./api/webhook-handler');
 const {
   listActivePatronsByTemple,
@@ -118,15 +115,30 @@ const {
   notifyAdminPending,
   notifyAdminApplication,
   notifyApproved,
-  notifyRejected,
   notifyLive,
   notifyTrialStarted,
   notifyApplicationApproved,
   sendDashboardLinks,
-  sendVerificationCode,
   sendBookingConfirmation,
   sendAnalyticsReport,
 } = require('./api/email');
+// The ONLY email-verification implementation: booking-service generates codes
+// with crypto.randomInt, stores SHA-256 hashes, and compares in constant time.
+// The dev-server booking routes below delegate to booking-service exactly like
+// the production Vercel handler (api/bookings/[[...slug]].js) — single source
+// of truth, no duplicated state logic.
+const {
+  sendVerification: bookingSendVerification,
+  checkVerification: bookingCheckVerification,
+  getBookingByTokenSafe,
+  getAllBookingsByToken,
+  updateBookingMeta,
+  cancelBooking,
+  uncancelBooking,
+  renewBooking,
+  checkBookingPayment,
+  BookingError,
+} = require('./api/booking-service');
 const fs = require('node:fs');
 const _crypto = require('node:crypto');
 const { uploadBookingCreative, uploadSlotCreative } = require('./api/booking-upload');
@@ -159,7 +171,31 @@ function corsOrigin(origin, callback) {
   }
 }
 
-const verifySendLimit = createPublicRateLimit('verify-send');
+// Verification-code sends each trigger an outbound email. The dedicated
+// 'verify-send' bucket (5/hour/IP in DEFAULT_TIER_LIMITS) is far tighter than
+// the generic public tier: together with the per-email cooldown in the route
+// below it bounds inbox-bombing of a victim address (verification DoS via IP
+// rotation, which would also overwrite the victim's in-flight code).
+async function verifySendRateLimit(req, res, next) {
+  const ip = getClientIp(req);
+  const result = await checkRateLimit(`verify-send:${ip}`, 'verify-send');
+
+  res.setHeader('X-RateLimit-Limit', String(result.limit));
+  res.setHeader('X-RateLimit-Remaining', String(result.remaining));
+  res.setHeader('X-RateLimit-Reset', String(Math.floor(result.resetAt / 1000)));
+
+  if (!result.allowed) {
+    const retryAfter = Math.ceil((result.resetAt - Date.now()) / 1000);
+    res.setHeader('Retry-After', String(retryAfter));
+    return res.status(429).json({
+      error: 'Too many requests. Please slow down.',
+      retryAfter,
+    });
+  }
+
+  next();
+}
+const verifySendLimit = verifySendRateLimit;
 const verifyCheckLimit = createPublicRateLimit('verify-check');
 const bookingsLimit = createPublicRateLimit('bookings');
 const bookingsRecoverLimit = createPublicRateLimit('bookings-recover');
@@ -1412,117 +1448,74 @@ app.post('/api/bookings/apply', bookingsLimit, async (req, res) => {
   }
 });
 
-// Email verification
+// Email verification — both routes delegate to booking-service, the single
+// implementation (crypto.randomInt codes, SHA-256 at rest, timingSafeEqual).
+// An earlier inline copy here stored the code UNHASHED and compared with !==,
+// and both writers share the email_verifications table, so any deployment
+// exposing these routes silently downgraded verification security.
+// The per-email cooldown helper lives in verified-sessions.js, shared with
+// the Vercel serverless handler.
+
 app.post('/api/verify/send', verifySendLimit, async (req, res) => {
   try {
     const { email } = req.body;
-    if (!email?.includes('@')) return res.status(400).json({ error: 'Valid email required' });
+    if (typeof email !== 'string' || !email.includes('@')) {
+      return res.status(400).json({ error: 'Valid email required' });
+    }
 
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
-    const expires = new Date(Date.now() + 10 * 60 * 1000).toISOString();
+    // Per-email cooldown on top of the per-IP bucket: without it an
+    // IP-rotating attacker can bomb a victim's inbox AND overwrite their
+    // in-flight code (the sendVerification upsert replaces the code).
+    // Shared with the Vercel serverless handler via verified-sessions.js.
+    const remaining = await verifySendCooldownRemaining(email);
+    if (remaining > 0) {
+      return res
+        .status(429)
+        .json({ error: 'Please wait before requesting a new code.', retryAfterMs: remaining });
+    }
 
-    await run(
-      `
-      INSERT INTO email_verifications (email, code, expires_at)
-      VALUES ($1, $2, $3)
-      ON CONFLICT (email) DO UPDATE SET code = EXCLUDED.code, expires_at = EXCLUDED.expires_at
-    `,
-      [email, code, expires]
-    );
-
-    await sendVerificationCode({ email, code });
+    await bookingSendVerification(email);
+    await stampVerifySend(email);
     res.json({ sent: true });
   } catch (err) {
+    if (err instanceof BookingError) return res.status(err.status).json({ error: err.message });
     res.status(500).json({ error: err.message });
   }
 });
 
 app.post('/api/verify/check', verifyCheckLimit, async (req, res) => {
   try {
-    const { email, code } = req.body;
-    if (!email || !code) return res.status(400).json({ error: 'Email and code required' });
-
-    const row = await get('SELECT * FROM email_verifications WHERE email = $1', [email]);
-    if (!row)
-      return res.status(400).json({ error: 'No verification found. Please request a new code.' });
-    if (new Date(row.expires_at) < new Date())
-      return res.status(400).json({ error: 'Code expired. Please request a new one.' });
-    if (row.code !== code) return res.status(400).json({ error: 'Invalid code.' });
-
-    await run('DELETE FROM email_verifications WHERE email = $1', [email]);
-    const verificationToken = await createVerifiedSession(email);
-    res.json({ verified: true, verificationToken });
+    const result = await bookingCheckVerification(req.body?.email, req.body?.code);
+    res.json(result);
   } catch (err) {
+    if (err instanceof BookingError) return res.status(err.status).json({ error: err.message });
     res.status(500).json({ error: err.message });
   }
 });
 
 app.get('/api/bookings/:token/all', publicReadLimit, async (req, res) => {
   try {
-    const primary = await getBookingByToken(req.params.token);
-    if (!primary) return res.status(404).json({ error: 'Booking not found' });
-    const bookings = await getBookingsByEmail(primary.email);
-    res.json({
-      bookings: bookings.map((b) => ({
-        id: b.id,
-        slot_name: b.slot_name,
-        slot_slug: b.slot_slug,
-        status: b.status,
-        token: b.analytics_token,
-        custom_heading: b.custom_heading,
-        custom_subtitle: b.custom_subtitle,
-        creative_path: b.creative_path,
-        company_name: b.company_name,
-        created_at: b.created_at,
-        is_bundle: b.is_bundle,
-        slot_id: b.slot_id,
-        lease_months: b.lease_months,
-        site_slug: b.site_slug,
-        started_at: b.started_at,
-        ends_at: b.ends_at,
-        trial_ends_at: b.trial_ends_at,
-        billing_status: b.billing_status,
-        cancel_at_end: b.cancel_at_end,
-        canceled_at: b.canceled_at,
-        amount_paid_cents: b.amount_paid_cents,
-      })),
-    });
+    const result = await getAllBookingsByToken(req.params.token);
+    return res.json(result);
   } catch (err) {
+    if (err instanceof BookingError) return res.status(err.status).json({ error: err.message });
     res.status(500).json({ error: err.message });
   }
 });
 
 app.post('/api/bookings/:token/meta', bookingMetaLimit, async (req, res) => {
   try {
-    const { customHeading, customSubtitle, slotId } = req.body;
-    const booking = await getBookingByToken(req.params.token);
-    if (!booking) return res.status(404).json({ error: 'Booking not found' });
-
-    // Per-slot meta update for bundle bookings
-    if (slotId && (await isBundleSlot(booking.slot_id))) {
-      const slot = await getSlotById(slotId);
-      if (!slot) return res.status(404).json({ error: 'Slot not found' });
-      const metaError = validateMeta(slot.width, customHeading, customSubtitle);
-      if (metaError) return res.status(400).json({ error: metaError });
-      await updateSlotMeta(booking.id, slotId, { customHeading, customSubtitle });
-      return res.json({ success: true });
-    }
-
-    const metaError = validateMeta(booking.width, customHeading, customSubtitle);
-    if (metaError) return res.status(400).json({ error: metaError });
-    await run(
-      'UPDATE bookings SET custom_heading = $1, custom_subtitle = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $3',
-      [customHeading || null, customSubtitle || null, booking.id]
-    );
-    res.json({ success: true });
+    const result = await updateBookingMeta(req.params.token, req.body || {});
+    return res.json(result);
   } catch (err) {
+    if (err instanceof BookingError) return res.status(err.status).json({ error: err.message });
     res.status(500).json({ error: err.message });
   }
 });
 
 app.get('/api/bookings/:token', publicReadLimit, async (req, res) => {
   try {
-    const booking = await getBookingByToken(req.params.token);
+    const booking = await getBookingByTokenSafe(req.params.token);
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     res.json(booking);
   } catch (err) {
@@ -1532,74 +1525,30 @@ app.get('/api/bookings/:token', publicReadLimit, async (req, res) => {
 
 app.post('/api/bookings/:token/cancel', bookingMetaLimit, async (req, res) => {
   try {
-    const booking = await getBookingByToken(req.params.token);
-    if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    if (
-      !['live', 'approved', 'pending_payment', 'pending_upload', 'pending_approval'].includes(
-        booking.status
-      )
-    ) {
-      return res.status(400).json({ error: `Cannot cancel in status: ${booking.status}` });
-    }
-    await setCancelAtEnd(booking.id, true);
-    res.json({ success: true, cancelAtEnd: true });
+    const result = await cancelBooking(req.params.token);
+    return res.json(result);
   } catch (err) {
+    if (err instanceof BookingError) return res.status(err.status).json({ error: err.message });
     res.status(500).json({ error: err.message });
   }
 });
 
 app.post('/api/bookings/:token/uncancel', bookingMetaLimit, async (req, res) => {
   try {
-    const booking = await getBookingByToken(req.params.token);
-    if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    await setCancelAtEnd(booking.id, false);
-    res.json({ success: true, cancelAtEnd: false });
+    const result = await uncancelBooking(req.params.token);
+    return res.json(result);
   } catch (err) {
+    if (err instanceof BookingError) return res.status(err.status).json({ error: err.message });
     res.status(500).json({ error: err.message });
   }
 });
 
 app.post('/api/bookings/:token/renew', bookingMetaLimit, async (req, res) => {
   try {
-    const booking = await getBookingByToken(req.params.token);
-    if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    if (!['live', 'approved', 'pending_approval'].includes(booking.status)) {
-      return res.status(400).json({ error: `Cannot renew in status: ${booking.status}` });
-    }
-
-    const extensionMonths = parseInt(req.body.extensionMonths, 10) || 12;
-    if (![1, 12].includes(extensionMonths)) {
-      return res.status(400).json({ error: 'extensionMonths must be 1 or 12' });
-    }
-
-    const slot = await getSlotById(booking.slot_id);
-    if (!slot) return res.status(404).json({ error: 'Slot not found' });
-
-    const isYearly = extensionMonths === 12;
-    const amountCents = isYearly
-      ? Math.round(slot.price_cents * 12 * 0.9)
-      : slot.price_cents * extensionMonths;
-    const siteSlug = slot.site_slug || 'nike';
-    const siteName = siteSlug === 'hermes' ? 'Hermês' : 'Níkē';
-
-    const stripeResult = await createRenewalCheckoutSession({
-      bookingId: booking.id,
-      email: booking.email,
-      slotName: slot.name,
-      amountCents,
-      token: booking.analytics_token,
-      extensionMonths,
-      siteSlug,
-      siteName,
-    });
-
-    res.json({
-      success: true,
-      stripeUrl: stripeResult.sessionUrl,
-      extensionMonths,
-      totalCents: amountCents,
-    });
+    const result = await renewBooking(req.params.token, req.body?.extensionMonths);
+    return res.json(result);
   } catch (err) {
+    if (err instanceof BookingError) return res.status(err.status).json({ error: err.message });
     res.status(500).json({ error: err.message });
   }
 });
@@ -1665,35 +1614,10 @@ app.get('/api/patrons/:templeId', publicReadLimit, async (req, res) => {
 
 app.get('/api/bookings/:token/check-payment', publicReadLimit, async (req, res) => {
   try {
-    const booking = await getBookingByToken(req.params.token);
-    if (!booking) return res.status(404).json({ error: 'Booking not found' });
-
-    // Already past payment
-    if (booking.status !== 'pending_payment') {
-      return res.json({ status: booking.status, booking });
-    }
-
-    // Check Stripe session
-    if (!booking.stripe_session_id) {
-      return res.json({ status: booking.status, booking });
-    }
-
-    try {
-      const session = await stripe.checkout.sessions.retrieve(booking.stripe_session_id);
-      if (session.payment_status === 'paid') {
-        const updated = await markBookingPaid(
-          session.id,
-          session.payment_intent,
-          session.amount_total
-        );
-        return res.json({ status: updated.status, booking: updated });
-      }
-    } catch (stripeErr) {
-      console.error('Stripe check error:', stripeErr.message);
-    }
-
-    res.json({ status: booking.status, booking });
+    const result = await checkBookingPayment(req.params.token);
+    return res.json(result);
   } catch (err) {
+    if (err instanceof BookingError) return res.status(err.status).json({ error: err.message });
     res.status(500).json({ error: err.message });
   }
 });
@@ -2053,27 +1977,13 @@ app.post('/api/admin/bookings/:id/approve', requireAdmin, async (req, res) => {
 
 app.post('/api/admin/bookings/:id/reject', requireAdmin, async (req, res) => {
   try {
-    const booking = await getBookingById(req.params.id);
-    if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    const note = req.body.note || 'Does not meet guidelines';
-    await setBookingStatus(req.params.id, 'rejected', note);
-    await logAction({
-      adminToken: req.headers['x-admin-token'],
-      action: 'admin.booking.reject',
-      bookingId: booking.id,
-      payload: { note },
-    });
-    notifyRejected({
-      email: booking.email,
-      slotName: booking.slot_name,
-      companyName: booking.company_name,
-      note,
-      bookingToken: booking.analytics_token,
-      siteSlug: booking.site_slug,
-    }).catch(() => {});
-    res.json({ success: true, status: 'rejected' });
+    // Delegate to the shared admin service: it owns the status guard, the
+    // resold-slot predicate, and the Stripe-cancel abort semantics.
+    const { rejectBooking } = require('./api/admin-booking-service');
+    const result = await rejectBooking(req.params.id, req.body.note, req.headers['x-admin-token']);
+    res.json(result);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(err.status || 500).json({ error: err.message });
   }
 });
 
@@ -2117,25 +2027,14 @@ app.post('/api/admin/bookings/:id/golive', requireAdmin, async (req, res) => {
 
 app.post('/api/admin/bookings/:id/end', requireAdmin, async (req, res) => {
   try {
-    const booking = await getBookingById(req.params.id);
-    if (!booking) return res.status(404).json({ error: 'Booking not found' });
-    // Cancel Stripe subscription if one exists
-    if (booking.stripe_subscription_id) {
-      try {
-        await stripe.subscriptions.cancel(booking.stripe_subscription_id);
-      } catch (stripeErr) {
-        console.error('Stripe cancel error:', stripeErr.message);
-      }
-    }
-    await endBooking(req.params.id);
-    await logAction({
-      adminToken: req.headers['x-admin-token'],
-      action: 'admin.booking.end',
-      bookingId: booking.id,
-    });
-    res.json({ success: true, status: 'ended' });
+    // Delegate to the shared admin service: it owns the abort-on-Stripe-
+    // failure semantics (a swallowed cancel error would strand a live
+    // subscription behind an ended, unretryable booking).
+    const { endBookingAdmin } = require('./api/admin-booking-service');
+    const result = await endBookingAdmin(req.params.id, req.headers['x-admin-token']);
+    res.json(result);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(err.status || 500).json({ error: err.message });
   }
 });
 

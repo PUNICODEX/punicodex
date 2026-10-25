@@ -23,6 +23,11 @@ const sessionsCreated = [];
 // When set, checkout-session creation throws with this error — the
 // Stripe-failure compensation tests at the bottom flip it on and off.
 let stripeCreateError = null;
+// When set, subscription cancellation throws — the endBooking abort tests
+// flip it on and off. Every cancelled subscription id lands in
+// `subscriptionCancels` for assertions.
+let stripeCancelError = null;
+const subscriptionCancels = [];
 require.cache[stripeModulePath] = {
   id: stripeModulePath,
   filename: stripeModulePath,
@@ -39,6 +44,13 @@ require.cache[stripeModulePath] = {
             mode: config.mode || 'payment',
           };
         },
+      },
+    },
+    subscriptions: {
+      cancel: async (subscriptionId) => {
+        if (stripeCancelError) throw stripeCancelError;
+        subscriptionCancels.push(subscriptionId);
+        return { id: subscriptionId, status: 'canceled' };
       },
     },
   }),
@@ -58,10 +70,26 @@ require.cache[stripeModulePath] = {
 const emailModulePath = require.resolve('../platform/api/email.js');
 const realEmail = require(emailModulePath);
 const deliveredCodes = new Map();
+// Operator alerts for payment/booking mismatches (renewal refusals, paid-
+// after-cancellation reconciliations) are captured here for assertions.
+const paymentConflicts = [];
+// Deterministic failure injection for the send-failure tests: these addresses
+// make the sender resolve {success:false} exactly as a real SMTP outage would.
+const FAILING_VERIFY_EMAIL = 'email-fails@example.com';
+const FAILING_RECOVER_EMAIL = 'recover-fails@example.com';
 require.cache[emailModulePath].exports = {
   ...realEmail,
   sendVerificationCode: async ({ email, code }) => {
+    if (email === FAILING_VERIFY_EMAIL) return { success: false, error: 'SMTP down' };
     deliveredCodes.set(email, code);
+    return { success: true, mocked: true };
+  },
+  sendDashboardLinks: async ({ email, bookings: bks }) => {
+    if (email === FAILING_RECOVER_EMAIL) return { success: false, error: 'SMTP down' };
+    return realEmail.sendDashboardLinks({ email, bookings: bks });
+  },
+  notifyAdminPaymentConflict: async (payload) => {
+    paymentConflicts.push(payload);
     return { success: true, mocked: true };
   },
 };
@@ -82,7 +110,13 @@ const {
   renewBooking,
   recoverBookings,
 } = require('../platform/api/booking-service.js');
-const { createBooking } = require('../platform/api/bookings.js');
+const {
+  createBooking,
+  endBooking,
+  extendBooking,
+  sweepStaleReservations,
+} = require('../platform/api/bookings.js');
+const { runLeaseExpiry } = require('../platform/scripts/lease-expiry.js');
 const { invoke } = require('./helpers/http.js');
 const slotsHandler = require('../api/slots/[[...slug]].js');
 const { getSlotId, getSlotSlug, getBundleSlotId } = require('./helpers/slots.js');
@@ -269,6 +303,24 @@ test('checkVerification rejects wrong and expired codes', async () => {
   }
 });
 
+// server.js once carried an inline re-implementation of these endpoints that
+// stored codes UNHASHED and compared with !== while sharing the same
+// email_verifications table. Guard the dedup: the routes must delegate to
+// booking-service and no plaintext/Math.random path may return.
+test('server.js /api/verify routes delegate to booking-service (plaintext copy stays gone)', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const src = fs.readFileSync(path.join(__dirname, '..', 'platform', 'server.js'), 'utf8');
+  assert.ok(src.includes("app.post('/api/verify/send'"), 'verify/send route preserved');
+  assert.ok(src.includes("app.post('/api/verify/check'"), 'verify/check route preserved');
+  assert.ok(
+    src.includes('bookingSendVerification') && src.includes('bookingCheckVerification'),
+    'both routes delegate to booking-service'
+  );
+  assert.ok(!src.includes('Math.random'), 'no Math.random code generation remains');
+  assert.ok(!src.includes('row.code !=='), 'no plaintext code comparison remains');
+});
+
 test('createBookingRequest creates a pending_payment booking', async () => {
   const token = await makeVerifiedEmail('booking-create@example.com');
   const result = await createBookingRequest({
@@ -389,6 +441,57 @@ test('getAllBookingsByToken returns bookings for the same email', async () => {
   assert.ok(ids.includes(r2.bookingId));
 });
 
+// Token over-exposure fix: the sibling listing must never hand out raw
+// analytics_tokens (per-booking management credentials). Each sibling gets an
+// opaque dashboard URL instead.
+test('getAllBookingsByToken exposes dashboard URLs, never raw sibling tokens', async () => {
+  const token = await makeVerifiedEmail('sibling-tokens@example.com');
+  const r1 = await createBookingRequest({
+    slotId: getSlotId(__filename, 'ares', 8),
+    email: 'sibling-tokens@example.com',
+    companyName: 'S1',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token,
+  });
+  const token2 = await makeVerifiedEmail('sibling-tokens@example.com');
+  const r2 = await createBookingRequest({
+    slotId: getSlotId(__filename, 'ares', 9),
+    email: 'sibling-tokens@example.com',
+    companyName: 'S2',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token2,
+  });
+  const { bookings } = await getAllBookingsByToken(r1.token);
+  assert.strictEqual(bookings.length, 2);
+  for (const b of bookings) {
+    assert.ok(!('token' in b), 'no raw management token field');
+    assert.ok(!('analytics_token' in b), 'no analytics_token field');
+    assert.ok(
+      b.dashboard_url.startsWith('https://punicodex.com/'),
+      `dashboard_url is platform-absolute: ${b.dashboard_url}`
+    );
+    assert.match(b.dashboard_url, /\/dashboard\/\?token=/, 'dashboard URL carries the token');
+  }
+  const r2Sibling = bookings.find((b) => b.id === r2.bookingId);
+  assert.ok(r2Sibling, 'sibling booking listed');
+  assert.ok(
+    !r2Sibling.dashboard_url.includes(r1.token),
+    'the caller token must not unlock sibling management'
+  );
+  const db = new Database(getTestDbPath(__filename));
+  const r2Token = db
+    .prepare('SELECT analytics_token FROM bookings WHERE id = ?')
+    .get(r2.bookingId).analytics_token;
+  db.close();
+  assert.notStrictEqual(r2Token, r1.token, 'siblings have distinct tokens in the DB');
+  assert.ok(
+    r2Sibling.dashboard_url.includes(encodeURIComponent(r2Token)),
+    'the sibling dashboard URL is the sibling token, not the caller'
+  );
+});
+
 test('updateBookingMeta validates heading length', async () => {
   const token = await makeVerifiedEmail('meta-update@example.com');
   const result = await createBookingRequest({
@@ -414,10 +517,104 @@ test('updateBookingMeta validates heading length', async () => {
   }
 });
 
-test('cancelBooking and uncancelBooking toggle cancel_at_end', async () => {
-  const token = await makeVerifiedEmail('cancel-test@example.com');
+// Defect fix: the token-path meta edit used to flip a live booking to
+// pending_approval while its frames stayed 'live' — the edited copy kept
+// serving during review. Mirrors updateOwnBookingMeta: booking AND frames in
+// one transaction.
+test('updateBookingMeta on a live booking returns it to review and reserves the frame', async () => {
+  const token = await makeVerifiedEmail('meta-live@example.com');
+  const slotId = getSlotId(__filename, 'ares', 6);
   const result = await createBookingRequest({
-    slotId: getSlotId(__filename, 'hermes', 8),
+    slotId,
+    email: 'meta-live@example.com',
+    companyName: 'Meta Live Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token,
+  });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare("UPDATE bookings SET status = 'live' WHERE id = ?").run(result.bookingId);
+  db.prepare("UPDATE ad_slots SET status = 'live', current_booking_id = ? WHERE id = ?").run(
+    result.bookingId,
+    slotId
+  );
+  db.close();
+
+  await updateBookingMeta(result.token, { customHeading: 'Edited live copy' });
+
+  const booking = await getBookingByTokenSafe(result.token);
+  assert.strictEqual(booking.status, 'pending_approval', 'edited copy goes back through review');
+  assert.strictEqual(booking.custom_heading, 'Edited live copy');
+
+  const after = new Database(getTestDbPath(__filename));
+  const slot = after
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  after.close();
+  assert.strictEqual(slot.status, 'reserved', 'the frame stops serving until re-approval');
+  assert.strictEqual(slot.current_booking_id, result.bookingId, 'the booking keeps its hold');
+});
+
+// Token over-exposure fix: the sponsor-facing read must not leak Stripe
+// internals or admin notes.
+test('getBookingByTokenSafe omits stripe internals and admin notes', async () => {
+  const token = await makeVerifiedEmail('safe-read@example.com');
+  const result = await createBookingRequest({
+    slotId: getSlotId(__filename, 'ares', 4),
+    email: 'safe-read@example.com',
+    companyName: 'Safe Read Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token,
+  });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare(
+    "UPDATE bookings SET stripe_session_id = 'cs_secret', stripe_payment_intent = 'pi_secret', stripe_subscription_id = 'sub_secret', admin_note = 'internal note' WHERE id = ?"
+  ).run(result.bookingId);
+  db.close();
+
+  const booking = await getBookingByTokenSafe(result.token);
+  assert.strictEqual(booking.status, 'pending_payment', 'dashboard fields still present');
+  assert.ok(booking.slot_name, 'slot join still present');
+  assert.ok(!('stripe_session_id' in booking), 'stripe_session_id omitted');
+  assert.ok(!('stripe_payment_intent' in booking), 'stripe_payment_intent omitted');
+  assert.ok(!('stripe_subscription_id' in booking), 'stripe_subscription_id omitted');
+  assert.ok(!('admin_note' in booking), 'admin_note omitted');
+  assert.ok(!('email' in booking), 'email omitted');
+});
+
+test('sendVerification surfaces an email send failure', async () => {
+  await assert.rejects(sendVerification(FAILING_VERIFY_EMAIL), (err) => {
+    assert.strictEqual(err.status, 502);
+    assert.match(err.message, /try again/i);
+    return true;
+  });
+});
+
+test('recoverBookings reports a send failure instead of fake success', async () => {
+  await createBooking({
+    slotId: getSlotId(__filename, 'ares', 5),
+    email: FAILING_RECOVER_EMAIL,
+    companyName: 'Recover Fail Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'ares',
+    status: 'approved',
+  });
+  const result = await recoverBookings(FAILING_RECOVER_EMAIL);
+  assert.strictEqual(result.sent, false, 'a failed send must not report sent:true');
+  assert.match(result.message, /try again/i);
+});
+
+// UPDATED for the pending_payment cancel fix: cancelling an UNPAID booking no
+// longer just sets cancel_at_end — it transitions the booking to 'cancelled'
+// and releases the reserved frame immediately (the old test encoded the buggy
+// flag-only behavior, which let a sponsor complete checkout after cancelling).
+test('cancelBooking on a pending_payment booking cancels it and frees the frame', async () => {
+  const token = await makeVerifiedEmail('cancel-test@example.com');
+  const slotId = getSlotId(__filename, 'hermes', 8);
+  const result = await createBookingRequest({
+    slotId,
     email: 'cancel-test@example.com',
     companyName: 'Cancel Co',
     leaseMonths: 1,
@@ -425,9 +622,82 @@ test('cancelBooking and uncancelBooking toggle cancel_at_end', async () => {
     verificationToken: token,
   });
   const canceled = await cancelBooking(result.token);
-  assert.strictEqual(canceled.cancelAtEnd, true);
+  assert.strictEqual(canceled.status, 'cancelled');
+  assert.strictEqual(canceled.cancelAtEnd, undefined, 'no flag — the booking is closed out');
+
+  const db = new Database(getTestDbPath(__filename));
+  const booking = db
+    .prepare('SELECT status, cancel_at_end FROM bookings WHERE id = ?')
+    .get(result.bookingId);
+  const slot = db
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  db.close();
+  assert.strictEqual(booking.status, 'cancelled');
+  assert.strictEqual(booking.cancel_at_end, 0, 'no cancel_at_end flag on a cancelled booking');
+  assert.strictEqual(slot.status, 'available', 'the frame is resellable immediately');
+  assert.strictEqual(slot.current_booking_id, null, 'the hold is cleared');
+
+  // A cancelled booking is terminal: uncancel must refuse it.
+  try {
+    await uncancelBooking(result.token);
+    assert.fail('expected 400');
+  } catch (err) {
+    assert.strictEqual(err.status, 400);
+    assert.match(err.message, /Cannot uncancel in status: cancelled/);
+  }
+});
+
+test('cancelBooking on a live booking keeps the cancel_at_end flag', async () => {
+  const token = await makeVerifiedEmail('cancel-live@example.com');
+  const slotId = getSlotId(__filename, 'nike', 6);
+  const result = await createBookingRequest({
+    slotId,
+    email: 'cancel-live@example.com',
+    companyName: 'Cancel Live Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    verificationToken: token,
+  });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare("UPDATE bookings SET status = 'live' WHERE id = ?").run(result.bookingId);
+  db.prepare("UPDATE ad_slots SET status = 'live', current_booking_id = ? WHERE id = ?").run(
+    result.bookingId,
+    slotId
+  );
+  db.close();
+
+  const canceled = await cancelBooking(result.token);
+  assert.strictEqual(canceled.cancelAtEnd, true, 'live placements wind down at term end');
   const uncanceled = await uncancelBooking(result.token);
   assert.strictEqual(uncanceled.cancelAtEnd, false);
+
+  const after = new Database(getTestDbPath(__filename));
+  const slot = after
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  after.close();
+  assert.strictEqual(slot.status, 'live', 'a flagged live placement keeps its frame');
+  assert.strictEqual(slot.current_booking_id, result.bookingId);
+});
+
+test('uncancelBooking refuses terminal statuses', async () => {
+  const ended = await createBooking({
+    slotId: getSlotId(__filename, 'ares', 3),
+    email: 'uncancel-ended@example.com',
+    companyName: 'Ended Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'ares',
+    status: 'ended',
+  });
+  try {
+    await uncancelBooking(ended.token);
+    assert.fail('expected 400');
+  } catch (err) {
+    assert.strictEqual(err.status, 400);
+    assert.match(err.message, /Cannot uncancel in status: ended/);
+  }
 });
 
 test('renewBooking generates a renewal checkout URL', async () => {
@@ -671,6 +941,36 @@ test('createBookingRequest: free_months is complimentary with the lease forced t
   db.close();
 });
 
+test('createBookingRequest: complimentary redemption stores trial_months 0 even when a trial was requested', async () => {
+  const slotId = getSlotId(__filename, 'ares', 7);
+  await discountService.createCode(
+    { code: 'ARES-FOUNDING', kind: 'percent_off', percent: 100, appliesTo: 'ares' },
+    null
+  );
+  const token = await makeVerifiedEmail('complimentary-trial@example.com');
+  const result = await createBookingRequest({
+    slotId,
+    email: 'complimentary-trial@example.com',
+    companyName: 'Complimentary Trial Co',
+    leaseMonths: 12,
+    trialMonths: 3,
+    verificationToken: token,
+    discountCode: 'ARES-FOUNDING',
+  });
+  assert.strictEqual(result.complimentary, true);
+  assert.strictEqual(result.trialMonths, 0, 'the response advertises a zero trial');
+  const db = new Database(getTestDbPath(__filename));
+  const booking = db
+    .prepare('SELECT trial_months FROM bookings WHERE id = ?')
+    .get(result.bookingId);
+  db.close();
+  assert.strictEqual(
+    booking.trial_months,
+    0,
+    'the row agrees with the confirmation email — a nil term has no trial'
+  );
+});
+
 test('createBookingRequest: an unknown code falls back to full price, no redemption', async () => {
   const token = await makeVerifiedEmail('badcode@example.com');
   const result = await createBookingRequest({
@@ -770,6 +1070,241 @@ test('createBookingRequest: a Stripe failure on a bundle releases every member s
   const bySlot = db.prepare('SELECT COUNT(*) AS c FROM bookings WHERE slot_id = ?').get(bundleId);
   assert.strictEqual(bySlot.c, 0, 'booking row deleted');
   db.close();
+});
+
+// ── Audit fixes: subscription termination, renewal idempotency, sweeps ──────
+
+test('endBooking cancels the Stripe subscription and frees the slot', async () => {
+  const slotId = getSlotId(__filename, 'ares', 1);
+  const { id } = await createBooking({
+    slotId,
+    email: 'end-sub-cancel@example.com',
+    companyName: 'End Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'ares',
+    status: 'live',
+  });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare("UPDATE bookings SET stripe_subscription_id = 'sub_end_1' WHERE id = ?").run(id);
+  db.close();
+
+  await endBooking(id);
+  assert.ok(subscriptionCancels.includes('sub_end_1'), 'subscriptions.cancel was called');
+  const after = new Database(getTestDbPath(__filename), { readonly: true });
+  const booking = after.prepare('SELECT status FROM bookings WHERE id = ?').get(id);
+  const slot = after
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  after.close();
+  assert.strictEqual(booking.status, 'ended');
+  assert.strictEqual(slot.status, 'available');
+  assert.strictEqual(slot.current_booking_id, null);
+});
+
+test('endBooking ABORTS when the Stripe cancel fails — booking and slot untouched', async () => {
+  const slotId = getSlotId(__filename, 'ares', 2);
+  const { id } = await createBooking({
+    slotId,
+    email: 'end-sub-abort@example.com',
+    companyName: 'Abort Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'ares',
+    status: 'live',
+  });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare("UPDATE bookings SET stripe_subscription_id = 'sub_abort_1' WHERE id = ?").run(id);
+  db.close();
+
+  stripeCancelError = new Error('Stripe API unreachable');
+  try {
+    await assert.rejects(() => endBooking(id), /Stripe subscription cancel failed/);
+  } finally {
+    stripeCancelError = null;
+  }
+  const after = new Database(getTestDbPath(__filename), { readonly: true });
+  const booking = after.prepare('SELECT status FROM bookings WHERE id = ?').get(id);
+  const slot = after
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  after.close();
+  assert.strictEqual(booking.status, 'live', 'a failed cancel must not end the booking');
+  assert.strictEqual(slot.status, 'reserved', 'the frame must not be freed');
+  assert.strictEqual(slot.current_booking_id, id);
+});
+
+test('lease-expiry sweep ends a cancel_at_end booking past its lease end', async () => {
+  const slotId = getSlotId(__filename, 'hermes', 1);
+  const { id } = await createBooking({
+    slotId,
+    email: 'cancel-at-end@example.com',
+    companyName: 'Cancel Sweep Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'hermes',
+    status: 'pending_upload',
+  });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare(
+    "UPDATE bookings SET ends_at = '2020-01-01T00:00:00.000Z', cancel_at_end = 1 WHERE id = ?"
+  ).run(id);
+  db.close();
+
+  const result = await runLeaseExpiry();
+  assert.ok(result.cancelAtEndEnded >= 1, 'the cancel-at-end sweep ended the booking');
+
+  const after = new Database(getTestDbPath(__filename), { readonly: true });
+  const booking = after.prepare('SELECT status FROM bookings WHERE id = ?').get(id);
+  const slot = after
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  after.close();
+  assert.strictEqual(booking.status, 'ended');
+  assert.strictEqual(slot.status, 'available');
+  assert.strictEqual(slot.current_booking_id, null);
+});
+
+test('renewal with a new session id extends; a replayed webhook no-ops', async () => {
+  const slotId = getSlotId(__filename, 'hermes', 6);
+  const { id } = await createBooking({
+    slotId,
+    email: 'renew-replay@example.com',
+    companyName: 'Replay Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'hermes',
+    status: 'live',
+  });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare("UPDATE bookings SET stripe_session_id = 'cs_initial_replay' WHERE id = ?").run(id);
+  db.close();
+
+  const first = await extendBooking(id, 6, 9000, 'cs_renewal_replay');
+  assert.strictEqual(first.extended, true);
+  assert.strictEqual(first.booking.lease_months, 7);
+
+  const second = await extendBooking(id, 6, 9000, 'cs_renewal_replay');
+  assert.strictEqual(
+    second.extended,
+    false,
+    'the same session id is a replay and must not extend twice'
+  );
+  assert.strictEqual(second.booking.lease_months, 7, 'lease months unchanged by the replay');
+
+  const after = new Database(getTestDbPath(__filename), { readonly: true });
+  const row = after.prepare('SELECT stripe_session_id FROM bookings WHERE id = ?').get(id);
+  after.close();
+  assert.strictEqual(row.stripe_session_id, 'cs_renewal_replay', 'renewal session id persisted');
+});
+
+test('renewal on an ended booking is refused and pages the admin', async () => {
+  const slotId = getSlotId(__filename, 'hermes', 7);
+  const { id } = await createBooking({
+    slotId,
+    email: 'renew-ended@example.com',
+    companyName: 'Ended Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'hermes',
+    status: 'live',
+  });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare(
+    "UPDATE bookings SET status = 'ended', stripe_session_id = 'cs_initial_ended' WHERE id = ?"
+  ).run(id);
+  db.close();
+
+  paymentConflicts.length = 0;
+  const result = await extendBooking(id, 6, 9000, 'cs_renewal_ended');
+  assert.strictEqual(result.extended, false, 'an ended booking must never be extended');
+  assert.strictEqual(result.booking.status, 'ended');
+  assert.strictEqual(result.booking.lease_months, 1, 'no extension applied');
+  assert.strictEqual(paymentConflicts.length, 1, 'the operator is paged');
+  assert.strictEqual(paymentConflicts[0].reason, 'renewal_on_ineligible_booking');
+});
+
+test('createBookingRequest rejects a code whose free months reach the lease', async () => {
+  const slotId = getSlotId(__filename, 'hermes', 11);
+  await discountService.createCode(
+    { code: 'TRIAL-TOO-LONG', kind: 'trial_extension', freeMonths: 1, appliesTo: 'hermes' },
+    null
+  );
+  const token = await makeVerifiedEmail('trial-too-long@example.com');
+  try {
+    await createBookingRequest({
+      slotId,
+      email: 'trial-too-long@example.com',
+      companyName: 'Trial Co',
+      leaseMonths: 1,
+      trialMonths: 0,
+      verificationToken: token,
+      discountCode: 'TRIAL-TOO-LONG',
+    });
+    assert.fail('expected a 400 BookingError');
+  } catch (err) {
+    assert.strictEqual(err.status, 400);
+    assert.match(err.message, /Effective trial/);
+  }
+  const db = new Database(getTestDbPath(__filename), { readonly: true });
+  const slot = db
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  const row = db
+    .prepare('SELECT COUNT(*) AS c FROM bookings WHERE email = ?')
+    .get('trial-too-long@example.com');
+  db.close();
+  assert.strictEqual(slot.status, 'available', 'the violating code must not reserve the slot');
+  assert.strictEqual(slot.current_booking_id, null);
+  assert.strictEqual(row.c, 0, 'no booking row left behind');
+});
+
+test('sweepStaleReservations cancels a stale reservation with an ISO cutoff', async () => {
+  const slotId = getSlotId(__filename, 'hermes', 12);
+  const { id } = await createBooking({
+    slotId,
+    email: 'iso-sweep@example.com',
+    companyName: 'Sweep Co',
+    leaseMonths: 1,
+    trialMonths: 0,
+    siteSlug: 'hermes',
+    status: 'pending_payment',
+  });
+  const db = new Database(getTestDbPath(__filename));
+  db.prepare("UPDATE bookings SET created_at = datetime('now', '-72 hours') WHERE id = ?").run(id);
+  db.close();
+
+  const result = await sweepStaleReservations({ olderThanHours: 48 });
+  assert.ok(result.canceled >= 1, 'the stale reservation was swept');
+
+  const after = new Database(getTestDbPath(__filename), { readonly: true });
+  const booking = after.prepare('SELECT status FROM bookings WHERE id = ?').get(id);
+  const slot = after
+    .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+    .get(slotId);
+  after.close();
+  assert.strictEqual(booking.status, 'cancelled');
+  assert.strictEqual(slot.status, 'available');
+  assert.strictEqual(slot.current_booking_id, null);
+});
+
+test('verify-send cooldown: shared helper enforces the 60s per-email window', async () => {
+  const {
+    verifySendCooldownRemaining,
+    stampVerifySend,
+  } = require('../platform/api/verified-sessions.js');
+  const email = 'cooldown-battle@example.com';
+  assert.strictEqual(await verifySendCooldownRemaining(email), 0, 'no row yet — send allowed');
+  // Real flow: sendVerification upserts the row, then the route stamps it.
+  await sendVerification(email);
+  await stampVerifySend(email);
+  const remaining = await verifySendCooldownRemaining(email);
+  assert.ok(remaining > 0 && remaining <= 60000, `cooldown active (${remaining}ms left)`);
+  assert.strictEqual(
+    await verifySendCooldownRemaining('cooldown-other@example.com'),
+    0,
+    'cooldown is per-email, not global'
+  );
 });
 
 const discountService = require('../platform/api/discount-service.js');

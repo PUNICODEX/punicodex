@@ -327,8 +327,8 @@ function syncPage(rel, { active, insertNav, chrome, replaceNav }) {
     html = html.replace(/\/css\/nav-more\.css\?v=\d+/g, '/css/nav-more.css?v=5');
     html = ensureCssLink(html, '/css/nav-more.css?v=5');
     if (html.includes('class="mobile-menu"')) {
-      html = html.replace(/\/css\/mobile-menu\.css\?v=\d+/g, '/css/mobile-menu.css?v=4');
-      html = ensureCssLink(html, '/css/mobile-menu.css?v=4');
+      html = html.replace(/\/css\/mobile-menu\.css\?v=\d+/g, '/css/mobile-menu.css?v=5');
+      html = ensureCssLink(html, '/css/mobile-menu.css?v=5');
     }
   }
   if (!html.includes('/js/px-core.js')) {

@@ -73,6 +73,63 @@ sequences. On a 4090 expect ~2–4 hours.
 3. Spot-check the failure mode that matters: the model must **cite and
    refuse** per the safety corpus, not hallucinate etymologies.
 
+## Friend-owned RTX 5090 (32 GB) — the standing-rig variant
+
+If a collaborator has an RTX 5090 (Blackwell, sm_120), the same recipe runs
+on their machine at zero rental cost and becomes a repeatable training rig.
+Everything below assumes **WSL2 (Ubuntu 24.04)** — native Windows works for
+inference but CUDA training under WSL2 avoids driver/toolchain friction.
+
+1. **Machine prep** (once): latest NVIDIA driver, WSL2 + Ubuntu 24.04,
+   CUDA 12.x toolkit, Python 3.11, ~100 GB free disk, then
+   `pip install "axolotl[flash-attn]"` (or run Axolotl's CUDA Docker image).
+   Blackwell caveat: flash-attn wheels lag sm_120 — the config below uses
+   sdpa attention; only enable `flash_attention` with a verified Blackwell build.
+
+2. **Get the data** (pinned & reproducible):
+   ```bash
+   git clone <repo> punicodex && cd punicodex
+   npm ci && npm run generate        # or just copy data/corpus/ over
+   node scripts/prepare-finetune-data.js
+   ```
+   The prep script converts `chat-train`/`chat-eval` to Axolotl sharegpt
+   format in `data/finetune/`, validates counts against
+   `data/corpus/manifest.json`, dedupes exact conversations, skips tool-call
+   records (they need the separate tool-use pass), and **aborts if any
+   eval/benchmark id appears in the training file**.
+
+3. **Train**:
+   ```bash
+   python -m axolotl.cli.train docs/fine-tuning/axolotl-5090-chat.yaml
+   ```
+   QLoRA r=32: ~61k unified conversations **plus a 3,398-record deep
+   scholarly layer** (temple scholars content + lore catalog + temple
+   essays, converted by the prep script), seq 4096 packed, **4 epochs** —
+   an overnight run, 8–16 h on the 5090. This is deliberate: depth is the
+   point. The merged adapter lands in `./out`.
+
+4. **Merge + export**:
+   ```bash
+   python -m axolotl.cli.merge_lora docs/fine-tuning/axolotl-5090-chat.yaml
+   # GGUF for cheap serving (llama.cpp):
+   python convert_hf_to_gguf.py ../out/merged -o punicodex-oracle-q8_0.gguf
+   ```
+
+5. **Wire it into the site** — the Oracle already has the hook
+   (`resolveLlmConfig` in `platform/api/oracle.js`): serve the model with
+   llama.cpp server / vLLM anywhere always-on, then set on Vercel:
+   `ORACLE_LLM_PROVIDER=nemotron`, `ORACLE_LLM_API_KEY`, `ORACLE_LLM_MODEL`.
+   Without it the Oracle still answers from deterministic RAG; with it, the
+   fine-tuned model polishes answers under the diacritic/script-honesty
+   doctrine it was trained on.
+
+6. **Keep the learning** (the flywheel): weights never enter the repo — keep
+   them in a private HF hub repo / R2 bucket. The repo keeps configs, eval
+   scores (in `data/benchmarks/`), and updated cards via `npm run generate`.
+   When `manifest.json`'s `canonicalHashes` change, re-run steps 2–4.
+   Optional next passes: DPO on `preference-examples.jsonl`, then the
+   tool-use pass (P4) that the prep script currently skips.
+
 ## Straight talk
 
 - A fine-tuned 8B will learn the lexicon's facts, formats, and voice. It

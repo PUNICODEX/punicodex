@@ -472,6 +472,14 @@
                 return;
             }
             bookings = all.bookings || [];
+            // The /all payload no longer hands out raw sibling management
+            // tokens; each booking carries its dashboard URL instead. Derive
+            // the per-placement token from that URL for the manage calls below.
+            for (const b of bookings) {
+                if (!b.token && b.dashboard_url) {
+                    try { b.token = new URL(b.dashboard_url).searchParams.get('token') || b.token; } catch (e) { /* leave unset */ }
+                }
+            }
             if (bookings.length > 0) {
                 const company = bookings[0].company_name || 'Advertiser Panel';
                 document.getElementById('panel-company').textContent = company;

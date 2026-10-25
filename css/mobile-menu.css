@@ -17,6 +17,7 @@
     left: 0;
     right: 0;
     height: calc(100vh - var(--nav-height, 64px));
+    height: calc(100dvh - var(--nav-height, 64px));
     background: rgba(5, 5, 5, 0.98);
     z-index: 1009;
     display: flex;
@@ -25,6 +26,7 @@
     justify-content: flex-start;
     gap: var(--space-3, 12px);
     padding: var(--space-4, 16px) var(--space-3, 12px);
+    padding-bottom: max(var(--space-5, 24px), env(safe-area-inset-bottom, 0px));
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -58,6 +60,7 @@ body.menu-open {
     counter-reset: none;
     top: var(--nav-height, 64px);
     height: calc(100vh - var(--nav-height, 64px));
+    height: calc(100dvh - var(--nav-height, 64px));
     border-top: none;
     box-shadow: none;
 }
@@ -142,6 +145,7 @@ body.menu-open {
 @media (min-width: 480px) {
     .mobile-menu {
         padding: var(--space-5, 24px) var(--space-4, 16px);
+        padding-bottom: max(var(--space-5, 24px), env(safe-area-inset-bottom, 0px));
     }
 
     .mobile-menu-group {

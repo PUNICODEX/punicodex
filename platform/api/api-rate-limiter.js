@@ -24,6 +24,10 @@ const DEFAULT_TIER_LIMITS = {
   // Stricter bucket for unauthenticated endpoints that trigger outbound work
   // (e.g. DNS availability checks) or enqueue crawl jobs.
   'public-strict': { limit: 5, windowMs: 60 * 1000 }, // 5/min
+  // Verification-code sends each deliver an email; an IP-rotating attacker
+  // could otherwise bomb a victim's inbox. 5/hour/IP, plus the per-email
+  // cooldown enforced in the /api/verify/send route.
+  'verify-send': { limit: 5, windowMs: 60 * 60 * 1000 }, // 5/hour
 };
 
 class InMemoryRateLimiter {

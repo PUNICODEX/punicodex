@@ -103,6 +103,16 @@ const RULES = [
     ],
   },
   {
+    pattern:
+      /^platform\/api\/(booking|bookings|stripe|booking-upload|booking-validation|discount-service|admin-booking-service|creative-purge|verified-sessions|email|store-fulfillment|tenant-portal)\.js$|^platform\/scripts\/(lease-expiry|trial-reminders)\.js$|^api\/(bookings|slots|webhook)\//,
+    suites: [
+      'Booking Battle Tests',
+      'Booking Service Tests',
+      'Sponsorship State Machine Tests',
+      'Booking Lifecycle E2E',
+    ],
+  },
+  {
     pattern: /^platform\/api\/booking|^platform\/services\/booking|^templates\/flagship\/flagship\.js$/,
     suites: [
       'Booking Lifecycle E2E',
@@ -113,6 +123,10 @@ const RULES = [
       'Sponsorship State Machine Tests',
       'Sponsorship Slot Invariant Tests',
     ],
+  },
+  {
+    pattern: /^js\/archetypes-v2\.js$|^platform\/db\/migrate-booking-v3\.js$|^scripts\/sync-missing-slots-to-postgres\.js$|^sites\/[^/]+\/index\.html$/,
+    suites: ['Slots Seeded Tests'],
   },
   {
     pattern: /^platform\/(services|api)\/analytics|^platform\/db\/migrate-analytics/,

@@ -261,15 +261,12 @@ test('full journey: apply → approve-application → paid → upload → approv
 });
 
 // ─── Reject at each stage (legal) ─────────────────────────────
+// The reject guard (audit fix) only allows bookings that are awaiting a
+// decision: an application, a creative review, or a first upload. Anything
+// live/ended must go through End, and an unpaid reservation through the
+// stale-sweep — see the illegal-reject matrix below.
 
-for (const stage of [
-  'pending_application',
-  'pending_payment',
-  'pending_upload',
-  'pending_approval',
-  'approved',
-  'live',
-]) {
+for (const stage of ['pending_application', 'pending_upload', 'pending_approval']) {
   test(`reject: ${stage} → rejected`, async () => {
     const { id } = await makeBooking(stage, { creative: true });
     const result = await rejectBooking(id, 'Off brief', 'test-admin-token');
@@ -278,6 +275,20 @@ for (const stage of [
     const booking = await getBookingById(id);
     assert.strictEqual(booking.status, 'rejected');
     assert.strictEqual(booking.admin_note, 'Off brief', 'rejection reason recorded');
+  });
+}
+
+// ─── Illegal: rejectBooking ───────────────────────────────────
+
+for (const stage of ['pending_payment', 'approved', 'live', 'ended', 'rejected']) {
+  test(`illegal: rejectBooking on ${stage} is a 400`, async () => {
+    const { id } = await makeBooking(stage, { creative: true });
+    await expectAdminError(
+      rejectBooking(id, 'nope', 'test-admin-token'),
+      400,
+      /Cannot reject a booking in status/
+    );
+    assert.strictEqual(await statusOf(id), stage, 'rejected reject must not move the booking');
   });
 }
 

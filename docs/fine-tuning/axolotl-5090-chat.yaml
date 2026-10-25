@@ -1,0 +1,86 @@
+# Axolotl config — PuniCodex Oracle SFT QLoRA on a single RTX 5090 (32 GB).
+# Companion to docs/fine-tuning-nemotron.md (v1) and axolotl-nemotron-nano.yaml
+# (rented-GPU variant). This variant trains on the unified chat corpus.
+#
+# Data: run `node scripts/prepare-finetune-data.js` first — it converts
+# data/corpus/chat-{train,eval}.jsonl to sharegpt format in data/finetune/
+# and enforces manifest counts + eval-set leakage guards.
+#
+# Runtime: this recipe is deliberately sized for an OVERNIGHT run
+# (~8–16 h on a 5090). Longer training on a frozen 4-bit base is cheap
+# quality: loss keeps settling and doctrine drills in. Do not shorten it.
+#
+# Blackwell (RTX 50xx, sm_120) notes:
+#   - flash-attn wheels lag behind Blackwell; sdpa is used instead.
+#   - bf16 + 4-bit NF4 QLoRA at seq 4096 fits in 32 GB with sample packing
+#     (micro_batch 2 × grad_accum 8 ≈ effective 16); OOM fallback ladder:
+#     sequence_len 2048 → micro_batch 1 → sequence_len 1024.
+
+base_model: Qwen/Qwen3-8B   # VERIFIED id — pinned for the one-shot run.
+                           # (Nemotron Nano stays a future swap: only adopt it
+                           # once its HF id and Axolotl support are confirmed.)
+                           # Optional upgrade: Qwen/Qwen3-14B + micro_batch_size 1
+                           # — probe 20 steps first, adopt only if projected
+                           # wall-clock stays under ~20 h on the 5090.
+
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+
+load_in_4bit: true
+strict: false
+
+datasets:
+  - path: ./data/finetune/oracle-sft-train.json
+    ds_type: json
+    type: sharegpt
+    conversation: chat_template   # apply the tokenizer's chat template to system/human/gpt turns
+  - path: ./data/finetune/oracle-sft-scholarly.json
+    ds_type: json
+    type: sharegpt
+    conversation: chat_template   # deep layer: scholars sections + lore + temple essays
+  - path: ./data/finetune/oracle-sft-eval.json
+    ds_type: json
+    type: sharegpt
+    conversation: chat_template
+
+dataset_prepared_path: ./prepared
+val_set_size: 0.02                 # held-out slice from train; chat-eval is the honest eval (see runbook)
+output_dir: ./out
+
+sequence_len: 4096
+sample_packing: true
+pad_to_sequence_len: true
+
+adapter: qlora
+lora_r: 32
+lora_alpha: 64
+lora_dropout: 0.05
+lora_target_linear: true
+
+micro_batch_size: 2
+gradient_accumulation_steps: 8
+num_epochs: 4
+optimizer: adamw_bnb_8bit
+lr_scheduler: cosine
+learning_rate: 2e-4
+warmup_steps: 100
+
+bf16: auto
+tf32: true
+gradient_checkpointing: true
+logging_steps: 10
+save_steps: 200
+saves_per_epoch: 2
+eval_steps: 200
+
+# RTX 5090 (Blackwell): flash_attention: true needs FA2 sm_120 builds;
+# leave sdpa unless you have a verified Blackwell FA2 wheel.
+flash_attention: false
+sdp_attention: true
+
+# After training:
+#   python -m axolotl.cli.merge_lora axolotl-5090-chat.yaml
+#   # then convert to GGUF for cheap serving:
+#   git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp
+#   pip install -r requirements.txt
+#   python convert_hf_to_gguf.py ../out/merged -o ../out/punicodex-oracle-q8_0.gguf

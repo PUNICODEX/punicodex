@@ -75,6 +75,7 @@ migrateStoreOrders(getDb());
 
 const { handleWebhook } = require('../platform/api/stripe');
 const { processWebhook } = require('../platform/api/webhook-handler');
+const { retryStoreOrderFulfillment } = require('../platform/api/store-fulfillment');
 const {
   createStoreOrder,
   getStoreOrderByRef,
@@ -260,6 +261,43 @@ test('duplicate delivery against an already-shipped order changes nothing', asyn
   assert.strictEqual(after.tracking_url, 'https://track.example/dup1');
   assert.strictEqual(confirmationEmails, 0, 'no second confirmation email');
   assert.strictEqual(printfulCalls.length, 0, 'no second Printful order');
+});
+
+test('fulfillment failure emails honestly and admin retry does not resend the confirmation', async () => {
+  const emailApi = require('../platform/api/email');
+  const originalNotify = emailApi.notifyStoreOrderConfirmation;
+  const notifications = [];
+  emailApi.notifyStoreOrderConfirmation = async (payload) => {
+    notifications.push(payload);
+    return { mocked: true };
+  };
+
+  const { order } = createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
+  try {
+    // First attempt fails: the customer gets the honest failure copy.
+    printfulBehavior = 'fail';
+    stripeEvent = storeOrderEvent(order.order_ref);
+    await processWebhook('{}', 'sig');
+    assert.strictEqual(getStoreOrderByRef(order.order_ref).status, 'fulfillment_failed');
+    assert.strictEqual(notifications.length, 1, 'one failure email');
+    assert.strictEqual(
+      notifications[0].status,
+      'fulfillment_failed',
+      'the email says the order failed fulfillment'
+    );
+
+    // Admin retry succeeds: NO second confirmation — the customer already
+    // received their order email on the first (paid) entry.
+    printfulCalls.length = 0;
+    printfulBehavior = 'ok';
+    const retried = await retryStoreOrderFulfillment(order.id);
+    assert.strictEqual(retried.status, 'sent_to_fulfillment');
+    assert.strictEqual(printfulCalls.length, 2, 'retry creates + confirms a Printful order');
+    assert.strictEqual(notifications.length, 1, 'no duplicate confirmation on retry');
+  } finally {
+    printfulBehavior = 'ok';
+    emailApi.notifyStoreOrderConfirmation = originalNotify;
+  }
 });
 
 test('handleWebhook returns the store_order branch payload', async () => {

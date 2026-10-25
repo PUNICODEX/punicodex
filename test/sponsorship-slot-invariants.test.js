@@ -258,12 +258,19 @@ test('reject from a reserved stage releases the frame to available with no holde
   assertSlot(slotId, 'available', null, 'release-on-reject');
 });
 
-test('reject from live releases the frame to available with no holder', async () => {
+test('reject on a live booking is refused — the frame stays live with its holder', async () => {
+  // Audit fix: reject is only legal while a decision is pending. A live lease
+  // must be ended (endBookingAdmin), never rejected — the old behavior freed
+  // a live frame that may already have been resold.
   const { id, slotId } = await makeBooking('approved', { creative: true });
   await goLive(id);
-  await rejectBooking(id, 'Pulled mid-lease', 'test-admin-token');
-  assert.strictEqual((await getBookingById(id)).status, 'rejected');
-  assertSlot(slotId, 'available', null, 'release-on-reject from live');
+  await assert.rejects(rejectBooking(id, 'Pulled mid-lease', 'test-admin-token'), (err) => {
+    assert.strictEqual(err.status, 400);
+    assert.match(err.message, /Cannot reject a booking in status/);
+    return true;
+  });
+  assert.strictEqual((await getBookingById(id)).status, 'live');
+  assertSlot(slotId, 'live', id, 'the live frame is untouched by a refused reject');
 });
 
 test('reject on a bundle releases the bundle frame and every member frame', async () => {

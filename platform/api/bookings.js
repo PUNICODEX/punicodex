@@ -248,11 +248,15 @@ async function releaseSlotsForBooking(bookingId) {
  * slot 'reserved' forever — unsellable inventory.
  */
 async function sweepStaleReservations({ olderThanHours = 48 } = {}) {
+  // Dialect-portable cutoff: compute the timestamp in JS and compare against
+  // a bound parameter. datetime('now', ?) is SQLite-only and breaks on
+  // Postgres.
+  const cutoff = new Date(Date.now() - olderThanHours * 3600e3).toISOString();
   const stale = await all(
     `SELECT id FROM bookings
       WHERE status = 'pending_payment'
-        AND created_at < datetime('now', ?)`,
-    [`-${olderThanHours} hours`]
+        AND created_at < $1`,
+    [cutoff]
   );
   let slotsReleased = 0;
   for (const row of stale) {
@@ -317,8 +321,27 @@ async function updateBookingStripeSession(bookingId, sessionId) {
 
 async function markBookingPaid(sessionId, paymentIntent, amountCents, subscriptionId = null) {
   const existing = await getBookingByStripeSession(sessionId);
-  if (existing && !['pending_payment', 'pending_application'].includes(existing.status)) {
-    return existing;
+  if (existing && existing.status === 'cancelled') {
+    // Sweep-vs-webhook race: the stale-reservation sweep cancelled this
+    // booking before its checkout completed. Take the money's booking back
+    // instead of dropping the payment silently, and page a human to verify.
+    console.error(
+      `markBookingPaid: session ${sessionId} paid after booking ${existing.id} was cancelled — reconciling`
+    );
+    const { notifyAdminPaymentConflict } = require('./email');
+    notifyAdminPaymentConflict({
+      bookingId: existing.id,
+      email: existing.email,
+      status: existing.status,
+      sessionId,
+      amountCents,
+      reason: 'paid_after_cancellation',
+    }).catch(() => {});
+  } else if (existing && !['pending_payment', 'pending_application'].includes(existing.status)) {
+    // Replay of an already-processed payment: state is unchanged, so mark
+    // the row — webhook-handler uses this to avoid re-sending the
+    // upload-ready email on every Stripe redelivery.
+    return { ...existing, replayed: true };
   }
   await run(
     `
@@ -583,9 +606,41 @@ async function setCancelAtEnd(bookingId, cancel) {
   }
 }
 
-async function extendBooking(bookingId, extensionMonths, amountCents) {
+/**
+ * Apply a paid renewal. `sessionId` ties the extension to its Stripe checkout
+ * session: a replayed webhook (same session id) is a no-op, and the session id
+ * is persisted on the booking so replays are detectable. Extensions are
+ * accepted only while the booking can still run (live/approved/pending
+ * review); anything else is refused, logged, and paged to the operator.
+ * Resolves to { booking, extended } — extended=false for replays and refusals.
+ */
+async function extendBooking(bookingId, extensionMonths, amountCents, sessionId = null) {
   const booking = await getBookingById(bookingId);
   if (!booking) return null;
+
+  if (sessionId) {
+    if (booking.stripe_session_id === sessionId) {
+      return { booking, extended: false };
+    }
+    if (!['live', 'approved', 'pending_approval'].includes(booking.status)) {
+      console.error(
+        `Renewal session ${sessionId} for booking ${bookingId} in status '${booking.status}' — payment needs human review`
+      );
+      const { notifyAdminPaymentConflict } = require('./email');
+      notifyAdminPaymentConflict({
+        bookingId,
+        email: booking.email,
+        slotName: booking.slot_name,
+        status: booking.status,
+        sessionId,
+        amountCents,
+        reason: 'renewal_on_ineligible_booking',
+      }).catch(() => {});
+      return { booking, extended: false };
+    }
+    await run('UPDATE bookings SET stripe_session_id = $1 WHERE id = $2', [sessionId, bookingId]);
+  }
+
   const currentEnds = booking.ends_at ? new Date(booking.ends_at) : new Date();
   const newEnds = addMonths(currentEnds, extensionMonths).toISOString();
   await run(
@@ -596,28 +651,51 @@ async function extendBooking(bookingId, extensionMonths, amountCents) {
     `,
     [newEnds, extensionMonths, amountCents, bookingId]
   );
-  return getBookingById(bookingId);
+  return { booking: await getBookingById(bookingId), extended: true };
 }
 
-async function endBooking(bookingId) {
+async function endBooking(bookingId, { skipStripeCancel = false } = {}) {
   const booking = await getBookingById(bookingId);
-  await run(
-    `UPDATE bookings SET status = 'ended', billing_status = 'cancelled', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
-    [bookingId]
-  );
-  // Free bundle slot
-  await run(
-    `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
-    [booking.slot_id]
-  );
-  // Cascade to all member slots
-  if (await isBundleSlot(booking.slot_id)) {
-    const members = await getBundleMembers(booking.slot_id);
+  if (!booking) throw Object.assign(new Error('Booking not found'), { status: 404 });
+
+  // Ending must stop the money too: a trial subscription that outlives its
+  // lease would keep billing forever. Cancel BEFORE freeing anything and
+  // ABORT on failure — a booking marked 'ended' can never be retried (the
+  // already-ended guard blocks it), so a swallowed Stripe error would strand
+  // live billing behind a dead lease. Callers that already cancelled the
+  // subscription pass skipStripeCancel.
+  if (!skipStripeCancel && booking.stripe_subscription_id) {
+    try {
+      const { getStripe } = require('./stripe');
+      await getStripe().subscriptions.cancel(booking.stripe_subscription_id);
+    } catch (stripeErr) {
+      throw new Error(
+        `Stripe subscription cancel failed for booking ${bookingId}: ${stripeErr.message}`
+      );
+    }
+  }
+
+  const members = (await isBundleSlot(booking.slot_id))
+    ? await getBundleMembers(booking.slot_id)
+    : [];
+
+  await transaction(async ({ run }) => {
+    await run(
+      `UPDATE bookings SET status = 'ended', billing_status = 'cancelled', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+      [bookingId]
+    );
+    // Free bundle slot
+    await run(
+      `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+      [booking.slot_id]
+    );
+    // Cascade to all member slots
     const cascadeSql = `UPDATE ad_slots SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = $1`;
     for (const memberId of members) {
       await run(cascadeSql, [memberId]);
     }
-  }
+  });
+
   // Clear tenant metadata and reset lease status on the associated indexed site.
   if (booking?.site_slug) {
     const sqlite = getDb();

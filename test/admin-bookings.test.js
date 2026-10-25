@@ -7,9 +7,41 @@
 
 const assert = require('node:assert');
 process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'test-admin-password-for-ci';
+process.env.STRIPE_SECRET_KEY = 'sk_test_dummy';
 
 const { prepareTestDb } = require('./helpers/test-db.js');
 prepareTestDb(__filename);
+
+// Mock the Stripe SDK before any admin module loads: checkout-session
+// creation throws while `stripeCreateError` is set (discount-rollback test),
+// subscription cancellation throws while `stripeCancelError` is set
+// (end-abort test).
+let stripeCreateError = null;
+let stripeCancelError = null;
+const subscriptionCancels = [];
+const stripeModulePath = require.resolve('stripe');
+require.cache[stripeModulePath] = {
+  id: stripeModulePath,
+  filename: stripeModulePath,
+  loaded: true,
+  exports: () => ({
+    checkout: {
+      sessions: {
+        create: async () => {
+          if (stripeCreateError) throw stripeCreateError;
+          return { id: 'cs_admin_mock', url: 'https://checkout.stripe.com/mock' };
+        },
+      },
+    },
+    subscriptions: {
+      cancel: async (subscriptionId) => {
+        if (stripeCancelError) throw stripeCancelError;
+        subscriptionCancels.push(subscriptionId);
+        return { id: subscriptionId, status: 'canceled' };
+      },
+    },
+  }),
+};
 
 const { login: adminLogin } = require('../platform/api/admin.js');
 const { invoke, adminHeader } = require('./helpers/http.js');
@@ -254,6 +286,242 @@ async function runTests() {
     });
     assert.strictEqual(res.status, 200);
     assert.ok(typeof res.body.checked === 'number');
+  });
+
+  // ── Audit fixes: reject guards, Stripe-failure aborts, discount rollback ──
+
+  await test('POST /api/admin/bookings/:id/reject refuses a live booking', async () => {
+    const slotId = getSlotId(__filename, 'nike', 5);
+    const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
+      headers: adminHeader(adminToken),
+      body: {
+        slotId,
+        email: 'reject-live@example.com',
+        companyName: 'Live Reject Co',
+        leaseMonths: 1,
+        trialMonths: 0,
+      },
+    });
+    assert.strictEqual(createRes.status, 201);
+    const id = createRes.body.bookingId;
+
+    const Database = require('better-sqlite3');
+    const { getTestDbPath } = require('./helpers/test-db.js');
+    const wdb = new Database(getTestDbPath(__filename));
+    wdb
+      .prepare(
+        "UPDATE bookings SET creative_path = '/uploads/test/reject-live-creative.png' WHERE id = ?"
+      )
+      .run(id);
+    wdb.close();
+
+    const approveHandler = require('../platform/api-handlers/admin/bookings/[id]/approve/index.js');
+    await invoke(approveHandler, 'POST', `/api/admin/bookings/${id}/approve`, {
+      headers: adminHeader(adminToken),
+      body: { note: 'ok' },
+      params: { id: String(id) },
+    });
+    const goliveHandler = require('../platform/api-handlers/admin/bookings/[id]/golive/index.js');
+    const liveRes = await invoke(goliveHandler, 'POST', `/api/admin/bookings/${id}/golive`, {
+      headers: adminHeader(adminToken),
+      params: { id: String(id) },
+    });
+    assert.strictEqual(liveRes.status, 200);
+
+    const rejectHandler = require('../platform/api-handlers/admin/bookings/[id]/reject/index.js');
+    const res = await invoke(rejectHandler, 'POST', `/api/admin/bookings/${id}/reject`, {
+      headers: adminHeader(adminToken),
+      body: { note: 'should not work' },
+      params: { id: String(id) },
+    });
+    assert.strictEqual(res.status, 400);
+    assert.match(res.body.error, /Cannot reject/);
+
+    const check = new Database(getTestDbPath(__filename), { readonly: true });
+    const booking = check.prepare('SELECT status FROM bookings WHERE id = ?').get(id);
+    const slot = check
+      .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+      .get(slotId);
+    check.close();
+    assert.strictEqual(booking.status, 'live', 'the live booking must not move');
+    assert.strictEqual(slot.status, 'live', 'the live frame must not be freed');
+    assert.strictEqual(slot.current_booking_id, id);
+  });
+
+  await test('reject leaves a resold slot untouched (current_booking_id predicate)', async () => {
+    const slotA = getSlotId(__filename, 'nike', 6);
+    const slotB = getSlotId(__filename, 'nike', 7);
+    const createA = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
+      headers: adminHeader(adminToken),
+      body: {
+        slotId: slotA,
+        email: 'resold-a@example.com',
+        companyName: 'Resold A',
+        leaseMonths: 1,
+        trialMonths: 0,
+      },
+    });
+    const createB = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
+      headers: adminHeader(adminToken),
+      body: {
+        slotId: slotB,
+        email: 'resold-b@example.com',
+        companyName: 'Resold B',
+        leaseMonths: 1,
+        trialMonths: 0,
+      },
+    });
+    assert.strictEqual(createA.status, 201);
+    assert.strictEqual(createB.status, 201);
+    const idA = createA.body.bookingId;
+    const idB = createB.body.bookingId;
+
+    // Simulate a resale: slot A now belongs to booking B (booking A's row is
+    // stale). Rejecting A must not free B's frame.
+    const Database = require('better-sqlite3');
+    const { getTestDbPath } = require('./helpers/test-db.js');
+    const wdb = new Database(getTestDbPath(__filename));
+    wdb
+      .prepare("UPDATE ad_slots SET status = 'reserved', current_booking_id = ? WHERE id = ?")
+      .run(idB, slotA);
+    wdb.close();
+
+    const rejectHandler = require('../platform/api-handlers/admin/bookings/[id]/reject/index.js');
+    const res = await invoke(rejectHandler, 'POST', `/api/admin/bookings/${idA}/reject`, {
+      headers: adminHeader(adminToken),
+      body: { note: 'Policy violation' },
+      params: { id: String(idA) },
+    });
+    assert.strictEqual(res.status, 200);
+
+    const check = new Database(getTestDbPath(__filename), { readonly: true });
+    const slot = check
+      .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+      .get(slotA);
+    const bookingA = check.prepare('SELECT status FROM bookings WHERE id = ?').get(idA);
+    const bookingB = check.prepare('SELECT status FROM bookings WHERE id = ?').get(idB);
+    check.close();
+    assert.strictEqual(bookingA.status, 'rejected');
+    assert.strictEqual(
+      slot.current_booking_id,
+      idB,
+      'the resold frame stays with the newer booking'
+    );
+    assert.strictEqual(slot.status, 'reserved', 'the resold frame is not freed');
+    assert.strictEqual(bookingB.status, 'pending_upload', 'the newer booking is untouched');
+  });
+
+  await test('POST /api/admin/bookings/:id/end aborts when the Stripe cancel fails', async () => {
+    const slotId = getSlotId(__filename, 'nike', 8);
+    const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
+      headers: adminHeader(adminToken),
+      body: {
+        slotId,
+        email: 'end-stripe-down@example.com',
+        companyName: 'Stripe Down Co',
+        leaseMonths: 1,
+        trialMonths: 0,
+      },
+    });
+    assert.strictEqual(createRes.status, 201);
+    const id = createRes.body.bookingId;
+
+    const Database = require('better-sqlite3');
+    const { getTestDbPath } = require('./helpers/test-db.js');
+    const wdb = new Database(getTestDbPath(__filename));
+    wdb
+      .prepare("UPDATE bookings SET stripe_subscription_id = 'sub_admin_abort' WHERE id = ?")
+      .run(id);
+    wdb.close();
+
+    stripeCancelError = new Error('Stripe API unreachable');
+    let res;
+    try {
+      const endHandler = require('../platform/api-handlers/admin/bookings/[id]/end/index.js');
+      res = await invoke(endHandler, 'POST', `/api/admin/bookings/${id}/end`, {
+        headers: adminHeader(adminToken),
+        params: { id: String(id) },
+      });
+    } finally {
+      stripeCancelError = null;
+    }
+    assert.strictEqual(res.status, 502);
+    assert.match(res.body.error, /NOT ended, retry/);
+
+    const check = new Database(getTestDbPath(__filename), { readonly: true });
+    const booking = check.prepare('SELECT status FROM bookings WHERE id = ?').get(id);
+    const slot = check
+      .prepare('SELECT status, current_booking_id FROM ad_slots WHERE id = ?')
+      .get(slotId);
+    check.close();
+    assert.strictEqual(booking.status, 'pending_upload', 'the booking must not be ended');
+    assert.strictEqual(slot.status, 'reserved', 'the frame must not be freed');
+    assert.strictEqual(slot.current_booking_id, id);
+
+    // Retry succeeds once Stripe is back: the end is not permanently blocked.
+    const endHandler = require('../platform/api-handlers/admin/bookings/[id]/end/index.js');
+    const retry = await invoke(endHandler, 'POST', `/api/admin/bookings/${id}/end`, {
+      headers: adminHeader(adminToken),
+      params: { id: String(id) },
+    });
+    assert.strictEqual(retry.status, 200);
+    assert.ok(subscriptionCancels.includes('sub_admin_abort'), 'retry cancels the subscription');
+  });
+
+  await test('approval rolls the discount code back when Stripe session creation fails', async () => {
+    const discountService = require('../platform/api/discount-service.js');
+    await discountService.createCode(
+      { code: 'ROLLBACK-25', kind: 'percent_off', percent: 25, appliesTo: 'nike' },
+      null
+    );
+
+    const slotId = getSlotId(__filename, 'nike', 9);
+    const createRes = await invoke(bookingsHandler, 'POST', '/api/admin/bookings', {
+      headers: adminHeader(adminToken),
+      body: {
+        slotId,
+        email: 'discount-rollback@example.com',
+        companyName: 'Rollback Co',
+        leaseMonths: 1,
+        trialMonths: 0,
+      },
+    });
+    assert.strictEqual(createRes.status, 201);
+    const id = createRes.body.bookingId;
+
+    const Database = require('better-sqlite3');
+    const { getTestDbPath } = require('./helpers/test-db.js');
+    const wdb = new Database(getTestDbPath(__filename));
+    wdb
+      .prepare(
+        "UPDATE bookings SET status = 'pending_application', discount_code = 'ROLLBACK-25' WHERE id = ?"
+      )
+      .run(id);
+    wdb.close();
+
+    stripeCreateError = new Error('Stripe API unreachable');
+    let threw = null;
+    try {
+      const { approveApplication } = require('../platform/api/admin-booking-service.js');
+      await approveApplication(id, adminToken);
+    } catch (err) {
+      threw = err;
+    } finally {
+      stripeCreateError = null;
+    }
+    assert.ok(threw, 'the Stripe failure must propagate so the admin can retry');
+    assert.match(threw.message, /Stripe API unreachable/);
+
+    const check = new Database(getTestDbPath(__filename), { readonly: true });
+    const code = check
+      .prepare('SELECT used_count FROM discount_codes WHERE code = ?')
+      .get('ROLLBACK-25');
+    const redemption = check
+      .prepare('SELECT * FROM discount_redemptions WHERE booking_id = ?')
+      .get(id);
+    check.close();
+    assert.strictEqual(code.used_count, 0, 'the redemption is rolled back');
+    assert.strictEqual(redemption, undefined, 'no redemption row survives the rollback');
   });
 
   console.log('\nAdmin Booking Routes: all tests passed');

@@ -212,7 +212,7 @@ test('mobile-menu.css resets legacy temple-base counters and uppercase transform
 test('realms and lexicon load the cache-busted mobile-menu.css', () => {
   for (const rel of [path.join('realms', 'index.html'), path.join('lexicon', 'index.html')]) {
     const html = readPage(rel);
-    assert.ok(html.includes('/css/mobile-menu.css?v=4'), `${rel} loads mobile-menu.css?v=4`);
+    assert.ok(html.includes('/css/mobile-menu.css?v=5'), `${rel} loads mobile-menu.css?v=4`);
     assert.ok(
       !html.includes('/css/mobile-menu.css?v=1'),
       `${rel} does not load the stale v=1 mobile-menu.css`

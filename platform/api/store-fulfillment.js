@@ -10,7 +10,9 @@
  *   - catalog POD    → Printful order create + confirm →
  *                      `sent_to_fulfillment` (or `fulfillment_failed` + error)
  *
- * Then the customer gets an order-confirmation email (fire-and-forget).
+ * Then the customer gets an order email (fire-and-forget): a confirmation on
+ * the first fulfillment entry, or honest "we hit a snag" copy on failure. An
+ * admin retry after failure does NOT resend the confirmation.
  */
 
 const { setStoreOrderStatus, resolveProduct, getStoreOrderById } = require('./store-orders');
@@ -29,6 +31,7 @@ async function fulfillStoreOrder(order) {
   if (order.status !== 'paid' && order.status !== 'fulfillment_failed') {
     return order;
   }
+  const enteredFromStatus = order.status;
 
   let fulfilled = order;
   try {
@@ -54,14 +57,23 @@ async function fulfillStoreOrder(order) {
   }
 
   if (fulfilled.customer_email) {
-    await notifyStoreOrderConfirmation({
-      email: fulfilled.customer_email,
-      orderRef: fulfilled.order_ref,
-      productName: fulfilled.product_name,
-      variantLabel: fulfilled.variant_label,
-      quantity: fulfilled.quantity,
-      status: fulfilled.status,
-    }).catch(() => {});
+    // Confirmation goes out only on the FIRST fulfillment entry (status
+    // 'paid'). An admin retry re-enters from 'fulfillment_failed', where the
+    // customer already received their confirmation — resending would
+    // double-email. No confirmation_sent_at column is needed: the entry
+    // status fully determines whether a confirmation already went out.
+    // Failures always email (honest copy) — including a failed retry, which
+    // is a new failure the customer should hear about.
+    if (enteredFromStatus === 'paid' || fulfilled.status === 'fulfillment_failed') {
+      await notifyStoreOrderConfirmation({
+        email: fulfilled.customer_email,
+        orderRef: fulfilled.order_ref,
+        productName: fulfilled.product_name,
+        variantLabel: fulfilled.variant_label,
+        quantity: fulfilled.quantity,
+        status: fulfilled.status,
+      }).catch(() => {});
+    }
   }
 
   return fulfilled;

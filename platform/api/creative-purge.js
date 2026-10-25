@@ -4,10 +4,13 @@
  * What happens to a creative when a sponsorship lapses, is revoked, or is
  * never paid for: the slot stops displaying it the moment the booking ends
  * (ad_slots.current_booking_id is cleared), and this module deletes the
- * stored file after a grace period — 30 days, so a sponsor who re-leases
- * quickly keeps their asset. Files on Vercel Blob are deleted via the SDK;
- * local /tmp or dev files are unlinked. The booking row keeps its audit
- * fields; only the creative references are cleared.
+ * stored file after a grace period — 30 days for ended/cancelled bookings, so
+ * a sponsor who re-leases quickly keeps their asset; a much shorter 7 days
+ * for rejected creatives, which are publicly fetchable until purged and must
+ * not linger (a sponsor can always resubmit a fixed creative). Files on Vercel
+ * Blob are deleted via the SDK; local /tmp or dev files are unlinked. The
+ * booking row keeps its audit fields; only the creative references are
+ * cleared.
  *
  * Runs from the daily lease-expiry cron. Never throws at the caller: a
  * storage hiccup must not block lease expiry.
@@ -21,6 +24,7 @@ const { all, run } = require('../db/operational');
 const { blobEnabled, uploadsRoot } = require('./upload-storage');
 
 const GRACE_DAYS = 30;
+const REJECTED_GRACE_DAYS = 7;
 
 async function deleteStoredCreative(publicPath) {
   if (!publicPath) return;
@@ -47,13 +51,21 @@ function cutoffIso(days) {
   return new Date(Date.now() - days * 86400000).toISOString().replace('T', ' ').slice(0, 19);
 }
 
-/** Delete creatives for bookings ended/canceled beyond the grace period. */
-async function purgeEndedCreatives({ graceDays = GRACE_DAYS } = {}) {
+/** Delete creatives for bookings ended/cancelled beyond the grace period,
+ *  plus rejected creatives after the shorter rejection grace. The status
+ *  CHECK constraint spells cancellation 'cancelled' — the old 'canceled'
+ *  literal matched nothing, so swept unpaid bookings' staged creatives were
+ *  never purged. */
+async function purgeEndedCreatives({
+  graceDays = GRACE_DAYS,
+  rejectedGraceDays = REJECTED_GRACE_DAYS,
+} = {}) {
   const rows = await all(
     `SELECT id, creative_path FROM bookings
-     WHERE status IN ('ended', 'canceled') AND creative_path IS NOT NULL
-       AND updated_at <= $1`,
-    [cutoffIso(graceDays)]
+     WHERE creative_path IS NOT NULL
+       AND ((status IN ('ended', 'cancelled') AND updated_at <= $1)
+         OR (status = 'rejected' AND updated_at <= $2))`,
+    [cutoffIso(graceDays), cutoffIso(rejectedGraceDays)]
   );
   let purged = 0;
   for (const b of rows) {

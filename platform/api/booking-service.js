@@ -1,5 +1,5 @@
 const crypto = require('node:crypto');
-const { run, get } = require('../db/operational');
+const { run, get, transaction } = require('../db/operational');
 const {
   getSlots,
   getSlotBySlug,
@@ -21,6 +21,8 @@ const { createBookingCheckoutSession, createRenewalCheckoutSession } = require('
 const { createVerifiedSession, consumeVerifiedSession } = require('./verified-sessions');
 const { validateMeta, validateCompanyName } = require('./booking-validation');
 const { existingWebpFor } = require('./image-webp');
+
+const PLATFORM_URL = process.env.PLATFORM_URL || 'https://punicodex.com';
 const {
   sendVerificationCode: emailSendVerificationCode,
   sendBookingConfirmation,
@@ -137,6 +139,23 @@ async function createBookingRequest({
     months = appliedDiscount.terms.freeMonths;
   }
 
+  // The effective free term (raw trial + code-granted months) must stay
+  // strictly inside the lease. Checked BEFORE the booking row is created so a
+  // violating code fails cleanly instead of reserving the slot and dying
+  // after payment setup.
+  let effectiveTrial = trial;
+  if (appliedDiscount) {
+    const terms = appliedDiscount.terms;
+    if (terms.kind === 'free_months_then_price') {
+      effectiveTrial = terms.freeMonths;
+    } else if (terms.kind === 'trial_extension') {
+      effectiveTrial = trial + terms.freeMonths;
+    }
+  }
+  if (effectiveTrial >= months) {
+    throw new BookingError(400, 'Effective trial must be shorter than the lease');
+  }
+
   let bookingResult;
   try {
     bookingResult = await createBooking({
@@ -154,6 +173,14 @@ async function createBookingRequest({
   } catch (err) {
     if (err.status === 409) {
       throw new BookingError(409, err.message);
+    }
+    if (err.code === 'SQLITE_BUSY') {
+      // Concurrent claim: another request holds the write lock. Surface a
+      // clean conflict instead of a raw 500 (battle test A2/A3).
+      throw new BookingError(
+        409,
+        'This space was just claimed — please retry or pick another frame'
+      );
     }
     throw err;
   }
@@ -173,17 +200,14 @@ async function createBookingRequest({
       : slot.price_cents * months0;
 
   let amountCents = baseAmountCents;
-  let effectiveTrial = trial;
   if (appliedDiscount) {
     const terms = appliedDiscount.terms;
     if (terms.kind === 'free_months') {
       // Complimentary for the free term: nothing is ever charged.
       amountCents = 0;
     } else if (terms.kind === 'free_months_then_price') {
-      effectiveTrial = terms.freeMonths;
       amountCents = terms.thenPriceCents;
     } else if (terms.kind === 'trial_extension') {
-      effectiveTrial = trial + terms.freeMonths;
       amountCents = slot.price_cents;
     } else {
       // percent_off / fixed_off price off the lease base — identical to the
@@ -202,6 +226,13 @@ async function createBookingRequest({
   // their dashboard link, and creative review proceeds as normal.
   if (appliedDiscount && amountCents === 0) {
     await setBookingStatus(id, 'approved');
+    // The complimentary term IS the free term: nothing is ever charged, so
+    // the booking must not carry a raw trial the confirmation email does not
+    // mention (it tells the sponsor trial 0 — the row has to agree).
+    await run(
+      'UPDATE bookings SET trial_months = 0, updated_at = CURRENT_TIMESTAMP WHERE id = $1',
+      [id]
+    );
     const redemption = await discountService.redeem({
       codeId: appliedDiscount.codeId,
       bookingId: id,
@@ -231,7 +262,9 @@ async function createBookingRequest({
       token,
       complimentary: true,
       leaseMonths: months,
-      trialMonths: effectiveTrial,
+      // The term is complimentary: no charge, no trial — the stored row and
+      // the confirmation email both say 0.
+      trialMonths: 0,
       totalCents: 0,
       discount: { code: appliedDiscount.code, originalCents: baseAmountCents, finalCents: 0 },
     };
@@ -377,6 +410,12 @@ async function applyBookingRequest({
     if (err.status === 409) {
       throw new BookingError(409, err.message);
     }
+    if (err.code === 'SQLITE_BUSY') {
+      throw new BookingError(
+        409,
+        'This space was just claimed — please retry or pick another frame'
+      );
+    }
     throw err;
   }
   const { id, token } = bookingResult;
@@ -416,7 +455,13 @@ async function sendVerification(email) {
     [email, hashVerificationCode(code), expires]
   );
 
-  await emailSendVerificationCode({ email, code });
+  // sendEmail resolves {success:false} instead of throwing — a silent miss
+  // leaves the sponsor waiting on a code that never arrives, so the failure
+  // must surface as an error the UI can show.
+  const sent = await emailSendVerificationCode({ email, code });
+  if (sent && sent.success === false) {
+    throw new BookingError(502, 'Could not send the verification email. Please try again.');
+  }
   return { sent: true };
 }
 
@@ -440,23 +485,69 @@ async function checkVerification(email, code) {
   return { verified: true, verificationToken };
 }
 
+// The token-authed read surface is a sponsor dashboard, not an admin view:
+// stripe session/payment/subscription ids and admin notes never belong in it.
+// analytics_token is kept — it is the caller's OWN credential (the token they
+// just presented), and the post-payment temple flow reuses it for the upload.
+function toPublicBooking(booking) {
+  if (!booking) return booking;
+  return {
+    id: booking.id,
+    public_id: booking.public_id,
+    status: booking.status,
+    slot_id: booking.slot_id,
+    site_slug: booking.site_slug,
+    slot_name: booking.slot_name,
+    slot_slug: booking.slot_slug,
+    width: booking.width,
+    height: booking.height,
+    is_bundle: booking.is_bundle,
+    custom_heading: booking.custom_heading,
+    custom_subtitle: booking.custom_subtitle,
+    website_url: booking.website_url,
+    company_name: booking.company_name,
+    creative_path: booking.creative_path,
+    creative_webp_path: existingWebpFor(booking.creative_path),
+    lease_months: booking.lease_months,
+    trial_months: booking.trial_months,
+    amount_paid_cents: booking.amount_paid_cents,
+    price_cents: booking.price_cents,
+    billing_status: booking.billing_status,
+    started_at: booking.started_at,
+    ends_at: booking.ends_at,
+    trial_ends_at: booking.trial_ends_at,
+    cancel_at_end: booking.cancel_at_end,
+    canceled_at: booking.canceled_at,
+    created_at: booking.created_at,
+    analytics_token: booking.analytics_token,
+  };
+}
+
 async function getBookingByTokenSafe(token) {
   const booking = await getBookingByToken(token);
   if (!booking) throw new BookingError(404, 'Booking not found');
-  return booking;
+  return toPublicBooking(booking);
 }
 
 async function getAllBookingsByToken(token) {
   const primary = await getBookingByToken(token);
   if (!primary) throw new BookingError(404, 'Booking not found');
   const bookings = await getBookingsByEmail(primary.email);
+  // The analytics token is a per-booking MANAGEMENT credential: handing out
+  // the raw sibling tokens from any single token would upgrade a view-only
+  // link into full control of every placement sharing the email. Each sibling
+  // gets its opaque dashboard URL instead; the one legacy consumer
+  // (advertiser-panel.html) derives the token from that URL when it needs to
+  // manage a placement.
   return {
     bookings: bookings.map((b) => ({
       id: b.id,
       slot_name: b.slot_name,
       slot_slug: b.slot_slug,
       status: b.status,
-      token: b.analytics_token,
+      dashboard_url:
+        `${PLATFORM_URL}/${b.site_slug || 'nike'}/dashboard/` +
+        `?token=${encodeURIComponent(b.analytics_token)}`,
       custom_heading: b.custom_heading,
       custom_subtitle: b.custom_subtitle,
       creative_path: b.creative_path,
@@ -479,7 +570,10 @@ async function getAllBookingsByToken(token) {
 }
 
 async function updateBookingMeta(token, { customHeading, customSubtitle, websiteUrl, slotId }) {
-  const booking = await getBookingByTokenSafe(token);
+  // Internal callers need the full row (slot join); only the API response is
+  // whitelisted via getBookingByTokenSafe.
+  const booking = await getBookingByToken(token);
+  if (!booking) throw new BookingError(404, 'Booking not found');
 
   if (slotId && (await isBundleSlot(booking.slot_id))) {
     const slot = await getSlotById(slotId);
@@ -509,7 +603,11 @@ async function updateBookingMeta(token, { customHeading, customSubtitle, website
     params.push(websiteUrl || null);
   }
 
-  // Any meta change on a live or approved booking must be re-approved.
+  // Any meta change on a live or approved booking must be re-approved. The
+  // booking flip and the frame reservation are one transaction (mirrors
+  // tenant-portal updateOwnBookingMeta): a crash can never leave frames
+  // serving copy that is back in review.
+  const wasLive = booking.status === 'live';
   if (['live', 'approved'].includes(booking.status)) {
     sets.push(`status = $${params.length + 1}`);
     params.push('pending_approval');
@@ -520,15 +618,27 @@ async function updateBookingMeta(token, { customHeading, customSubtitle, website
   }
 
   params.push(booking.id);
-  await run(
-    `UPDATE bookings SET ${sets.join(', ')}, updated_at = CURRENT_TIMESTAMP WHERE id = $${params.length}`,
-    params
-  );
+  await transaction(async ({ run: tRun }) => {
+    await tRun(
+      `UPDATE bookings SET ${sets.join(', ')}, updated_at = CURRENT_TIMESTAMP WHERE id = $${params.length}`,
+      params
+    );
+    // Live frames stop serving the edited copy until re-approval; the booking
+    // keeps its hold (current_booking_id stays put).
+    if (wasLive) {
+      await tRun(
+        `UPDATE ad_slots SET status = 'reserved', updated_at = CURRENT_TIMESTAMP
+         WHERE current_booking_id = $1`,
+        [booking.id]
+      );
+    }
+  });
   return { success: true };
 }
 
 async function cancelBooking(token) {
-  const booking = await getBookingByTokenSafe(token);
+  const booking = await getBookingByToken(token);
+  if (!booking) throw new BookingError(404, 'Booking not found');
   if (
     !['live', 'approved', 'pending_payment', 'pending_upload', 'pending_approval'].includes(
       booking.status
@@ -536,18 +646,51 @@ async function cancelBooking(token) {
   ) {
     throw new BookingError(400, `Cannot cancel in status: ${booking.status}`);
   }
+
+  // A not-yet-paid booking has nothing to wind down: cancelling it must close
+  // it out immediately and free the reserved frame, otherwise the sponsor
+  // could still complete checkout afterwards — money taken against a slot the
+  // cron would then treat as cancelled. Live/approved placements keep the
+  // cancel_at_end flag so they run to the end of their paid term.
+  if (booking.status === 'pending_payment') {
+    await transaction(async ({ run: tRun }) => {
+      await tRun(
+        `UPDATE bookings SET status = 'cancelled', updated_at = CURRENT_TIMESTAMP WHERE id = $1`,
+        [booking.id]
+      );
+      await tRun(
+        `UPDATE ad_slots
+            SET status = 'available', current_booking_id = NULL, updated_at = CURRENT_TIMESTAMP
+          WHERE current_booking_id = $1`,
+        [booking.id]
+      );
+    });
+    return { success: true, status: 'cancelled' };
+  }
+
   await setCancelAtEnd(booking.id, true);
   return { success: true, cancelAtEnd: true };
 }
 
 async function uncancelBooking(token) {
-  const booking = await getBookingByTokenSafe(token);
+  const booking = await getBookingByToken(token);
+  if (!booking) throw new BookingError(404, 'Booking not found');
+  // Terminal statuses can never be uncancelled: the flag means nothing on an
+  // ended/rejected/cancelled row and reviving one would resurrect stale state.
+  if (
+    !['live', 'approved', 'pending_payment', 'pending_upload', 'pending_approval'].includes(
+      booking.status
+    )
+  ) {
+    throw new BookingError(400, `Cannot uncancel in status: ${booking.status}`);
+  }
   await setCancelAtEnd(booking.id, false);
   return { success: true, cancelAtEnd: false };
 }
 
 async function renewBooking(token, extensionMonthsInput) {
-  const booking = await getBookingByTokenSafe(token);
+  const booking = await getBookingByToken(token);
+  if (!booking) throw new BookingError(404, 'Booking not found');
   if (!['live', 'approved', 'pending_approval'].includes(booking.status)) {
     throw new BookingError(400, `Cannot renew in status: ${booking.status}`);
   }
@@ -596,17 +739,32 @@ async function recoverBookings(email) {
   if (bookings.length === 0) {
     return { sent: true, message: 'If bookings exist for this email, a link has been sent.' };
   }
-  await sendDashboardLinks({ email, bookings });
+  // sendEmail resolves {success:false} instead of throwing — report the miss
+  // instead of claiming a recovery email that never left.
+  const sent = await sendDashboardLinks({ email, bookings });
+  if (sent && sent.success === false) {
+    return { sent: false, message: 'Could not send the recovery email. Please try again.' };
+  }
   return { sent: true, message: 'Dashboard links sent to your email.' };
 }
 
 async function checkBookingPayment(token) {
-  const booking = await getBookingByTokenSafe(token);
+  const booking = await getBookingByToken(token);
+  if (!booking) throw new BookingError(404, 'Booking not found');
+  const respond = (row) => {
+    const publicBooking = toPublicBooking(row);
+    // The temple modal shows the rejection reason on the rejected step; the
+    // note is sponsor-facing by design and is exposed only in that state.
+    if (row.status === 'rejected' && row.admin_note) {
+      publicBooking.admin_note = row.admin_note;
+    }
+    return { status: row.status, booking: publicBooking };
+  };
   if (booking.status !== 'pending_payment') {
-    return { status: booking.status, booking };
+    return respond(booking);
   }
   if (!booking.stripe_session_id) {
-    return { status: booking.status, booking };
+    return respond(booking);
   }
 
   try {
@@ -618,17 +776,18 @@ async function checkBookingPayment(token) {
         session.payment_intent,
         session.amount_total
       );
-      return { status: updated.status, booking: updated };
+      return respond(updated || booking);
     }
   } catch (stripeErr) {
     console.error('Stripe check error:', stripeErr.message);
   }
 
-  return { status: booking.status, booking };
+  return respond(booking);
 }
 
 async function getBookingSlotCreatives(token) {
-  const booking = await getBookingByTokenSafe(token);
+  const booking = await getBookingByToken(token);
+  if (!booking) throw new BookingError(404, 'Booking not found');
   const creatives = await getSlotCreatives(booking.id);
   return { bookingId: booking.id, slotId: booking.slot_id, creatives };
 }
