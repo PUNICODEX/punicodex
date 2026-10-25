@@ -12,7 +12,13 @@
  * Usage:
  *   PRINTFUL_API_KEY=... node scripts/sync-printful-products.js \
  *     [--only <templeId|punicodex>] [--kinds tee,print,sticker] \
- *     [--limit N] [--dry-run]
+ *     [--limit N] [--dry-run] [--refresh] [--full-palette]
+ *
+ * --refresh realigns existing sync products (adds/removes variants to match
+ * the current pickVariants palette). --full-palette switches tee/hoodie/
+ * crewneck/cap/tote to the wide curated color set (P3); it must be mirrored by
+ * `build-variant-pricing.js --force --full-palette` so pricing covers the new
+ * variant labels.
  *
  * Notes:
  *   - Print masters are the local PNGs (sites/{id}/assets/*.png,
@@ -35,6 +41,9 @@ const ONLY = argValue('--only');
 const KINDS = argValue('--kinds') ? argValue('--kinds').split(',') : null;
 const LIMIT = Number(argValue('--limit') || 0);
 const DRY_RUN = args.includes('--dry-run');
+// P3 full-color expansion: --full-palette syncs the wide curated palette
+// (scripts/printful-palette.js) instead of the historic curated minimum.
+const FULL_PALETTE = args.includes('--full-palette');
 
 function argValue(flag) {
   const i = args.indexOf(flag);
@@ -147,10 +156,19 @@ async function resolveCatalogProduct(state, kind, catalogList) {
   return chosen.id;
 }
 
+// In-memory memo: the catalog doesn't change mid-run — fetching the picked
+// variant set once per kind saves ~7k identical GETs on a --refresh pass.
+const PICKED_MEMO = new Map();
+
 async function pickVariants(catalogProductId, kind) {
+  if (PICKED_MEMO.has(kind)) return PICKED_MEMO.get(kind);
   const detail = await api('GET', `/products/${catalogProductId}`);
   const variants = detail.variants || [];
-  if (kind === 'tee') {
+  let picked;
+  if (FULL_PALETTE) {
+    const { paletteVariants } = require('./printful-palette');
+    picked = paletteVariants(variants, kind);
+  } else if (kind === 'tee') {
     // Curated palette: Black + White, up to 8 sizes per colour. Black carries
     // the obsidian-gold identity; White gives a light option for contrast.
     // Mirrored by sellableVariants() in scripts/build-variant-pricing.js.
@@ -159,16 +177,18 @@ async function pickVariants(catalogProductId, kind) {
         .filter((v) => String(v.color || '').trim().toLowerCase() === color)
         .slice(0, 8)
     );
-    return wanted.length ? wanted : variants.slice(0, 16);
-  }
-  if (kind === 'hoodie' || kind === 'crewneck') {
+    picked = wanted.length ? wanted : variants.slice(0, 16);
+  } else if (kind === 'hoodie' || kind === 'crewneck') {
     // Black only, all sizes — premium dark garment identity: the gold print
     // is tuned for dark fabric, so these garments stay on black.
     const black = variants.filter((v) => /black/i.test(v.color || ''));
     const chosen = black.length ? black : variants;
-    return chosen.slice(0, 8);
+    picked = chosen.slice(0, 8);
+  } else {
+    picked = variants.slice(0, 6);
   }
-  return variants.slice(0, 6);
+  PICKED_MEMO.set(kind, picked);
+  return picked;
 }
 
 async function syncProduct(state, product, catalogList) {
@@ -237,12 +257,19 @@ async function refreshProduct(state, product, catalogList) {
     files,
     ...(KIND_OPTIONS[kind] ? { options: KIND_OPTIONS[kind] } : {}),
   });
-  const syncVariants = existing.map((v) => ({ id: v.id, ...variantBody(v) }));
-  const have = new Set(existing.map((v) => v.variant_id));
-  for (const v of wanted) {
-    if (have.has(v.id)) continue;
-    console.log(`  ${product.id}: adding palette variant ${v.color || ''} ${v.size || ''}`.trimEnd());
-    syncVariants.push(variantBody({ variant_id: v.id }));
+  // Wholesale replace: the PUT defines the sync product's full variant set —
+  // wanted variants update in place (by sync id), new ones are created, and
+  // catalog variants absent from the pick are removed. This is what makes a
+  // --full-palette refresh fit under Printful's 100-variant cap.
+  const syncIdByCatalogId = new Map(existing.map((v) => [v.variant_id, v.id]));
+  const syncVariants = wanted.map((v) => {
+    const body = variantBody({ variant_id: v.id });
+    const existingId = syncIdByCatalogId.get(v.id);
+    return existingId ? { id: existingId, ...body } : body;
+  });
+  const removed = existing.length + wanted.length - syncVariants.length;
+  if (removed > 0) {
+    console.log(`  ${product.id}: palette replaces ${existing.length} → ${syncVariants.length} sync variants`);
   }
 
   const body = {

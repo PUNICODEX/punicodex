@@ -54,6 +54,10 @@ const ALIASES = {
   'sports gray': 'sports grey',
   'dark heather gray': 'dark heather',
   'dark heather grey': 'dark heather',
+  'dark grey heather': 'heather grey',
+  'dark gray heather': 'heather grey',
+  'true royal': 'royal',
+  'heather charcoal': 'charcoal',
   'forest': 'forest green',
 };
 

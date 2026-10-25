@@ -32,6 +32,7 @@ const STATE_FILE = path.join(ROOT, 'session-debug', 'variant-pricing-state.json'
 const KEY = process.env.PRINTFUL_API_KEY;
 const args = process.argv.slice(2);
 const FORCE = args.includes('--force');
+const FULL_PALETTE = args.includes('--full-palette');
 const KINDS = argValue('--kinds') ? argValue('--kinds').split(',') : null;
 
 function argValue(flag) {
@@ -69,8 +70,13 @@ function variantLabel(v) {
 }
 
 // The variants we actually sell per kind — MUST mirror pickVariants() in
-// scripts/sync-printful-products.js.
-function sellableVariants(variants, kind) {
+// scripts/sync-printful-products.js. With fullPalette=true both delegate to
+// scripts/printful-palette.js (single source — they can never drift).
+function sellableVariants(variants, kind, fullPalette = false) {
+  if (fullPalette) {
+    const { paletteVariants } = require('./printful-palette');
+    return paletteVariants(variants, kind);
+  }
   if (kind === 'tee') {
     // Curated palette: Black + White, up to 8 sizes per colour (the size set
     // the existing sync products carry — catalog order puts XS last).
@@ -176,7 +182,7 @@ async function main() {
   for (const kind of kinds) {
     const products = byKind.get(kind);
     const detail = await api('GET', `/products/${KIND_CATALOG_ID[kind]}`);
-    const sellable = sellableVariants(detail.variants || [], kind);
+    const sellable = sellableVariants(detail.variants || [], kind, FULL_PALETTE);
     if (!sellable.length) {
       console.warn(`  ${kind}: no catalog variants — skipped`);
       continue;
