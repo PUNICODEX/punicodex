@@ -2237,6 +2237,339 @@
 }
 
 
+/* ── Sponsorship explainer trigger ─────────────────────────────
+   A quiet line + info glyph above the frames — the answer to "what do
+   I get?" sits exactly where the question arises. Opens the glass modal. */
+.sponsorship-info {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 0.9rem;
+    padding: 0.45rem 0.9rem;
+    background: rgba(212,175,55, 0.06);
+    border: 1px solid rgba(212,175,55, 0.22);
+    border-radius: 999px;
+    color: var(--text-muted, #9a948a);
+    font-family: inherit;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+.sponsorship-info:hover,
+.sponsorship-info:focus-visible {
+    border-color: rgba(212,175,55, 0.55);
+    background: rgba(212,175,55, 0.1);
+    color: #e8e4dc;
+    outline: none;
+}
+.sponsorship-info-icon {
+    display: inline-flex;
+    width: 1.05rem;
+    height: 1.05rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212,175,55, 0.55);
+    border-radius: 50%;
+    color: var(--classic-gold, #d4af37);
+    font-size: 0.68rem;
+    line-height: 1;
+}
+.sponsorship-info-text em {
+    font-style: normal;
+    color: var(--classic-gold, #d4af37);
+    border-bottom: 1px dotted rgba(212,175,55, 0.5);
+}
+
+/* ── The Takeover Orb ──────────────────────────────────────────
+   The Full-Page Takeover is not a bigger rectangle — it is the whole
+   temple held in one presence: a celestial sphere with the temple's
+   gold rim-light, a slow orbital ring, and the same shimmer language
+   as the other frames. */
+.space-slot--fullpage {
+    text-align: center;
+}
+.takeover-orb {
+    position: relative;
+    width: clamp(230px, 34vw, 330px);
+    margin: 2.2rem auto 0.4rem;
+    aspect-ratio: 1;
+}
+/* Orbital ring — a thin tilted band, like a planet's ring. */
+.takeover-orb-ring {
+    position: absolute;
+    inset: -9%;
+    border: 1px solid rgba(212,175,55, 0.28);
+    border-radius: 50%;
+    transform: rotateX(72deg) rotateZ(-14deg);
+    box-shadow: 0 0 24px rgba(212,175,55, 0.12);
+    animation: orb-ring-drift 26s linear infinite;
+    pointer-events: none;
+}
+.takeover-orb-ring::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -2px;
+    width: 7px;
+    height: 7px;
+    margin-top: -3.5px;
+    border-radius: 50%;
+    background: var(--classic-gold, #d4af37);
+    box-shadow: 0 0 10px rgba(212,175,55, 0.9);
+}
+@keyframes orb-ring-drift {
+    from { transform: rotateX(72deg) rotateZ(-14deg); }
+    to   { transform: rotateX(72deg) rotateZ(346deg); }
+}
+.takeover-orb-sphere {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 32% 26%, rgba(255, 246, 220, 0.14) 0%, transparent 34%),
+        radial-gradient(circle at 50% 118%, rgba(212,175,55, 0.22) 0%, transparent 55%),
+        radial-gradient(circle at 50% 42%, #17150f 0%, #0a0906 58%, #050403 100%);
+    border: 1px solid rgba(212,175,55, 0.38);
+    box-shadow:
+        inset 0 0 60px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 24px 80px rgba(0, 0, 0, 0.5),
+        0 0 70px rgba(212,175,55, 0.14);
+    overflow: hidden;
+}
+/* Shimmer sweep — the throne's light band, curved across the orb. */
+.takeover-orb-sphere::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 46%;
+    height: 140%;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55, 0.12), transparent);
+    transform: translateX(-180%) skewX(-18deg);
+    animation: throne-shimmer 9s ease-in-out infinite;
+    will-change: transform;
+    pointer-events: none;
+}
+.takeover-orb-glow {
+    position: absolute;
+    inset: 12%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 62%, rgba(212,175,55, 0.16) 0%, transparent 62%);
+    filter: blur(2px);
+    animation: orb-breathe 7s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes orb-breathe {
+    0%, 100% { opacity: 0.65; transform: scale(0.98); }
+    50%      { opacity: 1;    transform: scale(1.02); }
+}
+.takeover-orb-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    z-index: 2;
+}
+.takeover-orb-glyph {
+    color: var(--classic-gold, #d4af37);
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    text-shadow: 0 0 22px rgba(212,175,55, 0.55);
+}
+.takeover-orb-label {
+    color: #e8e4dc;
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    text-indent: 0.34em;
+}
+.takeover-orb-dims {
+    color: var(--text-muted, #9a948a);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+@media (max-width: 720px) {
+    .takeover-orb {
+        width: clamp(200px, 62vw, 260px);
+    }
+}
+
+/* ── Sponsorship glass modal ───────────────────────────────────
+   The temple frosts behind dark glass; the panel floats on top in
+   translucent obsidian with a gold hairline. Content lives in the
+   DOM (crawlable, no-JS degrades to the visible page). */
+.sponsorship-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+}
+.sponsorship-modal[hidden] {
+    display: none;
+}
+.sponsorship-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 3, 2, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(0.85);
+    backdrop-filter: blur(14px) saturate(0.85);
+    animation: sponsor-fade 0.25s ease;
+}
+.sponsorship-modal-panel {
+    position: relative;
+    width: min(600px, 100%);
+    max-height: min(82vh, 720px);
+    overflow-y: auto;
+    padding: 2.4rem 2.6rem 2.2rem;
+    background: linear-gradient(180deg, rgba(22, 19, 13, 0.82) 0%, rgba(10, 9, 6, 0.88) 100%);
+    -webkit-backdrop-filter: blur(22px);
+    backdrop-filter: blur(22px);
+    border: 1px solid rgba(212,175,55, 0.42);
+    border-radius: 18px;
+    box-shadow:
+        0 40px 120px rgba(0, 0, 0, 0.6),
+        0 0 80px rgba(212,175,55, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    animation: sponsor-rise 0.28s cubic-bezier(0.2, 0.9, 0.25, 1);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212,175,55, 0.35) transparent;
+}
+@keyframes sponsor-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes sponsor-rise {
+    from { opacity: 0; transform: translateY(14px) scale(0.985); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* The temple's name, huge and almost invisible behind the copy. */
+.sponsorship-modal-watermark {
+    position: absolute;
+    top: 0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(3.4rem, 10vw, 5.6rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(212,175,55, 0.05);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+.sponsorship-modal-close {
+    position: absolute;
+    top: 0.85rem;
+    right: 1rem;
+    z-index: 3;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(212,175,55, 0.25);
+    border-radius: 50%;
+    color: var(--text-muted, #9a948a);
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.sponsorship-modal-close:hover,
+.sponsorship-modal-close:focus-visible {
+    color: #e8e4dc;
+    border-color: rgba(212,175,55, 0.6);
+    outline: none;
+}
+.sponsorship-modal-eyebrow {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 1.1rem;
+    color: var(--classic-gold, #d4af37);
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+}
+.sponsorship-modal-body {
+    position: relative;
+    z-index: 1;
+}
+.sponsorship-modal-body p {
+    margin: 0 0 0.95rem;
+    color: #cfc9bd;
+    font-size: 0.94rem;
+    line-height: 1.72;
+}
+.sponsorship-modal-body p:last-child {
+    margin-bottom: 0;
+}
+.sponsorship-modal-scarcity {
+    color: #e8e4dc !important;
+    border-left: 2px solid rgba(212,175,55, 0.55);
+    padding-left: 0.9rem;
+}
+.sponsorship-modal-actions {
+    position: relative;
+    z-index: 1;
+    margin-top: 1.6rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid rgba(212,175,55, 0.16);
+    text-align: center;
+}
+.sponsorship-modal-takeover-note {
+    margin: 0 0 0.85rem;
+    color: var(--text-muted, #9a948a);
+    font-size: 0.78rem;
+    font-style: italic;
+    letter-spacing: 0.04em;
+}
+.sponsorship-modal-apply {
+    display: inline-block;
+    padding: 0.78rem 2.1rem;
+    background: linear-gradient(180deg, rgba(212,175,55, 0.2) 0%, rgba(212,175,55, 0.08) 100%);
+    border: 1px solid rgba(212,175,55, 0.65);
+    border-radius: 999px;
+    color: var(--classic-gold, #d4af37);
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+.sponsorship-modal-apply:hover,
+.sponsorship-modal-apply:focus-visible {
+    background: linear-gradient(180deg, rgba(212,175,55, 0.32) 0%, rgba(212,175,55, 0.14) 100%);
+    box-shadow: 0 0 34px rgba(212,175,55, 0.25);
+    color: #f4e9c8;
+    outline: none;
+}
+@media (max-width: 640px) {
+    .sponsorship-modal-panel {
+        padding: 2rem 1.4rem 1.7rem;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .takeover-orb-ring,
+    .takeover-orb-sphere::after,
+    .takeover-orb-glow,
+    .sponsorship-modal-backdrop,
+    .sponsorship-modal-panel {
+        animation: none;
+    }
+}
+
+
 /* ── PUNICODEX editorial elite layer (generated) ─────────────────────── */
 .lore-chapters {
   position: relative;

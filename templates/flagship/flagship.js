@@ -1350,3 +1350,70 @@ handleReturnFromStripe();
     }
   });
 })();
+
+
+// ─── Sponsorship explainer modal ─────────────────────────────
+// Glass popup over the temple: stays on the page, freezes the scroll,
+// Esc / backdrop / ✕ close. Content lives in the DOM (see index.html) —
+// without JS the page simply shows the frames, no dead ends.
+(function () {
+  const modal = document.getElementById('sponsorship-modal');
+  const trigger = document.getElementById('sponsorship-info-trigger');
+  if (!modal || !trigger) return;
+
+  let lastFocus = null;
+
+  function open() {
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    const closeBtn = modal.querySelector('.sponsorship-modal-close');
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function close() {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  trigger.addEventListener('click', open);
+  modal.querySelectorAll('[data-sponsor-close]').forEach((el) => {
+    el.addEventListener('click', close);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !modal.hidden) close();
+  });
+
+  // Keep Tab cycling inside the dialog while it is open.
+  modal.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+    const focusables = modal.querySelectorAll(
+      'button, a[href], [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  // "Request the position" closes the explainer and carries the visitor to
+  // the frames, where the normal booking flow takes over.
+  const applyBtn = document.getElementById('sponsorship-modal-apply');
+  if (applyBtn) {
+    applyBtn.addEventListener('click', () => {
+      close();
+      const spaces = document.getElementById('spaces');
+      if (spaces && spaces.scrollIntoView) {
+        spaces.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+})();

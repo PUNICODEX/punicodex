@@ -114,13 +114,18 @@ async function pollTask(taskKey, attempts = 30) {
   throw new Error(`mockup task ${taskKey} did not complete in time`);
 }
 
+// Print-area placement per kind (mirrors the mockup pipeline): embroidery
+// products reject 'front' — the cap needs 'embroidery_front'.
+const KIND_PLACEMENT = { cap: 'embroidery_front' };
+
 async function renderBlank(kind, color) {
   const catalogId = KIND_CATALOG_ID[kind];
   const t = await templateFor(catalogId);
+  const placement = KIND_PLACEMENT[kind] || 'front';
   const task = await api('POST', `/mockup-generator/create-task/${catalogId}`, {
     variant_ids: [color.catalogVariantId],
     format: 'jpg',
-    files: [{ placement: 'front', image_url: BLANK_PRINT_URL, position: fit(2900, 2900, t.area_width, t.area_height) }],
+    files: [{ placement, image_url: BLANK_PRINT_URL, position: fit(2900, 2900, t.area_width, t.area_height) }],
   });
   if (!task || !task.task_key) throw new Error('create-task response missing task_key');
   const done = await pollTask(task.task_key);

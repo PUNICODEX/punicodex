@@ -217,6 +217,10 @@
     <section class="section spaces-section" id="spaces">
         <div class="container">
             <div class="spaces-layout reveal-up">
+                <button type="button" class="sponsorship-info" id="sponsorship-info-trigger" aria-haspopup="dialog" aria-controls="sponsorship-modal">
+                    <span class="sponsorship-info-icon" aria-hidden="true">ⓘ</span>
+                    <span class="sponsorship-info-text">This temple is sponsored — one company, one position. <em>What that means</em></span>
+                </button>
                 <p class="spaces-legend">Banners at 1200 × 400 px · Boxes at 600 × 600 px · Prices scale by temple tier</p>
 
                 <!-- Row 1: Banner Vajra Crown -->
@@ -502,12 +506,15 @@
                             <li>Priority manual review &amp; dedicated support</li>
                         </ul>
                     </div>
-                    <div class="space-frame space-frame--throne">
-                        <div class="space-frame-glow"></div>
-                        <div class="space-frame-content">
-                            <span class="space-placeholder-logo">◆</span>
-                            <span class="space-placeholder-text">Full Page</span>
-                            <span class="space-placeholder-dims">All 13 placements</span>
+                    <div class="takeover-orb" aria-hidden="true">
+                        <div class="takeover-orb-ring"></div>
+                        <div class="takeover-orb-sphere">
+                            <div class="takeover-orb-glow"></div>
+                            <div class="takeover-orb-content">
+                                <span class="takeover-orb-glyph">◆</span>
+                                <span class="takeover-orb-label">Full Page</span>
+                                <span class="takeover-orb-dims">All 13 placements</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -515,38 +522,26 @@
         </div>
     </section>
 
-    <!-- What Sponsorship Delivers -->
-    <section class="section how-it-works-section" id="how">
-        <div class="container">
-            <div class="section-header reveal-up">
-                <span class="section-number">02</span>
-                <h2 class="section-title">What Sponsorship Delivers</h2>
-                <p class="section-subtitle">A curated presence, not a checkout lane — and three deliverables that make it worth more than the frames themselves.</p>
+    <!-- Sponsorship explainer (replaces the retired 'What Sponsorship Delivers' section) -->
+    <div class="sponsorship-modal" id="sponsorship-modal" role="dialog" aria-modal="true" aria-labelledby="sponsorship-modal-title" hidden="">
+        <div class="sponsorship-modal-backdrop" data-sponsor-close=""></div>
+        <div class="sponsorship-modal-panel">
+            <div class="sponsorship-modal-watermark" aria-hidden="true">#D4AF37</div>
+            <button type="button" class="sponsorship-modal-close" data-sponsor-close="" aria-label="Close">×</button>
+            <p class="sponsorship-modal-eyebrow" id="sponsorship-modal-title">Sponsorship</p>
+            <div class="sponsorship-modal-body">
+                <p>This temple is a restoration: the name it carries, returned to its original form — how it was written, how it was said — and kept permanently at its true domain.</p>
+                <p>It exists because sponsors underwrite it. That support keeps the temple free, keeps its scholarship maintained, and keeps an ancient name present on the modern web.</p>
+                <p>A sponsor’s brand appears on this temple in the frame it holds, with a live dashboard and a quarterly report on its performance. And each quarter, The Unicode Herald profiles this temple’s sponsors — your brand, presented with the scholarship it stands beside.</p>
+                <p>These are among the oldest names people have spoken. Standing beside one says what a brand aligns with before the brand says a word.</p>
+                <p class="sponsorship-modal-scarcity">And these positions exist nowhere else. There is one temple for this name, and one place beside it. When a frame is taken, it is taken — for the length of its term, no one else stands there.</p>
             </div>
-            <div class="steps-grid reveal-up">
-                <div class="step-card">
-                    <span class="step-number">01</span>
-                    <h3 class="step-title">Analytics Reports &amp; Live Tracking</h3>
-                    <p class="step-body">Your dashboard shows impressions, click-through, and audience movement in real time. Every quarter, a full analytics report breaks down who saw your brand, where they came from, and how it performed against this temple's traffic.</p>
-                </div>
-                <div class="step-card">
-                    <span class="step-number">02</span>
-                    <h3 class="step-title">The Unicode Herald — Quarterly</h3>
-                    <p class="step-body">Every quarter, The Unicode Herald — our virtual and physical newspaper — features sponsors temple by temple with professionally written profiles. Your brand, presented with the scholarship of the temple it stands beside, in print and online.</p>
-                </div>
-                <div class="step-card">
-                    <span class="step-number">03</span>
-                    <h3 class="step-title">Ecosystem Alignment</h3>
-                    <p class="step-body">Placement across kindred temples in the same tradition, plus the student-creative marketplace: universities supply student designers and writers, sponsors gain a talent pipeline, and students gain a head start on their careers with the brands they serve.</p>
-                </div>
-            </div>
-            <div class="steps-trust-bar reveal-up">
-                <span class="trust-pill"><span class="trust-dot"></span>Manual content review</span>
-                <span class="trust-pill"><span class="trust-dot"></span>Real-time impressions &amp; CTR</span>
-                <span class="trust-pill"><span class="trust-dot"></span>Herald features included</span>
+            <div class="sponsorship-modal-actions">
+                <p class="sponsorship-modal-takeover-note">All thirteen frames can also be held as one.</p>
+                <button type="button" class="sponsorship-modal-apply" id="sponsorship-modal-apply">Request the position</button>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Booking Modal -->
     <div class="booking-modal" id="booking-modal" style="display:none;">
