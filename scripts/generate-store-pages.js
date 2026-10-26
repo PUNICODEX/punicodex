@@ -364,7 +364,9 @@ ${
 
 // ─── Collections index ───
 function renderStoreIndex(colls) {
-  const cards = [...colls.entries()]
+  // Strict A–Z by temple id: all the A temples first, then B, and so on.
+  const entries = [...colls.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+  const cards = entries
     .map(([id, products]) => {
       const meta = templeMeta(id);
       const sorted = products.slice().sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
@@ -390,7 +392,7 @@ function renderStoreIndex(colls) {
     url: `${SITE_ORIGIN}/store/`,
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: [...colls.keys()].map((id, i) => ({
+      itemListElement: entries.map(([id], i) => ({
         '@type': 'ListItem',
         position: i + 1,
         name: templeMeta(id).name,

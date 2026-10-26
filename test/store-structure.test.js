@@ -195,6 +195,18 @@ test('collection product grids are strictly alphabetical A–Z', () => {
   }
 });
 
+test('the store index lists temple collections strictly A–Z', () => {
+  const html = read('store/index.html');
+  const ids = [...html.matchAll(/href="\/store\/([a-z0-9-]+)\/"/g)].map((m) => m[1]);
+  assert.ok(ids.length >= 500, `expected 500+ collections, got ${ids.length}`);
+  const sorted = [...ids].sort((a, b) => a.localeCompare(b));
+  assert.deepStrictEqual(
+    ids,
+    sorted,
+    `store index out of order near: ${ids.slice(0, 8).join(',')}…`
+  );
+});
+
 test('card imagery is either a mockup on the masters host or a deployed local asset', () => {
   for (const p of CATALOG.products) {
     if (p.mockupImage) {
