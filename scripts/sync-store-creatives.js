@@ -102,11 +102,57 @@ async function main() {
     }
   }
 
-  const tmp = `${INDEX_FILE}.tmp`;
-  fs.writeFileSync(tmp, `${JSON.stringify(index, null, 2)}\n`);
-  fs.renameSync(tmp, INDEX_FILE);
+  // Store-live notifications: entries present in the new index but not the
+  // previous one mean a creator's art just became selectable on a temple's
+  // products — the best retention moment in the product, so we tell them.
+  let previous = {};
+  try {
+    previous = JSON.parse(fs.readFileSync(INDEX_FILE, 'utf8'));
+  } catch {
+    previous = {};
+  }
+  const added = [];
+  for (const [temple, list] of Object.entries(index)) {
+    const before = new Set((previous[temple] || []).map((c) => String(c.id)));
+    for (const c of list) {
+      if (!before.has(String(c.id))) added.push({ temple, ...c });
+    }
+  }
+  if (added.length && process.argv.includes('--notify')) {
+    const { notifyCreativeEvent } = require('../platform/api/creative-emails.js');
+    const { LEXICON } = require('../type/js/lexicon.js');
+    for (const entry of added) {
+      const templeEntry = (LEXICON || []).find((e) => e.id === entry.temple);
+      await notifyCreativeEvent('store_live', {
+        assetId: entry.id,
+        extra: {
+          templeUnicode: templeEntry?.unicode || entry.temple,
+          templeUrl: `https://punicodex.com/${entry.temple}/`,
+        },
+      });
+    }
+    console.log(`Store-live notifications sent for ${added.length} artwork(s).`);
+  }
+
+  // Diff-aware write: the nightly CI job decides whether to regenerate and
+  // commit from whether the index actually changed — an unchanged index
+  // must leave the tree untouched.
   const total = Object.values(index).reduce((n, l) => n + l.length, 0);
-  console.log(`Creative artworks: ${total} licensed across ${Object.keys(index).length} temple(s) (${copied} ready, ${skipped} skipped) → ${INDEX_FILE}`);
+  const next = `${JSON.stringify(index, null, 2)}\n`;
+  let changed = true;
+  try {
+    changed = fs.readFileSync(INDEX_FILE, 'utf8') !== next;
+  } catch {
+    changed = true;
+  }
+  if (changed) {
+    const tmp = `${INDEX_FILE}.tmp`;
+    fs.writeFileSync(tmp, next);
+    fs.renameSync(tmp, INDEX_FILE);
+  }
+  console.log(
+    `Creative artworks: ${total} licensed across ${Object.keys(index).length} temple(s) (${copied} ready, ${skipped} skipped) — index ${changed ? 'UPDATED' : 'unchanged'} → ${INDEX_FILE}`,
+  );
   if (skipped) console.log('Re-run after fixing the skipped rows; everything else is idempotent.');
 }
 

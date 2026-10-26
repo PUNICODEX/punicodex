@@ -1,0 +1,64 @@
+name: Store Creative Sync
+
+on:
+  schedule:
+    # 04:47 UTC — after the evolution cycle (04:17), off-peak.
+    - cron: '47 4 * * *'
+  workflow_dispatch:
+
+# The sync regenerates store/creative-artworks.json from the operational DB
+# (approved + merch-consent + temple-linked creative assets). When — and only
+# when — the index changes, the affected PDPs regenerate and the result is
+# auto-committed, which triggers CI → deploy like any push.
+
+concurrency:
+  group: store-creative-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Sync licensed creative artworks
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          RESEND_API_KEY: ${{ secrets.RESEND_KEY }}
+          FROM_EMAIL: bookings@punicodex.com
+        run: node scripts/sync-store-creatives.js --notify
+
+      - name: Regenerate the store catalog + PDPs (only if the index changed)
+        run: |
+          if git diff --quiet -- store/creative-artworks.json assets/store-creatives/; then
+            echo "No creative artwork changes — nothing to regenerate."
+            exit 0
+          fi
+          node scripts/generate-pod-products.js
+          node scripts/generate-store-pages.js
+          node scripts/inject-analytics.js
+          node scripts/inject-herald-beacon.js
+          node scripts/inject-cookie-consent.js
+          node tools/bump-asset-versions.js
+
+      - name: Commit and push when changed
+        run: |
+          git add store/creative-artworks.json assets/store-creatives/ store/
+          if git diff --cached --quiet; then
+            echo "Tree unchanged — no commit."
+            exit 0
+          fi
+          git -c user.name="PuniCodex CI" -c user.email="ci@punicodex.com" commit -m "chore(store): nightly creative-artwork sync — licensed art joins the temple products"
+          git push

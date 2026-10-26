@@ -220,6 +220,21 @@ function recordCreatorOrder({ orderRef, productId, grossCents, baseCents, feesCe
       split.creatorShareCents,
       split.platformShareCents
     );
+  // First-sale notification: only on the first recording (the ledger is
+  // idempotent — replays return alreadyRecorded above and never re-email).
+  if (split.creatorShareCents > 0) {
+    const product = db.prepare('SELECT * FROM creator_products WHERE id = ?').get(productId);
+    const { notifyCreativeEvent } = require('./creative-emails.js');
+    notifyCreativeEvent('first_sale', {
+      assetId: product?.creative_asset_id,
+      extra: {
+        grossCents: gross,
+        shareCents: split.creatorShareCents,
+        orderRef,
+      },
+    });
+  }
+
   return { ledgerId: result.lastInsertRowid, alreadyRecorded: false, ...split };
 }
 

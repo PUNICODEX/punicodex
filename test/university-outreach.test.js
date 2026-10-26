@@ -31,6 +31,9 @@ test('the pitch is complimentary-first: no price, no invoice framing', () => {
   assert.match(pitch.text, /complimentary/i);
   // Never leads with money: no dollar figure anywhere in the email.
   assert.doesNotMatch(pitch.html + pitch.text, /\$\d/);
+  // The one ask: a backlink from the department's website.
+  assert.match(pitch.html + pitch.text, /backlink/i);
+  assert.match(pitch.html, /punicodex\.com/);
 });
 
 test('subject and salutation personalize with the institution and contact', () => {
@@ -95,6 +98,33 @@ test('email carries deliverability furniture (preheader, unsubscribe, plain text
 
 // ── Prospect store ──
 
+test('backlink pledge: activation sets a 12-month window; verification flips it', async () => {
+  const store = require('../platform/db/university-prospects.js');
+  await store.deleteProspect('pledge-lifecycle-test');
+  await store.upsertProspect({
+    institution_name: 'Pledge Lifecycle Test',
+    slug: 'pledge-lifecycle-test',
+    country: 'AU',
+    departments: ['Classics'],
+    source: 'manual',
+  });
+  const row = (await store.listProspects()).find((p) => p.slug === 'pledge-lifecycle-test');
+  assert.strictEqual(row.backlink_status, 'pledged');
+  assert.ok(!row.backlink_deadline_at, 'no deadline before activation');
+
+  await store.setProspectStatus(row.id, 'active');
+  const active = (await store.listProspects()).find((p) => p.slug === 'pledge-lifecycle-test');
+  assert.strictEqual(active.backlink_status, 'pledged');
+  assert.ok(active.backlink_deadline_at, 'activation starts the pledge window');
+
+  await store.markBacklink(row.id, true);
+  const verified = (await store.listProspects()).find((p) => p.slug === 'pledge-lifecycle-test');
+  assert.strictEqual(verified.backlink_status, 'verified');
+  assert.ok(verified.backlink_verified_at, 'verification is stamped');
+
+  await store.deleteProspect('pledge-lifecycle-test');
+});
+
 test('prospect store: upsert is idempotent and markPitched throttles state', async () => {
   const store = require('../platform/db/university-prospects.js');
   await store.ensureUniversityProspects();
@@ -129,4 +159,40 @@ test('prospect store: upsert is idempotent and markPitched throttles state', asy
   await store.setProspectStatus(row.id, 'declined');
   const declined = (await store.listProspects()).find((p) => p.slug === 'test-university-outreach');
   assert.strictEqual(declined.status, 'declined');
+});
+
+// ── Creative lifecycle emails ──
+
+test('creative emails: approved / first sale / store-live render branded HTML', () => {
+  const emails = require('../platform/api/creative-emails.js');
+  const approved = emails.buildCreativeApprovedEmail({
+    creatorName: 'Asha',
+    assetTitle: 'Hekate Lantern',
+  });
+  assert.match(approved.subject, /Approved/);
+  assert.match(approved.html, /Hekate Lantern/);
+  assert.match(approved.html, /50%/);
+
+  const sale = emails.buildFirstSaleEmail({
+    creatorName: 'Asha',
+    assetTitle: 'Hekate Lantern',
+    grossCents: 5600,
+    shareCents: 1400,
+    orderRef: 'SO-20261026-AB12',
+  });
+  assert.match(sale.subject, /\$14\.00/);
+  assert.match(sale.html, /SO-20261026-AB12/);
+
+  const live = emails.buildStoreArtworkLiveEmail({
+    creatorName: 'Asha',
+    assetTitle: 'Hekate Lantern',
+    templeUnicode: 'Hekátē',
+    templeUrl: 'https://punicodex.com/hekate/',
+  });
+  assert.match(live.subject, /Hekátē/);
+  assert.match(live.html, /punicodex\.com\/hekate\//);
+  // No fee framing anywhere in lifecycle mail.
+  for (const m of [approved, sale, live]) {
+    assert.doesNotMatch(m.html, /invoice/i);
+  }
 });

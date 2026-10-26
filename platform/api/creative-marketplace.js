@@ -803,6 +803,11 @@ router.post(
       if (decision === 'approved' && asset.merch_consent) {
         listCreatorProductForAsset(asset.id);
       }
+      if (decision === 'approved') {
+        // The review gate passed — tell the creator (fire-and-forget).
+        const { notifyCreativeEvent } = require('./creative-emails.js');
+        notifyCreativeEvent('approved', { assetId: asset.id });
+      }
     });
 
     res.json(success({ reviewed: true, decision, status: finalStatus }));

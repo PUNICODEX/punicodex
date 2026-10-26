@@ -203,7 +203,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
           <p style="margin:0 0 18px 0;">${salutation},</p>
           <p style="margin:0 0 18px 0;">PUNICODEX is the Unicode Pantheon — a scholarly restoration project returning the original, accented names of myth to the digital realm. Nine hundred and eighty names across twenty-five traditions, each kept permanently at its true Unicode domain: <em>apóllōn.com</em>, <em>nótt.com</em>, <em>quauhtli.com</em>.</p>
           <p style="margin:0 0 18px 0;">The scholarship behind those temples is not ours alone. The <strong style="color:#e8c860;">Scholarly Edition</strong> is a university-edited layer across all 542 flagship temples — and we are inviting a small number of institutions to put their students behind it.</p>
-          <p style="margin:0;"><strong style="color:#e8e0cc;">Academic collaboration is complimentary. There is no cost, no invoice, and no renewal — for the department or the university.</strong> What follows is what your students gain, and what we ask in return.</p>
+          <p style="margin:0;"><strong style="color:#e8e0cc;">Academic collaboration is complimentary. There is no cost, no invoice, and no renewal — for the department or the university.</strong> What we ask in return is one promise: a link from your department's website to punicodex.com within your first year. Everything below is live the moment you are provisioned — no one waits on a web edit. What follows is what your students gain.</p>
         </div>
       </td>
     </tr>
@@ -242,6 +242,10 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
                 Your institution is provisioned with an administrator account; your admin provisions<br/>
                 and revokes student and faculty credentials directly.<br/>
                 <strong style="color:#e8e0cc;">Student work passes an editorial quality gate before publication — and access can be revoked at any time, with immediate effect.</strong><br/>
+                <strong style="color:#e8e0cc;">In return we ask one thing: a link from your department's website to punicodex.com</strong> —<br/>
+                a backlink that says your institution keeps these names alive. You have your first year; most<br/>
+                departments add it in their next site update. We verify it automatically and follow up gently.<br/>
+                No fee, no invoice, no renewal.<br/>
                 An optional Founding Partner sponsorship tier exists for institutions that also want<br/>
                 site-wide placement; it is a separate conversation, and this invitation does not depend on it.
               </div>
@@ -331,7 +335,7 @@ ${escapeHtml(preheader)} &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&
     }),
     customNote ? `— A note from the founder: ${customNote}` : null,
     '',
-    'Terms: academic collaboration is complimentary, forever. Your institution provisions its own student accounts; work passes an editorial quality gate; access revokes immediately. An optional paid Founding Partner tier exists separately.',
+    'Terms: academic collaboration is complimentary, forever. Your institution provisions its own student accounts; work passes an editorial quality gate; access revokes immediately. In return we ask one thing: a backlink from your department website to punicodex.com within your first year - features start immediately, we verify automatically and follow up gently. An optional paid Founding Partner tier exists separately.',
     '',
     'To proceed: reply with a time for a fifteen-minute call, or apply at https://punicodex.com/scholars/apply/',
     '',

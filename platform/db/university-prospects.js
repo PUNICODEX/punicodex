@@ -12,6 +12,7 @@ const path = require('node:path');
 const { isPostgres, query, run } = require(path.join(__dirname, 'operational.js'));
 
 async function ensureUniversityProspects() {
+  await migrateProspectColumns();
   if (isPostgres()) {
     await query(`CREATE TABLE IF NOT EXISTS university_prospects (
       id SERIAL PRIMARY KEY,
@@ -27,6 +28,11 @@ async function ensureUniversityProspects() {
       source TEXT NOT NULL DEFAULT 'seed' CHECK (source IN ('seed', 'crawl', 'manual')),
       pitch_count INTEGER NOT NULL DEFAULT 0,
       last_pitched_at TIMESTAMPTZ,
+      activated_at TIMESTAMPTZ,
+      backlink_status TEXT NOT NULL DEFAULT 'pledged'
+        CHECK (backlink_status IN ('pledged', 'verified', 'overdue')),
+      backlink_deadline_at TIMESTAMPTZ,
+      backlink_verified_at TIMESTAMPTZ,
       metadata TEXT NOT NULL DEFAULT '{}',
       created_at TIMESTAMPTZ DEFAULT now(),
       updated_at TIMESTAMPTZ DEFAULT now()
@@ -54,12 +60,46 @@ async function ensureUniversityProspects() {
       source TEXT NOT NULL DEFAULT 'seed' CHECK (source IN ('seed', 'crawl', 'manual')),
       pitch_count INTEGER NOT NULL DEFAULT 0,
       last_pitched_at DATETIME,
+      activated_at DATETIME,
+      backlink_status TEXT NOT NULL DEFAULT 'pledged'
+        CHECK (backlink_status IN ('pledged', 'verified', 'overdue')),
+      backlink_deadline_at DATETIME,
+      backlink_verified_at DATETIME,
       metadata TEXT NOT NULL DEFAULT '{}',
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
     CREATE INDEX IF NOT EXISTS idx_university_prospects_status ON university_prospects(status);
   `);
+}
+
+/** Guarded column adds — existing DBs predate the backlink pledge lifecycle. */
+async function migrateProspectColumns() {
+  const columns = [
+    ['activated_at', 'TIMESTAMPTZ', 'DATETIME'],
+    ['backlink_status', "TEXT NOT NULL DEFAULT 'pledged'", "TEXT NOT NULL DEFAULT 'pledged'"],
+    ['backlink_deadline_at', 'TIMESTAMPTZ', 'DATETIME'],
+    ['backlink_verified_at', 'TIMESTAMPTZ', 'DATETIME'],
+  ];
+  if (isPostgres()) {
+    for (const [name, pgType] of columns) {
+      await query(`ALTER TABLE university_prospects ADD COLUMN IF NOT EXISTS ${name} ${pgType}`);
+    }
+    return;
+  }
+  const { getDb } = require('./connection.js');
+  const db = getDb();
+  const existing = new Set(
+    db
+      .prepare(`PRAGMA table_info(university_prospects)`)
+      .all()
+      .map((c) => c.name)
+  );
+  for (const [name, , sqliteType] of columns) {
+    if (!existing.has(name)) {
+      db.prepare(`ALTER TABLE university_prospects ADD COLUMN ${name} ${sqliteType}`).run();
+    }
+  }
 }
 
 /** Insert a prospect if its slug is not present (idempotent seeding). */
@@ -160,20 +200,85 @@ async function markPitched(id) {
   ).run(id);
 }
 
+const BACKLINK_PLEDGE_MONTHS = 12;
+
 async function setProspectStatus(id, status) {
   await ensureUniversityProspects();
+  // Becoming an active collaborator starts the backlink pledge window:
+  // features are live immediately; the link itself has a generous runway.
+  const activate =
+    status === 'active'
+      ? `, activated_at = COALESCE(activated_at, ${isPostgres() ? 'now()' : 'CURRENT_TIMESTAMP'}),
+         backlink_deadline_at = COALESCE(backlink_deadline_at, ${
+           isPostgres()
+             ? `now() + interval '1 month' * ${BACKLINK_PLEDGE_MONTHS}`
+             : "DATE('now', '+12 months')"
+})`
+      : '';
   if (isPostgres()) {
-    await query(`UPDATE university_prospects SET status = $1, updated_at = now() WHERE id = $2`, [
-      status,
-      id,
-    ]);
+    await query(
+      `UPDATE university_prospects SET status = $1, updated_at = now()${activate} WHERE id = $2`,
+      [status, id]
+    );
     return;
   }
   const { getDb } = require('./connection.js');
   const db = getDb();
   db.prepare(
-    `UPDATE university_prospects SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`
+    `UPDATE university_prospects SET status = ?, updated_at = CURRENT_TIMESTAMP${activate} WHERE id = ?`
   ).run(status, id);
+}
+
+/** The crawler's verification result: mark the pledge verified (or flip back). */
+async function markBacklink(id, verified) {
+  await ensureUniversityProspects();
+  const nowExpr = isPostgres() ? 'now()' : 'CURRENT_TIMESTAMP';
+  if (isPostgres()) {
+    await query(
+      `UPDATE university_prospects
+       SET backlink_status = $1,
+           backlink_verified_at = CASE WHEN $1::text = 'verified' THEN ${nowExpr} ELSE backlink_verified_at END,
+           updated_at = ${nowExpr}
+       WHERE id = $2`,
+      [verified ? 'verified' : 'pledged', id]
+    );
+    return;
+  }
+  const { getDb } = require('./connection.js');
+  const db = getDb();
+  db.prepare(
+    `UPDATE university_prospects
+     SET backlink_status = ?,
+         backlink_verified_at = CASE WHEN ? = 'verified' THEN ${nowExpr} ELSE backlink_verified_at END,
+         updated_at = ${nowExpr}
+     WHERE id = ?`
+  ).run(verified ? 'verified' : 'pledged', verified ? 'verified' : 'pledged', id);
+}
+
+/** Nightly sweep: pledges past deadline and still unverified become overdue. */
+async function sweepOverdueBacklinks() {
+  await ensureUniversityProspects();
+  const nowExpr = isPostgres() ? "DATETIME('now')" : "DATETIME('now')";
+  if (isPostgres()) {
+    return query(
+      `UPDATE university_prospects
+       SET backlink_status = 'overdue', updated_at = now()
+       WHERE backlink_status = 'pledged' AND backlink_deadline_at IS NOT NULL AND backlink_deadline_at < now()
+       RETURNING id, institution_name`
+    );
+  }
+  const { getDb } = require('./connection.js');
+  const db = getDb();
+  db.prepare(
+    `UPDATE university_prospects
+     SET backlink_status = 'overdue', updated_at = CURRENT_TIMESTAMP
+     WHERE backlink_status = 'pledged' AND backlink_deadline_at IS NOT NULL AND backlink_deadline_at < ${nowExpr}`
+  ).run();
+  return db
+    .prepare(
+      `SELECT id, institution_name FROM university_prospects WHERE backlink_status = 'overdue'`
+    )
+    .all();
 }
 
 /** Test hygiene: remove a prospect row outright. */
@@ -189,6 +294,9 @@ async function deleteProspect(slug) {
 
 module.exports = {
   ensureUniversityProspects,
+  BACKLINK_PLEDGE_MONTHS,
+  markBacklink,
+  sweepOverdueBacklinks,
   deleteProspect,
   upsertProspect,
   listProspects,
