@@ -4112,7 +4112,12 @@ function createFlagship(templeId, options = {}) {
   // Content-addressed pins for the temple's own styles.css/script.js:
   // both are rebuilt per bake, and the pages reference them with ?v= pins
   // that must change when the bytes change — otherwise visitors keep the
-  // old CSS/JS for up to a year (immutable-cache doctrine).
+  // old CSS/JS for up to a year (immutable-cache doctrine). Line endings
+  // are normalized to LF first: template files checkout as CRLF on Windows
+  // and LF on Linux, and the hash must agree across both or CI's
+  // divergence gate sees a pin flip on every cross-platform bake.
+  outputs['styles.css'] = outputs['styles.css'].replace(/\r\n/g, '\n');
+  outputs['script.js'] = outputs['script.js'].replace(/\r\n/g, '\n');
   const cssPin = crypto.createHash('md5').update(outputs['styles.css']).digest('hex').slice(0, 10);
   const jsPin = crypto.createHash('md5').update(outputs['script.js']).digest('hex').slice(0, 10);
   for (const key of Object.keys(outputs)) {

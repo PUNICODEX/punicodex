@@ -193,6 +193,12 @@ function buildArtworks(assets, kind) {
       return art;
     });
 }
+function applyPlacementOverrides(product) {
+  for (const art of product.artworks) {
+    const o = PLACEMENT_OVERRIDES[`${product.id}:${art.key}`];
+    if (o) art.placement = { widthPct: o.widthPct, topPct: o.topPct, leftPct: o.leftPct };
+  }
+}
 
 // Blank-garment base mockups per kind+colour (scripts/fetch-store-base-images.js
 // or scripts/generate-store-base-mockups.js). Absent file → no mockup joins,
@@ -217,6 +223,19 @@ function loadCreativeArtworks() {
   }
 }
 const CREATIVE_ARTWORKS = loadCreativeArtworks();
+
+// Per-art fitted placements written by scripts/audit-art-placement.js — the
+// audit alpha-scans every artwork's visible content against the measured
+// garment bounds and shrinks the few arts that would spill (house wordmarks
+// with extreme aspect ratios, future odd creatives).
+function loadPlacementOverrides() {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'placement-overrides.json'), 'utf8'));
+  } catch {
+    return {};
+  }
+}
+const PLACEMENT_OVERRIDES = loadPlacementOverrides();
 
 function buildColors(product, kind, unknown) {
   const names = new Set();
@@ -265,6 +284,7 @@ function decorateProduct(product) {
     }
     product.artworks.push(art);
   }
+  applyPlacementOverrides(product);
   product.colors = buildColors(product, kind, decorateProduct.unknownColors);
   product.placement =
     PLACEMENTS[kind] && OVERLAY_KINDS.has(kind)
