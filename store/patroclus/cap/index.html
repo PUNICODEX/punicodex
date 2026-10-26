@@ -233,15 +233,15 @@ a:hover{color:var(--gold-bright)}
 <link rel="stylesheet" href="/css/store-configurator.css?v=af83704a04">
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/patroclus/">Pátroklos</a> · <span style="color:var(--gold)">Cap</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/patroclus-cap.jpg" alt="Pátroklos Temple Cap" width="1000" height="1000" fetchpriority="high" decoding="async"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/patroclus-cap.jpg" alt="Pátroklos Temple Cap" width="1000" height="1000" fetchpriority="high" decoding="async"></div><p id="colour-note" style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Cap</span> <span class="pill">Pátroklos</span>
     <h1>Pátroklos Temple Cap</h1>
     <p style="color:var(--dim)">The Pátroklos temple mark embroidered in gold on a six-panel dad cap.</p>
     <div class="price" id="pdp-price">$28.00</div>
     <div id="cfg-mount" hidden></div>
-    <script type="application/json" id="cfg-data">{"productId":"patroclus-cap","productName":"Pátroklos Temple Cap","kind":"cap","stageSrc":"https://punycodex-masters.vercel.app/mockups/patroclus-cap.jpg","hasMockup":true,"defaultArtwork":"logomark","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/patroclus/assets/patroclus_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/patroclus/assets/patroclus_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/patroclus/assets/patroclus_logolockup.webp"}],"colors":[],"placement":{"area":"front","widthPct":24,"topPct":34,"leftPct":50},"labels":["One size"]}</script>
-    
+    <script type="application/json" id="cfg-data">{"productId":"patroclus-cap","productName":"Pátroklos Temple Cap","kind":"cap","stageSrc":"https://punycodex-masters.vercel.app/mockups/patroclus-cap.jpg","hasMockup":true,"defaultArtwork":"logomark","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/patroclus/assets/patroclus_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/patroclus/assets/patroclus_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/patroclus/assets/patroclus_logolockup.webp"}],"colors":[{"name":"Black","hex":"#0b0b0b"},{"name":"White","hex":"#ffffff"}],"placement":{"area":"front","widthPct":24,"topPct":34,"leftPct":50},"labels":["Black","White"]}</script>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="White">White</button></div></div>
     
     <div class="opt-group">
       <div class="lbl">Quantity</div>
@@ -272,7 +272,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = ["One size"];
+  var LABELS = ["Black","White"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":2800};
+  var PRICES = {"Black":2800,"White":2800};
   var FLAT_PRICE = "$28.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

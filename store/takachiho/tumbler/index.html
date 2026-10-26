@@ -240,8 +240,8 @@ a:hover{color:var(--gold-bright)}
     <p style="color:var(--dim)">The Takachiho lockup wrapped vertical in gold. Insulated 590 ml steel.</p>
     <div class="price" id="pdp-price">$32.00</div>
     <div id="cfg-mount" hidden></div>
-    <script type="application/json" id="cfg-data">{"productId":"takachiho-tumbler","productName":"Takachiho Temple Tumbler","kind":"tumbler","stageSrc":"https://punycodex-masters.vercel.app/mockups/takachiho-tumbler.jpg","hasMockup":true,"defaultArtwork":"logolockup","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/takachiho/assets/takachiho_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/takachiho/assets/takachiho_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/takachiho/assets/takachiho_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
-    
+    <script type="application/json" id="cfg-data">{"productId":"takachiho-tumbler","productName":"Takachiho Temple Tumbler","kind":"tumbler","stageSrc":"https://punycodex-masters.vercel.app/mockups/takachiho-tumbler.jpg","hasMockup":true,"defaultArtwork":"logolockup","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/takachiho/assets/takachiho_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/takachiho/assets/takachiho_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/takachiho/assets/takachiho_logolockup.webp"}],"colors":[{"name":"White","hex":"#f5f2ea"}],"placement":null,"labels":["White / 20 oz"]}</script>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     
     <div class="opt-group">
       <div class="lbl">Quantity</div>
@@ -272,7 +272,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = ["One size"];
+  var LABELS = ["White / 20 oz"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":3200};
+  var PRICES = {"White / 20 oz":3200};
   var FLAT_PRICE = "$32.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

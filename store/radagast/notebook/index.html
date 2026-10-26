@@ -238,7 +238,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Notebook</span> <span class="pill">Radagast</span>
     <h1>Radagast Temple Notebook</h1>
     <p style="color:var(--dim)">The Radagast lockup on the cover, the seal at the spine. A5 dotted journal.</p>
-    <div class="price" id="pdp-price">$18.00</div>
+    <div class="price">$18.00</div>
     <div id="cfg-mount" hidden></div>
     <script type="application/json" id="cfg-data">{"productId":"radagast-notebook","productName":"Radagast Temple Notebook","kind":"notebook","stageSrc":"https://punycodex-masters.vercel.app/mockups/radagast-notebook.jpg","hasMockup":true,"defaultArtwork":"compNotebook","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/radagast/assets/radagast_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/radagast/assets/radagast_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/radagast/assets/radagast_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
     
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":1800};
+  var PRICES = null;
   var FLAT_PRICE = "$18.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

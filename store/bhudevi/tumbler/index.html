@@ -238,7 +238,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Tumbler</span> <span class="pill">Bhūdevī</span>
     <h1>Bhūdevī Temple Tumbler</h1>
     <p style="color:var(--dim)">The Bhūdevī lockup wrapped vertical in gold. Insulated 590 ml steel.</p>
-    <div class="price" id="pdp-price">$32.00</div>
+    <div class="price">$32.00</div>
     <div id="cfg-mount" hidden></div>
     <script type="application/json" id="cfg-data">{"productId":"bhudevi-tumbler","productName":"Bhūdevī Temple Tumbler","kind":"tumbler","stageSrc":"/sites/bhudevi/assets/bhudevi_mascot.webp","hasMockup":false,"defaultArtwork":"logolockup","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/bhudevi/assets/bhudevi_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/bhudevi/assets/bhudevi_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/bhudevi/assets/bhudevi_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
     
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":3200};
+  var PRICES = null;
   var FLAT_PRICE = "$32.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

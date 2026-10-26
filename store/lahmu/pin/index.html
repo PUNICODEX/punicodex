@@ -238,11 +238,11 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Enamel Pin</span> <span class="pill">Lahmu</span>
     <h1>Lahmu Seal Enamel Pin</h1>
     <p style="color:var(--dim)">The Lahmu temple mark as a hard enamel pin, gold on obsidian — reads at 25 mm.</p>
-    <div class="price" id="pdp-price">$12.00</div>
+    <div class="price" id="pdp-price">from $12.00</div>
     <div id="cfg-mount" hidden></div>
-    <script type="application/json" id="cfg-data">{"productId":"lahmu-pin","productName":"Lahmu Seal Enamel Pin","kind":"pin","stageSrc":"https://punycodex-masters.vercel.app/mockups/lahmu-pin.jpg","hasMockup":true,"defaultArtwork":"logomark","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/lahmu/assets/lahmu_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/lahmu/assets/lahmu_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/lahmu/assets/lahmu_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
-    
-    
+    <script type="application/json" id="cfg-data">{"productId":"lahmu-pin","productName":"Lahmu Seal Enamel Pin","kind":"pin","stageSrc":"https://punycodex-masters.vercel.app/mockups/lahmu-pin.jpg","hasMockup":true,"defaultArtwork":"logomark","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/lahmu/assets/lahmu_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/lahmu/assets/lahmu_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/lahmu/assets/lahmu_logolockup.webp"}],"colors":[{"name":"White","hex":"#f5f2ea"}],"placement":null,"labels":["White / 1.25″","White / 2.25″"]}</script>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
+    <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="1.25″">1.25″</button><button class="opt" data-s="2.25″">2.25″</button></div></div>
     <div class="opt-group">
       <div class="lbl">Quantity</div>
       <div class="qty"><button type="button" id="q-down" aria-label="Decrease quantity">−</button><span id="q-val">1</span><button type="button" id="q-up" aria-label="Increase quantity">+</button></div>
@@ -272,7 +272,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = ["One size"];
+  var LABELS = ["White / 1.25″","White / 2.25″"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":1200};
+  var PRICES = {"White / 1.25″":1200,"White / 2.25″":1300};
   var FLAT_PRICE = "$12.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

@@ -74,11 +74,11 @@ test('herald page carries current fleet counts', () => {
   const html = read('herald/index.html');
   assert.ok(
     html.includes(`${entries} lexicon entries across the restored traditions`),
-    `herald must list the current lexicon count (${entries})`,
+    `herald must list the current lexicon count (${entries})`
   );
   assert.ok(
     new RegExp(`has become ${temples} flagship temples`).test(html),
-    `herald must list the current flagship count (${temples})`,
+    `herald must list the current flagship count (${temples})`
   );
 });
 

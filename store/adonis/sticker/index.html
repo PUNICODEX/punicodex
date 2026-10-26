@@ -238,7 +238,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Sticker Set</span> <span class="pill">Ádōnis</span>
     <h1>Ádōnis Seal Sticker Set</h1>
     <p style="color:var(--dim)">Ádōnis, the temple mark, and the name lockup — three weatherproof vinyl die-cuts on one sheet.</p>
-    <div class="price" id="pdp-price">$9.00</div>
+    <div class="price">$9.00</div>
     <div id="cfg-mount" hidden></div>
     <script type="application/json" id="cfg-data">{"productId":"adonis-sticker","productName":"Ádōnis Seal Sticker Set","kind":"sticker","stageSrc":"/sites/adonis/assets/adonis_mascot.webp","hasMockup":false,"defaultArtwork":"compSticker","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/adonis/assets/adonis_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/adonis/assets/adonis_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/adonis/assets/adonis_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
     
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":900};
+  var PRICES = null;
   var FLAT_PRICE = "$9.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

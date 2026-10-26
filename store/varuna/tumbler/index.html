@@ -233,15 +233,15 @@ a:hover{color:var(--gold-bright)}
 <link rel="stylesheet" href="/css/store-configurator.css?v=af83704a04">
 <div class="wrap crumbs"><a href="/store/">The Reliquary</a> · <a href="/store/varuna/">Varuṇa</a> · <span style="color:var(--gold)">Tumbler</span></div>
 <div class="wrap pdp">
-  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/varuna-tumbler.jpg" alt="Varuṇa Temple Tumbler" width="1000" height="1000" fetchpriority="high" decoding="async"></div></div>
+  <div><div class="stage"><img id="stage-img" src="https://punycodex-masters.vercel.app/mockups/varuna-tumbler.jpg" alt="Varuṇa Temple Tumbler" width="1000" height="1000" fetchpriority="high" decoding="async"></div><p id="colour-note" style="color:var(--dim);font-size:.82rem;margin-top:.6rem">Shown in Black — the design prints the same on every colour.</p></div>
   <div>
     <span class="pill">Tumbler</span> <span class="pill">Varuṇa</span>
     <h1>Varuṇa Temple Tumbler</h1>
     <p style="color:var(--dim)">The Varuṇa lockup wrapped vertical in gold. Insulated 590 ml steel.</p>
     <div class="price" id="pdp-price">$32.00</div>
     <div id="cfg-mount" hidden></div>
-    <script type="application/json" id="cfg-data">{"productId":"varuna-tumbler","productName":"Varuṇa Temple Tumbler","kind":"tumbler","stageSrc":"https://punycodex-masters.vercel.app/mockups/varuna-tumbler.jpg","hasMockup":true,"defaultArtwork":"logolockup","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/varuna/assets/varuna_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/varuna/assets/varuna_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/varuna/assets/varuna_logolockup.webp"}],"colors":[{"name":"White","hex":"#f5f2ea"}],"placement":null,"labels":["White / 20 oz"]}</script>
-    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
+    <script type="application/json" id="cfg-data">{"productId":"varuna-tumbler","productName":"Varuṇa Temple Tumbler","kind":"tumbler","stageSrc":"https://punycodex-masters.vercel.app/mockups/varuna-tumbler.jpg","hasMockup":true,"defaultArtwork":"logolockup","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/varuna/assets/varuna_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/varuna/assets/varuna_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/varuna/assets/varuna_logolockup.webp"}],"colors":[{"name":"Black","hex":"#1a1a1a"},{"name":"White","hex":"#f5f2ea"}],"placement":null,"labels":["White / 20 oz","Black / 20 oz"]}</script>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Black">Black</button><button class="opt" data-c="White">White</button></div></div>
     
     <div class="opt-group">
       <div class="lbl">Quantity</div>
@@ -272,7 +272,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = ["White / 20 oz"];
+  var LABELS = ["White / 20 oz","Black / 20 oz"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"White / 20 oz":3200};
+  var PRICES = {"Black / 20 oz":3200,"White / 20 oz":3200};
   var FLAT_PRICE = "$32.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

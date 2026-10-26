@@ -20,6 +20,9 @@ const STATE_FILE = path.join(ROOT, 'session-debug', 'printful-variant-backfill.j
 const KEY = process.env.PRINTFUL_API_KEY;
 const args = process.argv.slice(2);
 const ONLY = args.includes('--only') ? args[args.indexOf('--only') + 1] : null;
+// Parallel rollout: --shard I/N processes only targets whose catalog index
+// mod N equals I; each shard keeps its own checkpoint file.
+const SHARD = args.includes('--shard') ? args[args.indexOf('--shard') + 1].split('/').map(Number) : null;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -39,16 +42,22 @@ async function api(endpoint, attempt = 0) {
   return json.result;
 }
 
+function stateFile() {
+  return SHARD
+    ? STATE_FILE.replace(/\.json$/, `.shard-${SHARD.join('-')}.json`)
+    : STATE_FILE;
+}
+
 function loadState() {
   try {
-    return JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+    return JSON.parse(fs.readFileSync(stateFile(), 'utf8'));
   } catch {
     return { done: {} };
   }
 }
 
 function saveState(state) {
-  fs.writeFileSync(STATE_FILE, JSON.stringify(state));
+  fs.writeFileSync(stateFile(), JSON.stringify(state));
 }
 
 function variantLabel(v) {
@@ -78,14 +87,26 @@ function normalizeLabels(map, product) {
 }
 
 async function main() {
+  if (args.includes('--merge')) {
+    mergeShardUpdates();
+    return;
+  }
   if (!KEY) {
     console.error('PRINTFUL_API_KEY is not set.');
     process.exit(1);
   }
   const catalog = JSON.parse(fs.readFileSync(CATALOG_FILE, 'utf8'));
   const state = loadState();
+  // Sharded workers never write the shared catalog (concurrent full-file
+  // flushes would lose each other's maps) — updates accumulate in a
+  // per-shard file applied by --merge after all shards finish.
+  const shardUpdates = {};
 
   let targets = catalog.products.filter((p) => p.printfulProductId && !state.done[p.id]);
+  if (SHARD) {
+    const [i, n] = SHARD;
+    targets = targets.filter((_, idx) => idx % n === i);
+  }
   if (ONLY) targets = targets.filter((p) => (p.temple || 'punicodex') === ONLY);
 
   console.log(`Variant backfill: ${targets.length} product(s) to map.`);
@@ -96,26 +117,67 @@ async function main() {
       const variants = detail.sync_variants || [];
       const map = {};
       for (const v of variants) map[variantLabel(v)] = v.id;
-      product.printfulVariants = normalizeLabels(map, product);
-      product.printfulVariantCount = variants.length;
+      const printfulVariants = normalizeLabels(map, product);
+      const printfulVariantCount = variants.length;
+      if (SHARD) {
+        shardUpdates[product.id] = { printfulVariants, printfulVariantCount };
+      } else {
+        product.printfulVariants = printfulVariants;
+        product.printfulVariantCount = printfulVariantCount;
+      }
       state.done[product.id] = true;
       saveState(state);
       done++;
       if (done % 25 === 0) {
-        flush(catalog);
+        flush(catalog, shardUpdates);
         console.log(`  ${done}/${targets.length} mapped`);
       }
     } catch (err) {
-      flush(catalog);
+      flush(catalog, shardUpdates);
       console.error(`  ✗ ${product.id}: ${err.message}`);
       throw err;
     }
   }
-  flush(catalog);
+  flush(catalog, shardUpdates);
   console.log(`Backfill complete: ${done} product(s) mapped.`);
 }
 
-function flush(catalog) {
+function shardUpdatesFile() {
+  return STATE_FILE.replace(/\.json$/, `.updates-${SHARD.join('-')}.json`);
+}
+
+/**
+ * Apply every shard's update file to products.json. Idempotent: re-running
+ * after a partial merge just rewrites the same maps.
+ */
+function mergeShardUpdates() {
+  const catalog = JSON.parse(fs.readFileSync(CATALOG_FILE, 'utf8'));
+  const dir = path.join(ROOT, 'session-debug');
+  let merged = 0;
+  for (const f of fs.readdirSync(dir)) {
+    const m = f.match(/^printful-variant-backfill\.updates-([\d-]+)\.json$/);
+    if (!m) continue;
+    const updates = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+    for (const p of catalog.products) {
+      const u = updates[p.id];
+      if (!u) continue;
+      p.printfulVariants = u.printfulVariants;
+      p.printfulVariantCount = u.printfulVariantCount;
+      merged++;
+    }
+    fs.unlinkSync(path.join(dir, f));
+  }
+  const tmp = `${CATALOG_FILE}.tmp`;
+  fs.writeFileSync(tmp, `${JSON.stringify(catalog, null, 2)}\n`);
+  fs.renameSync(tmp, CATALOG_FILE);
+  console.log(`Merged shard variant maps into products.json (${merged} product update(s)).`);
+}
+
+function flush(catalog, shardUpdates = {}) {
+  if (SHARD) {
+    fs.writeFileSync(shardUpdatesFile(), JSON.stringify(shardUpdates));
+    return;
+  }
   const tmp = `${CATALOG_FILE}.tmp`;
   fs.writeFileSync(tmp, `${JSON.stringify(catalog, null, 2)}\n`);
   fs.renameSync(tmp, CATALOG_FILE);

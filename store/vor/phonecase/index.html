@@ -240,9 +240,9 @@ a:hover{color:var(--gold-bright)}
     <p style="color:var(--dim)">Vǫr, edge to edge, on a slim impact case.</p>
     <div class="price" id="pdp-price">$24.00</div>
     <div id="cfg-mount" hidden></div>
-    <script type="application/json" id="cfg-data">{"productId":"vor-phonecase","productName":"Vǫr Mascot Phone Case","kind":"phonecase","stageSrc":"https://punycodex-masters.vercel.app/mockups/vor-phonecase.jpg","hasMockup":true,"defaultArtwork":"mascot","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/vor/assets/vor_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/vor/assets/vor_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/vor/assets/vor_logolockup.webp"}],"colors":[],"placement":null,"labels":["iPhone 14","iPhone 15","Samsung S24"]}</script>
-    
-    <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="iPhone 14">iPhone 14</button><button class="opt" data-s="iPhone 15">iPhone 15</button><button class="opt" data-s="Samsung S24">Samsung S24</button></div></div>
+    <script type="application/json" id="cfg-data">{"productId":"vor-phonecase","productName":"Vǫr Mascot Phone Case","kind":"phonecase","stageSrc":"https://punycodex-masters.vercel.app/mockups/vor-phonecase.jpg","hasMockup":true,"defaultArtwork":"mascot","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/vor/assets/vor_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/vor/assets/vor_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/vor/assets/vor_logolockup.webp"}],"colors":[{"name":"Glossy","hex":null}],"placement":null,"labels":["Glossy / iPhone 11 Pro Max","Glossy / iPhone 11 Pro","Glossy / iPhone 11","Glossy / iPhone 12 Mini","Glossy / iPhone 12 Pro Max","Glossy / iPhone 12 Pro"]}</script>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Glossy">Glossy</button></div></div>
+    <div class="opt-group"><div class="lbl">Option</div><div class="opts" id="opts-size"><button class="opt active" data-s="iPhone 11">iPhone 11</button><button class="opt" data-s="iPhone 11 Pro">iPhone 11 Pro</button><button class="opt" data-s="iPhone 11 Pro Max">iPhone 11 Pro Max</button><button class="opt" data-s="iPhone 12 Mini">iPhone 12 Mini</button><button class="opt" data-s="iPhone 12 Pro">iPhone 12 Pro</button><button class="opt" data-s="iPhone 12 Pro Max">iPhone 12 Pro Max</button></div></div>
     <div class="opt-group">
       <div class="lbl">Quantity</div>
       <div class="qty"><button type="button" id="q-down" aria-label="Decrease quantity">−</button><span id="q-val">1</span><button type="button" id="q-up" aria-label="Increase quantity">+</button></div>
@@ -272,7 +272,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = ["iPhone 14","iPhone 15","Samsung S24"];
+  var LABELS = ["Glossy / iPhone 11 Pro Max","Glossy / iPhone 11 Pro","Glossy / iPhone 11","Glossy / iPhone 12 Mini","Glossy / iPhone 12 Pro Max","Glossy / iPhone 12 Pro"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"iPhone 14":2400,"iPhone 15":2400,"Samsung S24":2400};
+  var PRICES = {"Glossy / iPhone 11 Pro Max":2400,"Glossy / iPhone 11 Pro":2400,"Glossy / iPhone 11":2400,"Glossy / iPhone 12 Mini":2400,"Glossy / iPhone 12 Pro Max":2400,"Glossy / iPhone 12 Pro":2400};
   var FLAT_PRICE = "$24.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

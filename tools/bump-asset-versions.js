@@ -23,8 +23,8 @@ const MAP = [
   { asset: 'css/home-critical.css', old: 'v=1', next: 'v=2' },
   { asset: 'css/oracle.css', old: 'v=2', next: 'v=3' },
   { asset: 'js/archetypes-v2.js', old: 'v=61146c8472', hash: true },
-  { asset: 'js/store-configurator.js', old: 'v=2103475f9f', hash: true },
-  { asset: 'css/store-configurator.css', old: 'v=35128c79e6', hash: true },
+  { asset: 'js/store-configurator.js', old: 'v=b2f59369fb', hash: true },
+  { asset: 'css/store-configurator.css', old: 'v=af83704a04', hash: true },
 ];
 
 const SKIP_DIRS = new Set(['node_modules', '.git', '.masters', '.vercel', '.gradle']);

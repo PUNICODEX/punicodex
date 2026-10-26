@@ -15,6 +15,14 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const CATALOG = require('../store/products.json');
 const { COLOR_HEX, hexForColor, isColorWord } = require('../scripts/printful-color-table.js');
+// Catalog color_code index (authoritative hex where present).
+const BASE_INDEX = (() => {
+  try {
+    return require('../store/base-colors.json');
+  } catch {
+    return {};
+  }
+})();
 
 const OVERLAY_KINDS = new Set(['tee', 'hoodie', 'crewneck', 'cap', 'tote']);
 const APPAREL_KINDS = new Set(['tee', 'hoodie', 'crewneck']);
@@ -103,7 +111,13 @@ test('colors derive from printfulVariants and known names carry a hex', () => {
     );
     for (const c of p.colors) {
       assert.strictEqual(typeof c.name, 'string', `${p.id}: color without name`);
-      if (hexForColor(c.name) !== null) {
+      // The catalog color_code (store/base-colors.json) is authoritative when
+      // the color is indexed there; the hand table is the fallback.
+      const base = BASE_INDEX[p.id.split('-').pop()] || [];
+      const indexed = base.find((b) => b.name === c.name);
+      if (indexed) {
+        assert.strictEqual(c.hex, indexed.hex, `${p.id}: ${c.name} hex mismatch vs base index`);
+      } else if (hexForColor(c.name) !== null) {
         assert.strictEqual(c.hex, hexForColor(c.name), `${p.id}: ${c.name} hex mismatch`);
       } else {
         assert.strictEqual(c.hex, null, `${p.id}: ${c.name} should be hex null`);

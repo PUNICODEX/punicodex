@@ -240,8 +240,8 @@ a:hover{color:var(--gold-bright)}
     <p style="color:var(--dim)">Kannon, the temple mark, and the name lockup — three weatherproof vinyl die-cuts on one sheet.</p>
     <div class="price" id="pdp-price">$9.00</div>
     <div id="cfg-mount" hidden></div>
-    <script type="application/json" id="cfg-data">{"productId":"kannon-sticker","productName":"Kannon Seal Sticker Set","kind":"sticker","stageSrc":"https://punycodex-masters.vercel.app/mockups/kannon-sticker.jpg","hasMockup":true,"defaultArtwork":"compSticker","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/kannon/assets/kannon_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/kannon/assets/kannon_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/kannon/assets/kannon_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
-    
+    <script type="application/json" id="cfg-data">{"productId":"kannon-sticker","productName":"Kannon Seal Sticker Set","kind":"sticker","stageSrc":"https://punycodex-masters.vercel.app/mockups/kannon-sticker.jpg","hasMockup":true,"defaultArtwork":"compSticker","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/kannon/assets/kannon_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/kannon/assets/kannon_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/kannon/assets/kannon_logolockup.webp"}],"colors":[{"name":"White","hex":"#f5f2ea"}],"placement":null,"labels":["White / 5.83″×8.27″"]}</script>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="White">White</button></div></div>
     
     <div class="opt-group">
       <div class="lbl">Quantity</div>
@@ -272,7 +272,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = ["One size"];
+  var LABELS = ["White / 5.83″×8.27″"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":900};
+  var PRICES = {"White / 5.83″×8.27″":900};
   var FLAT_PRICE = "$9.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

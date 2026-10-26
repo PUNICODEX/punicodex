@@ -61,10 +61,7 @@ test('creative:<id> keys resolve only from the licensed index', () => {
   assert.strictEqual(file.url, creative.printUrl);
   // A creative must never fulfil on another temple's product.
   const otherTemple = temples.length > 1 ? temples[1] : 'zzzz-not-a-temple';
-  assert.strictEqual(
-    artworkFileFor(`${otherTemple}-tee`, `creative:${creative.id}`),
-    null,
-  );
+  assert.strictEqual(artworkFileFor(`${otherTemple}-tee`, `creative:${creative.id}`), null);
 });
 
 test('the committed index schema is well-formed', () => {

@@ -238,10 +238,10 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Notebook</span> <span class="pill">Ecne</span>
     <h1>Ecne Temple Notebook</h1>
     <p style="color:var(--dim)">The Ecne lockup on the cover, the seal at the spine. A5 dotted journal.</p>
-    <div class="price">$18.00</div>
+    <div class="price" id="pdp-price">$18.00</div>
     <div id="cfg-mount" hidden></div>
-    <script type="application/json" id="cfg-data">{"productId":"ecne-notebook","productName":"Ecne Temple Notebook","kind":"notebook","stageSrc":"https://punycodex-masters.vercel.app/mockups/ecne-notebook.jpg","hasMockup":true,"defaultArtwork":"compNotebook","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/ecne/assets/ecne_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/ecne/assets/ecne_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/ecne/assets/ecne_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
-    
+    <script type="application/json" id="cfg-data">{"productId":"ecne-notebook","productName":"Ecne Temple Notebook","kind":"notebook","stageSrc":"https://punycodex-masters.vercel.app/mockups/ecne-notebook.jpg","hasMockup":true,"defaultArtwork":"compNotebook","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/ecne/assets/ecne_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/ecne/assets/ecne_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/ecne/assets/ecne_logolockup.webp"}],"colors":[{"name":"Dotted","hex":null}],"placement":null,"labels":["Dotted / 5.5″×8.5″"]}</script>
+    <div class="opt-group"><div class="lbl">Colour</div><div class="opts" id="opts-color"><button class="opt active" data-c="Dotted">Dotted</button></div></div>
     
     <div class="opt-group">
       <div class="lbl">Quantity</div>
@@ -272,7 +272,7 @@ a:hover{color:var(--gold-bright)}
   sizes.forEach(function(b){ b.addEventListener('click', function(){ pick(sizes, b); updatePrice(); }); });
   document.getElementById('q-down').addEventListener('click', function(){ qty = Math.max(1, qty - 1); qtyEl.textContent = qty; });
   document.getElementById('q-up').addEventListener('click', function(){ qty = Math.min(5, qty + 1); qtyEl.textContent = qty; });
-  var LABELS = ["One size"];
+  var LABELS = ["Dotted / 5.5″×8.5″"];
   function currentLabel(){
     var c = document.querySelector('#opts-color .opt.active');
     var s = document.querySelector('#opts-size .opt.active');
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = null;
+  var PRICES = {"Dotted / 5.5″×8.5″":1800};
   var FLAT_PRICE = "$18.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

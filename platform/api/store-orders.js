@@ -44,7 +44,7 @@ function artworkFileFor(productId, artworkKey) {
   if (artworkKey.startsWith('creative:')) {
     const creativeId = artworkKey.slice('creative:'.length);
     const entry = creativeIndexEntry(productId, creativeId);
-    if (!entry || !entry.printUrl) return null;
+    if (!entry?.printUrl) return null;
     return { url: entry.printUrl, type: fileType };
   }
 

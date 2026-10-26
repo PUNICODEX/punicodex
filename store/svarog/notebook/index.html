@@ -238,7 +238,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Notebook</span> <span class="pill">Svarog</span>
     <h1>Svarog Temple Notebook</h1>
     <p style="color:var(--dim)">The Svarog lockup on the cover, the seal at the spine. A5 dotted journal.</p>
-    <div class="price" id="pdp-price">$18.00</div>
+    <div class="price">$18.00</div>
     <div id="cfg-mount" hidden></div>
     <script type="application/json" id="cfg-data">{"productId":"svarog-notebook","productName":"Svarog Temple Notebook","kind":"notebook","stageSrc":"https://punycodex-masters.vercel.app/mockups/svarog-notebook.jpg","hasMockup":true,"defaultArtwork":"compNotebook","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/svarog/assets/svarog_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/svarog/assets/svarog_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/svarog/assets/svarog_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
     
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":1800};
+  var PRICES = null;
   var FLAT_PRICE = "$18.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

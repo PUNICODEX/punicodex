@@ -238,7 +238,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Sticker Set</span> <span class="pill">Mārs</span>
     <h1>Mārs Seal Sticker Set</h1>
     <p style="color:var(--dim)">Mārs, the temple mark, and the name lockup — three weatherproof vinyl die-cuts on one sheet.</p>
-    <div class="price" id="pdp-price">$9.00</div>
+    <div class="price">$9.00</div>
     <div id="cfg-mount" hidden></div>
     <script type="application/json" id="cfg-data">{"productId":"mars-sticker","productName":"Mārs Seal Sticker Set","kind":"sticker","stageSrc":"/sites/mars/assets/mars_mascot.webp","hasMockup":false,"defaultArtwork":"compSticker","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/mars/assets/mars_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/mars/assets/mars_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/mars/assets/mars_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
     
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":900};
+  var PRICES = null;
   var FLAT_PRICE = "$9.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">

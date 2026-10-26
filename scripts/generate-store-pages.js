@@ -860,7 +860,7 @@ ${breadcrumbScript([
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     ${footerHtml()}
 </body></html>
 `;

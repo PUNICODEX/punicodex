@@ -238,7 +238,7 @@ a:hover{color:var(--gold-bright)}
     <span class="pill">Enamel Pin</span> <span class="pill">Ambikā</span>
     <h1>Ambikā Seal Enamel Pin</h1>
     <p style="color:var(--dim)">The Ambikā temple mark as a hard enamel pin, gold on obsidian — reads at 25 mm.</p>
-    <div class="price" id="pdp-price">$12.00</div>
+    <div class="price">$12.00</div>
     <div id="cfg-mount" hidden></div>
     <script type="application/json" id="cfg-data">{"productId":"ambika-pin","productName":"Ambikā Seal Enamel Pin","kind":"pin","stageSrc":"/sites/ambika/assets/ambika_mascot.webp","hasMockup":false,"defaultArtwork":"logomark","artworks":[{"key":"mascot","label":"Mascot","src":"/sites/ambika/assets/ambika_mascot.webp"},{"key":"logomark","label":"Logomark","src":"/sites/ambika/assets/ambika_logomark.webp"},{"key":"logolockup","label":"Logo lockup","src":"/sites/ambika/assets/ambika_logolockup.webp"}],"colors":[],"placement":null,"labels":["One size"]}</script>
     
@@ -283,7 +283,7 @@ a:hover{color:var(--gold-bright)}
     if (LABELS.indexOf(size) !== -1) return size;
     return LABELS[0];
   }
-  var PRICES = {"One size":1200};
+  var PRICES = null;
   var FLAT_PRICE = "$12.00";
   function updatePrice(){
     var el = document.getElementById('pdp-price');
@@ -325,7 +325,7 @@ a:hover{color:var(--gold-bright)}
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=b2f59369fb" defer></script>
+<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
     <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
