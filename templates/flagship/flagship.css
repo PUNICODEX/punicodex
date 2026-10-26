@@ -2404,11 +2404,17 @@
 .sponsorship-modal {
     position: fixed;
     inset: 0;
-    z-index: 400;
+    /* Above the fixed main nav (z-index 1010) and the mobile menu (~1200):
+       the dialog must own the whole viewport, header included. */
+    z-index: 1400;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.2rem;
+    /* margin:auto centering on the child + container scroll: when the panel
+       is taller than the viewport the CONTAINER scrolls, so the top (with
+       the close button) is always reachable — flex-centering alone clips
+       it on short screens. */
+    padding: max(1.2rem, env(safe-area-inset-top)) 1.2rem max(1.2rem, env(safe-area-inset-bottom));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 .sponsorship-modal[hidden] {
     display: none;
@@ -2423,9 +2429,12 @@
 }
 .sponsorship-modal-panel {
     position: relative;
+    margin: auto;
     width: min(600px, 100%);
     max-height: min(82vh, 720px);
     overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     padding: 2.4rem 2.6rem 2.2rem;
     background: linear-gradient(180deg, rgba(22, 19, 13, 0.82) 0%, rgba(10, 9, 6, 0.88) 100%);
     -webkit-backdrop-filter: blur(22px);
