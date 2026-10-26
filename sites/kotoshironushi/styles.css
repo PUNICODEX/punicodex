@@ -2288,12 +2288,48 @@
    as the other frames. */
 .space-slot--fullpage {
     text-align: center;
+    cursor: pointer;
 }
 .takeover-orb {
     position: relative;
     width: clamp(230px, 34vw, 330px);
     margin: 2.2rem auto 0.4rem;
     aspect-ratio: 1;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+.takeover-orb:hover,
+.takeover-orb:focus-visible {
+    transform: scale(1.045);
+    outline: none;
+}
+/* Boot-launcher energy: a slow conic ring rotating behind the sphere. */
+.takeover-orb::before {
+    content: '';
+    position: absolute;
+    inset: -7%;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(220,20,60, 0.55) 40deg,
+        transparent 90deg,
+        transparent 180deg,
+        rgba(220,20,60, 0.28) 220deg,
+        transparent 270deg
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    animation: orb-energy-spin 7s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(220,20,60, 0.5));
+    pointer-events: none;
+}
+@keyframes orb-energy-spin {
+    to { transform: rotate(360deg); }
+}
+.takeover-orb:hover::before {
+    animation-duration: 2.6s;
+    filter: drop-shadow(0 0 14px rgba(220,20,60, 0.85));
 }
 /* Orbital ring — a thin tilted band, like a planet's ring. */
 .takeover-orb-ring {
@@ -2327,16 +2363,27 @@
     inset: 0;
     border-radius: 50%;
     background:
-        radial-gradient(circle at 32% 26%, rgba(255, 246, 220, 0.14) 0%, transparent 34%),
-        radial-gradient(circle at 50% 118%, rgba(220,20,60, 0.22) 0%, transparent 55%),
-        radial-gradient(circle at 50% 42%, #17150f 0%, #0a0906 58%, #050403 100%);
+        radial-gradient(circle at 30% 24%, rgba(255, 250, 235, 0.22) 0%, transparent 30%),
+        radial-gradient(circle at 68% 78%, rgba(220,20,60, 0.14) 0%, transparent 46%),
+        radial-gradient(circle at 50% 118%, rgba(220,20,60, 0.26) 0%, transparent 55%),
+        radial-gradient(circle at 50% 42%, #1b1811 0%, #0c0a07 55%, #060504 100%);
     border: 1px solid rgba(220,20,60, 0.38);
     box-shadow:
         inset 0 0 60px rgba(0, 0, 0, 0.65),
+        inset -18px -24px 60px rgba(0, 0, 0, 0.55),
         inset 0 1px 0 rgba(255, 255, 255, 0.06),
         0 24px 80px rgba(0, 0, 0, 0.5),
         0 0 70px rgba(220,20,60, 0.14);
     overflow: hidden;
+    transition: box-shadow 0.35s ease;
+}
+.takeover-orb:hover .takeover-orb-sphere {
+    box-shadow:
+        inset 0 0 60px rgba(0, 0, 0, 0.6),
+        inset -18px -24px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 28px 90px rgba(0, 0, 0, 0.55),
+        0 0 110px rgba(220,20,60, 0.3);
 }
 /* Shimmer sweep — the throne's light band, curved across the orb. */
 .takeover-orb-sphere::after {
@@ -2561,6 +2608,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
     .takeover-orb-ring,
+    .takeover-orb::before,
     .takeover-orb-sphere::after,
     .takeover-orb-glow,
     .sponsorship-modal-backdrop,

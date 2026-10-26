@@ -142,6 +142,9 @@
 
   function applyArt() {
     var art = artByKey(state.artworkKey);
+    // Portrait arts carry their own (narrower) geometry so they never spill
+    // off the garment; landscape pieces use the kind's default placement.
+    var place = art.placement || PLACEMENT;
     if (MODE === 'overlay' && stageImg) {
       if (!overlayImg) {
         overlayImg = document.createElement('img');
@@ -149,11 +152,11 @@
         overlayImg.setAttribute('alt', '');
         overlayImg.setAttribute('aria-hidden', 'true');
         overlayImg.draggable = false;
-        overlayImg.style.width = PLACEMENT.widthPct + '%';
-        overlayImg.style.top = PLACEMENT.topPct + '%';
-        overlayImg.style.left = (PLACEMENT.leftPct == null ? 50 : PLACEMENT.leftPct) + '%';
         stageImg.parentNode.insertBefore(overlayImg, stageImg.nextSibling);
       }
+      overlayImg.style.width = place.widthPct + '%';
+      overlayImg.style.top = place.topPct + '%';
+      overlayImg.style.left = (place.leftPct == null ? 50 : place.leftPct) + '%';
       if (overlayImg.getAttribute('src') !== art.src) overlayImg.setAttribute('src', art.src);
       // On a blank base the overlay is the only print — always show it. On
       // the composite mockup (colour without a base image) the default art

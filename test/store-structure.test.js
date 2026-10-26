@@ -180,8 +180,18 @@ test('collection pages separate the Foundation Collection from Creator Editions'
     assert.ok(html.includes('Creator Editions'), `store/${id}: no creator editions band`);
     assert.ok(html.includes('id="ce-grid"'), `store/${id}: no hydration container`);
     assert.ok(html.includes('/api/store/products'), `store/${id}: no hydration source`);
-    assert.ok(html.includes('class="group-head"'), `store/${id}: no curated groups`);
+    assert.ok(html.includes('grid--group'), `store/${id}: no product grid`);
     assert.ok(html.includes('ce-empty'), `store/${id}: no honest empty state`);
+  }
+});
+
+test('collection product grids are strictly alphabetical A–Z', () => {
+  for (const id of COLLECTION_IDS.slice(0, 25)) {
+    const html = read(`store/${id}/index.html`);
+    const kinds = [...html.matchAll(/href="\/store\/[^/]+\/([a-z]+)\//g)].map((m) => m[1]);
+    const grid = kinds.slice(0, 13); // the 13 foundation kinds, in page order
+    const sorted = [...grid].sort((a, b) => a.localeCompare(b));
+    assert.deepStrictEqual(grid, sorted, `store/${id}: not alphabetical (${grid.join(',')})`);
   }
 });
 

@@ -515,8 +515,8 @@ const KIND_GROUPS = [
 
 function renderCollection(id, products) {
   const meta = templeMeta(id);
-  // Alphabetical by product kind within each group (aigyptos: cap, canvas,
-  // crewneck, hoodie…) — visitors scan by name, not by our internal order.
+  // Strict A–Z across the whole collection (cap, canvas, crewneck, hoodie,
+  // mug, notebook, …) — no kind grouping; visitors scan by name.
   const sorted = products.slice().sort((a, b) => {
     const ka = a.id.split('-').pop();
     const kb = b.id.split('-').pop();
@@ -534,24 +534,9 @@ function renderCollection(id, products) {
 </a>`;
   };
 
-  const groups = [];
-  const claimed = new Set();
-  for (const g of KIND_GROUPS) {
-    const members = sorted.filter((p) => g.kinds.includes(p.id.split('-').pop()));
-    for (const p of members) claimed.add(p.id);
-    if (members.length) groups.push({ label: g.label, members });
-  }
-  const rest = sorted.filter((p) => !claimed.has(p.id));
-  if (rest.length) groups.push({ label: 'More from the Collection', members: rest });
-
-  const groupsHtml = groups
-    .map(
-      (g) => `  <div class="group-head"><h3>${esc(g.label)}</h3><span class="count">${g.members.length} piece${g.members.length === 1 ? '' : 's'}</span></div>
-  <div class="grid grid--group">
-${g.members.map(cardHtml).join('\n')}
-  </div>`
-    )
-    .join('\n');
+  const groupsHtml = `  <div class="grid grid--group">
+${sorted.map(cardHtml).join('\n')}
+  </div>`;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -860,7 +845,7 @@ ${breadcrumbScript([
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=a925d6609e" defer></script>
+<script src="/js/store-configurator.js?v=476f5a1f85" defer></script>
     ${footerHtml()}
 </body></html>
 `;

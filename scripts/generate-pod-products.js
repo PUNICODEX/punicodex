@@ -88,8 +88,7 @@ function fallbackVariantId(productId, i) {
   return 900_000_000 + ((h + i) % 99_000_000);
 }
 
-// ─── Configurator decorations (artworks / colors / placement) ───
-// The Reliquary PDP configurator (js/store-configurator.js) is data-driven off
+// ─── Configurator decorations (artworks / colors / placement) ───// The Reliquary PDP configurator (js/store-configurator.js) is data-driven off
 // these fields. artworks lists the transparent brand arts a buyer can choose
 // between (print-only `_comp-` composites are excluded — they are pre-baked
 // print masters, not choosable overlay art). colors derives from the variant
@@ -102,12 +101,18 @@ const OVERLAY_KINDS = new Set(['tee', 'hoodie', 'crewneck', 'cap', 'tote']);
 
 // widthPct/topPct/leftPct position the art overlay on the garment base image
 // (percent of stage width/height; leftPct 50 = centred, translateX(-50%)).
+// widthPct/topPct/leftPct position the art overlay on the garment base image
+// (percent of stage; leftPct 50 = centred, translateX(-50%)). Values are
+// measured against the square blank flat-lays (assets/store-base/) — chest
+// band ≈ y 26–34% of stage depending on kind. `tall` is the override for
+// portrait arts (mascot etc.): same spot, narrower so the art never spills
+// off the garment; baked onto the artwork as art.placement.
 const PLACEMENTS = {
-  tee: { area: 'front', widthPct: 38, topPct: 28, leftPct: 50 },
-  hoodie: { area: 'front', widthPct: 18, topPct: 27, leftPct: 34 },
-  crewneck: { area: 'front', widthPct: 42, topPct: 30, leftPct: 50 },
-  cap: { area: 'front', widthPct: 24, topPct: 34, leftPct: 50 },
-  tote: { area: 'front', widthPct: 46, topPct: 26, leftPct: 50 },
+  tee: { area: 'front', widthPct: 34, topPct: 26, leftPct: 50, tall: { widthPct: 25, topPct: 23, leftPct: 50 } },
+  hoodie: { area: 'front', widthPct: 21, topPct: 28, leftPct: 33, tall: { widthPct: 27, topPct: 24, leftPct: 50 } },
+  crewneck: { area: 'front', widthPct: 36, topPct: 28, leftPct: 51, tall: { widthPct: 27, topPct: 26, leftPct: 51 } },
+  cap: { area: 'front', widthPct: 24, topPct: 30, leftPct: 50, tall: { widthPct: 17, topPct: 27, leftPct: 50 } },
+  tote: { area: 'front', widthPct: 36, topPct: 27, leftPct: 50, tall: { widthPct: 27, topPct: 25, leftPct: 50 } },
 };
 
 const ARTWORK_LABELS = {
@@ -122,10 +127,71 @@ const ARTWORK_LABELS = {
   lockupS: 'Lockup (stacked)',
 };
 
-function buildArtworks(assets) {
+// Sync image-dimension reader (WebP/PNG/JPEG headers) — decorateProduct is
+// synchronous, so sharp's async metadata can't be used here. Returns
+// { w, h } or null.
+function imageSizeSync(file) {
+  try {
+    const buf = fs.readFileSync(file);
+    if (buf.length > 30 && buf.toString('ascii', 0, 4) === 'RIFF' && buf.toString('ascii', 8, 12) === 'WEBP') {
+      const fmt = buf.toString('ascii', 12, 16);
+      if (fmt === 'VP8 ') {
+        return { w: (buf[26] | (buf[27] << 8)) & 0x3fff, h: (buf[28] | (buf[29] << 8)) & 0x3fff };
+      }
+      if (fmt === 'VP8L') {
+        const b0 = buf[21], b1 = buf[22], b2 = buf[23], b3 = buf[24];
+        return { w: 1 + (((b1 & 0x3f) << 8) | b0), h: 1 + (((b3 & 0xf) << 10) | (b2 << 2) | ((b1 & 0xc0) >> 6)) };
+      }
+      if (fmt === 'VP8X') {
+        return {
+          w: 1 + (buf[24] | (buf[25] << 8) | (buf[26] << 16)),
+          h: 1 + (buf[27] | (buf[28] << 8) | (buf[29] << 16)),
+        };
+      }
+    }
+    if (buf.length > 24 && buf.toString('ascii', 1, 4) === 'PNG') {
+      return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
+    }
+    if (buf[0] === 0xff && buf[1] === 0xd8) {
+      let off = 2;
+      while (off + 9 < buf.length) {
+        if (buf[off] !== 0xff) { off++; continue; }
+        const marker = buf[off + 1];
+        if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+          return { h: buf.readUInt16BE(off + 5), w: buf.readUInt16BE(off + 7) };
+        }
+        off += 2 + buf.readUInt16BE(off + 2);
+      }
+    }
+  } catch {
+    /* unreadable — treated as unknown aspect */
+  }
+  return null;
+}
+
+const ART_SIZE_CACHE = new Map();
+function artIsPortrait(src) {
+  if (!src || !src.startsWith('/')) return false;
+  if (!ART_SIZE_CACHE.has(src)) {
+    ART_SIZE_CACHE.set(src, imageSizeSync(path.join(ROOT, src)));
+  }
+  const dims = ART_SIZE_CACHE.get(src);
+  return Boolean(dims && dims.h > dims.w * 1.15);
+}
+
+function buildArtworks(assets, kind) {
+  const placement = PLACEMENTS[kind];
   return Object.keys(assets)
     .filter((k) => !k.startsWith('comp'))
-    .map((k) => ({ key: k, label: ARTWORK_LABELS[k] || k, src: assets[k] }));
+    .map((k) => {
+      const art = { key: k, label: ARTWORK_LABELS[k] || k, src: assets[k] };
+      // Portrait arts (mascot, stacked lockups, …) use the kind's `tall`
+      // geometry — same spot, narrower, so nothing spills off the garment.
+      if (placement && placement.tall && artIsPortrait(assets[k])) {
+        art.placement = { ...placement.tall };
+      }
+      return art;
+    });
 }
 
 // Blank-garment base mockups per kind+colour (scripts/fetch-store-base-images.js
@@ -179,22 +245,31 @@ function buildColors(product, kind, unknown) {
 
 function decorateProduct(product) {
   const kind = product.id.split('-').pop();
-  product.artworks = buildArtworks(product.assets);
+  product.artworks = buildArtworks(product.assets, kind);
   // Licensed temple creatives (P4) join the art chips — the rights gate ran
   // at sync time (approved + merch_consent + temple link), so anything in the
   // index is safe to offer here.
   const temple = product.temple || product.id.split('-').slice(0, -1).join('-');
   for (const c of CREATIVE_ARTWORKS[temple] || []) {
-    product.artworks.push({
+    const art = {
       key: `creative:${c.id}`,
       label: c.title,
       src: c.src,
       license: 'temple-creative',
       creator: c.creator || undefined,
-    });
+    };
+    // Licensed creatives have arbitrary aspect ratios — measure and give
+    // portrait pieces the tall geometry just like the brand arts.
+    if (PLACEMENTS[kind] && PLACEMENTS[kind].tall && artIsPortrait(c.src)) {
+      art.placement = { ...PLACEMENTS[kind].tall };
+    }
+    product.artworks.push(art);
   }
   product.colors = buildColors(product, kind, decorateProduct.unknownColors);
-  product.placement = PLACEMENTS[kind] && OVERLAY_KINDS.has(kind) ? { ...PLACEMENTS[kind] } : null;
+  product.placement =
+    PLACEMENTS[kind] && OVERLAY_KINDS.has(kind)
+      ? (({ area, widthPct, topPct, leftPct }) => ({ area, widthPct, topPct, leftPct }))(PLACEMENTS[kind])
+      : null;
 }
 
 function applyFallbackVariants(product) {

@@ -13,6 +13,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const { spawnSync } = require('node:child_process');
 const cheerio = require('cheerio');
 const url = require('node:url');
@@ -4106,6 +4107,21 @@ function createFlagship(templeId, options = {}) {
       fs.mkdirSync(path.join(backupDir, path.dirname(f)), { recursive: true });
       safeCopyFileSync(p, path.join(backupDir, f));
     }
+  }
+
+  // Content-addressed pins for the temple's own styles.css/script.js:
+  // both are rebuilt per bake, and the pages reference them with ?v= pins
+  // that must change when the bytes change — otherwise visitors keep the
+  // old CSS/JS for up to a year (immutable-cache doctrine).
+  const cssPin = crypto.createHash('md5').update(outputs['styles.css']).digest('hex').slice(0, 10);
+  const jsPin = crypto.createHash('md5').update(outputs['script.js']).digest('hex').slice(0, 10);
+  for (const key of Object.keys(outputs)) {
+    if (typeof outputs[key] !== 'string') continue;
+    outputs[key] = outputs[key]
+      .split('styles.css?v=perf21')
+      .join(`styles.css?v=${cssPin}`)
+      .split('script.js?v=perf21')
+      .join(`script.js?v=${jsPin}`);
   }
 
   // Prose-bearing pages: crosslink deity mentions to their temples (first
