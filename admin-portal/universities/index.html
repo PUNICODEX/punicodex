@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=0a4a40259b" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — University Outreach | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
+    <link rel="stylesheet" href="../portal.css?v=acabd82adb">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <style>
+        .uni-dept {
+            display: inline-block;
+            padding: 0.1rem 0.5rem;
+            margin: 0 0.25rem 0.25rem 0;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 999px;
+            font-size: 0.72rem;
+            color: #c9b584;
+            white-space: nowrap;
+        }
+        .uni-status {
+            display: inline-block;
+            padding: 0.12rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .uni-status--pending { border: 1px solid #8a7a52; color: #c9b584; }
+        .uni-status--contacted { border: 1px solid #4169e1; color: #87a3ee; }
+        .uni-status--replied { border: 1px solid #2e8b57; color: #7fd4a8; }
+        .uni-status--active { background: rgba(46, 139, 87, 0.18); border: 1px solid #2e8b57; color: #a8e8c8; }
+        .uni-status--declined { border: 1px solid #6b6046; color: #8a8064; text-decoration: line-through; }
+        #uni-pitch-panel[hidden] { display: none; }
+        .uni-pitch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.2rem; }
+        @media (max-width: 760px) { .uni-pitch-grid { grid-template-columns: 1fr; } }
+        .uni-note-preview {
+            border: 1px dashed rgba(212, 175, 55, 0.35);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            font-size: 0.85rem;
+            color: #c9b584;
+            background: rgba(212, 175, 55, 0.04);
+        }
+    </style>
+</head>
+<body data-page="universities" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>University Outreach</h1>
+            <p>Australian institutions whose departments align with the pantheon — seeded by the crawler ecosystem. Pick one, personalize the hybrid template, send. Academic collaboration is complimentary; the pitch never leads with money.</p>
+        </div>
+
+        <section aria-label="Prospect statistics">
+            <div class="stat-grid" id="uni-stats">
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="University prospects">
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Prospects</h2>
+                    <p class="panel-sub" id="uni-total"></p>
+                </div>
+                <div class="pz-panel-actions">
+                    <label class="field" style="margin:0;">
+                        <select id="uni-filter" aria-label="Filter by status">
+                            <option value="">All statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="replied">Replied</option>
+                            <option value="active">Active</option>
+                            <option value="declined">Declined</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div id="uni-table">
+                <div class="state-block">Loading prospects…</div>
+            </div>
+        </section>
+
+        <section class="panel" id="uni-pitch-panel" aria-label="Send pitch" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title" id="uni-pitch-title">Send the invitation</h2>
+                    <p class="panel-sub" id="uni-pitch-sub"></p>
+                </div>
+            </div>
+            <div class="uni-pitch-grid">
+                <div class="field">
+                    <label for="pitch-to">Recipient email</label>
+                    <input type="email" id="pitch-to" placeholder="head.department@university.edu.au">
+                </div>
+                <div class="field">
+                    <label for="pitch-contact">Contact name <span class="field-hint">(optional — "Professor Hale")</span></label>
+                    <input type="text" id="pitch-contact" placeholder="Professor Hale">
+                </div>
+            </div>
+            <div class="field">
+                <label>Aligned departments <span class="field-hint">(the email weaves these into benefit bullets)</span></label>
+                <div id="pitch-departments"></div>
+            </div>
+            <div class="field">
+                <label for="pitch-note">Personal note <span class="field-hint">(optional — one paragraph, placed as the final bullet, e.g. a specific program or paper you admire)</span></label>
+                <textarea id="pitch-note" rows="3" maxlength="600" placeholder="Your work on … caught our attention because …"></textarea>
+            </div>
+            <div class="uni-note-preview" id="pitch-preview"></div>
+            <div class="portal-form-row" style="margin-top:1rem;">
+                <button type="button" class="btn btn-primary" id="pitch-send">Send invitation</button>
+                <button type="button" class="btn btn-secondary" id="pitch-cancel">Cancel</button>
+                <span class="field-hint" id="pitch-hint"></span>
+            </div>
+        </section>
+    </main>
+
+    <script src="../portal.js?v=a40c89baae"></script>
+    <script>
+    (function () {
+        var selected = null;
+        var departments = [];
+
+        function statCard(value, label) {
+            return (
+                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div></div>'
+            );
+        }
+
+        function deptTags(list) {
+            return (list || []).map(function (d) {
+                return '<span class="uni-dept">' + Portal.escapeHtml(d) + '</span>';
+            }).join('');
+        }
+
+        async function load() {
+            var filter = document.getElementById('uni-filter').value;
+            var data;
+            try {
+                data = await Portal.api('/api/admin/portal/universities/' + (filter ? '?status=' + encodeURIComponent(filter) : ''));
+            } catch (err) {
+                document.getElementById('uni-table').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                return;
+            }
+
+            var byStatus = data.byStatus || {};
+            document.getElementById('uni-stats').innerHTML =
+                statCard(Portal.fmtNumber(data.total), 'Prospects') +
+                statCard(Portal.fmtNumber(byStatus.pending || 0), 'Pending') +
+                statCard(Portal.fmtNumber(byStatus.contacted || 0), 'Contacted') +
+                statCard(Portal.fmtNumber(byStatus.active || 0), 'Active collaborators');
+            document.getElementById('uni-total').textContent =
+                data.total + ' institution' + (data.total === 1 ? '' : 's') +
+                (filter ? ' · filtered: ' + filter : '');
+
+            document.getElementById('uni-table').innerHTML = data.items.length
+                ? '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                  '<th>Institution</th><th>State</th><th>Aligned departments</th><th>Pitched</th><th>Status</th><th></th>' +
+                  '</tr></thead><tbody>' +
+                  data.items.map(function (p) {
+                      var canSend = p.status !== 'active' && p.status !== 'declined' && (p.pitchCount || 0) < 3;
+                      return (
+                          '<tr>' +
+                          '<td class="cell-title">' + Portal.escapeHtml(p.institutionName) +
+                          (p.domain ? '<div class="field-hint">' + Portal.escapeHtml(p.domain) + '</div>' : '') + '</td>' +
+                          '<td>' + Portal.escapeHtml(p.state || p.country) + '</td>' +
+                          '<td>' + deptTags(p.departments) + '</td>' +
+                          '<td class="num">' + (p.pitchCount || 0) + (p.lastPitchedAt ? '<div class="field-hint">' + String(p.lastPitchedAt).slice(0, 10) + '</div>' : '') + '</td>' +
+                          '<td><span class="uni-status uni-status--' + Portal.escapeHtml(p.status) + '">' + Portal.escapeHtml(p.status) + '</span></td>' +
+                          '<td>' + (canSend
+                              ? '<button type="button" class="btn btn-secondary btn-sm" data-pitch="' + p.id + '">Pitch</button>'
+                              : '<span class="field-hint">—</span>') + '</td>' +
+                          '</tr>'
+                      );
+                  }).join('') +
+                  '</tbody></table></div>'
+                : '<div class="state-block">No prospects in this bucket.</div>';
+
+            document.querySelectorAll('[data-pitch]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    openPitch(data.items.find(function (p) { return String(p.id) === btn.getAttribute('data-pitch'); }));
+                });
+            });
+        }
+
+        function openPitch(p) {
+            selected = p;
+            departments = (p.departments || []).slice();
+            document.getElementById('uni-pitch-title').textContent = 'Invite ' + p.institutionName;
+            document.getElementById('uni-pitch-sub').textContent =
+                (p.domain ? p.domain + ' · ' : '') + (p.pitchCount || 0) + ' previous pitch' + ((p.pitchCount || 0) === 1 ? '' : 'es');
+            document.getElementById('pitch-to').value = p.contactEmail || '';
+            document.getElementById('pitch-contact').value = '';
+            document.getElementById('pitch-note').value = '';
+            renderDeptPicker();
+            renderPreview();
+            document.getElementById('uni-pitch-panel').hidden = false;
+            document.getElementById('uni-pitch-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.getElementById('pitch-to').focus();
+        }
+
+        function renderDeptPicker() {
+            var host = document.getElementById('pitch-departments');
+            if (!departments.length) {
+                host.innerHTML = '<span class="field-hint">No departments on file — the email uses the general template.</span>';
+                return;
+            }
+            host.innerHTML = departments.map(function (d, i) {
+                return '<label class="uni-dept" style="cursor:pointer;">' +
+                    '<input type="checkbox" checked data-dept-idx="' + i + '" style="margin-right:0.3rem;">' +
+                    Portal.escapeHtml(d) + '</label>';
+            }).join('');
+            host.querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+                cb.addEventListener('change', renderPreview);
+            });
+        }
+
+        function chosenDepartments() {
+            var picked = [];
+            document.querySelectorAll('#pitch-departments input[type=checkbox]:checked').forEach(function (cb) {
+                picked.push(departments[Number(cb.getAttribute('data-dept-idx'))]);
+            });
+            return picked;
+        }
+
+        function renderPreview() {
+            var depts = chosenDepartments();
+            var note = document.getElementById('pitch-note').value.trim();
+            document.getElementById('pitch-preview').innerHTML =
+                '<strong>Subject:</strong> A complimentary partnership for ' + Portal.escapeHtml(selected.institutionName) +
+                ' — the Scholarly Edition<br/>' +
+                '<strong>Bullets:</strong> ' + (depts.length ? depts.map(function (d) { return Portal.escapeHtml(d); }).join(' · ') : 'general template') +
+                (note ? '<br/><strong>Founder note:</strong> ' + Portal.escapeHtml(note.slice(0, 140)) + (note.length > 140 ? '…' : '') : '');
+        }
+
+        async function init() {
+            var ctx = await Portal.initShell('universities');
+            if (!ctx) return;
+            await load();
+            document.getElementById('uni-filter').addEventListener('change', load);
+            document.getElementById('pitch-note').addEventListener('input', renderPreview);
+            document.getElementById('pitch-cancel').addEventListener('click', function () {
+                document.getElementById('uni-pitch-panel').hidden = true;
+                selected = null;
+            });
+            document.getElementById('pitch-send').addEventListener('click', async function () {
+                if (!selected) return;
+                var btn = this;
+                var to = document.getElementById('pitch-to').value.trim();
+                if (!to) { Portal.toast('Recipient email is required', 'error'); return; }
+                btn.disabled = true;
+                try {
+                    var res = await Portal.api('/api/admin/portal/universities/' + selected.id + '/pitch/', {
+                        method: 'POST',
+                        body: {
+                            to: to,
+                            contactName: document.getElementById('pitch-contact').value.trim() || null,
+                            departments: chosenDepartments(),
+                            customNote: document.getElementById('pitch-note').value.trim() || null,
+                        },
+                    });
+                    Portal.toast(res.mocked ? 'Mocked send (no RESEND_API_KEY) — ' + res.subject : 'Sent — ' + res.subject, 'success');
+                    document.getElementById('uni-pitch-panel').hidden = true;
+                    selected = null;
+                    await load();
+                } catch (err) {
+                    Portal.toast(err.message, 'error');
+                } finally {
+                    btn.disabled = false;
+                }
+            });
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

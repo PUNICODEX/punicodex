@@ -79,7 +79,16 @@ test('every product carries artworks with key, label, and src', () => {
 test('artwork srcs resolve to real assets (deployed path or masters host)', () => {
   for (const p of CATALOG.products.slice(0, 200)) {
     for (const art of p.artworks) {
-      if (art.src.startsWith('/')) {
+      if (art.src.includes('_comp-')) {
+        // Composite print masters are gitignored (sites/*/assets/*_comp-*.png)
+        // and served from the masters deployment, so the repo checkout has
+        // nothing to check against — assert the canonical path shape instead.
+        assert.match(
+          art.src,
+          /^\/sites\/[a-z0-9-]+\/assets\/[a-z0-9-]+_comp-[a-z]+\.png$/,
+          `${p.id}: composite master src malformed: ${art.src}`
+        );
+      } else if (art.src.startsWith('/')) {
         const onDisk =
           fs.existsSync(path.join(ROOT, art.src.replace(/^\//, '').replace(/\.webp$/, '.png'))) ||
           fs.existsSync(path.join(ROOT, art.src.replace(/^\//, '')));

@@ -83,6 +83,12 @@
           href: `${PREFIX}scholars/`,
           permission: 'read',
         },
+        {
+          id: 'universities',
+          label: 'University Outreach',
+          href: `${PREFIX}universities/`,
+          permission: 'scholars',
+        },
         { id: 'merch', label: 'Creator Merch', href: `${PREFIX}merch/`, permission: 'read' },
       ],
     },

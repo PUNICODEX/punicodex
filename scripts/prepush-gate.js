@@ -176,7 +176,13 @@ const RULES = [
       'Store Structure Tests',
       'Store Creative Artworks Tests',
       'Store Checkout Tests',
+      'University Outreach Tests',
     ],
+  },
+  {
+    pattern:
+      /^platform\/api\/university-pitch-email\.js$|^platform\/db\/university-prospects\.js$|^platform\/api-handlers\/admin\/portal\/universities\/|^scripts\/seed-australian-universities\.js$/,
+    suites: ['University Outreach Tests'],
   },
   {
     pattern: /^platform\/models\/authenticity|^platform\/edge\/authenticity|^extension-v2\//,

@@ -322,6 +322,116 @@
     @media (prefers-reduced-motion: reduce) {
       .us-button { transition: none; }
     }
+
+    /* Redesign v2 */
+    .us2-prop {
+      text-align: center;
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--us-border);
+      margin-bottom: 2.5rem;
+    }
+    .us2-prop-lede {
+      font-family: var(--us-serif);
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      line-height: 1.5;
+      color: var(--us-text);
+      max-width: 700px;
+      margin: 0 auto 1.4rem;
+    }
+    .us2-prop-lede em { color: var(--us-gold); font-style: normal; }
+    .us2-prop-sub { color: var(--us-muted); max-width: 620px; margin: 0 auto; font-size: 0.98rem; }
+    .us2-stats {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem 2.4rem;
+      margin-top: 2rem;
+      font-family: var(--us-serif);
+    }
+    .us2-stat { text-align: center; }
+    .us2-stat b { display: block; font-size: 1.5rem; color: var(--us-gold); font-weight: 600; }
+    .us2-stat span { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--us-muted); }
+
+    .us2-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 1.5rem 0 2.5rem;
+    }
+    @media (max-width: 860px) { .us2-grid { grid-template-columns: 1fr; } }
+    .us2-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(212,175,55,0.05), rgba(212,175,55,0.015));
+      border: 1px solid var(--us-border-gold);
+      border-radius: 14px;
+      padding: 1.9rem 1.6rem;
+    }
+    .us2-card::before {
+      content: '';
+      position: absolute; inset: 0 0 auto 0; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.55), transparent);
+      border-radius: 14px 14px 0 0;
+    }
+    .us2-card h3 {
+      font-family: var(--us-serif);
+      font-size: 1.05rem; letter-spacing: 0.04em; color: var(--us-text);
+      margin: 0 0 0.6rem;
+    }
+    .us2-card .us2-num {
+      font-family: var(--us-serif);
+      font-size: 0.72rem; letter-spacing: 0.28em; color: var(--us-gold);
+      display: block; margin-bottom: 0.9rem;
+    }
+    .us2-card p { color: var(--us-muted); font-size: 0.92rem; margin: 0 0 0.7rem; }
+    .us2-card p:last-child { margin-bottom: 0; }
+    .us2-card strong { color: var(--us-text); }
+
+    .us2-steps { counter-reset: us2step; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+    .us2-steps li {
+      counter-increment: us2step;
+      position: relative;
+      padding: 0 0 1.4rem 3.4rem;
+      color: var(--us-muted);
+      font-size: 0.95rem;
+    }
+    .us2-steps li::before {
+      content: counter(us2step, decimal-leading-zero);
+      position: absolute; left: 0; top: 0;
+      font-family: var(--us-serif);
+      font-size: 1.15rem; color: var(--us-gold);
+      border: 1px solid var(--us-border-gold);
+      border-radius: 50%;
+      width: 2.3rem; height: 2.3rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .us2-steps strong { color: var(--us-text); }
+
+    .us2-free {
+      margin: 2.5rem 0;
+      padding: 2.6rem 2rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.14) 0%, transparent 60%),
+        linear-gradient(180deg, #14110c, #0d0b08);
+      border: 1px solid var(--us-border-gold);
+      border-radius: 16px;
+    }
+    .us2-free h2 {
+      font-family: var(--us-serif);
+      font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+      letter-spacing: 0.06em;
+      color: var(--us-gold);
+      margin: 0 0 0.9rem;
+    }
+    .us2-free p { color: var(--us-muted); max-width: 620px; margin: 0 auto 0.8rem; font-size: 0.96rem; }
+    .us2-free p strong { color: var(--us-text); }
+
+    .us2-depts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .us2-dept {
+      padding: 0.35rem 0.95rem;
+      border: 1px solid var(--us-border-gold);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: #c9b584;
+      letter-spacing: 0.03em;
+    }
   </style>
   <link rel="stylesheet" href="/css/main.css?v=perf26">
   <link rel="stylesheet" href="/css/punicodex-tokens.css">
@@ -450,88 +560,109 @@
         <canvas class="pc-fx-academy" aria-hidden="true"></canvas>
       </div>
       <h1>University Sponsorship</h1>
-      <p>PuniCodex restores the original Unicode names of the gods to the digital realm. Founding academic collaborators put their institution's name on that work — and their students behind it.</p>
+      <p>PuniCodex restores the original Unicode names of the gods to the digital realm — and puts universities behind the scholarship. Academic collaboration is complimentary: your students publish, create and earn; your department is credited across the pantheon.</p>
       <div class="us-hero-actions">
-        <a href="/scholars/apply/" class="us-button">Apply for Sponsorship <span aria-hidden="true">→</span></a>
+        <a href="/scholars/apply/" class="us-button">Begin the Collaboration <span aria-hidden="true">→</span></a>
         <a href="mailto:support@punicodex.com?subject=University%20Collaborator%20Sponsorship" class="us-button us-button-secondary">Email the Partnerships Team</a>
       </div>
     </header>
 
-    <section class="us-section" aria-labelledby="us-deliverables-heading">
-      <h2 id="us-deliverables-heading">What a Founding Collaborator Receives</h2>
-      <p>One annual sponsorship, four concrete deliverables for your department:</p>
-      <ul class="us-deliverables">
-        <li class="us-deliverable">
-          <span class="us-deliverable-marker" aria-hidden="true">I.</span>
-          <picture><source srcset="/assets/brand/13-page-visuals/university-sponsorship/icon-globe.webp" type="image/webp"><img class="us-icon" src="/assets/brand/13-page-visuals/university-sponsorship/icon-globe.png" alt="" width="256" height="256" loading="lazy" decoding="async"></picture>
-          <h3>Sponsorship Strip Placement</h3>
-          <p>Your institution's name, monogram or logo, and link appear in the Academic Collaborators strip rendered across the public site — the homepage and every temple page — with a Founding Partner tier label.</p>
-        </li>
-        <li class="us-deliverable">
-          <span class="us-deliverable-marker" aria-hidden="true">II.</span>
-          <picture><source srcset="/assets/brand/13-page-visuals/university-sponsorship/icon-mortarboard.webp" type="image/webp"><img class="us-icon" src="/assets/brand/13-page-visuals/university-sponsorship/icon-mortarboard.png" alt="" width="256" height="256" loading="lazy" decoding="async"></picture>
-          <h3>Scholarly Edition Mentoring</h3>
-          <p>Provisioned student accounts let your students research and publish peer-reviewed sections on flagship temples under the Scholarly Edition's editorial quality gate — public, citable work with faculty mentorship credited.</p>
-        </li>
-        <li class="us-deliverable">
-          <span class="us-deliverable-marker" aria-hidden="true">III.</span>
-          <picture><source srcset="/assets/brand/13-page-visuals/creatives/muse-flame.webp" type="image/webp"><img class="us-icon" src="/assets/brand/13-page-visuals/creatives/muse-flame.png" alt="" width="640" height="640" loading="lazy" decoding="async"></picture>
-          <h3>Creative Marketplace</h3>
-          <p>Student artwork and design materials are listed — watermarked — in the Creatives marketplace, where sponsors and licensees can commission or license them.</p>
-        </li>
-        <li class="us-deliverable">
-          <span class="us-deliverable-marker" aria-hidden="true">IV.</span>
-          <picture><source srcset="/assets/brand/13-page-visuals/university-sponsorship/icon-barchart.webp" type="image/webp"><img class="us-icon" src="/assets/brand/13-page-visuals/university-sponsorship/icon-barchart.png" alt="" width="256" height="256" loading="lazy" decoding="async"></picture>
-          <h3>Department Analytics</h3>
-          <p>An institution dashboard shows what your students have contributed, review status, engagement, and the reach of your department's published work.</p>
-        </li>
-      </ul>
+    <section class="us2-prop" aria-label="The proposition">
+      <p class="us2-prop-lede">The names the ancient world actually spoke, restored to the internet — <em>apóllōn.com</em>, <em>nótt.com</em>, <em>quauhtli.com</em> — each temple carrying a university-edited Scholarly Edition. We are inviting a small number of institutions to put their students behind that scholarship.</p>
+      <p class="us2-prop-sub"><strong style="color:var(--us-text);">Academic collaboration is complimentary — no cost, no invoice, no renewal, for the department or the university.</strong> Your students get published, credited, citable work; some of them get paid; your department gains a public platform. An optional Founding Partner sponsorship tier exists for institutions that also want site-wide placement — but this invitation does not depend on it.</p>
+      <div class="us2-stats" aria-label="Platform at a glance">
+        <div class="us2-stat"><b>980</b><span>name restorations</span></div>
+        <div class="us2-stat"><b>25</b><span>traditions</span></div>
+        <div class="us2-stat"><b>542</b><span>flagship temples</span></div>
+        <div class="us2-stat"><b>50%</b><span>creator royalty</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="us-pillars-heading">
+      <h2 id="us-pillars-heading" style="font-family:var(--us-serif);font-size:1.3rem;letter-spacing:0.03em;margin-bottom:0.25rem;">Three instruments, one collaboration</h2>
+      <p style="color:var(--us-muted);margin:0 0 0.25rem;">Everything below is included from the first day — there is no paid tier that unlocks the good parts.</p>
+      <div class="us2-grid">
+        <div class="us2-card">
+          <span class="us2-num">I — THE EDITION</span>
+          <h3>The Scholarly Edition</h3>
+          <p>Your students research and publish peer-reviewed sections on the flagship temples — mythology, archaeology, attestation, source criticism — under an editorial quality gate, <strong>public, bylined and citable</strong>.</p>
+          <p>Work passes review before it ships; faculty mentorship is credited; every published contribution carries your institution's name.</p>
+        </div>
+        <div class="us2-card">
+          <span class="us2-num">II — THE MARKETPLACE</span>
+          <h3>The Creatives Marketplace</h3>
+          <p>Student art inspired by a temple is listed — watermarked — and, once it clears review, <strong>printed on that temple's merchandise in the Reliquary store</strong>. Half of every sale is paid to the creator.</p>
+          <p>Income, not just credit: a design student can watch their work sell as a hoodie, a mug, a canvas — with their name on it.</p>
+        </div>
+        <div class="us2-card">
+          <span class="us2-num">III — THE ENGINE</span>
+          <h3>The Pronunciation Engine</h3>
+          <p>A rules-based engine derives <strong>IPA, respelling, syllables and stress for all 980 names</strong>, per pantheon — Attic Greek to Mandarin pinyin. Egyptian entries are honestly labelled "conventional reading" where the vowels are lost.</p>
+          <p>A teaching instrument your linguistics and classics classes can pull apart — with an open API and CC BY 4.0 datasets to cite.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="us2-free" aria-label="Terms">
+      <h2>Complimentary. Forever.</h2>
+      <p>We provision your institution with an administrator account; your admin provisions and revokes student credentials directly. <strong>Work passes an editorial quality gate before publication, and access can be revoked at any time, with immediate effect.</strong></p>
+      <p>What we ask in return is simple: that your students do good work, and that the department lets us say so. Your name appears in the Academic Collaborators strip across the public site and in the credits of every contribution your students publish.</p>
     </section>
 
     <section class="us-section" aria-labelledby="us-how-heading">
       <h2 id="us-how-heading">How It Works</h2>
-      <ol>
-        <li><strong>Apply.</strong> Submit the university sponsorship application; a curator reviews it and arranges an introductory call.</li>
-        <li><strong>Provision.</strong> On approval we create your institution and administrator account; your admin then provisions student and faculty credentials.</li>
-        <li><strong>Contribute.</strong> Scholars publish through the editorial quality gate; Creatives upload watermarked work to the marketplace.</li>
-        <li><strong>Be seen.</strong> Your institution appears in the collaborators strip and in the credits of every published contribution.</li>
+      <ol class="us2-steps">
+        <li><strong>Begin.</strong> Apply below — or reply to our invitation. A curator reviews and arranges a fifteen-minute introductory call.</li>
+        <li><strong>Provision.</strong> We create your institution and administrator account; your admin provisions student and faculty credentials.</li>
+        <li><strong>Contribute.</strong> Scholars publish through the editorial gate; creatives upload to the marketplace; approved art goes on sale in the store.</li>
+        <li><strong>Be seen — and paid.</strong> Your institution is credited across the platform; your students earn royalties on every sale of their work.</li>
       </ol>
     </section>
 
     <section class="us-section" aria-labelledby="us-who-heading">
       <h2 id="us-who-heading">Who Should Partner</h2>
-      <p>Classics, Ancient History, Religious Studies, Linguistics, Digital Humanities, Design, and Marketing departments that want to give students real-world, publishable experience on a public scholarly platform.</p>
+      <p>Departments whose teaching touches the ancient world, language, or the craft of public work:</p>
+      <div class="us2-depts">
+        <span class="us2-dept">Classics &amp; Ancient History</span>
+        <span class="us2-dept">Archaeology &amp; Egyptology</span>
+        <span class="us2-dept">Religious Studies</span>
+        <span class="us2-dept">Linguistics</span>
+        <span class="us2-dept">Digital Humanities</span>
+        <span class="us2-dept">Indigenous Studies</span>
+        <span class="us2-dept">Design</span>
+        <span class="us2-dept">Marketing</span>
+      </div>
     </section>
 
     <section class="us-section" aria-labelledby="us-faq-heading">
       <h2 id="us-faq-heading">Frequently Asked Questions</h2>
       <div class="us-faq-item">
-        <h3>What does university sponsorship cost?</h3>
-        <p>Founding collaborator sponsorship starts at <strong>$999 per year</strong> per institution. Custom enterprise packages for multiple departments or campuses are available on request.</p>
+        <h3>What does academic collaboration cost?</h3>
+        <p><strong>Nothing.</strong> The Scholarly Edition, the Creatives Marketplace, the pronunciation engine and the API are complimentary for academic collaborators — there is no invoice and no renewal. A separate, optional Founding Partner sponsorship tier (site-wide placement, from $999/year) exists for institutions that want it; the collaboration itself never depends on it.</p>
       </div>
       <div class="us-faq-item">
-        <h3>How does our institution apply?</h3>
-        <p>Submit the <a href="/scholars/apply/">university sponsorship application</a>. A curator reviews every application, arranges an introductory call, and on approval provisions your institution and its administrator account with a one-time temporary password.</p>
+        <h3>How do our students get paid?</h3>
+        <p>When a student's creative clears review and is printed on temple merchandise in the Reliquary store, <strong>50% of every sale is paid to the creator</strong>. The marketplace handles the licensing, the watermarking and the royalty ledger.</p>
       </div>
       <div class="us-faq-item">
-        <h3>How do our students get access?</h3>
-        <p>Your institution's administrator provisions and revokes student credentials directly. Student work passes through the Scholarly Edition quality gate before publication, and access can be revoked at any time with immediate effect.</p>
+        <h3>Who controls access?</h3>
+        <p>Your institution's administrator provisions and revokes student credentials directly. Student work passes an editorial quality gate before publication, and access can be revoked at any time, with immediate effect.</p>
       </div>
       <div class="us-faq-item">
         <h3>Where does our institution's name appear?</h3>
-        <p>In the Academic Collaborators strip rendered across the public site — the homepage and every temple page — with your name, monogram or logo, link, and tier label, and in the credits of the Scholarly Edition sections your students publish.</p>
+        <p>In the Academic Collaborators strip rendered across the public site — the homepage and every temple page — and in the credits of every Scholarly Edition section your students publish.</p>
       </div>
       <div class="us-faq-item">
-        <h3>Who do we speak to before applying?</h3>
-        <p>Email <a href="mailto:support@punicodex.com?subject=University%20Collaborator%20Sponsorship">support@punicodex.com</a> with the subject <strong>University Collaborator Sponsorship</strong>. The partnerships team typically replies within one business day.</p>
+        <h3>Who do we speak to first?</h3>
+        <p>Email <a href="mailto:support@punicodex.com?subject=Academic%20Collaboration">support@punicodex.com</a> with the subject <strong>Academic Collaboration</strong>, or apply below. We typically reply within one business day.</p>
       </div>
     </section>
 
     <section class="us-cta" aria-labelledby="us-cta-heading">
-      <h2 id="us-cta-heading">Reserve Your Collaborator Slot</h2>
-      <p>Founding slots are limited. Apply today and we will arrange a call to discuss onboarding, pricing, and student access.</p>
-      <a href="/scholars/apply/" class="us-button">Apply for Sponsorship <span aria-hidden="true">→</span></a>
-      <p class="us-cta-note">Pricing starts at <strong>$999/year</strong> per institution. Custom enterprise packages available.</p>
+      <h2 id="us-cta-heading">Begin the Collaboration</h2>
+      <p>Founding collaborator slots are limited while we onboard carefully. Apply today and we will arrange the introductory call.</p>
+      <a href="/scholars/apply/" class="us-button">Apply — It Costs Nothing <span aria-hidden="true">→</span></a>
+      <p class="us-cta-note">Complimentary for academic collaborators. The optional Founding Partner tier is a separate conversation.</p>
     </section>
   </main>
 

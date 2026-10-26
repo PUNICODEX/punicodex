@@ -82,6 +82,11 @@ const SUITES = [
     timeout: 60000,
   },
   {
+    name: 'University Outreach Tests',
+    cmd: 'node test/university-outreach.test.js',
+    timeout: 60000,
+  },
+  {
     name: 'Newsletter Subscribe Tests',
     cmd: 'node test/newsletter-subscribe.test.js',
     timeout: 60000,
