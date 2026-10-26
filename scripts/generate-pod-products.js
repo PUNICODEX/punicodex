@@ -97,7 +97,35 @@ function fallbackVariantId(productId, i) {
 // geometry for the live mockup overlay; object kinds get null and the
 // configurator falls back to art-swap preview.
 
-const OVERLAY_KINDS = new Set(['tee', 'hoodie', 'crewneck', 'cap', 'tote']);
+// Every kind previews art composited on a blank product photo (the base
+// mockups) — overlay mode is universal; kinds without a base image fall
+// back to the composite stage photo.
+const OVERLAY_KINDS = new Set([
+  'tee', 'hoodie', 'crewneck', 'cap', 'tote',
+  'mug', 'tumbler', 'print', 'canvas', 'phonecase', 'pin', 'notebook', 'sticker',
+]);
+
+// Per-kind artwork policy — which arts a product offers, in chip order.
+// 'design' is the product's own composite print master (single design, no
+// picker — e.g. the notebook's combined layout; combination variants such as
+// 'mascot + logomark' can join later as explicit extra design entries).
+// Products whose assets lack the listed keys (the house line) fall back to
+// all of their non-comp arts.
+const KIND_ART_POLICY = {
+  tee: ['mascot', 'logomark', 'logolockup'],
+  hoodie: ['mascot', 'logomark', 'logolockup'],
+  crewneck: ['mascot', 'logomark', 'logolockup'],
+  cap: ['mascot', 'logomark', 'logolockup'],
+  tote: ['mascot', 'logomark', 'logolockup'],
+  mug: ['mascot', 'logomark', 'logolockup'],
+  tumbler: ['mascot', 'logomark', 'logolockup'],
+  print: ['mascot', 'logomark', 'logolockup'],
+  canvas: ['mascot'],
+  phonecase: ['mascot'],
+  pin: ['logomark'],
+  notebook: ['design'],
+  sticker: ['design'],
+};
 
 // widthPct/topPct/leftPct position the art overlay on the garment base image
 // (percent of stage width/height; leftPct 50 = centred, translateX(-50%)).
@@ -113,6 +141,15 @@ const PLACEMENTS = {
   crewneck: { area: 'front', widthPct: 36, topPct: 28, leftPct: 51, tall: { widthPct: 27, topPct: 26, leftPct: 51 } },
   cap: { area: 'front', widthPct: 24, topPct: 30, leftPct: 50, tall: { widthPct: 17, topPct: 27, leftPct: 50 } },
   tote: { area: 'front', widthPct: 36, topPct: 27, leftPct: 50, tall: { widthPct: 27, topPct: 25, leftPct: 50 } },
+  // Object kinds — print areas measured from the blank product photos.
+  mug: { area: 'front', widthPct: 30, topPct: 30, leftPct: 50, tall: { widthPct: 22, topPct: 28, leftPct: 50 } },
+  tumbler: { area: 'front', widthPct: 28, topPct: 32, leftPct: 45, tall: { widthPct: 20, topPct: 30, leftPct: 45 } },
+  phonecase: { area: 'front', widthPct: 44, topPct: 30, leftPct: 50, tall: { widthPct: 32, topPct: 28, leftPct: 50 } },
+  pin: { area: 'front', widthPct: 22, topPct: 38, leftPct: 50 },
+  notebook: { area: 'front', widthPct: 42, topPct: 26, leftPct: 50 },
+  print: { area: 'front', widthPct: 40, topPct: 26, leftPct: 50, tall: { widthPct: 30, topPct: 24, leftPct: 50 } },
+  canvas: { area: 'front', widthPct: 40, topPct: 30, leftPct: 50, tall: { widthPct: 29, topPct: 28, leftPct: 50 } },
+  sticker: { area: 'front', widthPct: 39.5, topPct: 26, leftPct: 50 },
 };
 
 const ARTWORK_LABELS = {
@@ -179,19 +216,28 @@ function artIsPortrait(src) {
   return Boolean(dims && dims.h > dims.w * 1.15);
 }
 
-function buildArtworks(assets, kind) {
+function buildArtworks(assets, kind, design) {
   const placement = PLACEMENTS[kind];
-  return Object.keys(assets)
-    .filter((k) => !k.startsWith('comp'))
-    .map((k) => {
-      const art = { key: k, label: ARTWORK_LABELS[k] || k, src: assets[k] };
-      // Portrait arts (mascot, stacked lockups, …) use the kind's `tall`
-      // geometry — same spot, narrower, so nothing spills off the garment.
-      if (placement && placement.tall && artIsPortrait(assets[k])) {
-        art.placement = { ...placement.tall };
-      }
-      return art;
-    });
+  const withPlacement = (art) => {
+    // Portrait arts (mascot, stacked lockups, …) use the kind's `tall`
+    // geometry — same spot, narrower, so nothing spills off the garment.
+    if (placement && placement.tall && artIsPortrait(art.src)) {
+      art.placement = { ...placement.tall };
+    }
+    return art;
+  };
+  const policy = KIND_ART_POLICY[kind];
+  if (policy && policy[0] === 'design') {
+    // Single-design products: the composite print master, no picker.
+    const key = design && design.placements && design.placements[0] && design.placements[0].asset;
+    const src = key && assets[key];
+    if (!src) return [];
+    return [withPlacement({ key: 'design', label: 'Temple design', src })];
+  }
+  const keys = Object.keys(assets).filter((k) => !k.startsWith('comp'));
+  const chosen = policy ? policy.filter((k) => keys.includes(k)) : [];
+  const finalKeys = chosen.length ? chosen : keys;
+  return finalKeys.map((k) => withPlacement({ key: k, label: ARTWORK_LABELS[k] || k, src: assets[k] }));
 }
 function applyPlacementOverrides(product) {
   for (const art of product.artworks) {
@@ -264,7 +310,7 @@ function buildColors(product, kind, unknown) {
 
 function decorateProduct(product) {
   const kind = product.id.split('-').pop();
-  product.artworks = buildArtworks(product.assets, kind);
+  product.artworks = buildArtworks(product.assets, kind, product.design);
   // Licensed temple creatives (P4) join the art chips — the rights gate ran
   // at sync time (approved + merch_consent + temple link), so anything in the
   // index is safe to offer here.
@@ -286,6 +332,12 @@ function decorateProduct(product) {
   }
   applyPlacementOverrides(product);
   product.colors = buildColors(product, kind, decorateProduct.unknownColors);
+  // Kind-level blank base (first available): the configurator's fallback when
+  // the selected colour has no mockup of its own or the kind has no colours.
+  const baseList = BASE_COLORS[kind] || [];
+  const withImage = baseList.find((c) => c.image) || baseList[0];
+  if (withImage && withImage.image) product.baseMockup = withImage.image;
+  else delete product.baseMockup;
   product.placement =
     PLACEMENTS[kind] && OVERLAY_KINDS.has(kind)
       ? (({ area, widthPct, topPct, leftPct }) => ({ area, widthPct, topPct, leftPct }))(PLACEMENTS[kind])

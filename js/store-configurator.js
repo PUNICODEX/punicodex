@@ -42,7 +42,7 @@
 
   var LABELS = data.labels || [];
   var COLORS = data.colors || [];
-  var PLACEMENT = data.placement && data.hasMockup ? data.placement : null;
+  var PLACEMENT = data.placement ? data.placement : null;
   var MODE = PLACEMENT ? 'overlay' : 'swap';
   // Swap mode (object kinds) prepends a virtual "Product photo" chip so the
   // buyer can return to the original stage image; overlay mode keeps the
@@ -197,7 +197,7 @@
       tintLayer = null;
     }
 
-    var base = entry && entry.mockup ? entry.mockup : null;
+    var base = entry && entry.mockup ? entry.mockup : data.baseMockup || null;
     if (base) {
       hasBase = true;
       if (stageImg.getAttribute('src') !== base) stageImg.setAttribute('src', base);

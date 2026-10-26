@@ -28,6 +28,14 @@ const GARMENT_BOXES = {
   crewneck: { minX: 0.128, maxX: 0.882, minY: 0.054, maxY: 0.968 },
   cap: { minX: 0.112, maxX: 0.88, minY: 0.108, maxY: 0.894 },
   tote: { minX: 0.226, maxX: 0.772, minY: 0.036, maxY: 0.948 },
+  mug: { minX: 0.071, maxX: 0.871, minY: 0.234, maxY: 0.744 },
+  tumbler: { minX: 0.08, maxX: 0.72, minY: 0.05, maxY: 0.9 },
+  phonecase: { minX: 0.189, maxX: 0.806, minY: 0.092, maxY: 0.934 },
+  pin: { minX: 0.19, maxX: 0.81, minY: 0.28, maxY: 0.82 },
+  notebook: { minX: 0.16, maxX: 0.786, minY: 0.192, maxY: 0.83 },
+  print: { minX: 0.171, maxX: 0.8, minY: 0.208, maxY: 0.83 },
+  canvas: { minX: 0.163, maxX: 0.817, minY: 0.278, maxY: 0.738 },
+  sticker: { minX: 0.197, maxX: 0.806, minY: 0.212, maxY: 0.784 },
 };
 
 async function artContent(src) {
@@ -115,7 +123,7 @@ async function main() {
       if (scale >= 0.995) continue; // rounding-level spill — not worth an override
       violations.push({ id: p.id, art: art.key, kind, scale: scale.toFixed(3) });
       overrides[`${p.id}:${art.key}`] = {
-        widthPct: Math.round(place.widthPct * scale * 10) / 10,
+        widthPct: Math.floor(place.widthPct * scale * 10) / 10,
         topPct: place.topPct,
         leftPct: place.leftPct,
       };

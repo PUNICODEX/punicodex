@@ -728,6 +728,7 @@ function renderProduct(id, kind, product) {
     productName: product.name,
     kind,
     stageSrc: stageImg,
+    baseMockup: product.baseMockup || null,
     hasMockup: Boolean(product.mockupImage),
     defaultArtwork: product.design.placements[0] ? product.design.placements[0].asset : null,
     artworks: product.artworks || [],

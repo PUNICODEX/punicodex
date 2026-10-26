@@ -36,8 +36,16 @@ const KIND_CATALOG_ID = {
   tee: 71,
   hoodie: 294,
   crewneck: 145,
-  cap: 638,
+  print: 268,
+  canvas: 3,
+  sticker: 505,
+  pin: 660,
+  mug: 300,
+  tumbler: 585,
   tote: 641,
+  phonecase: 683,
+  cap: 638,
+  notebook: 474,
 };
 
 const KEY = process.env.PRINTFUL_API_KEY;
@@ -116,7 +124,20 @@ async function pollTask(taskKey, attempts = 30) {
 
 // Print-area placement per kind (mirrors the mockup pipeline): embroidery
 // products reject 'front' — the cap needs 'embroidery_front'.
-const KIND_PLACEMENT = { cap: 'embroidery_front' };
+// Mockup-generator placement per kind (mirrors the mockup pipeline):
+// embroidery products need embroidery_front; several object kinds only
+// accept 'default'.
+const KIND_PLACEMENT = {
+  cap: 'embroidery_front',
+  print: 'default',
+  canvas: 'default',
+  sticker: 'default',
+  mug: 'default',
+  tumbler: 'default',
+  phonecase: 'default',
+  pin: 'front',
+  notebook: 'front',
+};
 
 async function renderBlank(kind, color) {
   const catalogId = KIND_CATALOG_ID[kind];

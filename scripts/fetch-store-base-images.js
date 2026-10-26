@@ -40,9 +40,21 @@ const KIND_CATALOG_ID = {
   tee: 71,
   hoodie: 294,
   crewneck: 145,
-  cap: 638,
+  print: 268,
+  canvas: 3,
+  sticker: 505,
+  pin: 660,
+  mug: 300,
+  tumbler: 585,
   tote: 641,
+  phonecase: 683,
+  cap: 638,
+  notebook: 474,
 };
+
+// Dimension-only kinds have no color: one representative base per kind
+// under the 'Standard' name (colors[] on those products is empty anyway).
+const SINGLE_BASE = new Set(['print', 'canvas', 'sticker']);
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -101,7 +113,8 @@ async function main() {
     // One representative variant per color (in-stock, core size first).
     const byColor = new Map();
     for (const v of picked) {
-      if (!byColor.has(v.color)) byColor.set(v.color, v);
+      const key = SINGLE_BASE.has(kind) ? 'Standard' : v.color;
+      if (!byColor.has(key)) byColor.set(key, v);
     }
     const colors = [];
     for (const [name, variant] of byColor) {

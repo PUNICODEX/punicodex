@@ -24,7 +24,6 @@ const BASE_INDEX = (() => {
   }
 })();
 
-const OVERLAY_KINDS = new Set(['tee', 'hoodie', 'crewneck', 'cap', 'tote']);
 const APPAREL_KINDS = new Set(['tee', 'hoodie', 'crewneck']);
 // Finish/decor names that are legitimately not in the color table (they are
 // not fabric colors). Everything else in the catalog must resolve a hex.
@@ -127,22 +126,42 @@ test('colors derive from printfulVariants and known names carry a hex', () => {
   }
 });
 
-test('placement is garment geometry for overlay kinds and null for object kinds', () => {
+test('placement is garment geometry for every kind (universal overlay)', () => {
+  // Every kind previews art composited on a blank product photo, so every
+  // kind carries placement geometry (per-kind art policies decide WHICH
+  // arts are offered — that is a separate test below).
   for (const p of CATALOG.products) {
-    if (OVERLAY_KINDS.has(kindOf(p))) {
-      const pl = p.placement;
-      assert.ok(pl && typeof pl === 'object', `${p.id}: overlay kind missing placement`);
+    const pl = p.placement;
+    assert.ok(pl && typeof pl === 'object', `${p.id}: kind missing placement`);
+    assert.ok(pl.widthPct > 5 && pl.widthPct < 80, `${p.id}: widthPct ${pl.widthPct} out of range`);
+    assert.ok(pl.topPct > 5 && pl.topPct < 70, `${p.id}: topPct ${pl.topPct} out of range`);
+    assert.ok(pl.leftPct >= 20 && pl.leftPct <= 80, `${p.id}: leftPct ${pl.leftPct} out of range`);
+  }
+});
+
+test('per-kind artwork policies: canvas/phonecase mascot-only, pin logomark-only, notebook/sticker single design', () => {
+  for (const p of CATALOG.products) {
+    if (!p.temple) continue; // house line keeps its own art set
+    const kind = kindOf(p);
+    const keys = p.artworks.map((a) => a.key);
+    if (kind === 'canvas' || kind === 'phonecase') {
+      assert.deepStrictEqual(keys, ['mascot'], `${p.id}: ${kind} must offer the mascot only`);
+    } else if (kind === 'pin') {
+      assert.deepStrictEqual(keys, ['logomark'], `${p.id}: pin must offer the logomark only`);
+    } else if (kind === 'notebook' || kind === 'sticker') {
+      assert.deepStrictEqual(keys, ['design'], `${p.id}: ${kind} must be a single design`);
       assert.ok(
-        pl.widthPct > 5 && pl.widthPct < 80,
-        `${p.id}: widthPct ${pl.widthPct} out of range`
+        keys[0] === 'design' && p.artworks[0].src.includes('_comp'),
+        `${p.id}: design must be the composite master`
       );
-      assert.ok(pl.topPct > 5 && pl.topPct < 70, `${p.id}: topPct ${pl.topPct} out of range`);
-      assert.ok(
-        pl.leftPct >= 20 && pl.leftPct <= 80,
-        `${p.id}: leftPct ${pl.leftPct} out of range`
+    } else if (
+      ['tee', 'hoodie', 'crewneck', 'cap', 'tote', 'mug', 'tumbler', 'print'].includes(kind)
+    ) {
+      assert.deepStrictEqual(
+        keys,
+        ['mascot', 'logomark', 'logolockup'],
+        `${p.id}: ${kind} offers the three temple arts`
       );
-    } else {
-      assert.strictEqual(p.placement, null, `${p.id}: object kind must have placement null`);
     }
   }
 });
