@@ -185,7 +185,27 @@ function defaultArtFor(p) {
  * 2026-10-27 regression this exists for. Emitted only when the card image
  * is a blank garment base; fleet composites already carry the print.
  */
-function cardArtOverlay(p, templeId) {
+/**
+ * First committed artwork across a temple's whole product line — the
+ * collection-level fallback when a single product's own art is all
+ * composite sheets (the House sticker carries only its print sheet; the
+ * brand emblem lives on its sibling products).
+ */
+function committedArtwork(candidates) {
+  for (const p of candidates || []) {
+    const arts = (p.artworks || []).filter(
+      (a) =>
+        a.src &&
+        !/_comp-/.test(a.src) &&
+        fs.existsSync(path.join(ROOT, a.src.replace(/^\//, '')))
+    );
+    const pick = arts.find((a) => a.key === 'mascot') || arts[0];
+    if (pick) return { src: pick.src, placement: pick.placement || p.placement || null };
+  }
+  return null;
+}
+
+function cardArtOverlay(p, templeId, lineProducts) {
   if (p.mockupImage && MOCKUP_FLEET.has(p.id)) return '';
   let art = defaultArtFor(p);
   if (!art) return '';
@@ -197,13 +217,23 @@ function cardArtOverlay(p, templeId) {
   // cfg-data reference lives in JSON, not a link-checked src attribute).
   if (/_comp-[a-z]+\.png$/.test(art.src)) {
     if (!templeId) return '';
-    const mascot = (p.artworks || []).find(
-      (a) => a.key === 'mascot' && !/_comp-/.test(a.src)
+    // Any committed artwork will do — prefer the temple mascot, else the
+    // first non-composite art whose file actually exists on disk (the
+    // House line carries brand logos, not temple mascots; adb5b591 shipped
+    // a /sites/punicodex/assets/punicodex_mascot.webp that has never
+    // existed). Existence is checked because the Link Checker runs against
+    // a fresh checkout — the generator must never emit a reference the
+    // checkout cannot satisfy.
+    const committed = (p.artworks || []).filter(
+      (a) =>
+        a.src &&
+        !/_comp-/.test(a.src) &&
+        fs.existsSync(path.join(ROOT, a.src.replace(/^\//, '')))
     );
-    const src = mascot
-      ? mascot.src
-      : `/sites/${templeId}/assets/${templeId}_mascot.webp`;
-    art = { src, placement: (mascot && mascot.placement) || art.placement || p.placement };
+    const pick = committed.find((a) => a.key === 'mascot') || committed[0];
+    if (pick) art = { src: pick.src, placement: pick.placement || p.placement || null };
+    else art = committedArtwork(lineProducts) || art;
+    if (/_comp-[a-z]+\.png$/.test(art.src)) return '';
   }
   if (!art || !art.placement) return '';
   const { widthPct, topPct, leftPct } = art.placement;
@@ -447,7 +477,7 @@ function renderStoreIndex(colls) {
       const sorted = products.slice().sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
       const img = cardImage(sorted[0], meta);
       return `<a class="card" href="/store/${id}/" data-product-id="${esc(id)}" data-pantheon="${esc(meta.pantheon)}" data-name="${esc(meta.name.toLowerCase())}">
-  <div class="imgbox" style="position:relative">${imgTag(img, `${meta.name} Reliquary collection — restored ${meta.pantheon} merchandise`)}${cardArtOverlay(sorted[0], id)}</div>
+  <div class="imgbox" style="position:relative">${imgTag(img, `${meta.name} Reliquary collection — restored ${meta.pantheon} merchandise`)}${cardArtOverlay(sorted[0], id, products)}</div>
   <div class="body">
     <div class="sub">${esc(meta.pantheon)}${meta.rentalTier ? ` · Tier ${meta.rentalTier}` : ''}</div>
     <h3>${esc(meta.name)}</h3>
@@ -602,7 +632,7 @@ function renderCollection(id, products) {
   const cardHtml = (p) => {
     const kind = p.id.split('-').pop();
     return `<a class="card" href="/store/${id}/${kind}/" data-product-id="${esc(p.id)}">
-  <div class="imgbox" style="position:relative">${imgTag(cardImage(p, meta), p.name)}${cardArtOverlay(p, id)}</div>
+  <div class="imgbox" style="position:relative">${imgTag(cardImage(p, meta), p.name)}${cardArtOverlay(p, id, products)}</div>
   <div class="body">
     <div class="sub">${esc(kindLabel(kind))}</div>
     <h3>${esc(p.name)}</h3>

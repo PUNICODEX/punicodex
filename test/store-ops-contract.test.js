@@ -194,6 +194,7 @@ test('every collection card shows the temple art — fleet composite or build-ti
     path.join(ROOT, 'store', 'zeus', 'index.html'),
     path.join(ROOT, 'store', 'adonis', 'index.html'),
     path.join(ROOT, 'store', 'athena', 'index.html'),
+    path.join(ROOT, 'store', 'punicodex', 'index.html'),
   ];
   let cards = 0;
   for (const page of pages) {
