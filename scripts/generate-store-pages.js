@@ -828,6 +828,19 @@ function renderProduct(id, kind, product) {
   // The mount point stays `hidden` without JS; the base colour/size buttons
   // remain the no-JS purchase path. JSON is `<`-escaped so no src can break
   // out of the script element.
+  // compositeColor: the garment colour the fleet photo actually shows.
+  // scripts/generate-printful-mockups.js renders tee/hoodie/crewneck/cap
+  // composites on BLACK variants, so the configurator must preselect Black
+  // (not colors[0]) or the first chip claims the photo shows a colour it
+  // doesn't (the "first colour clicks show no change" bug).
+  const productColors = product.colors || [];
+  const compositeColor =
+    ['tee', 'hoodie', 'crewneck', 'cap'].includes(kind) &&
+    productColors.some((c) => c.name === 'Black')
+      ? 'Black'
+      : productColors.length === 1
+        ? productColors[0].name
+        : null;
   const cfgData = {
     productId: product.id,
     productName: product.name,
@@ -836,8 +849,9 @@ function renderProduct(id, kind, product) {
     baseMockup: product.baseMockup || null,
     hasMockup: Boolean(product.mockupImage),
     defaultArtwork: product.design.placements[0] ? product.design.placements[0].asset : null,
+    compositeColor,
     artworks: product.artworks || [],
-    colors: product.colors || [],
+    colors: productColors,
     placement: product.placement || null,
     labels: v.labels,
   };

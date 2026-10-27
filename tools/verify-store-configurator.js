@@ -189,6 +189,7 @@ function payload(over) {
       stageSrc: 'https://punycodex-masters.vercel.app/mockups/zeus-tee.jpg',
       baseMockup: '/assets/store-base/tee--black.jpg',
       hasMockup: true,
+      compositeColor: 'Black',
       placement: { area: 'front', widthPct: 34, topPct: 26, leftPct: 50 },
       labels: ['Ash / S', 'Black / S', 'Navy / S'],
     },
@@ -244,7 +245,7 @@ function check(name, cond, extra) {
   results.push([cond, name, extra]);
 }
 
-// ── Scenario 1: tee — defaultArtwork in arts (the reported overlap bug) ──
+// ── Scenario 1: tee — composite photo shows BLACK, not colors[0] (Ash) ──
 const teeArts = [
   { key: 'mascot', label: 'Mascot', src: '/sites/zeus/assets/zeus_mascot.webp' },
   { key: 'logomark', label: 'Logomark', src: '/sites/zeus/assets/zeus_logomark.webp' },
@@ -258,28 +259,31 @@ const teeColors = [
 let page = buildPage({ stageSrc: 'https://punycodex-masters.vercel.app/mockups/zeus-tee.jpg', colors: teeColors });
 let sel = runConfigurator(page, payload({ defaultArtwork: 'mascot', artworks: teeArts, colors: teeColors }));
 check('tee init: composite kept, no overlay visible', page.stageImg.getAttribute('src').includes('/mockups/') && overlay().display === 'none', page.stageImg.getAttribute('src'));
-check('tee init: selection is baked mascot', sel.artworkKey === 'mascot', sel);
+check('tee init: BLACK chip preselected (photo truthfulness), checkout colour Black', sel.artworkKey === 'mascot' && sel.colorName === 'Black', sel);
+check('tee init: the Ash button is NOT the active one', !page.optsColor.querySelectorAll('.opt').find((x) => x.getAttribute('data-c') === 'Ash').classes.has('active'), null);
 check('tee: no "As shown" chip (baked art exists)', chips().length === 3 && !chips().some((c) => c.v === '__default'), chips().map((c) => c.v));
 
+clickColor(page.optsColor, 'Ash');
+check('tee pick Ash (≠ composite colour): swaps to ash base + overlay — a VISIBLE colour change', page.stageImg.getAttribute('src') === '/assets/store-base/tee--ash.jpg' && overlay().display === '' && overlay().src.includes('mascot'), page.stageImg.getAttribute('src') + ' / ' + JSON.stringify(overlay()));
+
+clickColor(page.optsColor, 'Black');
+check('tee pick Black (composite colour): composite restored, overlay hidden', page.stageImg.getAttribute('src').includes('/mockups/') && overlay().display === 'none', page.stageImg.getAttribute('src'));
+
 clickChip('logomark');
-check('tee pick logomark: stage swaps to blank base (no overlap)', page.stageImg.getAttribute('src') === '/assets/store-base/tee--ash.jpg', page.stageImg.getAttribute('src'));
-check('tee pick logomark: overlay visible with logomark', overlay().display === '' && overlay().src.includes('logomark'), overlay());
+check('tee pick logomark on Black: blank black base + logomark overlay (no overlap)', page.stageImg.getAttribute('src') === '/assets/store-base/tee--black.jpg' && overlay().display === '' && overlay().src.includes('logomark'), page.stageImg.getAttribute('src') + ' / ' + JSON.stringify(overlay()));
 check('tee pick logomark: checkout art = logomark', win.storeConfigurator.selection.artworkKey === 'logomark', win.storeConfigurator.selection);
 
 clickChip('mascot');
-check('tee back to mascot on default colour: composite restored', page.stageImg.getAttribute('src').includes('/mockups/') && overlay().display === 'none', page.stageImg.getAttribute('src'));
+check('tee back to mascot on Black: composite restored', page.stageImg.getAttribute('src').includes('/mockups/') && overlay().display === 'none', page.stageImg.getAttribute('src'));
 
 clickColor(page.optsColor, 'Navy');
-check('tee Navy + mascot: navy base with overlay (no composite)', page.stageImg.getAttribute('src') === '/assets/store-base/tee--navy.jpg' && overlay().display === '', page.stageImg.getAttribute('src') + ' / ' + overlay().display);
+check('tee Navy + mascot: navy base with overlay (composite colour is Black, so no restore)', page.stageImg.getAttribute('src') === '/assets/store-base/tee--navy.jpg' && overlay().display === '', page.stageImg.getAttribute('src') + ' / ' + overlay().display);
 
 clickChip('logomark');
 check('tee Navy + logomark: overlay swaps, still navy base', overlay().src.includes('logomark') && page.stageImg.getAttribute('src') === '/assets/store-base/tee--navy.jpg', overlay());
 
 clickChip('mascot');
 check('tee Navy + mascot re-pick: stays on navy base (not composite)', page.stageImg.getAttribute('src') === '/assets/store-base/tee--navy.jpg' && overlay().display === '', page.stageImg.getAttribute('src'));
-
-clickColor(page.optsColor, 'Ash');
-check('tee back to Ash with mascot: composite restored', page.stageImg.getAttribute('src').includes('/mockups/') && overlay().display === 'none', page.stageImg.getAttribute('src'));
 
 // ── Scenario 2: mug — defaultArtwork compMug NOT in arts ──
 const mugStage = 'https://punycodex-masters.vercel.app/mockups/zeus-mug.jpg';
@@ -308,7 +312,47 @@ check('mug pick logomark: checkout logomark', win.storeConfigurator.selection.ar
 clickChip('__default');
 check('mug back to "As shown": composite restored + overlay hidden; checkout null', page.stageImg.getAttribute('src') === mugStage && overlay().display === 'none' && win.storeConfigurator.selection.artworkKey === null, page.stageImg.getAttribute('src') + ' / ' + JSON.stringify(overlay()) + ' / ' + win.storeConfigurator.selection.artworkKey);
 
-// ── Scenario 3: notebook — single design art = composite master ──
+// ── Scenario 3: tote — multi-colour, baked print NOT choosable → colours
+// must still give visible feedback (interim tint) while "As shown" is picked ──
+const toteStage = 'https://punycodex-masters.vercel.app/mockups/zeus-tote.jpg';
+const toteColors = [
+  { name: 'Black', hex: '#0a0a0a', mockup: '/assets/store-base/tote--black.jpg' },
+  { name: 'Camel', hex: '#d1924f', mockup: '/assets/store-base/tote--camel.jpg' },
+  { name: 'White', hex: '#ffffff', mockup: '/assets/store-base/tote--white.jpg' },
+];
+page = buildPage({ stageSrc: toteStage, colors: toteColors });
+sel = runConfigurator(
+  page,
+  payload({
+    defaultArtwork: 'compTote',
+    artworks: teeArts,
+    colors: toteColors,
+    stageSrc: toteStage,
+    baseMockup: '/assets/store-base/tote--black.jpg',
+    productName: 'Zeús Temple Tote',
+    kind: 'tote',
+    compositeColor: null, // multi-colour non-apparel: fleet colour unknown
+    labels: ['Black', 'Camel', 'White'],
+  })
+);
+check('tote init: composite kept, "As shown" selected, checkout null', page.stageImg.getAttribute('src') === toteStage && win.storeConfigurator.selection.artworkKey === null, page.stageImg.getAttribute('src') + ' / ' + win.storeConfigurator.selection.artworkKey);
+check('tote Black (default): composite kept, no tint', page.stageImg.getAttribute('src') === toteStage && !root.querySelector('.cfg-tint-mix') && !page.stageImg.className.includes('cfg-tint-white'), page.stageImg.className);
+
+clickColor(page.optsColor, 'Camel');
+check('tote Camel + "As shown": composite kept WITH multiply tint (visible colour feedback, no base swap)', page.stageImg.getAttribute('src') === toteStage && !!root.querySelector('.cfg-tint-mix') && !page.stageImg.className.includes('cfg-tint-white'), page.stageImg.getAttribute('src') + ' / tint=' + !!root.querySelector('.cfg-tint-mix'));
+check('tote Camel + "As shown": checkout still null (buys the photo print)', win.storeConfigurator.selection.artworkKey === null && win.storeConfigurator.selection.colorName === 'Camel', win.storeConfigurator.selection);
+
+clickColor(page.optsColor, 'White');
+check('tote White + "As shown": invert tint replaces multiply tint', page.stageImg.getAttribute('src') === toteStage && !root.querySelector('.cfg-tint-mix') && page.stageImg.className.includes('cfg-tint-white'), page.stageImg.className + ' / tint=' + !!root.querySelector('.cfg-tint-mix'));
+
+clickChip('mascot');
+check('tote pick Mascot on White: exact white base + overlay, tints stripped', page.stageImg.getAttribute('src') === '/assets/store-base/tote--white.jpg' && overlay().display === '' && !root.querySelector('.cfg-tint-mix') && !page.stageImg.className.includes('cfg-tint-white'), page.stageImg.getAttribute('src') + ' / ' + JSON.stringify(overlay()));
+check('tote pick Mascot: checkout mascot', win.storeConfigurator.selection.artworkKey === 'mascot', win.storeConfigurator.selection);
+
+clickChip('__default');
+check('tote back to "As shown": composite restored, white invert tint re-applied (active colour White)', page.stageImg.getAttribute('src') === toteStage && page.stageImg.className.includes('cfg-tint-white'), page.stageImg.getAttribute('src') + ' / ' + page.stageImg.className);
+
+// ── Scenario 4: notebook — single design art = composite master ──
 const nbStage = 'https://punycodex-masters.vercel.app/mockups/zeus-notebook.jpg';
 const nbColors = [{ name: 'Dotted', hex: null, mockup: '/assets/store-base/notebook--dotted.jpg' }];
 page = buildPage({ stageSrc: nbStage, colors: nbColors });

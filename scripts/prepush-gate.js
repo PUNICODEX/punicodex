@@ -174,6 +174,7 @@ const RULES = [
       /^store\/products\.json$|^scripts\/generate-pod-products\.js$|^scripts\/printful-color-table\.js$|^scripts\/generate-store-pages\.js$|^js\/store-configurator|^css\/store-configurator|^store\/creative-artworks\.json$|^assets\/store-creatives\/|^assets\/store-base\/|^scripts\/sync-store-creatives\.js$|^scripts\/fetch-store-base-images\.js$|^platform\/api\/(store-orders|store-fulfillment|printful-orders)\.js$/,
     suites: [
       'Store Configurator Data Tests',
+      'Store Configurator Browser Tests',
       'Store Structure Tests',
       'Store Creative Artworks Tests',
       'Store Checkout Tests',

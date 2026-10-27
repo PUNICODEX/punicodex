@@ -34,6 +34,14 @@
  * the sync variant's default print file, exactly what the photo shows
  * (sending a plain art instead would fulfil a print the photo never showed).
  *
+ * compositeColor: the garment colour the fleet photo ACTUALLY shows (Black
+ * for the apparel fleet — scripts/generate-printful-mockups.js renders
+ * tee/hoodie/crewneck/cap on black variants). That chip is preselected at
+ * init and it is the only colour for which the composite is kept; picking
+ * any other colour swaps to the blank base for the exact shade. For "As
+ * shown" selections (no choosable print) other colours approximate over the
+ * photo with the interim tint, since no blank base exists for them.
+ *
  * State is exposed as window.storeConfigurator.selection and broadcast on
  * the window event 'store-configurator:change' so the buy flow (and any
  * analytics) can read { artworkKey, colorName, size }.
@@ -172,6 +180,17 @@
     for (var i = 0; i < COLORS.length; i++) if (COLORS[i].name === name) return COLORS[i];
     return null;
   }
+  // The garment colour the composite photo actually shows (Black for the
+  // apparel fleet — see compositeColor in the payload). The composite is
+  // kept/restore only for THIS colour; falls back to the first chip.
+  function compositeKeepColor() {
+    if (data.compositeColor) {
+      for (var i = 0; i < COLORS.length; i++) if (COLORS[i].name === data.compositeColor) {
+        return data.compositeColor;
+      }
+    }
+    return COLORS.length ? COLORS[0].name : null;
+  }
   function stageIsComposite() {
     return /\/mockups\//.test(stageImg.getAttribute('src') || '');
   }
@@ -198,9 +217,8 @@
         // of a blank garment. Real arts restore only on the composite's own
         // colour (on any other colour the art previews on the coloured base);
         // the virtual "As shown" chip always means the photo itself.
-        var defName = COLORS.length ? COLORS[0].name : null;
         var curName = activeColor();
-        if (state.artworkKey === '__default' || !curName || curName === defName) {
+        if (state.artworkKey === '__default' || !curName || curName === compositeKeepColor()) {
           if (stageImg.getAttribute('src') !== data.stageSrc) {
             stageImg.setAttribute('src', data.stageSrc);
           }
@@ -258,25 +276,56 @@
     }
 
     // Fleet default view: when the stage is a photoreal composite (the
-    // recovered mockup fleet), the active colour is the first/default chip,
-    // AND the current selection is the design baked into the photo, the
-    // composite IS this colour's product photo — keep it. The blank-garment
-    // swap is for non-default colours and non-baked arts only; swapping on
-    // init replaced every fleet PDP's print photo with an empty shirt (the
-    // b6060d37 live-verification catch).
+    // recovered mockup fleet), the active colour is the one the photograph
+    // actually shows (compositeColor — Black for apparel), AND the current
+    // selection is the design baked into the photo, the composite IS this
+    // colour's product photo — keep it. The blank-garment swap is for other
+    // colours and non-baked arts only; swapping on init replaced every fleet
+    // PDP's print photo with an empty shirt (the b6060d37 live-verification
+    // catch).
     var isCompositeStage = /\/mockups\//.test(data.stageSrc || '');
-    var defaultName = data.colors && data.colors.length ? data.colors[0].name : null;
+    var keepName = compositeKeepColor();
     if (
       isCompositeStage &&
-      (!color || color === defaultName) &&
+      (!color || color === keepName) &&
       (state.artworkKey === '__default' || state.artworkKey === BAKED)
     ) {
       if (note) {
-        note.textContent =
-          'The print proof — pick a colour to see the garment in every shade.';
+        note.textContent = color
+          ? `The ${color} print proof — pick another colour to see the garment in every shade.`
+          : 'The print proof — pick a colour to see the garment in every shade.';
       }
       if (stageImg.getAttribute('src') !== data.stageSrc) {
         stageImg.setAttribute('src', data.stageSrc);
+      }
+      applyArt();
+      return;
+    }
+
+    // "As shown" (a composite whose baked print is not a choosable art) buys
+    // the photo's own print file — there is no blank base or overlay for it.
+    // Give the colour chips visible feedback by approximating the clicked
+    // colour over the print proof with the interim tint (exact garment
+    // previews exist once a real artwork is picked).
+    if (state.artworkKey === '__default') {
+      if (stageImg.getAttribute('src') !== data.stageSrc) {
+        stageImg.setAttribute('src', data.stageSrc);
+      }
+      var simHex = entry ? entry.hex : null;
+      var simKey = color ? color.toLowerCase() : '';
+      if (simKey === 'white') {
+        stageImg.className = (stageImg.className + ' cfg-tint-white').trim();
+      } else if (simKey && simKey !== 'black' && simHex) {
+        tintLayer = document.createElement('div');
+        tintLayer.className = 'cfg-tint-mix';
+        tintLayer.setAttribute('aria-hidden', 'true');
+        tintLayer.style.background = simHex;
+        stageImg.parentNode.insertBefore(tintLayer, stageImg.nextSibling);
+      }
+      if (note) {
+        note.textContent = color
+          ? `Shown in ${color} — an approximate colour simulation over the print proof. Pick an artwork for the exact garment preview.`
+          : 'The print proof — pick a colour to see the garment in every shade.';
       }
       applyArt();
       return;
@@ -377,7 +426,12 @@
       function (key, chip) {
         state.artworkKey = key;
         syncChips(chip.parentNode, key, 'data-v');
-        applyArt();
+        // Route through applyColor: it re-derives the stage for the CURRENT
+        // colour (base mockup, composite, or interim tint) — a bare applyArt
+        // would restore the composite without re-applying the colour
+        // simulation for '__default' selections.
+        if (MODE === 'overlay') applyColor();
+        else applyArt();
         broadcast();
       },
       'cfg-chip cfg-chip--art',
@@ -397,6 +451,23 @@
     );
     mount.appendChild(artRow);
     rendered = true;
+  }
+
+  // The fleet photo shows ONE specific garment colour (compositeColor —
+  // Black for the apparel fleet), but the page's canonical buttons mark
+  // colors[0] active. Activate the photo's colour instead so the
+  // preselection truthfully names what the buyer is looking at; checkout
+  // then also starts on the photo's colour. Without this, the first chip
+  // claimed the photo showed a colour it didn't and the first clicks seemed
+  // to do nothing (the reported "colour selections don't change anything").
+  if (COMPOSITE) {
+    var keep = compositeKeepColor();
+    var initMatch = null;
+    for (var ci = 0; ci < colorBtns.length; ci++) {
+      if (colorBtns[ci].getAttribute('data-c') === keep) initMatch = colorBtns[ci];
+      colorBtns[ci].classList.remove('active');
+    }
+    if (initMatch) initMatch.classList.add('active');
   }
 
   if (COLORS.length && colorBtns.length) {
