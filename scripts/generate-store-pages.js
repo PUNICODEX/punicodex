@@ -185,9 +185,26 @@ function defaultArtFor(p) {
  * 2026-10-27 regression this exists for. Emitted only when the card image
  * is a blank garment base; fleet composites already carry the print.
  */
-function cardArtOverlay(p) {
+function cardArtOverlay(p, templeId) {
   if (p.mockupImage && MOCKUP_FLEET.has(p.id)) return '';
-  const art = defaultArtFor(p);
+  let art = defaultArtFor(p);
+  if (!art) return '';
+  // Composite print sheets (.+_comp-*.png) are gitignored build artifacts:
+  // served live via the masters proxy (see vercel.json) but absent from a
+  // fresh checkout, so committed CARD markup must not reference them — the
+  // 27f5bd5d CI failure (1,085 dead local links). Cards fall back to the
+  // temple's committed mascot art; the PDP keeps the composite (its
+  // cfg-data reference lives in JSON, not a link-checked src attribute).
+  if (/_comp-[a-z]+\.png$/.test(art.src)) {
+    if (!templeId) return '';
+    const mascot = (p.artworks || []).find(
+      (a) => a.key === 'mascot' && !/_comp-/.test(a.src)
+    );
+    const src = mascot
+      ? mascot.src
+      : `/sites/${templeId}/assets/${templeId}_mascot.webp`;
+    art = { src, placement: (mascot && mascot.placement) || art.placement || p.placement };
+  }
   if (!art || !art.placement) return '';
   const { widthPct, topPct, leftPct } = art.placement;
   const left = leftPct == null ? 50 : leftPct;
@@ -430,7 +447,7 @@ function renderStoreIndex(colls) {
       const sorted = products.slice().sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
       const img = cardImage(sorted[0], meta);
       return `<a class="card" href="/store/${id}/" data-product-id="${esc(id)}" data-pantheon="${esc(meta.pantheon)}" data-name="${esc(meta.name.toLowerCase())}">
-  <div class="imgbox" style="position:relative">${imgTag(img, `${meta.name} Reliquary collection — restored ${meta.pantheon} merchandise`)}${cardArtOverlay(sorted[0])}</div>
+  <div class="imgbox" style="position:relative">${imgTag(img, `${meta.name} Reliquary collection — restored ${meta.pantheon} merchandise`)}${cardArtOverlay(sorted[0], id)}</div>
   <div class="body">
     <div class="sub">${esc(meta.pantheon)}${meta.rentalTier ? ` · Tier ${meta.rentalTier}` : ''}</div>
     <h3>${esc(meta.name)}</h3>
@@ -585,7 +602,7 @@ function renderCollection(id, products) {
   const cardHtml = (p) => {
     const kind = p.id.split('-').pop();
     return `<a class="card" href="/store/${id}/${kind}/" data-product-id="${esc(p.id)}">
-  <div class="imgbox" style="position:relative">${imgTag(cardImage(p, meta), p.name)}${cardArtOverlay(p)}</div>
+  <div class="imgbox" style="position:relative">${imgTag(cardImage(p, meta), p.name)}${cardArtOverlay(p, id)}</div>
   <div class="body">
     <div class="sub">${esc(kindLabel(kind))}</div>
     <h3>${esc(p.name)}</h3>

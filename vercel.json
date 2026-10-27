@@ -9,6 +9,10 @@
   },
   "rewrites": [
     {
+      "source": "/sites/:path*/assets/:file(.+_comp-.+).png",
+      "destination": "https://punycodex-masters.vercel.app/:file.png"
+    },
+    {
       "source": "/sites/:path*/assets/:name.webp",
       "destination": "https://punycodex-masters.vercel.app/sites/:path*/assets/:name.webp"
     },
