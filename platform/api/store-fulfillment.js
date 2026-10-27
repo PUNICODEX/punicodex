@@ -39,9 +39,10 @@ async function fulfillStoreOrder(order) {
   const enteredFromStatus = order.status;
 
   let fulfilled = order;
+  let failureReason = null;
   try {
     if (order.creator_product_id) {
-      fulfilled = setStoreOrderStatus(order.id, 'fulfillment_queued');
+      fulfilled = await setStoreOrderStatus(order.id, 'fulfillment_queued');
     } else {
       const product = resolveProduct(order.product_id);
       const syncVariantId = product.variantMap?.[order.variant_label];
@@ -59,13 +60,24 @@ async function fulfillStoreOrder(order) {
         syncVariantId,
         artFile ? [artFile] : undefined
       );
-      fulfilled = setStoreOrderStatus(order.id, 'sent_to_fulfillment', {
+      fulfilled = await setStoreOrderStatus(order.id, 'sent_to_fulfillment', {
         printfulOrderId: result.id,
         printfulStatus: result.status,
       });
     }
   } catch (err) {
-    fulfilled = setStoreOrderStatus(order.id, 'fulfillment_failed', { error: err.message });
+    failureReason = err.message;
+    fulfilled = await setStoreOrderStatus(order.id, 'fulfillment_failed', {
+      error: err.message,
+    });
+  }
+
+  // Operational alert on any failure — the customer hears about it via the
+  // confirmation email below, but without this nobody on the team does, and
+  // a failed order would sit in the portal until someone happened to look.
+  if (fulfilled.status === 'fulfillment_failed') {
+    const { alertStoreFulfillmentFailed } = require('./digest-service');
+    await alertStoreFulfillmentFailed(fulfilled, failureReason).catch(() => {});
   }
 
   if (fulfilled.customer_email) {
@@ -100,7 +112,7 @@ async function fulfillStoreOrder(order) {
  * duplicating it.
  */
 async function retryStoreOrderFulfillment(orderId) {
-  const order = getStoreOrderById(orderId);
+  const order = await getStoreOrderById(orderId);
   if (!order) {
     const err = new Error('Unknown store order');
     err.status = 404;

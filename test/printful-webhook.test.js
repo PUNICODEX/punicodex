@@ -96,8 +96,8 @@ test('unknown order is acknowledged without error', async () => {
 });
 
 test('package_shipped marks the order shipped with tracking', async () => {
-  const { order } = createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
-  setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8181 });
+  const { order } = await createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
+  await setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8181 });
   const res = createMockRes();
   await handler(
     req({
@@ -111,40 +111,40 @@ test('package_shipped marks the order shipped with tracking', async () => {
   );
   assert.strictEqual(res.statusCode, 200);
   assert.strictEqual(res.body.status, 'shipped');
-  const updated = getStoreOrderByRef(order.order_ref);
+  const updated = await getStoreOrderByRef(order.order_ref);
   assert.strictEqual(updated.status, 'shipped');
   assert.strictEqual(updated.tracking_url, 'https://track.example/123');
   assert.strictEqual(updated.carrier, 'DHL');
 });
 
 test('order_failed records fulfillment failure with the reason', async () => {
-  const { order } = createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
-  setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8282 });
+  const { order } = await createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
+  await setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8282 });
   const res = createMockRes();
   await handler(
     req({ type: 'order_failed', data: { order: { id: 8282 }, reason: 'address invalid' } }),
     res
   );
   assert.strictEqual(res.statusCode, 200);
-  const updated = getStoreOrderByRef(order.order_ref);
+  const updated = await getStoreOrderByRef(order.order_ref);
   assert.strictEqual(updated.status, 'fulfillment_failed');
   assert.strictEqual(updated.error, 'address invalid');
 });
 
 test('order_cancelled flips the order to cancelled', async () => {
-  const { order } = createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
-  setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8383 });
+  const { order } = await createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
+  await setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8383 });
   const res = createMockRes();
   await handler(req({ type: 'order_cancelled', data: { order: { id: 8383 } } }), res);
   assert.strictEqual(res.statusCode, 200);
-  assert.strictEqual(getStoreOrderByRef(order.order_ref).status, 'cancelled');
+  assert.strictEqual((await getStoreOrderByRef(order.order_ref)).status, 'cancelled');
 });
 
 test('forged transitions are refused: shipped only from sent_to_fulfillment', async () => {
   // A paid order that never went to the print house cannot be "shipped" by
   // a webhook event.
-  const { order } = createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
-  setStoreOrderStatus(order.id, 'paid');
+  const { order } = await createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
+  await setStoreOrderStatus(order.id, 'paid');
   const res = createMockRes();
   await handler(
     req({
@@ -158,15 +158,15 @@ test('forged transitions are refused: shipped only from sent_to_fulfillment', as
   );
   assert.strictEqual(res.statusCode, 200);
   assert.strictEqual(res.body.ignored, 'package_shipped');
-  const after = getStoreOrderByRef(order.order_ref);
+  const after = await getStoreOrderByRef(order.order_ref);
   assert.strictEqual(after.status, 'paid', 'status unchanged');
   assert.strictEqual(after.tracking_url, null, 'no tracking recorded');
 });
 
 test('forged transitions are refused: cancellation never resurrects a shipped order', async () => {
-  const { order } = createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
-  setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8686 });
-  setStoreOrderStatus(order.id, 'shipped', {
+  const { order } = await createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
+  await setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8686 });
+  await setStoreOrderStatus(order.id, 'shipped', {
     printfulOrderId: 8686,
     trackingUrl: 'https://track.example/real',
     carrier: 'UPS',
@@ -175,14 +175,14 @@ test('forged transitions are refused: cancellation never resurrects a shipped or
   await handler(req({ type: 'order_cancelled', data: { order: { id: 8686 } } }), res);
   assert.strictEqual(res.statusCode, 200);
   assert.strictEqual(res.body.ignored, 'order_cancelled');
-  const after = getStoreOrderByRef(order.order_ref);
+  const after = await getStoreOrderByRef(order.order_ref);
   assert.strictEqual(after.status, 'shipped', 'shipped orders are never cancelled by webhook');
   assert.strictEqual(after.tracking_url, 'https://track.example/real');
 });
 
 test('unhandled event types are acknowledged gracefully', async () => {
-  const { order } = createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
-  setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8484 });
+  const { order } = await createStoreOrder({ productId: 'pw-tee', variantLabel: 'M', quantity: 1 });
+  await setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 8484 });
   const res = createMockRes();
   await handler(req({ type: 'stock_updated', data: { order: { id: 8484 } } }), res);
   assert.strictEqual(res.statusCode, 200);

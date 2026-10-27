@@ -143,24 +143,24 @@ test('resolveProduct returns a live creator product', () => {
   assert.strictEqual(p.requiresVariant, false);
 });
 
-test('createStoreOrder validates quantity and variant', () => {
-  assert.throws(
+test('createStoreOrder validates quantity and variant', async () => {
+  await assert.rejects(
     () => createStoreOrder({ productId: 'test-tee', variantLabel: 'M', quantity: 0 }),
     /quantity/
   );
-  assert.throws(
+  await assert.rejects(
     () => createStoreOrder({ productId: 'test-tee', variantLabel: 'M', quantity: 9 }),
     /quantity/
   );
-  assert.throws(
+  await assert.rejects(
     () => createStoreOrder({ productId: 'test-tee', variantLabel: 'XXL', quantity: 1 }),
     /variant/
   );
-  assert.throws(() => createStoreOrder({ productId: 'test-tee', quantity: 1 }), /variant/);
+  await assert.rejects(() => createStoreOrder({ productId: 'test-tee', quantity: 1 }), /variant/);
 });
 
-test('createStoreOrder persists exact fields with unique refs', () => {
-  const { order } = createStoreOrder({
+test('createStoreOrder persists exact fields with unique refs', async () => {
+  const { order } = await createStoreOrder({
     productId: 'test-tee',
     variantLabel: 'M',
     quantity: 2,
@@ -172,12 +172,16 @@ test('createStoreOrder persists exact fields with unique refs', () => {
   assert.strictEqual(order.quantity, 2);
   assert.strictEqual(order.gross_cents, 7600);
   assert.strictEqual(order.status, 'pending_payment');
-  const second = createStoreOrder({ productId: 'test-tee', variantLabel: 'M', quantity: 1 });
+  const second = await createStoreOrder({ productId: 'test-tee', variantLabel: 'M', quantity: 1 });
   assert.notStrictEqual(order.order_ref, second.order.order_ref);
 });
 
-test('markStoreOrderPaid flips to paid, captures shipping, is replay-safe', () => {
-  const { order } = createStoreOrder({ productId: 'test-tee', variantLabel: 'L', quantity: 1 });
+test('markStoreOrderPaid flips to paid, captures shipping, is replay-safe', async () => {
+  const { order } = await createStoreOrder({
+    productId: 'test-tee',
+    variantLabel: 'L',
+    quantity: 1,
+  });
   const session = {
     id: 'cs_test_123',
     payment_intent: 'pi_test_123',
@@ -187,7 +191,7 @@ test('markStoreOrderPaid flips to paid, captures shipping, is replay-safe', () =
       address: { line1: '1 Temple Way', city: 'Athens', country: 'GR', postal_code: '10001' },
     },
   };
-  const paid = markStoreOrderPaid({
+  const paid = await markStoreOrderPaid({
     orderRef: order.order_ref,
     stripeSessionId: session.id,
     stripePaymentIntent: session.payment_intent,
@@ -200,7 +204,7 @@ test('markStoreOrderPaid flips to paid, captures shipping, is replay-safe', () =
   const addr = JSON.parse(paid.shipping_address);
   assert.strictEqual(addr.country, 'GR');
   // Replay the webhook — no duplicate state change, no error.
-  const replay = markStoreOrderPaid({
+  const replay = await markStoreOrderPaid({
     orderRef: order.order_ref,
     stripeSessionId: session.id,
     stripePaymentIntent: session.payment_intent,
@@ -209,11 +213,14 @@ test('markStoreOrderPaid flips to paid, captures shipping, is replay-safe', () =
   assert.strictEqual(replay.status, 'paid');
 });
 
-test('creator order settles the 50/50 ledger exactly once', () => {
+test('creator order settles the 50/50 ledger exactly once', async () => {
   const seeded = getDb().prepare('SELECT * FROM creator_products LIMIT 1').get();
-  const { order } = createStoreOrder({ productId: `creator-${seeded.id}`, quantity: 2 });
+  const { order } = await createStoreOrder({
+    productId: `creator-${seeded.id}`,
+    quantity: 2,
+  });
   assert.strictEqual(order.gross_cents, 5800);
-  const paid = markStoreOrderPaid({
+  const paid = await markStoreOrderPaid({
     orderRef: order.order_ref,
     stripeSessionId: 'cs_creator_1',
     stripePaymentIntent: 'pi_1',
@@ -233,7 +240,7 @@ test('creator order settles the 50/50 ledger exactly once', () => {
   assert.strictEqual(ledger.platform_share_cents, net - Math.floor(net * 0.5));
 
   // Webhook replay does not double-count.
-  markStoreOrderPaid({
+  await markStoreOrderPaid({
     orderRef: order.order_ref,
     stripeSessionId: 'cs_creator_1',
     stripePaymentIntent: 'pi_1',
@@ -248,24 +255,82 @@ test('creator order settles the 50/50 ledger exactly once', () => {
   assert.strictEqual(earnings.totalEarnedCents, ledger.creator_share_cents);
 });
 
-test('setStoreOrderStatus records fulfillment extras and rejects bad status', () => {
-  const { order } = createStoreOrder({ productId: 'test-tee', variantLabel: 'S', quantity: 1 });
-  const updated = setStoreOrderStatus(order.id, 'sent_to_fulfillment', {
+test('setStoreOrderStatus records fulfillment extras and rejects bad status', async () => {
+  const { order } = await createStoreOrder({
+    productId: 'test-tee',
+    variantLabel: 'S',
+    quantity: 1,
+  });
+  const updated = await setStoreOrderStatus(order.id, 'sent_to_fulfillment', {
     printfulOrderId: 777,
     printfulStatus: 'confirmed',
   });
   assert.strictEqual(updated.status, 'sent_to_fulfillment');
   assert.strictEqual(updated.printful_order_id, 777);
-  assert.throws(() => setStoreOrderStatus(order.id, 'nonsense'), /invalid status/);
+  await assert.rejects(() => setStoreOrderStatus(order.id, 'nonsense'), /invalid status/);
 });
 
-test('getStoreOrderByRef and ByPrintfulId round-trip', () => {
-  const { order } = createStoreOrder({ productId: 'test-tee', variantLabel: 'S', quantity: 1 });
-  setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 778 });
-  assert.strictEqual(getStoreOrderByRef(order.order_ref).id, order.id);
+test('getStoreOrderByRef and ByPrintfulId round-trip', async () => {
+  const { order } = await createStoreOrder({
+    productId: 'test-tee',
+    variantLabel: 'S',
+    quantity: 1,
+  });
+  await setStoreOrderStatus(order.id, 'sent_to_fulfillment', { printfulOrderId: 778 });
+  assert.strictEqual((await getStoreOrderByRef(order.order_ref)).id, order.id);
   assert.strictEqual(
-    require('../platform/api/store-orders').getStoreOrderByPrintfulId(778).id,
+    (await require('../platform/api/store-orders').getStoreOrderByPrintfulId(778)).id,
     order.id
+  );
+});
+
+test('listStalePaidOrders finds only paid orders older than the cutoff', async () => {
+  const svc = require('../platform/api/store-orders');
+  const { order: fresh } = await createStoreOrder({
+    productId: 'test-tee',
+    variantLabel: 'M',
+    quantity: 1,
+  });
+  await markStoreOrderPaid({
+    orderRef: fresh.order_ref,
+    stripeSessionId: 'cs_fresh',
+    stripePaymentIntent: 'pi_fresh',
+    session: {},
+  });
+  const { order: stale } = await createStoreOrder({
+    productId: 'test-tee',
+    variantLabel: 'M',
+    quantity: 1,
+  });
+  await markStoreOrderPaid({
+    orderRef: stale.order_ref,
+    stripeSessionId: 'cs_stale',
+    stripePaymentIntent: 'pi_stale',
+    session: {},
+  });
+  // Backdate one order past the 24h sweep cutoff (TEXT timestamps compare
+  // lexicographically on both backends).
+  getDb()
+    .prepare("UPDATE store_orders SET created_at = '2020-01-01 00:00:00' WHERE id = ?")
+    .run(stale.id);
+
+  const staleOrders = await svc.listStalePaidOrders(24, 25);
+  assert.ok(
+    staleOrders.some((o) => o.id === stale.id),
+    'stale paid order must be listed'
+  );
+  assert.ok(!staleOrders.some((o) => o.id === fresh.id), 'fresh paid order must not be listed');
+
+  // A negative window (cutoff in the future) includes every paid order —
+  // used here to assert both rows qualify for re-entry.
+  const swept = await svc.listStalePaidOrders(-1, 25);
+  assert.ok(
+    swept.some((o) => o.id === fresh.id),
+    'negative window includes fresh orders too'
+  );
+  assert.ok(
+    swept.some((o) => o.id === stale.id),
+    'negative window includes the stale one'
   );
 });
 

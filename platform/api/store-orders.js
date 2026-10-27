@@ -13,6 +13,14 @@
 
 const crypto = require('node:crypto');
 const path = require('node:path');
+// Order state lives in the OPERATIONAL store (Postgres when DATABASE_URL is
+// set — durable across Vercel redeploys and visible to every lambda
+// instance; SQLite locally / bare Vercel). Timestamps stay TEXT for exact
+// parity with the historical SQLite rows.
+const { get, all, run, insert } = require('../db/operational');
+// Creator-merch rows (creator_products, the 50/50 ledger) still live in the
+// shared SQLite DB — creator-merch.js reads AND writes them there, so the
+// lookup below must read the same store.
 const { getDb } = require('../db/connection');
 const { recordCreatorOrder } = require('./creator-merch');
 
@@ -193,23 +201,21 @@ function validateArtwork(product, artworkKey) {
   return artworkKey;
 }
 
-function createStoreOrder({ productId, variantLabel, quantity, email, artworkKey }) {
+async function createStoreOrder({ productId, variantLabel, quantity, email, artworkKey }) {
   const product = resolveProduct(productId);
   const validated = validateOrder({ product, variantLabel, quantity });
   const validatedArtwork = validateArtwork(product, artworkKey);
   const unitPriceCents = unitPriceFor(product, validated.variantLabel);
   const grossCents = unitPriceCents * validated.quantity;
   const ref = generateOrderRef();
-  const db = getDb();
-  const result = db
-    .prepare(
-      `INSERT INTO store_orders
-        (order_ref, product_id, product_name, variant_label, quantity,
-         unit_price_cents, gross_cents, base_cents, customer_email,
-         creator_product_id, artwork_key, status)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending_payment')`
-    )
-    .run(
+  const id = await insert(
+    `INSERT INTO store_orders
+       (order_ref, product_id, product_name, variant_label, quantity,
+        unit_price_cents, gross_cents, base_cents, customer_email,
+        creator_product_id, artwork_key, status)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, 'pending_payment')
+     RETURNING id`,
+    [
       ref,
       product.id,
       product.name,
@@ -220,37 +226,34 @@ function createStoreOrder({ productId, variantLabel, quantity, email, artworkKey
       product.baseCents,
       email || null,
       product.creatorProductId,
-      validatedArtwork
-    );
-  const order = db.prepare('SELECT * FROM store_orders WHERE id = ?').get(result.lastInsertRowid);
+      validatedArtwork,
+    ]
+  );
+  const order = await getStoreOrderById(id);
   return { order, product: { ...product, unitPriceCents } };
 }
 
-function getStoreOrderByRef(orderRef) {
-  return getDb().prepare('SELECT * FROM store_orders WHERE order_ref = ?').get(orderRef);
+async function getStoreOrderByRef(orderRef) {
+  return get('SELECT * FROM store_orders WHERE order_ref = $1', [orderRef]);
 }
 
-function getStoreOrderBySessionId(stripeSessionId) {
-  return getDb()
-    .prepare('SELECT * FROM store_orders WHERE stripe_session_id = ?')
-    .get(stripeSessionId);
+async function getStoreOrderBySessionId(stripeSessionId) {
+  return get('SELECT * FROM store_orders WHERE stripe_session_id = $1', [stripeSessionId]);
 }
 
-function attachStripeSession(orderId, stripeSessionId) {
-  getDb()
-    .prepare(
-      'UPDATE store_orders SET stripe_session_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?'
-    )
-    .run(stripeSessionId, orderId);
+async function attachStripeSession(orderId, stripeSessionId) {
+  await run(
+    'UPDATE store_orders SET stripe_session_id = $1, updated_at = CURRENT_TIMESTAMP WHERE id = $2',
+    [stripeSessionId, orderId]
+  );
 }
 
 /**
  * Flip a pending order to paid (idempotent) and, for creator merch, settle
  * the 50/50 royalty ledger. Called from the Stripe webhook.
  */
-function markStoreOrderPaid({ orderRef, stripeSessionId, stripePaymentIntent, session }) {
-  const db = getDb();
-  const order = db.prepare('SELECT * FROM store_orders WHERE order_ref = ?').get(orderRef);
+async function markStoreOrderPaid({ orderRef, stripeSessionId, stripePaymentIntent, session }) {
+  const order = await getStoreOrderByRef(orderRef);
   if (!order) {
     const err = new Error(`Unknown store order ${orderRef}`);
     err.status = 404;
@@ -261,27 +264,28 @@ function markStoreOrderPaid({ orderRef, stripeSessionId, stripePaymentIntent, se
   const customerEmail = session?.customer_details?.email || order.customer_email;
 
   if (order.status === 'pending_payment') {
-    db.prepare(
+    await run(
       `UPDATE store_orders SET
          status = 'paid',
-         stripe_session_id = COALESCE(?, stripe_session_id),
-         stripe_payment_intent = ?,
-         customer_email = COALESCE(?, customer_email),
-         shipping_name = ?,
-         shipping_address = ?,
+         stripe_session_id = COALESCE($1, stripe_session_id),
+         stripe_payment_intent = $2,
+         customer_email = COALESCE($3, customer_email),
+         shipping_name = $4,
+         shipping_address = $5,
          updated_at = CURRENT_TIMESTAMP
-       WHERE id = ?`
-    ).run(
-      stripeSessionId || null,
-      stripePaymentIntent || null,
-      customerEmail || null,
-      shipping?.name || null,
-      shipping?.address ? JSON.stringify(shipping.address) : null,
-      order.id
+       WHERE id = $6`,
+      [
+        stripeSessionId || null,
+        stripePaymentIntent || null,
+        customerEmail || null,
+        shipping?.name || null,
+        shipping?.address ? JSON.stringify(shipping.address) : null,
+        order.id,
+      ]
     );
   }
 
-  const updated = db.prepare('SELECT * FROM store_orders WHERE id = ?').get(order.id);
+  const updated = await getStoreOrderById(order.id);
 
   if (updated.creator_product_id) {
     recordCreatorOrder({
@@ -296,7 +300,7 @@ function markStoreOrderPaid({ orderRef, stripeSessionId, stripePaymentIntent, se
   return updated;
 }
 
-function setStoreOrderStatus(orderId, status, extra = {}) {
+async function setStoreOrderStatus(orderId, status, extra = {}) {
   const allowed = [
     'paid',
     'fulfillment_queued',
@@ -308,37 +312,56 @@ function setStoreOrderStatus(orderId, status, extra = {}) {
     'refunded',
   ];
   if (!allowed.includes(status)) throw new Error(`invalid status ${status}`);
-  const db = getDb();
-  db.prepare(
+  await run(
     `UPDATE store_orders SET
-       status = ?,
-       printful_order_id = COALESCE(?, printful_order_id),
-       printful_status = COALESCE(?, printful_status),
-       tracking_url = COALESCE(?, tracking_url),
-       carrier = COALESCE(?, carrier),
-       error = ?,
+       status = $1,
+       printful_order_id = COALESCE($2, printful_order_id),
+       printful_status = COALESCE($3, printful_status),
+       tracking_url = COALESCE($4, tracking_url),
+       carrier = COALESCE($5, carrier),
+       error = $6,
        updated_at = CURRENT_TIMESTAMP
-     WHERE id = ?`
-  ).run(
-    status,
-    extra.printfulOrderId || null,
-    extra.printfulStatus || null,
-    extra.trackingUrl || null,
-    extra.carrier || null,
-    extra.error || null,
-    orderId
+     WHERE id = $7`,
+    [
+      status,
+      extra.printfulOrderId || null,
+      extra.printfulStatus || null,
+      extra.trackingUrl || null,
+      extra.carrier || null,
+      extra.error || null,
+      orderId,
+    ]
   );
-  return db.prepare('SELECT * FROM store_orders WHERE id = ?').get(orderId);
+  return getStoreOrderById(orderId);
 }
 
-function getStoreOrderByPrintfulId(printfulOrderId) {
-  return getDb()
-    .prepare('SELECT * FROM store_orders WHERE printful_order_id = ?')
-    .get(printfulOrderId);
+async function getStoreOrderByPrintfulId(printfulOrderId) {
+  return get('SELECT * FROM store_orders WHERE printful_order_id = $1', [printfulOrderId]);
 }
 
-function getStoreOrderById(id) {
-  return getDb().prepare('SELECT * FROM store_orders WHERE id = ?').get(id);
+async function getStoreOrderById(id) {
+  return get('SELECT * FROM store_orders WHERE id = $1', [id]);
+}
+
+/**
+ * Orders stuck at `paid` — the Stripe webhook marked them paid but
+ * fulfillment never ran (lost webhook delivery past Stripe's retry window,
+ * or an instance crash between the two writes). The daily sweep re-enters
+ * them into fulfillment. Timestamps are TEXT ('YYYY-MM-DD HH:MM:SS' UTC) on
+ * both backends, so a plain string-compare against the cutoff works
+ * everywhere. Exported (pure query) for tests.
+ */
+async function listStalePaidOrders(olderThanHours = 24, limit = 25) {
+  const cutoff = new Date(Date.now() - olderThanHours * 3600 * 1000)
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ');
+  return all(
+    `SELECT * FROM store_orders
+     WHERE status = 'paid' AND created_at < $1
+     ORDER BY id ASC LIMIT $2`,
+    [cutoff, limit]
+  );
 }
 
 /**
@@ -346,44 +369,43 @@ function getStoreOrderById(id) {
  * Stats count money only on orders that actually reached payment (pending
  * checkouts are pipeline, not revenue).
  */
-function listStoreOrders({ limit = 50, offset = 0, status = null } = {}) {
-  const db = getDb();
-  const where = status ? 'WHERE status = ?' : '';
+async function listStoreOrders({ limit = 50, offset = 0, status = null } = {}) {
+  const where = status ? 'WHERE status = $1' : '';
   const args = status ? [status] : [];
-  const total = db.prepare(`SELECT COUNT(*) AS n FROM store_orders ${where}`).get(...args).n;
-  const items = db
-    .prepare(`SELECT * FROM store_orders ${where} ORDER BY id DESC LIMIT ? OFFSET ?`)
-    .all(...args, limit, offset);
-  const rows = db
-    .prepare(
-      'SELECT status, COUNT(*) AS n, COALESCE(SUM(gross_cents), 0) AS gross FROM store_orders GROUP BY status'
-    )
-    .all();
+  const totalRow = await get(`SELECT COUNT(*) AS n FROM store_orders ${where}`, args);
+  const items = await all(
+    `SELECT * FROM store_orders ${where} ORDER BY id DESC LIMIT $1 OFFSET $2`,
+    [...args, limit, offset]
+  );
+  const rows = await all(
+    'SELECT status, COUNT(*) AS n, COALESCE(SUM(gross_cents), 0) AS gross FROM store_orders GROUP BY status'
+  );
   const byStatus = {};
-  for (const r of rows) byStatus[r.status] = { count: r.n, grossCents: r.gross };
-  const revenue = db
-    .prepare(
-      `SELECT COALESCE(SUM(gross_cents), 0) AS gross, COUNT(*) AS n FROM store_orders
-       WHERE status NOT IN ('pending_payment', 'cancelled', 'refunded')`
-    )
-    .get();
-  const revenue30d = db
-    .prepare(
-      `SELECT COALESCE(SUM(gross_cents), 0) AS gross, COUNT(*) AS n FROM store_orders
-       WHERE status NOT IN ('pending_payment', 'cancelled', 'refunded')
-         AND created_at >= datetime('now', '-30 days')`
-    )
-    .get();
+  for (const r of rows) byStatus[r.status] = { count: Number(r.n), grossCents: Number(r.gross) };
+  const cutoff30d = new Date(Date.now() - 30 * 86400 * 1000)
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ');
+  const revenue = await get(
+    `SELECT COALESCE(SUM(gross_cents), 0) AS gross, COUNT(*) AS n FROM store_orders
+     WHERE status NOT IN ('pending_payment', 'cancelled', 'refunded')`
+  );
+  const revenue30d = await get(
+    `SELECT COALESCE(SUM(gross_cents), 0) AS gross, COUNT(*) AS n FROM store_orders
+     WHERE status NOT IN ('pending_payment', 'cancelled', 'refunded')
+       AND created_at >= $1`,
+    [cutoff30d]
+  );
   return {
     items,
-    total,
+    total: Number(totalRow?.n || 0),
     limit,
     offset,
     stats: {
-      totalOrders: revenue.n,
-      revenueCents: revenue.gross,
-      orders30d: revenue30d.n,
-      revenue30dCents: revenue30d.gross,
+      totalOrders: Number(revenue?.n || 0),
+      revenueCents: Number(revenue?.gross || 0),
+      orders30d: Number(revenue30d?.n || 0),
+      revenue30dCents: Number(revenue30d?.gross || 0),
       byStatus,
     },
   };
@@ -397,6 +419,7 @@ module.exports = {
   getStoreOrderByRef,
   getStoreOrderById,
   listStoreOrders,
+  listStalePaidOrders,
   getStoreOrderBySessionId,
   getStoreOrderByPrintfulId,
   attachStripeSession,

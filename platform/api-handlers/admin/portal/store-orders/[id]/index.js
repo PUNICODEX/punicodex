@@ -20,6 +20,9 @@ try {
 } catch (err) {
   console.error('[admin/store-orders/:id] migration failed:', err.message);
 }
+require('../../../../../db/migrate-store-orders-pg.js')
+  .runMigration()
+  .catch((err) => console.error('[admin/store-orders/:id] pg migration failed:', err.message));
 
 module.exports = async (req, res) => {
   setPortalCors(req, res);
@@ -32,7 +35,7 @@ module.exports = async (req, res) => {
 
     const id = parseIdParam(req);
     if (id === null) return res.status(400).json({ error: 'Invalid order id' });
-    const order = getStoreOrderById(id);
+    const order = await getStoreOrderById(id);
     if (!order) return res.status(404).json({ error: 'Unknown store order' });
     return res.json({ order });
   } catch (err) {

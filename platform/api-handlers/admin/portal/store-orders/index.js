@@ -25,6 +25,10 @@ try {
 } catch (err) {
   console.error('[admin/store-orders] migration failed:', err.message);
 }
+// Durable Postgres schema (no-op without DATABASE_URL).
+require('../../../../db/migrate-store-orders-pg.js')
+  .runMigration()
+  .catch((err) => console.error('[admin/store-orders] pg migration failed:', err.message));
 
 const VALID_STATUSES = new Set([
   'pending_payment',
@@ -50,7 +54,7 @@ module.exports = async (req, res) => {
     const { limit, offset } = parseLimitOffset(req);
     const raw = String(req.query?.status || '').trim();
     const status = VALID_STATUSES.has(raw) ? raw : null;
-    return res.json(listStoreOrders({ limit, offset, status }));
+    return res.json(await listStoreOrders({ limit, offset, status }));
   } catch (err) {
     sendError(res, err);
   }

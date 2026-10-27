@@ -87,24 +87,24 @@ const PAID_SESSION = {
   customer_details: { email: 'buyer@example.com' },
 };
 
-function seedOrder(status, extra = {}) {
-  const { order } = createStoreOrder({
+async function seedOrder(status, extra = {}) {
+  const { order } = await createStoreOrder({
     productId: 'test-hoodie',
     variantLabel: 'Black / M',
     quantity: 1,
     email: 'buyer@example.com',
   });
   if (status !== 'pending_payment') {
-    markStoreOrderPaid({
+    await markStoreOrderPaid({
       orderRef: order.order_ref,
       stripeSessionId: `cs_test_${order.order_ref}`,
       stripePaymentIntent: `pi_${order.order_ref}`,
       session: PAID_SESSION,
     });
   }
-  let current = getStoreOrderById(order.id);
+  let current = await getStoreOrderById(order.id);
   if (status !== 'pending_payment' && status !== 'paid') {
-    current = setStoreOrderStatus(order.id, status, extra);
+    current = await setStoreOrderStatus(order.id, status, extra);
   }
   return current;
 }
@@ -119,16 +119,16 @@ test('setup: bootstrap superadmin portal token', async () => {
   assert.ok(superToken);
 });
 
-test('setup: seed orders across the status ladder', () => {
-  baseline = listStoreOrders({ limit: 50, offset: 0 });
-  seeded.pending = seedOrder('pending_payment');
-  seeded.paid = seedOrder('paid');
-  seeded.sent = seedOrder('sent_to_fulfillment', {
+test('setup: seed orders across the status ladder', async () => {
+  baseline = await listStoreOrders({ limit: 50, offset: 0 });
+  seeded.pending = await seedOrder('pending_payment');
+  seeded.paid = await seedOrder('paid');
+  seeded.sent = await seedOrder('sent_to_fulfillment', {
     printfulOrderId: 777001,
     printfulStatus: 'confirmed',
   });
-  seeded.failed = seedOrder('fulfillment_failed', { error: 'simulated printful outage' });
-  seeded.shipped = seedOrder('shipped', {
+  seeded.failed = await seedOrder('fulfillment_failed', { error: 'simulated printful outage' });
+  seeded.shipped = await seedOrder('shipped', {
     printfulOrderId: 777002,
     printfulStatus: 'shipped',
     trackingUrl: 'https://track.example/1',
@@ -139,8 +139,8 @@ test('setup: seed orders across the status ladder', () => {
   }
 });
 
-test('service: list orders newest-first with totals and stats', () => {
-  const res = listStoreOrders({ limit: 50, offset: 0 });
+test('service: list orders newest-first with totals and stats', async () => {
+  const res = await listStoreOrders({ limit: 50, offset: 0 });
   assert.strictEqual(res.total, baseline.total + 5);
   assert.strictEqual(res.items.length, res.total);
   for (let i = 1; i < res.items.length; i++) {
@@ -160,8 +160,8 @@ test('service: list orders newest-first with totals and stats', () => {
   );
 });
 
-test('service: status filter narrows the roster', () => {
-  const res = listStoreOrders({ limit: 50, offset: 0, status: 'fulfillment_failed' });
+test('service: status filter narrows the roster', async () => {
+  const res = await listStoreOrders({ limit: 50, offset: 0, status: 'fulfillment_failed' });
   assert.strictEqual(res.total, (baseline.stats.byStatus.fulfillment_failed?.count || 0) + 1);
   assert.strictEqual(res.items[0].id, seeded.failed.id);
   assert.strictEqual(res.items[0].error, 'simulated printful outage');
@@ -201,7 +201,7 @@ test('routes: list envelope shape + status filter', async () => {
   );
   assert.strictEqual(bogus.status, 200);
   // An unrecognised status falls back to the unfiltered roster.
-  assert.strictEqual(bogus.body.total, listStoreOrders({ limit: 50, offset: 0 }).total);
+  assert.strictEqual(bogus.body.total, (await listStoreOrders({ limit: 50, offset: 0 })).total);
 });
 
 test('routes: detail 400 on bad id, 404 on unknown, 200 with order', async () => {

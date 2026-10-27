@@ -30,6 +30,12 @@ try {
   // Migration is retried on the next cold start; the request may still work
   // if the tables already exist.
 }
+// Durable Postgres schema (no-op without DATABASE_URL) — created on cold
+// start because init-operational-postgres.js is a destructive bootstrap that
+// nothing runs in production.
+require('../../../db/migrate-store-orders-pg')
+  .runMigration()
+  .catch((err) => console.error('[store/checkout] pg migration failed:', err.message));
 
 async function checkCheckoutRateLimit(req, res) {
   const key = `store-checkout:${getClientIp(req)}`;
@@ -57,7 +63,7 @@ module.exports = async (req, res) => {
     if (!(await checkCheckoutRateLimit(req, res))) return;
     const { productId, variantLabel, quantity, email, artworkKey } = req.body || {};
 
-    const { order, product } = createStoreOrder({
+    const { order, product } = await createStoreOrder({
       productId,
       variantLabel,
       quantity,
@@ -65,7 +71,7 @@ module.exports = async (req, res) => {
       artworkKey,
     });
     const session = await createStoreCheckoutSession({ order, product });
-    attachStripeSession(order.id, session.sessionId);
+    await attachStripeSession(order.id, session.sessionId);
 
     return res.json({
       sessionUrl: session.sessionUrl,

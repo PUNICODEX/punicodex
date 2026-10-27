@@ -122,7 +122,7 @@ function test(name, fn) {
 }
 
 test('store_order webhook marks paid and fulfills via Printful', async () => {
-  const { order } = createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
+  const { order } = await createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
   stripeEvent = storeOrderEvent(order.order_ref);
 
   const result = await processWebhook('{}', 'sig');
@@ -137,7 +137,7 @@ test('store_order webhook marks paid and fulfills via Printful', async () => {
   assert.strictEqual(printfulCalls[0].body.recipient.country_code, 'GR');
   assert.ok(printfulCalls[1].url.endsWith('/confirm'));
 
-  const updated = getStoreOrderByRef(order.order_ref);
+  const updated = await getStoreOrderByRef(order.order_ref);
   assert.strictEqual(updated.status, 'sent_to_fulfillment');
   assert.strictEqual(updated.printful_order_id, 4242);
 });
@@ -145,10 +145,10 @@ test('store_order webhook marks paid and fulfills via Printful', async () => {
 test('Printful failure degrades to fulfillment_failed with the reason', async () => {
   printfulBehavior = 'fail';
   printfulCalls.length = 0;
-  const { order } = createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
+  const { order } = await createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
   stripeEvent = storeOrderEvent(order.order_ref);
   await processWebhook('{}', 'sig');
-  const updated = getStoreOrderByRef(order.order_ref);
+  const updated = await getStoreOrderByRef(order.order_ref);
   assert.strictEqual(updated.status, 'fulfillment_failed');
   assert.match(updated.error, /print house down|500/);
   printfulBehavior = 'ok';
@@ -168,12 +168,16 @@ test('missing variant mapping also fails safely, never throws', async () => {
     printfulProductId: 999004,
     printfulVariants: { L: 556 },
   });
-  const { order } = createStoreOrder({ productId: 'wh-novariant', variantLabel: 'L', quantity: 1 });
+  const { order } = await createStoreOrder({
+    productId: 'wh-novariant',
+    variantLabel: 'L',
+    quantity: 1,
+  });
   // Simulate the variant map disappearing between checkout and webhook.
   PRODUCT_CATALOG.products.find((p) => p.id === 'wh-novariant').printfulVariants = {};
   stripeEvent = storeOrderEvent(order.order_ref);
   await processWebhook('{}', 'sig');
-  const updated = getStoreOrderByRef(order.order_ref);
+  const updated = await getStoreOrderByRef(order.order_ref);
   assert.strictEqual(updated.status, 'fulfillment_failed');
   assert.match(updated.error, /no Printful sync variant/);
 });
@@ -204,11 +208,11 @@ test('creator merch order queues fulfillment and settles the ledger once', async
   ).run(assetId, creatorId);
   const product = db.prepare('SELECT * FROM creator_products WHERE title = ?').get('River Seal');
 
-  const { order } = createStoreOrder({ productId: `creator-${product.id}`, quantity: 1 });
+  const { order } = await createStoreOrder({ productId: `creator-${product.id}`, quantity: 1 });
   stripeEvent = storeOrderEvent(order.order_ref);
   await processWebhook('{}', 'sig');
 
-  const updated = getStoreOrderByRef(order.order_ref);
+  const updated = await getStoreOrderByRef(order.order_ref);
   assert.strictEqual(updated.status, 'fulfillment_queued');
   assert.strictEqual(updated.printful_order_id, null);
 
@@ -227,13 +231,13 @@ test('creator merch order queues fulfillment and settles the ledger once', async
 });
 
 test('duplicate delivery against an already-shipped order changes nothing', async () => {
-  const { order } = createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
+  const { order } = await createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
   stripeEvent = storeOrderEvent(order.order_ref);
   await processWebhook('{}', 'sig');
-  assert.strictEqual(getStoreOrderByRef(order.order_ref).status, 'sent_to_fulfillment');
+  assert.strictEqual((await getStoreOrderByRef(order.order_ref)).status, 'sent_to_fulfillment');
 
   // Printful subsequently shipped the order (via its own webhook).
-  setStoreOrderStatus(order.id, 'shipped', {
+  await setStoreOrderStatus(order.id, 'shipped', {
     trackingUrl: 'https://track.example/dup1',
     carrier: 'DHL',
   });
@@ -256,7 +260,7 @@ test('duplicate delivery against an already-shipped order changes nothing', asyn
     emailApi.notifyStoreOrderConfirmation = originalNotify;
   }
 
-  const after = getStoreOrderByRef(order.order_ref);
+  const after = await getStoreOrderByRef(order.order_ref);
   assert.strictEqual(after.status, 'shipped', 'status must not regress');
   assert.strictEqual(after.tracking_url, 'https://track.example/dup1');
   assert.strictEqual(confirmationEmails, 0, 'no second confirmation email');
@@ -272,13 +276,13 @@ test('fulfillment failure emails honestly and admin retry does not resend the co
     return { mocked: true };
   };
 
-  const { order } = createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
+  const { order } = await createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
   try {
     // First attempt fails: the customer gets the honest failure copy.
     printfulBehavior = 'fail';
     stripeEvent = storeOrderEvent(order.order_ref);
     await processWebhook('{}', 'sig');
-    assert.strictEqual(getStoreOrderByRef(order.order_ref).status, 'fulfillment_failed');
+    assert.strictEqual((await getStoreOrderByRef(order.order_ref)).status, 'fulfillment_failed');
     assert.strictEqual(notifications.length, 1, 'one failure email');
     assert.strictEqual(
       notifications[0].status,
@@ -301,7 +305,7 @@ test('fulfillment failure emails honestly and admin retry does not resend the co
 });
 
 test('handleWebhook returns the store_order branch payload', async () => {
-  const { order } = createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
+  const { order } = await createStoreOrder({ productId: 'wh-tee', variantLabel: 'M', quantity: 1 });
   stripeEvent = storeOrderEvent(order.order_ref);
   const result = await handleWebhook('{}', 'sig');
   assert.strictEqual(result.event, 'payment.success');

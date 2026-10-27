@@ -384,12 +384,35 @@ async function alertPatronSignup(patron) {
   });
 }
 
+async function alertStoreFulfillmentFailed(order, reason) {
+  const amount = `$${((Number(order.gross_cents) || 0) / 100).toFixed(2)}`;
+  return sendAdminAlert({
+    kind: 'store-fulfillment-failed',
+    subject: `Store order ${order.order_ref} failed to fulfill`,
+    html: `
+      <div style="font-family:system-ui,sans-serif;max-width:480px;margin:0 auto;color:#111;">
+        <h2 style="color:#d4af37;">PuniCodex — Fulfillment Failed</h2>
+        <p>A Reliquary order needs attention — it will <strong>not</strong> ship on its own from here.</p>
+        <table style="width:100%;border-collapse:collapse;font-size:0.9rem;margin:1rem 0;">
+          <tr><td style="padding:6px;color:#666;">Order</td><td style="padding:6px;text-align:right;font-weight:600;">${email.escapeHtml(order.order_ref)}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Product</td><td style="padding:6px;text-align:right;font-weight:600;">${email.escapeHtml(order.product_name)} (${email.escapeHtml(order.variant_label || 'one size')}) × ${Number(order.quantity) || 1}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Amount</td><td style="padding:6px;text-align:right;font-weight:600;">${email.escapeHtml(amount)}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Customer</td><td style="padding:6px;text-align:right;font-weight:600;">${email.escapeHtml(order.customer_email || '—')}</td></tr>
+          <tr><td style="padding:6px;color:#666;">Reason</td><td style="padding:6px;text-align:right;font-weight:600;">${email.escapeHtml(reason || order.error || 'unknown')}</td></tr>
+        </table>
+        <p>Open the admin portal → Leasing → Store Orders and hit <strong>Retry</strong> (only <code>fulfillment_failed</code> orders can be retried; the Printful external_id guard prevents duplicates).</p>
+      </div>
+    `,
+  });
+}
+
 module.exports = {
   sendWeeklyDigest,
   sendExpiryReminders,
   cancelPatron,
   sendAdminAlert,
   alertPatronSignup,
+  alertStoreFulfillmentFailed,
   hasDigestEntry,
   recordDigestEntry,
   isoWeekString,

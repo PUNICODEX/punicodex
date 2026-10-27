@@ -28,6 +28,10 @@ try {
 } catch {
   // retried on next cold start
 }
+// Durable Postgres schema (no-op without DATABASE_URL).
+require('../../platform/db/migrate-store-orders-pg')
+  .runMigration()
+  .catch((err) => console.error('[webhook/printful] pg migration failed:', err.message));
 
 // Constant-time token compare (length-guarded: timingSafeEqual throws on
 // unequal buffers).
@@ -55,9 +59,9 @@ module.exports = async (req, res) => {
     const printfulOrderId = data?.order?.id;
     const externalRef = data?.order?.external_id;
     const order = printfulOrderId
-      ? getStoreOrderByPrintfulId(printfulOrderId)
+      ? await getStoreOrderByPrintfulId(printfulOrderId)
       : externalRef
-        ? getStoreOrderByRef(externalRef)
+        ? await getStoreOrderByRef(externalRef)
         : null;
 
     if (!order) {
@@ -73,7 +77,7 @@ module.exports = async (req, res) => {
         return res.json({ received: true, ignored: type, status: order.status });
       }
       const shipment = data?.shipment || {};
-      const updated = setStoreOrderStatus(order.id, 'shipped', {
+      const updated = await setStoreOrderStatus(order.id, 'shipped', {
         trackingUrl: shipment.tracking_url || null,
         carrier: shipment.carrier || null,
         printfulStatus: 'shipped',
@@ -92,9 +96,14 @@ module.exports = async (req, res) => {
     }
 
     if (type === 'order_failed') {
-      setStoreOrderStatus(order.id, 'fulfillment_failed', {
+      const updated = await setStoreOrderStatus(order.id, 'fulfillment_failed', {
         error: data?.reason || 'Printful reported order failure',
       });
+      const { alertStoreFulfillmentFailed } = require('../../platform/api/digest-service');
+      await alertStoreFulfillmentFailed(
+        updated,
+        data?.reason || 'Printful reported order failure'
+      ).catch(() => {});
       return res.json({ received: true, status: 'fulfillment_failed' });
     }
 
@@ -105,7 +114,7 @@ module.exports = async (req, res) => {
       if (order.status === 'shipped' || order.status === 'delivered') {
         return res.json({ received: true, ignored: type, status: order.status });
       }
-      setStoreOrderStatus(order.id, 'cancelled');
+      await setStoreOrderStatus(order.id, 'cancelled');
       return res.json({ received: true, status: 'cancelled' });
     }
 

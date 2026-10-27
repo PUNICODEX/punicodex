@@ -386,7 +386,7 @@ async function handleWebhook(payload, signature) {
     }
     if (metadata.type === 'store_order') {
       const { markStoreOrderPaid } = require('./store-orders');
-      const order = markStoreOrderPaid({
+      const order = await markStoreOrderPaid({
         orderRef: metadata.order_ref,
         stripeSessionId: session.id,
         stripePaymentIntent: session.payment_intent,
