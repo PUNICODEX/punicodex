@@ -1,0 +1,134 @@
+#!/usr/bin/env node
+/**
+ * PuniCodex — store ops contract tests (the retrospective sweep).
+ *
+ * Guards the machinery this session built that the feature suites don't
+ * directly touch: the palette caps, the synthetic-id detection range, the
+ * orb/modal CSS contract, and the per-temple content-hash pin consistency.
+ */
+const test = require('node:test');
+const assert = require('node:assert');
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+
+const ROOT = path.join(__dirname, '..');
+
+// ── Palette discipline ──────────────────────────────────────────────
+
+test('the full palette never exceeds the Printful 100-variant sync cap', () => {
+  const { paletteVariants } = require('../scripts/printful-palette.js');
+  // Simulate a giant catalog: 84 colors × 12 sizes each.
+  const fake = [];
+  for (let c = 0; c < 84; c++) {
+    for (let s = 0; s < 12; s++) {
+      fake.push({ id: c * 100 + s, color: `Color ${c}`, size: `S${s}`, in_stock: true });
+    }
+  }
+  const picked = paletteVariants(fake, 'tee');
+  assert.ok(picked.length <= 96, `picked ${picked.length} > 96 (cap under Printful's 100)`);
+  const colors = new Set(picked.map((v) => v.color));
+  assert.ok(colors.size <= 12, `picked ${colors.size} colors > MAX_COLORS 12`);
+  // Black and white always lead.
+  assert.ok(colors.has('Color 0'), 'priority order not applied');
+});
+
+test('object kinds keep the small stocked-first slice', () => {
+  const { paletteVariants } = require('../scripts/printful-palette.js');
+  const fake = [
+    { id: 1, color: 'Black', size: '11 oz', in_stock: false },
+    { id: 2, color: 'Black', size: '15 oz', in_stock: true },
+  ];
+  const picked = paletteVariants(fake, 'mug');
+  assert.strictEqual(picked.length, 2, 'object kinds take the stocked-first slice');
+  assert.strictEqual(picked[0].id, 2, 'in-stock sorts first');
+});
+
+// ── Synthetic-id detection (the fast-refresh fake guard) ────────────
+
+test('real Printful ids pass the synthetic filter; fallbacks are caught', () => {
+  const isSynthetic = (id) => Number(id) >= 900_000_000 && Number(id) < 1_000_000_000;
+  // Real ids observed in production are 10-digit (≥1B) — never synthetic.
+  assert.strictEqual(isSynthetic(5_408_192_871), false, '10-digit real id');
+  // The fallback generator's range is [900M, 1B): ids there are synthetic
+  // in this codebase (only applyFallbackVariants writes them — proven when
+  // the six unsynced temples held 931–963M ids with printfulProductId null).
+  assert.strictEqual(isSynthetic(931_503_667), true, 'fallback-range id detected');
+  assert.strictEqual(isSynthetic(963_660_202), true, 'fallback-range id detected');
+  assert.strictEqual(isSynthetic(900_000_000 + 12345), true, 'fallback floor detected');
+  assert.strictEqual(isSynthetic(999_000_000 - 1), true, 'fallback ceiling detected');
+  assert.strictEqual(isSynthetic(899_999_999), false, 'just below the fallback range');
+});
+
+// ── Orb + modal CSS contract ────────────────────────────────────────
+
+test('the takeover orb and sponsorship modal keep their layout contract', () => {
+  const css = fs.readFileSync(path.join(ROOT, 'templates', 'flagship', 'flagship.css'), 'utf8');
+  // Above the fixed main nav (z-index 1010) and mobile menu (~1200).
+  assert.ok(
+    /\.sponsorship-modal\s*\{[^}]*z-index:\s*1400/.test(css),
+    'modal must layer above the nav'
+  );
+  // Container-scroll + margin:auto centering (the short-screen fix).
+  assert.ok(
+    /\.sponsorship-modal\s*\{[^}]*overflow-y:\s*auto/.test(css),
+    'modal container must scroll'
+  );
+  assert.ok(
+    /\.sponsorship-modal-panel\s*\{[^}]*margin:\s*auto/.test(css),
+    'panel must center via margin auto'
+  );
+  assert.ok(/overscroll-behavior:\s*contain/.test(css), 'panel scroll must not chain');
+  // The orb is a sphere with the boot-loader energy ring.
+  assert.ok(css.includes('border-radius: 50%'), 'orb sphere shape');
+  assert.ok(css.includes('orb-energy-spin'), 'orb energy ring animation');
+  assert.ok(/\.takeover-orb[^{]*\{[^}]*cursor:\s*pointer/.test(css), 'orb must feel clickable');
+});
+
+// ── Per-temple content-hash pins ────────────────────────────────────
+
+test('every baked temple pins styles.css/script.js to their content hash', () => {
+  const sample = ['aigyptos', 'zeus', 'ab'];
+  for (const temple of sample) {
+    const dir = path.join(ROOT, 'sites', temple);
+    const index = fs.readFileSync(path.join(dir, 'index.html'), 'utf8');
+    const styles = fs.readFileSync(path.join(dir, 'styles.css'), 'utf8');
+    const script = fs.readFileSync(path.join(dir, 'script.js'), 'utf8');
+    const norm = (b) => b.toString().replace(/\r\n/g, '\n');
+    const expectedCss = crypto.createHash('md5').update(norm(styles)).digest('hex').slice(0, 10);
+    const expectedJs = crypto.createHash('md5').update(norm(script)).digest('hex').slice(0, 10);
+    assert.ok(
+      index.includes(`styles.css?v=${expectedCss}`),
+      `${temple}: styles.css pin does not match content hash`
+    );
+    assert.ok(
+      index.includes(`script.js?v=${expectedJs}`),
+      `${temple}: script.js pin does not match content hash`
+    );
+    assert.ok(!index.includes('styles.css?v=perf21'), `${temple}: legacy perf21 pin leaked back`);
+  }
+});
+
+// ── Placement audit integrity ───────────────────────────────────────
+
+test('the placement audit fixture math: content fits inside the garment box', () => {
+  // stage box math mirror (audit-art-placement.js contentStageBox)
+  const contentStageBox = (content, place) => {
+    const w = place.widthPct / 100;
+    const leftEdge = place.leftPct / 100 - w / 2;
+    const imgH = w / content.aspect;
+    return {
+      x0: leftEdge + w * content.x0,
+      x1: leftEdge + w * content.x1,
+      y0: place.topPct / 100 + imgH * content.y0,
+      y1: place.topPct / 100 + imgH * content.y1,
+    };
+  };
+  // A wide logo lockup (aspect 1.5, content fills canvas) on a tee.
+  const box = contentStageBox(
+    { x0: 0, x1: 1, y0: 0, y1: 1, aspect: 1.5 },
+    { widthPct: 34, topPct: 26, leftPct: 50 }
+  );
+  assert.ok(box.y1 - box.y0 < 0.25, 'wide art height fraction sane');
+  assert.ok(box.x0 >= 0.3 && box.x1 <= 0.7, 'centered art stays mid-garment');
+});

@@ -177,6 +177,7 @@ const RULES = [
       'Store Creative Artworks Tests',
       'Store Checkout Tests',
       'University Outreach Tests',
+      'Store Ops Contract Tests',
     ],
   },
   {

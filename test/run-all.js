@@ -102,6 +102,11 @@ const SUITES = [
     timeout: 60000,
   },
   {
+    name: 'Store Ops Contract Tests',
+    cmd: 'node test/store-ops-contract.test.js',
+    timeout: 60000,
+  },
+  {
     name: 'Newsletter Subscribe Tests',
     cmd: 'node test/newsletter-subscribe.test.js',
     timeout: 60000,
