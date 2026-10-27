@@ -371,8 +371,8 @@
         <div class="pc-fx-stage pc-fx-nib-stage" role="img" aria-label="The Nib — a calligraphy nib drawing an endless golden flourish, ink fading behind it">
             <canvas class="pc-fx-nib" aria-hidden="true"></canvas>
         </div>
-        <h1 class="apply-title">Sponsor the Scholarly Edition</h1>
-        <p class="apply-subtitle">A university sponsors PuniCodex; its departments receive provisioned student access to contribute to flagship temples under a scholarly quality gate. Approved student work is published with institutional attribution, and the university appears as an Academic Collaborator across the site.</p>
+        <h1 class="apply-title">Join the Scholarly Edition</h1>
+        <p class="apply-subtitle">Academic collaboration is <strong>complimentary</strong> — your departments receive provisioned student access to contribute to flagship temples under a scholarly quality gate, approved work is published with institutional attribution, and your university appears as an Academic Collaborator across the site. In return we ask one thing: a backlink from your department's website within your first year. An optional Founding Partner tier adds site-wide placement for institutions that want it.</p>
     </header>
 
     <main class="apply-page">
@@ -395,6 +395,17 @@
                     <label for="contact-email">Contact Email *</label>
                     <input type="email" id="contact-email" name="contact-email" placeholder="scholar@university.edu" autocomplete="email" required>
                 </div>
+                <fieldset class="apply-field" style="border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem;">
+                    <legend style="font-size:.85rem;padding:0 .4rem;">Collaboration type</legend>
+                    <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.4rem 0;font-weight:400;">
+                        <input type="radio" name="collaboration-type" value="complimentary" checked style="margin-top:.25rem;">
+                        <span><strong>Academic collaboration — complimentary.</strong> Full platform access for your students. One backlink within the first year; features begin immediately.</span>
+                    </label>
+                    <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.4rem 0;font-weight:400;">
+                        <input type="radio" name="collaboration-type" value="founding_partner" style="margin-top:.25rem;">
+                        <span><strong>Founding Partner sponsorship.</strong> Everything above, plus site-wide placement and partner analytics (from $999/year — we will discuss terms on the call).</span>
+                    </label>
+                </fieldset>
                 <div class="apply-field">
                     <label for="department-focus">Department Focus <span class="apply-hint">(optional)</span></label>
                     <input type="text" id="department-focus" name="department-focus" placeholder="Classics, Archaeology" autocomplete="off">
@@ -487,12 +498,15 @@
             };
             if (departmentFocus) payload.departmentFocus = departmentFocus;
             if (message) payload.message = message;
+            payload.collaborationType =
+                (document.querySelector('input[name="collaboration-type"]:checked') || {}).value ||
+                'complimentary';
 
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting…';
 
             try {
-                const res = await fetch(apiBase + '/sponsorship/apply', {
+                const res = await fetch(apiBase + '/sponsorship/apply/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload),

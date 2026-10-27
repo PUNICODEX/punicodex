@@ -300,9 +300,13 @@
       'cfg-chip cfg-chip--art',
       function (chip, art) {
         chip.setAttribute('data-v', art.key);
+        // Licensed temple creatives carry attribution — the tooltip and the
+        // chip image alt name the creator alongside the title.
+        var label = art.creator ? art.label + ' — by ' + art.creator : art.label;
+        chip.setAttribute('title', label);
         var img = el('img');
         img.src = art.src;
-        img.alt = '';
+        img.alt = label;
         img.setAttribute('aria-hidden', 'true');
         img.loading = 'lazy';
         chip.appendChild(img);

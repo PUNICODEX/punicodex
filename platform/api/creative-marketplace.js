@@ -824,6 +824,63 @@ router.get(
 );
 
 // ─────────────────────────────────────────────────────────────
+// Creator earnings from the temple store (the money loop, closed)
+// ─────────────────────────────────────────────────────────────
+
+router.get(
+  '/mine/earnings',
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    // Temple store orders that carried this creator's art (artwork_key
+    // 'creative:<id>') plus the creator-merch royalty ledger — one
+    // auditable earnings surface.
+    const { all } = require('../db/operational.js');
+    const storeRows = await all(
+      `SELECT a.id AS asset_id, a.title,
+              COUNT(o.id) AS orders,
+              COALESCE(SUM(o.gross_cents), 0) AS gross_cents,
+              COALESCE(SUM(o.quantity), 0) AS units
+       FROM creative_assets a
+       LEFT JOIN store_orders o ON o.artwork_key = 'creative:' || a.id
+       WHERE a.creator_id = ? AND o.status IN ('paid', 'sent_to_fulfillment', 'shipped', 'delivered')
+       GROUP BY a.id
+       ORDER BY gross_cents DESC`,
+      [req.user.id]
+    );
+    const ledgerRows = await all(
+      `SELECT l.order_ref, l.gross_cents, l.creator_share_cents, l.created_at
+       FROM creator_order_ledger l
+       JOIN creator_products cp ON cp.id = l.product_id
+       JOIN creative_assets a ON a.id = cp.creative_asset_id
+       WHERE a.creator_id = ?
+       ORDER BY l.created_at DESC
+       LIMIT 50`,
+      [req.user.id]
+    );
+    const shareRate = 0.5; // the merch royalty: half of the net margin
+    res.json(
+      success({
+        storeArt: storeRows.map((r) => ({
+          assetId: r.asset_id,
+          title: r.title,
+          orders: Number(r.orders),
+          units: Number(r.units),
+          grossCents: Number(r.gross_cents),
+          estimatedShareCents: Math.round(Number(r.gross_cents) * shareRate * 0.55), // after base+fees, indicative
+        })),
+        merchLedger: ledgerRows.map((r) => ({
+          orderRef: r.order_ref,
+          grossCents: Number(r.gross_cents),
+          shareCents: Number(r.creator_share_cents),
+          createdAt: r.created_at,
+        })),
+        merchShareCents: ledgerRows.reduce((n, r) => n + Number(r.creator_share_cents), 0),
+      })
+    );
+  })
+);
+
+// ─────────────────────────────────────────────────────────────
 // Public creator profiles
 // ─────────────────────────────────────────────────────────────
 

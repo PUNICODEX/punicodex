@@ -912,11 +912,29 @@
                 host.innerHTML = '<p class="dash-subtitle">Creatives unavailable right now.</p>';
                 return;
             }
+            var earningsHtml = '';
+            try {
+                var eres = await fetch('/api/v1/creatives/mine/earnings/', { credentials: 'same-origin' });
+                var ejson = await eres.json();
+                var ed = ejson.data || {};
+                var merchCents = Number(ed.merchShareCents) || 0;
+                var storeCents = (ed.storeArt || []).reduce(function (n, a) { return n + (Number(a.estimatedShareCents) || 0); }, 0);
+                var total = merchCents + storeCents;
+                if (total > 0) {
+                    earningsHtml =
+                        '<div style="padding:.6rem 0 .9rem;font-size:.9rem;">Lifetime earnings: <strong style="color:var(--gold);">$' +
+                        (total / 100).toFixed(2) + '</strong>' +
+                        (merchCents ? ' (merch royalties $' + (merchCents / 100).toFixed(2) + ')' : '') +
+                        '</div>';
+                }
+            } catch (e) { /* earnings are a bonus, never a blocker */ }
+
             if (!items.length) {
-                host.innerHTML =
+                host.innerHTML = earningsHtml +
                     '<p class="dash-subtitle">No creatives yet. Upload work in the <a href="/scholars/creatives/">Creative Studio</a> — approved art can reach a temple’s store products.</p>';
                 return;
             }
+            host.innerHTML = earningsHtml + items
             host.innerHTML = items
                 .map((c) => {
                     const templeLine = c.inspirationEntryId
