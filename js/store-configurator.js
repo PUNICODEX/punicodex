@@ -197,6 +197,27 @@
       tintLayer = null;
     }
 
+    // Fleet default view: when the stage is a photoreal composite (the
+    // recovered mockup fleet) and the active colour is the first/default
+    // chip, the composite IS this colour's product photo — keep it. The
+    // blank-garment swap is for non-default colours only; swapping on init
+    // replaced every fleet PDP's print photo with an empty shirt (the
+    // b6060d37 live-verification catch).
+    var isCompositeStage = /\/mockups\//.test(data.stageSrc || '');
+    var defaultName = data.colors && data.colors.length ? data.colors[0].name : null;
+    if (isCompositeStage && (!color || color === defaultName)) {
+      hasBase = false;
+      if (note) {
+        note.textContent =
+          'The print proof — pick a colour to see the garment in every shade.';
+      }
+      if (stageImg.getAttribute('src') !== data.stageSrc) {
+        stageImg.setAttribute('src', data.stageSrc);
+      }
+      applyArt();
+      return;
+    }
+
     var base = entry && entry.mockup ? entry.mockup : data.baseMockup || null;
     if (base) {
       hasBase = true;

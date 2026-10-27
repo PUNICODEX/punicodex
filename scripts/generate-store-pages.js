@@ -953,7 +953,7 @@ ${breadcrumbScript([
   });
 })();
 </script>
-<script src="/js/store-configurator.js?v=476f5a1f85" defer></script>
+<script src="/js/store-configurator.js?v=0dd185471f" defer></script>
     ${footerHtml()}
 </body></html>
 `;
