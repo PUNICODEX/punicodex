@@ -36,17 +36,18 @@ module.exports = async (req, res) => {
 
     const prospect = await prospects.getProspectById(id);
     if (!prospect) return res.status(404).json({ error: 'University prospect not found' });
-    if (prospect.status === 'active') {
+    const wantsPreview = (req.body || {}).preview === true;
+    if (!wantsPreview && prospect.status === 'active') {
       return res
         .status(409)
         .json({ error: `${prospect.institution_name} is already an active collaborator` });
     }
-    if (prospect.status === 'declined') {
+    if (!wantsPreview && prospect.status === 'declined') {
       return res
         .status(409)
         .json({ error: `${prospect.institution_name} has declined — do not re-contact` });
     }
-    if (Number(prospect.pitch_count) >= MAX_PITCHES_PER_PROSPECT) {
+    if (!wantsPreview && Number(prospect.pitch_count) >= MAX_PITCHES_PER_PROSPECT) {
       return res.status(429).json({
         error: `Already pitched ${prospect.pitch_count}× — further sends need a human decision`,
       });
@@ -73,6 +74,22 @@ module.exports = async (req, res) => {
         .filter(Boolean)
         .slice(0, 4);
       if (!departments.length) departments = null;
+    }
+
+    if (wantsPreview) {
+      // Preview mode: render exactly what would send — no delivery, no pitch
+      // counter, no status change, and the send guards above do not apply
+      // (reading a draft is never throttled). The portal shows this in a
+      // sandboxed frame; only a second explicit action performs the send.
+      const pitch = buildUniversityPitch({ prospect, contactName, customNote, departments });
+      return res.json({
+        preview: true,
+        to,
+        subject: pitch.subject,
+        html: pitch.html,
+        text: pitch.text,
+        previewText: pitch.preview,
+      });
     }
 
     const pitch = buildUniversityPitch({ prospect, contactName, customNote, departments });
