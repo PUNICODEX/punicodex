@@ -65,6 +65,12 @@
           href: `${PREFIX}leasing/?tab=discounts`,
           permission: 'read',
         },
+        {
+          id: 'sponsors',
+          label: 'Sponsor Outreach',
+          href: `${PREFIX}sponsors/`,
+          permission: 'leasing',
+        },
       ],
     },
     {

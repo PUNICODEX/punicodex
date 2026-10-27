@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- PUNICODEX-ANALYTICS-START -->
+<script src="/js/analytics-beacon.js?v=1" defer></script>
+<!-- PUNICODEX-ANALYTICS-END -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Portal — Sponsor Outreach | PuniCodex</title>
+    <link rel="stylesheet" href="/assets/fonts/fonts.css?v=8c5b8a17eb">
+    <link rel="stylesheet" href="../portal.css?v=acabd82adb">
+    <link rel="icon" type="image/svg+xml" href="/assets/brand/02-favicons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/02-favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/02-favicons/favicon-16x16.png">
+    <link rel="icon" href="/assets/brand/02-favicons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/brand/02-favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/brand/02-favicons/mask-icon.svg" color="#D4AF37">
+    <link rel="manifest" href="/assets/brand/06-code/site.webmanifest">
+    <style>
+        .sp-seat {
+            display: inline-block;
+            padding: 0.1rem 0.5rem;
+            margin: 0 0.25rem 0.25rem 0;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 999px;
+            font-size: 0.72rem;
+            color: #c9b584;
+            white-space: nowrap;
+        }
+        .sp-status {
+            display: inline-block;
+            padding: 0.12rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .sp-status--pending { border: 1px solid #8a7a52; color: #c9b584; }
+        .sp-status--contacted { border: 1px solid #4169e1; color: #87a3ee; }
+        .sp-status--replied { border: 1px solid #2e8b57; color: #7fd4a8; }
+        .sp-status--active { background: rgba(46, 139, 87, 0.18); border: 1px solid #2e8b57; color: #a8e8c8; }
+        .sp-status--declined { border: 1px solid #6b6046; color: #8a8064; text-decoration: line-through; }
+        .sp-score {
+            display: inline-block;
+            min-width: 2.4em;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+            color: #e8c860;
+        }
+        #sp-pitch-panel[hidden] { display: none; }
+        .sp-preview-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(6, 5, 3, 0.72);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+        .sp-preview-overlay[hidden] { display: none; }
+        .sp-preview-shell {
+            width: min(760px, 100%);
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            background: #14110c;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 14px;
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+        .sp-preview-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 1.1rem;
+            border-bottom: 1px solid #3a2f1a;
+            background: #100d09;
+            flex-wrap: wrap;
+        }
+        .sp-preview-subject {
+            flex: 1;
+            min-width: 220px;
+            font-size: 0.88rem;
+            color: #e8e0cc;
+        }
+        .sp-preview-subject small { display: block; color: #8a7a52; font-size: 0.74rem; }
+        .sp-preview-frame-wrap {
+            flex: 1;
+            overflow: auto;
+            background: #0b0a08;
+        }
+        .sp-preview-frame {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            border: 0;
+            display: block;
+        }
+        .sp-pitch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.2rem; }
+        @media (max-width: 760px) { .sp-pitch-grid { grid-template-columns: 1fr; } }
+        .sp-note-preview {
+            border: 1px dashed rgba(212, 175, 55, 0.35);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            font-size: 0.85rem;
+            color: #c9b584;
+            background: rgba(212, 175, 55, 0.04);
+        }
+        .sp-signals { font-size: 0.74rem; color: #8a7a52; max-width: 36ch; }
+    </style>
+</head>
+<body data-page="sponsors" data-depth="1">
+    <a class="skip-link" href="#portal-main">Skip to content</a>
+    <div id="portal-header"></div>
+
+    <main id="portal-main" class="portal-main">
+        <div class="portal-page-head">
+            <h1>Sponsor Outreach</h1>
+            <p>Businesses scouted against the temples' industry-pattern seats — seeded by the scouting engine, scored by resonance. Pick one, personalize the founding-frame template, preview, send. The founding code is provisioned automatically and bound to the prospect.</p>
+        </div>
+
+        <section aria-label="Prospect statistics">
+            <div class="stat-grid" id="sp-stats">
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+                <span class="pz-skeleton pz-skeleton--card"></span>
+            </div>
+        </section>
+
+        <section class="panel" aria-label="Sponsor prospects">
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Prospects</h2>
+                    <p class="panel-sub" id="sp-total"></p>
+                </div>
+                <div class="pz-panel-actions">
+                    <label class="field" style="margin:0;">
+                        <select id="sp-temple-filter" aria-label="Filter by temple">
+                            <option value="">All temples</option>
+                        </select>
+                    </label>
+                    <label class="field" style="margin:0;">
+                        <select id="sp-filter" aria-label="Filter by status">
+                            <option value="">All statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="replied">Replied</option>
+                            <option value="active">Active</option>
+                            <option value="declined">Declined</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div id="sp-table">
+                <div class="state-block">Loading prospects…</div>
+            </div>
+        </section>
+
+        <section class="panel" id="sp-pitch-panel" aria-label="Send pitch" hidden>
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title" id="sp-pitch-title">Send the founding invitation</h2>
+                    <p class="panel-sub" id="sp-pitch-sub"></p>
+                </div>
+            </div>
+            <div class="sp-pitch-grid">
+                <div class="field">
+                    <label for="pitch-to">Recipient email</label>
+                    <input type="email" id="pitch-to" placeholder="marketing@business.com">
+                </div>
+                <div class="field">
+                    <label for="pitch-contact">Business name <span class="field-hint">(defaults to the prospect)</span></label>
+                    <input type="text" id="pitch-contact" placeholder="Acme Forge">
+                </div>
+            </div>
+            <div class="sp-pitch-grid">
+                <div class="field">
+                    <label for="pitch-offer">Founding offer <span class="field-hint">(provisions the code quoted in the email)</span></label>
+                    <select id="pitch-offer">
+                        <option value="free_months:1">1 month complimentary</option>
+                        <option value="free_months:2">2 months complimentary</option>
+                        <option value="free_months:3">3 months complimentary</option>
+                        <option value="percent_off:50">50% off the term</option>
+                        <option value="percent_off:100">Complimentary placement (100%)</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="pitch-site">Recipient site <span class="field-hint">(shown in the hero)</span></label>
+                    <input type="text" id="pitch-site" placeholder="business.com">
+                </div>
+            </div>
+            <div class="field">
+                <label for="pitch-note">Personal note <span class="field-hint">(optional — one paragraph, placed as the final resonance bullet)</span></label>
+                <textarea id="pitch-note" rows="3" maxlength="600" placeholder="Your work on … caught our attention because …"></textarea>
+            </div>
+            <div class="sp-note-preview" id="pitch-preview"></div>
+            <div class="portal-form-row" style="margin-top:1rem;">
+                <button type="button" class="btn btn-primary" id="pitch-send">Preview email</button>
+                <button type="button" class="btn btn-secondary" id="pitch-cancel">Cancel</button>
+                <span class="field-hint" id="pitch-hint"></span>
+            </div>
+        </section>
+        <div class="sp-preview-overlay" id="sp-preview-overlay" hidden>
+            <div class="sp-preview-shell" role="dialog" aria-modal="true" aria-label="Email preview">
+                <div class="sp-preview-bar">
+                    <div class="sp-preview-subject">
+                        <span id="sp-preview-subject"></span>
+                        <small id="sp-preview-to"></small>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" id="sp-preview-send">Send this email</button>
+                    <button type="button" class="btn btn-secondary btn-sm" id="sp-preview-back">Back to edit</button>
+                </div>
+                <div class="sp-preview-frame-wrap">
+                    <iframe class="sp-preview-frame" id="sp-preview-frame" title="Rendered pitch email" sandbox=""></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../portal.js?v=828ece5fd4"></script>
+    <script>
+    (function () {
+        var selected = null;
+
+        function statCard(value, label) {
+            return (
+                '<div class="stat-card"><div class="stat-card-value">' + value + '</div>' +
+                '<div class="stat-card-label">' + Portal.escapeHtml(label) + '</div></div>'
+            );
+        }
+
+        function seatTag(p) {
+            if (!p.industryName) return '<span class="field-hint">—</span>';
+            return '<span class="sp-seat" title="' + Portal.escapeHtml((p.signals || []).join(' ')) + '">' +
+                Portal.escapeHtml(p.industryName) + '</span>';
+        }
+
+        function signalLine(p) {
+            var s = (p.signals || [])[0];
+            return s ? '<div class="sp-signals">' + Portal.escapeHtml(s) + '</div>' : '';
+        }
+
+        async function load() {
+            var filter = document.getElementById('sp-filter').value;
+            var temple = document.getElementById('sp-temple-filter').value;
+            var qs = [];
+            if (filter) qs.push('status=' + encodeURIComponent(filter));
+            if (temple) qs.push('temple=' + encodeURIComponent(temple));
+            var data;
+            try {
+                data = await Portal.api('/api/admin/portal/sponsors/' + (qs.length ? '?' + qs.join('&') : ''));
+            } catch (err) {
+                document.getElementById('sp-table').innerHTML =
+                    '<div class="state-block error">' + Portal.escapeHtml(err.message) + '</div>';
+                return;
+            }
+
+            var byStatus = data.byStatus || {};
+            var temples = Object.keys(data.byTemple || {}).length;
+            document.getElementById('sp-stats').innerHTML =
+                statCard(Portal.fmtNumber(data.total), 'Prospects') +
+                statCard(Portal.fmtNumber(byStatus.pending || 0), 'Pending') +
+                statCard(Portal.fmtNumber(byStatus.contacted || 0), 'Contacted') +
+                statCard(Portal.fmtNumber(byStatus.active || 0), 'Active sponsors') +
+                statCard(Portal.fmtNumber(temples), 'Temples covered');
+
+            var templeSel = document.getElementById('sp-temple-filter');
+            var current = templeSel.value;
+            var templeNames = {};
+            data.items.forEach(function (p) { templeNames[p.templeId] = p.templeLabel; });
+            var opts = ['<option value="">All temples</option>'];
+            Object.keys(templeNames).sort(function (a, b) { return templeNames[a].localeCompare(templeNames[b]); })
+                .forEach(function (id) {
+                    opts.push('<option value="' + Portal.escapeHtml(id) + '"' + (id === current ? ' selected' : '') + '>' +
+                        Portal.escapeHtml(templeNames[id]) + '</option>');
+                });
+            templeSel.innerHTML = opts.join('');
+
+            document.getElementById('sp-total').textContent =
+                data.total + ' business' + (data.total === 1 ? '' : 'es') +
+                (filter ? ' · filtered: ' + filter : '');
+
+            document.getElementById('sp-table').innerHTML = data.items.length
+                ? '<div class="table-wrap"><table class="portal-table"><thead><tr>' +
+                  '<th>Temple</th><th>Business</th><th>Industry seat</th><th>Score</th><th>Pitched</th><th>Status</th><th></th>' +
+                  '</tr></thead><tbody>' +
+                  data.items.map(function (p) {
+                      var canSend = p.status !== 'active' && p.status !== 'declined' && (p.pitchCount || 0) < 3;
+                      return (
+                          '<tr>' +
+                          '<td class="cell-title">' + Portal.escapeHtml(p.templeLabel) +
+                          '<div class="field-hint">/' + Portal.escapeHtml(p.templeId) + '/</div></td>' +
+                          '<td>' + Portal.escapeHtml(p.businessName) +
+                          (p.domain ? '<div class="field-hint">' + Portal.escapeHtml(p.domain) + '</div>' : '') +
+                          signalLine(p) + '</td>' +
+                          '<td>' + seatTag(p) + '</td>' +
+                          '<td class="num"><span class="sp-score">' + (p.score || 0) + '</span></td>' +
+                          '<td class="num">' + (p.pitchCount || 0) + (p.lastPitchedAt ? '<div class="field-hint">' + String(p.lastPitchedAt).slice(0, 10) + '</div>' : '') + '</td>' +
+                          '<td><span class="sp-status sp-status--' + Portal.escapeHtml(p.status) + '">' + Portal.escapeHtml(p.status) + '</span></td>' +
+                          '<td>' + (canSend
+                              ? '<button type="button" class="btn btn-secondary btn-sm" data-pitch="' + p.id + '">Pitch</button>'
+                              : '<span class="field-hint">—</span>') + '</td>' +
+                          '</tr>'
+                      );
+                  }).join('') +
+                  '</tbody></table></div>'
+                : '<div class="state-block">No prospects in this bucket yet — run <code>node scripts/scout-temple-sponsors.js</code> to seed the pipeline.</div>';
+
+            document.querySelectorAll('[data-pitch]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    openPitch(data.items.find(function (p) { return String(p.id) === btn.getAttribute('data-pitch'); }));
+                });
+            });
+        }
+
+        function offerBody() {
+            var raw = document.getElementById('pitch-offer').value;
+            var parts = raw.split(':');
+            if (parts[0] === 'percent_off') return { kind: 'percent_off', percent: Number(parts[1]) };
+            return { kind: 'free_months', freeMonths: Number(parts[1]) || 1 };
+        }
+
+        function openPitch(p) {
+            selected = p;
+            document.getElementById('sp-pitch-title').textContent = 'Invite ' + p.businessName + ' — Temple of ' + p.templeLabel;
+            document.getElementById('sp-pitch-sub').textContent =
+                (p.domain ? p.domain + ' · ' : '') + (p.pitchCount || 0) + ' previous pitch' + ((p.pitchCount || 0) === 1 ? '' : 'es') +
+                (p.codeId ? ' · founding code linked' : '');
+            document.getElementById('pitch-to').value = p.contactEmail || '';
+            document.getElementById('pitch-contact').value = p.businessName;
+            document.getElementById('pitch-site').value = p.domain || '';
+            document.getElementById('pitch-note').value = '';
+            renderPreview();
+            document.getElementById('sp-pitch-panel').hidden = false;
+            document.getElementById('sp-pitch-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.getElementById('pitch-to').focus();
+        }
+
+        function renderPreview() {
+            var note = document.getElementById('pitch-note').value.trim();
+            var offer = document.getElementById('pitch-offer');
+            var offerLabel = offer.options[offer.selectedIndex].text;
+            if (!selected) return;
+            document.getElementById('pitch-preview').innerHTML =
+                '<strong>Subject:</strong> A founding frame for ' + Portal.escapeHtml(selected.businessName) +
+                ' — the Temple of ' + Portal.escapeHtml(selected.templeLabel) + '<br/>' +
+                '<strong>Offer:</strong> ' + Portal.escapeHtml(offerLabel) +
+                (note ? '<br/><strong>Founder note:</strong> ' + Portal.escapeHtml(note.slice(0, 140)) + (note.length > 140 ? '…' : '') : '');
+        }
+
+        async function init() {
+            var ctx = await Portal.initShell('sponsors');
+            if (!ctx) return;
+            await load();
+            document.getElementById('sp-filter').addEventListener('change', load);
+            document.getElementById('sp-temple-filter').addEventListener('change', load);
+            document.getElementById('pitch-note').addEventListener('input', renderPreview);
+            document.getElementById('pitch-offer').addEventListener('change', renderPreview);
+            document.getElementById('pitch-cancel').addEventListener('click', function () {
+                document.getElementById('sp-pitch-panel').hidden = true;
+                selected = null;
+            });
+
+            function collectPitchBody(preview) {
+                return {
+                    to: document.getElementById('pitch-to').value.trim(),
+                    businessName: document.getElementById('pitch-contact').value.trim() || null,
+                    recipientSite: document.getElementById('pitch-site').value.trim() || null,
+                    customNote: document.getElementById('pitch-note').value.trim() || null,
+                    offer: offerBody(),
+                    preview: preview === true,
+                };
+            }
+
+            var previewData = null;
+
+            function openPreview(data) {
+                previewData = data;
+                document.getElementById('sp-preview-subject').textContent = data.subject;
+                document.getElementById('sp-preview-to').textContent = 'To: ' + data.to +
+                    (selected ? ' — ' + selected.businessName : '');
+                document.getElementById('sp-preview-frame').srcdoc = data.html;
+                document.getElementById('sp-preview-overlay').hidden = false;
+            }
+
+            function closePreview() {
+                document.getElementById('sp-preview-overlay').hidden = true;
+                document.getElementById('sp-preview-frame').srcdoc = '';
+                previewData = null;
+            }
+
+            document.getElementById('pitch-send').addEventListener('click', async function () {
+                if (!selected) return;
+                var btn = this;
+                if (!document.getElementById('pitch-to').value.trim()) {
+                    Portal.toast('Recipient email is required', 'error');
+                    return;
+                }
+                btn.disabled = true;
+                try {
+                    var data = await Portal.api('/api/admin/portal/sponsors/' + selected.id + '/pitch/', {
+                        method: 'POST',
+                        body: collectPitchBody(true),
+                    });
+                    openPreview(data);
+                } catch (err) {
+                    Portal.toast(err.message, 'error');
+                } finally {
+                    btn.disabled = false;
+                }
+            });
+
+            document.getElementById('sp-preview-back').addEventListener('click', closePreview);
+            document.getElementById('sp-preview-overlay').addEventListener('click', function (e) {
+                if (e.target === this) closePreview();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && !document.getElementById('sp-preview-overlay').hidden) closePreview();
+            });
+
+            document.getElementById('sp-preview-send').addEventListener('click', async function () {
+                if (!previewData || !selected) return;
+                var btn = this;
+                btn.disabled = true;
+                try {
+                    var res = await Portal.api('/api/admin/portal/sponsors/' + selected.id + '/pitch/', {
+                        method: 'POST',
+                        body: {
+                            to: previewData.to,
+                            businessName: document.getElementById('pitch-contact').value.trim() || null,
+                            recipientSite: document.getElementById('pitch-site').value.trim() || null,
+                            customNote: document.getElementById('pitch-note').value.trim() || null,
+                            offer: offerBody(),
+                        },
+                    });
+                    Portal.toast(res.mocked ? 'Mocked send (no RESEND_API_KEY) — ' + res.subject : 'Sent — ' + res.subject, 'success');
+                    closePreview();
+                    document.getElementById('sp-pitch-panel').hidden = true;
+                    selected = null;
+                    await load();
+                } catch (err) {
+                    Portal.toast(err.message, 'error');
+                } finally {
+                    btn.disabled = false;
+                }
+            });
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

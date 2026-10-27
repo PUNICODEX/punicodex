@@ -92,6 +92,11 @@ const SUITES = [
     timeout: 60000,
   },
   {
+    name: 'Sponsor Scout Tests',
+    cmd: 'node test/sponsor-scout.test.js',
+    timeout: 60000,
+  },
+  {
     name: 'Analytics Journeys Tests',
     cmd: 'node test/analytics-journeys.test.js',
     timeout: 60000,

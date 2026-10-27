@@ -1,0 +1,48 @@
+name: Sponsor Scout
+
+on:
+  schedule:
+    # Thursdays 05:47 UTC — midweek scouting refresh after the Monday
+    # university crawl, before the workday AU time.
+    - cron: '47 5 * * 4'
+  workflow_dispatch:
+
+# Scores candidate businesses against the flagship temples' industry-pattern
+# seats and merges new prospects into the operational store. Commits the
+# weekly report when it changes; DB writes go to the operational store
+# directly (Postgres when DATABASE_URL is set, like the university crawl).
+
+concurrency:
+  group: sponsor-scout
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Scout sponsor prospects
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node scripts/scout-temple-sponsors.js
+
+      - name: Commit the weekly report when changed
+        run: |
+          git add data/crawler/sponsors/
+          if git diff --cached --quiet; then
+            echo "Report unchanged — no commit."
+            exit 0
+          fi
+          git -c user.name="PuniCodex CI" -c user.email="ci@punicodex.com" commit -m "chore(crawler): weekly sponsor scouting report"
+          git push

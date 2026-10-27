@@ -91,6 +91,7 @@ const files = execSync('git ls-files --cached --others --exclude-standard "*.htm
 
 let injected = 0;
 let pending = [];
+let problems = [];
 
 const processFile = (file) => {
   const html = withRetry(() => fs.readFileSync(file, 'utf8'));
@@ -99,7 +100,13 @@ const processFile = (file) => {
   if (stripped.includes('</head>')) {
     out = stripped.replace('</head>', `${INJECT}\n</head>`);
   } else {
-    out = `${INJECT}\n${stripped}`;
+    // A page with no </head> is not a page — it is a truncated or corrupted
+    // file (2026-10-27: 56 pages wiped mid-generate were silently "repaired"
+    // into beacon-only husks). Wrapping husk content hides the corruption
+    // and ships broken pages. Refuse, report, fail the run.
+    const crumb = String(html).trim().slice(0, 80).replace(/\n/g, ' ');
+    problems.push(`${file} (no </head>; starts: ${crumb || '<empty>'})`);
+    return;
   }
   if (out !== html) {
     withRetry(() => fs.writeFileSync(file, out, 'utf8'));
@@ -136,7 +143,10 @@ for (let pass = 0; pass < 12 && pending.length > 0; pass++) {
 for (const rel of pending) {
   console.error(`Failed to inject herald beacon into ${rel}`);
 }
+for (const rel of problems) {
+  console.error(`Refused herald beacon (corrupt page): ${rel}`);
+}
 console.log(
   `Herald beacon: injected into ${injected} pages (${files.length} eligible, failed ${pending.length}).`
 );
-if (pending.length) process.exit(1);
+if (pending.length || problems.length) process.exit(1);

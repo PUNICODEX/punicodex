@@ -193,6 +193,16 @@ const RULES = [
     ],
   },
   {
+    // Sponsorship scouting pipeline: prospect store, scout engine, admin
+    // portal section (page + API handlers), and the sponsor seed dataset.
+    pattern:
+      /^platform\/db\/business-prospects\.js$|^platform\/api-handlers\/admin\/portal\/sponsors\/|^scripts\/scout-temple-sponsors\.js$|^scripts\/seed-sponsor-prospects\.js$|^store\/sponsor-seed\.json$|^platform\/public\/admin-portal\/sponsors\/|^platform\/public\/admin-portal\/portal\.js$|^api\/admin\/\[\[\.\.\.slug\]\]\.js$/,
+    suites: [
+      'Sponsor Scout Tests',
+      'Admin Portal Page Tests',
+    ],
+  },
+  {
     pattern: /^platform\/models\/authenticity|^platform\/edge\/authenticity|^extension-v2\//,
     suites: [
       'Authenticity Service Tests',
