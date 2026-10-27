@@ -101,6 +101,12 @@
       url: 1,
       tier_id: 1,
       source: 1,
+      // v4 journey sequencing: per-session page number, previous path, and
+      // the first-page marker let the server reconstruct exact journeys
+      // without relying on event-arrival order.
+      seq: 1,
+      prev_path: 1,
+      entry: 1,
     };
 
     function getParam(name) {
@@ -213,6 +219,24 @@
     window.px = window.px || {};
     window.px.track = track;
 
+    // Journey sequencing: count this page within the session, remember the
+    // previous path for edge reconstruction, and flag the session's door.
+    var seq = 1;
+    var prevPath = '';
+    var entry = 1;
+    try {
+      var rawSeq = parseInt(sessionStorage.getItem('px_seq') || '0', 10);
+      seq = (rawSeq || 0) + 1;
+      sessionStorage.setItem('px_seq', String(seq));
+      prevPath = sessionStorage.getItem('px_prev') || '';
+      sessionStorage.setItem('px_prev', path);
+      entry = seq === 1 ? 1 : 0;
+    } catch (e) {
+      seq = 1;
+      prevPath = '';
+      entry = 1;
+    }
+
     track('page_view', {
       path: path,
       referrer: document.referrer || '',
@@ -220,6 +244,9 @@
       utm_medium: getParam('utm_medium'),
       utm_campaign: getParam('utm_campaign'),
       device: device(),
+      seq: seq,
+      prev_path: prevPath,
+      entry: entry,
     });
 
     function flushOnLeave() {

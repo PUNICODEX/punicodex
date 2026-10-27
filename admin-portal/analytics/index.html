@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <!-- PUNICODEX-ANALYTICS-START -->
-<script src="/js/analytics-beacon.js?v=0a4a40259b" defer></script>
+<script src="/js/analytics-beacon.js?v=e68f9c8416" defer></script>
 <!-- PUNICODEX-ANALYTICS-END -->
 
     <meta charset="UTF-8">
@@ -702,6 +702,55 @@
                         <button class="btn btn-secondary" id="an-retention-btn" type="button">Prune old data</button>
                     </div>
                     <span id="an-retention-status" class="panel-sub" style="display:block; margin-top:0.5rem;"></span>
+                </section>
+            </div>
+        </section>
+
+        <section class="panel an-panel" id="an-journeys-panel" aria-label="Journeys and attribution" style="margin-top:1.5rem;">
+            <div class="panel-head">
+                <div>
+                    <h2 class="panel-title">Journeys — the nervous system</h2>
+                    <p class="panel-sub">Human sessions only. Entry doors, where visitors go next, which surfaces convert, and how long pages hold attention. Bots are counted separately below — never in these numbers.</p>
+                </div>
+                <button type="button" class="btn btn-secondary btn-sm" id="an-journeys-refresh">Refresh</button>
+            </div>
+            <div class="panel-grid-2">
+                <section aria-label="Entry pages">
+                    <h3 style="font-size:.95rem;margin:0 0 .5rem;">Entry pages — true session doors</h3>
+                    <div class="table-wrap"><table class="portal-table">
+                        <thead><tr><th>Entry</th><th class="num">Sessions</th><th class="num">Avg events</th></tr></thead>
+                        <tbody id="an-j-entries"><tr><td colspan="3"><span class="pz-skeleton pz-skeleton--row"></span></td></tr></tbody>
+                    </table></div>
+                </section>
+                <section aria-label="Top journeys">
+                    <h3 style="font-size:.95rem;margin:0 0 .5rem;">Most common journeys</h3>
+                    <div id="an-j-tops"></div>
+                </section>
+            </div>
+            <div class="panel-grid-2" style="margin-top:1.25rem;">
+                <section aria-label="Surface attribution">
+                    <h3 style="font-size:.95rem;margin:0 0 .5rem;">Entry surfaces → engagement</h3>
+                    <div class="table-wrap"><table class="portal-table">
+                        <thead><tr><th>Surface</th><th class="num">Sessions</th><th class="num">Engaged ≥3 events</th><th class="num">Rate</th></tr></thead>
+                        <tbody id="an-j-surfaces"><tr><td colspan="4"><span class="pz-skeleton pz-skeleton--row"></span></td></tr></tbody>
+                    </table></div>
+                </section>
+                <section aria-label="Attention">
+                    <h3 style="font-size:.95rem;margin:0 0 .5rem;">Where attention lands (median visible-ms)</h3>
+                    <div class="table-wrap"><table class="portal-table">
+                        <thead><tr><th>Page</th><th class="num">Samples</th><th class="num">Avg visible</th><th class="num">Avg scroll</th></tr></thead>
+                        <tbody id="an-j-dwell"><tr><td colspan="4"><span class="pz-skeleton pz-skeleton--row"></span></td></tr></tbody>
+                    </table></div>
+                </section>
+            </div>
+            <div class="panel-grid-2" style="margin-top:1.25rem;">
+                <section aria-label="Session samples">
+                    <h3 style="font-size:.95rem;margin:0 0 .5rem;">Live journey samples</h3>
+                    <div id="an-j-samples"></div>
+                </section>
+                <section aria-label="Bot overview">
+                    <h3 style="font-size:.95rem;margin:0 0 .5rem;">Bots — security lens, not product metrics</h3>
+                    <div id="an-j-bots"></div>
                 </section>
             </div>
         </section>
@@ -2378,6 +2427,61 @@
 
         init();
     })();
+
+        // ── Journeys panel (the nervous system) ──────────────────────
+        async function loadJourneys() {
+            var days = 7;
+            var data;
+            try {
+                data = await Portal.api('/api/admin/portal/analytics/journeys/?days=' + days);
+            } catch (err) {
+                document.getElementById('an-j-entries').innerHTML =
+                    '<tr><td colspan="3"><div class="state-block error">' + Portal.escapeHtml(err.message) + '</div></td></tr>';
+                return;
+            }
+            document.getElementById('an-j-entries').innerHTML = (data.entryPages || []).slice(0, 10).map(function (e) {
+                return '<tr><td class="cell-title">' + Portal.escapeHtml(e.path) + '</td>' +
+                    '<td class="num">' + Portal.fmtNumber(e.sessions) + '</td>' +
+                    '<td class="num">' + Portal.escapeHtml(String(e.avg_events)) + '</td></tr>';
+            }).join('') || '<tr><td colspan="3"><div class="state-block">No human sessions in the window.</div></td></tr>';
+
+            document.getElementById('an-j-tops').innerHTML = (data.topJourneys || []).slice(0, 6).map(function (t) {
+                return '<div style="padding:.45rem 0;border-bottom:1px solid var(--line);font-size:.85rem;">' +
+                    '<span style="color:var(--gold);font-weight:600;">' + Portal.fmtNumber(t.sessions) + '×</span> ' +
+                    Portal.escapeHtml(t.journey) + '</div>';
+            }).join('') || '<div class="state-block">No multi-page journeys yet.</div>';
+
+            document.getElementById('an-j-surfaces').innerHTML = (data.surfaceAttribution || []).map(function (s) {
+                return '<tr><td>' + Portal.escapeHtml(s.surface) + '</td>' +
+                    '<td class="num">' + Portal.fmtNumber(s.sessions) + '</td>' +
+                    '<td class="num">' + Portal.fmtNumber(s.engaged) + '</td>' +
+                    '<td class="num">' + s.engagementRate + '%</td></tr>';
+            }).join('');
+
+            document.getElementById('an-j-dwell').innerHTML = (data.dwellByPath || []).slice(0, 10).map(function (d) {
+                return '<tr><td class="cell-title">' + Portal.escapeHtml(d.path) + '</td>' +
+                    '<td class="num">' + Portal.fmtNumber(d.samples) + '</td>' +
+                    '<td class="num">' + Math.round((Number(d.avg_visible_ms) || 0) / 1000) + 's</td>' +
+                    '<td class="num">' + Math.round(Number(d.avg_scroll_pct) || 0) + '%</td></tr>';
+            }).join('') || '<tr><td colspan="4"><div class="state-block">No engagement samples yet.</div></td></tr>';
+
+            document.getElementById('an-j-samples').innerHTML = (data.sessionSamples || []).slice(0, 5).map(function (s) {
+                return '<div style="padding:.45rem 0;border-bottom:1px solid var(--line);font-size:.82rem;color:var(--dim);">' +
+                    s.pages.map(function (p) { return Portal.escapeHtml(p); }).join(' → ') + '</div>';
+            }).join('') || '<div class="state-block">No samples in the window.</div>';
+
+            var bots = data.botOverview || {};
+            document.getElementById('an-j-bots').innerHTML =
+                '<div class="stat-grid">' +
+                '<div class="stat-card"><div class="stat-card-value">' + Portal.fmtNumber(bots.botSessions || 0) + '</div>' +
+                '<div class="stat-card-label">Bot sessions · 7d</div></div></div>' +
+                ((bots.classes || []).map(function (c) {
+                    return '<div style="font-size:.8rem;color:var(--dim);padding:.2rem 0;">' +
+                        Portal.escapeHtml(c.ua_class || 'unknown') + ': ' + Portal.fmtNumber(c.events) + ' events</div>';
+                }).join(''));
+        }
+        document.getElementById('an-journeys-refresh').addEventListener('click', loadJourneys);
+        loadJourneys();
     </script>
 </body>
 </html>

@@ -160,6 +160,11 @@ const EVENT_REGISTRY = {
       'utm_source',
       'utm_medium',
       'utm_campaign',
+      // v4 journey sequencing (beacon): per-session page number, the
+      // previous path, and the first-page-of-session marker.
+      'seq',
+      'prev_path',
+      'entry',
     ],
     validate: validatePageView,
   },

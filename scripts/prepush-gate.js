@@ -181,7 +181,7 @@ const RULES = [
   },
   {
     pattern:
-      /^platform\/api\/university-pitch-email\.js$|^platform\/db\/university-prospects\.js$|^platform\/api-handlers\/admin\/portal\/universities\/|^scripts\/seed-australian-universities\.js$|^scripts\/crawl-australian-universities\.js$|^platform\/public\/scholars\/$/,
+      /^platform\/api\/analytics-journeys\.js$|^js\/analytics-beacon\.js$|^platform\/api-handlers\/admin\/portal\/analytics\/|^platform\/api\/university-pitch-email\.js$|^platform\/db\/university-prospects\.js$|^platform\/api-handlers\/admin\/portal\/universities\/|^scripts\/seed-australian-universities\.js$|^scripts\/crawl-australian-universities\.js$|^platform\/public\/scholars\/$/,
     suites: ['University Outreach Tests'],
   },
   {

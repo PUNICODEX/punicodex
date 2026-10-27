@@ -186,6 +186,10 @@ const ROUTES = [
     load: () => require('../../platform/api-handlers/admin/portal/discounts/[id]/pitch/index.js'),
   },
   {
+    segments: ['portal', 'analytics', 'journeys'],
+    load: () => require('../../platform/api-handlers/admin/portal/analytics/journeys/index.js'),
+  },
+  {
     segments: ['portal', 'universities'],
     load: () => require('../../platform/api-handlers/admin/portal/universities/index.js'),
   },
