@@ -258,3 +258,30 @@ test('self-seed: a prospect store with rows never re-imports the seed', async ()
   const again = await store.listProspects();
   assert.strictEqual(again.length, before.length, 'self-seed must be a no-op on a populated table');
 });
+
+test('public example domains are OWNED names only (2026-10-27 incident)', () => {
+  // nótt.com / quauhtli.com appeared as showcase examples but were never
+  // owned — a public credibility breach. Lock the truth: any domain example
+  // shown on outreach surfaces must be in owned-domains.json.
+  const owned = require('../platform/db/owned-domains.json');
+  const list = new Set((owned.domains || owned).map((d) => d.domain || d));
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const surfaces = [
+    path.join(__dirname, '..', 'university-sponsorship', 'index.html'),
+    path.join(__dirname, '..', 'platform', 'api', 'university-pitch-email.js'),
+    path.join(__dirname, '..', 'platform', 'public', 'scholars', 'apply', 'index.html'),
+  ];
+  const DOMAIN_RE = /([a-záéíóúÁÉÍÓÚâêîôûāēīōūḗṓṍṝñçḍṭḥṣṯḫꜣꜥðþæœǫ]+\.com)/gi;
+  for (const surface of surfaces) {
+    if (!fs.existsSync(surface)) continue;
+    const text = fs.readFileSync(surface, 'utf8');
+    const matches = text.match(DOMAIN_RE) || [];
+    for (const domain of matches) {
+      assert.ok(
+        list.has(domain),
+        `${path.basename(surface)} showcases ${domain} which is NOT in owned-domains.json`
+      );
+    }
+  }
+});
