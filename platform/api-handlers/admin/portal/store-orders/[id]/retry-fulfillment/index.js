@@ -24,7 +24,9 @@ try {
 // Durable Postgres schema (no-op without DATABASE_URL).
 require('../../../../../../db/migrate-store-orders-pg.js')
   .runMigration()
-  .catch((err) => console.error('[admin/store-orders/:id/retry] pg migration failed:', err.message));
+  .catch((err) =>
+    console.error('[admin/store-orders/:id/retry] pg migration failed:', err.message)
+  );
 
 module.exports = async (req, res) => {
   setPortalCors(req, res);
