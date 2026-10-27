@@ -179,3 +179,46 @@ test('store card and stage imagery resolves to real local assets or fleet compos
     }
   }
 });
+
+// ── Card art guard (blank-cards regression, 2026-10-27 evening) ─────
+
+test('every collection card shows the temple art — fleet composite or build-time overlay', () => {
+  // The f6ec486c "garment base" fallback shipped 543 identical blank-tee
+  // cards: the PDP stage composites art at runtime via store-configurator,
+  // but cards are static HTML — nothing ever put the art on the garment.
+  // URL-liveness and asset-existence guards both passed on a blank card;
+  // this guard asserts the user-visible outcome instead.
+  const pages = [
+    path.join(ROOT, 'store', 'index.html'),
+    path.join(ROOT, 'store', 'aigyptos', 'index.html'),
+    path.join(ROOT, 'store', 'zeus', 'index.html'),
+    path.join(ROOT, 'store', 'adonis', 'index.html'),
+    path.join(ROOT, 'store', 'athena', 'index.html'),
+  ];
+  let cards = 0;
+  for (const page of pages) {
+    // Strip inline <script> blocks: they contain JS template strings (e.g.
+    // the Creator Editions grid builder) whose imgbox-shaped literals are
+    // not rendered cards.
+    const html = fs.readFileSync(page, 'utf8').replace(/<script[\s\S]*?<\/script>/g, '');
+    for (const m of html.matchAll(/<div class="imgbox"[^>]*>([\s\S]*?)<\/div>/g)) {
+      cards++;
+      const box = m[1];
+      const hasFleetComposite = /mockups\/[a-z0-9-]+\.jpg/.test(box);
+      const hasArtOverlay = box.includes('class="card-art"');
+      assert.ok(
+        hasFleetComposite || hasArtOverlay,
+        `${path.basename(path.dirname(page))}: a collection card shows a blank garment — no fleet composite, no card-art overlay`
+      );
+      if (hasArtOverlay) {
+        const src = box.match(/class="card-art"[^>]*src="([^"]+)"/);
+        assert.ok(src, 'card-art overlay must carry a src');
+        assert.ok(
+          fs.existsSync(path.join(ROOT, src[1].replace(/^\//, ''))),
+          `card-art references missing asset ${src[1]}`
+        );
+      }
+    }
+  }
+  assert.ok(cards >= 500, `expected 500+ collection cards across the sample, found ${cards}`);
+});

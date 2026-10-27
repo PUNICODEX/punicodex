@@ -164,6 +164,39 @@ function stageImage(p, meta) {
   return cardImage(p, meta);
 }
 
+/**
+ * Default artwork + geometry for a product — the art a buyer sees first.
+ * Build-time card compositing uses the same numbers as the PDP overlay so
+ * the grid and the product page never disagree about where the print sits.
+ */
+function defaultArtFor(p) {
+  const placements = p.design?.placements;
+  if (!placements || !placements.length) return null;
+  const key = placements[0].asset;
+  const arts = p.artworks || [];
+  const art = arts.find((a) => a.key === key) || arts[0];
+  if (!art) return null;
+  return { src: art.src, placement: art.placement || p.placement || null };
+}
+
+/**
+ * Collection-card art overlay. A card must read as a PRODUCT photo with the
+ * temple's own print on the garment — a grid of blank bases is the
+ * 2026-10-27 regression this exists for. Emitted only when the card image
+ * is a blank garment base; fleet composites already carry the print.
+ */
+function cardArtOverlay(p) {
+  if (p.mockupImage && MOCKUP_FLEET.has(p.id)) return '';
+  const art = defaultArtFor(p);
+  if (!art || !art.placement) return '';
+  const { widthPct, topPct, leftPct } = art.placement;
+  const left = leftPct == null ? 50 : leftPct;
+  // Inline geometry: the stylesheet's `.card img{width:100%;height:100%}`
+  // must not squash the art — inline width/height win, keeping the art's
+  // own aspect ratio over the garment photo.
+  return `<img class="card-art" src="${esc(art.src)}" alt="" aria-hidden="true" loading="lazy" style="position:absolute;z-index:2;width:${widthPct}%;top:${topPct}%;left:${left}%;transform:translateX(-50%);height:auto;pointer-events:none">`;
+}
+
 // Masters-host JPEG/PNG imagery ships with a webp sibling; emit the enriched
 // <picture> form so a regeneration never strips it (the 2026-08 idempotency
 // failure: a rewritten store page silently lost its webp <source>).
@@ -397,7 +430,7 @@ function renderStoreIndex(colls) {
       const sorted = products.slice().sort((a, b) => KIND_ORDER.indexOf(a.id.split('-').pop()) - KIND_ORDER.indexOf(b.id.split('-').pop()));
       const img = cardImage(sorted[0], meta);
       return `<a class="card" href="/store/${id}/" data-product-id="${esc(id)}" data-pantheon="${esc(meta.pantheon)}" data-name="${esc(meta.name.toLowerCase())}">
-  <div class="imgbox">${imgTag(img, `${meta.name} Reliquary collection — restored ${meta.pantheon} merchandise`)}</div>
+  <div class="imgbox" style="position:relative">${imgTag(img, `${meta.name} Reliquary collection — restored ${meta.pantheon} merchandise`)}${cardArtOverlay(sorted[0])}</div>
   <div class="body">
     <div class="sub">${esc(meta.pantheon)}${meta.rentalTier ? ` · Tier ${meta.rentalTier}` : ''}</div>
     <h3>${esc(meta.name)}</h3>
@@ -552,7 +585,7 @@ function renderCollection(id, products) {
   const cardHtml = (p) => {
     const kind = p.id.split('-').pop();
     return `<a class="card" href="/store/${id}/${kind}/" data-product-id="${esc(p.id)}">
-  <div class="imgbox">${imgTag(cardImage(p, meta), p.name)}</div>
+  <div class="imgbox" style="position:relative">${imgTag(cardImage(p, meta), p.name)}${cardArtOverlay(p)}</div>
   <div class="body">
     <div class="sub">${esc(kindLabel(kind))}</div>
     <h3>${esc(p.name)}</h3>
