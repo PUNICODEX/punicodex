@@ -135,8 +135,31 @@ function templeMeta(id) {
   };
 }
 
+// Composite mockups (.masters/mockups, served from the masters deployment)
+// only exist for the fleet recorded in store/mockup-fleet.json (committed by
+// scripts/audit-mockup-fleet.js). Referencing a mockupImage outside the fleet
+// guarantees a 404 on the PDP — the universal overlay composes the art on
+// the blank-garment base instead, which never 404s.
+function loadMockupFleet() {
+  try {
+    const map = JSON.parse(fs.readFileSync(path.join(ROOT, 'store', 'mockup-fleet.json'), 'utf8'));
+    return new Set(Object.keys(map).filter((id) => map[id] === true));
+  } catch {
+    return new Set();
+  }
+}
+const MOCKUP_FLEET = loadMockupFleet();
+
 function cardImage(p, meta) {
-  return p.mockupImage || meta.mascotPath || p.image;
+  const composite = p.mockupImage && MOCKUP_FLEET.has(p.id) ? p.mockupImage : null;
+  return composite || meta.mascotPath || p.image;
+}
+
+/** PDP stage: fleet composite, else the blank-garment base (overlay-ready). */
+function stageImage(p, meta) {
+  if (p.mockupImage && MOCKUP_FLEET.has(p.id)) return p.mockupImage;
+  if (p.baseMockup) return p.baseMockup;
+  return cardImage(p, meta);
 }
 
 // Masters-host JPEG/PNG imagery ships with a webp sibling; emit the enriched
@@ -662,7 +685,7 @@ function renderProduct(id, kind, product) {
     })
     .join('\n');
 
-  const stageImg = cardImage(product, meta);
+  const stageImg = stageImage(product, meta);
   const stageDims = imageDims(stageImg);
   const pageUrl = `${SITE_ORIGIN}/store/${id}/${kind}/`;
 
